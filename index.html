@@ -190,27 +190,22 @@
 <div class="wrap">
   <header>
     <h1>Regiekamer<small>Interim projectoverzicht &middot; tot de dashboard-lane oplevert</small></h1>
-    <span class="stamp">bijgewerkt <b>23 aug 2026 · 19:40</b> · na V30R1-reconciliatie</span>
+    <span class="stamp">bijgewerkt <b>23 aug 2026 · 21:15</b> · na merge #1050 + geheugenitems 2–4 op GitHub</span>
   </header>
 
   <section class="beslisrij">
-    <h2>Wacht op jou — 6 besluiten</h2>
+    <h2>Wacht op jou — 5 besluiten</h2>
     <p>Niets anders blokkeert. Elk besluit hieronder kost je hooguit een paar minuten en zet een hele lane weer in beweging.</p>
 
-    <div class="besluit">
-      <span class="wat">1 · PR&nbsp;#1050 mergen (publisher-fix) — al het bewijs staat</span>
-      <span class="kost">~2 min</span>
-      <span class="unlock">pin-update + geheugenitems 2–4 publiceren</span>
-    </div>
     <div class="besluit">
       <span class="wat">2 · Zeg <code>akkoord restore + herstart</code> voor V30R1 (restanten zijn als patch bewaard)</span>
       <span class="kost">1 zin</span>
       <span class="unlock">reparatielane PR #1051 draait weer</span>
     </div>
     <div class="besluit">
-      <span class="wat">3 · PR&nbsp;#1049 (geheugenitem 1): mergen of afwijzen</span>
-      <span class="kost">~1 min</span>
-      <span class="unlock">geheugenketen rond</span>
+      <span class="wat">3 · Geheugen-PR's #1049 + #1052–#1054 (items 1–4, alle bewezen op GitHub): mergen of afwijzen</span>
+      <span class="kost">~2 min</span>
+      <span class="unlock">geheugenketen definitief in main</span>
     </div>
     <div class="besluit">
       <span class="wat">4 · Akkoord: bin-drift naar een branch committen</span>
@@ -241,17 +236,17 @@
 
   <div class="grid">
     <div class="kaart">
-      <div class="kaart-kop"><h3>Autocoding / stack-control</h3><span class="pil wacht">WACHT OP JOU</span></div>
-      <p class="stand">Drie PR's open, alle draft. <b>#1050</b> volledig goedgekeurd (CI groen, tweede stem met bewijs) — alleen de merge ontbreekt. <b>#1051</b>-bouwer is door de crash gestorven; restanten veiliggesteld.</p>
-      <div class="feit"><span>PR #1049 · #1050 · #1051</span><span>besluit 1 + 2 + 3</span></div>
-      <p class="stap richard">Merge #1050 — grootste ontgrendelaar van vandaag.</p>
+      <div class="kaart-kop"><h3>Autocoding / stack-control</h3><span class="pil loopt">LOOPT</span></div>
+      <p class="stand"><b>#1050 gemerged</b> (63492f5) onder jouw merge-toestemming — poort volledig doorlopen, merger&nbsp;≠&nbsp;auteur. Publisher draait nu vanaf de merge-commit. <b>#1051</b>-herstart wacht op besluit 2.</p>
+      <div class="feit"><span>#1050 ✓ gemerged</span><span>#1049 · #1052–#1054 open</span></div>
+      <p class="stap richard">Besluit 2 (restore + herstart) en besluit 3 (geheugen-PR's).</p>
     </div>
 
     <div class="kaart">
       <div class="kaart-kop"><h3>Global memory</h3><span class="pil wacht">WACHT OP JOU</span></div>
-      <p class="stand">Lokale laag af en in gebruik. Item 1 = PR&nbsp;#1049. Items 2–4 staan klaar en volgen automatisch zodra #1050 gemerged is.</p>
-      <div class="feit"><span>1 gepubliceerd</span><span>3 in de wacht</span></div>
-      <p class="stap">Volgt vanzelf uit besluit 1 — geen eigen actie.</p>
+      <p class="stand">Alle vier items op GitHub en teruggelezen met sha256-bewijs: PR&nbsp;#1049 + nieuwe PR's&nbsp;#1052/#1053/#1054. De lokale administratie draagt nu overal PUBLISHED met commit-binding.</p>
+      <div class="feit"><span>4 gepubliceerd</span><span>readback ✓ sha256</span></div>
+      <p class="stap richard">Merge de vier geheugen-PR's (besluit 3) — dan staat de keten definitief in main.</p>
     </div>
 
     <div class="kaart">
@@ -265,7 +260,7 @@
       <div class="kaart-kop"><h3>COA</h3><span class="pil loopt">LOOPT</span></div>
       <p class="stand"><b>PR&nbsp;#67 gemerged</b>, CI ook ná de merge groen — volledig rond. Guard-regel-PR's #9/#10/#14 zijn ontgrendeld.</p>
       <div class="feit"><span>merge cba51423</span><span>CI ✓ post-main</span></div>
-      <p class="stap">Eerste coa-order voor de autocoding-lus; kandidaat: het grip-pakket (capaciteitsmeting + regelrail + Telegram-push).</p>
+      <p class="stap">Grip-pakket deel 1 (capaciteitsmeting per lane) is gebouwd door claude1 — acceptatieproef groen — en ligt bij codex2 ter review. Regelrail + Telegram-push volgen.</p>
     </div>
 
     <div class="kaart">
