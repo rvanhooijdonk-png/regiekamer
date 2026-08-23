@@ -94,6 +94,30 @@
   }
   .stamp b { color: var(--ink); font-weight: 600; }
 
+  /* Live accounts */
+  .lanes {
+    background: var(--panel); border: 1px solid var(--line);
+    border-radius: 10px; padding: 18px 20px 8px; margin-bottom: 30px;
+  }
+  .lanes > h2 {
+    margin: 0 0 4px; font-size: 0.8rem; font-weight: 700;
+    letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-3);
+  }
+  .lanes > p { margin: 0 0 12px; font-size: 0.85rem; color: var(--ink-2); max-width: 66ch; }
+  .lane {
+    display: grid; grid-template-columns: 130px 1fr auto; gap: 2px 16px;
+    padding: 10px 0; border-top: 1px solid var(--line); align-items: baseline;
+  }
+  .lane .acc { font-family: 'IBM Plex Mono', monospace; font-size: 0.78rem; font-weight: 600; }
+  .lane .werk { font-size: 0.9rem; }
+  .lane .werk small { display: block; font-size: 0.78rem; color: var(--ink-3); margin-top: 1px; }
+  .lane .sinds {
+    font-family: 'IBM Plex Mono', monospace; font-size: 0.7rem;
+    color: var(--ink-3); white-space: nowrap; text-align: right;
+  }
+  .lane .acc .ldot { width: 8px; height: 8px; border-radius: 50%; display: inline-block; margin-right: 6px; }
+  @media (max-width: 640px) { .lane { grid-template-columns: 1fr auto; } .lane .acc { grid-column: 1 / -1; } }
+
   /* Beslisrij */
   .beslisrij {
     background: var(--wait-bg); border: 1px solid var(--wait-line);
@@ -190,8 +214,53 @@
 <div class="wrap">
   <header>
     <h1>Regiekamer<small>Interim projectoverzicht &middot; tot de dashboard-lane oplevert</small></h1>
-    <span class="stamp">bijgewerkt <b>23 aug 2026 · 21:15</b> · na merge #1050 + geheugenitems 2–4 op GitHub</span>
+    <span class="stamp">bijgewerkt <b>23 aug 2026 · 21:30</b> · live accountbeeld toegevoegd</span>
   </header>
+
+  <section class="lanes">
+    <h2>Nu in de maak — per account</h2>
+    <p>Live gemeten op de machine (draaiende processen + laatste receipts), niet uit een verslag. Drie accounts werken op dit moment parallel.</p>
+    <div class="lane">
+      <span class="acc"><span class="ldot" style="background:var(--ok)"></span>claude1</span>
+      <span class="werk">Reparatie capaciteitsmeting-tool: de stille jsonl-drop expliciet maken (R2-fix na codex2-review)<small>model Sonnet 5 — mechanisch scriptwerk in eigen worktree · directie-dispatch</small></span>
+      <span class="sinds">BEZIG · sinds 19:25 · ±10 min</span>
+    </div>
+    <div class="lane">
+      <span class="acc"><span class="ldot" style="background:var(--ok)"></span>gemini1</span>
+      <span class="werk">Opdracht onder het global-memory-contract (plan-modus, read-only)<small>Warp-kant gedispatcht · andere modelfamilie als onafhankelijke stem</small></span>
+      <span class="sinds">BEZIG · sinds 19:20</span>
+    </div>
+    <div class="lane">
+      <span class="acc"><span class="ldot" style="background:var(--ok)"></span>dashboard-codex</span>
+      <span class="werk">Waakvlam-verplaatsing in stack-dashboard (scripts/waarnemer.mjs), bouwt vanaf origin/main b0d7f65<small>jouw eigen lane — de directie blijft eraf</small></span>
+      <span class="sinds">BEZIG · sinds 19:22</span>
+    </div>
+    <div class="lane">
+      <span class="acc"><span class="ldot" style="background:var(--still)"></span>codex2</span>
+      <span class="werk">Review capaciteitsmeting geleverd 19:23 (verdict NO_GO, met bewijs) — ketent automatisch door naar de herreview zodra claude1 klaar is<small>reviewer-rol, nooit dezelfde als de bouwer (R4)</small></span>
+      <span class="sinds">VRIJ · volgende taak staat klaar</span>
+    </div>
+    <div class="lane">
+      <span class="acc"><span class="ldot" style="background:var(--wait)"></span>codex1</span>
+      <span class="werk">Transport-gat-fix in dispatch-actor staat klaar, maar kan pas na jouw bin-drift-akkoord (besluit 4) — defect inmiddels 3× waargenomen<small>zonder akkoord zou de order vanaf verkeerde code bouwen</small></span>
+      <span class="sinds">WACHT OP JOU</span>
+    </div>
+    <div class="lane">
+      <span class="acc"><span class="ldot" style="background:var(--wait)"></span>claude2</span>
+      <span class="werk">V30R1-reparatielane (PR #1051): herstart wacht op jouw <code style="font-family:'IBM Plex Mono',monospace;font-size:0.85em">akkoord restore + herstart</code> — crash-restanten zijn verliesvrij bewaard<small>tweetraps-afspraak: herstel pas na expliciet akkoord</small></span>
+      <span class="sinds">WACHT OP JOU</span>
+    </div>
+    <div class="lane">
+      <span class="acc"><span class="ldot" style="background:var(--still)"></span>claude3 · claude4</span>
+      <span class="werk">Vrij — geen veilige opdracht beschikbaar: al het resterende werk hangt achter jouw besluiten hieronder of achter de lopende reparatieketen<small>capaciteit is er; de besluiten zijn de flessenhals, niet de accounts</small></span>
+      <span class="sinds">VRIJ</span>
+    </div>
+    <div class="lane">
+      <span class="acc"><span class="ldot" style="background:var(--ok)"></span>directie</span>
+      <span class="werk">Dit venster (Fable): orders maken, reviews routeren, bewijs verifiëren, deze pagina bijhouden<small>coördinatie — bouwt zelf niet</small></span>
+      <span class="sinds">ACTIEF</span>
+    </div>
+  </section>
 
   <section class="beslisrij">
     <h2>Wacht op jou — 5 besluiten</h2>
