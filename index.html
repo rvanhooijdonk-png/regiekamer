@@ -1,0 +1,318 @@
+<title>Regiekamer</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+<style>
+  :root {
+    --paper: #F3F5F7;
+    --panel: #FFFFFF;
+    --panel-2: #EAEEF1;
+    --ink: #1E2833;
+    --ink-2: #4A5A68;
+    --ink-3: #7C8B98;
+    --line: #D6DDE3;
+    --accent: #177289;
+    --accent-soft: #E1EEF2;
+    --wait: #9A6A00;
+    --wait-bg: #FCF3DF;
+    --wait-line: #E4C98A;
+    --ok: #2E7D4F;
+    --ok-bg: #E3F0E8;
+    --blocked: #B3402E;
+    --blocked-bg: #F7E5E1;
+    --still: #7C8B98;
+    --still-bg: #ECEFF2;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --paper: #141B22;
+      --panel: #1C252E;
+      --panel-2: #232E39;
+      --ink: #E8EDF1;
+      --ink-2: #A9B7C2;
+      --ink-3: #75859252;
+      --ink-3: #758592;
+      --line: #2E3A46;
+      --accent: #4FB3CC;
+      --accent-soft: #1A3540;
+      --wait: #E3B354;
+      --wait-bg: #2E2617;
+      --wait-line: #57482A;
+      --ok: #6DBE8E;
+      --ok-bg: #1B2E23;
+      --blocked: #E08573;
+      --blocked-bg: #33201C;
+      --still: #8A99A6;
+      --still-bg: #222C35;
+    }
+  }
+  :root[data-theme="dark"] {
+    --paper: #141B22;
+    --panel: #1C252E;
+    --panel-2: #232E39;
+    --ink: #E8EDF1;
+    --ink-2: #A9B7C2;
+    --ink-3: #758592;
+    --line: #2E3A46;
+    --accent: #4FB3CC;
+    --accent-soft: #1A3540;
+    --wait: #E3B354;
+    --wait-bg: #2E2617;
+    --wait-line: #57482A;
+    --ok: #6DBE8E;
+    --ok-bg: #1B2E23;
+    --blocked: #E08573;
+    --blocked-bg: #33201C;
+    --still: #8A99A6;
+    --still-bg: #222C35;
+  }
+  * { box-sizing: border-box; }
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: 'Archivo', 'Helvetica Neue', Arial, sans-serif;
+    margin: 0;
+    line-height: 1.5;
+  }
+  .wrap { max-width: 1080px; margin: 0 auto; padding: 28px 20px 64px; }
+
+  /* Topbalk */
+  header {
+    display: flex; align-items: baseline; justify-content: space-between;
+    flex-wrap: wrap; gap: 8px 16px;
+    border-bottom: 2px solid var(--ink);
+    padding-bottom: 14px; margin-bottom: 24px;
+  }
+  h1 { font-size: 1.6rem; font-weight: 800; letter-spacing: -0.01em; margin: 0; }
+  h1 small {
+    display: block; font-size: 0.72rem; font-weight: 600; color: var(--ink-3);
+    letter-spacing: 0.08em; text-transform: uppercase; margin-top: 2px;
+  }
+  .stamp {
+    font-family: 'IBM Plex Mono', ui-monospace, monospace;
+    font-size: 0.75rem; color: var(--ink-2);
+    background: var(--panel-2); border: 1px solid var(--line);
+    padding: 4px 10px; border-radius: 4px;
+  }
+  .stamp b { color: var(--ink); font-weight: 600; }
+
+  /* Beslisrij */
+  .beslisrij {
+    background: var(--wait-bg); border: 1px solid var(--wait-line);
+    border-radius: 10px; padding: 18px 20px 8px; margin-bottom: 30px;
+  }
+  .beslisrij > h2 {
+    margin: 0 0 4px; font-size: 0.8rem; font-weight: 700;
+    letter-spacing: 0.1em; text-transform: uppercase; color: var(--wait);
+  }
+  .beslisrij > p { margin: 0 0 12px; font-size: 0.85rem; color: var(--ink-2); max-width: 60ch; }
+  .besluit {
+    display: grid; grid-template-columns: 1fr auto; gap: 2px 16px;
+    padding: 11px 0; border-top: 1px solid var(--wait-line); align-items: baseline;
+  }
+  .besluit .wat { font-weight: 600; font-size: 0.93rem; }
+  .besluit .wat code {
+    font-family: 'IBM Plex Mono', monospace; font-size: 0.78em;
+    background: var(--panel); border: 1px solid var(--line);
+    padding: 1px 5px; border-radius: 3px; white-space: nowrap;
+  }
+  .besluit .kost {
+    font-family: 'IBM Plex Mono', monospace; font-size: 0.72rem;
+    color: var(--wait); white-space: nowrap; font-weight: 500;
+  }
+  .besluit .unlock { grid-column: 1 / -1; font-size: 0.8rem; color: var(--ink-2); }
+  .besluit .unlock::before { content: "→ ontgrendelt: "; color: var(--ink-3); }
+
+  /* Projectgrid */
+  .gridkop {
+    display: flex; align-items: baseline; justify-content: space-between;
+    margin: 0 0 12px;
+  }
+  .gridkop h2 {
+    font-size: 0.8rem; font-weight: 700; letter-spacing: 0.1em;
+    text-transform: uppercase; color: var(--ink-3); margin: 0;
+  }
+  .legenda { display: flex; gap: 14px; flex-wrap: wrap; }
+  .legenda span {
+    font-family: 'IBM Plex Mono', monospace; font-size: 0.66rem; color: var(--ink-3);
+    display: inline-flex; align-items: center; gap: 5px;
+  }
+  .dot { width: 8px; height: 8px; border-radius: 50%; display: inline-block; }
+  .grid {
+    display: grid; grid-template-columns: repeat(auto-fill, minmax(310px, 1fr));
+    gap: 14px;
+  }
+  .kaart {
+    background: var(--panel); border: 1px solid var(--line); border-radius: 10px;
+    padding: 16px 18px; display: flex; flex-direction: column; gap: 10px;
+  }
+  .kaart-kop { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
+  .kaart h3 { margin: 0; font-size: 1.02rem; font-weight: 700; letter-spacing: -0.005em; }
+  .pil {
+    font-family: 'IBM Plex Mono', monospace; font-size: 0.64rem; font-weight: 600;
+    letter-spacing: 0.06em; padding: 3px 9px; border-radius: 999px; white-space: nowrap;
+  }
+  .pil.loopt   { color: var(--ok); background: var(--ok-bg); }
+  .pil.wacht   { color: var(--wait); background: var(--wait-bg); }
+  .pil.blok    { color: var(--blocked); background: var(--blocked-bg); }
+  .pil.stil    { color: var(--still); background: var(--still-bg); }
+  .kaart .stand { font-size: 0.86rem; color: var(--ink-2); margin: 0; }
+  .kaart .stand b { color: var(--ink); font-weight: 600; }
+  .feit {
+    display: flex; gap: 8px; flex-wrap: wrap;
+  }
+  .feit span {
+    font-family: 'IBM Plex Mono', monospace; font-size: 0.68rem; color: var(--ink-2);
+    background: var(--panel-2); border: 1px solid var(--line);
+    padding: 2px 8px; border-radius: 4px; font-variant-numeric: tabular-nums;
+  }
+  .stap {
+    margin: auto 0 0; padding-top: 10px; border-top: 1px dashed var(--line);
+    font-size: 0.82rem; color: var(--ink);
+  }
+  .stap::before {
+    content: "VOLGENDE"; display: block;
+    font-family: 'IBM Plex Mono', monospace; font-size: 0.6rem; font-weight: 600;
+    letter-spacing: 0.12em; color: var(--accent); margin-bottom: 2px;
+  }
+  .stap.richard::before { content: "VOLGENDE — JIJ"; color: var(--wait); }
+
+  footer {
+    margin-top: 34px; padding-top: 14px; border-top: 1px solid var(--line);
+    font-size: 0.76rem; color: var(--ink-3); max-width: 70ch;
+  }
+  footer code { font-family: 'IBM Plex Mono', monospace; font-size: 0.9em; }
+  a { color: var(--accent); }
+  @media (max-width: 560px) {
+    .besluit { grid-template-columns: 1fr; }
+    header { flex-direction: column; }
+  }
+</style>
+
+<div class="wrap">
+  <header>
+    <h1>Regiekamer<small>Interim projectoverzicht &middot; tot de dashboard-lane oplevert</small></h1>
+    <span class="stamp">bijgewerkt <b>23 aug 2026 · 19:40</b> · na V30R1-reconciliatie</span>
+  </header>
+
+  <section class="beslisrij">
+    <h2>Wacht op jou — 6 besluiten</h2>
+    <p>Niets anders blokkeert. Elk besluit hieronder kost je hooguit een paar minuten en zet een hele lane weer in beweging.</p>
+
+    <div class="besluit">
+      <span class="wat">1 · PR&nbsp;#1050 mergen (publisher-fix) — al het bewijs staat</span>
+      <span class="kost">~2 min</span>
+      <span class="unlock">pin-update + geheugenitems 2–4 publiceren</span>
+    </div>
+    <div class="besluit">
+      <span class="wat">2 · Zeg <code>akkoord restore + herstart</code> voor V30R1 (restanten zijn als patch bewaard)</span>
+      <span class="kost">1 zin</span>
+      <span class="unlock">reparatielane PR #1051 draait weer</span>
+    </div>
+    <div class="besluit">
+      <span class="wat">3 · PR&nbsp;#1049 (geheugenitem 1): mergen of afwijzen</span>
+      <span class="kost">~1 min</span>
+      <span class="unlock">geheugenketen rond</span>
+    </div>
+    <div class="besluit">
+      <span class="wat">4 · Akkoord: bin-drift naar een branch committen</span>
+      <span class="kost">1 zin</span>
+      <span class="unlock">codex1-vervolgorder (transport-gat-fix)</span>
+    </div>
+    <div class="besluit">
+      <span class="wat">5 · Keynote-lane: het klaarliggende 4-regel-antwoord plakken</span>
+      <span class="kost">~2 min</span>
+      <span class="unlock">plakproef keynote</span>
+    </div>
+    <div class="besluit">
+      <span class="wat">6 · Mini-console ontgrendelen zodra de eerste Time-Machine-backup klaar is</span>
+      <span class="kost">na TM</span>
+      <span class="unlock">keynoteproductie hervat (499 decks)</span>
+    </div>
+  </section>
+
+  <div class="gridkop">
+    <h2>Per project</h2>
+    <div class="legenda">
+      <span><span class="dot" style="background:var(--ok)"></span>LOOPT</span>
+      <span><span class="dot" style="background:var(--wait)"></span>WACHT OP JOU</span>
+      <span><span class="dot" style="background:var(--blocked)"></span>GEBLOKKEERD</span>
+      <span><span class="dot" style="background:var(--still)"></span>STIL</span>
+    </div>
+  </div>
+
+  <div class="grid">
+    <div class="kaart">
+      <div class="kaart-kop"><h3>Autocoding / stack-control</h3><span class="pil wacht">WACHT OP JOU</span></div>
+      <p class="stand">Drie PR's open, alle draft. <b>#1050</b> volledig goedgekeurd (CI groen, tweede stem met bewijs) — alleen de merge ontbreekt. <b>#1051</b>-bouwer is door de crash gestorven; restanten veiliggesteld.</p>
+      <div class="feit"><span>PR #1049 · #1050 · #1051</span><span>besluit 1 + 2 + 3</span></div>
+      <p class="stap richard">Merge #1050 — grootste ontgrendelaar van vandaag.</p>
+    </div>
+
+    <div class="kaart">
+      <div class="kaart-kop"><h3>Global memory</h3><span class="pil wacht">WACHT OP JOU</span></div>
+      <p class="stand">Lokale laag af en in gebruik. Item 1 = PR&nbsp;#1049. Items 2–4 staan klaar en volgen automatisch zodra #1050 gemerged is.</p>
+      <div class="feit"><span>1 gepubliceerd</span><span>3 in de wacht</span></div>
+      <p class="stap">Volgt vanzelf uit besluit 1 — geen eigen actie.</p>
+    </div>
+
+    <div class="kaart">
+      <div class="kaart-kop"><h3>Codex1-lane (doorlopend)</h3><span class="pil wacht">WACHT OP JOU</span></div>
+      <p class="stand">Taak 1 gebouwd en gereviewd. Vervolgorder (transport-gat-fix in dispatch-actor) staat klaar, maar wacht op besluit 4: de live pipeline draait op ongecommitte code.</p>
+      <div class="feit"><span>17 bestanden drift</span><span>+4875/−173</span></div>
+      <p class="stap richard">Zeg akkoord op besluit 4 → order gaat dezelfde minuut uit.</p>
+    </div>
+
+    <div class="kaart">
+      <div class="kaart-kop"><h3>COA</h3><span class="pil loopt">LOOPT</span></div>
+      <p class="stand"><b>PR&nbsp;#67 gemerged</b>, CI ook ná de merge groen — volledig rond. Guard-regel-PR's #9/#10/#14 zijn ontgrendeld.</p>
+      <div class="feit"><span>merge cba51423</span><span>CI ✓ post-main</span></div>
+      <p class="stap">Eerste coa-order voor de autocoding-lus; kandidaat: het grip-pakket (capaciteitsmeting + regelrail + Telegram-push).</p>
+    </div>
+
+    <div class="kaart">
+      <div class="kaart-kop"><h3>Keynote (Creator)</h3><span class="pil wacht">WACHT OP JOU</span></div>
+      <p class="stand">Plakklaar antwoord ligt gereed (pauze-bevestiging · wegwerpdeck · alleen "Not&nbsp;Now" · geen hervatting tot TM klaar).</p>
+      <div class="feit"><span>GUI alleen op de mini</span></div>
+      <p class="stap richard">Plak het 4-regel-antwoord in de lane (besluit 5).</p>
+    </div>
+
+    <div class="kaart">
+      <div class="kaart-kop"><h3>Keynoteproductie (archief)</h3><span class="pil blok">GEBLOKKEERD</span></div>
+      <p class="stand">Bewust gepauzeerd tot de TM-backup klaar is. Wél al binnen: 335/6.142 terminale rijen, 222 decks gesegmenteerd, 6.910 slides — nul bronmutaties.</p>
+      <div class="feit"><span>TM 7,24% · ±3u18</span><span>1 runner, 0 dubbel</span></div>
+      <p class="stap">TM klaar → mini ontgrendelen (besluit 6) → één runner hervat.</p>
+    </div>
+
+    <div class="kaart">
+      <div class="kaart-kop"><h3>Dashboard</h3><span class="pil loopt">JOUW LANE</span></div>
+      <p class="stand">Jouw eigen onbeperkte werkorder — de directie blijft eraf. Deze pagina is het interim en verdwijnt zodra jouw dashboard de regelrail toont.</p>
+      <div class="feit"><span>hand-off actief</span></div>
+      <p class="stap richard">Bij jou — geen directie-actie.</p>
+    </div>
+
+    <div class="kaart">
+      <div class="kaart-kop"><h3>Mediahub</h3><span class="pil blok">GEBLOKKEERD</span></div>
+      <p class="stand">Fix 1 is af. Fix 2 staat in de rij achter de TM-backup en de keynoteproductie-hervatting.</p>
+      <div class="feit"><span>wachtrijpositie 2</span></div>
+      <p class="stap">Automatisch na keynoteproductie — geen actie nodig.</p>
+    </div>
+
+    <div class="kaart">
+      <div class="kaart-kop"><h3>Longread</h3><span class="pil stil">STIL</span></div>
+      <p class="stand">Geen open order, geen receipt deze sessie. Bewust stil — geen actie nodig.</p>
+      <div class="feit"><span>0 open</span></div>
+      <p class="stap">Geen.</p>
+    </div>
+
+    <div class="kaart">
+      <div class="kaart-kop"><h3>Infra (mini + backup)</h3><span class="pil loopt">LOOPT</span></div>
+      <p class="stand">Eerste TM-backup draait. Elements-schijf (163&nbsp;GB testdata): niet aankomen. Drie dode SMB-mounts wachten op per-mount-oordeel; live TM-mount onaantastbaar.</p>
+      <div class="feit"><span>TM 7,24%</span><span>±3u18 resterend</span></div>
+      <p class="stap">Wachten op <code style="font-family:'IBM Plex Mono',monospace">tmutil latestbackup</code>-bewijs.</p>
+    </div>
+  </div>
+
+  <footer>
+    Bron: <code>state/PROJECT_OVERZICHT.md</code> in Stack-Director — dit is de weergave, het bestand is de waarheid.
+    Bijgewerkt na elk receipt, elke lane-paste en elk besluit; klopt de timestamp niet met het laatste nieuws, spreek de directie erop aan.
+  </footer>
+</div>
