@@ -1,6 +1,6 @@
 {
   "schema": "REGIEKAMER_REALTIME_V1",
-  "gegenereerd_op": "2026-08-24T13:16:45Z",
+  "gegenereerd_op": "2026-08-24T13:22:03Z",
   "stack_root": "STACK_ROOT",
   "accounts": [
     {
@@ -8,7 +8,7 @@
       "status": "GEBLOKKEERD",
       "taak_id": "TRANSPORT_CANONIEK_RECEIPT_GATE_CLAUDE1_V1",
       "sinds": "2026-08-24T12:04:38Z",
-      "sinds_minuten": 72.1,
+      "sinds_minuten": 77.2,
       "bron": "outbox:receipt:TRANSPORT_CANONIEK_RECEIPT_GATE_CLAUDE1_V1.md"
     },
     {
@@ -16,7 +16,7 @@
       "status": "GEBLOKKEERD",
       "taak_id": "HOST_REVIEW_PUBLISHER_A1_A2_HERREVIEW_CLAUDE2_V1",
       "sinds": "2026-08-24T11:19:41Z",
-      "sinds_minuten": 117.0,
+      "sinds_minuten": 122.2,
       "bron": "outbox:receipt:HOST_REVIEW_PUBLISHER_A1_A2_HERREVIEW_CLAUDE2_V1_RECEIPT.md"
     },
     {
@@ -24,7 +24,7 @@
       "status": "GEBLOKKEERD",
       "taak_id": "QUEUE_LANE_PICKUP_DEADLINE_ERREXIT_FIX_CLAUDE3_V1",
       "sinds": "2026-08-24T13:15:40Z",
-      "sinds_minuten": 1.0,
+      "sinds_minuten": 6.2,
       "bron": "outbox:receipt:QUEUE_LANE_PICKUP_DEADLINE_ERREXIT_FIX_CLAUDE3_V1_RECEIPT.md"
     },
     {
@@ -32,7 +32,7 @@
       "status": "GEBLOKKEERD",
       "taak_id": "KEYNOTE_ARGFIX_F79AA50_EXACT_REVIEW_CLAUDE4_V1",
       "sinds": "2026-08-24T11:26:49Z",
-      "sinds_minuten": 109.9,
+      "sinds_minuten": 115.0,
       "bron": "outbox:receipt:KEYNOTE_ARGFIX_F79AA50_EXACT_REVIEW_CLAUDE4_V1_RECEIPT.md"
     },
     {
@@ -40,24 +40,24 @@
       "status": "GEBLOKKEERD",
       "taak_id": "AUTOCODING_REGIEKAMER_GENERATOR_HERREVIEW_CODEX1_V5_RECEIPT.transport-defect-run1",
       "sinds": "2026-08-24T00:24:39Z",
-      "sinds_minuten": 772.1,
+      "sinds_minuten": 777.2,
       "bron": "outbox:receipt:AUTOCODING_REGIEKAMER_GENERATOR_HERREVIEW_CODEX1_V5_RECEIPT.transport-defect-run1.md"
     },
     {
       "actor": "codex2",
-      "status": "GEBLOKKEERD",
-      "taak_id": "REGIEKAMER_STACK_TICKER_BUILD_CODEX2_V1",
-      "sinds": "2026-08-24T05:45:54Z",
-      "sinds_minuten": 450.8,
-      "bron": "outbox:receipt:REGIEKAMER_STACK_TICKER_BUILD_CODEX2_V1_RECEIPT.md"
+      "status": "WACHT",
+      "taak_id": "QUEUE_LANE_PICKUP_ERREXIT_FIX_EXACT_HEAD_REVIEW_CODEX2_V1",
+      "sinds": "2026-08-24T13:20:28Z",
+      "sinds_minuten": 1.4,
+      "bron": "outbox:order_open:QUEUE_LANE_PICKUP_ERREXIT_FIX_EXACT_HEAD_REVIEW_CODEX2_V1.md"
     },
     {
       "actor": "gemini1",
-      "status": "BEZIG",
-      "taak_id": "order-r4",
-      "sinds": "2026-08-24T13:16:42Z",
-      "sinds_minuten": 0.0,
-      "bron": "ps:pid=84920"
+      "status": "GEBLOKKEERD",
+      "taak_id": "REGIEKAMER_STACK_TICKER_GEMINI1_REVIEW_V2_TRANSPORT",
+      "sinds": "2026-08-24T08:25:46Z",
+      "sinds_minuten": 296.1,
+      "bron": "outbox:receipt:REGIEKAMER_STACK_TICKER_GEMINI1_REVIEW_V2_TRANSPORT_RECEIPT.md"
     },
     {
       "actor": "dashboard-codex",
@@ -72,7 +72,7 @@
       "status": "WACHT",
       "taak_id": "ROLAUDIT_UITVOERINGSREGIE_DIRECTIE_V1",
       "sinds": "2026-08-23T20:10:28Z",
-      "sinds_minuten": 1026.2,
+      "sinds_minuten": 1031.4,
       "bron": "outbox:order_open:ROLAUDIT_UITVOERINGSREGIE_DIRECTIE_V1.md"
     }
   ],
@@ -5024,15 +5024,15 @@
     "cmd": "bin/lane-capaciteit --json",
     "data": {
       "stack_root": "STACK_ROOT",
-      "generated_at": "2026-08-24T13:16:45Z",
+      "generated_at": "2026-08-24T13:22:03Z",
       "meta": {
         "receipt_bestanden_totaal": 710,
         "receipt_onparseerbaar": 81,
         "jsonl": {
-          "total_lines": 544,
+          "total_lines": 545,
           "actor_lines": 0,
           "onparseerbaar": 0,
-          "zonder_actor": 544,
+          "zonder_actor": 545,
           "aanwezig": true
         },
         "verdict_classificatie": "heuristiek: prefix-match op verdict= (hoofdletterongevoelig); GESLAAGD={GO,PASS,DELIVERED}, GEBLOKKEERD={NO_GO,BLOCKED,REJECTED,FAILED}, onbekend/overig telt niet stilzwijgend mee als geslaagd of geblokkeerd"
@@ -5318,7 +5318,7 @@
         },
         {
           "actor": "ZONDER_ACTOR",
-          "orders": 544,
+          "orders": 545,
           "orders_met_duur": 0,
           "p50_duration_ms": null,
           "max_duration_ms": null,
@@ -5872,7 +5872,8 @@
             541,
             542,
             543,
-            544
+            544,
+            545
           ]
         }
       ]
