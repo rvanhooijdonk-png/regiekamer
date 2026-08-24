@@ -1,0 +1,187 @@
+<!doctype html>
+<html lang="nl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<style>*,*::before,*::after{box-sizing:border-box}body,h1,h2,h3,p,ul,ol,figure{margin:0}ul,ol{padding:0}img,svg{display:block;max-width:100%}</style>
+</head>
+<body>
+
+<title>De Studio-stapel</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@10..48,500;10..48,700&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+:root{
+  --ground:#FBFAF8; --paper:#FFFFFF; --ink:#16181D; --ink-2:#43474F; --ink-3:#787D88;
+  --lijn:#E2E1DD; --lijn-2:#CFCEC9;
+  --accent:#9A5B12; --accent-zacht:#F3E7D6;
+  --groen:#2C6E49; --rood:#9E2B25; --grijs-blok:#F2F1EE;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --ground:#131417; --paper:#191B1F; --ink:#EDEDEA; --ink-2:#B4B7BD; --ink-3:#82868F;
+    --lijn:#2B2D33; --lijn-2:#3C3F47;
+    --accent:#E2A45C; --accent-zacht:#332617;
+    --groen:#6FBF8E; --rood:#E08078; --grijs-blok:#1F2126;
+  }
+}
+:root[data-theme="dark"]{
+  --ground:#131417; --paper:#191B1F; --ink:#EDEDEA; --ink-2:#B4B7BD; --ink-3:#82868F;
+  --lijn:#2B2D33; --lijn-2:#3C3F47;
+  --accent:#E2A45C; --accent-zacht:#332617;
+  --groen:#6FBF8E; --rood:#E08078; --grijs-blok:#1F2126;
+}
+*{box-sizing:border-box}
+body{
+  background:var(--ground); color:var(--ink);
+  font-family:"Source Serif 4",Georgia,serif; font-size:17px; line-height:1.62;
+  margin:0; padding:0;
+}
+.wrap{max-width:74ch;margin:0 auto;padding:clamp(28px,5vw,64px) clamp(18px,4vw,32px) 96px;display:flex;flex-direction:column;gap:34px}
+h1,h2,h3,.mono,.eyebrow{font-family:"Bricolage Grotesque","Helvetica Neue",sans-serif}
+h1{font-size:clamp(30px,5.2vw,44px);line-height:1.08;font-weight:700;letter-spacing:-.022em;margin:0;text-wrap:balance}
+h2{font-size:clamp(20px,3vw,25px);line-height:1.2;font-weight:700;letter-spacing:-.015em;margin:0 0 2px;text-wrap:balance}
+h3{font-size:17px;font-weight:700;letter-spacing:-.008em;margin:0}
+p{margin:0}
+.eyebrow{font-size:11.5px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--accent)}
+.lead{font-size:19.5px;line-height:1.5;color:var(--ink-2)}
+.mono,code{font-family:"IBM Plex Mono",ui-monospace,monospace;font-size:.84em;font-variant-numeric:tabular-nums}
+code{background:var(--grijs-blok);padding:.1em .34em;border-radius:3px;color:var(--ink)}
+section{display:flex;flex-direction:column;gap:14px}
+hr{border:0;border-top:1px solid var(--lijn);margin:6px 0}
+
+/* stapeldiagram */
+.stapel{background:var(--paper);border:1px solid var(--lijn);border-radius:10px;padding:20px 22px;display:flex;flex-direction:column;gap:0;overflow-x:auto}
+.rij{display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:14px;padding:9px 0;border-bottom:1px dashed var(--lijn)}
+.rij:last-child{border-bottom:0}
+.tak{font-family:"IBM Plex Mono",monospace;font-size:13px;color:var(--ink-3);white-space:nowrap}
+.tak b{color:var(--ink);font-weight:500}
+.pil{font-family:"Bricolage Grotesque",sans-serif;font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:3px 9px;border-radius:100px;white-space:nowrap}
+.p-dirty{background:color-mix(in srgb,var(--rood) 13%,transparent);color:var(--rood)}
+.p-clean{background:color-mix(in srgb,var(--groen) 15%,transparent);color:var(--groen)}
+.p-main{background:var(--accent-zacht);color:var(--accent)}
+.diff{font-family:"IBM Plex Mono",monospace;font-size:12.5px;color:var(--ink-3);white-space:nowrap;font-variant-numeric:tabular-nums}
+.diff .plus{color:var(--groen)} .diff .min{color:var(--rood)}
+
+/* meetblok */
+.meet{background:var(--grijs-blok);border-left:3px solid var(--accent);border-radius:0 8px 8px 0;padding:16px 20px;display:flex;flex-direction:column;gap:9px}
+.meet p{font-size:16px;color:var(--ink-2)}
+.meet .kop{font-family:"Bricolage Grotesque",sans-serif;font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--accent)}
+
+/* keuzekaarten */
+.kaarten{display:flex;flex-direction:column;gap:16px}
+.kaart{background:var(--paper);border:1px solid var(--lijn);border-radius:10px;padding:20px 22px;display:flex;flex-direction:column;gap:11px}
+.kaart.aanbevolen{border-color:var(--accent);box-shadow:0 0 0 1px var(--accent)}
+.kaart-kop{display:flex;align-items:baseline;justify-content:space-between;gap:14px;flex-wrap:wrap}
+.merk{font-family:"Bricolage Grotesque",sans-serif;font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);white-space:nowrap}
+.kaart p{font-size:16.5px;color:var(--ink-2)}
+.kosten{display:flex;gap:22px;flex-wrap:wrap;font-family:"IBM Plex Mono",monospace;font-size:12.5px;color:var(--ink-3);padding-top:4px;border-top:1px solid var(--lijn)}
+.kosten b{color:var(--ink);font-weight:500}
+ul{margin:0;padding-left:1.1em;display:flex;flex-direction:column;gap:5px}
+li{color:var(--ink-2);font-size:16.5px}
+li::marker{color:var(--ink-3)}
+.voet{font-size:14px;color:var(--ink-3);border-top:1px solid var(--lijn);padding-top:16px}
+.voet a{color:var(--accent)}
+</style>
+
+<div class="wrap">
+
+<header style="display:flex;flex-direction:column;gap:12px">
+  <p class="eyebrow">trend-pipeline · vier open studio-PR's</p>
+  <h1>De Studio-stapel staat stil op een bestand dat niet meer bestaat</h1>
+  <p class="lead">Je vroeg wat je hier moet kiezen. Dit is wat er gemeten op tafel ligt — en waarom de keuze kleiner is dan hij lijkt.</p>
+</header>
+
+<section>
+  <h2>De stapel, zoals hij nu staat</h2>
+  <div class="stapel">
+    <div class="rij"><span class="pil p-main">main</span><span class="tak"><b>827ae13</b> · Fase 4h: de weerslag in de kennisbank</span><span class="diff">index.html: <b>319</b> regels</span></div>
+    <div class="rij"><span class="pil p-dirty">#27 dirty</span><span class="tak">zijbalkregels Review + Publicaties <b>→ main</b></span><span class="diff"><span class="plus">+14</span> <span class="min">−5</span></span></div>
+    <div class="rij"><span class="pil p-dirty">#28 dirty</span><span class="tak">tien casco-stations <b>→ #27</b></span><span class="diff"><span class="plus">+135</span> <span class="min">−4</span></span></div>
+    <div class="rij"><span class="pil p-dirty">#31 dirty</span><span class="tak">Rapportenplank + A89-rapport <b>→ c10 (gemerged 14-08)</b></span><span class="diff"><span class="plus">+902</span> <span class="min">−18</span></span></div>
+    <div class="rij"><span class="pil p-clean">#8 clean</span><span class="tak">Studio HOME — <b>draagt zelf "WACHT OP GO"</b></span><span class="diff"><span class="plus">+320</span> <span class="min">−43</span></span></div>
+  </div>
+  <p>Alle drie de conflicterende PR's raken één en hetzelfde bestand: <code>frontend/index.html</code>. Ze splitsten af op <span class="mono">2026-08-02</span>.</p>
+</section>
+
+<section>
+  <h2>Wat er sindsdien op main gebeurde</h2>
+  <div class="meet">
+    <p class="kop">Meting</p>
+    <p><b>PR #67 (Studio fase 2)</b> heeft <code>index.html</code> in vijftien modules geknipt: <code>frontend/js/01-…</code> t/m <code>99-opstart.js</code>. Het bestand ging van ~3400 naar <b>319</b> regels — <span class="mono">10 tot 12 commits</span> op dat ene bestand sinds de afsplitsing, met per branch <span class="mono">−3004</span> tot <span class="mono">−3417</span> regels verschil.</p>
+    <p>Dit is geen merge-conflict dat je oplost. Het doelbestand is er niet meer in die vorm.</p>
+  </div>
+</section>
+
+<section>
+  <h2>Per PR: is het werk al binnen, of nog echt werk?</h2>
+  <div class="kaarten">
+
+    <div class="kaart">
+      <div class="kaart-kop"><h3>#27 — zijbalkregels Review en Publicaties</h3><span class="merk">al binnen</span></div>
+      <p>Main heeft dit al, via een andere route:</p>
+      <ul>
+        <li><code>03-navigatie-en-lijst.js:35–36</code> — <code>review</code> en <code>publicaties</code> staan in de zijbalkkaart</li>
+        <li><code>01-client-en-toestand.js:99</code> — beide staan in <code>geldigeViews</code></li>
+        <li><code>13-boeken.js</code> bestaat als eigen module</li>
+      </ul>
+      <p>De volledige inhoud van deze PR (+14/−5) is dus al geleverd.</p>
+    </div>
+
+    <div class="kaart">
+      <div class="kaart-kop"><h3>#28 — de tien casco-stations</h3><span class="merk">bewust vervallen</span></div>
+      <p>Deze PR bouwt op <code>STATIONS_CASCO</code>. Dat construct is op main afgeschaft — niet per ongeluk, maar met zoveel woorden, in commit <code>ef6a5e9</code>:</p>
+      <ul>
+        <li>„De STATIONS_CASCO-scaffold (10 losstaande in-aanbouw-placeholderviews) … vervalt hier.”</li>
+        <li>Op main: <span class="mono">0</span> treffers voor <code>STATIONS_CASCO</code> in <code>frontend/</code>.</li>
+      </ul>
+      <p>Mergen zou een besluit terugdraaien dat al genomen is.</p>
+    </div>
+
+    <div class="kaart aanbevolen">
+      <div class="kaart-kop"><h3>#31 — de Rapportenplank met het A89-rapport</h3><span class="merk">enige echte inhoud</span></div>
+      <p>Van de drie is dit de enige met werk dat nergens anders staat: het A89-meetrapport zelf — oordeel, vier meettabellen, vier promotievoorwaarden, meetgrenzen. <span class="mono">898</span> toegevoegde regels in <code>index.html</code>, waarvan er maar <span class="mono">6</span> <code>STATIONS_CASCO</code> aanraken.</p>
+      <p>De rest is inhoud, geen constructie. Die inhoud overleeft de modularisatie prima — maar niet als deze diff.</p>
+    </div>
+
+  </div>
+</section>
+
+<section>
+  <h2>De keuze</h2>
+  <div class="kaarten">
+
+    <div class="kaart">
+      <div class="kaart-kop"><h3>A · Conflicten handmatig oplossen</h3></div>
+      <p>Drie PR's herschrijven tegen 3000 verdwenen regels. Dat is geen conflictoplossing maar een herbouw met een merge-knop eromheen — en de uitkomst is per definitie niet meer wat de reviewers destijds hebben gezien.</p>
+      <div class="kosten"><span>inzet <b>hoog</b></span><span>reviewwaarde <b>vervalt</b></span><span>levert <b>1× echte inhoud</b></span></div>
+    </div>
+
+    <div class="kaart aanbevolen">
+      <div class="kaart-kop"><h3>B · #27 en #28 sluiten, alleen #31 herplaatsen</h3><span class="merk">aanbevolen</span></div>
+      <p>Sluit #27 met de verwijzing naar de drie plekken waar main het al heeft. Sluit #28 met de verwijzing naar <code>ef6a5e9</code>, dat het construct afschaft. Haal uit #31 alleen het A89-rapport en zet het als eigen module naast de andere vijftien — één nieuwe PR, tegen het huidige main.</p>
+      <div class="kosten"><span>inzet <b>~1 sessie</b></span><span>verliest <b>niets</b></span><span>opent <b>1 nieuwe PR</b></span></div>
+    </div>
+
+    <div class="kaart">
+      <div class="kaart-kop"><h3>C · Alle drie sluiten</h3></div>
+      <p>Goedkoopst en eerlijk over #27 en #28, maar het A89-rapport verdwijnt dan mee — en dat is gemeten werk dat nergens anders bestaat.</p>
+      <div class="kosten"><span>inzet <b>minuten</b></span><span>verliest <b>het A89-rapport</b></span><span>opent <b>niets</b></span></div>
+    </div>
+
+  </div>
+</section>
+
+<section>
+  <h2>Wat ik zou doen</h2>
+  <p><b>B.</b> De reden dat deze stapel sinds <span class="mono">2 augustus</span> stilstaat is niet dat er geen merger was — het is dat twee van de drie PR's inmiddels niets meer toevoegen en de derde tegen een verdwenen bestand is geschreven. Sluiten met een verwijzing is hier geen opgeven maar opruimen; het enige dat een nieuwe ronde verdient, is het rapport in #31.</p>
+  <p>Zeg je B, dan doe ik het sluiten met bronverwijzing per PR en lever ik #31 opnieuw aan tegen main. <b>Mergen laat ik zoals altijd aan iemand anders.</b></p>
+</section>
+
+<p class="voet">Gemeten op 2026-08-24 tegen <span class="mono">origin/main = 827ae13</span>. Bronnen: <span class="mono">gh pr view</span> per PR, <span class="mono">git merge-base</span> + <span class="mono">git diff --shortstat</span> per branch, <span class="mono">git grep</span> op main voor elke bewering hierboven. Geen enkele regel komt uit geheugen.</p>
+
+</div>
+</body>
+</html>
