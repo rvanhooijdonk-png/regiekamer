@@ -1,6 +1,6 @@
 {
   "schema": "REGIEKAMER_REALTIME_V1",
-  "gegenereerd_op": "2026-08-24T12:35:55Z",
+  "gegenereerd_op": "2026-08-24T12:41:01Z",
   "stack_root": "STACK_ROOT",
   "accounts": [
     {
@@ -8,7 +8,7 @@
       "status": "GEBLOKKEERD",
       "taak_id": "TRANSPORT_CANONIEK_RECEIPT_GATE_CLAUDE1_V1",
       "sinds": "2026-08-24T12:04:38Z",
-      "sinds_minuten": 31.2,
+      "sinds_minuten": 36.3,
       "bron": "outbox:receipt:TRANSPORT_CANONIEK_RECEIPT_GATE_CLAUDE1_V1.md"
     },
     {
@@ -16,7 +16,7 @@
       "status": "GEBLOKKEERD",
       "taak_id": "HOST_REVIEW_PUBLISHER_A1_A2_HERREVIEW_CLAUDE2_V1",
       "sinds": "2026-08-24T11:19:41Z",
-      "sinds_minuten": 76.2,
+      "sinds_minuten": 81.3,
       "bron": "outbox:receipt:HOST_REVIEW_PUBLISHER_A1_A2_HERREVIEW_CLAUDE2_V1_RECEIPT.md"
     },
     {
@@ -24,7 +24,7 @@
       "status": "WACHT",
       "taak_id": "STUDIO_RESEARCH_ARTIKEL_NIEUWSBRIEF_PILOT_V1",
       "sinds": "2026-08-24T11:40:34Z",
-      "sinds_minuten": 55.3,
+      "sinds_minuten": 60.4,
       "bron": "outbox:order_open:STUDIO_RESEARCH_ARTIKEL_NIEUWSBRIEF_PILOT_V1.md"
     },
     {
@@ -32,7 +32,7 @@
       "status": "GEBLOKKEERD",
       "taak_id": "KEYNOTE_ARGFIX_F79AA50_EXACT_REVIEW_CLAUDE4_V1",
       "sinds": "2026-08-24T11:26:49Z",
-      "sinds_minuten": 69.0,
+      "sinds_minuten": 74.2,
       "bron": "outbox:receipt:KEYNOTE_ARGFIX_F79AA50_EXACT_REVIEW_CLAUDE4_V1_RECEIPT.md"
     },
     {
@@ -40,7 +40,7 @@
       "status": "GEBLOKKEERD",
       "taak_id": "AUTOCODING_REGIEKAMER_GENERATOR_HERREVIEW_CODEX1_V5_RECEIPT.transport-defect-run1",
       "sinds": "2026-08-24T00:24:39Z",
-      "sinds_minuten": 731.2,
+      "sinds_minuten": 736.3,
       "bron": "outbox:receipt:AUTOCODING_REGIEKAMER_GENERATOR_HERREVIEW_CODEX1_V5_RECEIPT.transport-defect-run1.md"
     },
     {
@@ -48,16 +48,16 @@
       "status": "GEBLOKKEERD",
       "taak_id": "REGIEKAMER_STACK_TICKER_BUILD_CODEX2_V1",
       "sinds": "2026-08-24T05:45:54Z",
-      "sinds_minuten": 410.0,
+      "sinds_minuten": 415.1,
       "bron": "outbox:receipt:REGIEKAMER_STACK_TICKER_BUILD_CODEX2_V1_RECEIPT.md"
     },
     {
       "actor": "gemini1",
-      "status": "BEZIG",
-      "taak_id": "order-q4",
-      "sinds": "2026-08-24T12:35:51Z",
-      "sinds_minuten": 0.0,
-      "bron": "ps:pid=95868"
+      "status": "GEBLOKKEERD",
+      "taak_id": "REGIEKAMER_STACK_TICKER_GEMINI1_REVIEW_V2_TRANSPORT",
+      "sinds": "2026-08-24T08:25:46Z",
+      "sinds_minuten": 255.2,
+      "bron": "outbox:receipt:REGIEKAMER_STACK_TICKER_GEMINI1_REVIEW_V2_TRANSPORT_RECEIPT.md"
     },
     {
       "actor": "dashboard-codex",
@@ -72,7 +72,7 @@
       "status": "WACHT",
       "taak_id": "ROLAUDIT_UITVOERINGSREGIE_DIRECTIE_V1",
       "sinds": "2026-08-23T20:10:28Z",
-      "sinds_minuten": 985.4,
+      "sinds_minuten": 990.5,
       "bron": "outbox:order_open:ROLAUDIT_UITVOERINGSREGIE_DIRECTIE_V1.md"
     }
   ],
@@ -4912,15 +4912,15 @@
     "cmd": "bin/lane-capaciteit --json",
     "data": {
       "stack_root": "STACK_ROOT",
-      "generated_at": "2026-08-24T12:35:55Z",
+      "generated_at": "2026-08-24T12:41:01Z",
       "meta": {
         "receipt_bestanden_totaal": 707,
         "receipt_onparseerbaar": 80,
         "jsonl": {
-          "total_lines": 540,
+          "total_lines": 541,
           "actor_lines": 0,
           "onparseerbaar": 0,
-          "zonder_actor": 540,
+          "zonder_actor": 541,
           "aanwezig": true
         },
         "verdict_classificatie": "heuristiek: prefix-match op verdict= (hoofdletterongevoelig); GESLAAGD={GO,PASS,DELIVERED}, GEBLOKKEERD={NO_GO,BLOCKED,REJECTED,FAILED}, onbekend/overig telt niet stilzwijgend mee als geslaagd of geblokkeerd"
@@ -5205,7 +5205,7 @@
         },
         {
           "actor": "ZONDER_ACTOR",
-          "orders": 540,
+          "orders": 541,
           "orders_met_duur": 0,
           "p50_duration_ms": null,
           "max_duration_ms": null,
@@ -5755,7 +5755,8 @@
             537,
             538,
             539,
-            540
+            540,
+            541
           ]
         }
       ]
