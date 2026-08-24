@@ -1,6 +1,6 @@
 {
   "schema": "REGIEKAMER_REALTIME_V1",
-  "gegenereerd_op": "2026-08-24T13:11:39Z",
+  "gegenereerd_op": "2026-08-24T13:16:45Z",
   "stack_root": "STACK_ROOT",
   "accounts": [
     {
@@ -8,7 +8,7 @@
       "status": "GEBLOKKEERD",
       "taak_id": "TRANSPORT_CANONIEK_RECEIPT_GATE_CLAUDE1_V1",
       "sinds": "2026-08-24T12:04:38Z",
-      "sinds_minuten": 67.0,
+      "sinds_minuten": 72.1,
       "bron": "outbox:receipt:TRANSPORT_CANONIEK_RECEIPT_GATE_CLAUDE1_V1.md"
     },
     {
@@ -16,23 +16,23 @@
       "status": "GEBLOKKEERD",
       "taak_id": "HOST_REVIEW_PUBLISHER_A1_A2_HERREVIEW_CLAUDE2_V1",
       "sinds": "2026-08-24T11:19:41Z",
-      "sinds_minuten": 111.9,
+      "sinds_minuten": 117.0,
       "bron": "outbox:receipt:HOST_REVIEW_PUBLISHER_A1_A2_HERREVIEW_CLAUDE2_V1_RECEIPT.md"
     },
     {
       "actor": "claude3",
-      "status": "BEZIG",
+      "status": "GEBLOKKEERD",
       "taak_id": "QUEUE_LANE_PICKUP_DEADLINE_ERREXIT_FIX_CLAUDE3_V1",
-      "sinds": "2026-08-24T13:09:11Z",
-      "sinds_minuten": 2.4,
-      "bron": "ps:pid=13633"
+      "sinds": "2026-08-24T13:15:40Z",
+      "sinds_minuten": 1.0,
+      "bron": "outbox:receipt:QUEUE_LANE_PICKUP_DEADLINE_ERREXIT_FIX_CLAUDE3_V1_RECEIPT.md"
     },
     {
       "actor": "claude4",
       "status": "GEBLOKKEERD",
       "taak_id": "KEYNOTE_ARGFIX_F79AA50_EXACT_REVIEW_CLAUDE4_V1",
       "sinds": "2026-08-24T11:26:49Z",
-      "sinds_minuten": 104.8,
+      "sinds_minuten": 109.9,
       "bron": "outbox:receipt:KEYNOTE_ARGFIX_F79AA50_EXACT_REVIEW_CLAUDE4_V1_RECEIPT.md"
     },
     {
@@ -40,7 +40,7 @@
       "status": "GEBLOKKEERD",
       "taak_id": "AUTOCODING_REGIEKAMER_GENERATOR_HERREVIEW_CODEX1_V5_RECEIPT.transport-defect-run1",
       "sinds": "2026-08-24T00:24:39Z",
-      "sinds_minuten": 767.0,
+      "sinds_minuten": 772.1,
       "bron": "outbox:receipt:AUTOCODING_REGIEKAMER_GENERATOR_HERREVIEW_CODEX1_V5_RECEIPT.transport-defect-run1.md"
     },
     {
@@ -48,16 +48,16 @@
       "status": "GEBLOKKEERD",
       "taak_id": "REGIEKAMER_STACK_TICKER_BUILD_CODEX2_V1",
       "sinds": "2026-08-24T05:45:54Z",
-      "sinds_minuten": 445.7,
+      "sinds_minuten": 450.8,
       "bron": "outbox:receipt:REGIEKAMER_STACK_TICKER_BUILD_CODEX2_V1_RECEIPT.md"
     },
     {
       "actor": "gemini1",
-      "status": "GEBLOKKEERD",
-      "taak_id": "REGIEKAMER_STACK_TICKER_GEMINI1_REVIEW_V2_TRANSPORT",
-      "sinds": "2026-08-24T08:25:46Z",
-      "sinds_minuten": 285.8,
-      "bron": "outbox:receipt:REGIEKAMER_STACK_TICKER_GEMINI1_REVIEW_V2_TRANSPORT_RECEIPT.md"
+      "status": "BEZIG",
+      "taak_id": "order-r4",
+      "sinds": "2026-08-24T13:16:42Z",
+      "sinds_minuten": 0.0,
+      "bron": "ps:pid=84920"
     },
     {
       "actor": "dashboard-codex",
@@ -72,7 +72,7 @@
       "status": "WACHT",
       "taak_id": "ROLAUDIT_UITVOERINGSREGIE_DIRECTIE_V1",
       "sinds": "2026-08-23T20:10:28Z",
-      "sinds_minuten": 1021.1,
+      "sinds_minuten": 1026.2,
       "bron": "outbox:order_open:ROLAUDIT_UITVOERINGSREGIE_DIRECTIE_V1.md"
     }
   ],
@@ -4668,6 +4668,70 @@
       "schatting_min": null
     },
     {
+      "bron_bestand": "outbox/QUEUE_LANE_PICKUP_DEADLINE_ERREXIT_FIX_CLAUDE3_V1_RECEIPT.md",
+      "bron_type": "receipt",
+      "status": "KLAAR",
+      "taak": "Worktree geverifieerd op base ffdbf6a8, schoon",
+      "schatting_categorie": "GEEN_SCHATTING",
+      "schatting_min": null
+    },
+    {
+      "bron_bestand": "outbox/QUEUE_LANE_PICKUP_DEADLINE_ERREXIT_FIX_CLAUDE3_V1_RECEIPT.md",
+      "bron_type": "receipt",
+      "status": "KLAAR",
+      "taak": "Nulmeting: baseline PASS=32 FAIL=1 gereproduceerd",
+      "schatting_categorie": "GEEN_SCHATTING",
+      "schatting_min": null
+    },
+    {
+      "bron_bestand": "outbox/QUEUE_LANE_PICKUP_DEADLINE_ERREXIT_FIX_CLAUDE3_V1_RECEIPT.md",
+      "bron_type": "receipt",
+      "status": "KLAAR",
+      "taak": "Rootcause geïsoleerd + bevestigd met standalone repro (errexit via kill_tree-laatste-statement)",
+      "schatting_categorie": "GEEN_SCHATTING",
+      "schatting_min": null
+    },
+    {
+      "bron_bestand": "outbox/QUEUE_LANE_PICKUP_DEADLINE_ERREXIT_FIX_CLAUDE3_V1_RECEIPT.md",
+      "bron_type": "receipt",
+      "status": "KLAAR",
+      "taak": "Fix gebouwd: `kill_tree()` altijd `return 0` (8 regels, minimaal invasief)",
+      "schatting_categorie": "GEEN_SCHATTING",
+      "schatting_min": null
+    },
+    {
+      "bron_bestand": "outbox/QUEUE_LANE_PICKUP_DEADLINE_ERREXIT_FIX_CLAUDE3_V1_RECEIPT.md",
+      "bron_type": "receipt",
+      "status": "KLAAR",
+      "taak": "Acceptatieproef 3x PASS=33 FAIL=0 RC=0 (bewijs: outbox-receipt + PR #1060)",
+      "schatting_categorie": "GEEN_SCHATTING",
+      "schatting_min": null
+    },
+    {
+      "bron_bestand": "outbox/QUEUE_LANE_PICKUP_DEADLINE_ERREXIT_FIX_CLAUDE3_V1_RECEIPT.md",
+      "bron_type": "receipt",
+      "status": "KLAAR",
+      "taak": "Negatieve controle: revert→rood, herstel→groen (bewijs: PR #1060)",
+      "schatting_categorie": "GEEN_SCHATTING",
+      "schatting_min": null
+    },
+    {
+      "bron_bestand": "outbox/QUEUE_LANE_PICKUP_DEADLINE_ERREXIT_FIX_CLAUDE3_V1_RECEIPT.md",
+      "bron_type": "receipt",
+      "status": "KLAAR",
+      "taak": "Branch + PR aangemaakt, niet gemerged (bewijs: PR #1060)",
+      "schatting_categorie": "GEEN_SCHATTING",
+      "schatting_min": null
+    },
+    {
+      "bron_bestand": "outbox/QUEUE_LANE_PICKUP_DEADLINE_ERREXIT_FIX_CLAUDE3_V1_RECEIPT.md",
+      "bron_type": "receipt",
+      "status": "KLAAR",
+      "taak": "Eigen receipt geschreven",
+      "schatting_categorie": "GEEN_SCHATTING",
+      "schatting_min": null
+    },
+    {
       "bron_bestand": "outbox/REGIEKAMER_C1_TESTSELECTOR_BEWIJSREF_ONAFHANKELIJK_CLAUDE3_V1_RECEIPT.md",
       "bron_type": "receipt",
       "status": "KLAAR",
@@ -4949,8 +5013,8 @@
     }
   ],
   "taken_meta": {
-    "taken_totaal": 607,
-    "taken_zonder_schatting": 567,
+    "taken_totaal": 615,
+    "taken_zonder_schatting": 575,
     "bron_glob": "outbox/*.md (TAKENLIJST-blokken)",
     "classificatie": "regex op TAKENLIJST-tabelrijen (Status/Taak/Tijd) en kale lijstvorm; een cel zonder herkenbaar '~X min'-patroon telt als GEEN_SCHATTING, nooit stilzwijgend overgeslagen"
   },
@@ -4960,10 +5024,10 @@
     "cmd": "bin/lane-capaciteit --json",
     "data": {
       "stack_root": "STACK_ROOT",
-      "generated_at": "2026-08-24T13:11:39Z",
+      "generated_at": "2026-08-24T13:16:45Z",
       "meta": {
-        "receipt_bestanden_totaal": 708,
-        "receipt_onparseerbaar": 80,
+        "receipt_bestanden_totaal": 710,
+        "receipt_onparseerbaar": 81,
         "jsonl": {
           "total_lines": 544,
           "actor_lines": 0,
@@ -5013,22 +5077,22 @@
         },
         {
           "actor": "claude3",
-          "orders": 120,
-          "orders_met_duur": 120,
-          "p50_duration_ms": 233000,
+          "orders": 121,
+          "orders_met_duur": 121,
+          "p50_duration_ms": 235000,
           "max_duration_ms": 2673000,
-          "orders_met_verdict": 64,
-          "geslaagd_pct": 67.2,
-          "geblokkeerd_pct": 32.8,
+          "orders_met_verdict": 65,
+          "geslaagd_pct": 66.2,
+          "geblokkeerd_pct": 33.8,
           "overig_pct": 0.0,
           "verdict_distribution_raw": {
-            "BLOCKED_EVIDENCE": 18,
+            "BLOCKED_EVIDENCE": 19,
             "GO_READY_FOR_MERGE_GATE": 21,
             "GO_READY_FOR_TRANSFER_GATE": 1,
             "GO_WITH_FINDINGS": 21,
             "NO_GO": 3
           },
-          "laatste_activiteit": "2026-08-24T13:06:37Z"
+          "laatste_activiteit": "2026-08-24T13:15:39Z"
         },
         {
           "actor": "claude4",
@@ -5158,7 +5222,7 @@
         },
         {
           "actor": "ONPARSEERBAAR",
-          "orders": 80,
+          "orders": 81,
           "orders_met_duur": 0,
           "p50_duration_ms": null,
           "max_duration_ms": null,
@@ -5246,6 +5310,7 @@
             "NO_SILENT_STOP_AND_TRUTHFUL_RECEIPTS_V1_RECEIPT.md",
             "NO_SILENT_STOP_MACHINE_GATE_RECEIPT.md",
             "POORT4_REBIND_PR901_V10_RECEIPT.md",
+            "QUEUE_LANE_PICKUP_DEADLINE_ERREXIT_FIX_CLAUDE3_V1_BUILD_RECEIPT.md",
             "STUDIO_LONGREAD_DEKKINGSMAPPING_CLAUDE3_20260819_RECEIPT.md",
             "WORKTREE_STRAY_DISPATCH_HARDENING_EVIDENCE_GATE_REVIEW_CODEX2_V1_RECEIPT.md",
             "WORKTREE_STRAY_EVIDENCE_GATE_LOOPHOLES_REPAIR_CLAUDE2_V1_RECEIPT.md"
