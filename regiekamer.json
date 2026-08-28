@@ -1,22 +1,22 @@
 {
   "schema": "REGIEKAMER_REALTIME_V1",
-  "gegenereerd_op": "2026-08-28T10:01:53Z",
+  "gegenereerd_op": "2026-08-28T10:07:15Z",
   "stack_root": "STACK_ROOT",
   "accounts": [
     {
       "actor": "claude1",
-      "status": "BEZIG",
-      "taak_id": "sanitize",
-      "sinds": "2026-08-28T10:01:41Z",
-      "sinds_minuten": 0.0,
-      "bron": "ps:pid=86852"
+      "status": "VRIJ",
+      "taak_id": null,
+      "sinds": "2026-08-28T08:37:00Z",
+      "sinds_minuten": 90.0,
+      "bron": "outbox:order_afgerond:AUTOCODER_QUEUE_SUPERVISOR_CONTRACT_V2.md"
     },
     {
       "actor": "claude2",
       "status": "WACHT",
       "taak_id": "AUTOCODER_QUEUE_SUPERVISOR_CONTRACT_V1",
       "sinds": "2026-08-28T08:35:06Z",
-      "sinds_minuten": 86.6,
+      "sinds_minuten": 91.9,
       "bron": "outbox:order_open:AUTOCODER_QUEUE_SUPERVISOR_CONTRACT_V1.md"
     },
     {
@@ -24,7 +24,7 @@
       "status": "VRIJ",
       "taak_id": null,
       "sinds": "2026-08-28T08:03:23Z",
-      "sinds_minuten": 118.3,
+      "sinds_minuten": 123.6,
       "bron": "outbox:order_afgerond:HERTELLING_REVIEWLANE_S13_CLAUDE3_V1.md"
     },
     {
@@ -32,32 +32,32 @@
       "status": "GEBLOKKEERD",
       "taak_id": "AUTOCODER_QUEUE_SUPERVISOR_CONTRACT_V2",
       "sinds": "2026-08-28T09:02:28Z",
-      "sinds_minuten": 59.2,
+      "sinds_minuten": 64.5,
       "bron": "outbox:receipt:AUTOCODER_QUEUE_SUPERVISOR_CONTRACT_V2_RECEIPT.md"
     },
     {
       "actor": "codex1",
-      "status": "GEBLOKKEERD",
-      "taak_id": "BRANCHVERZOENING_MAIN_INWAARTS_S2_FORWARD_PORT_REPAIR_MERGE_MAIN_CODEX1_V4",
-      "sinds": "2026-08-28T09:48:10Z",
-      "sinds_minuten": 13.5,
-      "bron": "outbox:receipt:BRANCHVERZOENING_MAIN_INWAARTS_S2_FORWARD_PORT_REPAIR_MERGE_MAIN_CODEX1_V4_RECEIPT.md"
+      "status": "BEZIG",
+      "taak_id": "QUEUE_AUTOSTART_CONTAINMENT_F1_F2_EXACT_HEAD_REVIEW_CODEX1_V1",
+      "sinds": "2026-08-28T10:06:21Z",
+      "sinds_minuten": 0.6,
+      "bron": "ps:pid=10069"
     },
     {
       "actor": "codex2",
-      "status": "BEZIG",
-      "taak_id": "BRANCHVERZOENING_MAIN_INWAARTS_S2_FORWARD_PORT_REVIEW_CODEX2_V3",
-      "sinds": "2026-08-28T09:57:44Z",
-      "sinds_minuten": 4.0,
-      "bron": "ps:pid=59950"
+      "status": "GEBLOKKEERD",
+      "taak_id": "BRANCHVERZOENING_MAIN_INWAARTS_S2_FORWARD_PORT_REVIEW_CODEX2_V3_TRANSPORT",
+      "sinds": "2026-08-28T10:06:18Z",
+      "sinds_minuten": 0.7,
+      "bron": "outbox:receipt:BRANCHVERZOENING_MAIN_INWAARTS_S2_FORWARD_PORT_REVIEW_CODEX2_V3_TRANSPORT_RECEIPT.md"
     },
     {
       "actor": "gemini1",
-      "status": "BEZIG",
-      "taak_id": "order",
-      "sinds": "2026-08-28T10:01:38Z",
-      "sinds_minuten": 0.1,
-      "bron": "ps:pid=86651"
+      "status": "VRIJ",
+      "taak_id": "NIGHT_LONGREAD_E2E_PIPELINE_CONTINUATION_V1_TRANSPORT",
+      "sinds": "2026-08-28T03:15:12Z",
+      "sinds_minuten": 411.8,
+      "bron": "outbox:receipt:NIGHT_LONGREAD_E2E_PIPELINE_CONTINUATION_V1_TRANSPORT_RECEIPT.md"
     },
     {
       "actor": "dashboard-codex",
@@ -72,7 +72,7 @@
       "status": "VRIJ",
       "taak_id": null,
       "sinds": "2026-08-28T08:37:00Z",
-      "sinds_minuten": 84.7,
+      "sinds_minuten": 90.0,
       "bron": "outbox:order_afgerond:AUTOCODER_QUEUE_SUPERVISOR_CONTRACT_V2.md"
     }
   ],
@@ -5184,6 +5184,54 @@
       "bron_type": "receipt",
       "status": "GEBLOKKEERD",
       "taak": "Remote-tip-readback; DNS-resolutie van `github.com` faalt.",
+      "schatting_categorie": "GEEN_SCHATTING",
+      "schatting_min": null
+    },
+    {
+      "bron_bestand": "outbox/BRANCHVERZOENING_MAIN_INWAARTS_S2_FORWARD_PORT_REVIEW_CODEX2_V3_TRANSPORT_RECEIPT.md",
+      "bron_type": "receipt",
+      "status": "KLAAR",
+      "taak": "exacte commit-, tree-, parent- en merge-basebinding gemeten.",
+      "schatting_categorie": "GEEN_SCHATTING",
+      "schatting_min": null
+    },
+    {
+      "bron_bestand": "outbox/BRANCHVERZOENING_MAIN_INWAARTS_S2_FORWARD_PORT_REVIEW_CODEX2_V3_TRANSPORT_RECEIPT.md",
+      "bron_type": "receipt",
+      "status": "KLAAR",
+      "taak": "blobs en beperkte reconciliatiediff gecontroleerd.",
+      "schatting_categorie": "GEEN_SCHATTING",
+      "schatting_min": null
+    },
+    {
+      "bron_bestand": "outbox/BRANCHVERZOENING_MAIN_INWAARTS_S2_FORWARD_PORT_REVIEW_CODEX2_V3_TRANSPORT_RECEIPT.md",
+      "bron_type": "receipt",
+      "status": "KLAAR",
+      "taak": "acceptatieproef: 45/45 pass, 0 fail, exit 0.",
+      "schatting_categorie": "GEEN_SCHATTING",
+      "schatting_min": null
+    },
+    {
+      "bron_bestand": "outbox/BRANCHVERZOENING_MAIN_INWAARTS_S2_FORWARD_PORT_REVIEW_CODEX2_V3_TRANSPORT_RECEIPT.md",
+      "bron_type": "receipt",
+      "status": "KLAAR",
+      "taak": "controllersuite: verwachte 289/1-baseline en uitsluitend bekende faalregel.",
+      "schatting_categorie": "GEEN_SCHATTING",
+      "schatting_min": null
+    },
+    {
+      "bron_bestand": "outbox/BRANCHVERZOENING_MAIN_INWAARTS_S2_FORWARD_PORT_REVIEW_CODEX2_V3_TRANSPORT_RECEIPT.md",
+      "bron_type": "receipt",
+      "status": "KLAAR",
+      "taak": "diff-check, conflictmarkers en orderlint.",
+      "schatting_categorie": "GEEN_SCHATTING",
+      "schatting_min": null
+    },
+    {
+      "bron_bestand": "outbox/BRANCHVERZOENING_MAIN_INWAARTS_S2_FORWARD_PORT_REVIEW_CODEX2_V3_TRANSPORT_RECEIPT.md",
+      "bron_type": "receipt",
+      "status": "GEBLOKKEERD",
+      "taak": "remote tip-readback; DNS-resolutie van `github.com` faalt.",
       "schatting_categorie": "GEEN_SCHATTING",
       "schatting_min": null
     },
@@ -21277,8 +21325,8 @@
     }
   ],
   "taken_meta": {
-    "taken_totaal": 2648,
-    "taken_zonder_schatting": 2543,
+    "taken_totaal": 2654,
+    "taken_zonder_schatting": 2549,
     "bron_glob": "outbox/*.md (TAKENLIJST-blokken)",
     "classificatie": "regex op TAKENLIJST-tabelrijen (Status/Taak/Tijd) en kale lijstvorm; een cel zonder herkenbaar '~X min'-patroon telt als GEEN_SCHATTING, nooit stilzwijgend overgeslagen"
   },
@@ -21288,9 +21336,9 @@
     "cmd": "bin/lane-capaciteit --json",
     "data": {
       "stack_root": "STACK_ROOT",
-      "generated_at": "2026-08-28T10:01:53Z",
+      "generated_at": "2026-08-28T10:07:15Z",
       "meta": {
-        "receipt_bestanden_totaal": 1382,
+        "receipt_bestanden_totaal": 1383,
         "receipt_onparseerbaar": 167,
         "jsonl": {
           "total_lines": 1095,
@@ -21550,23 +21598,23 @@
         },
         {
           "actor": "codex2",
-          "orders": 172,
-          "orders_met_duur": 167,
-          "p50_duration_ms": 214000,
+          "orders": 173,
+          "orders_met_duur": 168,
+          "p50_duration_ms": 214500,
           "max_duration_ms": 2335000,
-          "orders_met_verdict": 105,
-          "geslaagd_pct": 14.3,
-          "geblokkeerd_pct": 85.7,
+          "orders_met_verdict": 106,
+          "geslaagd_pct": 14.2,
+          "geblokkeerd_pct": 85.8,
           "overig_pct": 0.0,
           "verdict_distribution_raw": {
-            "BLOCKED_EVIDENCE": 74,
+            "BLOCKED_EVIDENCE": 75,
             "GO_HYPOTHESE_BEVESTIGD": 1,
             "GO_READY_FOR_MERGE_GATE": 8,
             "GO_READY_FOR_SEPARATE_MERGE_GATE": 1,
             "GO_WITH_FINDINGS": 5,
             "NO_GO": 16
           },
-          "laatste_activiteit": "2026-08-28T09:59:27Z"
+          "laatste_activiteit": "2026-08-28T10:06:16Z"
         },
         {
           "actor": "director",
