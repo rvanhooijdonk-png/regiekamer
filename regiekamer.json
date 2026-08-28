@@ -1,22 +1,22 @@
 {
   "schema": "REGIEKAMER_REALTIME_V1",
-  "gegenereerd_op": "2026-08-28T12:16:29Z",
+  "gegenereerd_op": "2026-08-28T12:21:55Z",
   "stack_root": "STACK_ROOT",
   "accounts": [
     {
       "actor": "claude1",
       "status": "BEZIG",
       "taak_id": "AUTOCODING_QUEUE_SUPERVISOR_REVIEW_CLAUDE1_V1",
-      "sinds": "2026-08-28T12:14:04Z",
-      "sinds_minuten": 2.2,
-      "bron": "ps:pid=95772"
+      "sinds": "2026-08-28T12:18:42Z",
+      "sinds_minuten": 2.9,
+      "bron": "ps:pid=11381"
     },
     {
       "actor": "claude2",
       "status": "WACHT",
       "taak_id": "AUTOCODER_QUEUE_SUPERVISOR_CONTRACT_V1",
       "sinds": "2026-08-28T08:35:06Z",
-      "sinds_minuten": 221.1,
+      "sinds_minuten": 226.5,
       "bron": "outbox:order_open:AUTOCODER_QUEUE_SUPERVISOR_CONTRACT_V1.md"
     },
     {
@@ -24,31 +24,31 @@
       "status": "VRIJ",
       "taak_id": null,
       "sinds": "2026-08-28T08:03:23Z",
-      "sinds_minuten": 252.9,
+      "sinds_minuten": 258.2,
       "bron": "outbox:order_afgerond:HERTELLING_REVIEWLANE_S13_CLAUDE3_V1.md"
     },
     {
       "actor": "claude4",
-      "status": "STALE",
-      "taak_id": "AUTOCODER_CONTROLLER_RECEIPT_FIELD_FIX_CLAUDE4_V1",
-      "sinds": "2026-08-28T12:05:17Z",
-      "sinds_minuten": 11.0,
-      "bron": "ps:pid=73276"
+      "status": "VRIJ",
+      "taak_id": "AUTOCODER_CONTROLLER_RECEIPT_FIELD_FIX_CLAUDE4_V1_TRANSPORT",
+      "sinds": "2026-08-28T12:19:24Z",
+      "sinds_minuten": 2.2,
+      "bron": "outbox:receipt:AUTOCODER_CONTROLLER_RECEIPT_FIELD_FIX_CLAUDE4_V1_TRANSPORT_RECEIPT.md"
     },
     {
       "actor": "codex1",
-      "status": "GEBLOKKEERD",
-      "taak_id": "QUEUE_AUTOSTART_CONTAINMENT_F1_F2_EXACT_HEAD_REVIEW_CODEX1_V1_TRANSPORT_RECEIPT_22",
-      "sinds": "2026-08-28T12:00:08Z",
-      "sinds_minuten": 16.1,
-      "bron": "outbox:receipt:QUEUE_AUTOSTART_CONTAINMENT_F1_F2_EXACT_HEAD_REVIEW_CODEX1_V1_TRANSPORT_RECEIPT_22.md"
+      "status": "BEZIG",
+      "taak_id": "QUEUE_AUTOSTART_CONTAINMENT_F1_F2_EXACT_HEAD_REVIEW_CODEX1_V1",
+      "sinds": "2026-08-28T12:19:26Z",
+      "sinds_minuten": 2.1,
+      "bron": "ps:pid=13255"
     },
     {
       "actor": "codex2",
       "status": "GEBLOKKEERD",
       "taak_id": "BRANCHVERZOENING_MAIN_INWAARTS_S2_FORWARD_PORT_REVIEW_CODEX2_V3_TRANSPORT",
       "sinds": "2026-08-28T10:06:18Z",
-      "sinds_minuten": 129.9,
+      "sinds_minuten": 135.3,
       "bron": "outbox:receipt:BRANCHVERZOENING_MAIN_INWAARTS_S2_FORWARD_PORT_REVIEW_CODEX2_V3_TRANSPORT_RECEIPT.md"
     },
     {
@@ -56,7 +56,7 @@
       "status": "VRIJ",
       "taak_id": "NIGHT_LONGREAD_E2E_PIPELINE_CONTINUATION_V1_TRANSPORT",
       "sinds": "2026-08-28T03:15:12Z",
-      "sinds_minuten": 541.0,
+      "sinds_minuten": 546.4,
       "bron": "outbox:receipt:NIGHT_LONGREAD_E2E_PIPELINE_CONTINUATION_V1_TRANSPORT_RECEIPT.md"
     },
     {
@@ -69,11 +69,11 @@
     },
     {
       "actor": "directie",
-      "status": "WACHT",
-      "taak_id": "AUTOCODING_QUEUE_SUPERVISOR_REVIEW_CLAUDE1_V1",
-      "sinds": "2026-08-28T12:12:19Z",
-      "sinds_minuten": 3.9,
-      "bron": "outbox:order_open:AUTOCODING_QUEUE_SUPERVISOR_REVIEW_CLAUDE1_V1.md"
+      "status": "VRIJ",
+      "taak_id": null,
+      "sinds": "2026-08-28T12:18:32Z",
+      "sinds_minuten": 3.1,
+      "bron": "outbox:order_afgerond:AUTOCODING_QUEUE_SUPERVISOR_REVIEW_CLAUDE1_V1.md"
     }
   ],
   "accounts_meta": {
@@ -360,6 +360,46 @@
       "bron_type": "receipt",
       "status": "GEBLOKKEERD",
       "taak": "Herreview door CODEX2 op de nieuwe hashes — R4: ik ben de bouwer en keur eigen werk niet goed. Alles wat ik wél kon afronden is af.",
+      "schatting_categorie": "GEEN_SCHATTING",
+      "schatting_min": null
+    },
+    {
+      "bron_bestand": "outbox/AUTOCODER_CONTROLLER_RECEIPT_FIELD_FIX_CLAUDE4_V1_TRANSPORT_RECEIPT.md",
+      "bron_type": "receipt",
+      "status": "KLAAR",
+      "taak": "root-cause-A-fix + fail-closed padtraversalcheck (commit 32212d2)",
+      "schatting_categorie": "GEEN_SCHATTING",
+      "schatting_min": null
+    },
+    {
+      "bron_bestand": "outbox/AUTOCODER_CONTROLLER_RECEIPT_FIELD_FIX_CLAUDE4_V1_TRANSPORT_RECEIPT.md",
+      "bron_type": "receipt",
+      "status": "KLAAR",
+      "taak": "regressietest (142 OK / 0 FAIL, exit 0)",
+      "schatting_categorie": "GEEN_SCHATTING",
+      "schatting_min": null
+    },
+    {
+      "bron_bestand": "outbox/AUTOCODER_CONTROLLER_RECEIPT_FIELD_FIX_CLAUDE4_V1_TRANSPORT_RECEIPT.md",
+      "bron_type": "receipt",
+      "status": "KLAAR",
+      "taak": "receipt geschreven in worktree-outbox",
+      "schatting_categorie": "GEEN_SCHATTING",
+      "schatting_min": null
+    },
+    {
+      "bron_bestand": "outbox/AUTOCODER_CONTROLLER_RECEIPT_FIELD_FIX_CLAUDE4_V1_TRANSPORT_RECEIPT.md",
+      "bron_type": "receipt",
+      "status": "OPEN",
+      "taak": "dispatch reviewopdracht naar CLAUDE1 (AUTOCODER_CONTROLLER_RECEIPT_FIELD_FIX_REVIEW_CLAUDE1_V1)",
+      "schatting_categorie": "GESCHAT",
+      "schatting_min": 2
+    },
+    {
+      "bron_bestand": "outbox/AUTOCODER_CONTROLLER_RECEIPT_FIELD_FIX_CLAUDE4_V1_TRANSPORT_RECEIPT.md",
+      "bron_type": "receipt",
+      "status": "OPEN",
+      "taak": "(ná GO) voorstel aan Richard voor launchd-herstart",
       "schatting_categorie": "GEEN_SCHATTING",
       "schatting_min": null
     },
@@ -1632,6 +1672,54 @@
       "bron_type": "receipt",
       "status": "GEBLOKKEERD",
       "taak": "branchdiff is breder dan de bindende merge-scope.",
+      "schatting_categorie": "GEEN_SCHATTING",
+      "schatting_min": null
+    },
+    {
+      "bron_bestand": "outbox/AUTOCODING_QUEUE_SUPERVISOR_REVIEW_CLAUDE1_V1_RECEIPT.md",
+      "bron_type": "receipt",
+      "status": "KLAAR",
+      "taak": "Fase 1 — basiscommits geverifieerd (bewijs: rev-parse-output hierboven)",
+      "schatting_categorie": "GEEN_SCHATTING",
+      "schatting_min": null
+    },
+    {
+      "bron_bestand": "outbox/AUTOCODING_QUEUE_SUPERVISOR_REVIEW_CLAUDE1_V1_RECEIPT.md",
+      "bron_type": "receipt",
+      "status": "KLAAR",
+      "taak": "Fase 2 — eigen detached reviewworktree, acceptatieproef gedraaid (bewijs: testoutput hierboven)",
+      "schatting_categorie": "GEEN_SCHATTING",
+      "schatting_min": null
+    },
+    {
+      "bron_bestand": "outbox/AUTOCODING_QUEUE_SUPERVISOR_REVIEW_CLAUDE1_V1_RECEIPT.md",
+      "bron_type": "receipt",
+      "status": "KLAAR",
+      "taak": "Scope-controle op de vier toegestane bestanden (bewijs: git diff --stat exclude-run)",
+      "schatting_categorie": "GEEN_SCHATTING",
+      "schatting_min": null
+    },
+    {
+      "bron_bestand": "outbox/AUTOCODING_QUEUE_SUPERVISOR_REVIEW_CLAUDE1_V1_RECEIPT.md",
+      "bron_type": "receipt",
+      "status": "KLAAR",
+      "taak": "Eigenschappen tegen broncode geverifieerd (bewijs: sectie hierboven)",
+      "schatting_categorie": "GEEN_SCHATTING",
+      "schatting_min": null
+    },
+    {
+      "bron_bestand": "outbox/AUTOCODING_QUEUE_SUPERVISOR_REVIEW_CLAUDE1_V1_RECEIPT.md",
+      "bron_type": "receipt",
+      "status": "KLAAR",
+      "taak": "3 eigen negatieve controles, elk rood-zonder-fix/groen-erna, worktree hersteld (bewijs: sectie hierboven)",
+      "schatting_categorie": "GEEN_SCHATTING",
+      "schatting_min": null
+    },
+    {
+      "bron_bestand": "outbox/AUTOCODING_QUEUE_SUPERVISOR_REVIEW_CLAUDE1_V1_RECEIPT.md",
+      "bron_type": "receipt",
+      "status": "KLAAR",
+      "taak": "Verdict uitgebracht + receipt geschreven (bewijs: dit bestand)",
       "schatting_categorie": "GEEN_SCHATTING",
       "schatting_min": null
     },
@@ -21501,8 +21589,8 @@
     }
   ],
   "taken_meta": {
-    "taken_totaal": 2676,
-    "taken_zonder_schatting": 2571,
+    "taken_totaal": 2687,
+    "taken_zonder_schatting": 2581,
     "bron_glob": "outbox/*.md (TAKENLIJST-blokken)",
     "classificatie": "regex op TAKENLIJST-tabelrijen (Status/Taak/Tijd) en kale lijstvorm; een cel zonder herkenbaar '~X min'-patroon telt als GEEN_SCHATTING, nooit stilzwijgend overgeslagen"
   },
@@ -21512,10 +21600,10 @@
     "cmd": "bin/lane-capaciteit --json",
     "data": {
       "stack_root": "STACK_ROOT",
-      "generated_at": "2026-08-28T12:16:29Z",
+      "generated_at": "2026-08-28T12:21:55Z",
       "meta": {
-        "receipt_bestanden_totaal": 1384,
-        "receipt_onparseerbaar": 167,
+        "receipt_bestanden_totaal": 1387,
+        "receipt_onparseerbaar": 168,
         "jsonl": {
           "total_lines": 1108,
           "actor_lines": 0,
@@ -21558,16 +21646,16 @@
         },
         {
           "actor": "claude1",
-          "orders": 110,
-          "orders_met_duur": 100,
-          "p50_duration_ms": 348000,
+          "orders": 111,
+          "orders_met_duur": 101,
+          "p50_duration_ms": 346000,
           "max_duration_ms": 2853000,
-          "orders_met_verdict": 49,
-          "geslaagd_pct": 24.5,
-          "geblokkeerd_pct": 61.2,
-          "overig_pct": 14.3,
+          "orders_met_verdict": 50,
+          "geslaagd_pct": 24.0,
+          "geblokkeerd_pct": 62.0,
+          "overig_pct": 14.0,
           "verdict_distribution_raw": {
-            "BLOCKED_EVIDENCE": 28,
+            "BLOCKED_EVIDENCE": 29,
             "GO_EFFECT_BEWEZEN": 1,
             "GO_READY_FOR_MERGE_GATE": 6,
             "GO_WITH_FINDINGS": 5,
@@ -21578,7 +21666,7 @@
             "OPGELEVERD|BLOCKED_EVIDENCE": 1,
             "TOETS_GO": 4
           },
-          "laatste_activiteit": "2026-08-28T00:36:49Z"
+          "laatste_activiteit": "2026-08-28T12:18:38Z"
         },
         {
           "actor": "claude2",
@@ -21710,8 +21798,8 @@
         },
         {
           "actor": "claude4",
-          "orders": 186,
-          "orders_met_duur": 182,
+          "orders": 187,
+          "orders_met_duur": 183,
           "p50_duration_ms": 321000,
           "max_duration_ms": 4288000,
           "orders_met_verdict": 92,
@@ -21728,7 +21816,7 @@
             "KLAAR-VOOR-REVIEW (bouwer keurt zijn eigen werk niet goed)": 1,
             "NO_GO": 3
           },
-          "laatste_activiteit": "2026-08-28T12:14:07Z"
+          "laatste_activiteit": "2026-08-28T12:19:20Z"
         },
         {
           "actor": "codex1",
@@ -21882,7 +21970,7 @@
         },
         {
           "actor": "ONPARSEERBAAR",
-          "orders": 167,
+          "orders": 168,
           "orders_met_duur": 0,
           "p50_duration_ms": null,
           "max_duration_ms": null,
@@ -21932,6 +22020,7 @@
             "AUTOCODING_PR993_CLASS_A_MATRIX_20260820_RECEIPT.md",
             "AUTOCODING_PR994_TRANSITION_FENCING_20260820_RECEIPT.md",
             "AUTOCODING_PROVIDER_PLAN_CONTRACT_CLOSE_V1_CODEX2_RECEIPT.md",
+            "AUTOCODING_QUEUE_SUPERVISOR_REVIEW_CLAUDE1_V1_RECEIPT.md",
             "AUTOCODING_S23_LANE_BINDING_EXACT_REVIEW_CODEX2_V1_RECEIPT.md",
             "AUTOCODING_SUPERVISOR_POSTMERGE_REVIEW_CLAUDE4_9DD96D7_RECEIPT.md",
             "AUTOCODING_TELEGRAM_WAAKVLAM_REVIEW_CLAUDE4_V1_RECEIPT.md",
