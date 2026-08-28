@@ -1,22 +1,22 @@
 {
   "schema": "REGIEKAMER_REALTIME_V1",
-  "gegenereerd_op": "2026-08-28T09:56:32Z",
+  "gegenereerd_op": "2026-08-28T10:01:53Z",
   "stack_root": "STACK_ROOT",
   "accounts": [
     {
       "actor": "claude1",
-      "status": "VRIJ",
-      "taak_id": null,
-      "sinds": "2026-08-28T08:37:00Z",
-      "sinds_minuten": 79.1,
-      "bron": "outbox:order_afgerond:AUTOCODER_QUEUE_SUPERVISOR_CONTRACT_V2.md"
+      "status": "BEZIG",
+      "taak_id": "sanitize",
+      "sinds": "2026-08-28T10:01:41Z",
+      "sinds_minuten": 0.0,
+      "bron": "ps:pid=86852"
     },
     {
       "actor": "claude2",
       "status": "WACHT",
       "taak_id": "AUTOCODER_QUEUE_SUPERVISOR_CONTRACT_V1",
       "sinds": "2026-08-28T08:35:06Z",
-      "sinds_minuten": 81.0,
+      "sinds_minuten": 86.6,
       "bron": "outbox:order_open:AUTOCODER_QUEUE_SUPERVISOR_CONTRACT_V1.md"
     },
     {
@@ -24,7 +24,7 @@
       "status": "VRIJ",
       "taak_id": null,
       "sinds": "2026-08-28T08:03:23Z",
-      "sinds_minuten": 112.7,
+      "sinds_minuten": 118.3,
       "bron": "outbox:order_afgerond:HERTELLING_REVIEWLANE_S13_CLAUDE3_V1.md"
     },
     {
@@ -32,7 +32,7 @@
       "status": "GEBLOKKEERD",
       "taak_id": "AUTOCODER_QUEUE_SUPERVISOR_CONTRACT_V2",
       "sinds": "2026-08-28T09:02:28Z",
-      "sinds_minuten": 53.7,
+      "sinds_minuten": 59.2,
       "bron": "outbox:receipt:AUTOCODER_QUEUE_SUPERVISOR_CONTRACT_V2_RECEIPT.md"
     },
     {
@@ -40,24 +40,24 @@
       "status": "GEBLOKKEERD",
       "taak_id": "BRANCHVERZOENING_MAIN_INWAARTS_S2_FORWARD_PORT_REPAIR_MERGE_MAIN_CODEX1_V4",
       "sinds": "2026-08-28T09:48:10Z",
-      "sinds_minuten": 8.0,
+      "sinds_minuten": 13.5,
       "bron": "outbox:receipt:BRANCHVERZOENING_MAIN_INWAARTS_S2_FORWARD_PORT_REPAIR_MERGE_MAIN_CODEX1_V4_RECEIPT.md"
     },
     {
       "actor": "codex2",
       "status": "BEZIG",
       "taak_id": "BRANCHVERZOENING_MAIN_INWAARTS_S2_FORWARD_PORT_REVIEW_CODEX2_V3",
-      "sinds": "2026-08-28T09:55:20Z",
-      "sinds_minuten": 0.8,
-      "bron": "ps:pid=41106"
+      "sinds": "2026-08-28T09:57:44Z",
+      "sinds_minuten": 4.0,
+      "bron": "ps:pid=59950"
     },
     {
       "actor": "gemini1",
-      "status": "VRIJ",
-      "taak_id": "NIGHT_LONGREAD_E2E_PIPELINE_CONTINUATION_V1_TRANSPORT",
-      "sinds": "2026-08-28T03:15:12Z",
-      "sinds_minuten": 400.9,
-      "bron": "outbox:receipt:NIGHT_LONGREAD_E2E_PIPELINE_CONTINUATION_V1_TRANSPORT_RECEIPT.md"
+      "status": "BEZIG",
+      "taak_id": "order",
+      "sinds": "2026-08-28T10:01:38Z",
+      "sinds_minuten": 0.1,
+      "bron": "ps:pid=86651"
     },
     {
       "actor": "dashboard-codex",
@@ -72,7 +72,7 @@
       "status": "VRIJ",
       "taak_id": null,
       "sinds": "2026-08-28T08:37:00Z",
-      "sinds_minuten": 79.1,
+      "sinds_minuten": 84.7,
       "bron": "outbox:order_afgerond:AUTOCODER_QUEUE_SUPERVISOR_CONTRACT_V2.md"
     }
   ],
@@ -5128,6 +5128,62 @@
       "bron_type": "receipt",
       "status": "KLAAR",
       "taak": "onafhankelijke review opgeleverd; geen merge uitgevoerd",
+      "schatting_categorie": "GEEN_SCHATTING",
+      "schatting_min": null
+    },
+    {
+      "bron_bestand": "outbox/BRANCHVERZOENING_MAIN_INWAARTS_S2_FORWARD_PORT_REVIEW_CODEX2_V3_RECEIPT.md",
+      "bron_type": "receipt",
+      "status": "KLAAR",
+      "taak": "Exact head, tree, parents en merge-base gemeten.",
+      "schatting_categorie": "GEEN_SCHATTING",
+      "schatting_min": null
+    },
+    {
+      "bron_bestand": "outbox/BRANCHVERZOENING_MAIN_INWAARTS_S2_FORWARD_PORT_REVIEW_CODEX2_V3_RECEIPT.md",
+      "bron_type": "receipt",
+      "status": "KLAAR",
+      "taak": "Beide blob-SHA’s bevestigd.",
+      "schatting_categorie": "GEEN_SCHATTING",
+      "schatting_min": null
+    },
+    {
+      "bron_bestand": "outbox/BRANCHVERZOENING_MAIN_INWAARTS_S2_FORWARD_PORT_REVIEW_CODEX2_V3_RECEIPT.md",
+      "bron_type": "receipt",
+      "status": "KLAAR",
+      "taak": "Vijf wijzigingsgroepen en geen scope-uitbreiding vastgesteld.",
+      "schatting_categorie": "GEEN_SCHATTING",
+      "schatting_min": null
+    },
+    {
+      "bron_bestand": "outbox/BRANCHVERZOENING_MAIN_INWAARTS_S2_FORWARD_PORT_REVIEW_CODEX2_V3_RECEIPT.md",
+      "bron_type": "receipt",
+      "status": "KLAAR",
+      "taak": "Acceptatieproef: 45/45, 0 fail, exit 0.",
+      "schatting_categorie": "GEEN_SCHATTING",
+      "schatting_min": null
+    },
+    {
+      "bron_bestand": "outbox/BRANCHVERZOENING_MAIN_INWAARTS_S2_FORWARD_PORT_REVIEW_CODEX2_V3_RECEIPT.md",
+      "bron_type": "receipt",
+      "status": "KLAAR",
+      "taak": "Controllersuite: uitsluitend bekende baselinefout, 289/1.",
+      "schatting_categorie": "GEEN_SCHATTING",
+      "schatting_min": null
+    },
+    {
+      "bron_bestand": "outbox/BRANCHVERZOENING_MAIN_INWAARTS_S2_FORWARD_PORT_REVIEW_CODEX2_V3_RECEIPT.md",
+      "bron_type": "receipt",
+      "status": "KLAAR",
+      "taak": "Diff-check, schone checkout en conflictmarkercontrole.",
+      "schatting_categorie": "GEEN_SCHATTING",
+      "schatting_min": null
+    },
+    {
+      "bron_bestand": "outbox/BRANCHVERZOENING_MAIN_INWAARTS_S2_FORWARD_PORT_REVIEW_CODEX2_V3_RECEIPT.md",
+      "bron_type": "receipt",
+      "status": "GEBLOKKEERD",
+      "taak": "Remote-tip-readback; DNS-resolutie van `github.com` faalt.",
       "schatting_categorie": "GEEN_SCHATTING",
       "schatting_min": null
     },
@@ -21221,8 +21277,8 @@
     }
   ],
   "taken_meta": {
-    "taken_totaal": 2641,
-    "taken_zonder_schatting": 2536,
+    "taken_totaal": 2648,
+    "taken_zonder_schatting": 2543,
     "bron_glob": "outbox/*.md (TAKENLIJST-blokken)",
     "classificatie": "regex op TAKENLIJST-tabelrijen (Status/Taak/Tijd) en kale lijstvorm; een cel zonder herkenbaar '~X min'-patroon telt als GEEN_SCHATTING, nooit stilzwijgend overgeslagen"
   },
@@ -21232,15 +21288,15 @@
     "cmd": "bin/lane-capaciteit --json",
     "data": {
       "stack_root": "STACK_ROOT",
-      "generated_at": "2026-08-28T09:56:32Z",
+      "generated_at": "2026-08-28T10:01:53Z",
       "meta": {
-        "receipt_bestanden_totaal": 1381,
+        "receipt_bestanden_totaal": 1382,
         "receipt_onparseerbaar": 167,
         "jsonl": {
-          "total_lines": 1094,
+          "total_lines": 1095,
           "actor_lines": 0,
           "onparseerbaar": 0,
-          "zonder_actor": 1094,
+          "zonder_actor": 1095,
           "aanwezig": true
         },
         "verdict_classificatie": "heuristiek: prefix-match op verdict= (hoofdletterongevoelig); GESLAAGD={GO,PASS,DELIVERED}, GEBLOKKEERD={NO_GO,BLOCKED,REJECTED,FAILED}, onbekend/overig telt niet stilzwijgend mee als geslaagd of geblokkeerd"
@@ -21494,23 +21550,23 @@
         },
         {
           "actor": "codex2",
-          "orders": 171,
-          "orders_met_duur": 166,
-          "p50_duration_ms": 212500,
+          "orders": 172,
+          "orders_met_duur": 167,
+          "p50_duration_ms": 214000,
           "max_duration_ms": 2335000,
-          "orders_met_verdict": 104,
-          "geslaagd_pct": 14.4,
-          "geblokkeerd_pct": 85.6,
+          "orders_met_verdict": 105,
+          "geslaagd_pct": 14.3,
+          "geblokkeerd_pct": 85.7,
           "overig_pct": 0.0,
           "verdict_distribution_raw": {
-            "BLOCKED_EVIDENCE": 73,
+            "BLOCKED_EVIDENCE": 74,
             "GO_HYPOTHESE_BEVESTIGD": 1,
             "GO_READY_FOR_MERGE_GATE": 8,
             "GO_READY_FOR_SEPARATE_MERGE_GATE": 1,
             "GO_WITH_FINDINGS": 5,
             "NO_GO": 16
           },
-          "laatste_activiteit": "2026-08-28T08:08:59Z"
+          "laatste_activiteit": "2026-08-28T09:59:27Z"
         },
         {
           "actor": "director",
@@ -21784,7 +21840,7 @@
         },
         {
           "actor": "ZONDER_ACTOR",
-          "orders": 1094,
+          "orders": 1095,
           "orders_met_duur": 0,
           "p50_duration_ms": null,
           "max_duration_ms": null,
@@ -22888,7 +22944,8 @@
             1091,
             1092,
             1093,
-            1094
+            1094,
+            1095
           ]
         }
       ]
