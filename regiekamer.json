@@ -1,22 +1,22 @@
 {
   "schema": "REGIEKAMER_REALTIME_V1",
-  "gegenereerd_op": "2026-08-29T15:24:56Z",
+  "gegenereerd_op": "2026-08-29T15:30:06Z",
   "stack_root": "STACK_ROOT",
   "accounts": [
     {
       "actor": "claude1",
-      "status": "BEZIG",
-      "taak_id": "AUTOCODING_MERGE_ORDER_GUARD_CLAUDE1_V1",
-      "sinds": "2026-08-29T15:23:27Z",
-      "sinds_minuten": 1.4,
-      "bron": "ps:pid=67418"
+      "status": "GEBLOKKEERD",
+      "taak_id": "AUTOCODING_MERGE_ORDER_GUARD_CLAUDE1_V1_ACTOR",
+      "sinds": "2026-08-29T15:28:31Z",
+      "sinds_minuten": 1.5,
+      "bron": "outbox:receipt:AUTOCODING_MERGE_ORDER_GUARD_CLAUDE1_V1_ACTOR_RECEIPT.md"
     },
     {
       "actor": "claude2",
       "status": "WACHT",
       "taak_id": "AUTOCODING_E2E_CANARY_AEC2EAC_CLAUDE2_REVIEW_V1",
       "sinds": "2026-08-29T13:41:44Z",
-      "sinds_minuten": 103.1,
+      "sinds_minuten": 108.3,
       "bron": "outbox:order_open:AUTOCODING_E2E_CANARY_AEC2EAC_CLAUDE2_REVIEW_V1.md"
     },
     {
@@ -24,7 +24,7 @@
       "status": "WACHT",
       "taak_id": "AUTOCODING_CANDIDATE_OVERLAP_GUARD_6CB598F_CLAUDE3_REVIEW_V2",
       "sinds": "2026-08-29T13:46:29Z",
-      "sinds_minuten": 98.3,
+      "sinds_minuten": 103.5,
       "bron": "outbox:order_open:AUTOCODING_CANDIDATE_OVERLAP_GUARD_6CB598F_CLAUDE3_REVIEW_V2.md"
     },
     {
@@ -32,31 +32,31 @@
       "status": "WACHT",
       "taak_id": "AUTOCODING_FAILURE_DRILL_CLAUDE4_V1",
       "sinds": "2026-08-29T15:14:03Z",
-      "sinds_minuten": 10.8,
+      "sinds_minuten": 15.9,
       "bron": "outbox:order_open:AUTOCODING_FAILURE_DRILL_CLAUDE4_V1.md"
     },
     {
       "actor": "codex1",
       "status": "GEBLOKKEERD",
-      "taak_id": "KEYNOTE_LIBRARY_CODE_REVIEW_CODEX1_V1_TRANSPORT_RECEIPT_4",
-      "sinds": "2026-08-29T14:06:25Z",
-      "sinds_minuten": 78.4,
-      "bron": "outbox:receipt:KEYNOTE_LIBRARY_CODE_REVIEW_CODEX1_V1_TRANSPORT_RECEIPT_4.md"
+      "taak_id": "AUTOCODING_CANDIDATE_OVERLAP_GUARD_CODEX1_V1",
+      "sinds": "2026-08-29T15:27:07Z",
+      "sinds_minuten": 2.9,
+      "bron": "outbox:receipt:AUTOCODING_CANDIDATE_OVERLAP_GUARD_CODEX1_V1_RECEIPT.md"
     },
     {
       "actor": "codex2",
       "status": "VRIJ",
       "taak_id": null,
-      "sinds": "2026-08-29T15:21:56Z",
-      "sinds_minuten": 2.9,
+      "sinds": "2026-08-29T15:27:17Z",
+      "sinds_minuten": 2.7,
       "bron": "outbox:order_afgerond:STUDIO_LONGREAD_PILOT_V1_REPAIR_L_COMMIT_ISOLATED_CODEX2_V1.md"
     },
     {
       "actor": "gemini1",
       "status": "WACHT",
       "taak_id": "AUTOCODING_CANDIDATE_OVERLAP_GUARD_6CB598F_GEMINI1_REVIEW_V1",
-      "sinds": "2026-08-29T15:21:46Z",
-      "sinds_minuten": 3.1,
+      "sinds": "2026-08-29T15:26:59Z",
+      "sinds_minuten": 3.0,
       "bron": "outbox:order_open:AUTOCODING_CANDIDATE_OVERLAP_GUARD_6CB598F_GEMINI1_REVIEW_V1.md"
     },
     {
@@ -72,7 +72,7 @@
       "status": "GEBLOKKEERD",
       "taak_id": "AUTOCODER_CONTROLLER_RECEIPT_FIELD_FIX_REVIEW_CLAUDE1_V1",
       "sinds": "2026-08-28T13:35:13Z",
-      "sinds_minuten": 1549.6,
+      "sinds_minuten": 1554.8,
       "bron": "outbox:receipt:AUTOCODER_CONTROLLER_RECEIPT_FIELD_FIX_REVIEW_CLAUDE1_V1.md"
     }
   ],
@@ -2176,6 +2176,38 @@
       "bron_type": "receipt",
       "status": "KLAAR",
       "taak": "Volledige receipt dubbel geschreven en SHA-zelfbescherming aangebracht (bewijs: §6 + metadata)",
+      "schatting_categorie": "GEEN_SCHATTING",
+      "schatting_min": null
+    },
+    {
+      "bron_bestand": "outbox/AUTOCODING_MERGE_ORDER_GUARD_CLAUDE1_V1_ACTOR_RECEIPT.md",
+      "bron_type": "receipt",
+      "status": "KLAAR",
+      "taak": "Guard + testsuite + workflow + installatiedoc gebouwd (bewijs: commit 8d01c82, testoutput hierboven)",
+      "schatting_categorie": "GEEN_SCHATTING",
+      "schatting_min": null
+    },
+    {
+      "bron_bestand": "outbox/AUTOCODING_MERGE_ORDER_GUARD_CLAUDE1_V1_ACTOR_RECEIPT.md",
+      "bron_type": "receipt",
+      "status": "KLAAR",
+      "taak": "Acceptatieproef + negatieve controle gedraaid (bewijs: PASS 12/12 resp. SUITE_EXIT=1)",
+      "schatting_categorie": "GEEN_SCHATTING",
+      "schatting_min": null
+    },
+    {
+      "bron_bestand": "outbox/AUTOCODING_MERGE_ORDER_GUARD_CLAUDE1_V1_ACTOR_RECEIPT.md",
+      "bron_type": "receipt",
+      "status": "KLAAR",
+      "taak": "Receipt geschreven in worktree-outbox (bewijs: receipt_path hieronder)",
+      "schatting_categorie": "GEEN_SCHATTING",
+      "schatting_min": null
+    },
+    {
+      "bron_bestand": "outbox/AUTOCODING_MERGE_ORDER_GUARD_CLAUDE1_V1_ACTOR_RECEIPT.md",
+      "bron_type": "receipt",
+      "status": "OPEN",
+      "taak": "CODEX exact-head R4-review op 8d01c82 (buiten dit toolprofiel; keten per order)",
       "schatting_categorie": "GEEN_SCHATTING",
       "schatting_min": null
     },
@@ -23005,8 +23037,8 @@
     }
   ],
   "taken_meta": {
-    "taken_totaal": 2864,
-    "taken_zonder_schatting": 2756,
+    "taken_totaal": 2868,
+    "taken_zonder_schatting": 2760,
     "bron_glob": "outbox/*.md (TAKENLIJST-blokken)",
     "classificatie": "regex op TAKENLIJST-tabelrijen (Status/Taak/Tijd) en kale lijstvorm; een cel zonder herkenbaar '~X min'-patroon telt als GEEN_SCHATTING, nooit stilzwijgend overgeslagen"
   },
@@ -23016,15 +23048,15 @@
     "cmd": "bin/lane-capaciteit --json",
     "data": {
       "stack_root": "STACK_ROOT",
-      "generated_at": "2026-08-29T15:24:56Z",
+      "generated_at": "2026-08-29T15:30:06Z",
       "meta": {
-        "receipt_bestanden_totaal": 1502,
+        "receipt_bestanden_totaal": 1504,
         "receipt_onparseerbaar": 197,
         "jsonl": {
-          "total_lines": 1268,
+          "total_lines": 1269,
           "actor_lines": 0,
           "onparseerbaar": 0,
-          "zonder_actor": 1268,
+          "zonder_actor": 1269,
           "aanwezig": true
         },
         "verdict_classificatie": "heuristiek: prefix-match op verdict= (hoofdletterongevoelig); GESLAAGD={GO,PASS,DELIVERED}, GEBLOKKEERD={NO_GO,BLOCKED,REJECTED,FAILED}, onbekend/overig telt niet stilzwijgend mee als geslaagd of geblokkeerd"
@@ -23062,9 +23094,9 @@
         },
         {
           "actor": "claude1",
-          "orders": 120,
-          "orders_met_duur": 110,
-          "p50_duration_ms": 355500,
+          "orders": 121,
+          "orders_met_duur": 111,
+          "p50_duration_ms": 350000,
           "max_duration_ms": 2910000,
           "orders_met_verdict": 58,
           "geslaagd_pct": 22.4,
@@ -23084,7 +23116,7 @@
             "OPGELEVERD|BLOCKED_EVIDENCE": 1,
             "TOETS_GO": 4
           },
-          "laatste_activiteit": "2026-08-29T07:08:37Z"
+          "laatste_activiteit": "2026-08-29T15:28:31Z"
         },
         {
           "actor": "claude2",
@@ -23255,17 +23287,17 @@
         },
         {
           "actor": "codex1",
-          "orders": 301,
-          "orders_met_duur": 293,
+          "orders": 302,
+          "orders_met_duur": 294,
           "p50_duration_ms": 160000,
           "max_duration_ms": 3216000,
-          "orders_met_verdict": 204,
-          "geslaagd_pct": 26.0,
-          "geblokkeerd_pct": 73.5,
+          "orders_met_verdict": 205,
+          "geslaagd_pct": 25.9,
+          "geblokkeerd_pct": 73.7,
           "overig_pct": 0.5,
           "verdict_distribution_raw": {
             "APPROVE": 1,
-            "BLOCKED_EVIDENCE": 123,
+            "BLOCKED_EVIDENCE": 124,
             "GO": 1,
             "GO_READY_FOR_GEMINI_REVIEW_GATE": 2,
             "GO_READY_FOR_MERGE_GATE": 32,
@@ -23278,7 +23310,7 @@
             "go_ready_for_merge_gate": 1,
             "no_go": 1
           },
-          "laatste_activiteit": "2026-08-29T13:29:21Z"
+          "laatste_activiteit": "2026-08-29T15:27:07Z"
         },
         {
           "actor": "codex1_local_builder",
@@ -23649,7 +23681,7 @@
         },
         {
           "actor": "ZONDER_ACTOR",
-          "orders": 1268,
+          "orders": 1269,
           "orders_met_duur": 0,
           "p50_duration_ms": null,
           "max_duration_ms": null,
@@ -24927,7 +24959,8 @@
             1265,
             1266,
             1267,
-            1268
+            1268,
+            1269
           ]
         }
       ]
