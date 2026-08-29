@@ -1,30 +1,30 @@
 {
   "schema": "REGIEKAMER_REALTIME_V1",
-  "gegenereerd_op": "2026-08-29T19:58:59Z",
+  "gegenereerd_op": "2026-08-29T20:04:09Z",
   "stack_root": "STACK_ROOT",
   "accounts": [
     {
       "actor": "claude1",
-      "status": "VRIJ",
-      "taak_id": "STACKDIR_UITSNEDE_ANKER_CLAUDE1_V1",
-      "sinds": "2026-08-29T19:57:07Z",
-      "sinds_minuten": 1.8,
-      "bron": "outbox:receipt:STACKDIR_UITSNEDE_ANKER_CLAUDE1_V1_RECEIPT.md"
+      "status": "BEZIG",
+      "taak_id": "STACKDIR_TASKID_BINDING_CLAUDE1_V1",
+      "sinds": "2026-08-29T20:03:48Z",
+      "sinds_minuten": 0.3,
+      "bron": "ps:pid=13795"
     },
     {
       "actor": "claude2",
       "status": "STALE",
       "taak_id": "STACKDIR_REVIEWPAD_MATRIX_CLAUDE2_V1",
       "sinds": "2026-08-29T19:38:38Z",
-      "sinds_minuten": 20.2,
+      "sinds_minuten": 25.4,
       "bron": "ps:pid=98281"
     },
     {
       "actor": "claude3",
       "status": "BEZIG",
       "taak_id": "STACKDIR_MARKER_FENCEPARITEIT_CLAUDE3_V2",
-      "sinds": "2026-08-29T19:57:42Z",
-      "sinds_minuten": 1.2,
+      "sinds": "2026-08-29T19:57:43Z",
+      "sinds_minuten": 6.3,
       "bron": "ps:pid=57448"
     },
     {
@@ -32,23 +32,23 @@
       "status": "BEZIG",
       "taak_id": "STACKDIR_LIVE_CODE_GETRACKT_CLAUDE4_V3",
       "sinds": "2026-08-29T19:57:45Z",
-      "sinds_minuten": 1.1,
+      "sinds_minuten": 6.3,
       "bron": "ps:pid=57908"
     },
     {
       "actor": "codex1",
-      "status": "BEZIG",
+      "status": "GEBLOKKEERD",
       "taak_id": "STACKDIR_LEZER_UITGANG_CODEX1_V1",
-      "sinds": "2026-08-29T19:55:32Z",
-      "sinds_minuten": 3.4,
-      "bron": "ps:pid=33920"
+      "sinds": "2026-08-29T20:03:10Z",
+      "sinds_minuten": 0.9,
+      "bron": "outbox:receipt:STACKDIR_LEZER_UITGANG_CODEX1_V1_RECEIPT.md"
     },
     {
       "actor": "codex2",
       "status": "VRIJ",
       "taak_id": null,
-      "sinds": "2026-08-29T19:55:59Z",
-      "sinds_minuten": 2.9,
+      "sinds": "2026-08-29T20:03:30Z",
+      "sinds_minuten": 0.6,
       "bron": "outbox:order_afgerond:STUDIO_LONGREAD_PILOT_V1_REPAIR_L_COMMIT_ISOLATED_CODEX2_V1.md"
     },
     {
@@ -56,7 +56,7 @@
       "status": "WACHT",
       "taak_id": "AUTOCODING_CANDIDATE_OVERLAP_GUARD_6CB598F_GEMINI1_REVIEW_V1",
       "sinds": "2026-08-29T15:33:55Z",
-      "sinds_minuten": 265.0,
+      "sinds_minuten": 270.1,
       "bron": "outbox:order_open:AUTOCODING_CANDIDATE_OVERLAP_GUARD_6CB598F_GEMINI1_REVIEW_V1.md"
     },
     {
@@ -72,7 +72,7 @@
       "status": "GEBLOKKEERD",
       "taak_id": "AUTOCODER_CONTROLLER_RECEIPT_FIELD_FIX_REVIEW_CLAUDE1_V1",
       "sinds": "2026-08-28T13:35:13Z",
-      "sinds_minuten": 1823.7,
+      "sinds_minuten": 1828.8,
       "bron": "outbox:receipt:AUTOCODER_CONTROLLER_RECEIPT_FIELD_FIX_REVIEW_CLAUDE1_V1.md"
     }
   ],
@@ -18556,6 +18556,38 @@
       "schatting_min": null
     },
     {
+      "bron_bestand": "outbox/STACKDIR_LEZER_UITGANG_CODEX1_V1_RECEIPT.md",
+      "bron_type": "receipt",
+      "status": "KLAAR",
+      "taak": "machineleesbare uitgang toegevoegd.",
+      "schatting_categorie": "GEEN_SCHATTING",
+      "schatting_min": null
+    },
+    {
+      "bron_bestand": "outbox/STACKDIR_LEZER_UITGANG_CODEX1_V1_RECEIPT.md",
+      "bron_type": "receipt",
+      "status": "KLAAR",
+      "taak": "transportproef gebruikt de uitgang.",
+      "schatting_categorie": "GEEN_SCHATTING",
+      "schatting_min": null
+    },
+    {
+      "bron_bestand": "outbox/STACKDIR_LEZER_UITGANG_CODEX1_V1_RECEIPT.md",
+      "bron_type": "receipt",
+      "status": "KLAAR",
+      "taak": "overige gebruiksplekken onderzocht.",
+      "schatting_categorie": "GEEN_SCHATTING",
+      "schatting_min": null
+    },
+    {
+      "bron_bestand": "outbox/STACKDIR_LEZER_UITGANG_CODEX1_V1_RECEIPT.md",
+      "bron_type": "receipt",
+      "status": "OPEN",
+      "taak": "onafhankelijke review door een andere actor.",
+      "schatting_categorie": "GEEN_SCHATTING",
+      "schatting_min": null
+    },
+    {
       "bron_bestand": "outbox/STACKDIR_LINTOORZAAK_HAALT_RECEIPT_CODEX2_V1_RECEIPT.md",
       "bron_type": "receipt",
       "status": "KLAAR",
@@ -24381,8 +24413,8 @@
     }
   ],
   "taken_meta": {
-    "taken_totaal": 3036,
-    "taken_zonder_schatting": 2924,
+    "taken_totaal": 3040,
+    "taken_zonder_schatting": 2928,
     "bron_glob": "outbox/*.md (TAKENLIJST-blokken)",
     "classificatie": "regex op TAKENLIJST-tabelrijen (Status/Taak/Tijd) en kale lijstvorm; een cel zonder herkenbaar '~X min'-patroon telt als GEEN_SCHATTING, nooit stilzwijgend overgeslagen"
   },
@@ -24392,10 +24424,10 @@
     "cmd": "bin/lane-capaciteit --json",
     "data": {
       "stack_root": "STACK_ROOT",
-      "generated_at": "2026-08-29T19:58:59Z",
+      "generated_at": "2026-08-29T20:04:09Z",
       "meta": {
-        "receipt_bestanden_totaal": 1565,
-        "receipt_onparseerbaar": 203,
+        "receipt_bestanden_totaal": 1567,
+        "receipt_onparseerbaar": 204,
         "jsonl": {
           "total_lines": 1296,
           "actor_lines": 0,
@@ -24646,17 +24678,17 @@
         },
         {
           "actor": "codex1",
-          "orders": 315,
-          "orders_met_duur": 307,
-          "p50_duration_ms": 158000,
+          "orders": 316,
+          "orders_met_duur": 308,
+          "p50_duration_ms": 159000,
           "max_duration_ms": 3216000,
-          "orders_met_verdict": 218,
-          "geslaagd_pct": 25.2,
-          "geblokkeerd_pct": 74.3,
+          "orders_met_verdict": 219,
+          "geslaagd_pct": 25.1,
+          "geblokkeerd_pct": 74.4,
           "overig_pct": 0.5,
           "verdict_distribution_raw": {
             "APPROVE": 1,
-            "BLOCKED_EVIDENCE": 135,
+            "BLOCKED_EVIDENCE": 136,
             "GO": 1,
             "GO_READY_FOR_GEMINI_REVIEW_GATE": 2,
             "GO_READY_FOR_MERGE_GATE": 34,
@@ -24669,7 +24701,7 @@
             "go_ready_for_merge_gate": 1,
             "no_go": 1
           },
-          "laatste_activiteit": "2026-08-29T19:55:51Z"
+          "laatste_activiteit": "2026-08-29T20:03:10Z"
         },
         {
           "actor": "codex1_local_builder",
@@ -24828,7 +24860,7 @@
         },
         {
           "actor": "ONPARSEERBAAR",
-          "orders": 203,
+          "orders": 204,
           "orders_met_duur": 0,
           "p50_duration_ms": null,
           "max_duration_ms": null,
@@ -25021,6 +25053,7 @@
             "STACKDIR_BOOTSTRAP_VORMREGELS_REVIEW_CODEX2_V1_RECEIPT.md",
             "STACKDIR_LINTOORZAAK_REVIEW_CLAUDE2_V1_RECEIPT.md",
             "STACKDIR_LINTREGELS_AFMAKEN_REVIEW_CLAUDE3_V1_ACTOR_RECEIPT.md",
+            "STACKDIR_LIVE_CODE_GETRACKT_CLAUDE4_V3_RECEIPT.md",
             "STACKDIR_LIVE_CODE_GETRACKT_REVIEW_CLAUDE3_V1_RECEIPT.md",
             "STACKDIR_MARKER_FENCEPARITEIT_REVIEW_CLAUDE4_V1_RECEIPT.md",
             "STACKDIR_POORT_EEN_BRON_HERMETING_REVIEW_CODEX1_V1_RECEIPT.md",
