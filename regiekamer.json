@@ -1,6 +1,6 @@
 {
   "schema": "REGIEKAMER_REALTIME_V1",
-  "gegenereerd_op": "2026-08-29T07:48:04Z",
+  "gegenereerd_op": "2026-08-29T07:53:17Z",
   "stack_root": "STACK_ROOT",
   "accounts": [
     {
@@ -8,7 +8,7 @@
       "status": "GEBLOKKEERD",
       "taak_id": "STUDIO_F001_OWNERAUTH_DEMOSPLIT_V1",
       "sinds": "2026-08-29T07:08:37Z",
-      "sinds_minuten": 39.0,
+      "sinds_minuten": 44.5,
       "bron": "outbox:receipt:STUDIO_F001_OWNERAUTH_DEMOSPLIT_V1_RECEIPT.md"
     },
     {
@@ -16,7 +16,7 @@
       "status": "GEBLOKKEERD",
       "taak_id": "STUDIO_WRITER_F007_CLAIM_FAILCLOSED_V1",
       "sinds": "2026-08-29T06:06:11Z",
-      "sinds_minuten": 101.5,
+      "sinds_minuten": 107.0,
       "bron": "outbox:receipt:STUDIO_WRITER_F007_CLAIM_FAILCLOSED_V1_RECEIPT.md"
     },
     {
@@ -24,7 +24,7 @@
       "status": "WACHT",
       "taak_id": "DIRECTOR_CURRENT",
       "sinds": "2026-08-29T07:22:39Z",
-      "sinds_minuten": 25.0,
+      "sinds_minuten": 30.5,
       "bron": "outbox:order_open:DIRECTOR_CURRENT.md"
     },
     {
@@ -32,7 +32,7 @@
       "status": "GEBLOKKEERD",
       "taak_id": "STUDIO_WRITER_F007_CLAIM_FAILCLOSED_CLAUDE4_V2",
       "sinds": "2026-08-29T06:10:09Z",
-      "sinds_minuten": 97.5,
+      "sinds_minuten": 103.0,
       "bron": "outbox:receipt:STUDIO_WRITER_F007_CLAIM_FAILCLOSED_CLAUDE4_V2_RECEIPT.md"
     },
     {
@@ -40,15 +40,15 @@
       "status": "VRIJ",
       "taak_id": "STUDIO_F001_1C15206_REVIEW_CODEX1_V1",
       "sinds": "2026-08-29T07:13:42Z",
-      "sinds_minuten": 33.9,
+      "sinds_minuten": 39.5,
       "bron": "outbox:receipt:STUDIO_F001_1C15206_REVIEW_CODEX1_V1_RECEIPT.md"
     },
     {
       "actor": "codex2",
       "status": "VRIJ",
       "taak_id": null,
-      "sinds": "2026-08-29T07:47:40Z",
-      "sinds_minuten": -0.0,
+      "sinds": "2026-08-29T07:52:48Z",
+      "sinds_minuten": 0.4,
       "bron": "outbox:order_afgerond:STUDIO_LONGREAD_PILOT_V1_REPAIR_L_COMMIT_ISOLATED_CODEX2_V1.md"
     },
     {
@@ -56,7 +56,7 @@
       "status": "STALE",
       "taak_id": "AUTOCODING_LANE_MONITOR_ORDER_CACHE_861AE6D_REVIEW_GEMINI1_V1",
       "sinds": "2026-08-28T14:53:41Z",
-      "sinds_minuten": 1014.0,
+      "sinds_minuten": 1019.5,
       "bron": "ps:pid=1907"
     },
     {
@@ -72,7 +72,7 @@
       "status": "GEBLOKKEERD",
       "taak_id": "AUTOCODER_CONTROLLER_RECEIPT_FIELD_FIX_REVIEW_CLAUDE1_V1",
       "sinds": "2026-08-28T13:35:13Z",
-      "sinds_minuten": 1092.4,
+      "sinds_minuten": 1097.9,
       "bron": "outbox:receipt:AUTOCODER_CONTROLLER_RECEIPT_FIELD_FIX_REVIEW_CLAUDE1_V1.md"
     }
   ],
@@ -22408,15 +22408,15 @@
     "cmd": "bin/lane-capaciteit --json",
     "data": {
       "stack_root": "STACK_ROOT",
-      "generated_at": "2026-08-29T07:48:04Z",
+      "generated_at": "2026-08-29T07:53:17Z",
       "meta": {
         "receipt_bestanden_totaal": 1460,
         "receipt_onparseerbaar": 184,
         "jsonl": {
-          "total_lines": 1223,
+          "total_lines": 1224,
           "actor_lines": 0,
           "onparseerbaar": 0,
-          "zonder_actor": 1223,
+          "zonder_actor": 1224,
           "aanwezig": true
         },
         "verdict_classificatie": "heuristiek: prefix-match op verdict= (hoofdletterongevoelig); GESLAAGD={GO,PASS,DELIVERED}, GEBLOKKEERD={NO_GO,BLOCKED,REJECTED,FAILED}, onbekend/overig telt niet stilzwijgend mee als geslaagd of geblokkeerd"
@@ -23012,7 +23012,7 @@
         },
         {
           "actor": "ZONDER_ACTOR",
-          "orders": 1223,
+          "orders": 1224,
           "orders_met_duur": 0,
           "p50_duration_ms": null,
           "max_duration_ms": null,
@@ -24245,7 +24245,8 @@
             1220,
             1221,
             1222,
-            1223
+            1223,
+            1224
           ]
         }
       ]
@@ -24411,6 +24412,18 @@
       "bewijsref": "NO_DATA",
       "resultaat": "NO_DATA_INVALID_EVENT",
       "integriteit": "NIET_MONOTONE_ID"
+    },
+    {
+      "event_id": null,
+      "tijd": "NO_DATA",
+      "taak_id": "NO_DATA",
+      "project": "NO_DATA",
+      "kanaal": "NO_DATA",
+      "account": "SUPERVISOR",
+      "overgang": "NO_DATA",
+      "bewijsref": "NO_DATA",
+      "resultaat": "NO_DATA_INVALID_EVENT",
+      "integriteit": "NIET_MONOTONE_ID"
     }
   ],
   "ticker_meta": {
@@ -24418,7 +24431,7 @@
     "last_event_at": "NO_DATA",
     "publicatieleeftijd": "NO_DATA_ZONDER_GEAUTORISEERDE_PUBLICATIE",
     "client_refresh_max_seconds": 5,
-    "event_count": 10,
+    "event_count": 11,
     "classificatie": "append-only JSONL; niet-monotone of incomplete events blijven NO_DATA"
   }
 }
