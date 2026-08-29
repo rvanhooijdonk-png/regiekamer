@@ -1,63 +1,63 @@
 {
   "schema": "REGIEKAMER_REALTIME_V1",
-  "gegenereerd_op": "2026-08-29T20:42:03Z",
+  "gegenereerd_op": "2026-08-29T20:47:27Z",
   "stack_root": "STACK_ROOT",
   "accounts": [
     {
       "actor": "claude1",
-      "status": "GEBLOKKEERD",
-      "taak_id": "STACKDIR_TASKID_BINDING_CLAUDE1_V1",
-      "sinds": "2026-08-29T20:34:38Z",
-      "sinds_minuten": 7.3,
-      "bron": "outbox:receipt:STACKDIR_TASKID_BINDING_CLAUDE1_V1_RECEIPT.md"
+      "status": "BEZIG",
+      "taak_id": "STACKDIR_FENCEPARITEIT_HERBOUW_CLAUDE1_V1",
+      "sinds": "2026-08-29T20:45:55Z",
+      "sinds_minuten": 1.4,
+      "bron": "ps:pid=19386"
     },
     {
       "actor": "claude2",
-      "status": "GEBLOKKEERD",
-      "taak_id": "STACKDIR_MARKER_FENCEPARITEIT_REVIEW_CLAUDE2_V1_TRANSPORT",
-      "sinds": "2026-08-29T20:41:22Z",
-      "sinds_minuten": 0.6,
-      "bron": "outbox:receipt:STACKDIR_MARKER_FENCEPARITEIT_REVIEW_CLAUDE2_V1_TRANSPORT_RECEIPT.md"
+      "status": "WACHT",
+      "taak_id": "STACKDIR_STILLE_PROEFAFBREKING_REVIEW_CLAUDE2_V1",
+      "sinds": "2026-08-29T20:45:48Z",
+      "sinds_minuten": 1.6,
+      "bron": "outbox:order_open:STACKDIR_STILLE_PROEFAFBREKING_REVIEW_CLAUDE2_V1.md"
     },
     {
       "actor": "claude3",
-      "status": "BEZIG",
-      "taak_id": "STACKDIR_LIVE_CODE_GETRACKT_REVIEW_CLAUDE3_V2",
-      "sinds": "2026-08-29T20:41:22Z",
-      "sinds_minuten": 0.6,
-      "bron": "ps:pid=97220"
+      "status": "GEBLOKKEERD",
+      "taak_id": "STACKDIR_LIVE_CODE_GETRACKT_REVIEW_CLAUDE3_V2_TRANSPORT",
+      "sinds": "2026-08-29T20:45:27Z",
+      "sinds_minuten": 1.9,
+      "bron": "outbox:receipt:STACKDIR_LIVE_CODE_GETRACKT_REVIEW_CLAUDE3_V2_TRANSPORT_RECEIPT.md"
     },
     {
       "actor": "claude4",
-      "status": "STALE",
-      "taak_id": "STACKDIR_LEZER_UITGANG_REVIEW_CLAUDE4_V1",
-      "sinds": "2026-08-29T20:10:02Z",
-      "sinds_minuten": 31.9,
-      "bron": "ps:pid=48797"
+      "status": "BEZIG",
+      "taak_id": "STACKDIR_TAAKBINDING_ASYMMETRIE_REVIEW_CLAUDE4_V1",
+      "sinds": "2026-08-29T20:42:54Z",
+      "sinds_minuten": 4.5,
+      "bron": "ps:pid=30067"
     },
     {
       "actor": "codex1",
       "status": "BEZIG",
-      "taak_id": "STACKDIR_STILLE_PROEFAFBREKING_CODEX1_V1",
-      "sinds": "2026-08-29T20:32:58Z",
-      "sinds_minuten": 9.0,
-      "bron": "ps:pid=66272"
+      "taak_id": "STACKDIR_LINT_REVIEWONLY_TOOLPROFIEL_CODEX1_V1",
+      "sinds": "2026-08-29T20:47:08Z",
+      "sinds_minuten": 0.2,
+      "bron": "ps:pid=52719"
     },
     {
       "actor": "codex2",
       "status": "VRIJ",
       "taak_id": null,
-      "sinds": "2026-08-29T20:37:13Z",
-      "sinds_minuten": 4.7,
+      "sinds": "2026-08-29T20:42:23Z",
+      "sinds_minuten": 5.0,
       "bron": "outbox:order_afgerond:STUDIO_LONGREAD_PILOT_V1_REPAIR_L_COMMIT_ISOLATED_CODEX2_V1.md"
     },
     {
       "actor": "gemini1",
-      "status": "BEZIG",
-      "taak_id": "order-w9g",
-      "sinds": "2026-08-29T20:41:56Z",
-      "sinds_minuten": 0.0,
-      "bron": "ps:pid=12172"
+      "status": "GEBLOKKEERD",
+      "taak_id": "AUTOCODING_H3_CLAIM_FAIL_CLOSED_CLAUDE3_V1",
+      "sinds": "2026-08-29T20:31:02Z",
+      "sinds_minuten": 16.3,
+      "bron": "outbox:receipt:AUTOCODING_H3_CLAIM_FAIL_CLOSED_CLAUDE3_V1_RECEIPT.md"
     },
     {
       "actor": "dashboard-codex",
@@ -72,7 +72,7 @@
       "status": "GEBLOKKEERD",
       "taak_id": "AUTOCODER_CONTROLLER_RECEIPT_FIELD_FIX_REVIEW_CLAUDE1_V1",
       "sinds": "2026-08-28T13:35:13Z",
-      "sinds_minuten": 1866.7,
+      "sinds_minuten": 1872.1,
       "bron": "outbox:receipt:AUTOCODER_CONTROLLER_RECEIPT_FIELD_FIX_REVIEW_CLAUDE1_V1.md"
     }
   ],
@@ -19420,6 +19420,62 @@
       "schatting_min": null
     },
     {
+      "bron_bestand": "outbox/STACKDIR_LIVE_CODE_GETRACKT_REVIEW_CLAUDE3_V2_RECEIPT.md",
+      "bron_type": "receipt",
+      "status": "KLAAR",
+      "taak": "Acceptatieproef op head gedraaid (PROEF_EXIT=0, tellerregel aanwezig)",
+      "schatting_categorie": "GEEN_SCHATTING",
+      "schatting_min": null
+    },
+    {
+      "bron_bestand": "outbox/STACKDIR_LIVE_CODE_GETRACKT_REVIEW_CLAUDE3_V2_RECEIPT.md",
+      "bron_type": "receipt",
+      "status": "KLAAR",
+      "taak": "Negatieve controle op base gedraaid (2026-13-45 komt daar groen door)",
+      "schatting_categorie": "GEEN_SCHATTING",
+      "schatting_min": null
+    },
+    {
+      "bron_bestand": "outbox/STACKDIR_LIVE_CODE_GETRACKT_REVIEW_CLAUDE3_V2_RECEIPT.md",
+      "bron_type": "receipt",
+      "status": "KLAAR",
+      "taak": "Oorspronkelijke bevinding op head geverifieerd als geweigerd (rood)",
+      "schatting_categorie": "GEEN_SCHATTING",
+      "schatting_min": null
+    },
+    {
+      "bron_bestand": "outbox/STACKDIR_LIVE_CODE_GETRACKT_REVIEW_CLAUDE3_V2_RECEIPT.md",
+      "bron_type": "receipt",
+      "status": "KLAAR",
+      "taak": "Klasse-toets kalenderranden (schrikkeljaar/30-dagen-maand/nul/witruimte)",
+      "schatting_categorie": "GEEN_SCHATTING",
+      "schatting_min": null
+    },
+    {
+      "bron_bestand": "outbox/STACKDIR_LIVE_CODE_GETRACKT_REVIEW_CLAUDE3_V2_RECEIPT.md",
+      "bron_type": "receipt",
+      "status": "KLAAR",
+      "taak": "Draagbaarheidstoets op echte GNU coreutils via Docker",
+      "schatting_categorie": "GEEN_SCHATTING",
+      "schatting_min": null
+    },
+    {
+      "bron_bestand": "outbox/STACKDIR_LIVE_CODE_GETRACKT_REVIEW_CLAUDE3_V2_RECEIPT.md",
+      "bron_type": "receipt",
+      "status": "KLAAR",
+      "taak": "Fail-closed-toets bij ontbrekende kalenderparser",
+      "schatting_categorie": "GEEN_SCHATTING",
+      "schatting_min": null
+    },
+    {
+      "bron_bestand": "outbox/STACKDIR_LIVE_CODE_GETRACKT_REVIEW_CLAUDE3_V2_RECEIPT.md",
+      "bron_type": "receipt",
+      "status": "KLAAR",
+      "taak": "Regressietoets op bestaande geldige onderdrukkingen",
+      "schatting_categorie": "GEEN_SCHATTING",
+      "schatting_min": null
+    },
+    {
       "bron_bestand": "outbox/STACKDIR_MARKER_FENCEPARITEIT_CLAUDE3_V2_RECEIPT.md",
       "bron_type": "receipt",
       "status": "KLAAR",
@@ -20312,6 +20368,46 @@
       "bron_type": "receipt",
       "status": "KLAAR",
       "taak": "Commit `06a6e2a`, receipt geschreven",
+      "schatting_categorie": "GEEN_SCHATTING",
+      "schatting_min": null
+    },
+    {
+      "bron_bestand": "outbox/STACKDIR_STILLE_PROEFAFBREKING_CODEX1_V1_RECEIPT.md",
+      "bron_type": "receipt",
+      "status": "KLAAR",
+      "taak": "geplande controles zichtbaar gemaakt; commit `4f07edf`.",
+      "schatting_categorie": "GEEN_SCHATTING",
+      "schatting_min": null
+    },
+    {
+      "bron_bestand": "outbox/STACKDIR_STILLE_PROEFAFBREKING_CODEX1_V1_RECEIPT.md",
+      "bron_type": "receipt",
+      "status": "KLAAR",
+      "taak": "twintig runs en basisvergelijking uitgevoerd.",
+      "schatting_categorie": "GEEN_SCHATTING",
+      "schatting_min": null
+    },
+    {
+      "bron_bestand": "outbox/STACKDIR_STILLE_PROEFAFBREKING_CODEX1_V1_RECEIPT.md",
+      "bron_type": "receipt",
+      "status": "KLAAR",
+      "taak": "verplichte negatieve controles uitgevoerd.",
+      "schatting_categorie": "GEEN_SCHATTING",
+      "schatting_min": null
+    },
+    {
+      "bron_bestand": "outbox/STACKDIR_STILLE_PROEFAFBREKING_CODEX1_V1_RECEIPT.md",
+      "bron_type": "receipt",
+      "status": "KLAAR",
+      "taak": "drie overige tests read-only geïnventariseerd.",
+      "schatting_categorie": "GEEN_SCHATTING",
+      "schatting_min": null
+    },
+    {
+      "bron_bestand": "outbox/STACKDIR_STILLE_PROEFAFBREKING_CODEX1_V1_RECEIPT.md",
+      "bron_type": "receipt",
+      "status": "OPEN",
+      "taak": "onafhankelijke review door andere actor; Directie handelt dit zelfstandig af.",
       "schatting_categorie": "GEEN_SCHATTING",
       "schatting_min": null
     },
@@ -24725,8 +24821,8 @@
     }
   ],
   "taken_meta": {
-    "taken_totaal": 3079,
-    "taken_zonder_schatting": 2966,
+    "taken_totaal": 3091,
+    "taken_zonder_schatting": 2978,
     "bron_glob": "outbox/*.md (TAKENLIJST-blokken)",
     "classificatie": "regex op TAKENLIJST-tabelrijen (Status/Taak/Tijd) en kale lijstvorm; een cel zonder herkenbaar '~X min'-patroon telt als GEEN_SCHATTING, nooit stilzwijgend overgeslagen"
   },
@@ -24736,10 +24832,10 @@
     "cmd": "bin/lane-capaciteit --json",
     "data": {
       "stack_root": "STACK_ROOT",
-      "generated_at": "2026-08-29T20:42:03Z",
+      "generated_at": "2026-08-29T20:47:27Z",
       "meta": {
-        "receipt_bestanden_totaal": 1580,
-        "receipt_onparseerbaar": 206,
+        "receipt_bestanden_totaal": 1583,
+        "receipt_onparseerbaar": 207,
         "jsonl": {
           "total_lines": 1300,
           "actor_lines": 0,
@@ -24930,16 +25026,16 @@
         },
         {
           "actor": "claude3",
-          "orders": 215,
-          "orders_met_duur": 210,
-          "p50_duration_ms": 274500,
+          "orders": 216,
+          "orders_met_duur": 211,
+          "p50_duration_ms": 274000,
           "max_duration_ms": 6116000,
-          "orders_met_verdict": 137,
-          "geslaagd_pct": 38.0,
-          "geblokkeerd_pct": 62.0,
+          "orders_met_verdict": 138,
+          "geslaagd_pct": 37.7,
+          "geblokkeerd_pct": 62.3,
           "overig_pct": 0.0,
           "verdict_distribution_raw": {
-            "BLOCKED_EVIDENCE": 81,
+            "BLOCKED_EVIDENCE": 82,
             "GO": 2,
             "GO_READY_FOR_MERGE_GATE": 24,
             "GO_READY_FOR_REVIEW": 1,
@@ -24947,7 +25043,7 @@
             "GO_WITH_FINDINGS": 24,
             "NO_GO": 4
           },
-          "laatste_activiteit": "2026-08-29T20:31:29Z"
+          "laatste_activiteit": "2026-08-29T20:45:27Z"
         },
         {
           "actor": "claude4",
@@ -24990,17 +25086,17 @@
         },
         {
           "actor": "codex1",
-          "orders": 317,
-          "orders_met_duur": 309,
+          "orders": 318,
+          "orders_met_duur": 310,
           "p50_duration_ms": 160000,
           "max_duration_ms": 3216000,
-          "orders_met_verdict": 220,
-          "geslaagd_pct": 25.0,
-          "geblokkeerd_pct": 74.5,
+          "orders_met_verdict": 221,
+          "geslaagd_pct": 24.9,
+          "geblokkeerd_pct": 74.7,
           "overig_pct": 0.5,
           "verdict_distribution_raw": {
             "APPROVE": 1,
-            "BLOCKED_EVIDENCE": 137,
+            "BLOCKED_EVIDENCE": 138,
             "GO": 1,
             "GO_READY_FOR_GEMINI_REVIEW_GATE": 2,
             "GO_READY_FOR_MERGE_GATE": 34,
@@ -25013,7 +25109,7 @@
             "go_ready_for_merge_gate": 1,
             "no_go": 1
           },
-          "laatste_activiteit": "2026-08-29T20:30:27Z"
+          "laatste_activiteit": "2026-08-29T20:42:52Z"
         },
         {
           "actor": "codex1_local_builder",
@@ -25172,7 +25268,7 @@
         },
         {
           "actor": "ONPARSEERBAAR",
-          "orders": 206,
+          "orders": 207,
           "orders_met_duur": 0,
           "p50_duration_ms": null,
           "max_duration_ms": null,
@@ -25368,6 +25464,7 @@
             "STACKDIR_LINTREGELS_AFMAKEN_REVIEW_CLAUDE3_V1_ACTOR_RECEIPT.md",
             "STACKDIR_LIVE_CODE_GETRACKT_CLAUDE4_V3_RECEIPT.md",
             "STACKDIR_LIVE_CODE_GETRACKT_REVIEW_CLAUDE3_V1_RECEIPT.md",
+            "STACKDIR_LIVE_CODE_GETRACKT_REVIEW_CLAUDE3_V2_RECEIPT.md",
             "STACKDIR_MARKER_FENCEPARITEIT_REVIEW_CLAUDE2_V1_RECEIPT.md",
             "STACKDIR_MARKER_FENCEPARITEIT_REVIEW_CLAUDE4_V1_RECEIPT.md",
             "STACKDIR_POORT_EEN_BRON_HERMETING_REVIEW_CODEX1_V1_RECEIPT.md",
