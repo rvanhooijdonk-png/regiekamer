@@ -1,6 +1,6 @@
 {
   "schema": "REGIEKAMER_REALTIME_V1",
-  "gegenereerd_op": "2026-08-29T16:21:46Z",
+  "gegenereerd_op": "2026-08-29T16:27:10Z",
   "stack_root": "STACK_ROOT",
   "accounts": [
     {
@@ -8,7 +8,7 @@
       "status": "GEBLOKKEERD",
       "taak_id": "AUTOCODING_E2E_CANARY_HARNESS_CLAUDE3_V2_COMMITTED",
       "sinds": "2026-08-29T15:50:51Z",
-      "sinds_minuten": 30.8,
+      "sinds_minuten": 36.0,
       "bron": "outbox:receipt:AUTOCODING_E2E_CANARY_HARNESS_CLAUDE3_V2_COMMITTED_RECEIPT.md"
     },
     {
@@ -16,7 +16,7 @@
       "status": "GEBLOKKEERD",
       "taak_id": "AUTOCODING_CLAIM_FRESHNESS_REPAIR_CLAUDE2_V1",
       "sinds": "2026-08-29T15:43:41Z",
-      "sinds_minuten": 38.0,
+      "sinds_minuten": 43.1,
       "bron": "outbox:receipt:AUTOCODING_CLAIM_FRESHNESS_REPAIR_CLAUDE2_V1_RECEIPT.md"
     },
     {
@@ -24,31 +24,31 @@
       "status": "GEBLOKKEERD",
       "taak_id": "AUTOCODING_E2E_CANARY_HARNESS_CLAUDE3_V2",
       "sinds": "2026-08-29T15:51:05Z",
-      "sinds_minuten": 30.6,
+      "sinds_minuten": 35.7,
       "bron": "outbox:receipt:AUTOCODING_E2E_CANARY_HARNESS_CLAUDE3_V2_RECEIPT.md"
     },
     {
       "actor": "claude4",
-      "status": "STALE",
-      "taak_id": "AUTOCODING_FAILURE_DRILL_CLAUDE4_V1",
-      "sinds": "2026-08-29T15:56:11Z",
-      "sinds_minuten": 25.5,
-      "bron": "ps:pid=37003"
+      "status": "GEBLOKKEERD",
+      "taak_id": "STACKDIR_POORT_EIGENAARSCHAP_FORWARDPORT_CLAUDE4_V1",
+      "sinds": "2026-08-29T16:24:38Z",
+      "sinds_minuten": 2.2,
+      "bron": "outbox:receipt:STACKDIR_POORT_EIGENAARSCHAP_FORWARDPORT_CLAUDE4_V1_RECEIPT.md"
     },
     {
       "actor": "codex1",
       "status": "VRIJ",
       "taak_id": null,
       "sinds": "2026-08-29T15:33:55Z",
-      "sinds_minuten": 47.7,
+      "sinds_minuten": 52.9,
       "bron": "outbox:order_afgerond:AUTOCODING_CANDIDATE_OVERLAP_GUARD_CODEX1_V1.md"
     },
     {
       "actor": "codex2",
       "status": "VRIJ",
       "taak_id": null,
-      "sinds": "2026-08-29T15:51:07Z",
-      "sinds_minuten": 30.5,
+      "sinds": "2026-08-29T16:24:24Z",
+      "sinds_minuten": 2.4,
       "bron": "outbox:order_afgerond:STUDIO_LONGREAD_PILOT_V1_REPAIR_L_COMMIT_ISOLATED_CODEX2_V1.md"
     },
     {
@@ -56,7 +56,7 @@
       "status": "WACHT",
       "taak_id": "AUTOCODING_CANDIDATE_OVERLAP_GUARD_6CB598F_GEMINI1_REVIEW_V1",
       "sinds": "2026-08-29T15:33:55Z",
-      "sinds_minuten": 47.7,
+      "sinds_minuten": 52.9,
       "bron": "outbox:order_open:AUTOCODING_CANDIDATE_OVERLAP_GUARD_6CB598F_GEMINI1_REVIEW_V1.md"
     },
     {
@@ -72,7 +72,7 @@
       "status": "GEBLOKKEERD",
       "taak_id": "AUTOCODER_CONTROLLER_RECEIPT_FIELD_FIX_REVIEW_CLAUDE1_V1",
       "sinds": "2026-08-28T13:35:13Z",
-      "sinds_minuten": 1606.4,
+      "sinds_minuten": 1611.6,
       "bron": "outbox:receipt:AUTOCODER_CONTROLLER_RECEIPT_FIELD_FIX_REVIEW_CLAUDE1_V1.md"
     }
   ],
@@ -1864,6 +1864,70 @@
       "bron_type": "receipt",
       "status": "OPEN",
       "taak": "Onafhankelijke review CLAUDE1 (per VOLGENDE_OPDRACHT in de order)",
+      "schatting_categorie": "GEEN_SCHATTING",
+      "schatting_min": null
+    },
+    {
+      "bron_bestand": "outbox/AUTOCODING_FAILURE_DRILL_CLAUDE4_V1_RECEIPT.md",
+      "bron_type": "receipt",
+      "status": "KLAAR",
+      "taak": "Scenario a — wedge-replay op echte productie-escalatie (bewijs: receipt §1, a0-a7)",
+      "schatting_categorie": "GEEN_SCHATTING",
+      "schatting_min": null
+    },
+    {
+      "bron_bestand": "outbox/AUTOCODING_FAILURE_DRILL_CLAUDE4_V1_RECEIPT.md",
+      "bron_type": "receipt",
+      "status": "KLAAR",
+      "taak": "Scenario b — kill-mid-actie/idempotentie, gemockte atomaire schrijfstap (bewijs: receipt §1, b1-b13)",
+      "schatting_categorie": "GEEN_SCHATTING",
+      "schatting_min": null
+    },
+    {
+      "bron_bestand": "outbox/AUTOCODING_FAILURE_DRILL_CLAUDE4_V1_RECEIPT.md",
+      "bron_type": "receipt",
+      "status": "KLAAR",
+      "taak": "Scenario c — service-cyclusproef, echte controller + echte SIGKILL (bewijs: receipt §1, c0-c11)",
+      "schatting_categorie": "GEEN_SCHATTING",
+      "schatting_min": null
+    },
+    {
+      "bron_bestand": "outbox/AUTOCODING_FAILURE_DRILL_CLAUDE4_V1_RECEIPT.md",
+      "bron_type": "receipt",
+      "status": "KLAAR",
+      "taak": "Scenario d — RESPONDER_STALE-gap-close in autocoding-supervisor (bewijs: receipt §1, d0-d12)",
+      "schatting_categorie": "GEEN_SCHATTING",
+      "schatting_min": null
+    },
+    {
+      "bron_bestand": "outbox/AUTOCODING_FAILURE_DRILL_CLAUDE4_V1_RECEIPT.md",
+      "bron_type": "receipt",
+      "status": "KLAAR",
+      "taak": "Negatieve controle (order-eis) — non-zero, exact scenario d faalt (bewijs: receipt §3)",
+      "schatting_categorie": "GEEN_SCHATTING",
+      "schatting_min": null
+    },
+    {
+      "bron_bestand": "outbox/AUTOCODING_FAILURE_DRILL_CLAUDE4_V1_RECEIPT.md",
+      "bron_type": "receipt",
+      "status": "KLAAR",
+      "taak": "Commit + receipt geschreven, diffscope geverifieerd (uitsluitend de 3 toegestane paden)",
+      "schatting_categorie": "GEEN_SCHATTING",
+      "schatting_min": null
+    },
+    {
+      "bron_bestand": "outbox/AUTOCODING_FAILURE_DRILL_CLAUDE4_V1_RECEIPT.md",
+      "bron_type": "receipt",
+      "status": "GEBLOKKEERD",
+      "taak": "Receipt automatisch oppikbaar maken (bekend padtoelatingsdefect, niet mijn scope)",
+      "schatting_categorie": "GEEN_SCHATTING",
+      "schatting_min": null
+    },
+    {
+      "bron_bestand": "outbox/AUTOCODING_FAILURE_DRILL_CLAUDE4_V1_RECEIPT.md",
+      "bron_type": "receipt",
+      "status": "OPEN",
+      "taak": "CODEX_INTEGRATION R4-exact-headreview op adeb7a3 (VOLGENDE_OPDRACHT in de order)",
       "schatting_categorie": "GEEN_SCHATTING",
       "schatting_min": null
     },
@@ -23117,8 +23181,8 @@
     }
   ],
   "taken_meta": {
-    "taken_totaal": 2878,
-    "taken_zonder_schatting": 2768,
+    "taken_totaal": 2886,
+    "taken_zonder_schatting": 2776,
     "bron_glob": "outbox/*.md (TAKENLIJST-blokken)",
     "classificatie": "regex op TAKENLIJST-tabelrijen (Status/Taak/Tijd) en kale lijstvorm; een cel zonder herkenbaar '~X min'-patroon telt als GEEN_SCHATTING, nooit stilzwijgend overgeslagen"
   },
@@ -23128,9 +23192,9 @@
     "cmd": "bin/lane-capaciteit --json",
     "data": {
       "stack_root": "STACK_ROOT",
-      "generated_at": "2026-08-29T16:21:46Z",
+      "generated_at": "2026-08-29T16:27:10Z",
       "meta": {
-        "receipt_bestanden_totaal": 1508,
+        "receipt_bestanden_totaal": 1510,
         "receipt_onparseerbaar": 199,
         "jsonl": {
           "total_lines": 1274,
@@ -23328,16 +23392,16 @@
         },
         {
           "actor": "claude4",
-          "orders": 197,
-          "orders_met_duur": 191,
-          "p50_duration_ms": 324000,
+          "orders": 199,
+          "orders_met_duur": 193,
+          "p50_duration_ms": 329000,
           "max_duration_ms": 4756000,
-          "orders_met_verdict": 99,
-          "geslaagd_pct": 45.5,
-          "geblokkeerd_pct": 52.5,
+          "orders_met_verdict": 101,
+          "geslaagd_pct": 44.6,
+          "geblokkeerd_pct": 53.5,
           "overig_pct": 2.0,
           "verdict_distribution_raw": {
-            "BLOCKED_EVIDENCE": 49,
+            "BLOCKED_EVIDENCE": 51,
             "DEFECT_CONFIRMED_REPAIR_ORDER_READY": 1,
             "GO": 1,
             "GO_READY_FOR_INSTALL_GATE": 1,
@@ -23347,7 +23411,7 @@
             "KLAAR-VOOR-REVIEW (bouwer keurt zijn eigen werk niet goed)": 1,
             "NO_GO": 3
           },
-          "laatste_activiteit": "2026-08-29T06:10:08Z"
+          "laatste_activiteit": "2026-08-29T16:24:38Z"
         },
         {
           "actor": "codex",
