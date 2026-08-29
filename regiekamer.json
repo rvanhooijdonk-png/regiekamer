@@ -1,22 +1,22 @@
 {
   "schema": "REGIEKAMER_REALTIME_V1",
-  "gegenereerd_op": "2026-08-29T13:31:06Z",
+  "gegenereerd_op": "2026-08-29T13:36:15Z",
   "stack_root": "STACK_ROOT",
   "accounts": [
     {
       "actor": "claude1",
-      "status": "BEZIG",
+      "status": "WACHT",
       "taak_id": "AUTOCODING_CANDIDATE_OVERLAP_GUARD_CLAUDE1_V2",
-      "sinds": "2026-08-29T13:28:36Z",
-      "sinds_minuten": 2.4,
-      "bron": "ps:pid=5309"
+      "sinds": "2026-08-29T13:28:05Z",
+      "sinds_minuten": 8.1,
+      "bron": "outbox:order_open:AUTOCODING_CANDIDATE_OVERLAP_GUARD_CLAUDE1_V2.md"
     },
     {
       "actor": "claude2",
       "status": "WACHT",
       "taak_id": "AUTOCODING_CLAIM_FRESHNESS_REPAIR_CLAUDE2_V1",
       "sinds": "2026-08-29T13:28:05Z",
-      "sinds_minuten": 2.9,
+      "sinds_minuten": 8.1,
       "bron": "outbox:order_open:AUTOCODING_CLAIM_FRESHNESS_REPAIR_CLAUDE2_V1.md"
     },
     {
@@ -24,40 +24,40 @@
       "status": "BEZIG",
       "taak_id": "AUTOCODING_E2E_CANARY_HARNESS_CLAUDE3_V2",
       "sinds": "2026-08-29T13:28:31Z",
-      "sinds_minuten": 2.5,
+      "sinds_minuten": 7.6,
       "bron": "ps:pid=4976"
     },
     {
       "actor": "claude4",
       "status": "BEZIG",
-      "taak_id": "AUTOCODING_TRANSPORT_RESOLVER_CLAUDE4_V1",
-      "sinds": "2026-08-29T13:26:24Z",
-      "sinds_minuten": 4.6,
-      "bron": "ps:pid=99172"
+      "taak_id": "AUTOCODING_TRANSPORT_RESOLVER_CLAUDE4_V2",
+      "sinds": "2026-08-29T13:31:54Z",
+      "sinds_minuten": 4.2,
+      "bron": "ps:pid=12689"
     },
     {
       "actor": "codex1",
       "status": "VRIJ",
       "taak_id": "STUDIO_LONGREAD_F006_D85312E_REVIEW_CODEX1_V3",
       "sinds": "2026-08-29T13:29:21Z",
-      "sinds_minuten": 1.7,
+      "sinds_minuten": 6.8,
       "bron": "outbox:receipt:STUDIO_LONGREAD_F006_D85312E_REVIEW_CODEX1_V3_RECEIPT.md"
     },
     {
       "actor": "codex2",
       "status": "VRIJ",
       "taak_id": null,
-      "sinds": "2026-08-29T13:27:38Z",
+      "sinds": "2026-08-29T13:32:43Z",
       "sinds_minuten": 3.4,
       "bron": "outbox:order_afgerond:STUDIO_LONGREAD_PILOT_V1_REPAIR_L_COMMIT_ISOLATED_CODEX2_V1.md"
     },
     {
       "actor": "gemini1",
       "status": "GEBLOKKEERD",
-      "taak_id": "STUDIO_LONGREAD_F008_ACE39C1_REVIEW_GEMINI1_V1",
-      "sinds": "2026-08-29T10:18:51Z",
-      "sinds_minuten": 192.2,
-      "bron": "outbox:receipt:STUDIO_LONGREAD_F008_ACE39C1_REVIEW_GEMINI1_V1_RECEIPT.md"
+      "taak_id": "STUDIO_LONGREAD_F006_D85312E_REVIEW_GEMINI1_V1",
+      "sinds": "2026-08-29T13:36:07Z",
+      "sinds_minuten": 0.0,
+      "bron": "outbox:receipt:STUDIO_LONGREAD_F006_D85312E_REVIEW_GEMINI1_V1_RECEIPT.md"
     },
     {
       "actor": "dashboard-codex",
@@ -72,7 +72,7 @@
       "status": "GEBLOKKEERD",
       "taak_id": "AUTOCODER_CONTROLLER_RECEIPT_FIELD_FIX_REVIEW_CLAUDE1_V1",
       "sinds": "2026-08-28T13:35:13Z",
-      "sinds_minuten": 1435.8,
+      "sinds_minuten": 1440.9,
       "bron": "outbox:receipt:AUTOCODER_CONTROLLER_RECEIPT_FIELD_FIX_REVIEW_CLAUDE1_V1.md"
     }
   ],
@@ -22856,9 +22856,9 @@
     "cmd": "bin/lane-capaciteit --json",
     "data": {
       "stack_root": "STACK_ROOT",
-      "generated_at": "2026-08-29T13:31:06Z",
+      "generated_at": "2026-08-29T13:36:15Z",
       "meta": {
-        "receipt_bestanden_totaal": 1495,
+        "receipt_bestanden_totaal": 1496,
         "receipt_onparseerbaar": 192,
         "jsonl": {
           "total_lines": 1257,
@@ -23233,9 +23233,9 @@
         },
         {
           "actor": "gemini1",
-          "orders": 103,
-          "orders_met_duur": 96,
-          "p50_duration_ms": 101000,
+          "orders": 104,
+          "orders_met_duur": 97,
+          "p50_duration_ms": 98000,
           "max_duration_ms": 9179000,
           "orders_met_verdict": 77,
           "geslaagd_pct": 46.8,
@@ -23258,7 +23258,7 @@
             "REVIEW_ENV_UNAVAILABLE": 2,
             "go_ready_for_merge_gate": 1
           },
-          "laatste_activiteit": "2026-08-29T10:18:51Z"
+          "laatste_activiteit": "2026-08-29T13:36:07Z"
         },
         {
           "actor": "gemini1_via_hostroute",
