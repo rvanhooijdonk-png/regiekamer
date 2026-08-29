@@ -1,6 +1,6 @@
 {
   "schema": "REGIEKAMER_REALTIME_V1",
-  "gegenereerd_op": "2026-08-29T17:54:40Z",
+  "gegenereerd_op": "2026-08-29T17:59:49Z",
   "stack_root": "STACK_ROOT",
   "accounts": [
     {
@@ -8,7 +8,7 @@
       "status": "GEBLOKKEERD",
       "taak_id": "STACKDIR_POORT_EIGENAARSCHAP_REVIEW2_CLAUDE1_V1",
       "sinds": "2026-08-29T17:41:57Z",
-      "sinds_minuten": 12.6,
+      "sinds_minuten": 17.8,
       "bron": "outbox:receipt:STACKDIR_POORT_EIGENAARSCHAP_REVIEW2_CLAUDE1_V1_RECEIPT.md"
     },
     {
@@ -16,7 +16,7 @@
       "status": "GEBLOKKEERD",
       "taak_id": "STACKDIR_LINTPOORT_SYMLINK_CANON_CLAUDE2_V2",
       "sinds": "2026-08-29T17:26:36Z",
-      "sinds_minuten": 28.0,
+      "sinds_minuten": 33.1,
       "bron": "outbox:receipt:STACKDIR_LINTPOORT_SYMLINK_CANON_CLAUDE2_V2_RECEIPT.md"
     },
     {
@@ -24,15 +24,15 @@
       "status": "BEZIG",
       "taak_id": "STACKDIR_STATUSBORD_VERDICT_CLAUDE3_V1",
       "sinds": "2026-08-29T17:53:41Z",
-      "sinds_minuten": 0.9,
+      "sinds_minuten": 6.0,
       "bron": "ps:pid=19227"
     },
     {
       "actor": "claude4",
-      "status": "BEZIG",
+      "status": "STALE",
       "taak_id": "STACKDIR_POORT_EIGENAARSCHAP_PIPE_CLAUDE4_V3",
       "sinds": "2026-08-29T17:48:32Z",
-      "sinds_minuten": 6.0,
+      "sinds_minuten": 11.2,
       "bron": "ps:pid=6212"
     },
     {
@@ -40,23 +40,23 @@
       "status": "GEBLOKKEERD",
       "taak_id": "STACKDIR_LINTPOORT_SYMLINK_HERREVIEW_CODEX1_V1",
       "sinds": "2026-08-29T17:34:44Z",
-      "sinds_minuten": 19.8,
+      "sinds_minuten": 25.0,
       "bron": "outbox:receipt:STACKDIR_LINTPOORT_SYMLINK_HERREVIEW_CODEX1_V1_RECEIPT.md"
     },
     {
       "actor": "codex2",
-      "status": "GEBLOKKEERD",
-      "taak_id": "AUTOCODING_E2E_CANARY_1EFE6BA_CODEX2_R4_REVIEW_V4_TRANSPORT",
-      "sinds": "2026-08-29T17:50:02Z",
-      "sinds_minuten": 4.5,
-      "bron": "outbox:receipt:AUTOCODING_E2E_CANARY_1EFE6BA_CODEX2_R4_REVIEW_V4_TRANSPORT_RECEIPT.md"
+      "status": "VRIJ",
+      "taak_id": null,
+      "sinds": "2026-08-29T17:58:40Z",
+      "sinds_minuten": 1.1,
+      "bron": "outbox:order_afgerond:STUDIO_LONGREAD_PILOT_V1_REPAIR_L_COMMIT_ISOLATED_CODEX2_V1.md"
     },
     {
       "actor": "gemini1",
       "status": "WACHT",
       "taak_id": "AUTOCODING_CANDIDATE_OVERLAP_GUARD_6CB598F_GEMINI1_REVIEW_V1",
       "sinds": "2026-08-29T15:33:55Z",
-      "sinds_minuten": 140.6,
+      "sinds_minuten": 145.8,
       "bron": "outbox:order_open:AUTOCODING_CANDIDATE_OVERLAP_GUARD_6CB598F_GEMINI1_REVIEW_V1.md"
     },
     {
@@ -72,7 +72,7 @@
       "status": "GEBLOKKEERD",
       "taak_id": "AUTOCODER_CONTROLLER_RECEIPT_FIELD_FIX_REVIEW_CLAUDE1_V1",
       "sinds": "2026-08-28T13:35:13Z",
-      "sinds_minuten": 1699.3,
+      "sinds_minuten": 1704.5,
       "bron": "outbox:receipt:AUTOCODER_CONTROLLER_RECEIPT_FIELD_FIX_REVIEW_CLAUDE1_V1.md"
     }
   ],
@@ -23784,15 +23784,15 @@
     "cmd": "bin/lane-capaciteit --json",
     "data": {
       "stack_root": "STACK_ROOT",
-      "generated_at": "2026-08-29T17:54:40Z",
+      "generated_at": "2026-08-29T17:59:49Z",
       "meta": {
         "receipt_bestanden_totaal": 1529,
         "receipt_onparseerbaar": 199,
         "jsonl": {
-          "total_lines": 1283,
+          "total_lines": 1284,
           "actor_lines": 0,
           "onparseerbaar": 0,
-          "zonder_actor": 1283,
+          "zonder_actor": 1284,
           "aanwezig": true
         },
         "verdict_classificatie": "heuristiek: prefix-match op verdict= (hoofdletterongevoelig); GESLAAGD={GO,PASS,DELIVERED}, GEBLOKKEERD={NO_GO,BLOCKED,REJECTED,FAILED}, onbekend/overig telt niet stilzwijgend mee als geslaagd of geblokkeerd"
@@ -24419,7 +24419,7 @@
         },
         {
           "actor": "ZONDER_ACTOR",
-          "orders": 1283,
+          "orders": 1284,
           "orders_met_duur": 0,
           "p50_duration_ms": null,
           "max_duration_ms": null,
@@ -25712,7 +25712,8 @@
             1280,
             1281,
             1282,
-            1283
+            1283,
+            1284
           ]
         }
       ]
