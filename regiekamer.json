@@ -1,6 +1,6 @@
 {
   "schema": "REGIEKAMER_REALTIME_V1",
-  "gegenereerd_op": "2026-08-29T15:14:33Z",
+  "gegenereerd_op": "2026-08-29T15:19:45Z",
   "stack_root": "STACK_ROOT",
   "accounts": [
     {
@@ -8,7 +8,7 @@
       "status": "WACHT",
       "taak_id": "AUTOCODING_REVIEW_ROUTE_RECOVERY_CLAUDE1_V1",
       "sinds": "2026-08-29T14:14:22Z",
-      "sinds_minuten": 60.1,
+      "sinds_minuten": 65.2,
       "bron": "outbox:order_open:AUTOCODING_REVIEW_ROUTE_RECOVERY_CLAUDE1_V1.md"
     },
     {
@@ -16,7 +16,7 @@
       "status": "WACHT",
       "taak_id": "AUTOCODING_E2E_CANARY_AEC2EAC_CLAUDE2_REVIEW_V1",
       "sinds": "2026-08-29T13:41:44Z",
-      "sinds_minuten": 92.7,
+      "sinds_minuten": 97.9,
       "bron": "outbox:order_open:AUTOCODING_E2E_CANARY_AEC2EAC_CLAUDE2_REVIEW_V1.md"
     },
     {
@@ -24,7 +24,7 @@
       "status": "WACHT",
       "taak_id": "AUTOCODING_CANDIDATE_OVERLAP_GUARD_6CB598F_CLAUDE3_REVIEW_V2",
       "sinds": "2026-08-29T13:46:29Z",
-      "sinds_minuten": 88.0,
+      "sinds_minuten": 93.1,
       "bron": "outbox:order_open:AUTOCODING_CANDIDATE_OVERLAP_GUARD_6CB598F_CLAUDE3_REVIEW_V2.md"
     },
     {
@@ -32,7 +32,7 @@
       "status": "WACHT",
       "taak_id": "AUTOCODING_FAILURE_DRILL_CLAUDE4_V1",
       "sinds": "2026-08-29T15:14:03Z",
-      "sinds_minuten": 0.4,
+      "sinds_minuten": 5.6,
       "bron": "outbox:order_open:AUTOCODING_FAILURE_DRILL_CLAUDE4_V1.md"
     },
     {
@@ -40,24 +40,24 @@
       "status": "GEBLOKKEERD",
       "taak_id": "KEYNOTE_LIBRARY_CODE_REVIEW_CODEX1_V1_TRANSPORT_RECEIPT_4",
       "sinds": "2026-08-29T14:06:25Z",
-      "sinds_minuten": 68.0,
+      "sinds_minuten": 73.2,
       "bron": "outbox:receipt:KEYNOTE_LIBRARY_CODE_REVIEW_CODEX1_V1_TRANSPORT_RECEIPT_4.md"
     },
     {
       "actor": "codex2",
       "status": "VRIJ",
       "taak_id": null,
-      "sinds": "2026-08-29T15:11:32Z",
+      "sinds": "2026-08-29T15:16:45Z",
       "sinds_minuten": 2.9,
       "bron": "outbox:order_afgerond:STUDIO_LONGREAD_PILOT_V1_REPAIR_L_COMMIT_ISOLATED_CODEX2_V1.md"
     },
     {
       "actor": "gemini1",
-      "status": "STALE",
+      "status": "WACHT",
       "taak_id": "AUTOCODING_CANDIDATE_OVERLAP_GUARD_6CB598F_GEMINI1_REVIEW_V1",
-      "sinds": "2026-08-29T13:46:09Z",
-      "sinds_minuten": 88.3,
-      "bron": "ps:pid=46434"
+      "sinds": "2026-08-29T15:16:34Z",
+      "sinds_minuten": 3.0,
+      "bron": "outbox:order_open:AUTOCODING_CANDIDATE_OVERLAP_GUARD_6CB598F_GEMINI1_REVIEW_V1.md"
     },
     {
       "actor": "dashboard-codex",
@@ -72,7 +72,7 @@
       "status": "GEBLOKKEERD",
       "taak_id": "AUTOCODER_CONTROLLER_RECEIPT_FIELD_FIX_REVIEW_CLAUDE1_V1",
       "sinds": "2026-08-28T13:35:13Z",
-      "sinds_minuten": 1539.2,
+      "sinds_minuten": 1544.4,
       "bron": "outbox:receipt:AUTOCODER_CONTROLLER_RECEIPT_FIELD_FIX_REVIEW_CLAUDE1_V1.md"
     }
   ],
@@ -23016,15 +23016,15 @@
     "cmd": "bin/lane-capaciteit --json",
     "data": {
       "stack_root": "STACK_ROOT",
-      "generated_at": "2026-08-29T15:14:33Z",
+      "generated_at": "2026-08-29T15:19:44Z",
       "meta": {
         "receipt_bestanden_totaal": 1501,
         "receipt_onparseerbaar": 196,
         "jsonl": {
-          "total_lines": 1267,
+          "total_lines": 1268,
           "actor_lines": 0,
           "onparseerbaar": 0,
-          "zonder_actor": 1267,
+          "zonder_actor": 1268,
           "aanwezig": true
         },
         "verdict_classificatie": "heuristiek: prefix-match op verdict= (hoofdletterongevoelig); GESLAAGD={GO,PASS,DELIVERED}, GEBLOKKEERD={NO_GO,BLOCKED,REJECTED,FAILED}, onbekend/overig telt niet stilzwijgend mee als geslaagd of geblokkeerd"
@@ -23648,7 +23648,7 @@
         },
         {
           "actor": "ZONDER_ACTOR",
-          "orders": 1267,
+          "orders": 1268,
           "orders_met_duur": 0,
           "p50_duration_ms": null,
           "max_duration_ms": null,
@@ -24925,7 +24925,8 @@
             1264,
             1265,
             1266,
-            1267
+            1267,
+            1268
           ]
         }
       ]
