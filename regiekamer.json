@@ -1,6 +1,6 @@
 {
   "schema": "REGIEKAMER_REALTIME_V1",
-  "gegenereerd_op": "2026-08-29T17:49:30Z",
+  "gegenereerd_op": "2026-08-29T17:54:40Z",
   "stack_root": "STACK_ROOT",
   "accounts": [
     {
@@ -8,7 +8,7 @@
       "status": "GEBLOKKEERD",
       "taak_id": "STACKDIR_POORT_EIGENAARSCHAP_REVIEW2_CLAUDE1_V1",
       "sinds": "2026-08-29T17:41:57Z",
-      "sinds_minuten": 7.5,
+      "sinds_minuten": 12.6,
       "bron": "outbox:receipt:STACKDIR_POORT_EIGENAARSCHAP_REVIEW2_CLAUDE1_V1_RECEIPT.md"
     },
     {
@@ -16,23 +16,23 @@
       "status": "GEBLOKKEERD",
       "taak_id": "STACKDIR_LINTPOORT_SYMLINK_CANON_CLAUDE2_V2",
       "sinds": "2026-08-29T17:26:36Z",
-      "sinds_minuten": 22.8,
+      "sinds_minuten": 28.0,
       "bron": "outbox:receipt:STACKDIR_LINTPOORT_SYMLINK_CANON_CLAUDE2_V2_RECEIPT.md"
     },
     {
       "actor": "claude3",
-      "status": "GEBLOKKEERD",
-      "taak_id": "AUTOCODING_E2E_CANARY_HARNESS_CLAUDE3_V2",
-      "sinds": "2026-08-29T15:51:05Z",
-      "sinds_minuten": 118.3,
-      "bron": "outbox:receipt:AUTOCODING_E2E_CANARY_HARNESS_CLAUDE3_V2_RECEIPT.md"
+      "status": "BEZIG",
+      "taak_id": "STACKDIR_STATUSBORD_VERDICT_CLAUDE3_V1",
+      "sinds": "2026-08-29T17:53:41Z",
+      "sinds_minuten": 0.9,
+      "bron": "ps:pid=19227"
     },
     {
       "actor": "claude4",
       "status": "BEZIG",
       "taak_id": "STACKDIR_POORT_EIGENAARSCHAP_PIPE_CLAUDE4_V3",
       "sinds": "2026-08-29T17:48:32Z",
-      "sinds_minuten": 0.9,
+      "sinds_minuten": 6.0,
       "bron": "ps:pid=6212"
     },
     {
@@ -40,23 +40,23 @@
       "status": "GEBLOKKEERD",
       "taak_id": "STACKDIR_LINTPOORT_SYMLINK_HERREVIEW_CODEX1_V1",
       "sinds": "2026-08-29T17:34:44Z",
-      "sinds_minuten": 14.7,
+      "sinds_minuten": 19.8,
       "bron": "outbox:receipt:STACKDIR_LINTPOORT_SYMLINK_HERREVIEW_CODEX1_V1_RECEIPT.md"
     },
     {
       "actor": "codex2",
-      "status": "BEZIG",
-      "taak_id": "AUTOCODING_E2E_CANARY_1EFE6BA_CODEX2_R4_REVIEW_V4",
-      "sinds": "2026-08-29T17:48:16Z",
-      "sinds_minuten": 1.1,
-      "bron": "ps:pid=5297"
+      "status": "GEBLOKKEERD",
+      "taak_id": "AUTOCODING_E2E_CANARY_1EFE6BA_CODEX2_R4_REVIEW_V4_TRANSPORT",
+      "sinds": "2026-08-29T17:50:02Z",
+      "sinds_minuten": 4.5,
+      "bron": "outbox:receipt:AUTOCODING_E2E_CANARY_1EFE6BA_CODEX2_R4_REVIEW_V4_TRANSPORT_RECEIPT.md"
     },
     {
       "actor": "gemini1",
       "status": "WACHT",
       "taak_id": "AUTOCODING_CANDIDATE_OVERLAP_GUARD_6CB598F_GEMINI1_REVIEW_V1",
       "sinds": "2026-08-29T15:33:55Z",
-      "sinds_minuten": 135.5,
+      "sinds_minuten": 140.6,
       "bron": "outbox:order_open:AUTOCODING_CANDIDATE_OVERLAP_GUARD_6CB598F_GEMINI1_REVIEW_V1.md"
     },
     {
@@ -72,7 +72,7 @@
       "status": "GEBLOKKEERD",
       "taak_id": "AUTOCODER_CONTROLLER_RECEIPT_FIELD_FIX_REVIEW_CLAUDE1_V1",
       "sinds": "2026-08-28T13:35:13Z",
-      "sinds_minuten": 1694.2,
+      "sinds_minuten": 1699.3,
       "bron": "outbox:receipt:AUTOCODER_CONTROLLER_RECEIPT_FIELD_FIX_REVIEW_CLAUDE1_V1.md"
     }
   ],
@@ -1856,6 +1856,46 @@
       "bron_type": "receipt",
       "status": "KLAAR",
       "taak": "drie negatieve controles en losse mutatieproef geverifieerd.",
+      "schatting_categorie": "GEEN_SCHATTING",
+      "schatting_min": null
+    },
+    {
+      "bron_bestand": "outbox/AUTOCODING_E2E_CANARY_1EFE6BA_CODEX2_R4_REVIEW_V4_TRANSPORT_RECEIPT.md",
+      "bron_type": "receipt",
+      "status": "KLAAR",
+      "taak": "exacte head/tree en diffscope geverifieerd.",
+      "schatting_categorie": "GEEN_SCHATTING",
+      "schatting_min": null
+    },
+    {
+      "bron_bestand": "outbox/AUTOCODING_E2E_CANARY_1EFE6BA_CODEX2_R4_REVIEW_V4_TRANSPORT_RECEIPT.md",
+      "bron_type": "receipt",
+      "status": "KLAAR",
+      "taak": "acceptatieproef tweemaal groen, exit 0.",
+      "schatting_categorie": "GEEN_SCHATTING",
+      "schatting_min": null
+    },
+    {
+      "bron_bestand": "outbox/AUTOCODING_E2E_CANARY_1EFE6BA_CODEX2_R4_REVIEW_V4_TRANSPORT_RECEIPT.md",
+      "bron_type": "receipt",
+      "status": "KLAAR",
+      "taak": "hermeticiteit geïnspecteerd.",
+      "schatting_categorie": "GEEN_SCHATTING",
+      "schatting_min": null
+    },
+    {
+      "bron_bestand": "outbox/AUTOCODING_E2E_CANARY_1EFE6BA_CODEX2_R4_REVIEW_V4_TRANSPORT_RECEIPT.md",
+      "bron_type": "receipt",
+      "status": "KLAAR",
+      "taak": "drie ingebouwde negatieve controles rood.",
+      "schatting_categorie": "GEEN_SCHATTING",
+      "schatting_min": null
+    },
+    {
+      "bron_bestand": "outbox/AUTOCODING_E2E_CANARY_1EFE6BA_CODEX2_R4_REVIEW_V4_TRANSPORT_RECEIPT.md",
+      "bron_type": "receipt",
+      "status": "KLAAR",
+      "taak": "losse mutatieproef rood.",
       "schatting_categorie": "GEEN_SCHATTING",
       "schatting_min": null
     },
@@ -23733,8 +23773,8 @@
     }
   ],
   "taken_meta": {
-    "taken_totaal": 2955,
-    "taken_zonder_schatting": 2843,
+    "taken_totaal": 2960,
+    "taken_zonder_schatting": 2848,
     "bron_glob": "outbox/*.md (TAKENLIJST-blokken)",
     "classificatie": "regex op TAKENLIJST-tabelrijen (Status/Taak/Tijd) en kale lijstvorm; een cel zonder herkenbaar '~X min'-patroon telt als GEEN_SCHATTING, nooit stilzwijgend overgeslagen"
   },
@@ -23744,9 +23784,9 @@
     "cmd": "bin/lane-capaciteit --json",
     "data": {
       "stack_root": "STACK_ROOT",
-      "generated_at": "2026-08-29T17:49:30Z",
+      "generated_at": "2026-08-29T17:54:40Z",
       "meta": {
-        "receipt_bestanden_totaal": 1528,
+        "receipt_bestanden_totaal": 1529,
         "receipt_onparseerbaar": 199,
         "jsonl": {
           "total_lines": 1283,
@@ -24025,16 +24065,16 @@
         },
         {
           "actor": "codex2",
-          "orders": 184,
-          "orders_met_duur": 177,
-          "p50_duration_ms": 211000,
+          "orders": 185,
+          "orders_met_duur": 178,
+          "p50_duration_ms": 207000,
           "max_duration_ms": 2335000,
-          "orders_met_verdict": 114,
-          "geslaagd_pct": 13.2,
-          "geblokkeerd_pct": 85.1,
-          "overig_pct": 1.8,
+          "orders_met_verdict": 115,
+          "geslaagd_pct": 13.0,
+          "geblokkeerd_pct": 85.2,
+          "overig_pct": 1.7,
           "verdict_distribution_raw": {
-            "BLOCKED_EVIDENCE": 81,
+            "BLOCKED_EVIDENCE": 82,
             "GO_HYPOTHESE_BEVESTIGD": 1,
             "GO_READY_FOR_MERGE_GATE": 8,
             "GO_READY_FOR_SEPARATE_MERGE_GATE": 1,
@@ -24042,7 +24082,7 @@
             "NO_GO": 16,
             "REVIEW_PENDING": 2
           },
-          "laatste_activiteit": "2026-08-29T17:20:39Z"
+          "laatste_activiteit": "2026-08-29T17:50:02Z"
         },
         {
           "actor": "codex2-builder",
