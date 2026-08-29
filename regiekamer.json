@@ -1,6 +1,6 @@
 {
   "schema": "REGIEKAMER_REALTIME_V1",
-  "gegenereerd_op": "2026-08-29T15:35:16Z",
+  "gegenereerd_op": "2026-08-29T15:40:27Z",
   "stack_root": "STACK_ROOT",
   "accounts": [
     {
@@ -8,7 +8,7 @@
       "status": "WACHT",
       "taak_id": "AUTOCODING_CANDIDATE_OVERLAP_GUARD_CLAUDE1_V2",
       "sinds": "2026-08-29T15:33:55Z",
-      "sinds_minuten": 1.2,
+      "sinds_minuten": 6.4,
       "bron": "outbox:order_open:AUTOCODING_CANDIDATE_OVERLAP_GUARD_CLAUDE1_V2.md"
     },
     {
@@ -16,7 +16,7 @@
       "status": "WACHT",
       "taak_id": "AUTOCODING_E2E_CANARY_AEC2EAC_CLAUDE2_REVIEW_V1",
       "sinds": "2026-08-29T13:41:44Z",
-      "sinds_minuten": 113.4,
+      "sinds_minuten": 118.6,
       "bron": "outbox:order_open:AUTOCODING_E2E_CANARY_AEC2EAC_CLAUDE2_REVIEW_V1.md"
     },
     {
@@ -24,31 +24,31 @@
       "status": "WACHT",
       "taak_id": "AUTOCODING_E2E_CANARY_HARNESS_CLAUDE3_V1",
       "sinds": "2026-08-29T15:33:55Z",
-      "sinds_minuten": 1.2,
+      "sinds_minuten": 6.4,
       "bron": "outbox:order_open:AUTOCODING_E2E_CANARY_HARNESS_CLAUDE3_V1.md"
     },
     {
       "actor": "claude4",
-      "status": "BEZIG",
-      "taak_id": "AUTOCODING_CODEX_APP_SERVER_TRANSPORT_REPAIR_CLAUDE4_V1",
-      "sinds": "2026-08-29T15:32:26Z",
-      "sinds_minuten": 2.7,
-      "bron": "ps:pid=88262"
+      "status": "GEBLOKKEERD",
+      "taak_id": "AUTOCODING_CODEX_APP_SERVER_TRANSPORT_REPAIR_CLAUDE4_V1_TRANSPORT_RECEIPT_2",
+      "sinds": "2026-08-29T15:38:24Z",
+      "sinds_minuten": 1.9,
+      "bron": "outbox:receipt:AUTOCODING_CODEX_APP_SERVER_TRANSPORT_REPAIR_CLAUDE4_V1_TRANSPORT_RECEIPT_2.md"
     },
     {
       "actor": "codex1",
       "status": "VRIJ",
       "taak_id": null,
       "sinds": "2026-08-29T15:33:55Z",
-      "sinds_minuten": 1.2,
+      "sinds_minuten": 6.4,
       "bron": "outbox:order_afgerond:AUTOCODING_CANDIDATE_OVERLAP_GUARD_CODEX1_V1.md"
     },
     {
       "actor": "codex2",
       "status": "VRIJ",
       "taak_id": null,
-      "sinds": "2026-08-29T15:27:17Z",
-      "sinds_minuten": 7.9,
+      "sinds": "2026-08-29T15:38:30Z",
+      "sinds_minuten": 1.8,
       "bron": "outbox:order_afgerond:STUDIO_LONGREAD_PILOT_V1_REPAIR_L_COMMIT_ISOLATED_CODEX2_V1.md"
     },
     {
@@ -56,7 +56,7 @@
       "status": "WACHT",
       "taak_id": "AUTOCODING_CANDIDATE_OVERLAP_GUARD_6CB598F_GEMINI1_REVIEW_V1",
       "sinds": "2026-08-29T15:33:55Z",
-      "sinds_minuten": 1.2,
+      "sinds_minuten": 6.4,
       "bron": "outbox:order_open:AUTOCODING_CANDIDATE_OVERLAP_GUARD_6CB598F_GEMINI1_REVIEW_V1.md"
     },
     {
@@ -72,7 +72,7 @@
       "status": "GEBLOKKEERD",
       "taak_id": "AUTOCODER_CONTROLLER_RECEIPT_FIELD_FIX_REVIEW_CLAUDE1_V1",
       "sinds": "2026-08-28T13:35:13Z",
-      "sinds_minuten": 1559.9,
+      "sinds_minuten": 1565.1,
       "bron": "outbox:receipt:AUTOCODER_CONTROLLER_RECEIPT_FIELD_FIX_REVIEW_CLAUDE1_V1.md"
     }
   ],
@@ -1208,6 +1208,38 @@
       "bron_type": "receipt",
       "status": "OPEN",
       "taak": "Directie-hermeting en mergebeslissing.",
+      "schatting_categorie": "GEEN_SCHATTING",
+      "schatting_min": null
+    },
+    {
+      "bron_bestand": "outbox/AUTOCODING_CODEX_APP_SERVER_TRANSPORT_REPAIR_CLAUDE4_V1_ACTOR_RECEIPT.md",
+      "bron_type": "receipt",
+      "status": "KLAAR",
+      "taak": "Canonieke-bronmeting: bevestigd dat task_id al gemerged is (PR #18, commit 6330f3c)",
+      "schatting_categorie": "GEEN_SCHATTING",
+      "schatting_min": null
+    },
+    {
+      "bron_bestand": "outbox/AUTOCODING_CODEX_APP_SERVER_TRANSPORT_REPAIR_CLAUDE4_V1_ACTOR_RECEIPT.md",
+      "bron_type": "receipt",
+      "status": "KLAAR",
+      "taak": "Live her-verificatie onderliggend mechanisme (read-only, geen mutatie)",
+      "schatting_categorie": "GEEN_SCHATTING",
+      "schatting_min": null
+    },
+    {
+      "bron_bestand": "outbox/AUTOCODING_CODEX_APP_SERVER_TRANSPORT_REPAIR_CLAUDE4_V1_ACTOR_RECEIPT.md",
+      "bron_type": "receipt",
+      "status": "GEBLOKKEERD",
+      "taak": "Stap 7 (Faceless/Long-read herstarten) — buiten scope van een herdispatch op dezelfde task_id, en expliciet verboden in déze order",
+      "schatting_categorie": "GEEN_SCHATTING",
+      "schatting_min": null
+    },
+    {
+      "bron_bestand": "outbox/AUTOCODING_CODEX_APP_SERVER_TRANSPORT_REPAIR_CLAUDE4_V1_ACTOR_RECEIPT.md",
+      "bron_type": "receipt",
+      "status": "KLAAR",
+      "taak": "Rapportage + aanbeveling order uit queue te halen",
       "schatting_categorie": "GEEN_SCHATTING",
       "schatting_min": null
     },
@@ -23037,8 +23069,8 @@
     }
   ],
   "taken_meta": {
-    "taken_totaal": 2868,
-    "taken_zonder_schatting": 2760,
+    "taken_totaal": 2872,
+    "taken_zonder_schatting": 2764,
     "bron_glob": "outbox/*.md (TAKENLIJST-blokken)",
     "classificatie": "regex op TAKENLIJST-tabelrijen (Status/Taak/Tijd) en kale lijstvorm; een cel zonder herkenbaar '~X min'-patroon telt als GEEN_SCHATTING, nooit stilzwijgend overgeslagen"
   },
@@ -23048,15 +23080,15 @@
     "cmd": "bin/lane-capaciteit --json",
     "data": {
       "stack_root": "STACK_ROOT",
-      "generated_at": "2026-08-29T15:35:16Z",
+      "generated_at": "2026-08-29T15:40:27Z",
       "meta": {
-        "receipt_bestanden_totaal": 1504,
-        "receipt_onparseerbaar": 197,
+        "receipt_bestanden_totaal": 1505,
+        "receipt_onparseerbaar": 198,
         "jsonl": {
-          "total_lines": 1269,
+          "total_lines": 1270,
           "actor_lines": 0,
           "onparseerbaar": 0,
-          "zonder_actor": 1269,
+          "zonder_actor": 1270,
           "aanwezig": true
         },
         "verdict_classificatie": "heuristiek: prefix-match op verdict= (hoofdletterongevoelig); GESLAAGD={GO,PASS,DELIVERED}, GEBLOKKEERD={NO_GO,BLOCKED,REJECTED,FAILED}, onbekend/overig telt niet stilzwijgend mee als geslaagd of geblokkeerd"
@@ -23469,7 +23501,7 @@
         },
         {
           "actor": "ONPARSEERBAAR",
-          "orders": 197,
+          "orders": 198,
           "orders_met_duur": 0,
           "p50_duration_ms": null,
           "max_duration_ms": null,
@@ -23495,6 +23527,7 @@
             "AUTOCODER_RECEIPT_WATCH_AUTORESUME_V1_RECONCILIATION_RECEIPT.md",
             "AUTOCODING_CANDIDATE_OVERLAP_GUARD_6CB598F_CODEX_INTEGRATION_R4_RECEIPT.md",
             "AUTOCODING_CLAUDE_WRAPPER_AUTH_REMEASURE_20260821_RECEIPT.md",
+            "AUTOCODING_CODEX_APP_SERVER_TRANSPORT_REPAIR_CLAUDE4_V1_ACTOR_RECEIPT.md",
             "AUTOCODING_D1_R4_PARENT_HEARTBEAT_LIFECYCLE_REPAIR_20260819_RECEIPT.md",
             "AUTOCODING_DB20260819_30_CLASS_A_REVIEW_MATRIX_CANONIZATION_20260819_RECEIPT.md",
             "AUTOCODING_DB27_DURABLE_CONTINUATION_OWNER_HELD_MERGE_GATE_20260820_RECEIPT.md",
@@ -23681,7 +23714,7 @@
         },
         {
           "actor": "ZONDER_ACTOR",
-          "orders": 1269,
+          "orders": 1270,
           "orders_met_duur": 0,
           "p50_duration_ms": null,
           "max_duration_ms": null,
@@ -24960,7 +24993,8 @@
             1266,
             1267,
             1268,
-            1269
+            1269,
+            1270
           ]
         }
       ]
