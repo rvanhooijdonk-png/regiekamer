@@ -1,6 +1,6 @@
 {
   "schema": "REGIEKAMER_REALTIME_V1",
-  "gegenereerd_op": "2026-08-29T15:40:27Z",
+  "gegenereerd_op": "2026-08-29T15:45:39Z",
   "stack_root": "STACK_ROOT",
   "accounts": [
     {
@@ -8,23 +8,23 @@
       "status": "WACHT",
       "taak_id": "AUTOCODING_CANDIDATE_OVERLAP_GUARD_CLAUDE1_V2",
       "sinds": "2026-08-29T15:33:55Z",
-      "sinds_minuten": 6.4,
+      "sinds_minuten": 11.6,
       "bron": "outbox:order_open:AUTOCODING_CANDIDATE_OVERLAP_GUARD_CLAUDE1_V2.md"
     },
     {
       "actor": "claude2",
-      "status": "WACHT",
-      "taak_id": "AUTOCODING_E2E_CANARY_AEC2EAC_CLAUDE2_REVIEW_V1",
-      "sinds": "2026-08-29T13:41:44Z",
-      "sinds_minuten": 118.6,
-      "bron": "outbox:order_open:AUTOCODING_E2E_CANARY_AEC2EAC_CLAUDE2_REVIEW_V1.md"
+      "status": "GEBLOKKEERD",
+      "taak_id": "AUTOCODING_CLAIM_FRESHNESS_REPAIR_CLAUDE2_V1",
+      "sinds": "2026-08-29T15:43:41Z",
+      "sinds_minuten": 1.8,
+      "bron": "outbox:receipt:AUTOCODING_CLAIM_FRESHNESS_REPAIR_CLAUDE2_V1_RECEIPT.md"
     },
     {
       "actor": "claude3",
       "status": "WACHT",
       "taak_id": "AUTOCODING_E2E_CANARY_HARNESS_CLAUDE3_V1",
       "sinds": "2026-08-29T15:33:55Z",
-      "sinds_minuten": 6.4,
+      "sinds_minuten": 11.6,
       "bron": "outbox:order_open:AUTOCODING_E2E_CANARY_HARNESS_CLAUDE3_V1.md"
     },
     {
@@ -32,7 +32,7 @@
       "status": "GEBLOKKEERD",
       "taak_id": "AUTOCODING_CODEX_APP_SERVER_TRANSPORT_REPAIR_CLAUDE4_V1_TRANSPORT_RECEIPT_2",
       "sinds": "2026-08-29T15:38:24Z",
-      "sinds_minuten": 1.9,
+      "sinds_minuten": 7.1,
       "bron": "outbox:receipt:AUTOCODING_CODEX_APP_SERVER_TRANSPORT_REPAIR_CLAUDE4_V1_TRANSPORT_RECEIPT_2.md"
     },
     {
@@ -40,14 +40,14 @@
       "status": "VRIJ",
       "taak_id": null,
       "sinds": "2026-08-29T15:33:55Z",
-      "sinds_minuten": 6.4,
+      "sinds_minuten": 11.6,
       "bron": "outbox:order_afgerond:AUTOCODING_CANDIDATE_OVERLAP_GUARD_CODEX1_V1.md"
     },
     {
       "actor": "codex2",
       "status": "VRIJ",
       "taak_id": null,
-      "sinds": "2026-08-29T15:38:30Z",
+      "sinds": "2026-08-29T15:43:44Z",
       "sinds_minuten": 1.8,
       "bron": "outbox:order_afgerond:STUDIO_LONGREAD_PILOT_V1_REPAIR_L_COMMIT_ISOLATED_CODEX2_V1.md"
     },
@@ -56,7 +56,7 @@
       "status": "WACHT",
       "taak_id": "AUTOCODING_CANDIDATE_OVERLAP_GUARD_6CB598F_GEMINI1_REVIEW_V1",
       "sinds": "2026-08-29T15:33:55Z",
-      "sinds_minuten": 6.4,
+      "sinds_minuten": 11.6,
       "bron": "outbox:order_open:AUTOCODING_CANDIDATE_OVERLAP_GUARD_6CB598F_GEMINI1_REVIEW_V1.md"
     },
     {
@@ -72,7 +72,7 @@
       "status": "GEBLOKKEERD",
       "taak_id": "AUTOCODER_CONTROLLER_RECEIPT_FIELD_FIX_REVIEW_CLAUDE1_V1",
       "sinds": "2026-08-28T13:35:13Z",
-      "sinds_minuten": 1565.1,
+      "sinds_minuten": 1570.3,
       "bron": "outbox:receipt:AUTOCODER_CONTROLLER_RECEIPT_FIELD_FIX_REVIEW_CLAUDE1_V1.md"
     }
   ],
@@ -23080,9 +23080,9 @@
     "cmd": "bin/lane-capaciteit --json",
     "data": {
       "stack_root": "STACK_ROOT",
-      "generated_at": "2026-08-29T15:40:27Z",
+      "generated_at": "2026-08-29T15:45:39Z",
       "meta": {
-        "receipt_bestanden_totaal": 1505,
+        "receipt_bestanden_totaal": 1506,
         "receipt_onparseerbaar": 198,
         "jsonl": {
           "total_lines": 1270,
@@ -23152,16 +23152,16 @@
         },
         {
           "actor": "claude2",
-          "orders": 177,
-          "orders_met_duur": 168,
-          "p50_duration_ms": 520500,
+          "orders": 178,
+          "orders_met_duur": 169,
+          "p50_duration_ms": 520000,
           "max_duration_ms": 6644000,
-          "orders_met_verdict": 76,
-          "geslaagd_pct": 14.5,
-          "geblokkeerd_pct": 78.9,
-          "overig_pct": 6.6,
+          "orders_met_verdict": 77,
+          "geslaagd_pct": 14.3,
+          "geblokkeerd_pct": 79.2,
+          "overig_pct": 6.5,
           "verdict_distribution_raw": {
-            "BLOCKED_EVIDENCE": 58,
+            "BLOCKED_EVIDENCE": 59,
             "BUILD_COMPLETE_AWAITING_INDEPENDENT_REVIEW": 1,
             "BUILD_READY_FOR_EXACT_HEAD_REVIEW": 1,
             "DELIVERED": 3,
@@ -23173,7 +23173,7 @@
             "OWNER_GATE": 1,
             "READY_FOR_INDEPENDENT_REVIEW": 1
           },
-          "laatste_activiteit": "2026-08-29T06:06:10Z"
+          "laatste_activiteit": "2026-08-29T15:43:41Z"
         },
         {
           "actor": "claude2 (builder)",
