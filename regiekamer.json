@@ -1,6 +1,6 @@
 {
   "schema": "REGIEKAMER_REALTIME_V1",
-  "gegenereerd_op": "2026-08-29T17:44:21Z",
+  "gegenereerd_op": "2026-08-29T17:49:30Z",
   "stack_root": "STACK_ROOT",
   "accounts": [
     {
@@ -8,7 +8,7 @@
       "status": "GEBLOKKEERD",
       "taak_id": "STACKDIR_POORT_EIGENAARSCHAP_REVIEW2_CLAUDE1_V1",
       "sinds": "2026-08-29T17:41:57Z",
-      "sinds_minuten": 2.3,
+      "sinds_minuten": 7.5,
       "bron": "outbox:receipt:STACKDIR_POORT_EIGENAARSCHAP_REVIEW2_CLAUDE1_V1_RECEIPT.md"
     },
     {
@@ -16,7 +16,7 @@
       "status": "GEBLOKKEERD",
       "taak_id": "STACKDIR_LINTPOORT_SYMLINK_CANON_CLAUDE2_V2",
       "sinds": "2026-08-29T17:26:36Z",
-      "sinds_minuten": 17.6,
+      "sinds_minuten": 22.8,
       "bron": "outbox:receipt:STACKDIR_LINTPOORT_SYMLINK_CANON_CLAUDE2_V2_RECEIPT.md"
     },
     {
@@ -24,39 +24,39 @@
       "status": "GEBLOKKEERD",
       "taak_id": "AUTOCODING_E2E_CANARY_HARNESS_CLAUDE3_V2",
       "sinds": "2026-08-29T15:51:05Z",
-      "sinds_minuten": 113.1,
+      "sinds_minuten": 118.3,
       "bron": "outbox:receipt:AUTOCODING_E2E_CANARY_HARNESS_CLAUDE3_V2_RECEIPT.md"
     },
     {
       "actor": "claude4",
-      "status": "GEBLOKKEERD",
-      "taak_id": "STACKDIR_POORT_EIGENAARSCHAP_REPARATIE_CLAUDE4_V2",
-      "sinds": "2026-08-29T17:24:00Z",
-      "sinds_minuten": 20.2,
-      "bron": "outbox:receipt:STACKDIR_POORT_EIGENAARSCHAP_REPARATIE_CLAUDE4_V2_RECEIPT.md"
+      "status": "BEZIG",
+      "taak_id": "STACKDIR_POORT_EIGENAARSCHAP_PIPE_CLAUDE4_V3",
+      "sinds": "2026-08-29T17:48:32Z",
+      "sinds_minuten": 0.9,
+      "bron": "ps:pid=6212"
     },
     {
       "actor": "codex1",
       "status": "GEBLOKKEERD",
       "taak_id": "STACKDIR_LINTPOORT_SYMLINK_HERREVIEW_CODEX1_V1",
       "sinds": "2026-08-29T17:34:44Z",
-      "sinds_minuten": 9.5,
+      "sinds_minuten": 14.7,
       "bron": "outbox:receipt:STACKDIR_LINTPOORT_SYMLINK_HERREVIEW_CODEX1_V1_RECEIPT.md"
     },
     {
       "actor": "codex2",
-      "status": "VRIJ",
-      "taak_id": null,
-      "sinds": "2026-08-29T17:43:29Z",
-      "sinds_minuten": 0.7,
-      "bron": "outbox:order_afgerond:STUDIO_LONGREAD_PILOT_V1_REPAIR_L_COMMIT_ISOLATED_CODEX2_V1.md"
+      "status": "BEZIG",
+      "taak_id": "AUTOCODING_E2E_CANARY_1EFE6BA_CODEX2_R4_REVIEW_V4",
+      "sinds": "2026-08-29T17:48:16Z",
+      "sinds_minuten": 1.1,
+      "bron": "ps:pid=5297"
     },
     {
       "actor": "gemini1",
       "status": "WACHT",
       "taak_id": "AUTOCODING_CANDIDATE_OVERLAP_GUARD_6CB598F_GEMINI1_REVIEW_V1",
       "sinds": "2026-08-29T15:33:55Z",
-      "sinds_minuten": 130.3,
+      "sinds_minuten": 135.5,
       "bron": "outbox:order_open:AUTOCODING_CANDIDATE_OVERLAP_GUARD_6CB598F_GEMINI1_REVIEW_V1.md"
     },
     {
@@ -72,7 +72,7 @@
       "status": "GEBLOKKEERD",
       "taak_id": "AUTOCODER_CONTROLLER_RECEIPT_FIELD_FIX_REVIEW_CLAUDE1_V1",
       "sinds": "2026-08-28T13:35:13Z",
-      "sinds_minuten": 1689.0,
+      "sinds_minuten": 1694.2,
       "bron": "outbox:receipt:AUTOCODER_CONTROLLER_RECEIPT_FIELD_FIX_REVIEW_CLAUDE1_V1.md"
     }
   ],
@@ -23744,15 +23744,15 @@
     "cmd": "bin/lane-capaciteit --json",
     "data": {
       "stack_root": "STACK_ROOT",
-      "generated_at": "2026-08-29T17:44:21Z",
+      "generated_at": "2026-08-29T17:49:30Z",
       "meta": {
         "receipt_bestanden_totaal": 1528,
         "receipt_onparseerbaar": 199,
         "jsonl": {
-          "total_lines": 1282,
+          "total_lines": 1283,
           "actor_lines": 0,
           "onparseerbaar": 0,
-          "zonder_actor": 1282,
+          "zonder_actor": 1283,
           "aanwezig": true
         },
         "verdict_classificatie": "heuristiek: prefix-match op verdict= (hoofdletterongevoelig); GESLAAGD={GO,PASS,DELIVERED}, GEBLOKKEERD={NO_GO,BLOCKED,REJECTED,FAILED}, onbekend/overig telt niet stilzwijgend mee als geslaagd of geblokkeerd"
@@ -24379,7 +24379,7 @@
         },
         {
           "actor": "ZONDER_ACTOR",
-          "orders": 1282,
+          "orders": 1283,
           "orders_met_duur": 0,
           "p50_duration_ms": null,
           "max_duration_ms": null,
@@ -25671,7 +25671,8 @@
             1279,
             1280,
             1281,
-            1282
+            1282,
+            1283
           ]
         }
       ]
