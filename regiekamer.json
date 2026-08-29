@@ -1,14 +1,14 @@
 {
   "schema": "REGIEKAMER_REALTIME_V1",
-  "gegenereerd_op": "2026-08-29T18:25:31Z",
+  "gegenereerd_op": "2026-08-29T18:30:41Z",
   "stack_root": "STACK_ROOT",
   "accounts": [
     {
       "actor": "claude1",
-      "status": "BEZIG",
+      "status": "STALE",
       "taak_id": "STACKDIR_HARDENING_STALE_SUITE_CLAUDE1_V1",
       "sinds": "2026-08-29T18:15:37Z",
-      "sinds_minuten": 9.8,
+      "sinds_minuten": 15.0,
       "bron": "ps:pid=18983"
     },
     {
@@ -16,23 +16,23 @@
       "status": "GEBLOKKEERD",
       "taak_id": "STACKDIR_LINTPOORT_SYMLINK_CANON_CLAUDE2_V2",
       "sinds": "2026-08-29T17:26:36Z",
-      "sinds_minuten": 58.8,
+      "sinds_minuten": 64.0,
       "bron": "outbox:receipt:STACKDIR_LINTPOORT_SYMLINK_CANON_CLAUDE2_V2_RECEIPT.md"
     },
     {
       "actor": "claude3",
-      "status": "VRIJ",
-      "taak_id": "STACKDIR_STATUSBORD_VERDICT_CLAUDE3_V2",
-      "sinds": "2026-08-29T18:19:59Z",
-      "sinds_minuten": 5.4,
-      "bron": "outbox:receipt:STACKDIR_STATUSBORD_VERDICT_CLAUDE3_V2_RECEIPT.md"
+      "status": "BEZIG",
+      "taak_id": "STACKDIR_STATUSBORD_VERDICT_CLAUDE3_V3",
+      "sinds": "2026-08-29T18:28:36Z",
+      "sinds_minuten": 2.0,
+      "bron": "ps:pid=25255"
     },
     {
       "actor": "claude4",
       "status": "STALE",
       "taak_id": "STACKDIR_POORT_EIGENAARSCHAP_PIPE_CLAUDE4_V3",
       "sinds": "2026-08-29T17:48:32Z",
-      "sinds_minuten": 36.9,
+      "sinds_minuten": 42.0,
       "bron": "ps:pid=6212"
     },
     {
@@ -40,24 +40,24 @@
       "status": "GEBLOKKEERD",
       "taak_id": "KEYNOTE_V3_MACBOOK_REBIND_REVIEW_CODEX1_V1_TRANSPORT",
       "sinds": "2026-08-29T18:14:46Z",
-      "sinds_minuten": 10.6,
+      "sinds_minuten": 15.8,
       "bron": "outbox:receipt:KEYNOTE_V3_MACBOOK_REBIND_REVIEW_CODEX1_V1_TRANSPORT_RECEIPT.md"
     },
     {
       "actor": "codex2",
       "status": "VRIJ",
       "taak_id": null,
-      "sinds": "2026-08-29T18:23:53Z",
-      "sinds_minuten": 1.5,
+      "sinds": "2026-08-29T18:28:58Z",
+      "sinds_minuten": 1.6,
       "bron": "outbox:order_afgerond:STUDIO_LONGREAD_PILOT_V1_REPAIR_L_COMMIT_ISOLATED_CODEX2_V1.md"
     },
     {
       "actor": "gemini1",
-      "status": "WACHT",
-      "taak_id": "AUTOCODING_CANDIDATE_OVERLAP_GUARD_6CB598F_GEMINI1_REVIEW_V1",
-      "sinds": "2026-08-29T15:33:55Z",
-      "sinds_minuten": 171.5,
-      "bron": "outbox:order_open:AUTOCODING_CANDIDATE_OVERLAP_GUARD_6CB598F_GEMINI1_REVIEW_V1.md"
+      "status": "BEZIG",
+      "taak_id": "detach-order",
+      "sinds": "2026-08-29T18:30:24Z",
+      "sinds_minuten": 0.2,
+      "bron": "ps:pid=76902"
     },
     {
       "actor": "dashboard-codex",
@@ -72,7 +72,7 @@
       "status": "GEBLOKKEERD",
       "taak_id": "AUTOCODER_CONTROLLER_RECEIPT_FIELD_FIX_REVIEW_CLAUDE1_V1",
       "sinds": "2026-08-28T13:35:13Z",
-      "sinds_minuten": 1730.2,
+      "sinds_minuten": 1735.4,
       "bron": "outbox:receipt:AUTOCODER_CONTROLLER_RECEIPT_FIELD_FIX_REVIEW_CLAUDE1_V1.md"
     }
   ],
@@ -23888,15 +23888,15 @@
     "cmd": "bin/lane-capaciteit --json",
     "data": {
       "stack_root": "STACK_ROOT",
-      "generated_at": "2026-08-29T18:25:31Z",
+      "generated_at": "2026-08-29T18:30:41Z",
       "meta": {
         "receipt_bestanden_totaal": 1534,
         "receipt_onparseerbaar": 199,
         "jsonl": {
-          "total_lines": 1286,
+          "total_lines": 1287,
           "actor_lines": 0,
           "onparseerbaar": 0,
-          "zonder_actor": 1286,
+          "zonder_actor": 1287,
           "aanwezig": true
         },
         "verdict_classificatie": "heuristiek: prefix-match op verdict= (hoofdletterongevoelig); GESLAAGD={GO,PASS,DELIVERED}, GEBLOKKEERD={NO_GO,BLOCKED,REJECTED,FAILED}, onbekend/overig telt niet stilzwijgend mee als geslaagd of geblokkeerd"
@@ -24523,7 +24523,7 @@
         },
         {
           "actor": "ZONDER_ACTOR",
-          "orders": 1286,
+          "orders": 1287,
           "orders_met_duur": 0,
           "p50_duration_ms": null,
           "max_duration_ms": null,
@@ -25819,7 +25819,8 @@
             1283,
             1284,
             1285,
-            1286
+            1286,
+            1287
           ]
         }
       ]
