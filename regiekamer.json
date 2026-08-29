@@ -1,6 +1,6 @@
 {
   "schema": "REGIEKAMER_REALTIME_V1",
-  "gegenereerd_op": "2026-08-29T13:41:38Z",
+  "gegenereerd_op": "2026-08-29T13:46:50Z",
   "stack_root": "STACK_ROOT",
   "accounts": [
     {
@@ -8,31 +8,31 @@
       "status": "WACHT",
       "taak_id": "AUTOCODING_CANDIDATE_OVERLAP_GUARD_CLAUDE1_V2",
       "sinds": "2026-08-29T13:28:05Z",
-      "sinds_minuten": 13.4,
+      "sinds_minuten": 18.6,
       "bron": "outbox:order_open:AUTOCODING_CANDIDATE_OVERLAP_GUARD_CLAUDE1_V2.md"
     },
     {
       "actor": "claude2",
       "status": "WACHT",
-      "taak_id": "AUTOCODING_CLAIM_FRESHNESS_REPAIR_CLAUDE2_V1",
-      "sinds": "2026-08-29T13:28:05Z",
-      "sinds_minuten": 13.4,
-      "bron": "outbox:order_open:AUTOCODING_CLAIM_FRESHNESS_REPAIR_CLAUDE2_V1.md"
+      "taak_id": "AUTOCODING_E2E_CANARY_AEC2EAC_CLAUDE2_REVIEW_V1",
+      "sinds": "2026-08-29T13:41:44Z",
+      "sinds_minuten": 5.0,
+      "bron": "outbox:order_open:AUTOCODING_E2E_CANARY_AEC2EAC_CLAUDE2_REVIEW_V1.md"
     },
     {
       "actor": "claude3",
-      "status": "BEZIG",
-      "taak_id": "AUTOCODING_CANDIDATE_OVERLAP_GUARD_6CB598F_CLAUDE3_REVIEW_V1",
-      "sinds": "2026-08-29T13:40:44Z",
-      "sinds_minuten": 0.8,
-      "bron": "ps:pid=33758"
+      "status": "WACHT",
+      "taak_id": "AUTOCODING_CANDIDATE_OVERLAP_GUARD_6CB598F_CLAUDE3_REVIEW_V2",
+      "sinds": "2026-08-29T13:46:29Z",
+      "sinds_minuten": 0.2,
+      "bron": "outbox:order_open:AUTOCODING_CANDIDATE_OVERLAP_GUARD_6CB598F_CLAUDE3_REVIEW_V2.md"
     },
     {
       "actor": "claude4",
-      "status": "BEZIG",
+      "status": "STALE",
       "taak_id": "AUTOCODING_TRANSPORT_RESOLVER_CLAUDE4_V2",
       "sinds": "2026-08-29T13:31:54Z",
-      "sinds_minuten": 9.6,
+      "sinds_minuten": 14.8,
       "bron": "ps:pid=12689"
     },
     {
@@ -40,24 +40,24 @@
       "status": "VRIJ",
       "taak_id": "STUDIO_LONGREAD_F006_D85312E_REVIEW_CODEX1_V3",
       "sinds": "2026-08-29T13:29:21Z",
-      "sinds_minuten": 12.2,
+      "sinds_minuten": 17.3,
       "bron": "outbox:receipt:STUDIO_LONGREAD_F006_D85312E_REVIEW_CODEX1_V3_RECEIPT.md"
     },
     {
       "actor": "codex2",
       "status": "VRIJ",
       "taak_id": null,
-      "sinds": "2026-08-29T13:37:49Z",
-      "sinds_minuten": 3.7,
+      "sinds": "2026-08-29T13:42:55Z",
+      "sinds_minuten": 3.8,
       "bron": "outbox:order_afgerond:STUDIO_LONGREAD_PILOT_V1_REPAIR_L_COMMIT_ISOLATED_CODEX2_V1.md"
     },
     {
       "actor": "gemini1",
-      "status": "VRIJ",
-      "taak_id": "STUDIO_LONGREAD_F006_D85312E_REVIEW_GEMINI1_V2",
-      "sinds": "2026-08-29T13:39:39Z",
-      "sinds_minuten": 1.9,
-      "bron": "outbox:receipt:STUDIO_LONGREAD_F006_D85312E_REVIEW_GEMINI1_V2_RECEIPT.md"
+      "status": "BEZIG",
+      "taak_id": "AUTOCODING_CANDIDATE_OVERLAP_GUARD_6CB598F_GEMINI1_REVIEW_V1",
+      "sinds": "2026-08-29T13:46:09Z",
+      "sinds_minuten": 0.6,
+      "bron": "ps:pid=46434"
     },
     {
       "actor": "dashboard-codex",
@@ -72,7 +72,7 @@
       "status": "GEBLOKKEERD",
       "taak_id": "AUTOCODER_CONTROLLER_RECEIPT_FIELD_FIX_REVIEW_CLAUDE1_V1",
       "sinds": "2026-08-28T13:35:13Z",
-      "sinds_minuten": 1446.3,
+      "sinds_minuten": 1451.5,
       "bron": "outbox:receipt:AUTOCODER_CONTROLLER_RECEIPT_FIELD_FIX_REVIEW_CLAUDE1_V1.md"
     }
   ],
@@ -1056,6 +1056,102 @@
       "bron_type": "receipt",
       "status": "KLAAR",
       "taak": "Eindverdict bepaald: NO_GO_LIVENESS_GAP",
+      "schatting_categorie": "GEEN_SCHATTING",
+      "schatting_min": null
+    },
+    {
+      "bron_bestand": "outbox/AUTOCODING_CANDIDATE_OVERLAP_GUARD_6CB598F_CLAUDE3_REVIEW_V1.md",
+      "bron_type": "order",
+      "status": "KLAAR",
+      "taak": "base/head/tree zelfstandig meten in candidate_repo",
+      "schatting_categorie": "GEEN_SCHATTING",
+      "schatting_min": null
+    },
+    {
+      "bron_bestand": "outbox/AUTOCODING_CANDIDATE_OVERLAP_GUARD_6CB598F_CLAUDE3_REVIEW_V1.md",
+      "bron_type": "order",
+      "status": "KLAAR",
+      "taak": "governance/test_autocoding_candidate_overlap.sh foreground draaien",
+      "schatting_categorie": "GEEN_SCHATTING",
+      "schatting_min": null
+    },
+    {
+      "bron_bestand": "outbox/AUTOCODING_CANDIDATE_OVERLAP_GUARD_6CB598F_CLAUDE3_REVIEW_V1.md",
+      "bron_type": "order",
+      "status": "KLAAR",
+      "taak": "zelfstandige negatieve mutatie (productie-overlap) buiten kandidaatclone",
+      "schatting_categorie": "GEEN_SCHATTING",
+      "schatting_min": null
+    },
+    {
+      "bron_bestand": "outbox/AUTOCODING_CANDIDATE_OVERLAP_GUARD_6CB598F_CLAUDE3_REVIEW_V1.md",
+      "bron_type": "order",
+      "status": "KLAAR",
+      "taak": "bevestigen test-only-overlap blokkeert niet + brede waiver wordt geweigerd",
+      "schatting_categorie": "GEEN_SCHATTING",
+      "schatting_min": null
+    },
+    {
+      "bron_bestand": "outbox/AUTOCODING_CANDIDATE_OVERLAP_GUARD_6CB598F_CLAUDE3_REVIEW_V1.md",
+      "bron_type": "order",
+      "status": "KLAAR",
+      "taak": "receipt schrijven",
+      "schatting_categorie": "GEEN_SCHATTING",
+      "schatting_min": null
+    },
+    {
+      "bron_bestand": "outbox/AUTOCODING_CANDIDATE_OVERLAP_GUARD_6CB598F_CLAUDE3_REVIEW_V2.md",
+      "bron_type": "order",
+      "status": "KLAAR",
+      "taak": "base/head/tree zelf meten",
+      "schatting_categorie": "GEEN_SCHATTING",
+      "schatting_min": null
+    },
+    {
+      "bron_bestand": "outbox/AUTOCODING_CANDIDATE_OVERLAP_GUARD_6CB598F_CLAUDE3_REVIEW_V2.md",
+      "bron_type": "order",
+      "status": "KLAAR",
+      "taak": "letterlijke acceptatieproef draaien op kandidaathead",
+      "schatting_categorie": "GEEN_SCHATTING",
+      "schatting_min": null
+    },
+    {
+      "bron_bestand": "outbox/AUTOCODING_CANDIDATE_OVERLAP_GUARD_6CB598F_CLAUDE3_REVIEW_V2.md",
+      "bron_type": "order",
+      "status": "KLAAR",
+      "taak": "fixture: productie-overlap → BLOKKEREND",
+      "schatting_categorie": "GEEN_SCHATTING",
+      "schatting_min": null
+    },
+    {
+      "bron_bestand": "outbox/AUTOCODING_CANDIDATE_OVERLAP_GUARD_6CB598F_CLAUDE3_REVIEW_V2.md",
+      "bron_type": "order",
+      "status": "KLAAR",
+      "taak": "fixture: test-only-overlap → niet blokkerend",
+      "schatting_categorie": "GEEN_SCHATTING",
+      "schatting_min": null
+    },
+    {
+      "bron_bestand": "outbox/AUTOCODING_CANDIDATE_OVERLAP_GUARD_6CB598F_CLAUDE3_REVIEW_V2.md",
+      "bron_type": "order",
+      "status": "KLAAR",
+      "taak": "fixture: brede glob-waiver → fail-closed weigeren",
+      "schatting_categorie": "GEEN_SCHATTING",
+      "schatting_min": null
+    },
+    {
+      "bron_bestand": "outbox/AUTOCODING_CANDIDATE_OVERLAP_GUARD_6CB598F_CLAUDE3_REVIEW_V2.md",
+      "bron_type": "order",
+      "status": "KLAAR",
+      "taak": "negatieve controle op detectiekern",
+      "schatting_categorie": "GEEN_SCHATTING",
+      "schatting_min": null
+    },
+    {
+      "bron_bestand": "outbox/AUTOCODING_CANDIDATE_OVERLAP_GUARD_6CB598F_CLAUDE3_REVIEW_V2.md",
+      "bron_type": "order",
+      "status": "KLAAR",
+      "taak": "receipt schrijven en pad melden",
       "schatting_categorie": "GEEN_SCHATTING",
       "schatting_min": null
     },
@@ -22845,8 +22941,8 @@
     }
   ],
   "taken_meta": {
-    "taken_totaal": 2844,
-    "taken_zonder_schatting": 2738,
+    "taken_totaal": 2856,
+    "taken_zonder_schatting": 2750,
     "bron_glob": "outbox/*.md (TAKENLIJST-blokken)",
     "classificatie": "regex op TAKENLIJST-tabelrijen (Status/Taak/Tijd) en kale lijstvorm; een cel zonder herkenbaar '~X min'-patroon telt als GEEN_SCHATTING, nooit stilzwijgend overgeslagen"
   },
@@ -22856,7 +22952,7 @@
     "cmd": "bin/lane-capaciteit --json",
     "data": {
       "stack_root": "STACK_ROOT",
-      "generated_at": "2026-08-29T13:41:38Z",
+      "generated_at": "2026-08-29T13:46:50Z",
       "meta": {
         "receipt_bestanden_totaal": 1497,
         "receipt_onparseerbaar": 192,
