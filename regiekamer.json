@@ -1,22 +1,22 @@
 {
   "schema": "REGIEKAMER_REALTIME_V1",
-  "gegenereerd_op": "2026-08-30T22:48:33Z",
+  "gegenereerd_op": "2026-08-30T22:53:51Z",
   "stack_root": "STACK_ROOT",
   "accounts": [
     {
       "actor": "claude1",
-      "status": "WACHT",
+      "status": "VRIJ",
       "taak_id": "AUTOCODING_H11_CONTROLLER_LAUNCHD_WATCHDOG_CLAUDE1_V1",
-      "sinds": "2026-08-30T22:33:12Z",
-      "sinds_minuten": 4.4,
-      "bron": "outbox:order_open:AUTOCODING_H11_CONTROLLER_LAUNCHD_WATCHDOG_CLAUDE1_V1.md"
+      "sinds": "2026-08-30T22:52:35Z",
+      "sinds_minuten": 1.0,
+      "bron": "outbox:receipt:AUTOCODING_H11_CONTROLLER_LAUNCHD_WATCHDOG_CLAUDE1_V1_RECEIPT.md"
     },
     {
       "actor": "claude2",
       "status": "WACHT",
       "taak_id": "AUTOCODING_OVERNIGHT_INTEGRATED_A4AAB79_EXACT_HEAD_REVIEW_CLAUDE2_V2",
-      "sinds": "2026-08-30T22:25:51Z",
-      "sinds_minuten": 11.8,
+      "sinds": "2026-08-30T22:49:45Z",
+      "sinds_minuten": 3.9,
       "bron": "outbox:order_open:AUTOCODING_OVERNIGHT_INTEGRATED_A4AAB79_EXACT_HEAD_REVIEW_CLAUDE2_V2.md"
     },
     {
@@ -24,23 +24,23 @@
       "status": "VRIJ",
       "taak_id": "AUTOCODING_REGIEKAMER_GENERATOR_NOGO2_REPAIR_CLAUDE3_V3_QUEUE_RECONCILIATION",
       "sinds": "2026-08-30T22:24:05Z",
-      "sinds_minuten": 13.5,
+      "sinds_minuten": 29.5,
       "bron": "outbox:receipt:AUTOCODING_REGIEKAMER_GENERATOR_NOGO2_REPAIR_CLAUDE3_V3_QUEUE_RECONCILIATION_RECEIPT.md"
     },
     {
       "actor": "claude4",
-      "status": "VRIJ",
-      "taak_id": "AUTOCODING_TRANSPORT_POORT_REPAIR_CLAUDE4_V1_QUEUE_RECONCILIATION",
-      "sinds": "2026-08-30T22:26:36Z",
-      "sinds_minuten": 11.0,
-      "bron": "outbox:receipt:AUTOCODING_TRANSPORT_POORT_REPAIR_CLAUDE4_V1_QUEUE_RECONCILIATION_RECEIPT.md"
+      "status": "STALE",
+      "taak_id": "AUTOCODING_TRANSPORT_POORT_REPAIR_CLAUDE4_V1",
+      "sinds": "2026-08-30T22:41:39Z",
+      "sinds_minuten": 12.0,
+      "bron": "ps:pid=30818"
     },
     {
       "actor": "codex1",
       "status": "VRIJ",
       "taak_id": "KEYNOTE_V3_SSH_SOURCE_TRANSPORT_923_VALIDATION_V3_SESSION_INTERRUPTION",
       "sinds": "2026-08-30T21:19:30Z",
-      "sinds_minuten": 78.1,
+      "sinds_minuten": 94.1,
       "bron": "outbox:receipt:KEYNOTE_V3_SSH_SOURCE_TRANSPORT_923_VALIDATION_V3_SESSION_INTERRUPTION_RECEIPT.md"
     },
     {
@@ -48,16 +48,16 @@
       "status": "VRIJ",
       "taak_id": "AUTOCODING_PR54_CONFLICT_INVENTORY_CODEX2_V1_QUEUE_RECONCILIATION",
       "sinds": "2026-08-30T22:24:05Z",
-      "sinds_minuten": 13.5,
+      "sinds_minuten": 29.5,
       "bron": "outbox:receipt:AUTOCODING_PR54_CONFLICT_INVENTORY_CODEX2_V1_QUEUE_RECONCILIATION_RECEIPT.md"
     },
     {
       "actor": "gemini1",
-      "status": "VRIJ",
-      "taak_id": "AUTOCODING_PR55_HERBEOORDELING_GEMINI1_V1_QUEUE_RECONCILIATION",
-      "sinds": "2026-08-30T22:24:05Z",
-      "sinds_minuten": 13.5,
-      "bron": "outbox:receipt:AUTOCODING_PR55_HERBEOORDELING_GEMINI1_V1_QUEUE_RECONCILIATION_RECEIPT.md"
+      "status": "BEZIG",
+      "taak_id": "order",
+      "sinds": "2026-08-30T22:53:36Z",
+      "sinds_minuten": 0.0,
+      "bron": "ps:pid=78579"
     },
     {
       "actor": "dashboard-codex",
@@ -72,7 +72,7 @@
       "status": "VRIJ",
       "taak_id": null,
       "sinds": "2026-08-30T14:20:15Z",
-      "sinds_minuten": 497.4,
+      "sinds_minuten": 513.4,
       "bron": "outbox:order_afgerond:AUTOCODING_CONTROLLER_PARALLELISM_EXACT_HEAD_REVIEW_CODEX1_V1.md"
     }
   ],
@@ -29656,10 +29656,10 @@
     "cmd": "bin/lane-capaciteit --json",
     "data": {
       "stack_root": "STACK_ROOT",
-      "generated_at": "2026-08-30T22:48:33Z",
+      "generated_at": "2026-08-30T22:53:51Z",
       "meta": {
-        "receipt_bestanden_totaal": 1840,
-        "receipt_onparseerbaar": 278,
+        "receipt_bestanden_totaal": 1841,
+        "receipt_onparseerbaar": 279,
         "jsonl": {
           "total_lines": 1455,
           "actor_lines": 0,
@@ -30137,7 +30137,7 @@
         },
         {
           "actor": "ONPARSEERBAAR",
-          "orders": 278,
+          "orders": 279,
           "orders_met_duur": 0,
           "p50_duration_ms": null,
           "max_duration_ms": null,
@@ -30181,6 +30181,7 @@
             "AUTOCODING_GEMINI_TRANSPORT_STDIN_ISOLATIE_CLAUDE2_V2_RECEIPT_ONLY_RECEIPT.md",
             "AUTOCODING_H11_ATOMIC_SINGLE_LEADER_EXACTHEAD_REVIEW_CODEX2_V1_RECEIPT.md",
             "AUTOCODING_H11_ATOMIC_SINGLE_LEADER_REPAIR_CLAUDE1_V1_RECEIPT.md",
+            "AUTOCODING_H11_CONTROLLER_LAUNCHD_WATCHDOG_CLAUDE1_V1_RECEIPT.md",
             "AUTOCODING_H11_FLEET_SCHEDULER_RECONCILED_EXACT_HEAD_REVIEW_CODEX1_V2_RECEIPT.md",
             "AUTOCODING_H11_FLEET_SCHEDULER_RECONCILED_EXACT_HEAD_REVIEW_CODEX1_V3_RECEIPT.md",
             "AUTOCODING_H11_LOCK_RACE_REPAIR_CLAUDE4_V1_RECEIPT.md",
