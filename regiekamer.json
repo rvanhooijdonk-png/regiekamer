@@ -1,6 +1,6 @@
 {
   "schema": "REGIEKAMER_REALTIME_V1",
-  "gegenereerd_op": "2026-08-30T12:47:59Z",
+  "gegenereerd_op": "2026-08-30T12:53:08Z",
   "stack_root": "STACK_ROOT",
   "accounts": [
     {
@@ -8,7 +8,7 @@
       "status": "VRIJ",
       "taak_id": null,
       "sinds": "2026-08-30T12:46:13Z",
-      "sinds_minuten": 1.7,
+      "sinds_minuten": 6.8,
       "bron": "outbox:order_afgerond:STACKDIR_BEWIJSGROND_IS_GEEN_OORDEEL_CLAUDE1_V1.md"
     },
     {
@@ -16,7 +16,7 @@
       "status": "WACHT",
       "taak_id": "CONTENT_DESK_GENERIC_FRONTEND_V1",
       "sinds": "2026-08-30T12:35:06Z",
-      "sinds_minuten": 12.8,
+      "sinds_minuten": 17.9,
       "bron": "outbox:order_open:CONTENT_DESK_GENERIC_FRONTEND_V1.md"
     },
     {
@@ -24,7 +24,7 @@
       "status": "WACHT",
       "taak_id": "KEYNOTE_OUTPUT_CONNECTOR_V1",
       "sinds": "2026-08-30T12:35:06Z",
-      "sinds_minuten": 12.8,
+      "sinds_minuten": 17.9,
       "bron": "outbox:order_open:KEYNOTE_OUTPUT_CONNECTOR_V1.md"
     },
     {
@@ -32,7 +32,7 @@
       "status": "GEBLOKKEERD",
       "taak_id": "AUTOCODING_H4_PROCES_IDENTITEIT_CLAUDE4_V4_RECEIPT_ONLY_TRANSPORT",
       "sinds": "2026-08-30T11:00:00Z",
-      "sinds_minuten": 107.9,
+      "sinds_minuten": 113.0,
       "bron": "outbox:receipt:AUTOCODING_H4_PROCES_IDENTITEIT_CLAUDE4_V4_RECEIPT_ONLY_TRANSPORT_RECEIPT.md"
     },
     {
@@ -40,7 +40,7 @@
       "status": "BEZIG",
       "taak_id": "AUTOCODING_H11_FLEET_SCHEDULER_RECONCILED_EXACT_HEAD_REVIEW_CODEX1_V3",
       "sinds": "2026-08-30T12:47:31Z",
-      "sinds_minuten": 0.4,
+      "sinds_minuten": 5.5,
       "bron": "ps:pid=24195"
     },
     {
@@ -48,7 +48,7 @@
       "status": "BEZIG",
       "taak_id": "AUTOCODING_H3_CLAIM_FAIL_CLOSED_EXACT_HEAD_REVIEW_CODEX2_V3",
       "sinds": "2026-08-30T12:47:31Z",
-      "sinds_minuten": 0.4,
+      "sinds_minuten": 5.5,
       "bron": "ps:pid=24196"
     },
     {
@@ -56,7 +56,7 @@
       "status": "GEBLOKKEERD",
       "taak_id": "DWINGEND_SPOOR_G_ROUND6_TWEEDE_REVIEWSTEM_GEMINI1_V2",
       "sinds": "2026-08-30T09:59:10Z",
-      "sinds_minuten": 168.7,
+      "sinds_minuten": 173.9,
       "bron": "outbox:receipt:DWINGEND_SPOOR_G_ROUND6_TWEEDE_REVIEWSTEM_GEMINI1_V2_RECEIPT.md"
     },
     {
@@ -70,10 +70,10 @@
     {
       "actor": "directie",
       "status": "WACHT",
-      "taak_id": "AUTOCODING_VERIFY_ACCEPTANCE_POSTMERGE_EXACT_HEAD_REVIEW_CODEX2_V2",
-      "sinds": "2026-08-30T12:46:57Z",
-      "sinds_minuten": 0.9,
-      "bron": "outbox:order_open:AUTOCODING_VERIFY_ACCEPTANCE_POSTMERGE_EXACT_HEAD_REVIEW_CODEX2_V2.md"
+      "taak_id": "AUTOCODING_MERGE_ORDER_GUARD_EXACT_HEAD_REVIEW_CODEX2_V1",
+      "sinds": "2026-08-30T12:48:50Z",
+      "sinds_minuten": 4.2,
+      "bron": "outbox:order_open:AUTOCODING_MERGE_ORDER_GUARD_EXACT_HEAD_REVIEW_CODEX2_V1.md"
     }
   ],
   "accounts_meta": {
@@ -2720,6 +2720,54 @@
       "bron_type": "receipt",
       "status": "KLAAR",
       "taak": "tijdelijke clone opgeruimd, cleanup RC=0.",
+      "schatting_categorie": "GEEN_SCHATTING",
+      "schatting_min": null
+    },
+    {
+      "bron_bestand": "outbox/AUTOCODING_H11_FLEET_SCHEDULER_RECONCILED_EXACT_HEAD_REVIEW_CODEX1_V3_RECEIPT.md",
+      "bron_type": "receipt",
+      "status": "KLAAR",
+      "taak": "exacte HEAD/tree bevestigd",
+      "schatting_categorie": "GEEN_SCHATTING",
+      "schatting_min": null
+    },
+    {
+      "bron_bestand": "outbox/AUTOCODING_H11_FLEET_SCHEDULER_RECONCILED_EXACT_HEAD_REVIEW_CODEX1_V3_RECEIPT.md",
+      "bron_type": "receipt",
+      "status": "KLAAR",
+      "taak": "positieve suite 32/32 PASS",
+      "schatting_categorie": "GEEN_SCHATTING",
+      "schatting_min": null
+    },
+    {
+      "bron_bestand": "outbox/AUTOCODING_H11_FLEET_SCHEDULER_RECONCILED_EXACT_HEAD_REVIEW_CODEX1_V3_RECEIPT.md",
+      "bron_type": "receipt",
+      "status": "KLAAR",
+      "taak": "mutant-negatieve-controle exact drie bedoelde failures",
+      "schatting_categorie": "GEEN_SCHATTING",
+      "schatting_min": null
+    },
+    {
+      "bron_bestand": "outbox/AUTOCODING_H11_FLEET_SCHEDULER_RECONCILED_EXACT_HEAD_REVIEW_CODEX1_V3_RECEIPT.md",
+      "bron_type": "receipt",
+      "status": "KLAAR",
+      "taak": "fix hersteld; suite opnieuw 32/32 PASS en schedulerpad schoon",
+      "schatting_categorie": "GEEN_SCHATTING",
+      "schatting_min": null
+    },
+    {
+      "bron_bestand": "outbox/AUTOCODING_H11_FLEET_SCHEDULER_RECONCILED_EXACT_HEAD_REVIEW_CODEX1_V3_RECEIPT.md",
+      "bron_type": "receipt",
+      "status": "KLAAR",
+      "taak": "basiscommit bevat scheduler niet; RC=128",
+      "schatting_categorie": "GEEN_SCHATTING",
+      "schatting_min": null
+    },
+    {
+      "bron_bestand": "outbox/AUTOCODING_H11_FLEET_SCHEDULER_RECONCILED_EXACT_HEAD_REVIEW_CODEX1_V3_RECEIPT.md",
+      "bron_type": "receipt",
+      "status": "KLAAR",
+      "taak": "geïsoleerde clone en back-up opgeruimd",
       "schatting_categorie": "GEEN_SCHATTING",
       "schatting_min": null
     },
@@ -27517,8 +27565,8 @@
     }
   ],
   "taken_meta": {
-    "taken_totaal": 3428,
-    "taken_zonder_schatting": 3311,
+    "taken_totaal": 3434,
+    "taken_zonder_schatting": 3317,
     "bron_glob": "outbox/*.md (TAKENLIJST-blokken)",
     "classificatie": "regex op TAKENLIJST-tabelrijen (Status/Taak/Tijd) en kale lijstvorm; een cel zonder herkenbaar '~X min'-patroon telt als GEEN_SCHATTING, nooit stilzwijgend overgeslagen"
   },
@@ -27528,10 +27576,10 @@
     "cmd": "bin/lane-capaciteit --json",
     "data": {
       "stack_root": "STACK_ROOT",
-      "generated_at": "2026-08-30T12:47:59Z",
+      "generated_at": "2026-08-30T12:53:08Z",
       "meta": {
-        "receipt_bestanden_totaal": 1727,
-        "receipt_onparseerbaar": 241,
+        "receipt_bestanden_totaal": 1729,
+        "receipt_onparseerbaar": 243,
         "jsonl": {
           "total_lines": 1396,
           "actor_lines": 0,
@@ -27983,7 +28031,7 @@
         },
         {
           "actor": "ONPARSEERBAAR",
-          "orders": 241,
+          "orders": 243,
           "orders_met_duur": 0,
           "p50_duration_ms": null,
           "max_duration_ms": null,
@@ -28022,6 +28070,7 @@
             "AUTOCODING_GEMINI1_POLICY_EXACT_HEAD_REVIEW_CODEX1_V4_20260819_RECEIPT.md",
             "AUTOCODING_GEMINI_TRANSPORT_STDIN_ISOLATIE_CLAUDE2_V2_RECEIPT_ONLY_RECEIPT.md",
             "AUTOCODING_H11_FLEET_SCHEDULER_RECONCILED_EXACT_HEAD_REVIEW_CODEX1_V2_RECEIPT.md",
+            "AUTOCODING_H11_FLEET_SCHEDULER_RECONCILED_EXACT_HEAD_REVIEW_CODEX1_V3_RECEIPT.md",
             "AUTOCODING_H3_CLAIM_FAIL_CLOSED_HERSTEL_CLAUDE3_V2_RECEIPT.md",
             "AUTOCODING_H3_CLAIM_FAIL_CLOSED_R2_LITERAL_HERSTEL_CLAUDE3_V5_RECEIPT_ONLY_RECEIPT.md",
             "AUTOCODING_H3_CLAIM_FAIL_CLOSED_R2_LITERAL_HERSTEL_CLAUDE3_V6_RECEIPT_ONLY_RECEIPT.md",
@@ -28088,6 +28137,7 @@
             "BRANCHVERZOENING_MAIN_INWAARTS_S2_HERSTELORDER_CODEX1_V2_RECEIPT.md",
             "BRANCHVERZOENING_MAIN_INWAARTS_S2_HERSTELORDER_CODEX1_V3_RECEIPT.md",
             "BRANCHVERZOENING_MAIN_INWAARTS_S2_RECONCILED_GRENSSCHENDING_REVIEW_CODEX2_V1_RECEIPT.md",
+            "CONTENT_INTELLIGENCE_M1_SLICE_4E63ED1_EXACT_REVIEW_CODEX1_V1_RECEIPT.md",
             "CONTENT_PROCESSING_SYSTEM_V2_FABLE_FINAL_AUDIT_RECEIPT.md",
             "DB-20260817-02_BUNDLE_VERIFICATION_RECEIPT.md",
             "DIRECTOR_IDLE_LANE_ENFORCEMENT_V2_GITHUB_RECEIPT.md",
