@@ -1,22 +1,22 @@
 {
   "schema": "REGIEKAMER_REALTIME_V1",
-  "gegenereerd_op": "2026-08-30T19:48:20Z",
+  "gegenereerd_op": "2026-08-30T19:53:29Z",
   "stack_root": "STACK_ROOT",
   "accounts": [
     {
       "actor": "claude1",
-      "status": "VRIJ",
-      "taak_id": "AUTOCODING_ALERT_CANDIDATE_REBASE_FRESHNESS_CLAUDE1_V1_TRANSPORT",
-      "sinds": "2026-08-30T19:33:10Z",
-      "sinds_minuten": 15.1,
-      "bron": "outbox:receipt:AUTOCODING_ALERT_CANDIDATE_REBASE_FRESHNESS_CLAUDE1_V1_TRANSPORT_RECEIPT.md"
+      "status": "GEBLOKKEERD",
+      "taak_id": "AUTOCODING_ESCALATION_REVIEW_STDOUT_WORKAROUND_CLAUDE1_V1",
+      "sinds": "2026-08-30T19:51:25Z",
+      "sinds_minuten": 2.0,
+      "bron": "outbox:receipt:AUTOCODING_ESCALATION_REVIEW_STDOUT_WORKAROUND_CLAUDE1_V1_RECEIPT.md"
     },
     {
       "actor": "claude2",
       "status": "BEZIG",
       "taak_id": "AUTOCODING_LIVE_QUEUE_ACTIVATION_PREFLIGHT_CLAUDE2_V1",
       "sinds": "2026-08-30T19:45:44Z",
-      "sinds_minuten": 2.5,
+      "sinds_minuten": 7.7,
       "bron": "ps:pid=79564"
     },
     {
@@ -24,15 +24,15 @@
       "status": "GEBLOKKEERD",
       "taak_id": "AUTOCODING_REVIEW_TRANSPORT_CANONICAL_RECEIPT_REPAIR_CLAUDE3_V1_TRANSPORT",
       "sinds": "2026-08-30T19:33:37Z",
-      "sinds_minuten": 14.6,
+      "sinds_minuten": 19.8,
       "bron": "outbox:receipt:AUTOCODING_REVIEW_TRANSPORT_CANONICAL_RECEIPT_REPAIR_CLAUDE3_V1_TRANSPORT_RECEIPT.md"
     },
     {
       "actor": "claude4",
-      "status": "BEZIG",
+      "status": "STALE",
       "taak_id": "AUTOCODING_NO_MORE_IDLE_PHASE1_LOCAL_INTEGRATION_CLAUDE4_V1",
       "sinds": "2026-08-30T19:43:11Z",
-      "sinds_minuten": 5.1,
+      "sinds_minuten": 10.2,
       "bron": "ps:pid=74312"
     },
     {
@@ -40,7 +40,7 @@
       "status": "BEZIG",
       "taak_id": "AUTOCODING_DISPATCHACTOR_TRANSPORT_REPAIR_EXACTHEAD_REVIEW_CODEX1_V1",
       "sinds": "2026-08-30T19:45:30Z",
-      "sinds_minuten": 2.8,
+      "sinds_minuten": 7.9,
       "bron": "ps:pid=78310"
     },
     {
@@ -48,16 +48,16 @@
       "status": "GEBLOKKEERD",
       "taak_id": "AUTOCODING_H11_ATOMIC_SINGLE_LEADER_EXACTHEAD_REVIEW_CODEX2_V1_TRANSPORT",
       "sinds": "2026-08-30T19:33:56Z",
-      "sinds_minuten": 14.3,
+      "sinds_minuten": 19.5,
       "bron": "outbox:receipt:AUTOCODING_H11_ATOMIC_SINGLE_LEADER_EXACTHEAD_REVIEW_CODEX2_V1_TRANSPORT_RECEIPT.md"
     },
     {
       "actor": "gemini1",
-      "status": "GEBLOKKEERD",
-      "taak_id": "AUTOCODING_H11_SECOND_OPINION_GEMINI1_V1",
-      "sinds": "2026-08-30T19:38:19Z",
-      "sinds_minuten": 9.9,
-      "bron": "outbox:receipt:AUTOCODING_H11_SECOND_OPINION_GEMINI1_V1_RECEIPT.md"
+      "status": "BEZIG",
+      "taak_id": "order",
+      "sinds": "2026-08-30T19:53:24Z",
+      "sinds_minuten": 0.0,
+      "bron": "ps:pid=20693"
     },
     {
       "actor": "dashboard-codex",
@@ -72,7 +72,7 @@
       "status": "VRIJ",
       "taak_id": null,
       "sinds": "2026-08-30T14:20:15Z",
-      "sinds_minuten": 328.0,
+      "sinds_minuten": 333.2,
       "bron": "outbox:order_afgerond:AUTOCODING_CONTROLLER_PARALLELISM_EXACT_HEAD_REVIEW_CODEX1_V1.md"
     }
   ],
@@ -29136,9 +29136,9 @@
     "cmd": "bin/lane-capaciteit --json",
     "data": {
       "stack_root": "STACK_ROOT",
-      "generated_at": "2026-08-30T19:48:20Z",
+      "generated_at": "2026-08-30T19:53:29Z",
       "meta": {
-        "receipt_bestanden_totaal": 1798,
+        "receipt_bestanden_totaal": 1799,
         "receipt_onparseerbaar": 266,
         "jsonl": {
           "total_lines": 1438,
@@ -29197,16 +29197,16 @@
         },
         {
           "actor": "claude1",
-          "orders": 160,
-          "orders_met_duur": 148,
-          "p50_duration_ms": 379500,
+          "orders": 161,
+          "orders_met_duur": 149,
+          "p50_duration_ms": 373000,
           "max_duration_ms": 2910000,
-          "orders_met_verdict": 88,
-          "geslaagd_pct": 14.8,
-          "geblokkeerd_pct": 73.9,
-          "overig_pct": 11.4,
+          "orders_met_verdict": 89,
+          "geslaagd_pct": 14.6,
+          "geblokkeerd_pct": 74.2,
+          "overig_pct": 11.2,
           "verdict_distribution_raw": {
-            "BLOCKED_EVIDENCE": 63,
+            "BLOCKED_EVIDENCE": 64,
             "DEFECT_CONFIRMED_REPAIR_ORDER_READY": 1,
             "DONE_FIX_READY": 1,
             "FRESH_NO_DRIFT_CLEAN_FASTFORWARD": 1,
@@ -29221,7 +29221,7 @@
             "OPGELEVERD|BLOCKED_EVIDENCE": 1,
             "TOETS_GO": 4
           },
-          "laatste_activiteit": "2026-08-30T19:33:08Z"
+          "laatste_activiteit": "2026-08-30T19:51:25Z"
         },
         {
           "actor": "claude1 (bouwer; review hoort bij een andere actor)",
