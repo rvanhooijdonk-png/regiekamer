@@ -1,6 +1,6 @@
 {
   "schema": "REGIEKAMER_REALTIME_V1",
-  "gegenereerd_op": "2026-08-30T22:53:51Z",
+  "gegenereerd_op": "2026-08-30T22:59:07Z",
   "stack_root": "STACK_ROOT",
   "accounts": [
     {
@@ -8,7 +8,7 @@
       "status": "VRIJ",
       "taak_id": "AUTOCODING_H11_CONTROLLER_LAUNCHD_WATCHDOG_CLAUDE1_V1",
       "sinds": "2026-08-30T22:52:35Z",
-      "sinds_minuten": 1.0,
+      "sinds_minuten": 6.3,
       "bron": "outbox:receipt:AUTOCODING_H11_CONTROLLER_LAUNCHD_WATCHDOG_CLAUDE1_V1_RECEIPT.md"
     },
     {
@@ -16,7 +16,7 @@
       "status": "WACHT",
       "taak_id": "AUTOCODING_OVERNIGHT_INTEGRATED_A4AAB79_EXACT_HEAD_REVIEW_CLAUDE2_V2",
       "sinds": "2026-08-30T22:49:45Z",
-      "sinds_minuten": 3.9,
+      "sinds_minuten": 9.2,
       "bron": "outbox:order_open:AUTOCODING_OVERNIGHT_INTEGRATED_A4AAB79_EXACT_HEAD_REVIEW_CLAUDE2_V2.md"
     },
     {
@@ -24,23 +24,23 @@
       "status": "VRIJ",
       "taak_id": "AUTOCODING_REGIEKAMER_GENERATOR_NOGO2_REPAIR_CLAUDE3_V3_QUEUE_RECONCILIATION",
       "sinds": "2026-08-30T22:24:05Z",
-      "sinds_minuten": 29.5,
+      "sinds_minuten": 34.9,
       "bron": "outbox:receipt:AUTOCODING_REGIEKAMER_GENERATOR_NOGO2_REPAIR_CLAUDE3_V3_QUEUE_RECONCILIATION_RECEIPT.md"
     },
     {
       "actor": "claude4",
-      "status": "STALE",
+      "status": "GEBLOKKEERD",
       "taak_id": "AUTOCODING_TRANSPORT_POORT_REPAIR_CLAUDE4_V1",
-      "sinds": "2026-08-30T22:41:39Z",
-      "sinds_minuten": 12.0,
-      "bron": "ps:pid=30818"
+      "sinds": "2026-08-30T22:57:20Z",
+      "sinds_minuten": 1.6,
+      "bron": "outbox:receipt:AUTOCODING_TRANSPORT_POORT_REPAIR_CLAUDE4_V1_RECEIPT.md"
     },
     {
       "actor": "codex1",
       "status": "VRIJ",
       "taak_id": "KEYNOTE_V3_SSH_SOURCE_TRANSPORT_923_VALIDATION_V3_SESSION_INTERRUPTION",
       "sinds": "2026-08-30T21:19:30Z",
-      "sinds_minuten": 94.1,
+      "sinds_minuten": 99.4,
       "bron": "outbox:receipt:KEYNOTE_V3_SSH_SOURCE_TRANSPORT_923_VALIDATION_V3_SESSION_INTERRUPTION_RECEIPT.md"
     },
     {
@@ -48,16 +48,16 @@
       "status": "VRIJ",
       "taak_id": "AUTOCODING_PR54_CONFLICT_INVENTORY_CODEX2_V1_QUEUE_RECONCILIATION",
       "sinds": "2026-08-30T22:24:05Z",
-      "sinds_minuten": 29.5,
+      "sinds_minuten": 34.9,
       "bron": "outbox:receipt:AUTOCODING_PR54_CONFLICT_INVENTORY_CODEX2_V1_QUEUE_RECONCILIATION_RECEIPT.md"
     },
     {
       "actor": "gemini1",
-      "status": "BEZIG",
-      "taak_id": "order",
-      "sinds": "2026-08-30T22:53:36Z",
-      "sinds_minuten": 0.0,
-      "bron": "ps:pid=78579"
+      "status": "VRIJ",
+      "taak_id": "AUTOCODING_PR55_HERBEOORDELING_GEMINI1_V1_QUEUE_RECONCILIATION",
+      "sinds": "2026-08-30T22:24:05Z",
+      "sinds_minuten": 34.9,
+      "bron": "outbox:receipt:AUTOCODING_PR55_HERBEOORDELING_GEMINI1_V1_QUEUE_RECONCILIATION_RECEIPT.md"
     },
     {
       "actor": "dashboard-codex",
@@ -72,7 +72,7 @@
       "status": "VRIJ",
       "taak_id": null,
       "sinds": "2026-08-30T14:20:15Z",
-      "sinds_minuten": 513.4,
+      "sinds_minuten": 518.7,
       "bron": "outbox:order_afgerond:AUTOCODING_CONTROLLER_PARALLELISM_EXACT_HEAD_REVIEW_CODEX1_V1.md"
     }
   ],
@@ -6624,6 +6624,86 @@
       "bron_type": "receipt",
       "status": "OPEN",
       "taak": "Na CODEX1-GO: afzonderlijke, niet-overlappende bouworders uit de REV2-taakvolgorde (§10) opstellen en dispatchen",
+      "schatting_categorie": "GEEN_SCHATTING",
+      "schatting_min": null
+    },
+    {
+      "bron_bestand": "outbox/AUTOCODING_TRANSPORT_POORT_REPAIR_CLAUDE4_V1_INDEPENDENT_VERIFICATION_RECEIPT.md",
+      "bron_type": "receipt",
+      "status": "KLAAR",
+      "taak": "Nulmeting canonieke queue-closure + reconciliatiereceipt gelezen",
+      "schatting_categorie": "GEEN_SCHATTING",
+      "schatting_min": null
+    },
+    {
+      "bron_bestand": "outbox/AUTOCODING_TRANSPORT_POORT_REPAIR_CLAUDE4_V1_INDEPENDENT_VERIFICATION_RECEIPT.md",
+      "bron_type": "receipt",
+      "status": "KLAAR",
+      "taak": "Drie deelclaims (canoniek-receipt-fallback, hoofdletterongevoeligheid, EXTRA_ALLOWED_DIR) los tegen echte commits gemeten",
+      "schatting_categorie": "GEEN_SCHATTING",
+      "schatting_min": null
+    },
+    {
+      "bron_bestand": "outbox/AUTOCODING_TRANSPORT_POORT_REPAIR_CLAUDE4_V1_INDEPENDENT_VERIFICATION_RECEIPT.md",
+      "bron_type": "receipt",
+      "status": "KLAAR",
+      "taak": "Acceptatieproef van de order gedraaid tegen kandidaat-tip 94396ca (isolated detached worktree)",
+      "schatting_categorie": "GEEN_SCHATTING",
+      "schatting_min": null
+    },
+    {
+      "bron_bestand": "outbox/AUTOCODING_TRANSPORT_POORT_REPAIR_CLAUDE4_V1_INDEPENDENT_VERIFICATION_RECEIPT.md",
+      "bron_type": "receipt",
+      "status": "KLAAR",
+      "taak": "Verificatieworktree opgeruimd",
+      "schatting_categorie": "GEEN_SCHATTING",
+      "schatting_min": null
+    },
+    {
+      "bron_bestand": "outbox/AUTOCODING_TRANSPORT_POORT_REPAIR_CLAUDE4_V1_INDEPENDENT_VERIFICATION_RECEIPT.md",
+      "bron_type": "receipt",
+      "status": "KLAAR",
+      "taak": "Receipt geschreven met alle metingen en restpunt buiten scope",
+      "schatting_categorie": "GEEN_SCHATTING",
+      "schatting_min": null
+    },
+    {
+      "bron_bestand": "outbox/AUTOCODING_TRANSPORT_POORT_REPAIR_CLAUDE4_V1_RECEIPT.md",
+      "bron_type": "receipt",
+      "status": "KLAAR",
+      "taak": "Nulmeting queue-closure + reconciliatiereceipt",
+      "schatting_categorie": "GEEN_SCHATTING",
+      "schatting_min": null
+    },
+    {
+      "bron_bestand": "outbox/AUTOCODING_TRANSPORT_POORT_REPAIR_CLAUDE4_V1_RECEIPT.md",
+      "bron_type": "receipt",
+      "status": "KLAAR",
+      "taak": "Drie deelclaims apart tegen echte commits gemeten",
+      "schatting_categorie": "GEEN_SCHATTING",
+      "schatting_min": null
+    },
+    {
+      "bron_bestand": "outbox/AUTOCODING_TRANSPORT_POORT_REPAIR_CLAUDE4_V1_RECEIPT.md",
+      "bron_type": "receipt",
+      "status": "KLAAR",
+      "taak": "Acceptatieproef gedraaid tegen kandidaat-tip (51/51, 7/7 groen)",
+      "schatting_categorie": "GEEN_SCHATTING",
+      "schatting_min": null
+    },
+    {
+      "bron_bestand": "outbox/AUTOCODING_TRANSPORT_POORT_REPAIR_CLAUDE4_V1_RECEIPT.md",
+      "bron_type": "receipt",
+      "status": "KLAAR",
+      "taak": "Verificatieworktree opgeruimd",
+      "schatting_categorie": "GEEN_SCHATTING",
+      "schatting_min": null
+    },
+    {
+      "bron_bestand": "outbox/AUTOCODING_TRANSPORT_POORT_REPAIR_CLAUDE4_V1_RECEIPT.md",
+      "bron_type": "receipt",
+      "status": "KLAAR",
+      "taak": "Receipt geschreven",
       "schatting_categorie": "GEEN_SCHATTING",
       "schatting_min": null
     },
@@ -29645,8 +29725,8 @@
     }
   ],
   "taken_meta": {
-    "taken_totaal": 3694,
-    "taken_zonder_schatting": 3573,
+    "taken_totaal": 3704,
+    "taken_zonder_schatting": 3583,
     "bron_glob": "outbox/*.md (TAKENLIJST-blokken)",
     "classificatie": "regex op TAKENLIJST-tabelrijen (Status/Taak/Tijd) en kale lijstvorm; een cel zonder herkenbaar '~X min'-patroon telt als GEEN_SCHATTING, nooit stilzwijgend overgeslagen"
   },
@@ -29656,15 +29736,15 @@
     "cmd": "bin/lane-capaciteit --json",
     "data": {
       "stack_root": "STACK_ROOT",
-      "generated_at": "2026-08-30T22:53:51Z",
+      "generated_at": "2026-08-30T22:59:07Z",
       "meta": {
-        "receipt_bestanden_totaal": 1841,
+        "receipt_bestanden_totaal": 1843,
         "receipt_onparseerbaar": 279,
         "jsonl": {
-          "total_lines": 1455,
+          "total_lines": 1456,
           "actor_lines": 0,
           "onparseerbaar": 0,
-          "zonder_actor": 1455,
+          "zonder_actor": 1456,
           "aanwezig": true
         },
         "verdict_classificatie": "heuristiek: prefix-match op verdict= (hoofdletterongevoelig); GESLAAGD={GO,PASS,DELIVERED}, GEBLOKKEERD={NO_GO,BLOCKED,REJECTED,FAILED}, onbekend/overig telt niet stilzwijgend mee als geslaagd of geblokkeerd"
@@ -29891,17 +29971,18 @@
         },
         {
           "actor": "claude4",
-          "orders": 228,
-          "orders_met_duur": 222,
-          "p50_duration_ms": 343500,
+          "orders": 230,
+          "orders_met_duur": 223,
+          "p50_duration_ms": 344000,
           "max_duration_ms": 4756000,
-          "orders_met_verdict": 121,
-          "geslaagd_pct": 37.2,
-          "geblokkeerd_pct": 60.3,
-          "overig_pct": 2.5,
+          "orders_met_verdict": 123,
+          "geslaagd_pct": 36.6,
+          "geblokkeerd_pct": 60.2,
+          "overig_pct": 3.3,
           "verdict_distribution_raw": {
-            "BLOCKED_EVIDENCE": 70,
+            "BLOCKED_EVIDENCE": 71,
             "BUILD_COMPLETE": 1,
+            "CONFIRMS_SUPERSEDED_BY_INTEGRATED_CANDIDATE": 1,
             "DEFECT_CONFIRMED_REPAIR_ORDER_READY": 1,
             "GO": 1,
             "GO_READY_FOR_INSTALL_GATE": 1,
@@ -29911,7 +29992,7 @@
             "KLAAR-VOOR-REVIEW (bouwer keurt zijn eigen werk niet goed)": 1,
             "NO_GO": 3
           },
-          "laatste_activiteit": "2026-08-30T22:06:20Z"
+          "laatste_activiteit": "2026-08-30T22:57:19Z"
         },
         {
           "actor": "codex",
@@ -30431,7 +30512,7 @@
         },
         {
           "actor": "ZONDER_ACTOR",
-          "orders": 1455,
+          "orders": 1456,
           "orders_met_duur": 0,
           "p50_duration_ms": null,
           "max_duration_ms": null,
@@ -31896,7 +31977,8 @@
             1452,
             1453,
             1454,
-            1455
+            1455,
+            1456
           ]
         }
       ]
