@@ -1,22 +1,22 @@
 {
   "schema": "REGIEKAMER_REALTIME_V1",
-  "gegenereerd_op": "2026-08-30T15:21:35Z",
+  "gegenereerd_op": "2026-08-30T15:26:51Z",
   "stack_root": "STACK_ROOT",
   "accounts": [
     {
       "actor": "claude1",
-      "status": "BEZIG",
-      "taak_id": "AUTOCODING_TOTAALAUDIT_REV2_CONSOLIDATIE_CLAUDE1_V1",
-      "sinds": "2026-08-30T15:18:10Z",
-      "sinds_minuten": 3.2,
-      "bron": "ps:pid=68975"
+      "status": "VRIJ",
+      "taak_id": "AUTOCODING_TOTAALAUDIT_REV2_CONSOLIDATIE_CLAUDE1_V1_TRANSPORT",
+      "sinds": "2026-08-30T15:24:55Z",
+      "sinds_minuten": 1.7,
+      "bron": "outbox:receipt:AUTOCODING_TOTAALAUDIT_REV2_CONSOLIDATIE_CLAUDE1_V1_TRANSPORT_RECEIPT.md"
     },
     {
       "actor": "claude2",
       "status": "VRIJ",
       "taak_id": null,
       "sinds": "2026-08-30T13:58:34Z",
-      "sinds_minuten": 82.8,
+      "sinds_minuten": 88.1,
       "bron": "outbox:order_afgerond:AUTOCODER_CONTROLLER_FIX_NOGO_FINDINGS_V1.md"
     },
     {
@@ -24,7 +24,7 @@
       "status": "VRIJ",
       "taak_id": null,
       "sinds": "2026-08-30T13:58:34Z",
-      "sinds_minuten": 82.8,
+      "sinds_minuten": 88.1,
       "bron": "outbox:order_afgerond:NIGHT_MEDIAHUB_HEALTH_AND_SAFE_BACKLOG_V1.md"
     },
     {
@@ -32,23 +32,23 @@
       "status": "WACHT",
       "taak_id": "CONTENT_INTELLIGENCE_M3_DWINGENDE_DOORWERKORDER_CLAUDE4_V1",
       "sinds": "2026-08-30T14:54:05Z",
-      "sinds_minuten": 27.3,
+      "sinds_minuten": 32.6,
       "bron": "outbox:order_open:CONTENT_INTELLIGENCE_M3_DWINGENDE_DOORWERKORDER_CLAUDE4_V1.md"
     },
     {
       "actor": "codex1",
-      "status": "GEBLOKKEERD",
-      "taak_id": "AUTOCODING_CONTROLLER_PARALLELISM_EXACT_HEAD_REVIEW_CODEX1_V1_TRANSPORT",
-      "sinds": "2026-08-30T14:24:47Z",
-      "sinds_minuten": 56.6,
-      "bron": "outbox:receipt:AUTOCODING_CONTROLLER_PARALLELISM_EXACT_HEAD_REVIEW_CODEX1_V1_TRANSPORT_RECEIPT.md"
+      "status": "WACHT",
+      "taak_id": "AUTOCODING_TOTAALAUDIT_REV2_1D35213_EXACT_HEAD_REVIEW_CODEX1_V1",
+      "sinds": "2026-08-30T15:26:19Z",
+      "sinds_minuten": 0.3,
+      "bron": "outbox:order_open:AUTOCODING_TOTAALAUDIT_REV2_1D35213_EXACT_HEAD_REVIEW_CODEX1_V1.md"
     },
     {
       "actor": "codex2",
       "status": "VRIJ",
       "taak_id": null,
       "sinds": "2026-08-30T13:58:34Z",
-      "sinds_minuten": 82.8,
+      "sinds_minuten": 88.1,
       "bron": "outbox:order_afgerond:HERTELLING_REVIEWLANE_S13_CLAUDE3_V1.md"
     },
     {
@@ -56,7 +56,7 @@
       "status": "GEBLOKKEERD",
       "taak_id": "DWINGEND_SPOOR_G_ROUND6_TWEEDE_REVIEWSTEM_GEMINI1_V2",
       "sinds": "2026-08-30T09:59:10Z",
-      "sinds_minuten": 322.2,
+      "sinds_minuten": 327.5,
       "bron": "outbox:receipt:DWINGEND_SPOOR_G_ROUND6_TWEEDE_REVIEWSTEM_GEMINI1_V2_RECEIPT.md"
     },
     {
@@ -72,7 +72,7 @@
       "status": "VRIJ",
       "taak_id": null,
       "sinds": "2026-08-30T14:20:15Z",
-      "sinds_minuten": 61.2,
+      "sinds_minuten": 66.4,
       "bron": "outbox:order_afgerond:AUTOCODING_CONTROLLER_PARALLELISM_EXACT_HEAD_REVIEW_CODEX1_V1.md"
     }
   ],
@@ -5480,6 +5480,54 @@
       "bron_type": "receipt",
       "status": "GEBLOKKEERD",
       "taak": "Merge + activatie (launchctl) — merge_authorized/install_authorized/activation_authorized = false; poort ligt bij directie resp. Richard",
+      "schatting_categorie": "GEEN_SCHATTING",
+      "schatting_min": null
+    },
+    {
+      "bron_bestand": "outbox/AUTOCODING_TOTAALAUDIT_REV2_CONSOLIDATIE_CLAUDE1_V1_RECEIPT.md",
+      "bron_type": "receipt",
+      "status": "KLAAR",
+      "taak": "REV2-consolidatiedocument schrijven, committen, acceptatieproef draaien, receipt schrijven (bewijs: dit receipt + kandidaatcommit 1d35213)",
+      "schatting_categorie": "GEEN_SCHATTING",
+      "schatting_min": null
+    },
+    {
+      "bron_bestand": "outbox/AUTOCODING_TOTAALAUDIT_REV2_CONSOLIDATIE_CLAUDE1_V1_RECEIPT.md",
+      "bron_type": "receipt",
+      "status": "OPEN",
+      "taak": "CODEX1 onafhankelijke exact-headreview op kandidaathead 1d35213 (order-vervolgstap, buiten scope van deze bouwtaak)",
+      "schatting_categorie": "GEEN_SCHATTING",
+      "schatting_min": null
+    },
+    {
+      "bron_bestand": "outbox/AUTOCODING_TOTAALAUDIT_REV2_CONSOLIDATIE_CLAUDE1_V1_RECEIPT.md",
+      "bron_type": "receipt",
+      "status": "OPEN",
+      "taak": "Na CODEX1-GO: afzonderlijke, niet-overlappende bouworders uit de REV2-taakvolgorde (§10) opstellen en dispatchen",
+      "schatting_categorie": "GEEN_SCHATTING",
+      "schatting_min": null
+    },
+    {
+      "bron_bestand": "outbox/AUTOCODING_TOTAALAUDIT_REV2_CONSOLIDATIE_CLAUDE1_V1_TRANSPORT_RECEIPT.md",
+      "bron_type": "receipt",
+      "status": "KLAAR",
+      "taak": "REV2-consolidatiedocument schrijven, committen, acceptatieproef draaien, receipt schrijven (bewijs: dit receipt + kandidaatcommit 1d35213)",
+      "schatting_categorie": "GEEN_SCHATTING",
+      "schatting_min": null
+    },
+    {
+      "bron_bestand": "outbox/AUTOCODING_TOTAALAUDIT_REV2_CONSOLIDATIE_CLAUDE1_V1_TRANSPORT_RECEIPT.md",
+      "bron_type": "receipt",
+      "status": "OPEN",
+      "taak": "CODEX1 onafhankelijke exact-headreview op kandidaathead 1d35213 (order-vervolgstap, buiten scope van deze bouwtaak)",
+      "schatting_categorie": "GEEN_SCHATTING",
+      "schatting_min": null
+    },
+    {
+      "bron_bestand": "outbox/AUTOCODING_TOTAALAUDIT_REV2_CONSOLIDATIE_CLAUDE1_V1_TRANSPORT_RECEIPT.md",
+      "bron_type": "receipt",
+      "status": "OPEN",
+      "taak": "Na CODEX1-GO: afzonderlijke, niet-overlappende bouworders uit de REV2-taakvolgorde (§10) opstellen en dispatchen",
       "schatting_categorie": "GEEN_SCHATTING",
       "schatting_min": null
     },
@@ -28325,8 +28373,8 @@
     }
   ],
   "taken_meta": {
-    "taken_totaal": 3529,
-    "taken_zonder_schatting": 3411,
+    "taken_totaal": 3535,
+    "taken_zonder_schatting": 3417,
     "bron_glob": "outbox/*.md (TAKENLIJST-blokken)",
     "classificatie": "regex op TAKENLIJST-tabelrijen (Status/Taak/Tijd) en kale lijstvorm; een cel zonder herkenbaar '~X min'-patroon telt als GEEN_SCHATTING, nooit stilzwijgend overgeslagen"
   },
@@ -28336,15 +28384,15 @@
     "cmd": "bin/lane-capaciteit --json",
     "data": {
       "stack_root": "STACK_ROOT",
-      "generated_at": "2026-08-30T15:21:35Z",
+      "generated_at": "2026-08-30T15:26:51Z",
       "meta": {
-        "receipt_bestanden_totaal": 1755,
-        "receipt_onparseerbaar": 255,
+        "receipt_bestanden_totaal": 1757,
+        "receipt_onparseerbaar": 256,
         "jsonl": {
-          "total_lines": 1411,
+          "total_lines": 1412,
           "actor_lines": 0,
           "onparseerbaar": 0,
-          "zonder_actor": 1411,
+          "zonder_actor": 1412,
           "aanwezig": true
         },
         "verdict_classificatie": "heuristiek: prefix-match op verdict= (hoofdletterongevoelig); GESLAAGD={GO,PASS,DELIVERED}, GEBLOKKEERD={NO_GO,BLOCKED,REJECTED,FAILED}, onbekend/overig telt niet stilzwijgend mee als geslaagd of geblokkeerd"
@@ -28397,9 +28445,9 @@
         },
         {
           "actor": "claude1",
-          "orders": 154,
-          "orders_met_duur": 143,
-          "p50_duration_ms": 373000,
+          "orders": 155,
+          "orders_met_duur": 144,
+          "p50_duration_ms": 379500,
           "max_duration_ms": 2910000,
           "orders_met_verdict": 85,
           "geslaagd_pct": 15.3,
@@ -28420,7 +28468,7 @@
             "OPGELEVERD|BLOCKED_EVIDENCE": 1,
             "TOETS_GO": 4
           },
-          "laatste_activiteit": "2026-08-30T13:39:54Z"
+          "laatste_activiteit": "2026-08-30T15:24:55Z"
         },
         {
           "actor": "claude1 (bouwer; review hoort bij een andere actor)",
@@ -28791,7 +28839,7 @@
         },
         {
           "actor": "ONPARSEERBAAR",
-          "orders": 255,
+          "orders": 256,
           "orders_met_duur": 0,
           "p50_duration_ms": null,
           "max_duration_ms": null,
@@ -28890,6 +28938,7 @@
             "AUTOCODING_SUPERVISOR_POSTMERGE_REVIEW_CLAUDE4_9DD96D7_RECEIPT.md",
             "AUTOCODING_TELEGRAM_WAAKVLAM_REVIEW_CLAUDE4_V1_RECEIPT.md",
             "AUTOCODING_TONIGHT_FINISH_AND_MORNING_R4_GATE_20260819_RECEIPT.md",
+            "AUTOCODING_TOTAALAUDIT_REV2_CONSOLIDATIE_CLAUDE1_V1_RECEIPT.md",
             "AUTOCODING_TRANSPORT_RESOLVER_2F58A96_CODEX_R4_RECEIPT.md",
             "AUTOCODING_TRANSPORT_RESOLVER_A7D76A7_CODEX_R4_REVERIFICATION_RECEIPT.md",
             "AUTOCODING_TRANSPORT_RESOLVER_CLAUDE4_V3_DELIVERY_RECONCILE_ACTOR_RECEIPT.md",
@@ -29061,7 +29110,7 @@
         },
         {
           "actor": "ZONDER_ACTOR",
-          "orders": 1411,
+          "orders": 1412,
           "orders_met_duur": 0,
           "p50_duration_ms": null,
           "max_duration_ms": null,
@@ -30482,7 +30531,8 @@
             1408,
             1409,
             1410,
-            1411
+            1411,
+            1412
           ]
         }
       ]
