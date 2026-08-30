@@ -1,22 +1,22 @@
 {
   "schema": "REGIEKAMER_REALTIME_V1",
-  "gegenereerd_op": "2026-08-30T18:40:47Z",
+  "gegenereerd_op": "2026-08-30T18:46:03Z",
   "stack_root": "STACK_ROOT",
   "accounts": [
     {
       "actor": "claude1",
-      "status": "STALE",
+      "status": "GEBLOKKEERD",
       "taak_id": "AUTOCODING_URGENT_H11_SINGLE_LEADER_INTEGRATION_CLAUDE1_V1",
-      "sinds": "2026-08-30T18:21:10Z",
-      "sinds_minuten": 19.4,
-      "bron": "ps:pid=96125"
+      "sinds": "2026-08-30T18:41:00Z",
+      "sinds_minuten": 4.9,
+      "bron": "outbox:receipt:AUTOCODING_URGENT_H11_SINGLE_LEADER_INTEGRATION_CLAUDE1_V1_RECEIPT.md"
     },
     {
       "actor": "claude2",
       "status": "STALE",
       "taak_id": "AUTOCODING_URGENT_ESCALATION_TELEGRAM_ALERT_CLAUDE2_V1",
       "sinds": "2026-08-30T18:21:40Z",
-      "sinds_minuten": 18.9,
+      "sinds_minuten": 24.2,
       "bron": "ps:pid=2913"
     },
     {
@@ -24,23 +24,23 @@
       "status": "GEBLOKKEERD",
       "taak_id": "AUTOCODING_URGENT_REVIEW_TRANSPORT_DIAGNOSE_CLAUDE3_V1_TRANSPORT",
       "sinds": "2026-08-30T18:32:33Z",
-      "sinds_minuten": 8.1,
+      "sinds_minuten": 13.3,
       "bron": "outbox:receipt:AUTOCODING_URGENT_REVIEW_TRANSPORT_DIAGNOSE_CLAUDE3_V1_TRANSPORT_RECEIPT.md"
     },
     {
       "actor": "claude4",
-      "status": "GEBLOKKEERD",
-      "taak_id": "AUTOCODING_CONTROLLER_PARALLELISM_FORWARDPORT_CLAUDE4_V1",
-      "sinds": "2026-08-30T18:36:59Z",
-      "sinds_minuten": 3.6,
-      "bron": "outbox:receipt:AUTOCODING_CONTROLLER_PARALLELISM_FORWARDPORT_CLAUDE4_V1_RECEIPT.md"
+      "status": "WACHT",
+      "taak_id": "AUTOCODING_TRANSPORT_POORT_REPAIR_CLAUDE4_V1",
+      "sinds": "2026-08-30T18:44:59Z",
+      "sinds_minuten": 0.9,
+      "bron": "outbox:order_open:AUTOCODING_TRANSPORT_POORT_REPAIR_CLAUDE4_V1.md"
     },
     {
       "actor": "codex1",
       "status": "GEBLOKKEERD",
       "taak_id": "AUTOCODING_URGENT_PR55_MERGE_RESULT_REVIEW_CODEX1_V1",
       "sinds": "2026-08-30T18:26:25Z",
-      "sinds_minuten": 14.2,
+      "sinds_minuten": 19.4,
       "bron": "outbox:receipt:AUTOCODING_URGENT_PR55_MERGE_RESULT_REVIEW_CODEX1_V1_RECEIPT.md"
     },
     {
@@ -48,7 +48,7 @@
       "status": "VRIJ",
       "taak_id": "AUTOCODING_PR54_CONFLICT_INVENTORY_CODEX2_V1",
       "sinds": "2026-08-30T18:32:07Z",
-      "sinds_minuten": 8.5,
+      "sinds_minuten": 13.7,
       "bron": "outbox:receipt:AUTOCODING_PR54_CONFLICT_INVENTORY_CODEX2_V1_RECEIPT.md"
     },
     {
@@ -56,7 +56,7 @@
       "status": "GEBLOKKEERD",
       "taak_id": "AUTOCODING_CONTROLLER_PARALLELISM_FORWARDPORT_CLAUDE4_V1",
       "sinds": "2026-08-30T18:36:59Z",
-      "sinds_minuten": 3.6,
+      "sinds_minuten": 8.9,
       "bron": "outbox:receipt:AUTOCODING_CONTROLLER_PARALLELISM_FORWARDPORT_CLAUDE4_V1_RECEIPT.md"
     },
     {
@@ -72,7 +72,7 @@
       "status": "VRIJ",
       "taak_id": null,
       "sinds": "2026-08-30T14:20:15Z",
-      "sinds_minuten": 260.4,
+      "sinds_minuten": 265.6,
       "bron": "outbox:order_afgerond:AUTOCODING_CONTROLLER_PARALLELISM_EXACT_HEAD_REVIEW_CODEX1_V1.md"
     }
   ],
@@ -5594,6 +5594,70 @@
       "taak": "Gemini-best-effort + R7-meting vóór eventuele merge (buiten deze bouwbeurt)",
       "schatting_categorie": "GESCHAT",
       "schatting_min": 10
+    },
+    {
+      "bron_bestand": "outbox/AUTOCODING_URGENT_H11_SINGLE_LEADER_INTEGRATION_CLAUDE1_V1_RECEIPT.md",
+      "bron_type": "receipt",
+      "status": "KLAAR",
+      "taak": "Shared `acquire_single_leader_lock()` in contract-module (bewijs: identiteitstests SharedCallPathTest)",
+      "schatting_categorie": "GEEN_SCHATTING",
+      "schatting_min": null
+    },
+    {
+      "bron_bestand": "outbox/AUTOCODING_URGENT_H11_SINGLE_LEADER_INTEGRATION_CLAUDE1_V1_RECEIPT.md",
+      "bron_type": "receipt",
+      "status": "KLAAR",
+      "taak": "Fleet-scheduler delegeert naar gedeelde functie, bestaande tests ongewijzigd groen",
+      "schatting_categorie": "GEEN_SCHATTING",
+      "schatting_min": null
+    },
+    {
+      "bron_bestand": "outbox/AUTOCODING_URGENT_H11_SINGLE_LEADER_INTEGRATION_CLAUDE1_V1_RECEIPT.md",
+      "bron_type": "receipt",
+      "status": "KLAAR",
+      "taak": "Controller opt-in single-leader-poort (bewijs: DoubleLeaderFailsClosedTest, ControllerNeverDoubleDispatchesTest)",
+      "schatting_categorie": "GEEN_SCHATTING",
+      "schatting_min": null
+    },
+    {
+      "bron_bestand": "outbox/AUTOCODING_URGENT_H11_SINGLE_LEADER_INTEGRATION_CLAUDE1_V1_RECEIPT.md",
+      "bron_type": "receipt",
+      "status": "KLAAR",
+      "taak": "Zeven-lanes-vulling onder gedeelde lock (bewijs: SevenLaneFillUnderSharedLockTest)",
+      "schatting_categorie": "GEEN_SCHATTING",
+      "schatting_min": null
+    },
+    {
+      "bron_bestand": "outbox/AUTOCODING_URGENT_H11_SINGLE_LEADER_INTEGRATION_CLAUDE1_V1_RECEIPT.md",
+      "bron_type": "receipt",
+      "status": "KLAAR",
+      "taak": "Volledige acceptatieproef groen op kandidaatcommit (bewijs: /tmp/final_python.log, /tmp/final_bash.log)",
+      "schatting_categorie": "GEEN_SCHATTING",
+      "schatting_min": null
+    },
+    {
+      "bron_bestand": "outbox/AUTOCODING_URGENT_H11_SINGLE_LEADER_INTEGRATION_CLAUDE1_V1_RECEIPT.md",
+      "bron_type": "receipt",
+      "status": "KLAAR",
+      "taak": "Mutant rood→hersteld groen negatieve controle (bewijs: /tmp/mutant_rood.log, /tmp/herstel_groen_python.log)",
+      "schatting_categorie": "GEEN_SCHATTING",
+      "schatting_min": null
+    },
+    {
+      "bron_bestand": "outbox/AUTOCODING_URGENT_H11_SINGLE_LEADER_INTEGRATION_CLAUDE1_V1_RECEIPT.md",
+      "bron_type": "receipt",
+      "status": "KLAAR",
+      "taak": "Commit in worktree (658cfc5), geen push/merge (bewijs: git status leeg, push_authorized=false gerespecteerd)",
+      "schatting_categorie": "GEEN_SCHATTING",
+      "schatting_min": null
+    },
+    {
+      "bron_bestand": "outbox/AUTOCODING_URGENT_H11_SINGLE_LEADER_INTEGRATION_CLAUDE1_V1_RECEIPT.md",
+      "bron_type": "receipt",
+      "status": "KLAAR",
+      "taak": "Receipt geschreven met run_nonce/task_id (bewijs: outbox/..._RECEIPT.md, 235 regels)",
+      "schatting_categorie": "GEEN_SCHATTING",
+      "schatting_min": null
     },
     {
       "bron_bestand": "outbox/AUTOCODING_URGENT_MERGEGUARD_IDENTITY_AUDIT_CLAUDE4_V1_RECEIPT.md",
@@ -28445,8 +28509,8 @@
     }
   ],
   "taken_meta": {
-    "taken_totaal": 3544,
-    "taken_zonder_schatting": 3426,
+    "taken_totaal": 3552,
+    "taken_zonder_schatting": 3434,
     "bron_glob": "outbox/*.md (TAKENLIJST-blokken)",
     "classificatie": "regex op TAKENLIJST-tabelrijen (Status/Taak/Tijd) en kale lijstvorm; een cel zonder herkenbaar '~X min'-patroon telt als GEEN_SCHATTING, nooit stilzwijgend overgeslagen"
   },
@@ -28456,9 +28520,9 @@
     "cmd": "bin/lane-capaciteit --json",
     "data": {
       "stack_root": "STACK_ROOT",
-      "generated_at": "2026-08-30T18:40:47Z",
+      "generated_at": "2026-08-30T18:46:02Z",
       "meta": {
-        "receipt_bestanden_totaal": 1768,
+        "receipt_bestanden_totaal": 1769,
         "receipt_onparseerbaar": 259,
         "jsonl": {
           "total_lines": 1431,
@@ -28517,16 +28581,16 @@
         },
         {
           "actor": "claude1",
-          "orders": 155,
-          "orders_met_duur": 144,
-          "p50_duration_ms": 379500,
+          "orders": 156,
+          "orders_met_duur": 145,
+          "p50_duration_ms": 386000,
           "max_duration_ms": 2910000,
-          "orders_met_verdict": 85,
-          "geslaagd_pct": 15.3,
-          "geblokkeerd_pct": 74.1,
-          "overig_pct": 10.6,
+          "orders_met_verdict": 86,
+          "geslaagd_pct": 15.1,
+          "geblokkeerd_pct": 74.4,
+          "overig_pct": 10.5,
           "verdict_distribution_raw": {
-            "BLOCKED_EVIDENCE": 61,
+            "BLOCKED_EVIDENCE": 62,
             "DEFECT_CONFIRMED_REPAIR_ORDER_READY": 1,
             "DONE_FIX_READY": 1,
             "GO_EFFECT_BEWEZEN": 1,
@@ -28540,7 +28604,7 @@
             "OPGELEVERD|BLOCKED_EVIDENCE": 1,
             "TOETS_GO": 4
           },
-          "laatste_activiteit": "2026-08-30T15:24:55Z"
+          "laatste_activiteit": "2026-08-30T18:40:57Z"
         },
         {
           "actor": "claude1 (bouwer; review hoort bij een andere actor)",
