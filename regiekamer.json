@@ -1,38 +1,38 @@
 {
   "schema": "REGIEKAMER_REALTIME_V1",
-  "gegenereerd_op": "2026-08-30T08:00:46Z",
+  "gegenereerd_op": "2026-08-30T08:06:01Z",
   "stack_root": "STACK_ROOT",
   "accounts": [
     {
       "actor": "claude1",
       "status": "WACHT",
       "taak_id": "STACKDIR_BEWIJSGROND_IS_GEEN_OORDEEL_CLAUDE1_V1",
-      "sinds": "2026-08-30T07:54:08Z",
-      "sinds_minuten": 6.4,
+      "sinds": "2026-08-30T08:00:39Z",
+      "sinds_minuten": 5.2,
       "bron": "outbox:order_open:STACKDIR_BEWIJSGROND_IS_GEEN_OORDEEL_CLAUDE1_V1.md"
     },
     {
       "actor": "claude2",
-      "status": "BEZIG",
+      "status": "STALE",
       "taak_id": "AUTOCODING_H11_FLEET_SCHEDULER_ISOLATED_BUILD_CLAUDE2_V1",
       "sinds": "2026-08-30T07:53:55Z",
-      "sinds_minuten": 6.6,
+      "sinds_minuten": 11.9,
       "bron": "ps:pid=31901"
     },
     {
       "actor": "claude3",
-      "status": "BEZIG",
+      "status": "WACHT",
       "taak_id": "KEYNOTE_CONTENT_DESK_PR48_EXACT_HEAD_REVIEW_CLAUDE3_V1",
-      "sinds": "2026-08-30T07:58:06Z",
-      "sinds_minuten": 2.5,
-      "bron": "ps:pid=40747"
+      "sinds": "2026-08-30T07:57:32Z",
+      "sinds_minuten": 8.3,
+      "bron": "outbox:order_open:KEYNOTE_CONTENT_DESK_PR48_EXACT_HEAD_REVIEW_CLAUDE3_V1.md"
     },
     {
       "actor": "claude4",
       "status": "GEBLOKKEERD",
       "taak_id": "DWINGEND_SPOOR_D_PREFLIGHT_DRIE_ORDERS_READONLY_CLAUDE3_V1",
       "sinds": "2026-08-30T07:47:53Z",
-      "sinds_minuten": 12.7,
+      "sinds_minuten": 18.0,
       "bron": "outbox:receipt:DWINGEND_SPOOR_D_PREFLIGHT_DRIE_ORDERS_READONLY_CLAUDE3_V1_RECEIPT.md"
     },
     {
@@ -40,7 +40,7 @@
       "status": "GEBLOKKEERD",
       "taak_id": "DWINGEND_SPOOR_E_ROUND6_REVIEWCHECKLIST_CODEX1_V1_TRANSPORT",
       "sinds": "2026-08-30T07:50:07Z",
-      "sinds_minuten": 10.4,
+      "sinds_minuten": 15.7,
       "bron": "outbox:receipt:DWINGEND_SPOOR_E_ROUND6_REVIEWCHECKLIST_CODEX1_V1_TRANSPORT_RECEIPT.md"
     },
     {
@@ -48,16 +48,16 @@
       "status": "GEBLOKKEERD",
       "taak_id": "DWINGEND_SPOOR_F_H5H9_FAALDRILL_FIXTURES_CODEX2_V1",
       "sinds": "2026-08-30T07:44:48Z",
-      "sinds_minuten": 15.8,
+      "sinds_minuten": 21.1,
       "bron": "outbox:receipt:DWINGEND_SPOOR_F_H5H9_FAALDRILL_FIXTURES_CODEX2_V1_RECEIPT.md"
     },
     {
       "actor": "gemini1",
       "status": "GEBLOKKEERD",
-      "taak_id": "STUDIO_LONGREAD_F014V2_731C5F8_REVIEW_GEMINI1_V2",
-      "sinds": "2026-08-30T07:58:04Z",
-      "sinds_minuten": 2.5,
-      "bron": "outbox:receipt:STUDIO_LONGREAD_F014V2_731C5F8_REVIEW_GEMINI1_V2_RECEIPT.md"
+      "taak_id": "STUDIO_LONGREAD_F014V2_731C5F8_REVIEW_GEMINI1_V3",
+      "sinds": "2026-08-30T08:04:37Z",
+      "sinds_minuten": 1.2,
+      "bron": "outbox:receipt:STUDIO_LONGREAD_F014V2_731C5F8_REVIEW_GEMINI1_V3_RECEIPT.md"
     },
     {
       "actor": "dashboard-codex",
@@ -72,7 +72,7 @@
       "status": "GEBLOKKEERD",
       "taak_id": "AUTOCODER_CONTROLLER_RECEIPT_FIELD_FIX_REVIEW_CLAUDE1_V1",
       "sinds": "2026-08-28T13:35:13Z",
-      "sinds_minuten": 2545.3,
+      "sinds_minuten": 2550.6,
       "bron": "outbox:receipt:AUTOCODER_CONTROLLER_RECEIPT_FIELD_FIX_REVIEW_CLAUDE1_V1.md"
     }
   ],
@@ -26936,15 +26936,15 @@
     "cmd": "bin/lane-capaciteit --json",
     "data": {
       "stack_root": "STACK_ROOT",
-      "generated_at": "2026-08-30T08:00:46Z",
+      "generated_at": "2026-08-30T08:06:01Z",
       "meta": {
-        "receipt_bestanden_totaal": 1694,
+        "receipt_bestanden_totaal": 1695,
         "receipt_onparseerbaar": 235,
         "jsonl": {
-          "total_lines": 1367,
+          "total_lines": 1368,
           "actor_lines": 0,
           "onparseerbaar": 0,
-          "zonder_actor": 1367,
+          "zonder_actor": 1368,
           "aanwezig": true
         },
         "verdict_classificatie": "heuristiek: prefix-match op verdict= (hoofdletterongevoelig); GESLAAGD={GO,PASS,DELIVERED}, GEBLOKKEERD={NO_GO,BLOCKED,REJECTED,FAILED}, onbekend/overig telt niet stilzwijgend mee als geslaagd of geblokkeerd"
@@ -27343,16 +27343,16 @@
         },
         {
           "actor": "gemini1",
-          "orders": 114,
-          "orders_met_duur": 107,
+          "orders": 115,
+          "orders_met_duur": 108,
           "p50_duration_ms": 94000,
           "max_duration_ms": 9179000,
-          "orders_met_verdict": 85,
-          "geslaagd_pct": 44.7,
-          "geblokkeerd_pct": 48.2,
-          "overig_pct": 7.1,
+          "orders_met_verdict": 86,
+          "geslaagd_pct": 44.2,
+          "geblokkeerd_pct": 48.8,
+          "overig_pct": 7.0,
           "verdict_distribution_raw": {
-            "BLOCKED_EVIDENCE": 36,
+            "BLOCKED_EVIDENCE": 37,
             "E2E_PILOT_DRAFT_READY_FOR_REVIEW": 1,
             "FAILED_TRANSPORT_EMPTY_OUTPUT": 1,
             "FORM_VALID_EVIDENCE_INCOMPLETE": 1,
@@ -27368,7 +27368,7 @@
             "REVIEW_ENV_UNAVAILABLE": 2,
             "go_ready_for_merge_gate": 1
           },
-          "laatste_activiteit": "2026-08-30T07:58:02Z"
+          "laatste_activiteit": "2026-08-30T08:04:34Z"
         },
         {
           "actor": "gemini1_via_hostroute",
@@ -27637,7 +27637,7 @@
         },
         {
           "actor": "ZONDER_ACTOR",
-          "orders": 1367,
+          "orders": 1368,
           "orders_met_duur": 0,
           "p50_duration_ms": null,
           "max_duration_ms": null,
@@ -29014,7 +29014,8 @@
             1364,
             1365,
             1366,
-            1367
+            1367,
+            1368
           ]
         }
       ]
