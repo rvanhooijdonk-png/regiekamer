@@ -1,38 +1,38 @@
 {
   "schema": "REGIEKAMER_REALTIME_V1",
-  "gegenereerd_op": "2026-08-30T18:30:23Z",
+  "gegenereerd_op": "2026-08-30T18:35:32Z",
   "stack_root": "STACK_ROOT",
   "accounts": [
     {
       "actor": "claude1",
-      "status": "BEZIG",
+      "status": "STALE",
       "taak_id": "AUTOCODING_URGENT_H11_SINGLE_LEADER_INTEGRATION_CLAUDE1_V1",
       "sinds": "2026-08-30T18:21:10Z",
-      "sinds_minuten": 9.2,
+      "sinds_minuten": 14.3,
       "bron": "ps:pid=96125"
     },
     {
       "actor": "claude2",
-      "status": "BEZIG",
+      "status": "STALE",
       "taak_id": "AUTOCODING_URGENT_ESCALATION_TELEGRAM_ALERT_CLAUDE2_V1",
       "sinds": "2026-08-30T18:21:40Z",
-      "sinds_minuten": 8.7,
+      "sinds_minuten": 13.8,
       "bron": "ps:pid=2913"
     },
     {
       "actor": "claude3",
-      "status": "BEZIG",
-      "taak_id": "AUTOCODING_URGENT_REVIEW_TRANSPORT_DIAGNOSE_CLAUDE3_V1",
-      "sinds": "2026-08-30T18:21:11Z",
-      "sinds_minuten": 9.1,
-      "bron": "ps:pid=96403"
+      "status": "GEBLOKKEERD",
+      "taak_id": "AUTOCODING_URGENT_REVIEW_TRANSPORT_DIAGNOSE_CLAUDE3_V1_TRANSPORT",
+      "sinds": "2026-08-30T18:32:33Z",
+      "sinds_minuten": 2.9,
+      "bron": "outbox:receipt:AUTOCODING_URGENT_REVIEW_TRANSPORT_DIAGNOSE_CLAUDE3_V1_TRANSPORT_RECEIPT.md"
     },
     {
       "actor": "claude4",
       "status": "GEBLOKKEERD",
       "taak_id": "AUTOCODING_URGENT_MERGEGUARD_IDENTITY_AUDIT_CLAUDE4_V1_TRANSPORT",
       "sinds": "2026-08-30T18:29:19Z",
-      "sinds_minuten": 1.0,
+      "sinds_minuten": 6.1,
       "bron": "outbox:receipt:AUTOCODING_URGENT_MERGEGUARD_IDENTITY_AUDIT_CLAUDE4_V1_TRANSPORT_RECEIPT.md"
     },
     {
@@ -40,23 +40,23 @@
       "status": "GEBLOKKEERD",
       "taak_id": "AUTOCODING_URGENT_PR55_MERGE_RESULT_REVIEW_CODEX1_V1",
       "sinds": "2026-08-30T18:26:25Z",
-      "sinds_minuten": 3.9,
+      "sinds_minuten": 9.0,
       "bron": "outbox:receipt:AUTOCODING_URGENT_PR55_MERGE_RESULT_REVIEW_CODEX1_V1_RECEIPT.md"
     },
     {
       "actor": "codex2",
-      "status": "BEZIG",
+      "status": "VRIJ",
       "taak_id": "AUTOCODING_PR54_CONFLICT_INVENTORY_CODEX2_V1",
-      "sinds": "2026-08-30T18:29:27Z",
-      "sinds_minuten": 0.9,
-      "bron": "ps:pid=99497"
+      "sinds": "2026-08-30T18:32:07Z",
+      "sinds_minuten": 3.3,
+      "bron": "outbox:receipt:AUTOCODING_PR54_CONFLICT_INVENTORY_CODEX2_V1_RECEIPT.md"
     },
     {
       "actor": "gemini1",
-      "status": "BEZIG",
+      "status": "STALE",
       "taak_id": "AUTOCODING_CONTROLLER_PARALLELISM_FORWARDPORT_CLAUDE4_V1",
       "sinds": "2026-08-30T18:24:44Z",
-      "sinds_minuten": 5.6,
+      "sinds_minuten": 10.7,
       "bron": "ps:pid=48725"
     },
     {
@@ -72,7 +72,7 @@
       "status": "VRIJ",
       "taak_id": null,
       "sinds": "2026-08-30T14:20:15Z",
-      "sinds_minuten": 250.1,
+      "sinds_minuten": 255.2,
       "bron": "outbox:order_afgerond:AUTOCODING_CONTROLLER_PARALLELISM_EXACT_HEAD_REVIEW_CODEX1_V1.md"
     }
   ],
@@ -5632,6 +5632,38 @@
       "bron_type": "receipt",
       "status": "KLAAR",
       "taak": "Verdict + machineblok + receipt geschreven (bewijs: dit bestand)",
+      "schatting_categorie": "GEEN_SCHATTING",
+      "schatting_min": null
+    },
+    {
+      "bron_bestand": "outbox/AUTOCODING_URGENT_REVIEW_TRANSPORT_DIAGNOSE_CLAUDE3_V1_TRANSPORT_RECEIPT.md",
+      "bron_type": "receipt",
+      "status": "KLAAR",
+      "taak": "Acceptatieproef beide suites gedraaid met letterlijke output (bewijs: receipt §Acceptatieproef; suite 2 afwezig op gepinde head — gemeld als orderdefect, aanvullend tegen hoofdcheckout gemeten)",
+      "schatting_categorie": "GEEN_SCHATTING",
+      "schatting_min": null
+    },
+    {
+      "bron_bestand": "outbox/AUTOCODING_URGENT_REVIEW_TRANSPORT_DIAGNOSE_CLAUDE3_V1_TRANSPORT_RECEIPT.md",
+      "bron_type": "receipt",
+      "status": "KLAAR",
+      "taak": "Gereproduceerde fixtureverklaring evidence_gate=PASS vs FAILED_TRANSPORT_RECEIPT_INVALID (bewijs: receipt §root cause, .raw-meting TOTAALAUDIT)",
+      "schatting_categorie": "GEEN_SCHATTING",
+      "schatting_min": null
+    },
+    {
+      "bron_bestand": "outbox/AUTOCODING_URGENT_REVIEW_TRANSPORT_DIAGNOSE_CLAUDE3_V1_TRANSPORT_RECEIPT.md",
+      "bron_type": "receipt",
+      "status": "KLAAR",
+      "taak": "Negatieve controle: FAILED_TRANSPORT-receipt nooit als GO/NO_GO geconsumeerd (bewijs: controller `TRANSPORT_FAILED`, await-lane-grep NIETS_GEVONDEN op productie-receipt)",
+      "schatting_categorie": "GEEN_SCHATTING",
+      "schatting_min": null
+    },
+    {
+      "bron_bestand": "outbox/AUTOCODING_URGENT_REVIEW_TRANSPORT_DIAGNOSE_CLAUDE3_V1_TRANSPORT_RECEIPT.md",
+      "bron_type": "receipt",
+      "status": "KLAAR",
+      "taak": "Minimale repairorder-scope met exacte bestandslijst, geen codewijziging (bewijs: receipt §repairscope; `git status --porcelain` leeg)",
       "schatting_categorie": "GEEN_SCHATTING",
       "schatting_min": null
     },
@@ -28413,8 +28445,8 @@
     }
   ],
   "taken_meta": {
-    "taken_totaal": 3540,
-    "taken_zonder_schatting": 3422,
+    "taken_totaal": 3544,
+    "taken_zonder_schatting": 3426,
     "bron_glob": "outbox/*.md (TAKENLIJST-blokken)",
     "classificatie": "regex op TAKENLIJST-tabelrijen (Status/Taak/Tijd) en kale lijstvorm; een cel zonder herkenbaar '~X min'-patroon telt als GEEN_SCHATTING, nooit stilzwijgend overgeslagen"
   },
@@ -28424,10 +28456,10 @@
     "cmd": "bin/lane-capaciteit --json",
     "data": {
       "stack_root": "STACK_ROOT",
-      "generated_at": "2026-08-30T18:30:23Z",
+      "generated_at": "2026-08-30T18:35:32Z",
       "meta": {
-        "receipt_bestanden_totaal": 1764,
-        "receipt_onparseerbaar": 258,
+        "receipt_bestanden_totaal": 1767,
+        "receipt_onparseerbaar": 259,
         "jsonl": {
           "total_lines": 1430,
           "actor_lines": 0,
@@ -28635,16 +28667,16 @@
         },
         {
           "actor": "claude3",
-          "orders": 227,
-          "orders_met_duur": 222,
+          "orders": 228,
+          "orders_met_duur": 223,
           "p50_duration_ms": 295000,
           "max_duration_ms": 8265000,
-          "orders_met_verdict": 146,
-          "geslaagd_pct": 35.6,
-          "geblokkeerd_pct": 64.4,
+          "orders_met_verdict": 147,
+          "geslaagd_pct": 35.4,
+          "geblokkeerd_pct": 64.6,
           "overig_pct": 0.0,
           "verdict_distribution_raw": {
-            "BLOCKED_EVIDENCE": 90,
+            "BLOCKED_EVIDENCE": 91,
             "GO": 2,
             "GO_READY_FOR_MERGE_GATE": 24,
             "GO_READY_FOR_REVIEW": 1,
@@ -28652,7 +28684,7 @@
             "GO_WITH_FINDINGS": 24,
             "NO_GO": 4
           },
-          "laatste_activiteit": "2026-08-30T10:59:47Z"
+          "laatste_activiteit": "2026-08-30T18:32:31Z"
         },
         {
           "actor": "claude4",
@@ -28738,8 +28770,8 @@
         },
         {
           "actor": "codex2",
-          "orders": 201,
-          "orders_met_duur": 194,
+          "orders": 202,
+          "orders_met_duur": 195,
           "p50_duration_ms": 195000,
           "max_duration_ms": 2335000,
           "orders_met_verdict": 129,
@@ -28756,7 +28788,7 @@
             "NO_GO": 16,
             "REVIEW_PENDING": 2
           },
-          "laatste_activiteit": "2026-08-30T18:23:52Z"
+          "laatste_activiteit": "2026-08-30T18:32:04Z"
         },
         {
           "actor": "codex2-builder",
@@ -28879,7 +28911,7 @@
         },
         {
           "actor": "ONPARSEERBAAR",
-          "orders": 258,
+          "orders": 259,
           "orders_met_duur": 0,
           "p50_duration_ms": null,
           "max_duration_ms": null,
@@ -28983,6 +29015,7 @@
             "AUTOCODING_TRANSPORT_RESOLVER_A7D76A7_CODEX_R4_REVERIFICATION_RECEIPT.md",
             "AUTOCODING_TRANSPORT_RESOLVER_CLAUDE4_V3_DELIVERY_RECONCILE_ACTOR_RECEIPT.md",
             "AUTOCODING_URGENT_MERGEGUARD_IDENTITY_AUDIT_CLAUDE4_V1_RECEIPT.md",
+            "AUTOCODING_URGENT_REVIEW_TRANSPORT_DIAGNOSE_CLAUDE3_V1_RECEIPT.md",
             "AUTOCODING_V27R4_PR1044_CLAUDE3_V2_RAW_EVIDENCE_REVALIDATION_RECEIPT.md",
             "AUTOCODING_V27R4_PR1044_CLAUDE4_V3_RAW_EVIDENCE_REVALIDATION_RECEIPT.md",
             "AUTOCODING_V27_QUEUE_INTAKE_AND_RECEIPT_CHAIN_PR1044_CLAUDE2_V1_RECEIPT.md",
