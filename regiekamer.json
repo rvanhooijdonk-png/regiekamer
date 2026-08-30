@@ -1,62 +1,62 @@
 {
   "schema": "REGIEKAMER_REALTIME_V1",
-  "gegenereerd_op": "2026-08-30T19:01:32Z",
+  "gegenereerd_op": "2026-08-30T19:06:47Z",
   "stack_root": "STACK_ROOT",
   "accounts": [
     {
       "actor": "claude1",
-      "status": "WACHT",
+      "status": "BEZIG",
       "taak_id": "AUTOCODING_PR55_H11_DEPENDENCY_RECONCILIATION_CLAUDE1_V1",
-      "sinds": "2026-08-30T19:01:23Z",
-      "sinds_minuten": 0.1,
-      "bron": "outbox:order_open:AUTOCODING_PR55_H11_DEPENDENCY_RECONCILIATION_CLAUDE1_V1.md"
+      "sinds": "2026-08-30T19:01:41Z",
+      "sinds_minuten": 4.9,
+      "bron": "ps:pid=79254"
     },
     {
       "actor": "claude2",
-      "status": "WACHT",
-      "taak_id": "AUTOCODING_RUNTIME_SINGLE_LEADER_CUTOVER_PREFLIGHT_CLAUDE2_V1",
-      "sinds": "2026-08-30T19:01:23Z",
-      "sinds_minuten": 0.1,
-      "bron": "outbox:order_open:AUTOCODING_RUNTIME_SINGLE_LEADER_CUTOVER_PREFLIGHT_CLAUDE2_V1.md"
+      "status": "GEBLOKKEERD",
+      "taak_id": "AUTOCODING_RUNTIME_SINGLE_LEADER_CUTOVER_PREFLIGHT_CLAUDE2_V1_TRANSPORT",
+      "sinds": "2026-08-30T19:06:25Z",
+      "sinds_minuten": 0.2,
+      "bron": "outbox:receipt:AUTOCODING_RUNTIME_SINGLE_LEADER_CUTOVER_PREFLIGHT_CLAUDE2_V1_TRANSPORT_RECEIPT.md"
     },
     {
       "actor": "claude3",
       "status": "BEZIG",
       "taak_id": "AUTOCODING_REVIEW_TRANSPORT_CANONICAL_RECEIPT_REPAIR_CLAUDE3_V1",
       "sinds": "2026-08-30T19:00:10Z",
-      "sinds_minuten": 1.3,
+      "sinds_minuten": 6.4,
       "bron": "ps:pid=25104"
     },
     {
       "actor": "claude4",
-      "status": "BEZIG",
-      "taak_id": "AUTOCODING_PREACTIVATION_CANARY_908F921_EXACT_REVIEW_CLAUDE4_V1",
-      "sinds": "2026-08-30T19:00:08Z",
-      "sinds_minuten": 1.3,
-      "bron": "ps:pid=24483"
+      "status": "GEBLOKKEERD",
+      "taak_id": "AUTOCODING_PREACTIVATION_CANARY_908F921_EXACT_REVIEW_CLAUDE4_V1_TRANSPORT",
+      "sinds": "2026-08-30T19:02:20Z",
+      "sinds_minuten": 4.3,
+      "bron": "outbox:receipt:AUTOCODING_PREACTIVATION_CANARY_908F921_EXACT_REVIEW_CLAUDE4_V1_TRANSPORT_RECEIPT.md"
     },
     {
       "actor": "codex1",
       "status": "BEZIG",
       "taak_id": "AUTOCODING_ESCALATION_ALERT_1ADFE85_EXACT_REVIEW_CODEX1_V1",
       "sinds": "2026-08-30T19:00:08Z",
-      "sinds_minuten": 1.3,
+      "sinds_minuten": 6.5,
       "bron": "ps:pid=24549"
     },
     {
       "actor": "codex2",
-      "status": "BEZIG",
+      "status": "GEBLOKKEERD",
       "taak_id": "AUTOCODING_H11_SINGLE_LEADER_658CFC5_EXACT_REVIEW_CODEX2_V1",
-      "sinds": "2026-08-30T19:00:07Z",
-      "sinds_minuten": 1.4,
-      "bron": "ps:pid=24165"
+      "sinds": "2026-08-30T19:05:44Z",
+      "sinds_minuten": 0.9,
+      "bron": "outbox:receipt:AUTOCODING_H11_SINGLE_LEADER_658CFC5_EXACT_REVIEW_CODEX2_V1_RECEIPT.md"
     },
     {
       "actor": "gemini1",
       "status": "WACHT",
       "taak_id": "AUTOCODING_PR55_HERBEOORDELING_GEMINI1_V1",
       "sinds": "2026-08-30T18:53:59Z",
-      "sinds_minuten": 7.5,
+      "sinds_minuten": 12.6,
       "bron": "outbox:order_open:AUTOCODING_PR55_HERBEOORDELING_GEMINI1_V1.md"
     },
     {
@@ -72,7 +72,7 @@
       "status": "VRIJ",
       "taak_id": null,
       "sinds": "2026-08-30T14:20:15Z",
-      "sinds_minuten": 281.2,
+      "sinds_minuten": 286.4,
       "bron": "outbox:order_afgerond:AUTOCODING_CONTROLLER_PARALLELISM_EXACT_HEAD_REVIEW_CODEX1_V1.md"
     }
   ],
@@ -4252,6 +4252,126 @@
       "schatting_min": null
     },
     {
+      "bron_bestand": "outbox/AUTOCODING_PR55_H11_DEPENDENCY_RECONCILIATION_CLAUDE1_V1_RECEIPT.md",
+      "bron_type": "receipt",
+      "status": "KLAAR",
+      "taak": "Acceptatieproef (git diff --check + name-status) gedraaid, exit 0",
+      "schatting_categorie": "GEEN_SCHATTING",
+      "schatting_min": null
+    },
+    {
+      "bron_bestand": "outbox/AUTOCODING_PR55_H11_DEPENDENCY_RECONCILIATION_CLAUDE1_V1_RECEIPT.md",
+      "bron_type": "receipt",
+      "status": "KLAAR",
+      "taak": "Ancestry PR55↔H11↔alert↔main bewezen (merge-base + is-ancestor)",
+      "schatting_categorie": "GEEN_SCHATTING",
+      "schatting_min": null
+    },
+    {
+      "bron_bestand": "outbox/AUTOCODING_PR55_H11_DEPENDENCY_RECONCILIATION_CLAUDE1_V1_RECEIPT.md",
+      "bron_type": "receipt",
+      "status": "KLAAR",
+      "taak": "Bestandsoverlapdiagram opgesteld, disjunctie bevestigd",
+      "schatting_categorie": "GEEN_SCHATTING",
+      "schatting_min": null
+    },
+    {
+      "bron_bestand": "outbox/AUTOCODING_PR55_H11_DEPENDENCY_RECONCILIATION_CLAUDE1_V1_RECEIPT.md",
+      "bron_type": "receipt",
+      "status": "KLAAR",
+      "taak": "Negatieve controle: echte breuk gevonden bij verkeerde PR55-toepassing",
+      "schatting_categorie": "GEEN_SCHATTING",
+      "schatting_min": null
+    },
+    {
+      "bron_bestand": "outbox/AUTOCODING_PR55_H11_DEPENDENCY_RECONCILIATION_CLAUDE1_V1_RECEIPT.md",
+      "bron_type": "receipt",
+      "status": "KLAAR",
+      "taak": "Veilige integratievolgorde vastgesteld: PR55 → (H11, alert in vrije volgorde)",
+      "schatting_categorie": "GEEN_SCHATTING",
+      "schatting_min": null
+    },
+    {
+      "bron_bestand": "outbox/AUTOCODING_PREACTIVATION_CANARY_908F921_EXACT_REVIEW_CLAUDE4_V1_RECEIPT.md",
+      "bron_type": "receipt",
+      "status": "KLAAR",
+      "taak": "Head/tree verificatie tegen order",
+      "schatting_categorie": "GEEN_SCHATTING",
+      "schatting_min": null
+    },
+    {
+      "bron_bestand": "outbox/AUTOCODING_PREACTIVATION_CANARY_908F921_EXACT_REVIEW_CLAUDE4_V1_RECEIPT.md",
+      "bron_type": "receipt",
+      "status": "KLAAR",
+      "taak": "Acceptatieproef (7 tests) uitgevoerd en letterlijke output vastgelegd",
+      "schatting_categorie": "GEEN_SCHATTING",
+      "schatting_min": null
+    },
+    {
+      "bron_bestand": "outbox/AUTOCODING_PREACTIVATION_CANARY_908F921_EXACT_REVIEW_CLAUDE4_V1_RECEIPT.md",
+      "bron_type": "receipt",
+      "status": "KLAAR",
+      "taak": "Negatieve controle resource-lock (rood → hersteld groen)",
+      "schatting_categorie": "GEEN_SCHATTING",
+      "schatting_min": null
+    },
+    {
+      "bron_bestand": "outbox/AUTOCODING_PREACTIVATION_CANARY_908F921_EXACT_REVIEW_CLAUDE4_V1_RECEIPT.md",
+      "bron_type": "receipt",
+      "status": "KLAAR",
+      "taak": "Negatieve controle single-leader (rood → hersteld groen)",
+      "schatting_categorie": "GEEN_SCHATTING",
+      "schatting_min": null
+    },
+    {
+      "bron_bestand": "outbox/AUTOCODING_PREACTIVATION_CANARY_908F921_EXACT_REVIEW_CLAUDE4_V1_RECEIPT.md",
+      "bron_type": "receipt",
+      "status": "KLAAR",
+      "taak": "Verdict + receipt geschreven",
+      "schatting_categorie": "GEEN_SCHATTING",
+      "schatting_min": null
+    },
+    {
+      "bron_bestand": "outbox/AUTOCODING_PREACTIVATION_CANARY_908F921_EXACT_REVIEW_CLAUDE4_V1_TRANSPORT_RECEIPT.md",
+      "bron_type": "receipt",
+      "status": "KLAAR",
+      "taak": "Head/tree verificatie tegen order",
+      "schatting_categorie": "GEEN_SCHATTING",
+      "schatting_min": null
+    },
+    {
+      "bron_bestand": "outbox/AUTOCODING_PREACTIVATION_CANARY_908F921_EXACT_REVIEW_CLAUDE4_V1_TRANSPORT_RECEIPT.md",
+      "bron_type": "receipt",
+      "status": "KLAAR",
+      "taak": "Acceptatieproef (7 tests) uitgevoerd, letterlijke output vastgelegd",
+      "schatting_categorie": "GEEN_SCHATTING",
+      "schatting_min": null
+    },
+    {
+      "bron_bestand": "outbox/AUTOCODING_PREACTIVATION_CANARY_908F921_EXACT_REVIEW_CLAUDE4_V1_TRANSPORT_RECEIPT.md",
+      "bron_type": "receipt",
+      "status": "KLAAR",
+      "taak": "Negatieve controle resource-lock (rood → hersteld groen)",
+      "schatting_categorie": "GEEN_SCHATTING",
+      "schatting_min": null
+    },
+    {
+      "bron_bestand": "outbox/AUTOCODING_PREACTIVATION_CANARY_908F921_EXACT_REVIEW_CLAUDE4_V1_TRANSPORT_RECEIPT.md",
+      "bron_type": "receipt",
+      "status": "KLAAR",
+      "taak": "Negatieve controle single-leader (rood → hersteld groen)",
+      "schatting_categorie": "GEEN_SCHATTING",
+      "schatting_min": null
+    },
+    {
+      "bron_bestand": "outbox/AUTOCODING_PREACTIVATION_CANARY_908F921_EXACT_REVIEW_CLAUDE4_V1_TRANSPORT_RECEIPT.md",
+      "bron_type": "receipt",
+      "status": "KLAAR",
+      "taak": "Verdict + canoniek receipt geschreven",
+      "schatting_categorie": "GEEN_SCHATTING",
+      "schatting_min": null
+    },
+    {
       "bron_bestand": "outbox/AUTOCODING_QUARANTAINE_LINT_AUDIT_CODEX1_V1_RECEIPT.md",
       "bron_type": "receipt",
       "status": "KLAAR",
@@ -5296,6 +5416,62 @@
       "bron_type": "receipt",
       "status": "KLAAR",
       "taak": "receipt en tijdelijke-opruimproef.",
+      "schatting_categorie": "GEEN_SCHATTING",
+      "schatting_min": null
+    },
+    {
+      "bron_bestand": "outbox/AUTOCODING_RUNTIME_SINGLE_LEADER_CUTOVER_PREFLIGHT_CLAUDE2_V1_RECEIPT.md",
+      "bron_type": "receipt",
+      "status": "KLAAR",
+      "taak": "Runtime-hashvergelijking 4 binaries (bewijs: §1)",
+      "schatting_categorie": "GEEN_SCHATTING",
+      "schatting_min": null
+    },
+    {
+      "bron_bestand": "outbox/AUTOCODING_RUNTIME_SINGLE_LEADER_CUTOVER_PREFLIGHT_CLAUDE2_V1_RECEIPT.md",
+      "bron_type": "receipt",
+      "status": "KLAAR",
+      "taak": "Launchd-readback controller+supervisor+lane-jobs (bewijs: §3)",
+      "schatting_categorie": "GEEN_SCHATTING",
+      "schatting_min": null
+    },
+    {
+      "bron_bestand": "outbox/AUTOCODING_RUNTIME_SINGLE_LEADER_CUTOVER_PREFLIGHT_CLAUDE2_V1_RECEIPT.md",
+      "bron_type": "receipt",
+      "status": "KLAAR",
+      "taak": "Orphan- vs actieve runtime-checkouts onderscheiden (bewijs: §2)",
+      "schatting_categorie": "GEEN_SCHATTING",
+      "schatting_min": null
+    },
+    {
+      "bron_bestand": "outbox/AUTOCODING_RUNTIME_SINGLE_LEADER_CUTOVER_PREFLIGHT_CLAUDE2_V1_RECEIPT.md",
+      "bron_type": "receipt",
+      "status": "KLAAR",
+      "taak": "Negatieve controle dual-leader-lockschema (bewijs: §5)",
+      "schatting_categorie": "GEEN_SCHATTING",
+      "schatting_min": null
+    },
+    {
+      "bron_bestand": "outbox/AUTOCODING_RUNTIME_SINGLE_LEADER_CUTOVER_PREFLIGHT_CLAUDE2_V1_RECEIPT.md",
+      "bron_type": "receipt",
+      "status": "KLAAR",
+      "taak": "Cutover/rollback/Telegram/5-cycli-advies zonder uitvoering (bewijs: §6)",
+      "schatting_categorie": "GEEN_SCHATTING",
+      "schatting_min": null
+    },
+    {
+      "bron_bestand": "outbox/AUTOCODING_RUNTIME_SINGLE_LEADER_CUTOVER_PREFLIGHT_CLAUDE2_V1_RECEIPT.md",
+      "bron_type": "receipt",
+      "status": "GEBLOKKEERD",
+      "taak": "Echte bekabeling fleet-scheduler↔live outbox + gedeeld mutex",
+      "schatting_categorie": "GEEN_SCHATTING",
+      "schatting_min": null
+    },
+    {
+      "bron_bestand": "outbox/AUTOCODING_RUNTIME_SINGLE_LEADER_CUTOVER_PREFLIGHT_CLAUDE2_V1_RECEIPT.md",
+      "bron_type": "receipt",
+      "status": "GEBLOKKEERD",
+      "taak": "Documenteren canonieke controller-stopreden/herlaadvoorwaarde",
       "schatting_categorie": "GEEN_SCHATTING",
       "schatting_min": null
     },
@@ -28549,8 +28725,8 @@
     }
   ],
   "taken_meta": {
-    "taken_totaal": 3557,
-    "taken_zonder_schatting": 3439,
+    "taken_totaal": 3579,
+    "taken_zonder_schatting": 3461,
     "bron_glob": "outbox/*.md (TAKENLIJST-blokken)",
     "classificatie": "regex op TAKENLIJST-tabelrijen (Status/Taak/Tijd) en kale lijstvorm; een cel zonder herkenbaar '~X min'-patroon telt als GEEN_SCHATTING, nooit stilzwijgend overgeslagen"
   },
@@ -28560,10 +28736,10 @@
     "cmd": "bin/lane-capaciteit --json",
     "data": {
       "stack_root": "STACK_ROOT",
-      "generated_at": "2026-08-30T19:01:32Z",
+      "generated_at": "2026-08-30T19:06:47Z",
       "meta": {
-        "receipt_bestanden_totaal": 1770,
-        "receipt_onparseerbaar": 259,
+        "receipt_bestanden_totaal": 1776,
+        "receipt_onparseerbaar": 262,
         "jsonl": {
           "total_lines": 1433,
           "actor_lines": 0,
@@ -28663,9 +28839,9 @@
         },
         {
           "actor": "claude2",
-          "orders": 207,
-          "orders_met_duur": 198,
-          "p50_duration_ms": 520500,
+          "orders": 208,
+          "orders_met_duur": 199,
+          "p50_duration_ms": 520000,
           "max_duration_ms": 6644000,
           "orders_met_verdict": 101,
           "geslaagd_pct": 10.9,
@@ -28685,7 +28861,7 @@
             "OWNER_GATE": 1,
             "READY_FOR_INDEPENDENT_REVIEW": 1
           },
-          "laatste_activiteit": "2026-08-30T18:47:15Z"
+          "laatste_activiteit": "2026-08-30T19:06:22Z"
         },
         {
           "actor": "claude2 (builder)",
@@ -28792,9 +28968,9 @@
         },
         {
           "actor": "claude4",
-          "orders": 221,
-          "orders_met_duur": 215,
-          "p50_duration_ms": 344000,
+          "orders": 222,
+          "orders_met_duur": 216,
+          "p50_duration_ms": 343500,
           "max_duration_ms": 4756000,
           "orders_met_verdict": 118,
           "geslaagd_pct": 38.1,
@@ -28811,7 +28987,7 @@
             "KLAAR-VOOR-REVIEW (bouwer keurt zijn eigen werk niet goed)": 1,
             "NO_GO": 3
           },
-          "laatste_activiteit": "2026-08-30T18:29:16Z"
+          "laatste_activiteit": "2026-08-30T19:02:17Z"
         },
         {
           "actor": "codex",
@@ -28874,16 +29050,16 @@
         },
         {
           "actor": "codex2",
-          "orders": 202,
-          "orders_met_duur": 195,
+          "orders": 203,
+          "orders_met_duur": 196,
           "p50_duration_ms": 195000,
           "max_duration_ms": 2335000,
-          "orders_met_verdict": 129,
-          "geslaagd_pct": 12.4,
-          "geblokkeerd_pct": 85.3,
+          "orders_met_verdict": 130,
+          "geslaagd_pct": 12.3,
+          "geblokkeerd_pct": 85.4,
           "overig_pct": 2.3,
           "verdict_distribution_raw": {
-            "BLOCKED_EVIDENCE": 94,
+            "BLOCKED_EVIDENCE": 95,
             "DONE_FIXTURE_READY": 1,
             "GO_HYPOTHESE_BEVESTIGD": 1,
             "GO_READY_FOR_MERGE_GATE": 9,
@@ -28892,7 +29068,7 @@
             "NO_GO": 16,
             "REVIEW_PENDING": 2
           },
-          "laatste_activiteit": "2026-08-30T18:32:04Z"
+          "laatste_activiteit": "2026-08-30T19:05:05Z"
         },
         {
           "actor": "codex2-builder",
@@ -29015,7 +29191,7 @@
         },
         {
           "actor": "ONPARSEERBAAR",
-          "orders": 259,
+          "orders": 262,
           "orders_met_duur": 0,
           "p50_duration_ms": null,
           "max_duration_ms": null,
@@ -29078,6 +29254,7 @@
             "AUTOCODING_LANE_MONITOR_ORDER_CACHE_861AE6D_REVIEW_CLAUDE4_V1_RECEIPT.md",
             "AUTOCODING_MERGE_ORDER_GUARD_EXACT_HEAD_REVIEW_CODEX2_V1_RECEIPT.md",
             "AUTOCODING_MERGE_ORDER_GUARD_HERSTEL_EXACT_HEAD_REVIEW_CODEX2_V2_RECEIPT.md",
+            "AUTOCODING_PR55_H11_DEPENDENCY_RECONCILIATION_CLAUDE1_V1_RECEIPT.md",
             "AUTOCODING_PR74_EXACT_HEAD_SECURITY_REVIEW_CLAUDE4_V1_RECEIPT.md",
             "AUTOCODING_PR74_V20_GEMINI1_SOURCE_REVIEW_V1_RECEIPT.md",
             "AUTOCODING_PR74_V20_MERGE_GROUP_EVIDENCE_REPAIR_CLAUDE3_DIRECT_V1_RECEIPT.md",
@@ -29104,12 +29281,14 @@
             "AUTOCODING_PR991_EXACT_HEAD_REVIEW_MATRIX_DISPATCH_20260820_RECEIPT.md",
             "AUTOCODING_PR993_CLASS_A_MATRIX_20260820_RECEIPT.md",
             "AUTOCODING_PR994_TRANSITION_FENCING_20260820_RECEIPT.md",
+            "AUTOCODING_PREACTIVATION_CANARY_908F921_EXACT_REVIEW_CLAUDE4_V1_RECEIPT.md",
             "AUTOCODING_PROVIDER_PLAN_CONTRACT_CLOSE_V1_CODEX2_RECEIPT.md",
             "AUTOCODING_QUEUE_SUPERVISOR_ACTIVATION_AUDIT_CLAUDE3_V1_RECEIPT.md",
             "AUTOCODING_QUEUE_SUPERVISOR_REVIEW_CLAUDE1_V1_RECEIPT.md",
             "AUTOCODING_REVIEW_ROUTE_RECOVERY_865D621_CODEX_R4_RECEIPT.md",
             "AUTOCODING_REVIEW_ROUTE_RECOVERY_CLAUDE1_V1_RECONCILIATION_RECEIPT.md",
             "AUTOCODING_RONDE6_SHA_AMENDABLE_UNCONDITIONAL_EXACT_HEAD_REVIEW_CODEX2_V1_RECEIPT.md",
+            "AUTOCODING_RUNTIME_SINGLE_LEADER_CUTOVER_PREFLIGHT_CLAUDE2_V1_RECEIPT.md",
             "AUTOCODING_S23_LANE_BINDING_EXACT_REVIEW_CODEX2_V1_RECEIPT.md",
             "AUTOCODING_SUPERVISOR_POSTMERGE_REVIEW_CLAUDE4_9DD96D7_RECEIPT.md",
             "AUTOCODING_TELEGRAM_WAAKVLAM_REVIEW_CLAUDE4_V1_RECEIPT.md",
