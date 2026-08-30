@@ -1,62 +1,62 @@
 {
   "schema": "REGIEKAMER_REALTIME_V1",
-  "gegenereerd_op": "2026-08-30T19:58:38Z",
+  "gegenereerd_op": "2026-08-30T20:03:50Z",
   "stack_root": "STACK_ROOT",
   "accounts": [
     {
       "actor": "claude1",
-      "status": "GEBLOKKEERD",
-      "taak_id": "AUTOCODING_ESCALATION_REVIEW_STDOUT_WORKAROUND_CLAUDE1_V1",
-      "sinds": "2026-08-30T19:51:25Z",
-      "sinds_minuten": 7.1,
-      "bron": "outbox:receipt:AUTOCODING_ESCALATION_REVIEW_STDOUT_WORKAROUND_CLAUDE1_V1_RECEIPT.md"
+      "status": "BEZIG",
+      "taak_id": "AUTOCODING_ESCALATION_REVIEW_STDOUT_WORKAROUND_CLAUDE1_V2",
+      "sinds": "2026-08-30T19:59:34Z",
+      "sinds_minuten": 4.1,
+      "bron": "ps:pid=78277"
     },
     {
       "actor": "claude2",
-      "status": "STALE",
-      "taak_id": "AUTOCODING_LIVE_QUEUE_ACTIVATION_PREFLIGHT_CLAUDE2_V1",
-      "sinds": "2026-08-30T19:45:44Z",
-      "sinds_minuten": 12.8,
-      "bron": "ps:pid=79564"
+      "status": "GEBLOKKEERD",
+      "taak_id": "AUTOCODING_LIVE_QUEUE_ACTIVATION_PREFLIGHT_CLAUDE2_V1_TRANSPORT",
+      "sinds": "2026-08-30T20:00:12Z",
+      "sinds_minuten": 3.5,
+      "bron": "outbox:receipt:AUTOCODING_LIVE_QUEUE_ACTIVATION_PREFLIGHT_CLAUDE2_V1_TRANSPORT_RECEIPT.md"
     },
     {
       "actor": "claude3",
-      "status": "GEBLOKKEERD",
-      "taak_id": "AUTOCODING_REVIEW_TRANSPORT_CANONICAL_RECEIPT_REPAIR_CLAUDE3_V1_TRANSPORT",
-      "sinds": "2026-08-30T19:33:37Z",
-      "sinds_minuten": 24.9,
-      "bron": "outbox:receipt:AUTOCODING_REVIEW_TRANSPORT_CANONICAL_RECEIPT_REPAIR_CLAUDE3_V1_TRANSPORT_RECEIPT.md"
+      "status": "BEZIG",
+      "taak_id": "AUTOCODING_EVIDENCE_GATE_HEADCHECKOUT_DIAGNOSE_CLAUDE3_V1",
+      "sinds": "2026-08-30T20:02:06Z",
+      "sinds_minuten": 1.6,
+      "bron": "ps:pid=98513"
     },
     {
       "actor": "claude4",
       "status": "STALE",
       "taak_id": "AUTOCODING_NO_MORE_IDLE_PHASE1_LOCAL_INTEGRATION_CLAUDE4_V1",
       "sinds": "2026-08-30T19:43:11Z",
-      "sinds_minuten": 15.4,
+      "sinds_minuten": 20.5,
       "bron": "ps:pid=74312"
     },
     {
       "actor": "codex1",
       "status": "WACHT",
-      "taak_id": "KEYNOTE_V3_SSH_SOURCE_TRANSPORT_923_MANIFEST_BINDING_LOCAL_V1",
-      "sinds": "2026-08-30T19:56:38Z",
-      "sinds_minuten": 1.9,
-      "bron": "outbox:order_open:KEYNOTE_V3_SSH_SOURCE_TRANSPORT_923_MANIFEST_BINDING_LOCAL_V1.md"
+      "taak_id": "AUTOCODING_NO_MORE_IDLE_PHASE1_CANDIDATE_4AE66D7_TRANSPORT_ALERT_EXACT_HEAD_REVIEW_CODEX1_V1",
+      "sinds": "2026-08-30T20:00:28Z",
+      "sinds_minuten": 3.2,
+      "bron": "outbox:order_open:AUTOCODING_NO_MORE_IDLE_PHASE1_CANDIDATE_4AE66D7_TRANSPORT_ALERT_EXACT_HEAD_REVIEW_CODEX1_V1.md"
     },
     {
       "actor": "codex2",
-      "status": "GEBLOKKEERD",
-      "taak_id": "AUTOCODING_H11_ATOMIC_SINGLE_LEADER_EXACTHEAD_REVIEW_CODEX2_V1_TRANSPORT",
-      "sinds": "2026-08-30T19:33:56Z",
-      "sinds_minuten": 24.6,
-      "bron": "outbox:receipt:AUTOCODING_H11_ATOMIC_SINGLE_LEADER_EXACTHEAD_REVIEW_CODEX2_V1_TRANSPORT_RECEIPT.md"
+      "status": "BEZIG",
+      "taak_id": "AUTOCODING_PR54_RECONCILIATIE_PLAN_CODEX2_V1",
+      "sinds": "2026-08-30T20:02:06Z",
+      "sinds_minuten": 1.6,
+      "bron": "ps:pid=98514"
     },
     {
       "actor": "gemini1",
       "status": "GEBLOKKEERD",
       "taak_id": "AUTOCODING_H11_SECOND_OPINION_GEMINI1_V1",
       "sinds": "2026-08-30T19:38:19Z",
-      "sinds_minuten": 20.2,
+      "sinds_minuten": 25.4,
       "bron": "outbox:receipt:AUTOCODING_H11_SECOND_OPINION_GEMINI1_V1_RECEIPT.md"
     },
     {
@@ -72,7 +72,7 @@
       "status": "VRIJ",
       "taak_id": null,
       "sinds": "2026-08-30T14:20:15Z",
-      "sinds_minuten": 338.3,
+      "sinds_minuten": 343.5,
       "bron": "outbox:order_afgerond:AUTOCODING_CONTROLLER_PARALLELISM_EXACT_HEAD_REVIEW_CODEX1_V1.md"
     }
   ],
@@ -4176,6 +4176,62 @@
       "bron_type": "receipt",
       "status": "OPEN",
       "taak": "onafhankelijke CODEX1-review en aparte routering van de suite-inconsistenties.",
+      "schatting_categorie": "GEEN_SCHATTING",
+      "schatting_min": null
+    },
+    {
+      "bron_bestand": "outbox/AUTOCODING_LIVE_QUEUE_ACTIVATION_PREFLIGHT_CLAUDE2_V1_RECEIPT.md",
+      "bron_type": "receipt",
+      "status": "KLAAR",
+      "taak": "Acceptatieproef (3× jq -e) draaien en bevestigen",
+      "schatting_categorie": "GEEN_SCHATTING",
+      "schatting_min": null
+    },
+    {
+      "bron_bestand": "outbox/AUTOCODING_LIVE_QUEUE_ACTIVATION_PREFLIGHT_CLAUDE2_V1_RECEIPT.md",
+      "bron_type": "receipt",
+      "status": "KLAAR",
+      "taak": "Ruwe telling van alle queue_state=QUEUED_FOR_AUTOCODING-kandidaten (95)",
+      "schatting_categorie": "GEEN_SCHATTING",
+      "schatting_min": null
+    },
+    {
+      "bron_bestand": "outbox/AUTOCODING_LIVE_QUEUE_ACTIVATION_PREFLIGHT_CLAUDE2_V1_RECEIPT.md",
+      "bron_type": "receipt",
+      "status": "KLAAR",
+      "taak": "Autoritatieve dispatchlogica traceren naar gepinde runtime-checkout i.p.v. interactieve checkout",
+      "schatting_categorie": "GEEN_SCHATTING",
+      "schatting_min": null
+    },
+    {
+      "bron_bestand": "outbox/AUTOCODING_LIVE_QUEUE_ACTIVATION_PREFLIGHT_CLAUDE2_V1_RECEIPT.md",
+      "bron_type": "receipt",
+      "status": "KLAAR",
+      "taak": "Classificatie SAFE_CANARY/VALID_READY/TERMINAL/STALE_RECONCILE/QUARANTINE met bewijs per item",
+      "schatting_categorie": "GEEN_SCHATTING",
+      "schatting_min": null
+    },
+    {
+      "bron_bestand": "outbox/AUTOCODING_LIVE_QUEUE_ACTIVATION_PREFLIGHT_CLAUDE2_V1_RECEIPT.md",
+      "bron_type": "receipt",
+      "status": "KLAAR",
+      "taak": "Veilige activatievolgorde bepalen en documenteren",
+      "schatting_categorie": "GEEN_SCHATTING",
+      "schatting_min": null
+    },
+    {
+      "bron_bestand": "outbox/AUTOCODING_LIVE_QUEUE_ACTIVATION_PREFLIGHT_CLAUDE2_V1_RECEIPT.md",
+      "bron_type": "receipt",
+      "status": "KLAAR",
+      "taak": "Auditdocument geschreven naar docs/audits/AUTOCODING_LIVE_QUEUE_ACTIVATION_PREFLIGHT_CLAUDE2_V1.md",
+      "schatting_categorie": "GEEN_SCHATTING",
+      "schatting_min": null
+    },
+    {
+      "bron_bestand": "outbox/AUTOCODING_LIVE_QUEUE_ACTIVATION_PREFLIGHT_CLAUDE2_V1_RECEIPT.md",
+      "bron_type": "receipt",
+      "status": "KLAAR",
+      "taak": "Terminaal receipt geschreven naar outbox/AUTOCODING_LIVE_QUEUE_ACTIVATION_PREFLIGHT_CLAUDE2_V1_RECEIPT.md",
       "schatting_categorie": "GEEN_SCHATTING",
       "schatting_min": null
     },
@@ -29181,8 +29237,8 @@
     }
   ],
   "taken_meta": {
-    "taken_totaal": 3636,
-    "taken_zonder_schatting": 3517,
+    "taken_totaal": 3643,
+    "taken_zonder_schatting": 3524,
     "bron_glob": "outbox/*.md (TAKENLIJST-blokken)",
     "classificatie": "regex op TAKENLIJST-tabelrijen (Status/Taak/Tijd) en kale lijstvorm; een cel zonder herkenbaar '~X min'-patroon telt als GEEN_SCHATTING, nooit stilzwijgend overgeslagen"
   },
@@ -29192,10 +29248,10 @@
     "cmd": "bin/lane-capaciteit --json",
     "data": {
       "stack_root": "STACK_ROOT",
-      "generated_at": "2026-08-30T19:58:38Z",
+      "generated_at": "2026-08-30T20:03:50Z",
       "meta": {
-        "receipt_bestanden_totaal": 1800,
-        "receipt_onparseerbaar": 266,
+        "receipt_bestanden_totaal": 1803,
+        "receipt_onparseerbaar": 267,
         "jsonl": {
           "total_lines": 1439,
           "actor_lines": 0,
@@ -29296,15 +29352,16 @@
         },
         {
           "actor": "claude2",
-          "orders": 209,
-          "orders_met_duur": 200,
-          "p50_duration_ms": 517500,
+          "orders": 211,
+          "orders_met_duur": 201,
+          "p50_duration_ms": 520000,
           "max_duration_ms": 6644000,
-          "orders_met_verdict": 101,
-          "geslaagd_pct": 10.9,
-          "geblokkeerd_pct": 83.2,
-          "overig_pct": 5.9,
+          "orders_met_verdict": 102,
+          "geslaagd_pct": 10.8,
+          "geblokkeerd_pct": 82.4,
+          "overig_pct": 6.9,
           "verdict_distribution_raw": {
+            "AUDIT_COMPLETE_QUARANTINE_FOUND": 1,
             "BLOCKED_EVIDENCE": 82,
             "BUILD_COMPLETE_AWAITING_INDEPENDENT_REVIEW": 1,
             "BUILD_READY_FOR_EXACT_HEAD_REVIEW": 1,
@@ -29318,7 +29375,7 @@
             "OWNER_GATE": 1,
             "READY_FOR_INDEPENDENT_REVIEW": 1
           },
-          "laatste_activiteit": "2026-08-30T19:26:42Z"
+          "laatste_activiteit": "2026-08-30T20:00:08Z"
         },
         {
           "actor": "claude2 (builder)",
@@ -29648,7 +29705,7 @@
         },
         {
           "actor": "ONPARSEERBAAR",
-          "orders": 266,
+          "orders": 267,
           "orders_met_duur": 0,
           "p50_duration_ms": null,
           "max_duration_ms": null,
@@ -29839,6 +29896,7 @@
             "KEYNOTE_V3_REV54_PILOT_4_DECKS_CONSOLIDATED_RECEIPT.md",
             "KEYNOTE_V3_REV54_TERMINAL_GATE_RECEIPT.md",
             "KEYNOTE_V3_RUN_VERSNELLING_V1_RECEIPT.md",
+            "KEYNOTE_V3_SSH_SOURCE_TRANSPORT_923_MANIFEST_BINDING_REVIEW_CODEX2_V1_RECEIPT.md",
             "KEYNOTE_V3_SSH_SOURCE_TRANSPORT_EXACT_HEAD_REVIEW_CODEX2_V1_RECEIPT.md",
             "KEYNOTE_V3_SSH_SOURCE_TRANSPORT_NONPRODUCTION_PROOF_CODEX1_V1_RECEIPT.md",
             "KEYNOTE_V3_SSH_SOURCE_TRANSPORT_PRIVACY_REPAIR_CODEX1_V1_RECEIPT.md",
