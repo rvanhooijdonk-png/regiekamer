@@ -1,30 +1,30 @@
 {
   "schema": "REGIEKAMER_REALTIME_V1",
-  "gegenereerd_op": "2026-08-30T10:06:02Z",
+  "gegenereerd_op": "2026-08-30T10:11:14Z",
   "stack_root": "STACK_ROOT",
   "accounts": [
     {
       "actor": "claude1",
-      "status": "GEBLOKKEERD",
-      "taak_id": "AUTOCODER_CONTROLLER_NONBLOCKING_DISPATCH_CLAUDE1_EXACT_HEAD_REVIEW_V1",
-      "sinds": "2026-08-30T10:05:39Z",
-      "sinds_minuten": 0.2,
-      "bron": "outbox:receipt:AUTOCODER_CONTROLLER_NONBLOCKING_DISPATCH_CLAUDE1_EXACT_HEAD_REVIEW_V1_RECEIPT.md"
+      "status": "BEZIG",
+      "taak_id": "STACKDIR_BEWIJSGROND_IS_GEEN_OORDEEL_CLAUDE1_V1",
+      "sinds": "2026-08-30T10:07:17Z",
+      "sinds_minuten": 3.8,
+      "bron": "ps:pid=62427"
     },
     {
       "actor": "claude2",
-      "status": "WACHT",
+      "status": "BEZIG",
       "taak_id": "AUTOCODING_VERIFY_ACCEPTANCE_BUILDMODE_GATEFIX_CLAUDE2_V2",
-      "sinds": "2026-08-30T10:05:49Z",
-      "sinds_minuten": 0.1,
-      "bron": "outbox:order_open:AUTOCODING_VERIFY_ACCEPTANCE_BUILDMODE_GATEFIX_CLAUDE2_V2.md"
+      "sinds": "2026-08-30T10:05:57Z",
+      "sinds_minuten": 5.2,
+      "bron": "ps:pid=55951"
     },
     {
       "actor": "claude3",
       "status": "GEBLOKKEERD",
       "taak_id": "AUTOCODING_H11_FLEET_SCHEDULER_ORPHANFIX_CLAUDE3_V1",
       "sinds": "2026-08-30T09:05:07Z",
-      "sinds_minuten": 60.8,
+      "sinds_minuten": 66.0,
       "bron": "outbox:receipt:AUTOCODING_H11_FLEET_SCHEDULER_ORPHANFIX_CLAUDE3_V1_RECEIPT.md"
     },
     {
@@ -32,7 +32,7 @@
       "status": "GEBLOKKEERD",
       "taak_id": "DWINGEND_SPOOR_D_PREFLIGHT_DRIE_ORDERS_READONLY_CLAUDE3_V1",
       "sinds": "2026-08-30T07:47:53Z",
-      "sinds_minuten": 138.0,
+      "sinds_minuten": 143.2,
       "bron": "outbox:receipt:DWINGEND_SPOOR_D_PREFLIGHT_DRIE_ORDERS_READONLY_CLAUDE3_V1_RECEIPT.md"
     },
     {
@@ -40,7 +40,7 @@
       "status": "VRIJ",
       "taak_id": "DWINGEND_SPOOR_E_ROUND6_REVIEWCHECKLIST_CODEX1_V3",
       "sinds": "2026-08-30T08:18:35Z",
-      "sinds_minuten": 107.3,
+      "sinds_minuten": 112.5,
       "bron": "outbox:receipt:DWINGEND_SPOOR_E_ROUND6_REVIEWCHECKLIST_CODEX1_V3_RECEIPT.md"
     },
     {
@@ -48,7 +48,7 @@
       "status": "VRIJ",
       "taak_id": "DWINGEND_SPOOR_F_H5H9_FAALDRILL_FIXTURES_CODEX2_V3",
       "sinds": "2026-08-30T08:19:41Z",
-      "sinds_minuten": 106.2,
+      "sinds_minuten": 111.4,
       "bron": "outbox:receipt:DWINGEND_SPOOR_F_H5H9_FAALDRILL_FIXTURES_CODEX2_V3_RECEIPT.md"
     },
     {
@@ -56,7 +56,7 @@
       "status": "GEBLOKKEERD",
       "taak_id": "DWINGEND_SPOOR_G_ROUND6_TWEEDE_REVIEWSTEM_GEMINI1_V2",
       "sinds": "2026-08-30T09:59:10Z",
-      "sinds_minuten": 6.7,
+      "sinds_minuten": 11.9,
       "bron": "outbox:receipt:DWINGEND_SPOOR_G_ROUND6_TWEEDE_REVIEWSTEM_GEMINI1_V2_RECEIPT.md"
     },
     {
@@ -72,7 +72,7 @@
       "status": "GEBLOKKEERD",
       "taak_id": "AUTOCODER_CONTROLLER_RECEIPT_FIELD_FIX_REVIEW_CLAUDE1_V1",
       "sinds": "2026-08-28T13:35:13Z",
-      "sinds_minuten": 2670.7,
+      "sinds_minuten": 2675.9,
       "bron": "outbox:receipt:AUTOCODER_CONTROLLER_RECEIPT_FIELD_FIX_REVIEW_CLAUDE1_V1.md"
     }
   ],
@@ -27104,15 +27104,15 @@
     "cmd": "bin/lane-capaciteit --json",
     "data": {
       "stack_root": "STACK_ROOT",
-      "generated_at": "2026-08-30T10:06:02Z",
+      "generated_at": "2026-08-30T10:11:14Z",
       "meta": {
         "receipt_bestanden_totaal": 1708,
         "receipt_onparseerbaar": 237,
         "jsonl": {
-          "total_lines": 1380,
+          "total_lines": 1381,
           "actor_lines": 0,
           "onparseerbaar": 0,
-          "zonder_actor": 1380,
+          "zonder_actor": 1381,
           "aanwezig": true
         },
         "verdict_classificatie": "heuristiek: prefix-match op verdict= (hoofdletterongevoelig); GESLAAGD={GO,PASS,DELIVERED}, GEBLOKKEERD={NO_GO,BLOCKED,REJECTED,FAILED}, onbekend/overig telt niet stilzwijgend mee als geslaagd of geblokkeerd"
@@ -27810,7 +27810,7 @@
         },
         {
           "actor": "ZONDER_ACTOR",
-          "orders": 1380,
+          "orders": 1381,
           "orders_met_duur": 0,
           "p50_duration_ms": null,
           "max_duration_ms": null,
@@ -29200,7 +29200,8 @@
             1377,
             1378,
             1379,
-            1380
+            1380,
+            1381
           ]
         }
       ]
