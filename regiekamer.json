@@ -1,22 +1,22 @@
 {
   "schema": "REGIEKAMER_REALTIME_V1",
-  "gegenereerd_op": "2026-08-30T00:21:15Z",
+  "gegenereerd_op": "2026-08-30T00:26:29Z",
   "stack_root": "STACK_ROOT",
   "accounts": [
     {
       "actor": "claude1",
-      "status": "BEZIG",
-      "taak_id": "STUDIO_F013_FIXFAILCLOSED_CLAUDE1_V1",
-      "sinds": "2026-08-30T00:20:45Z",
-      "sinds_minuten": 0.4,
-      "bron": "ps:pid=47072"
+      "status": "GEBLOKKEERD",
+      "taak_id": "STUDIO_F013_FIXFAILCLOSED_CLAUDE1_V1_TRANSPORT_RECEIPT_2",
+      "sinds": "2026-08-30T00:24:14Z",
+      "sinds_minuten": 2.1,
+      "bron": "outbox:receipt:STUDIO_F013_FIXFAILCLOSED_CLAUDE1_V1_TRANSPORT_RECEIPT_2.md"
     },
     {
       "actor": "claude2",
       "status": "GEBLOKKEERD",
       "taak_id": "STACKDIR_PROEFBINDING_TOELATING_WORDT_WEIGERING_CLAUDE2_V1",
       "sinds": "2026-08-30T00:04:47Z",
-      "sinds_minuten": 16.3,
+      "sinds_minuten": 21.5,
       "bron": "outbox:receipt:STACKDIR_PROEFBINDING_TOELATING_WORDT_WEIGERING_CLAUDE2_V1_RECEIPT.md"
     },
     {
@@ -24,7 +24,7 @@
       "status": "GEBLOKKEERD",
       "taak_id": "STACKDIR_ENUMERATIE_LIJST_EN_INHOUD_EEN_BRON_CLAUDE3_V1",
       "sinds": "2026-08-30T00:04:47Z",
-      "sinds_minuten": 16.3,
+      "sinds_minuten": 21.5,
       "bron": "outbox:receipt:STACKDIR_ENUMERATIE_LIJST_EN_INHOUD_EEN_BRON_CLAUDE3_V1_RECEIPT.md"
     },
     {
@@ -32,7 +32,7 @@
       "status": "GEBLOKKEERD",
       "taak_id": "STACKDIR_ORDER_ZONDER_RECEIPTVELD_REVIEW_CLAUDE4_V1",
       "sinds": "2026-08-30T00:04:47Z",
-      "sinds_minuten": 16.3,
+      "sinds_minuten": 21.5,
       "bron": "outbox:receipt:STACKDIR_ORDER_ZONDER_RECEIPTVELD_REVIEW_CLAUDE4_V1_RECEIPT.md"
     },
     {
@@ -40,15 +40,15 @@
       "status": "GEBLOKKEERD",
       "taak_id": "STACKDIR_ORDER_ZONDER_RECEIPTVELD_CODEX1_V1",
       "sinds": "2026-08-29T23:49:56Z",
-      "sinds_minuten": 31.2,
+      "sinds_minuten": 36.4,
       "bron": "outbox:receipt:STACKDIR_ORDER_ZONDER_RECEIPTVELD_CODEX1_V1_RECEIPT.md"
     },
     {
       "actor": "codex2",
       "status": "VRIJ",
       "taak_id": null,
-      "sinds": "2026-08-30T00:20:29Z",
-      "sinds_minuten": 0.6,
+      "sinds": "2026-08-30T00:25:35Z",
+      "sinds_minuten": 0.7,
       "bron": "outbox:order_afgerond:STUDIO_LONGREAD_PILOT_V1_REPAIR_L_COMMIT_ISOLATED_CODEX2_V1.md"
     },
     {
@@ -56,7 +56,7 @@
       "status": "GEBLOKKEERD",
       "taak_id": "AUTOCODING_H3_CLAIM_FAIL_CLOSED_CLAUDE3_V1",
       "sinds": "2026-08-29T20:31:02Z",
-      "sinds_minuten": 230.1,
+      "sinds_minuten": 235.3,
       "bron": "outbox:receipt:AUTOCODING_H3_CLAIM_FAIL_CLOSED_CLAUDE3_V1_RECEIPT.md"
     },
     {
@@ -72,7 +72,7 @@
       "status": "GEBLOKKEERD",
       "taak_id": "AUTOCODER_CONTROLLER_RECEIPT_FIELD_FIX_REVIEW_CLAUDE1_V1",
       "sinds": "2026-08-28T13:35:13Z",
-      "sinds_minuten": 2085.9,
+      "sinds_minuten": 2091.1,
       "bron": "outbox:receipt:AUTOCODER_CONTROLLER_RECEIPT_FIELD_FIX_REVIEW_CLAUDE1_V1.md"
     }
   ],
@@ -22548,6 +22548,38 @@
       "schatting_min": null
     },
     {
+      "bron_bestand": "outbox/STUDIO_F013_FIXFAILCLOSED_CLAUDE1_V1_TRANSPORT_RECEIPT_2.md",
+      "bron_type": "receipt",
+      "status": "KLAAR",
+      "taak": "Negatieve controle: nieuwe GET/DELETE-503-toets rood op base 275ea40 (bewijs: AssertionError 200 !== 503, EXIT=1)",
+      "schatting_categorie": "GEEN_SCHATTING",
+      "schatting_min": null
+    },
+    {
+      "bron_bestand": "outbox/STUDIO_F013_FIXFAILCLOSED_CLAUDE1_V1_TRANSPORT_RECEIPT_2.md",
+      "bron_type": "receipt",
+      "status": "KLAAR",
+      "taak": "Fix in api/owner-gate.js + toets-aanscherping, gecommit als 406e6d9 (bewijs: git log + diff --stat, 2 bestanden)",
+      "schatting_categorie": "GEEN_SCHATTING",
+      "schatting_min": null
+    },
+    {
+      "bron_bestand": "outbox/STUDIO_F013_FIXFAILCLOSED_CLAUDE1_V1_TRANSPORT_RECEIPT_2.md",
+      "bron_type": "receipt",
+      "status": "KLAAR",
+      "taak": "Acceptatieproef op de gecommitte head (bewijs: LONGREAD_TEST_PROGRAM=PASS, EXIT=0)",
+      "schatting_categorie": "GEEN_SCHATTING",
+      "schatting_min": null
+    },
+    {
+      "bron_bestand": "outbox/STUDIO_F013_FIXFAILCLOSED_CLAUDE1_V1_TRANSPORT_RECEIPT_2.md",
+      "bron_type": "receipt",
+      "status": "KLAAR",
+      "taak": "Receipt geschreven in worktree-outbox (bewijs: pad hieronder)",
+      "schatting_categorie": "GEEN_SCHATTING",
+      "schatting_min": null
+    },
+    {
       "bron_bestand": "outbox/STUDIO_F013_OWNERGATE_FALLBACK_V1_RECEIPT.md",
       "bron_type": "receipt",
       "status": "KLAAR",
@@ -26061,8 +26093,8 @@
     }
   ],
   "taken_meta": {
-    "taken_totaal": 3246,
-    "taken_zonder_schatting": 3132,
+    "taken_totaal": 3250,
+    "taken_zonder_schatting": 3136,
     "bron_glob": "outbox/*.md (TAKENLIJST-blokken)",
     "classificatie": "regex op TAKENLIJST-tabelrijen (Status/Taak/Tijd) en kale lijstvorm; een cel zonder herkenbaar '~X min'-patroon telt als GEEN_SCHATTING, nooit stilzwijgend overgeslagen"
   },
@@ -26072,7 +26104,7 @@
     "cmd": "bin/lane-capaciteit --json",
     "data": {
       "stack_root": "STACK_ROOT",
-      "generated_at": "2026-08-30T00:21:15Z",
+      "generated_at": "2026-08-30T00:26:29Z",
       "meta": {
         "receipt_bestanden_totaal": 1643,
         "receipt_onparseerbaar": 219,
