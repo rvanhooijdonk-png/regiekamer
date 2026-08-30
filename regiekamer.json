@@ -1,30 +1,30 @@
 {
   "schema": "REGIEKAMER_REALTIME_V1",
-  "gegenereerd_op": "2026-08-30T06:21:00Z",
+  "gegenereerd_op": "2026-08-30T06:26:24Z",
   "stack_root": "STACK_ROOT",
   "accounts": [
     {
       "actor": "claude1",
-      "status": "WACHT",
-      "taak_id": "AUTOCODER_CONTROLLER_NONBLOCKING_DISPATCH_CLAUDE1_EXACT_HEAD_REVIEW_V1",
-      "sinds": "2026-08-30T06:20:14Z",
-      "sinds_minuten": 0.6,
-      "bron": "outbox:order_open:AUTOCODER_CONTROLLER_NONBLOCKING_DISPATCH_CLAUDE1_EXACT_HEAD_REVIEW_V1.md"
+      "status": "BEZIG",
+      "taak_id": "KEYNOTE_V3_SSH_SOURCE_TRANSPORT_RECOVERY_CLAUDE1_V1",
+      "sinds": "2026-08-30T06:25:03Z",
+      "sinds_minuten": 1.0,
+      "bron": "ps:pid=46428"
     },
     {
       "actor": "claude2",
-      "status": "BEZIG",
+      "status": "GEBLOKKEERD",
       "taak_id": "KEYNOTE_V3_SSH_SOURCE_TRANSPORT_ADAPTER_CLAUDE2_V1",
-      "sinds": "2026-08-30T06:14:06Z",
-      "sinds_minuten": 6.8,
-      "bron": "ps:pid=91281"
+      "sinds": "2026-08-30T06:24:20Z",
+      "sinds_minuten": 1.7,
+      "bron": "outbox:receipt:KEYNOTE_V3_SSH_SOURCE_TRANSPORT_ADAPTER_CLAUDE2_V1_RECEIPT.md"
     },
     {
       "actor": "claude3",
       "status": "GEBLOKKEERD",
       "taak_id": "AUTOCODING_H3_CLAIM_FAIL_CLOSED_R2_LITERAL_HERSTEL_CLAUDE3_V6_RECEIPT_ONLY",
       "sinds": "2026-08-30T05:49:13Z",
-      "sinds_minuten": 31.6,
+      "sinds_minuten": 36.8,
       "bron": "outbox:receipt:AUTOCODING_H3_CLAIM_FAIL_CLOSED_R2_LITERAL_HERSTEL_CLAUDE3_V6_RECEIPT_ONLY.md"
     },
     {
@@ -32,7 +32,7 @@
       "status": "GEBLOKKEERD",
       "taak_id": "AUTOCODING_H4_PROCES_IDENTITEIT_CLAUDE4_V4_RECEIPT_ONLY",
       "sinds": "2026-08-30T05:48:25Z",
-      "sinds_minuten": 32.5,
+      "sinds_minuten": 37.6,
       "bron": "outbox:receipt:AUTOCODING_H4_PROCES_IDENTITEIT_CLAUDE4_V4_RECEIPT_ONLY.md"
     },
     {
@@ -40,15 +40,15 @@
       "status": "VRIJ",
       "taak_id": "AUTOCODER_CONTROLLER_NONBLOCKING_DISPATCH_CODEX1_V2_RECEIPT_ONLY_TRANSPORT",
       "sinds": "2026-08-30T05:36:42Z",
-      "sinds_minuten": 44.2,
+      "sinds_minuten": 49.4,
       "bron": "outbox:receipt:AUTOCODER_CONTROLLER_NONBLOCKING_DISPATCH_CODEX1_V2_RECEIPT_ONLY_TRANSPORT_RECEIPT.md"
     },
     {
       "actor": "codex2",
       "status": "VRIJ",
       "taak_id": null,
-      "sinds": "2026-08-30T06:20:20Z",
-      "sinds_minuten": 0.5,
+      "sinds": "2026-08-30T06:25:27Z",
+      "sinds_minuten": 0.6,
       "bron": "outbox:order_afgerond:STUDIO_LONGREAD_PILOT_V1_REPAIR_L_COMMIT_ISOLATED_CODEX2_V1.md"
     },
     {
@@ -56,7 +56,7 @@
       "status": "GEBLOKKEERD",
       "taak_id": "KEYNOTE_V3_MINI_HOME_SOURCE_TRANSPORT_DESIGN_GEMINI1_V3_REDACTED_TRANSPORT",
       "sinds": "2026-08-30T06:09:59Z",
-      "sinds_minuten": 10.9,
+      "sinds_minuten": 16.1,
       "bron": "outbox:receipt:KEYNOTE_V3_MINI_HOME_SOURCE_TRANSPORT_DESIGN_GEMINI1_V3_REDACTED_TRANSPORT_RECEIPT.md"
     },
     {
@@ -72,7 +72,7 @@
       "status": "GEBLOKKEERD",
       "taak_id": "AUTOCODER_CONTROLLER_RECEIPT_FIELD_FIX_REVIEW_CLAUDE1_V1",
       "sinds": "2026-08-28T13:35:13Z",
-      "sinds_minuten": 2445.6,
+      "sinds_minuten": 2450.8,
       "bron": "outbox:receipt:AUTOCODER_CONTROLLER_RECEIPT_FIELD_FIX_REVIEW_CLAUDE1_V1.md"
     }
   ],
@@ -26576,9 +26576,9 @@
     "cmd": "bin/lane-capaciteit --json",
     "data": {
       "stack_root": "STACK_ROOT",
-      "generated_at": "2026-08-30T06:21:00Z",
+      "generated_at": "2026-08-30T06:26:24Z",
       "meta": {
-        "receipt_bestanden_totaal": 1667,
+        "receipt_bestanden_totaal": 1668,
         "receipt_onparseerbaar": 225,
         "jsonl": {
           "total_lines": 1358,
@@ -26678,16 +26678,16 @@
         },
         {
           "actor": "claude2",
-          "orders": 197,
-          "orders_met_duur": 188,
-          "p50_duration_ms": 522000,
+          "orders": 198,
+          "orders_met_duur": 189,
+          "p50_duration_ms": 523000,
           "max_duration_ms": 6644000,
-          "orders_met_verdict": 92,
-          "geslaagd_pct": 12.0,
-          "geblokkeerd_pct": 82.6,
+          "orders_met_verdict": 93,
+          "geslaagd_pct": 11.8,
+          "geblokkeerd_pct": 82.8,
           "overig_pct": 5.4,
           "verdict_distribution_raw": {
-            "BLOCKED_EVIDENCE": 74,
+            "BLOCKED_EVIDENCE": 75,
             "BUILD_COMPLETE_AWAITING_INDEPENDENT_REVIEW": 1,
             "BUILD_READY_FOR_EXACT_HEAD_REVIEW": 1,
             "DELIVERED": 3,
@@ -26699,7 +26699,7 @@
             "OWNER_GATE": 1,
             "READY_FOR_INDEPENDENT_REVIEW": 1
           },
-          "laatste_activiteit": "2026-08-30T05:37:04Z"
+          "laatste_activiteit": "2026-08-30T06:24:20Z"
         },
         {
           "actor": "claude2 (builder)",
