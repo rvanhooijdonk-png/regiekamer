@@ -1,6 +1,6 @@
 {
   "schema": "REGIEKAMER_REALTIME_V1",
-  "gegenereerd_op": "2026-08-31T14:04:12Z",
+  "gegenereerd_op": "2026-08-31T14:09:25Z",
   "stack_root": "STACK_ROOT",
   "accounts": [
     {
@@ -8,7 +8,7 @@
       "status": "GEBLOKKEERD",
       "taak_id": "AUTOCODING_H11_RELEASE_GATE_BUILD_CLAUDE1_V1_TRANSPORT",
       "sinds": "2026-08-31T13:24:52Z",
-      "sinds_minuten": 39.2,
+      "sinds_minuten": 44.4,
       "bron": "outbox:receipt:AUTOCODING_H11_RELEASE_GATE_BUILD_CLAUDE1_V1_TRANSPORT_RECEIPT.md"
     },
     {
@@ -16,23 +16,23 @@
       "status": "WACHT",
       "taak_id": "AUTOCODING_CODEX_HOME_TRANSPORT_73B3563_EXACT_HEAD_REVIEW_CLAUDE2_V1",
       "sinds": "2026-08-31T14:00:43Z",
-      "sinds_minuten": 3.4,
+      "sinds_minuten": 8.6,
       "bron": "outbox:order_open:AUTOCODING_CODEX_HOME_TRANSPORT_73B3563_EXACT_HEAD_REVIEW_CLAUDE2_V1.md"
     },
     {
       "actor": "claude3",
-      "status": "BEZIG",
-      "taak_id": "AUTOCODING_QUEUE_RECONCILIATION_PREFLIGHT_CLAUDE3_V1",
-      "sinds": "2026-08-31T14:03:03Z",
-      "sinds_minuten": 1.0,
-      "bron": "ps:pid=23475"
+      "status": "VRIJ",
+      "taak_id": "AUTOCODING_QUEUE_RECONCILIATION_PREFLIGHT_CLAUDE3_V1_OPERATOR_STOP",
+      "sinds": "2026-08-31T14:09:13Z",
+      "sinds_minuten": 0.0,
+      "bron": "outbox:receipt:AUTOCODING_QUEUE_RECONCILIATION_PREFLIGHT_CLAUDE3_V1_OPERATOR_STOP_RECEIPT.md"
     },
     {
       "actor": "claude4",
       "status": "GEBLOKKEERD",
       "taak_id": "AUTOCODING_CODEX_HOME_TRANSPORT_REPAIR_CLAUDE4_V1",
       "sinds": "2026-08-31T13:38:49Z",
-      "sinds_minuten": 25.3,
+      "sinds_minuten": 30.4,
       "bron": "outbox:receipt:AUTOCODING_CODEX_HOME_TRANSPORT_REPAIR_CLAUDE4_V1_RECEIPT.md"
     },
     {
@@ -40,7 +40,7 @@
       "status": "WACHT",
       "taak_id": "KEYNOTE_CONTENT_DESK_DUURZAME_OPSLAG_EN_PUBLICATIE_V1",
       "sinds": "2026-08-31T12:56:00Z",
-      "sinds_minuten": 68.1,
+      "sinds_minuten": 73.3,
       "bron": "outbox:order_open:KEYNOTE_CONTENT_DESK_DUURZAME_OPSLAG_EN_PUBLICATIE_V1.md"
     },
     {
@@ -48,7 +48,7 @@
       "status": "GEBLOKKEERD",
       "taak_id": "AUTOCODING_CODEX2_EXECUTION_CONTEXT_DIAGNOSE_CLAUDE3_V2_TRANSPORT",
       "sinds": "2026-08-31T12:54:09Z",
-      "sinds_minuten": 69.9,
+      "sinds_minuten": 75.1,
       "bron": "outbox:receipt:AUTOCODING_CODEX2_EXECUTION_CONTEXT_DIAGNOSE_CLAUDE3_V2_TRANSPORT_RECEIPT.md"
     },
     {
@@ -56,7 +56,7 @@
       "status": "WACHT",
       "taak_id": "AUTOCODING_H11_RELEASE_GATE_AB73DA8_EXACT_HEAD_REVIEW_CLAUDE3_V1",
       "sinds": "2026-08-31T13:32:23Z",
-      "sinds_minuten": 31.7,
+      "sinds_minuten": 36.9,
       "bron": "outbox:order_open:AUTOCODING_H11_RELEASE_GATE_AB73DA8_EXACT_HEAD_REVIEW_CLAUDE3_V1.md"
     },
     {
@@ -72,7 +72,7 @@
       "status": "VRIJ",
       "taak_id": null,
       "sinds": "2026-08-30T14:20:15Z",
-      "sinds_minuten": 1423.8,
+      "sinds_minuten": 1429.0,
       "bron": "outbox:order_afgerond:AUTOCODING_CONTROLLER_PARALLELISM_EXACT_HEAD_REVIEW_CODEX1_V1.md"
     }
   ],
@@ -30672,9 +30672,9 @@
     "cmd": "bin/lane-capaciteit --json",
     "data": {
       "stack_root": "STACK_ROOT",
-      "generated_at": "2026-08-31T14:04:12Z",
+      "generated_at": "2026-08-31T14:09:25Z",
       "meta": {
-        "receipt_bestanden_totaal": 1904,
+        "receipt_bestanden_totaal": 1905,
         "receipt_onparseerbaar": 289,
         "jsonl": {
           "total_lines": 631,
@@ -31107,24 +31107,25 @@
         },
         {
           "actor": "director_codex",
-          "orders": 8,
+          "orders": 9,
           "orders_met_duur": 0,
           "p50_duration_ms": null,
           "max_duration_ms": null,
-          "orders_met_verdict": 8,
-          "geslaagd_pct": 50.0,
+          "orders_met_verdict": 9,
+          "geslaagd_pct": 44.4,
           "geblokkeerd_pct": 0.0,
-          "overig_pct": 50.0,
+          "overig_pct": 55.6,
           "verdict_distribution_raw": {
             "DELIVERED_GO_SECOND_OPINION": 1,
             "DELIVERED_GO_WITH_FINDINGS_BEFORE_PR55_MERGE": 1,
             "DELIVERED_TO_SUCCESSOR_RECONCILIATION_PLAN": 1,
             "FORWARD_PORTED_INTEGRATED_CANDIDATE": 1,
             "GO_READY_FOR_INDEPENDENT_REVIEW": 1,
+            "INTERRUPTED_BY_OWNER_NETWORK_SHUTDOWN": 1,
             "SUPERSEDED_BY_INTEGRATED_CANDIDATE": 1,
             "SUPERSEDED_BY_MERGED_REGIEKAMER_V5": 2
           },
-          "laatste_activiteit": "2026-08-31T13:59:47Z"
+          "laatste_activiteit": "2026-08-31T14:09:13Z"
         },
         {
           "actor": "gemini1",
