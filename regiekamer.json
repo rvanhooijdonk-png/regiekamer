@@ -1,6 +1,6 @@
 {
   "schema": "REGIEKAMER_REALTIME_V1",
-  "gegenereerd_op": "2026-08-31T13:53:48Z",
+  "gegenereerd_op": "2026-08-31T13:59:01Z",
   "stack_root": "STACK_ROOT",
   "accounts": [
     {
@@ -8,7 +8,7 @@
       "status": "GEBLOKKEERD",
       "taak_id": "AUTOCODING_H11_RELEASE_GATE_BUILD_CLAUDE1_V1_TRANSPORT",
       "sinds": "2026-08-31T13:24:52Z",
-      "sinds_minuten": 28.8,
+      "sinds_minuten": 34.0,
       "bron": "outbox:receipt:AUTOCODING_H11_RELEASE_GATE_BUILD_CLAUDE1_V1_TRANSPORT_RECEIPT.md"
     },
     {
@@ -16,7 +16,7 @@
       "status": "GEBLOKKEERD",
       "taak_id": "AUTOCODING_REVIEW_RECEIPT_FALLBACK_REPAIR_CLAUDE2_V1",
       "sinds": "2026-08-31T13:13:19Z",
-      "sinds_minuten": 40.3,
+      "sinds_minuten": 45.6,
       "bron": "outbox:receipt:AUTOCODING_REVIEW_RECEIPT_FALLBACK_REPAIR_CLAUDE2_V1.md"
     },
     {
@@ -24,7 +24,7 @@
       "status": "WACHT",
       "taak_id": "AUTOCODING_H11_RELEASE_GATE_AB73DA8_EXACT_HEAD_REVIEW_CLAUDE3_V1",
       "sinds": "2026-08-31T13:32:23Z",
-      "sinds_minuten": 21.2,
+      "sinds_minuten": 26.5,
       "bron": "outbox:order_open:AUTOCODING_H11_RELEASE_GATE_AB73DA8_EXACT_HEAD_REVIEW_CLAUDE3_V1.md"
     },
     {
@@ -32,7 +32,7 @@
       "status": "GEBLOKKEERD",
       "taak_id": "AUTOCODING_CODEX_HOME_TRANSPORT_REPAIR_CLAUDE4_V1",
       "sinds": "2026-08-31T13:38:49Z",
-      "sinds_minuten": 14.8,
+      "sinds_minuten": 20.1,
       "bron": "outbox:receipt:AUTOCODING_CODEX_HOME_TRANSPORT_REPAIR_CLAUDE4_V1_RECEIPT.md"
     },
     {
@@ -40,7 +40,7 @@
       "status": "WACHT",
       "taak_id": "KEYNOTE_CONTENT_DESK_DUURZAME_OPSLAG_EN_PUBLICATIE_V1",
       "sinds": "2026-08-31T12:56:00Z",
-      "sinds_minuten": 57.6,
+      "sinds_minuten": 62.9,
       "bron": "outbox:order_open:KEYNOTE_CONTENT_DESK_DUURZAME_OPSLAG_EN_PUBLICATIE_V1.md"
     },
     {
@@ -48,16 +48,16 @@
       "status": "GEBLOKKEERD",
       "taak_id": "AUTOCODING_CODEX2_EXECUTION_CONTEXT_DIAGNOSE_CLAUDE3_V2_TRANSPORT",
       "sinds": "2026-08-31T12:54:09Z",
-      "sinds_minuten": 59.5,
+      "sinds_minuten": 64.7,
       "bron": "outbox:receipt:AUTOCODING_CODEX2_EXECUTION_CONTEXT_DIAGNOSE_CLAUDE3_V2_TRANSPORT_RECEIPT.md"
     },
     {
       "actor": "gemini1",
-      "status": "BEZIG",
-      "taak_id": "detach-order",
-      "sinds": "2026-08-31T13:53:35Z",
-      "sinds_minuten": 0.0,
-      "bron": "ps:pid=3474"
+      "status": "WACHT",
+      "taak_id": "AUTOCODING_H11_RELEASE_GATE_AB73DA8_EXACT_HEAD_REVIEW_CLAUDE3_V1",
+      "sinds": "2026-08-31T13:32:23Z",
+      "sinds_minuten": 26.5,
+      "bron": "outbox:order_open:AUTOCODING_H11_RELEASE_GATE_AB73DA8_EXACT_HEAD_REVIEW_CLAUDE3_V1.md"
     },
     {
       "actor": "dashboard-codex",
@@ -72,7 +72,7 @@
       "status": "VRIJ",
       "taak_id": null,
       "sinds": "2026-08-30T14:20:15Z",
-      "sinds_minuten": 1413.4,
+      "sinds_minuten": 1418.6,
       "bron": "outbox:order_afgerond:AUTOCODING_CONTROLLER_PARALLELISM_EXACT_HEAD_REVIEW_CODEX1_V1.md"
     }
   ],
@@ -30672,15 +30672,15 @@
     "cmd": "bin/lane-capaciteit --json",
     "data": {
       "stack_root": "STACK_ROOT",
-      "generated_at": "2026-08-31T13:53:48Z",
+      "generated_at": "2026-08-31T13:59:01Z",
       "meta": {
         "receipt_bestanden_totaal": 1903,
         "receipt_onparseerbaar": 289,
         "jsonl": {
-          "total_lines": 629,
+          "total_lines": 630,
           "actor_lines": 0,
           "onparseerbaar": 0,
-          "zonder_actor": 629,
+          "zonder_actor": 630,
           "aanwezig": true
         },
         "verdict_classificatie": "heuristiek: prefix-match op verdict= (hoofdletterongevoelig); GESLAAGD={GO,PASS,DELIVERED}, GEBLOKKEERD={NO_GO,BLOCKED,REJECTED,FAILED}, onbekend/overig telt niet stilzwijgend mee als geslaagd of geblokkeerd"
@@ -31476,7 +31476,7 @@
         },
         {
           "actor": "ZONDER_ACTOR",
-          "orders": 629,
+          "orders": 630,
           "orders_met_duur": 0,
           "p50_duration_ms": null,
           "max_duration_ms": null,
@@ -32115,7 +32115,8 @@
             626,
             627,
             628,
-            629
+            629,
+            630
           ]
         }
       ]
