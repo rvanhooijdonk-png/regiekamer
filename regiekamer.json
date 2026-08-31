@@ -1,30 +1,30 @@
 {
   "schema": "REGIEKAMER_REALTIME_V1",
-  "gegenereerd_op": "2026-08-31T05:15:36Z",
+  "gegenereerd_op": "2026-08-31T05:20:52Z",
   "stack_root": "STACK_ROOT",
   "accounts": [
     {
       "actor": "claude1",
-      "status": "VRIJ",
-      "taak_id": null,
-      "sinds": "2026-08-31T04:48:37Z",
-      "sinds_minuten": 26.8,
-      "bron": "outbox:order_afgerond:AUTOCODER_CONTINUATION_CODEX_PREFLIGHT_EXECUTION_REPAIR_CLAUDE1_V1.md"
+      "status": "BEZIG",
+      "taak_id": "AUTOCODING_LANE_MONITOR_VALIDATION_PHASE_TRUTH_CLAUDE1_V1",
+      "sinds": "2026-08-31T05:16:50Z",
+      "sinds_minuten": 3.8,
+      "bron": "ps:pid=68072"
     },
     {
       "actor": "claude2",
-      "status": "STALE",
+      "status": "BEZIG",
       "taak_id": "AUTOCODING_OVERNIGHT_INTEGRATED_6287E62_EXACT_HEAD_REVIEW_CLAUDE2_V3",
-      "sinds": "2026-08-31T04:37:05Z",
-      "sinds_minuten": 38.4,
-      "bron": "ps:pid=54157"
+      "sinds": "2026-08-31T05:16:50Z",
+      "sinds_minuten": 3.8,
+      "bron": "ps:pid=68306"
     },
     {
       "actor": "claude3",
       "status": "VRIJ",
       "taak_id": null,
       "sinds": "2026-08-31T04:48:37Z",
-      "sinds_minuten": 26.8,
+      "sinds_minuten": 32.0,
       "bron": "outbox:order_afgerond:NIGHT_MEDIAHUB_HEALTH_AND_SAFE_BACKLOG_V1.md"
     },
     {
@@ -32,7 +32,7 @@
       "status": "VRIJ",
       "taak_id": null,
       "sinds": "2026-08-31T04:48:37Z",
-      "sinds_minuten": 26.8,
+      "sinds_minuten": 32.0,
       "bron": "outbox:order_afgerond:NIGHT_VIDEO_FACTORY_SELECTION_CONTRACT_V1.md"
     },
     {
@@ -40,7 +40,7 @@
       "status": "WACHT",
       "taak_id": "VORMBINDING_SLOTBLOK_S12_CLAUDE2_V1",
       "sinds": "2026-08-31T04:48:37Z",
-      "sinds_minuten": 26.8,
+      "sinds_minuten": 32.0,
       "bron": "outbox:order_open:VORMBINDING_SLOTBLOK_S12_CLAUDE2_V1.md"
     },
     {
@@ -48,16 +48,16 @@
       "status": "VRIJ",
       "taak_id": null,
       "sinds": "2026-08-31T04:48:37Z",
-      "sinds_minuten": 26.8,
+      "sinds_minuten": 32.0,
       "bron": "outbox:order_afgerond:HERTELLING_REVIEWLANE_S13_CLAUDE3_V1.md"
     },
     {
       "actor": "gemini1",
-      "status": "BEZIG",
-      "taak_id": "order-l",
-      "sinds": "2026-08-31T05:15:23Z",
-      "sinds_minuten": 0.1,
-      "bron": "ps:pid=57418"
+      "status": "VRIJ",
+      "taak_id": "AUTOCODING_PR55_HERBEOORDELING_GEMINI1_V1_QUEUE_RECONCILIATION",
+      "sinds": "2026-08-30T22:24:05Z",
+      "sinds_minuten": 416.6,
+      "bron": "outbox:receipt:AUTOCODING_PR55_HERBEOORDELING_GEMINI1_V1_QUEUE_RECONCILIATION_RECEIPT.md"
     },
     {
       "actor": "dashboard-codex",
@@ -72,7 +72,7 @@
       "status": "VRIJ",
       "taak_id": null,
       "sinds": "2026-08-30T14:20:15Z",
-      "sinds_minuten": 895.2,
+      "sinds_minuten": 900.4,
       "bron": "outbox:order_afgerond:AUTOCODING_CONTROLLER_PARALLELISM_EXACT_HEAD_REVIEW_CODEX1_V1.md"
     }
   ],
@@ -5560,6 +5560,102 @@
       "bron_type": "receipt",
       "status": "OPEN",
       "taak": "na autorisatie: Claude2 exact-headreview; bij GO R7,",
+      "schatting_categorie": "GEEN_SCHATTING",
+      "schatting_min": null
+    },
+    {
+      "bron_bestand": "outbox/AUTOCODING_OVERNIGHT_CYCLE_20260831T051925Z_RECEIPT.md",
+      "bron_type": "receipt",
+      "status": "KLAAR",
+      "taak": "onafhankelijke CLAUDE2 exact-headreview van 6287e62: GO_READY_FOR_R7, evidence_gate PASS.",
+      "schatting_categorie": "GEEN_SCHATTING",
+      "schatting_min": null
+    },
+    {
+      "bron_bestand": "outbox/AUTOCODING_OVERNIGHT_CYCLE_20260831T051925Z_RECEIPT.md",
+      "bron_type": "receipt",
+      "status": "BEZIG",
+      "taak": "CLAUDE1 bouwt de geïsoleerde lane-monitor-validatiefasefix.",
+      "schatting_categorie": "GEEN_SCHATTING",
+      "schatting_min": null
+    },
+    {
+      "bron_bestand": "outbox/AUTOCODING_OVERNIGHT_CYCLE_20260831T051925Z_RECEIPT.md",
+      "bron_type": "receipt",
+      "status": "GEBLOKKEERD",
+      "taak": "PR #60 merge-readiness: geen afzonderlijke allowlisted GitHub-revieweridentiteit.",
+      "schatting_categorie": "GEEN_SCHATTING",
+      "schatting_min": null
+    },
+    {
+      "bron_bestand": "outbox/AUTOCODING_OVERNIGHT_CYCLE_20260831T051925Z_RECEIPT.md",
+      "bron_type": "receipt",
+      "status": "OPEN",
+      "taak": "bewijsvalidatie van de bestaande reviewdispatch terminaal laten uitlopen.",
+      "schatting_categorie": "GEEN_SCHATTING",
+      "schatting_min": null
+    },
+    {
+      "bron_bestand": "outbox/AUTOCODING_OVERNIGHT_CYCLE_20260831T051925Z_RECEIPT.md",
+      "bron_type": "receipt",
+      "status": "OPEN",
+      "taak": "CODEX1 exact-headreview van de nieuwe monitorfix.",
+      "schatting_categorie": "GEEN_SCHATTING",
+      "schatting_min": null
+    },
+    {
+      "bron_bestand": "outbox/AUTOCODING_OVERNIGHT_CYCLE_20260831T051925Z_RECEIPT.md",
+      "bron_type": "receipt",
+      "status": "OPEN",
+      "taak": "gecombineerde R7/full-suite/CI op de nieuwe exacte head.",
+      "schatting_categorie": "GEEN_SCHATTING",
+      "schatting_min": null
+    },
+    {
+      "bron_bestand": "outbox/AUTOCODING_OVERNIGHT_CYCLE_20260831T051925Z_RECEIPT.md",
+      "bron_type": "receipt",
+      "status": "OPEN",
+      "taak": "groene merge van PR #60 of opvolghead, zonder rode poort te overschrijven.",
+      "schatting_categorie": "GEEN_SCHATTING",
+      "schatting_min": null
+    },
+    {
+      "bron_bestand": "outbox/AUTOCODING_OVERNIGHT_CYCLE_20260831T051925Z_RECEIPT.md",
+      "bron_type": "receipt",
+      "status": "OPEN",
+      "taak": "runtimepins, queue-normalisatie, één leider en alarm-naar-actie-readback.",
+      "schatting_categorie": "GEEN_SCHATTING",
+      "schatting_min": null
+    },
+    {
+      "bron_bestand": "outbox/AUTOCODING_OVERNIGHT_CYCLE_20260831T051925Z_RECEIPT.md",
+      "bron_type": "receipt",
+      "status": "OPEN",
+      "taak": "canary/failure/restart/Gemini-proeven.",
+      "schatting_categorie": "GEEN_SCHATTING",
+      "schatting_min": null
+    },
+    {
+      "bron_bestand": "outbox/AUTOCODING_OVERNIGHT_CYCLE_20260831T051925Z_RECEIPT.md",
+      "bron_type": "receipt",
+      "status": "OPEN",
+      "taak": "24-uurs burn-in met de terminale meetlat.",
+      "schatting_categorie": "GEEN_SCHATTING",
+      "schatting_min": null
+    },
+    {
+      "bron_bestand": "outbox/AUTOCODING_OVERNIGHT_INTEGRATED_6287E62_EXACT_HEAD_REVIEW_CLAUDE2_V3_TRANSPORT_RECEIPT.md",
+      "bron_type": "receipt",
+      "status": "KLAAR",
+      "taak": "Exact-head review (diff, 9 risicogebieden, 11 testsuites, 6 negatieve controles)",
+      "schatting_categorie": "GEEN_SCHATTING",
+      "schatting_min": null
+    },
+    {
+      "bron_bestand": "outbox/AUTOCODING_OVERNIGHT_INTEGRATED_6287E62_EXACT_HEAD_REVIEW_CLAUDE2_V3_TRANSPORT_RECEIPT.md",
+      "bron_type": "receipt",
+      "status": "KLAAR",
+      "taak": "Receipt geschreven naar outbox/..._RECEIPT.md met verdict GO_READY_FOR_R7 (bewijs: bovenstaand)",
       "schatting_categorie": "GEEN_SCHATTING",
       "schatting_min": null
     },
@@ -30253,8 +30349,8 @@
     }
   ],
   "taken_meta": {
-    "taken_totaal": 3770,
-    "taken_zonder_schatting": 3649,
+    "taken_totaal": 3782,
+    "taken_zonder_schatting": 3661,
     "bron_glob": "outbox/*.md (TAKENLIJST-blokken)",
     "classificatie": "regex op TAKENLIJST-tabelrijen (Status/Taak/Tijd) en kale lijstvorm; een cel zonder herkenbaar '~X min'-patroon telt als GEEN_SCHATTING, nooit stilzwijgend overgeslagen"
   },
@@ -30264,15 +30360,15 @@
     "cmd": "bin/lane-capaciteit --json",
     "data": {
       "stack_root": "STACK_ROOT",
-      "generated_at": "2026-08-31T05:15:36Z",
+      "generated_at": "2026-08-31T05:20:52Z",
       "meta": {
-        "receipt_bestanden_totaal": 1858,
-        "receipt_onparseerbaar": 282,
+        "receipt_bestanden_totaal": 1860,
+        "receipt_onparseerbaar": 283,
         "jsonl": {
-          "total_lines": 578,
+          "total_lines": 579,
           "actor_lines": 0,
           "onparseerbaar": 0,
-          "zonder_actor": 578,
+          "zonder_actor": 579,
           "aanwezig": true
         },
         "verdict_classificatie": "heuristiek: prefix-match op verdict= (hoofdletterongevoelig); GESLAAGD={GO,PASS,DELIVERED}, GEBLOKKEERD={NO_GO,BLOCKED,REJECTED,FAILED}, onbekend/overig telt niet stilzwijgend mee als geslaagd of geblokkeerd"
@@ -30368,17 +30464,17 @@
         },
         {
           "actor": "claude2",
-          "orders": 213,
-          "orders_met_duur": 203,
-          "p50_duration_ms": 515000,
+          "orders": 214,
+          "orders_met_duur": 204,
+          "p50_duration_ms": 517500,
           "max_duration_ms": 6644000,
-          "orders_met_verdict": 103,
-          "geslaagd_pct": 10.7,
-          "geblokkeerd_pct": 82.5,
-          "overig_pct": 6.8,
+          "orders_met_verdict": 104,
+          "geslaagd_pct": 10.6,
+          "geblokkeerd_pct": 82.7,
+          "overig_pct": 6.7,
           "verdict_distribution_raw": {
             "AUDIT_COMPLETE_QUARANTINE_FOUND": 1,
-            "BLOCKED_EVIDENCE": 83,
+            "BLOCKED_EVIDENCE": 84,
             "BUILD_COMPLETE_AWAITING_INDEPENDENT_REVIEW": 1,
             "BUILD_READY_FOR_EXACT_HEAD_REVIEW": 1,
             "DELIVERED": 3,
@@ -30391,7 +30487,7 @@
             "OWNER_GATE": 1,
             "READY_FOR_INDEPENDENT_REVIEW": 1
           },
-          "laatste_activiteit": "2026-08-31T04:45:13Z"
+          "laatste_activiteit": "2026-08-31T05:10:28Z"
         },
         {
           "actor": "claude2 (builder)",
@@ -30746,7 +30842,7 @@
         },
         {
           "actor": "ONPARSEERBAAR",
-          "orders": 282,
+          "orders": 283,
           "orders_met_duur": 0,
           "p50_duration_ms": null,
           "max_duration_ms": null,
@@ -30819,6 +30915,7 @@
             "AUTOCODING_MERGE_ORDER_GUARD_EXACT_HEAD_REVIEW_CODEX2_V1_RECEIPT.md",
             "AUTOCODING_MERGE_ORDER_GUARD_HERSTEL_EXACT_HEAD_REVIEW_CODEX2_V2_RECEIPT.md",
             "AUTOCODING_NO_MORE_IDLE_PHASE1_LOCAL_INTEGRATION_CLAUDE4_V1_RECEIPT.md",
+            "AUTOCODING_OVERNIGHT_CYCLE_20260831T051925Z_RECEIPT.md",
             "AUTOCODING_OVERNIGHT_INTEGRATED_6287E62_EXACT_HEAD_REVIEW_CLAUDE2_V3_RECEIPT.md",
             "AUTOCODING_OVERNIGHT_INTEGRATED_A4AAB79_EXACT_HEAD_REVIEW_CLAUDE2_V2_RECEIPT.md",
             "AUTOCODING_PR55_H11_DEPENDENCY_RECONCILIATION_CLAUDE1_V1_RECEIPT.md",
@@ -31043,7 +31140,7 @@
         },
         {
           "actor": "ZONDER_ACTOR",
-          "orders": 578,
+          "orders": 579,
           "orders_met_duur": 0,
           "p50_duration_ms": null,
           "max_duration_ms": null,
@@ -31631,7 +31728,8 @@
             575,
             576,
             577,
-            578
+            578,
+            579
           ]
         }
       ]
