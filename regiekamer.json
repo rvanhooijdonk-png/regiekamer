@@ -1,38 +1,38 @@
 {
   "schema": "REGIEKAMER_REALTIME_V1",
-  "gegenereerd_op": "2026-08-31T13:06:30Z",
+  "gegenereerd_op": "2026-08-31T13:11:45Z",
   "stack_root": "STACK_ROOT",
   "accounts": [
     {
       "actor": "claude1",
-      "status": "VRIJ",
-      "taak_id": "AUTOCODING_D075_PR60_RECONCILIATION_AUDIT_CLAUDE1_V1",
-      "sinds": "2026-08-31T13:06:11Z",
+      "status": "BEZIG",
+      "taak_id": "AUTOCODING_H11_CANARY_PREFLIGHT_CLAUDE1_V1",
+      "sinds": "2026-08-31T13:11:24Z",
       "sinds_minuten": 0.2,
-      "bron": "outbox:receipt:AUTOCODING_D075_PR60_RECONCILIATION_AUDIT_CLAUDE1_V1_RECEIPT.md"
+      "bron": "ps:pid=11102"
     },
     {
       "actor": "claude2",
-      "status": "BEZIG",
+      "status": "VRIJ",
       "taak_id": "AUTOCODING_MERGEGUARD_GAP_B_OWNERGATE_AUDIT_CLAUDE2_V1",
-      "sinds": "2026-08-31T13:03:27Z",
-      "sinds_minuten": 2.9,
-      "bron": "ps:pid=98144"
+      "sinds": "2026-08-31T13:06:42Z",
+      "sinds_minuten": 4.9,
+      "bron": "outbox:receipt:AUTOCODING_MERGEGUARD_GAP_B_OWNERGATE_AUDIT_CLAUDE2_V1_RECEIPT.md"
     },
     {
       "actor": "claude3",
       "status": "BEZIG",
       "taak_id": "AUTOCODING_REVIEW_RECEIPT_MACHINEBLOCK_DIAGNOSE_CLAUDE3_V1",
       "sinds": "2026-08-31T13:05:58Z",
-      "sinds_minuten": 0.4,
+      "sinds_minuten": 5.6,
       "bron": "ps:pid=5044"
     },
     {
       "actor": "claude4",
-      "status": "BEZIG",
+      "status": "STALE",
       "taak_id": "AUTOCODING_CODEX_HOME_TRANSPORT_REPAIR_CLAUDE4_V1",
       "sinds": "2026-08-31T12:57:33Z",
-      "sinds_minuten": 8.8,
+      "sinds_minuten": 14.0,
       "bron": "ps:pid=62884"
     },
     {
@@ -40,7 +40,7 @@
       "status": "WACHT",
       "taak_id": "KEYNOTE_CONTENT_DESK_DUURZAME_OPSLAG_EN_PUBLICATIE_V1",
       "sinds": "2026-08-31T12:56:00Z",
-      "sinds_minuten": 10.4,
+      "sinds_minuten": 15.6,
       "bron": "outbox:order_open:KEYNOTE_CONTENT_DESK_DUURZAME_OPSLAG_EN_PUBLICATIE_V1.md"
     },
     {
@@ -48,7 +48,7 @@
       "status": "GEBLOKKEERD",
       "taak_id": "AUTOCODING_CODEX2_EXECUTION_CONTEXT_DIAGNOSE_CLAUDE3_V2_TRANSPORT",
       "sinds": "2026-08-31T12:54:09Z",
-      "sinds_minuten": 12.2,
+      "sinds_minuten": 17.4,
       "bron": "outbox:receipt:AUTOCODING_CODEX2_EXECUTION_CONTEXT_DIAGNOSE_CLAUDE3_V2_TRANSPORT_RECEIPT.md"
     },
     {
@@ -56,7 +56,7 @@
       "status": "GEBLOKKEERD",
       "taak_id": "AUTOCODING_CLAUDE_MCP_WORKTREE_F4C92D1_EXACT_HEAD_REVIEW_GEMINI1_V1",
       "sinds": "2026-08-31T13:00:42Z",
-      "sinds_minuten": 5.7,
+      "sinds_minuten": 10.9,
       "bron": "outbox:receipt:AUTOCODING_CLAUDE_MCP_WORKTREE_F4C92D1_EXACT_HEAD_REVIEW_GEMINI1_V1_RECEIPT.md"
     },
     {
@@ -72,7 +72,7 @@
       "status": "VRIJ",
       "taak_id": null,
       "sinds": "2026-08-30T14:20:15Z",
-      "sinds_minuten": 1366.1,
+      "sinds_minuten": 1371.3,
       "bron": "outbox:order_afgerond:AUTOCODING_CONTROLLER_PARALLELISM_EXACT_HEAD_REVIEW_CODEX1_V1.md"
     }
   ],
@@ -30608,10 +30608,10 @@
     "cmd": "bin/lane-capaciteit --json",
     "data": {
       "stack_root": "STACK_ROOT",
-      "generated_at": "2026-08-31T13:06:30Z",
+      "generated_at": "2026-08-31T13:11:45Z",
       "meta": {
-        "receipt_bestanden_totaal": 1894,
-        "receipt_onparseerbaar": 286,
+        "receipt_bestanden_totaal": 1896,
+        "receipt_onparseerbaar": 287,
         "jsonl": {
           "total_lines": 625,
           "actor_lines": 0,
@@ -30713,9 +30713,9 @@
         },
         {
           "actor": "claude2",
-          "orders": 222,
-          "orders_met_duur": 212,
-          "p50_duration_ms": 513500,
+          "orders": 223,
+          "orders_met_duur": 213,
+          "p50_duration_ms": 512000,
           "max_duration_ms": 6644000,
           "orders_met_verdict": 111,
           "geslaagd_pct": 9.9,
@@ -30737,7 +30737,7 @@
             "OWNER_GATE": 1,
             "READY_FOR_INDEPENDENT_REVIEW": 1
           },
-          "laatste_activiteit": "2026-08-31T12:49:46Z"
+          "laatste_activiteit": "2026-08-31T13:06:39Z"
         },
         {
           "actor": "claude2 (builder)",
@@ -31108,7 +31108,7 @@
         },
         {
           "actor": "ONPARSEERBAAR",
-          "orders": 286,
+          "orders": 287,
           "orders_met_duur": 0,
           "p50_duration_ms": null,
           "max_duration_ms": null,
@@ -31217,6 +31217,7 @@
             "AUTOCODING_PROVIDER_PLAN_CONTRACT_CLOSE_V1_CODEX2_RECEIPT.md",
             "AUTOCODING_QUEUE_SUPERVISOR_ACTIVATION_AUDIT_CLAUDE3_V1_RECEIPT.md",
             "AUTOCODING_QUEUE_SUPERVISOR_REVIEW_CLAUDE1_V1_RECEIPT.md",
+            "AUTOCODING_REVIEW_RECEIPT_MACHINEBLOCK_DIAGNOSE_CLAUDE3_V1_RECEIPT.md",
             "AUTOCODING_REVIEW_ROUTE_RECOVERY_865D621_CODEX_R4_RECEIPT.md",
             "AUTOCODING_REVIEW_ROUTE_RECOVERY_CLAUDE1_V1_RECONCILIATION_RECEIPT.md",
             "AUTOCODING_REVIEW_TRANSPORT_CANONICAL_RECEIPT_REPAIR_CLAUDE3_V1_RECEIPT.md",
