@@ -1,6 +1,6 @@
 {
   "schema": "REGIEKAMER_REALTIME_V1",
-  "gegenereerd_op": "2026-09-03T22:35:30Z",
+  "gegenereerd_op": "2026-09-03T22:40:42Z",
   "stack_root": "STACK_ROOT",
   "accounts": [
     {
@@ -8,7 +8,7 @@
       "status": "VRIJ",
       "taak_id": "AUTOCODING_PR54_INCIDENT_CATEGORY_FIX_CLAUDE1_V1_TRANSPORT",
       "sinds": "2026-09-03T21:45:13Z",
-      "sinds_minuten": 39.3,
+      "sinds_minuten": 55.4,
       "bron": "outbox:receipt:AUTOCODING_PR54_INCIDENT_CATEGORY_FIX_CLAUDE1_V1_TRANSPORT_RECEIPT.md"
     },
     {
@@ -16,31 +16,31 @@
       "status": "GEBLOKKEERD",
       "taak_id": "AUTOCODING_REVIEWBOT_RELAY_REPLAY_STORE_FAILOPEN_RACE_FIX_CLAUDE2_V1_TRANSPORT",
       "sinds": "2026-09-03T21:51:08Z",
-      "sinds_minuten": 33.4,
+      "sinds_minuten": 49.5,
       "bron": "outbox:receipt:AUTOCODING_REVIEWBOT_RELAY_REPLAY_STORE_FAILOPEN_RACE_FIX_CLAUDE2_V1_TRANSPORT_RECEIPT.md"
     },
     {
       "actor": "claude3",
-      "status": "GEBLOKKEERD",
-      "taak_id": "AUTOCODING_LANE_RESPONDER_SURVIVOR_ASSERTION_FIX_CLAUDE3_V1_TRANSPORT",
-      "sinds": "2026-09-03T22:07:14Z",
-      "sinds_minuten": 17.3,
-      "bron": "outbox:receipt:AUTOCODING_LANE_RESPONDER_SURVIVOR_ASSERTION_FIX_CLAUDE3_V1_TRANSPORT_RECEIPT.md"
+      "status": "BEZIG",
+      "taak_id": "AUTOCODING_LANE_RESPONDER_ASSERTION5_ISOLATION_FIX_CLAUDE3_V1",
+      "sinds": "2026-09-03T22:36:36Z",
+      "sinds_minuten": 4.0,
+      "bron": "ps:pid=94065"
     },
     {
       "actor": "claude4",
-      "status": "WACHT",
+      "status": "STALE",
       "taak_id": "AUTOCODING_WAAKVLAM_D9_MUTANT_DETERMINISM_FIX_CLAUDE4_V1",
-      "sinds": "2026-09-03T21:51:32Z",
-      "sinds_minuten": 33.0,
-      "bron": "outbox:order_open:AUTOCODING_WAAKVLAM_D9_MUTANT_DETERMINISM_FIX_CLAUDE4_V1.md"
+      "sinds": "2026-09-03T21:52:03Z",
+      "sinds_minuten": 48.5,
+      "bron": "ps:pid=49160"
     },
     {
       "actor": "codex1",
       "status": "GEBLOKKEERD",
       "taak_id": "AUTOCODING_LANE_RESPONDER_B1D6F0B_EXACT_HEAD_REVIEW_CODEX1_V1",
       "sinds": "2026-09-03T22:17:55Z",
-      "sinds_minuten": 6.6,
+      "sinds_minuten": 22.7,
       "bron": "outbox:receipt:AUTOCODING_LANE_RESPONDER_B1D6F0B_EXACT_HEAD_REVIEW_CODEX1_V1_RECEIPT.md"
     },
     {
@@ -48,7 +48,7 @@
       "status": "GEBLOKKEERD",
       "taak_id": "AUTOCODING_REVIEWBOT_RELAY_8D6892A_EXACT_HEAD_REVIEW_CODEX2_V1",
       "sinds": "2026-09-03T22:18:20Z",
-      "sinds_minuten": 6.2,
+      "sinds_minuten": 22.3,
       "bron": "outbox:receipt:AUTOCODING_REVIEWBOT_RELAY_8D6892A_EXACT_HEAD_REVIEW_CODEX2_V1_RECEIPT.md"
     },
     {
@@ -56,7 +56,7 @@
       "status": "GEBLOKKEERD",
       "taak_id": "AUTOCODING_LANE_RESPONDER_ARCHIVED_RECEIPT_CRASH_FIX_GEMINI1_V1",
       "sinds": "2026-09-03T20:47:23Z",
-      "sinds_minuten": 97.1,
+      "sinds_minuten": 113.2,
       "bron": "outbox:receipt:AUTOCODING_LANE_RESPONDER_ARCHIVED_RECEIPT_CRASH_FIX_GEMINI1_V1_RECEIPT.md"
     },
     {
@@ -72,7 +72,7 @@
       "status": "WACHT",
       "taak_id": "BANNERREGEL_BEWIJSPOORT_S19_CLAUDE3_V1",
       "sinds": "2026-09-03T05:04:50Z",
-      "sinds_minuten": 1039.7,
+      "sinds_minuten": 1055.8,
       "bron": "outbox:order_open:BANNERREGEL_BEWIJSPOORT_S19_CLAUDE3_V1.md"
     }
   ],
@@ -7408,15 +7408,15 @@
     "cmd": "bin/lane-capaciteit --json",
     "data": {
       "stack_root": "STACK_ROOT",
-      "generated_at": "2026-09-03T22:35:30Z",
+      "generated_at": "2026-09-03T22:40:41Z",
       "meta": {
         "receipt_bestanden_totaal": 831,
         "receipt_onparseerbaar": 113,
         "jsonl": {
-          "total_lines": 607,
+          "total_lines": 608,
           "actor_lines": 0,
           "onparseerbaar": 0,
-          "zonder_actor": 607,
+          "zonder_actor": 608,
           "aanwezig": true
         },
         "verdict_classificatie": "heuristiek: prefix-match op verdict= (hoofdletterongevoelig); GESLAAGD={GO,PASS,DELIVERED}, GEBLOKKEERD={NO_GO,BLOCKED,REJECTED,FAILED}, onbekend/overig telt niet stilzwijgend mee als geslaagd of geblokkeerd"
@@ -7762,7 +7762,7 @@
         },
         {
           "actor": "ZONDER_ACTOR",
-          "orders": 607,
+          "orders": 608,
           "orders_met_duur": 0,
           "p50_duration_ms": null,
           "max_duration_ms": null,
@@ -8379,7 +8379,8 @@
             604,
             605,
             606,
-            607
+            607,
+            608
           ]
         }
       ]
