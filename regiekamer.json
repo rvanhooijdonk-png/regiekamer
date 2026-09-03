@@ -1,6 +1,6 @@
 {
   "schema": "REGIEKAMER_REALTIME_V1",
-  "gegenereerd_op": "2026-09-03T20:23:41Z",
+  "gegenereerd_op": "2026-09-03T20:28:48Z",
   "stack_root": "STACK_ROOT",
   "accounts": [
     {
@@ -8,23 +8,23 @@
       "status": "GEBLOKKEERD",
       "taak_id": "AUTOCODING_PR54_INCIDENT_LOCK_FORWARD_PORT_CLAUDE1_V1",
       "sinds": "2026-09-03T20:11:53Z",
-      "sinds_minuten": 11.7,
+      "sinds_minuten": 16.9,
       "bron": "outbox:receipt:AUTOCODING_PR54_INCIDENT_LOCK_FORWARD_PORT_CLAUDE1_V1_RECEIPT.md"
     },
     {
       "actor": "claude2",
-      "status": "GEBLOKKEERD",
-      "taak_id": "AUTOCODING_PR74_H11_GATE_CANARY_DEDUP_FAILOPEN_REPAIR_CLAUDE2_V1",
-      "sinds": "2026-09-03T18:32:09Z",
-      "sinds_minuten": 111.5,
-      "bron": "outbox:receipt:AUTOCODING_PR74_H11_GATE_CANARY_DEDUP_FAILOPEN_REPAIR_CLAUDE2_V1_RECEIPT.md"
+      "status": "WACHT",
+      "taak_id": "AUTOCODING_REVIEWBOT_RELAY_CLAUDE2_V1",
+      "sinds": "2026-09-03T20:25:38Z",
+      "sinds_minuten": 3.1,
+      "bron": "outbox:order_open:AUTOCODING_REVIEWBOT_RELAY_CLAUDE2_V1.md"
     },
     {
       "actor": "claude3",
       "status": "WACHT",
       "taak_id": "AUTOCODING_WAAKVLAM_SUITE_R1_SUBTESTS_CLAUDE3_V3",
       "sinds": "2026-09-03T18:58:18Z",
-      "sinds_minuten": 85.3,
+      "sinds_minuten": 90.4,
       "bron": "outbox:order_open:AUTOCODING_WAAKVLAM_SUITE_R1_SUBTESTS_CLAUDE3_V3.md"
     },
     {
@@ -32,7 +32,7 @@
       "status": "GEBLOKKEERD",
       "taak_id": "AUTOCODING_QUEUE_STATE_HYGIENE_TERMINAL_RECEIPTS_CLAUDE4_V1",
       "sinds": "2026-09-03T18:13:39Z",
-      "sinds_minuten": 130.0,
+      "sinds_minuten": 135.1,
       "bron": "outbox:receipt:AUTOCODING_QUEUE_STATE_HYGIENE_TERMINAL_RECEIPTS_CLAUDE4_V1_RECEIPT.md"
     },
     {
@@ -40,7 +40,7 @@
       "status": "BEZIG",
       "taak_id": "AUTOCODING_PR54_2129D57_INCIDENT_LOCK_FORWARD_PORT_REVIEW_CODEX1_V1",
       "sinds": "2026-09-03T20:22:08Z",
-      "sinds_minuten": 1.5,
+      "sinds_minuten": 6.6,
       "bron": "ps:pid=25884"
     },
     {
@@ -48,7 +48,7 @@
       "status": "GEBLOKKEERD",
       "taak_id": "AUTOCODING_PR74_16050BA_H11_EXACT_HEAD_REVIEW_CODEX2_V1",
       "sinds": "2026-09-03T18:40:24Z",
-      "sinds_minuten": 103.2,
+      "sinds_minuten": 108.3,
       "bron": "outbox:receipt:AUTOCODING_PR74_16050BA_H11_EXACT_HEAD_REVIEW_CODEX2_V1_RECEIPT.md"
     },
     {
@@ -56,7 +56,7 @@
       "status": "GEBLOKKEERD",
       "taak_id": "AUTOCODING_PR_SUPERSESSION_AUDIT_GEMINI1_V1",
       "sinds": "2026-09-03T18:33:19Z",
-      "sinds_minuten": 110.3,
+      "sinds_minuten": 115.4,
       "bron": "outbox:receipt:AUTOCODING_PR_SUPERSESSION_AUDIT_GEMINI1_V1_RECEIPT.md"
     },
     {
@@ -72,7 +72,7 @@
       "status": "WACHT",
       "taak_id": "BANNERREGEL_BEWIJSPOORT_S19_CLAUDE3_V1",
       "sinds": "2026-09-03T05:04:50Z",
-      "sinds_minuten": 918.8,
+      "sinds_minuten": 923.9,
       "bron": "outbox:order_open:BANNERREGEL_BEWIJSPOORT_S19_CLAUDE3_V1.md"
     }
   ],
@@ -6984,15 +6984,15 @@
     "cmd": "bin/lane-capaciteit --json",
     "data": {
       "stack_root": "STACK_ROOT",
-      "generated_at": "2026-09-03T20:23:41Z",
+      "generated_at": "2026-09-03T20:28:48Z",
       "meta": {
         "receipt_bestanden_totaal": 810,
         "receipt_onparseerbaar": 110,
         "jsonl": {
-          "total_lines": 594,
+          "total_lines": 595,
           "actor_lines": 0,
           "onparseerbaar": 0,
-          "zonder_actor": 594,
+          "zonder_actor": 595,
           "aanwezig": true
         },
         "verdict_classificatie": "heuristiek: prefix-match op verdict= (hoofdletterongevoelig); GESLAAGD={GO,PASS,DELIVERED}, GEBLOKKEERD={NO_GO,BLOCKED,REJECTED,FAILED}, onbekend/overig telt niet stilzwijgend mee als geslaagd of geblokkeerd"
@@ -7332,7 +7332,7 @@
         },
         {
           "actor": "ZONDER_ACTOR",
-          "orders": 594,
+          "orders": 595,
           "orders_met_duur": 0,
           "p50_duration_ms": null,
           "max_duration_ms": null,
@@ -7936,7 +7936,8 @@
             591,
             592,
             593,
-            594
+            594,
+            595
           ]
         }
       ]
