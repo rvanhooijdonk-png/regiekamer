@@ -1,30 +1,30 @@
 {
   "schema": "REGIEKAMER_REALTIME_V1",
-  "gegenereerd_op": "2026-09-03T22:56:13Z",
+  "gegenereerd_op": "2026-09-03T23:01:21Z",
   "stack_root": "STACK_ROOT",
   "accounts": [
     {
       "actor": "claude1",
-      "status": "BEZIG",
-      "taak_id": "AUTOCODING_REVIEWBOT_RELAY_8D6892A_EXACT_HEAD_REVIEW_CLAUDE1_V1",
-      "sinds": "2026-09-03T22:53:45Z",
-      "sinds_minuten": 2.4,
-      "bron": "ps:pid=54087"
+      "status": "GEBLOKKEERD",
+      "taak_id": "AUTOCODING_REVIEWBOT_RELAY_8D6892A_EXACT_HEAD_REVIEW_CLAUDE1_V1_TRANSPORT",
+      "sinds": "2026-09-03T22:56:58Z",
+      "sinds_minuten": 4.3,
+      "bron": "outbox:receipt:AUTOCODING_REVIEWBOT_RELAY_8D6892A_EXACT_HEAD_REVIEW_CLAUDE1_V1_TRANSPORT_RECEIPT.md"
     },
     {
       "actor": "claude2",
-      "status": "GEBLOKKEERD",
-      "taak_id": "AUTOCODING_REVIEWBOT_RELAY_REPLAY_STORE_FAILOPEN_RACE_FIX_CLAUDE2_V1_TRANSPORT",
-      "sinds": "2026-09-03T21:51:08Z",
-      "sinds_minuten": 65.0,
-      "bron": "outbox:receipt:AUTOCODING_REVIEWBOT_RELAY_REPLAY_STORE_FAILOPEN_RACE_FIX_CLAUDE2_V1_TRANSPORT_RECEIPT.md"
+      "status": "BEZIG",
+      "taak_id": "AUTOCODING_REVIEWBOT_RELAY_REPLAY_STORE_FAILOPEN_RACE_FIX_CLAUDE2_V1",
+      "sinds": "2026-09-03T22:57:32Z",
+      "sinds_minuten": 3.8,
+      "bron": "ps:pid=73265"
     },
     {
       "actor": "claude3",
       "status": "GEBLOKKEERD",
       "taak_id": "AUTOCODING_LANE_RESPONDER_ASSERTION5_ISOLATION_FIX_CLAUDE3_V1_TRANSPORT",
       "sinds": "2026-09-03T22:43:09Z",
-      "sinds_minuten": 13.0,
+      "sinds_minuten": 18.2,
       "bron": "outbox:receipt:AUTOCODING_LANE_RESPONDER_ASSERTION5_ISOLATION_FIX_CLAUDE3_V1_TRANSPORT_RECEIPT.md"
     },
     {
@@ -32,31 +32,31 @@
       "status": "STALE",
       "taak_id": "AUTOCODING_WAAKVLAM_D9_MUTANT_DETERMINISM_FIX_CLAUDE4_V1",
       "sinds": "2026-09-03T21:52:03Z",
-      "sinds_minuten": 64.1,
+      "sinds_minuten": 69.2,
       "bron": "ps:pid=49199"
     },
     {
       "actor": "codex1",
       "status": "GEBLOKKEERD",
-      "taak_id": "AUTOCODING_LANE_RESPONDER_4A06D1A_EXACT_HEAD_REVIEW_CODEX1_V1",
-      "sinds": "2026-09-03T22:46:38Z",
-      "sinds_minuten": 9.5,
-      "bron": "outbox:receipt:AUTOCODING_LANE_RESPONDER_4A06D1A_EXACT_HEAD_REVIEW_CODEX1_V1_RECEIPT.md"
+      "taak_id": "AUTOCODING_LANE_RESPONDER_193DF46_EXACT_HEAD_REVIEW_CODEX1_V1_TRANSPORT_RECEIPT_3",
+      "sinds": "2026-09-03T22:59:15Z",
+      "sinds_minuten": 2.0,
+      "bron": "outbox:receipt:AUTOCODING_LANE_RESPONDER_193DF46_EXACT_HEAD_REVIEW_CODEX1_V1_TRANSPORT_RECEIPT_3.md"
     },
     {
       "actor": "codex2",
       "status": "GEBLOKKEERD",
-      "taak_id": "AUTOCODING_REVIEWBOT_RELAY_8D6892A_EXACT_HEAD_REVIEW_CODEX2_V1",
-      "sinds": "2026-09-03T22:18:20Z",
-      "sinds_minuten": 37.8,
-      "bron": "outbox:receipt:AUTOCODING_REVIEWBOT_RELAY_8D6892A_EXACT_HEAD_REVIEW_CODEX2_V1_RECEIPT.md"
+      "taak_id": "AUTOCODING_LANE_RESPONDER_193DF46_EXACT_HEAD_REVIEW_CODEX2_V2",
+      "sinds": "2026-09-03T22:59:56Z",
+      "sinds_minuten": 1.4,
+      "bron": "outbox:receipt:AUTOCODING_LANE_RESPONDER_193DF46_EXACT_HEAD_REVIEW_CODEX2_V2_RECEIPT.md"
     },
     {
       "actor": "gemini1",
       "status": "GEBLOKKEERD",
       "taak_id": "AUTOCODING_REVIEWBOT_RELAY_8D6892A_EXACT_HEAD_REVIEW_GEMINI1_V1",
       "sinds": "2026-09-03T22:55:54Z",
-      "sinds_minuten": 0.3,
+      "sinds_minuten": 5.4,
       "bron": "outbox:receipt:AUTOCODING_REVIEWBOT_RELAY_8D6892A_EXACT_HEAD_REVIEW_GEMINI1_V1_RECEIPT.md"
     },
     {
@@ -72,7 +72,7 @@
       "status": "WACHT",
       "taak_id": "BANNERREGEL_BEWIJSPOORT_S19_CLAUDE3_V1",
       "sinds": "2026-09-03T05:04:50Z",
-      "sinds_minuten": 1071.3,
+      "sinds_minuten": 1076.5,
       "bron": "outbox:order_open:BANNERREGEL_BEWIJSPOORT_S19_CLAUDE3_V1.md"
     }
   ],
@@ -832,6 +832,78 @@
       "bron_type": "receipt",
       "status": "KLAAR",
       "taak": "receipt en expliciet verdict vastgelegd.",
+      "schatting_categorie": "GEEN_SCHATTING",
+      "schatting_min": null
+    },
+    {
+      "bron_bestand": "outbox/AUTOCODING_LANE_RESPONDER_193DF46_EXACT_HEAD_REVIEW_CODEX1_V1_TRANSPORT_RECEIPT_3.md",
+      "bron_type": "receipt",
+      "status": "KLAAR",
+      "taak": "exact head/tree/base en status gemeten.",
+      "schatting_categorie": "GEEN_SCHATTING",
+      "schatting_min": null
+    },
+    {
+      "bron_bestand": "outbox/AUTOCODING_LANE_RESPONDER_193DF46_EXACT_HEAD_REVIEW_CODEX1_V1_TRANSPORT_RECEIPT_3.md",
+      "bron_type": "receipt",
+      "status": "KLAAR",
+      "taak": "guard, abandoned-criteria, TOCTOU-pad, vervolgtaak en diffscope beoordeeld.",
+      "schatting_categorie": "GEEN_SCHATTING",
+      "schatting_min": null
+    },
+    {
+      "bron_bestand": "outbox/AUTOCODING_LANE_RESPONDER_193DF46_EXACT_HEAD_REVIEW_CODEX1_V1_TRANSPORT_RECEIPT_3.md",
+      "bron_type": "receipt",
+      "status": "KLAAR",
+      "taak": "kandidaat-groen en mutant-rood zelfstandig herhaald.",
+      "schatting_categorie": "GEEN_SCHATTING",
+      "schatting_min": null
+    },
+    {
+      "bron_bestand": "outbox/AUTOCODING_LANE_RESPONDER_193DF46_EXACT_HEAD_REVIEW_CODEX1_V1_TRANSPORT_RECEIPT_3.md",
+      "bron_type": "receipt",
+      "status": "KLAAR",
+      "taak": "receipt en nonce mechanisch gecontroleerd.",
+      "schatting_categorie": "GEEN_SCHATTING",
+      "schatting_min": null
+    },
+    {
+      "bron_bestand": "outbox/AUTOCODING_LANE_RESPONDER_193DF46_EXACT_HEAD_REVIEW_CODEX2_V2_RECEIPT.md",
+      "bron_type": "receipt",
+      "status": "KLAAR",
+      "taak": "head/tree/base, schone status en diffscope bewezen.",
+      "schatting_categorie": "GEEN_SCHATTING",
+      "schatting_min": null
+    },
+    {
+      "bron_bestand": "outbox/AUTOCODING_LANE_RESPONDER_193DF46_EXACT_HEAD_REVIEW_CODEX2_V2_RECEIPT.md",
+      "bron_type": "receipt",
+      "status": "KLAAR",
+      "taak": "guard, classificatie en live-evidencecriteria beoordeeld.",
+      "schatting_categorie": "GEEN_SCHATTING",
+      "schatting_min": null
+    },
+    {
+      "bron_bestand": "outbox/AUTOCODING_LANE_RESPONDER_193DF46_EXACT_HEAD_REVIEW_CODEX2_V2_RECEIPT.md",
+      "bron_type": "receipt",
+      "status": "KLAAR",
+      "taak": "kandidaat groen en base-mutant deterministisch rood.",
+      "schatting_categorie": "GEEN_SCHATTING",
+      "schatting_min": null
+    },
+    {
+      "bron_bestand": "outbox/AUTOCODING_LANE_RESPONDER_193DF46_EXACT_HEAD_REVIEW_CODEX2_V2_RECEIPT.md",
+      "bron_type": "receipt",
+      "status": "KLAAR",
+      "taak": "receipt geschreven en identiteit gecontroleerd.",
+      "schatting_categorie": "GEEN_SCHATTING",
+      "schatting_min": null
+    },
+    {
+      "bron_bestand": "outbox/AUTOCODING_LANE_RESPONDER_193DF46_EXACT_HEAD_REVIEW_CODEX2_V2_RECEIPT.md",
+      "bron_type": "receipt",
+      "status": "GEBLOKKEERD",
+      "taak": "hoofdcheckout-outbox valt buiten het schrijfbereik.",
       "schatting_categorie": "GEEN_SCHATTING",
       "schatting_min": null
     },
@@ -2096,6 +2168,46 @@
       "bron_type": "receipt",
       "status": "OPEN",
       "taak": "Telegram-waakvlam op de heartbeat (grip-pakket deel 3)",
+      "schatting_categorie": "GEEN_SCHATTING",
+      "schatting_min": null
+    },
+    {
+      "bron_bestand": "outbox/AUTOCODING_REVIEWBOT_RELAY_8D6892A_EXACT_HEAD_REVIEW_CLAUDE1_V1_TRANSPORT_RECEIPT.md",
+      "bron_type": "receipt",
+      "status": "KLAAR",
+      "taak": "Worktree head/tree/base geverifieerd tegen order",
+      "schatting_categorie": "GEEN_SCHATTING",
+      "schatting_min": null
+    },
+    {
+      "bron_bestand": "outbox/AUTOCODING_REVIEWBOT_RELAY_8D6892A_EXACT_HEAD_REVIEW_CLAUDE1_V1_TRANSPORT_RECEIPT.md",
+      "bron_type": "receipt",
+      "status": "KLAAR",
+      "taak": "Diff-scope gecontroleerd (uitsluitend de 2 toegestane bestanden)",
+      "schatting_categorie": "GEEN_SCHATTING",
+      "schatting_min": null
+    },
+    {
+      "bron_bestand": "outbox/AUTOCODING_REVIEWBOT_RELAY_8D6892A_EXACT_HEAD_REVIEW_CLAUDE1_V1_TRANSPORT_RECEIPT.md",
+      "bron_type": "receipt",
+      "status": "KLAAR",
+      "taak": "Acceptatieproef 3x gedraaid, letterlijke output vastgelegd",
+      "schatting_categorie": "GEEN_SCHATTING",
+      "schatting_min": null
+    },
+    {
+      "bron_bestand": "outbox/AUTOCODING_REVIEWBOT_RELAY_8D6892A_EXACT_HEAD_REVIEW_CLAUDE1_V1_TRANSPORT_RECEIPT.md",
+      "bron_type": "receipt",
+      "status": "KLAAR",
+      "taak": "Eigen herhaling mutanten 6b/6c (3/3 PASS elk)",
+      "schatting_categorie": "GEEN_SCHATTING",
+      "schatting_min": null
+    },
+    {
+      "bron_bestand": "outbox/AUTOCODING_REVIEWBOT_RELAY_8D6892A_EXACT_HEAD_REVIEW_CLAUDE1_V1_TRANSPORT_RECEIPT.md",
+      "bron_type": "receipt",
+      "status": "KLAAR",
+      "taak": "Receipt geschreven naar canoniek pad (bewijs: bestand 162 regels, ls hierboven)",
       "schatting_categorie": "GEEN_SCHATTING",
       "schatting_min": null
     },
@@ -7477,8 +7589,8 @@
     }
   ],
   "taken_meta": {
-    "taken_totaal": 923,
-    "taken_zonder_schatting": 864,
+    "taken_totaal": 937,
+    "taken_zonder_schatting": 878,
     "bron_glob": "outbox/*.md (TAKENLIJST-blokken)",
     "classificatie": "regex op TAKENLIJST-tabelrijen (Status/Taak/Tijd) en kale lijstvorm; een cel zonder herkenbaar '~X min'-patroon telt als GEEN_SCHATTING, nooit stilzwijgend overgeslagen"
   },
@@ -7488,15 +7600,15 @@
     "cmd": "bin/lane-capaciteit --json",
     "data": {
       "stack_root": "STACK_ROOT",
-      "generated_at": "2026-09-03T22:56:13Z",
+      "generated_at": "2026-09-03T23:01:21Z",
       "meta": {
-        "receipt_bestanden_totaal": 835,
-        "receipt_onparseerbaar": 113,
+        "receipt_bestanden_totaal": 839,
+        "receipt_onparseerbaar": 114,
         "jsonl": {
-          "total_lines": 609,
+          "total_lines": 610,
           "actor_lines": 0,
           "onparseerbaar": 0,
-          "zonder_actor": 609,
+          "zonder_actor": 610,
           "aanwezig": true
         },
         "verdict_classificatie": "heuristiek: prefix-match op verdict= (hoofdletterongevoelig); GESLAAGD={GO,PASS,DELIVERED}, GEBLOKKEERD={NO_GO,BLOCKED,REJECTED,FAILED}, onbekend/overig telt niet stilzwijgend mee als geslaagd of geblokkeerd"
@@ -7519,16 +7631,16 @@
         },
         {
           "actor": "claude1",
-          "orders": 68,
-          "orders_met_duur": 61,
-          "p50_duration_ms": 267000,
+          "orders": 69,
+          "orders_met_duur": 62,
+          "p50_duration_ms": 261500,
           "max_duration_ms": 3518000,
-          "orders_met_verdict": 13,
-          "geslaagd_pct": 38.5,
-          "geblokkeerd_pct": 46.2,
-          "overig_pct": 15.4,
+          "orders_met_verdict": 14,
+          "geslaagd_pct": 35.7,
+          "geblokkeerd_pct": 50.0,
+          "overig_pct": 14.3,
           "verdict_distribution_raw": {
-            "BLOCKED_EVIDENCE": 5,
+            "BLOCKED_EVIDENCE": 6,
             "BUILD_COMPLETE_TESTS_GREEN": 1,
             "GO_READY_FOR_MERGE_GATE": 3,
             "GO_WITH_FINDINGS": 1,
@@ -7536,7 +7648,7 @@
             "NO_GO (herbevestigd, attempt 3, ongewijzigde oorzaak)": 1,
             "OPGELEVERD|BLOCKED_EVIDENCE": 1
           },
-          "laatste_activiteit": "2026-09-03T21:45:12Z"
+          "laatste_activiteit": "2026-09-03T22:56:51Z"
         },
         {
           "actor": "claude2",
@@ -7584,9 +7696,9 @@
         },
         {
           "actor": "claude4",
-          "orders": 139,
-          "orders_met_duur": 134,
-          "p50_duration_ms": 272500,
+          "orders": 140,
+          "orders_met_duur": 135,
+          "p50_duration_ms": 271000,
           "max_duration_ms": 3104000,
           "orders_met_verdict": 61,
           "geslaagd_pct": 68.9,
@@ -7601,7 +7713,7 @@
             "GO_WITH_FINDINGS": 25,
             "NO_GO": 2
           },
-          "laatste_activiteit": "2026-09-03T21:38:27Z"
+          "laatste_activiteit": "2026-09-03T22:57:42Z"
         },
         {
           "actor": "codex1",
@@ -7625,23 +7737,23 @@
         },
         {
           "actor": "codex2",
-          "orders": 80,
-          "orders_met_duur": 75,
-          "p50_duration_ms": 158000,
+          "orders": 81,
+          "orders_met_duur": 76,
+          "p50_duration_ms": 155000,
           "max_duration_ms": 1712000,
-          "orders_met_verdict": 29,
-          "geslaagd_pct": 20.7,
-          "geblokkeerd_pct": 75.9,
-          "overig_pct": 3.4,
+          "orders_met_verdict": 30,
+          "geslaagd_pct": 23.3,
+          "geblokkeerd_pct": 73.3,
+          "overig_pct": 3.3,
           "verdict_distribution_raw": {
             "BLOCKED_EVIDENCE": 19,
             "GO_READY_FOR_MERGE_GATE": 2,
             "GO_READY_FOR_SEPARATE_MERGE_GATE": 1,
-            "GO_WITH_FINDINGS": 3,
+            "GO_WITH_FINDINGS": 4,
             "NO_GO": 3,
             "REVIEW_PENDING": 1
           },
-          "laatste_activiteit": "2026-09-03T22:18:13Z"
+          "laatste_activiteit": "2026-09-03T22:59:34Z"
         },
         {
           "actor": "director",
@@ -7715,7 +7827,7 @@
         },
         {
           "actor": "ONPARSEERBAAR",
-          "orders": 113,
+          "orders": 114,
           "orders_met_duur": 0,
           "p50_duration_ms": null,
           "max_duration_ms": null,
@@ -7770,6 +7882,7 @@
             "AUTOCODING_PR993_CLASS_A_MATRIX_20260820_RECEIPT.md",
             "AUTOCODING_PR994_TRANSITION_FENCING_20260820_RECEIPT.md",
             "AUTOCODING_PROVIDER_PLAN_CONTRACT_CLOSE_V1_CODEX2_RECEIPT.md",
+            "AUTOCODING_REVIEWBOT_RELAY_8D6892A_EXACT_HEAD_REVIEW_CLAUDE1_V1_RECEIPT.md",
             "AUTOCODING_REVIEWBOT_RELAY_CLAUDE2_V1_RECEIPT.md",
             "AUTOCODING_SUPERVISOR_INTAKE_CHANNEL_CONFIRM_CLAUDE2_V1_RECEIPT.md",
             "AUTOCODING_TELEGRAM_WAAKVLAM_REVIEW_CLAUDE4_V1_RECEIPT.md",
@@ -7843,7 +7956,7 @@
         },
         {
           "actor": "ZONDER_ACTOR",
-          "orders": 609,
+          "orders": 610,
           "orders_met_duur": 0,
           "p50_duration_ms": null,
           "max_duration_ms": null,
@@ -8462,7 +8575,8 @@
             606,
             607,
             608,
-            609
+            609,
+            610
           ]
         }
       ]
