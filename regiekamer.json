@@ -1,6 +1,6 @@
 {
   "schema": "REGIEKAMER_REALTIME_V1",
-  "gegenereerd_op": "2026-09-04T09:00:49Z",
+  "gegenereerd_op": "2026-09-04T09:06:05Z",
   "stack_root": "STACK_ROOT",
   "accounts": [
     {
@@ -8,7 +8,7 @@
       "status": "GEBLOKKEERD",
       "taak_id": "AUTOCODING_CONTROLLER_SELF_CLAIM_HELD_IN_FLIGHT_FIX_CLAUDE1_V2_RECEIPT_FULL_FROM_WORKTREE",
       "sinds": "2026-09-04T08:47:06Z",
-      "sinds_minuten": 13.6,
+      "sinds_minuten": 18.8,
       "bron": "outbox:receipt:AUTOCODING_CONTROLLER_SELF_CLAIM_HELD_IN_FLIGHT_FIX_CLAUDE1_V2_RECEIPT_FULL_FROM_WORKTREE.md"
     },
     {
@@ -16,7 +16,7 @@
       "status": "VRIJ",
       "taak_id": null,
       "sinds": "2026-09-04T07:46:32Z",
-      "sinds_minuten": 74.2,
+      "sinds_minuten": 79.4,
       "bron": "outbox:order_afgerond:DIRECTOR_BESLUIT_QUEUE_ADMISSIE_EN_MERGE_GATE_CLAUDE3_V1.md"
     },
     {
@@ -24,7 +24,7 @@
       "status": "GEBLOKKEERD",
       "taak_id": "DIRECTOR_BESLUIT_QUEUE_ADMISSIE_EN_MERGE_GATE_CLAUDE3_V1",
       "sinds": "2026-09-04T07:56:23Z",
-      "sinds_minuten": 64.3,
+      "sinds_minuten": 69.5,
       "bron": "outbox:receipt:DIRECTOR_BESLUIT_QUEUE_ADMISSIE_EN_MERGE_GATE_CLAUDE3_V1_RECEIPT.md"
     },
     {
@@ -32,7 +32,7 @@
       "status": "VRIJ",
       "taak_id": null,
       "sinds": "2026-09-04T07:54:17Z",
-      "sinds_minuten": 66.4,
+      "sinds_minuten": 71.6,
       "bron": "outbox:order_afgerond:AUTOCODING_LANE_UTILIZATION_METER_CLAUDE4_V1.md"
     },
     {
@@ -40,23 +40,23 @@
       "status": "VRIJ",
       "taak_id": null,
       "sinds": "2026-09-04T07:16:03Z",
-      "sinds_minuten": 104.6,
+      "sinds_minuten": 109.8,
       "bron": "outbox:order_afgerond:AUTOCODING_LANE_RESPONDER_193DF46_EXACT_HEAD_REVIEW_CODEX1_V1.md"
     },
     {
       "actor": "codex2",
-      "status": "BEZIG",
-      "taak_id": "AUTOCODING_CONTROLLER_SELF_CLAIM_HELD_IN_FLIGHT_FIX_CODEX2_V1",
-      "sinds": "2026-09-04T08:51:39Z",
-      "sinds_minuten": 9.1,
-      "bron": "ps:pid=99181"
+      "status": "GEBLOKKEERD",
+      "taak_id": "AUTOCODING_CONTROLLER_SELF_CLAIM_HELD_IN_FLIGHT_FIX_CODEX2_V1_TRANSPORT",
+      "sinds": "2026-09-04T09:01:00Z",
+      "sinds_minuten": 4.9,
+      "bron": "outbox:receipt:AUTOCODING_CONTROLLER_SELF_CLAIM_HELD_IN_FLIGHT_FIX_CODEX2_V1_TRANSPORT_RECEIPT.md"
     },
     {
       "actor": "gemini1",
       "status": "VRIJ",
       "taak_id": null,
       "sinds": "2026-09-04T07:16:03Z",
-      "sinds_minuten": 104.6,
+      "sinds_minuten": 109.8,
       "bron": "outbox:order_afgerond:AUTOCODING_FORWARDPORT_PR81_EXACT_HEAD_REVIEW_GEMINI1_V2.md"
     },
     {
@@ -72,7 +72,7 @@
       "status": "WACHT",
       "taak_id": "BANNERREGEL_BEWIJSPOORT_S19_CLAUDE3_V1",
       "sinds": "2026-09-03T05:04:50Z",
-      "sinds_minuten": 1675.9,
+      "sinds_minuten": 1681.1,
       "bron": "outbox:order_open:BANNERREGEL_BEWIJSPOORT_S19_CLAUDE3_V1.md"
     }
   ],
@@ -805,6 +805,62 @@
     },
     {
       "bron_bestand": "outbox/AUTOCODING_CONTROLLER_SELF_CLAIM_HELD_IN_FLIGHT_FIX_CODEX2_V1_RECEIPT.md",
+      "bron_type": "receipt",
+      "status": "OPEN",
+      "taak": "merge-gate blijft extern geblokkeerd; geen handmatige merge toegestaan.",
+      "schatting_categorie": "GEEN_SCHATTING",
+      "schatting_min": null
+    },
+    {
+      "bron_bestand": "outbox/AUTOCODING_CONTROLLER_SELF_CLAIM_HELD_IN_FLIGHT_FIX_CODEX2_V1_TRANSPORT_RECEIPT.md",
+      "bron_type": "receipt",
+      "status": "KLAAR",
+      "taak": "exacte head in eigen detached worktree; bewijs hierboven.",
+      "schatting_categorie": "GEEN_SCHATTING",
+      "schatting_min": null
+    },
+    {
+      "bron_bestand": "outbox/AUTOCODING_CONTROLLER_SELF_CLAIM_HELD_IN_FLIGHT_FIX_CODEX2_V1_TRANSPORT_RECEIPT.md",
+      "bron_type": "receipt",
+      "status": "KLAAR",
+      "taak": "controller-suite; tweede identieke volledige run 461/0, eerste niet-reproduceerbare T24-fluctuatie transparant vastgelegd.",
+      "schatting_categorie": "GEEN_SCHATTING",
+      "schatting_min": null
+    },
+    {
+      "bron_bestand": "outbox/AUTOCODING_CONTROLLER_SELF_CLAIM_HELD_IN_FLIGHT_FIX_CODEX2_V1_TRANSPORT_RECEIPT.md",
+      "bron_type": "receipt",
+      "status": "KLAAR",
+      "taak": "legacy-lint 5/5 en plist-contract 8/8.",
+      "schatting_categorie": "GEEN_SCHATTING",
+      "schatting_min": null
+    },
+    {
+      "bron_bestand": "outbox/AUTOCODING_CONTROLLER_SELF_CLAIM_HELD_IN_FLIGHT_FIX_CODEX2_V1_TRANSPORT_RECEIPT.md",
+      "bron_type": "receipt",
+      "status": "KLAAR",
+      "taak": "vier nieuwe scenario's inhoudelijk gelezen; eigen basis-rooduitvoer opgenomen.",
+      "schatting_categorie": "GEEN_SCHATTING",
+      "schatting_min": null
+    },
+    {
+      "bron_bestand": "outbox/AUTOCODING_CONTROLLER_SELF_CLAIM_HELD_IN_FLIGHT_FIX_CODEX2_V1_TRANSPORT_RECEIPT.md",
+      "bron_type": "receipt",
+      "status": "KLAAR",
+      "taak": "allowed-paths en verboden oppervlakken lokaal exact-head gecontroleerd; GitHub-API-onbereikbaarheid expliciet gemeld.",
+      "schatting_categorie": "GEEN_SCHATTING",
+      "schatting_min": null
+    },
+    {
+      "bron_bestand": "outbox/AUTOCODING_CONTROLLER_SELF_CLAIM_HELD_IN_FLIGHT_FIX_CODEX2_V1_TRANSPORT_RECEIPT.md",
+      "bron_type": "receipt",
+      "status": "KLAAR",
+      "taak": "stalltelleronderscheid inhoudelijk beoordeeld.",
+      "schatting_categorie": "GEEN_SCHATTING",
+      "schatting_min": null
+    },
+    {
+      "bron_bestand": "outbox/AUTOCODING_CONTROLLER_SELF_CLAIM_HELD_IN_FLIGHT_FIX_CODEX2_V1_TRANSPORT_RECEIPT.md",
       "bron_type": "receipt",
       "status": "OPEN",
       "taak": "merge-gate blijft extern geblokkeerd; geen handmatige merge toegestaan.",
@@ -10685,8 +10741,8 @@
     }
   ],
   "taken_meta": {
-    "taken_totaal": 1324,
-    "taken_zonder_schatting": 1261,
+    "taken_totaal": 1331,
+    "taken_zonder_schatting": 1268,
     "bron_glob": "outbox/*.md (TAKENLIJST-blokken)",
     "classificatie": "regex op TAKENLIJST-tabelrijen (Status/Taak/Tijd) en kale lijstvorm; een cel zonder herkenbaar '~X min'-patroon telt als GEEN_SCHATTING, nooit stilzwijgend overgeslagen"
   },
@@ -10696,15 +10752,15 @@
     "cmd": "bin/lane-capaciteit --json",
     "data": {
       "stack_root": "STACK_ROOT",
-      "generated_at": "2026-09-04T09:00:49Z",
+      "generated_at": "2026-09-04T09:06:05Z",
       "meta": {
-        "receipt_bestanden_totaal": 903,
+        "receipt_bestanden_totaal": 904,
         "receipt_onparseerbaar": 132,
         "jsonl": {
-          "total_lines": 669,
+          "total_lines": 670,
           "actor_lines": 0,
           "onparseerbaar": 0,
-          "zonder_actor": 669,
+          "zonder_actor": 670,
           "aanwezig": true
         },
         "verdict_classificatie": "heuristiek: prefix-match op verdict= (hoofdletterongevoelig); GESLAAGD={GO,PASS,DELIVERED}, GEBLOKKEERD={NO_GO,BLOCKED,REJECTED,FAILED}, onbekend/overig telt niet stilzwijgend mee als geslaagd of geblokkeerd"
@@ -10867,23 +10923,23 @@
         },
         {
           "actor": "codex2",
-          "orders": 87,
-          "orders_met_duur": 81,
-          "p50_duration_ms": 158000,
+          "orders": 88,
+          "orders_met_duur": 82,
+          "p50_duration_ms": 158500,
           "max_duration_ms": 1712000,
-          "orders_met_verdict": 36,
-          "geslaagd_pct": 27.8,
-          "geblokkeerd_pct": 69.4,
-          "overig_pct": 2.8,
+          "orders_met_verdict": 37,
+          "geslaagd_pct": 29.7,
+          "geblokkeerd_pct": 67.6,
+          "overig_pct": 2.7,
           "verdict_distribution_raw": {
             "BLOCKED_EVIDENCE": 22,
-            "GO_READY_FOR_MERGE_GATE": 4,
+            "GO_READY_FOR_MERGE_GATE": 5,
             "GO_READY_FOR_SEPARATE_MERGE_GATE": 1,
             "GO_WITH_FINDINGS": 5,
             "NO_GO": 3,
             "REVIEW_PENDING": 1
           },
-          "laatste_activiteit": "2026-09-04T09:00:34Z"
+          "laatste_activiteit": "2026-09-04T09:00:57Z"
         },
         {
           "actor": "director",
@@ -11104,7 +11160,7 @@
         },
         {
           "actor": "ZONDER_ACTOR",
-          "orders": 669,
+          "orders": 670,
           "orders_met_duur": 0,
           "p50_duration_ms": null,
           "max_duration_ms": null,
@@ -11783,7 +11839,8 @@
             666,
             667,
             668,
-            669
+            669,
+            670
           ]
         }
       ]
