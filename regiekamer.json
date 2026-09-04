@@ -1,6 +1,6 @@
 {
   "schema": "REGIEKAMER_REALTIME_V1",
-  "gegenereerd_op": "2026-09-04T06:35:58Z",
+  "gegenereerd_op": "2026-09-04T06:41:10Z",
   "stack_root": "STACK_ROOT",
   "accounts": [
     {
@@ -8,7 +8,7 @@
       "status": "GEBLOKKEERD",
       "taak_id": "AUTOCODING_VERIFY_ACCEPTANCE_TREE_BINDING_FIX_CLAUDE1_V1_TRANSPORT",
       "sinds": "2026-09-04T05:06:42Z",
-      "sinds_minuten": 89.1,
+      "sinds_minuten": 94.4,
       "bron": "outbox:receipt:AUTOCODING_VERIFY_ACCEPTANCE_TREE_BINDING_FIX_CLAUDE1_V1_TRANSPORT_RECEIPT.md"
     },
     {
@@ -16,15 +16,15 @@
       "status": "VRIJ",
       "taak_id": null,
       "sinds": "2026-09-04T05:43:40Z",
-      "sinds_minuten": 52.1,
+      "sinds_minuten": 57.4,
       "bron": "outbox:order_afgerond:AUTOCODING_MERGE_GATE_AUTONOMOUS_MERGE_CLAUDE2_V2.md"
     },
     {
       "actor": "claude3",
       "status": "VRIJ",
       "taak_id": null,
-      "sinds": "2026-09-04T06:22:09Z",
-      "sinds_minuten": 13.6,
+      "sinds": "2026-09-04T06:37:51Z",
+      "sinds_minuten": 3.2,
       "bron": "outbox:order_afgerond:AUTOCODING_VERIFY_ACCEPTANCE_SUITE_TOKEN_FIX_CLAUDE3_V1.md"
     },
     {
@@ -32,23 +32,23 @@
       "status": "GEBLOKKEERD",
       "taak_id": "AUTOCODING_LANE_UTILIZATION_METER_CLAUDE4_V1_TRANSPORT",
       "sinds": "2026-09-04T05:29:14Z",
-      "sinds_minuten": 66.5,
+      "sinds_minuten": 71.8,
       "bron": "outbox:receipt:AUTOCODING_LANE_UTILIZATION_METER_CLAUDE4_V1_TRANSPORT_RECEIPT.md"
     },
     {
       "actor": "codex1",
-      "status": "BEZIG",
-      "taak_id": "AUTOCODING_LANE_UTILIZATION_METER_EXACT_HEAD_REVIEW_CODEX1_V2_CONFIRM",
-      "sinds": "2026-09-04T06:35:08Z",
-      "sinds_minuten": 0.7,
-      "bron": "ps:pid=54787"
+      "status": "VRIJ",
+      "taak_id": null,
+      "sinds": "2026-09-04T06:37:51Z",
+      "sinds_minuten": 3.2,
+      "bron": "outbox:order_afgerond:AUTOCODING_LANE_RESPONDER_193DF46_EXACT_HEAD_REVIEW_CODEX1_V1.md"
     },
     {
       "actor": "codex2",
       "status": "GEBLOKKEERD",
       "taak_id": "AUTOCODING_FORWARDPORT_PR79_CODEX2_V1",
       "sinds": "2026-09-04T06:13:31Z",
-      "sinds_minuten": 22.3,
+      "sinds_minuten": 27.5,
       "bron": "outbox:receipt:AUTOCODING_FORWARDPORT_PR79_CODEX2_V1_RECEIPT.md"
     },
     {
@@ -56,7 +56,7 @@
       "status": "WACHT",
       "taak_id": "AUTOCODING_FORWARDPORT_PR81_EXACT_HEAD_REVIEW_GEMINI1_V2",
       "sinds": "2026-09-04T06:35:23Z",
-      "sinds_minuten": 0.4,
+      "sinds_minuten": 5.7,
       "bron": "outbox:order_open:AUTOCODING_FORWARDPORT_PR81_EXACT_HEAD_REVIEW_GEMINI1_V2.md"
     },
     {
@@ -72,7 +72,7 @@
       "status": "WACHT",
       "taak_id": "BANNERREGEL_BEWIJSPOORT_S19_CLAUDE3_V1",
       "sinds": "2026-09-03T05:04:50Z",
-      "sinds_minuten": 1531.0,
+      "sinds_minuten": 1536.2,
       "bron": "outbox:order_open:BANNERREGEL_BEWIJSPOORT_S19_CLAUDE3_V1.md"
     }
   ],
@@ -2416,6 +2416,70 @@
       "bron_type": "receipt",
       "status": "KLAAR",
       "taak": "volledige lokale git-diff inhoudelijk en op allowed_paths/verboden paden/secrets gecontroleerd.",
+      "schatting_categorie": "GEEN_SCHATTING",
+      "schatting_min": null
+    },
+    {
+      "bron_bestand": "outbox/AUTOCODING_LANE_UTILIZATION_METER_EXACT_HEAD_REVIEW_CODEX1_V2_CONFIRM_RECEIPT.md",
+      "bron_type": "receipt",
+      "status": "KLAAR",
+      "taak": "negatieve controle letterlijk herhaald; beide gouden-padregels en `EXIT=0` gemeten hierboven.",
+      "schatting_categorie": "GEEN_SCHATTING",
+      "schatting_min": null
+    },
+    {
+      "bron_bestand": "outbox/AUTOCODING_LANE_UTILIZATION_METER_EXACT_HEAD_REVIEW_CODEX1_V2_CONFIRM_RECEIPT.md",
+      "bron_type": "receipt",
+      "status": "KLAAR",
+      "taak": "normale suite herhaald; `SUITE_PASS PASS=26 FAIL=0` en `EXIT=0` gemeten hierboven.",
+      "schatting_categorie": "GEEN_SCHATTING",
+      "schatting_min": null
+    },
+    {
+      "bron_bestand": "outbox/AUTOCODING_LANE_UTILIZATION_METER_EXACT_HEAD_REVIEW_CODEX1_V2_CONFIRM_RECEIPT.md",
+      "bron_type": "receipt",
+      "status": "KLAAR",
+      "taak": "V1-diffmeting voor allowed_paths herbevestigd via het genoemde V1-receipt.",
+      "schatting_categorie": "GEEN_SCHATTING",
+      "schatting_min": null
+    },
+    {
+      "bron_bestand": "outbox/AUTOCODING_LANE_UTILIZATION_METER_EXACT_HEAD_REVIEW_CODEX1_V2_CONFIRM_RECEIPT.md",
+      "bron_type": "receipt",
+      "status": "KLAAR",
+      "taak": "verdict op basis van de gecorrigeerde conventie vastgesteld: `GO_READY_FOR_MERGE_GATE`.",
+      "schatting_categorie": "GEEN_SCHATTING",
+      "schatting_min": null
+    },
+    {
+      "bron_bestand": "outbox/AUTOCODING_LANE_UTILIZATION_METER_EXACT_HEAD_REVIEW_CODEX1_V2_CONFIRM_TRANSPORT_RECEIPT.md",
+      "bron_type": "receipt",
+      "status": "KLAAR",
+      "taak": "negatieve controle: beide vereiste signalen en `EXIT=0`.",
+      "schatting_categorie": "GEEN_SCHATTING",
+      "schatting_min": null
+    },
+    {
+      "bron_bestand": "outbox/AUTOCODING_LANE_UTILIZATION_METER_EXACT_HEAD_REVIEW_CODEX1_V2_CONFIRM_TRANSPORT_RECEIPT.md",
+      "bron_type": "receipt",
+      "status": "KLAAR",
+      "taak": "normale suite: `SUITE_PASS PASS=26 FAIL=0`.",
+      "schatting_categorie": "GEEN_SCHATTING",
+      "schatting_min": null
+    },
+    {
+      "bron_bestand": "outbox/AUTOCODING_LANE_UTILIZATION_METER_EXACT_HEAD_REVIEW_CODEX1_V2_CONFIRM_TRANSPORT_RECEIPT.md",
+      "bron_type": "receipt",
+      "status": "KLAAR",
+      "taak": "allowed-paths herbevestigd via het V1-receipt.",
+      "schatting_categorie": "GEEN_SCHATTING",
+      "schatting_min": null
+    },
+    {
+      "bron_bestand": "outbox/AUTOCODING_LANE_UTILIZATION_METER_EXACT_HEAD_REVIEW_CODEX1_V2_CONFIRM_TRANSPORT_RECEIPT.md",
+      "bron_type": "receipt",
+      "status": "KLAAR",
+      "taak": "verdict vastgesteld als `GO_READY_FOR_MERGE_GATE`.",
       "schatting_categorie": "GEEN_SCHATTING",
       "schatting_min": null
     },
@@ -10349,8 +10413,8 @@
     }
   ],
   "taken_meta": {
-    "taken_totaal": 1282,
-    "taken_zonder_schatting": 1219,
+    "taken_totaal": 1290,
+    "taken_zonder_schatting": 1227,
     "bron_glob": "outbox/*.md (TAKENLIJST-blokken)",
     "classificatie": "regex op TAKENLIJST-tabelrijen (Status/Taak/Tijd) en kale lijstvorm; een cel zonder herkenbaar '~X min'-patroon telt als GEEN_SCHATTING, nooit stilzwijgend overgeslagen"
   },
@@ -10360,15 +10424,15 @@
     "cmd": "bin/lane-capaciteit --json",
     "data": {
       "stack_root": "STACK_ROOT",
-      "generated_at": "2026-09-04T06:35:57Z",
+      "generated_at": "2026-09-04T06:41:10Z",
       "meta": {
-        "receipt_bestanden_totaal": 891,
-        "receipt_onparseerbaar": 128,
+        "receipt_bestanden_totaal": 893,
+        "receipt_onparseerbaar": 129,
         "jsonl": {
-          "total_lines": 655,
+          "total_lines": 656,
           "actor_lines": 0,
           "onparseerbaar": 0,
-          "zonder_actor": 655,
+          "zonder_actor": 656,
           "aanwezig": true
         },
         "verdict_classificatie": "heuristiek: prefix-match op verdict= (hoofdletterongevoelig); GESLAAGD={GO,PASS,DELIVERED}, GEBLOKKEERD={NO_GO,BLOCKED,REJECTED,FAILED}, onbekend/overig telt niet stilzwijgend mee als geslaagd of geblokkeerd"
@@ -10511,23 +10575,23 @@
         },
         {
           "actor": "codex1",
-          "orders": 134,
-          "orders_met_duur": 131,
-          "p50_duration_ms": 127000,
+          "orders": 135,
+          "orders_met_duur": 132,
+          "p50_duration_ms": 126500,
           "max_duration_ms": 3216000,
-          "orders_met_verdict": 55,
-          "geslaagd_pct": 36.4,
-          "geblokkeerd_pct": 63.6,
+          "orders_met_verdict": 56,
+          "geslaagd_pct": 35.7,
+          "geblokkeerd_pct": 64.3,
           "overig_pct": 0.0,
           "verdict_distribution_raw": {
-            "BLOCKED_EVIDENCE": 28,
+            "BLOCKED_EVIDENCE": 29,
             "GO_READY_FOR_MERGE_GATE": 14,
             "GO_WITH_FINDINGS": 4,
             "NO_GO": 7,
             "PASS": 1,
             "PASS — exact candidate satisfies the portable system-Python and inter-process flock acceptance criteria.": 1
           },
-          "laatste_activiteit": "2026-09-04T06:12:13Z"
+          "laatste_activiteit": "2026-09-04T06:37:11Z"
         },
         {
           "actor": "codex2",
@@ -10621,7 +10685,7 @@
         },
         {
           "actor": "ONPARSEERBAAR",
-          "orders": 128,
+          "orders": 129,
           "orders_met_duur": 0,
           "p50_duration_ms": null,
           "max_duration_ms": null,
@@ -10652,6 +10716,7 @@
             "AUTOCODING_LANE_RESPONDER_4A06D1A_EXACT_HEAD_REVIEW_CODEX1_V3_RECONCILIATION_RECEIPT.md",
             "AUTOCODING_LANE_UTILIZATION_METER_CLAUDE4_V1_RECEIPT.md",
             "AUTOCODING_LANE_UTILIZATION_METER_EXACT_HEAD_REVIEW_CODEX1_V1_RECEIPT.md",
+            "AUTOCODING_LANE_UTILIZATION_METER_EXACT_HEAD_REVIEW_CODEX1_V2_CONFIRM_RECEIPT.md",
             "AUTOCODING_PR74_EXACT_HEAD_SECURITY_REVIEW_CLAUDE4_V1_RECEIPT.md",
             "AUTOCODING_PR74_V20_GEMINI1_SOURCE_REVIEW_V1_RECEIPT.md",
             "AUTOCODING_PR74_V20_MERGE_GROUP_EVIDENCE_REPAIR_CLAUDE3_DIRECT_V1_RECEIPT.md",
@@ -10764,7 +10829,7 @@
         },
         {
           "actor": "ZONDER_ACTOR",
-          "orders": 655,
+          "orders": 656,
           "orders_met_duur": 0,
           "p50_duration_ms": null,
           "max_duration_ms": null,
@@ -11429,7 +11494,8 @@
             652,
             653,
             654,
-            655
+            655,
+            656
           ]
         }
       ]
