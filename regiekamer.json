@@ -1,6 +1,6 @@
 {
   "schema": "REGIEKAMER_REALTIME_V1",
-  "gegenereerd_op": "2026-09-04T05:23:46Z",
+  "gegenereerd_op": "2026-09-04T05:28:54Z",
   "stack_root": "STACK_ROOT",
   "accounts": [
     {
@@ -8,7 +8,7 @@
       "status": "GEBLOKKEERD",
       "taak_id": "AUTOCODING_VERIFY_ACCEPTANCE_TREE_BINDING_FIX_CLAUDE1_V1_TRANSPORT",
       "sinds": "2026-09-04T05:06:42Z",
-      "sinds_minuten": 17.0,
+      "sinds_minuten": 22.1,
       "bron": "outbox:receipt:AUTOCODING_VERIFY_ACCEPTANCE_TREE_BINDING_FIX_CLAUDE1_V1_TRANSPORT_RECEIPT.md"
     },
     {
@@ -16,7 +16,7 @@
       "status": "VRIJ",
       "taak_id": null,
       "sinds": "2026-09-04T05:18:43Z",
-      "sinds_minuten": 5.0,
+      "sinds_minuten": 10.1,
       "bron": "outbox:order_afgerond:AUTOCODING_MERGE_GATE_AUTONOMOUS_MERGE_CLAUDE2_V1.md"
     },
     {
@@ -24,7 +24,7 @@
       "status": "VRIJ",
       "taak_id": null,
       "sinds": "2026-09-04T05:19:50Z",
-      "sinds_minuten": 3.8,
+      "sinds_minuten": 9.0,
       "bron": "outbox:order_afgerond:AUTOCODING_VERIFY_ACCEPTANCE_SUITE_TOKEN_FIX_CLAUDE3_V1.md"
     },
     {
@@ -32,7 +32,7 @@
       "status": "STALE",
       "taak_id": "AUTOCODING_LANE_UTILIZATION_METER_CLAUDE4_V1",
       "sinds": "2026-09-04T05:13:38Z",
-      "sinds_minuten": 10.1,
+      "sinds_minuten": 15.2,
       "bron": "ps:pid=74445"
     },
     {
@@ -40,7 +40,7 @@
       "status": "VRIJ",
       "taak_id": null,
       "sinds": "2026-09-04T05:19:50Z",
-      "sinds_minuten": 3.8,
+      "sinds_minuten": 9.0,
       "bron": "outbox:order_afgerond:AUTOCODING_LANE_RESPONDER_193DF46_EXACT_HEAD_REVIEW_CODEX1_V1.md"
     },
     {
@@ -48,7 +48,7 @@
       "status": "GEBLOKKEERD",
       "taak_id": "STACK_DIRECTOR_MAIN_BACKUP_BRANCH_RECONCILIATION_V2",
       "sinds": "2026-09-04T05:06:42Z",
-      "sinds_minuten": 17.0,
+      "sinds_minuten": 22.1,
       "bron": "outbox:receipt:STACK_DIRECTOR_MAIN_BACKUP_BRANCH_RECONCILIATION_V2_RECEIPT.md"
     },
     {
@@ -56,7 +56,7 @@
       "status": "GEBLOKKEERD",
       "taak_id": "AUTOCODING_VERIFY_ACCEPTANCE_SUITE_TOKEN_DEFECT_SECOND_OPINION_GEMINI1_V1_TRANSPORT",
       "sinds": "2026-09-04T05:06:42Z",
-      "sinds_minuten": 17.0,
+      "sinds_minuten": 22.1,
       "bron": "outbox:receipt:AUTOCODING_VERIFY_ACCEPTANCE_SUITE_TOKEN_DEFECT_SECOND_OPINION_GEMINI1_V1_TRANSPORT_RECEIPT.md"
     },
     {
@@ -72,7 +72,7 @@
       "status": "WACHT",
       "taak_id": "BANNERREGEL_BEWIJSPOORT_S19_CLAUDE3_V1",
       "sinds": "2026-09-03T05:04:50Z",
-      "sinds_minuten": 1458.8,
+      "sinds_minuten": 1464.0,
       "bron": "outbox:order_open:BANNERREGEL_BEWIJSPOORT_S19_CLAUDE3_V1.md"
     }
   ],
@@ -2186,6 +2186,102 @@
       "taak": "CODEX1-exact-head-reviewordre op nieuwe head b1d6f0b (VOLGENDE_OPDRACHT)",
       "schatting_categorie": "GESCHAT",
       "schatting_min": 10
+    },
+    {
+      "bron_bestand": "outbox/AUTOCODING_LANE_UTILIZATION_METER_CLAUDE4_V1_RECEIPT.md",
+      "bron_type": "receipt",
+      "status": "KLAAR",
+      "taak": "Collisiecheck + nulmeting vóór start (bewijs: sectie hierboven)",
+      "schatting_categorie": "GEEN_SCHATTING",
+      "schatting_min": null
+    },
+    {
+      "bron_bestand": "outbox/AUTOCODING_LANE_UTILIZATION_METER_CLAUDE4_V1_RECEIPT.md",
+      "bron_type": "receipt",
+      "status": "KLAAR",
+      "taak": "Worktree + branch op base_head_at_dispatch aanmaken (bewijs: `git worktree add`-log)",
+      "schatting_categorie": "GEEN_SCHATTING",
+      "schatting_min": null
+    },
+    {
+      "bron_bestand": "outbox/AUTOCODING_LANE_UTILIZATION_METER_CLAUDE4_V1_RECEIPT.md",
+      "bron_type": "receipt",
+      "status": "KLAAR",
+      "taak": "bin/lane-utilization-meter bouwen (roster/worker/outbox/dispatcher, BUSY/STALE/IDLE, queue_length, oldest_queued_age_s, utilization_pct, waakvlam) (bewijs: commit 2bc9729)",
+      "schatting_categorie": "GEEN_SCHATTING",
+      "schatting_min": null
+    },
+    {
+      "bron_bestand": "outbox/AUTOCODING_LANE_UTILIZATION_METER_CLAUDE4_V1_RECEIPT.md",
+      "bron_type": "receipt",
+      "status": "KLAAR",
+      "taak": "governance/test_lane_utilization_meter.sh + fixtures, SUITE_PASS ≥8 (bewijs: PASS=26 FAIL=0 hierboven)",
+      "schatting_categorie": "GEEN_SCHATTING",
+      "schatting_min": null
+    },
+    {
+      "bron_bestand": "outbox/AUTOCODING_LANE_UTILIZATION_METER_CLAUDE4_V1_RECEIPT.md",
+      "bron_type": "receipt",
+      "status": "KLAAR",
+      "taak": "Negatieve controle (hardcoded-7-mutant rood, origineel groen) (bewijs: sectie hierboven)",
+      "schatting_categorie": "GEEN_SCHATTING",
+      "schatting_min": null
+    },
+    {
+      "bron_bestand": "outbox/AUTOCODING_LANE_UTILIZATION_METER_CLAUDE4_V1_RECEIPT.md",
+      "bron_type": "receipt",
+      "status": "KLAAR",
+      "taak": "Live run op echte root + summary in receipt (bewijs: sectie hierboven)",
+      "schatting_categorie": "GEEN_SCHATTING",
+      "schatting_min": null
+    },
+    {
+      "bron_bestand": "outbox/AUTOCODING_LANE_UTILIZATION_METER_CLAUDE4_V1_RECEIPT.md",
+      "bron_type": "receipt",
+      "status": "KLAAR",
+      "taak": "docs/LANE_UTILIZATION_METER.md incl. 2 live gemeten beperkingen (bewijs: commit 2bc9729)",
+      "schatting_categorie": "GEEN_SCHATTING",
+      "schatting_min": null
+    },
+    {
+      "bron_bestand": "outbox/AUTOCODING_LANE_UTILIZATION_METER_CLAUDE4_V1_RECEIPT.md",
+      "bron_type": "receipt",
+      "status": "KLAAR",
+      "taak": "Commit + push branch (merge NIET, `merge_authorized=false`) (bewijs: commit-sha + push-log hierboven)",
+      "schatting_categorie": "GEEN_SCHATTING",
+      "schatting_min": null
+    },
+    {
+      "bron_bestand": "outbox/AUTOCODING_LANE_UTILIZATION_METER_CLAUDE4_V1_RECEIPT.md",
+      "bron_type": "receipt",
+      "status": "KLAAR",
+      "taak": "Canoniek receipt geschreven op het door de order voorgeschreven pad (dit bestand)",
+      "schatting_categorie": "GEEN_SCHATTING",
+      "schatting_min": null
+    },
+    {
+      "bron_bestand": "outbox/AUTOCODING_LANE_UTILIZATION_METER_CLAUDE4_V1_RECEIPT.md",
+      "bron_type": "receipt",
+      "status": "OPEN",
+      "taak": "CODEX1 exact-head-review (VOLGENDE_OPDRACHT a) — buiten deze order, andere actor",
+      "schatting_categorie": "GEEN_SCHATTING",
+      "schatting_min": null
+    },
+    {
+      "bron_bestand": "outbox/AUTOCODING_LANE_UTILIZATION_METER_CLAUDE4_V1_RECEIPT.md",
+      "bron_type": "receipt",
+      "status": "OPEN",
+      "taak": "Merge via bin/merge-gate of R7-coördinator (VOLGENDE_OPDRACHT b) — expliciet niet in deze order",
+      "schatting_categorie": "GEEN_SCHATTING",
+      "schatting_min": null
+    },
+    {
+      "bron_bestand": "outbox/AUTOCODING_LANE_UTILIZATION_METER_CLAUDE4_V1_RECEIPT.md",
+      "bron_type": "receipt",
+      "status": "OPEN",
+      "taak": "launchd elke 5 min + heartbeat-monitor-koppeling voor LANE_IDLE_WITH_QUEUE (VOLGENDE_OPDRACHT c)",
+      "schatting_categorie": "GEEN_SCHATTING",
+      "schatting_min": null
     },
     {
       "bron_bestand": "outbox/AUTOCODING_MAST_AUDIT_REVIEW_V1_RECEIPT_FULL.md",
@@ -10117,8 +10213,8 @@
     }
   ],
   "taken_meta": {
-    "taken_totaal": 1253,
-    "taken_zonder_schatting": 1190,
+    "taken_totaal": 1265,
+    "taken_zonder_schatting": 1202,
     "bron_glob": "outbox/*.md (TAKENLIJST-blokken)",
     "classificatie": "regex op TAKENLIJST-tabelrijen (Status/Taak/Tijd) en kale lijstvorm; een cel zonder herkenbaar '~X min'-patroon telt als GEEN_SCHATTING, nooit stilzwijgend overgeslagen"
   },
@@ -10128,10 +10224,10 @@
     "cmd": "bin/lane-capaciteit --json",
     "data": {
       "stack_root": "STACK_ROOT",
-      "generated_at": "2026-09-04T05:23:46Z",
+      "generated_at": "2026-09-04T05:28:54Z",
       "meta": {
-        "receipt_bestanden_totaal": 884,
-        "receipt_onparseerbaar": 126,
+        "receipt_bestanden_totaal": 885,
+        "receipt_onparseerbaar": 127,
         "jsonl": {
           "total_lines": 648,
           "actor_lines": 0,
@@ -10389,7 +10485,7 @@
         },
         {
           "actor": "ONPARSEERBAAR",
-          "orders": 126,
+          "orders": 127,
           "orders_met_duur": 0,
           "p50_duration_ms": null,
           "max_duration_ms": null,
@@ -10418,6 +10514,7 @@
             "AUTOCODING_HOST_RUNNER_CANONICAL_SPEC_AND_REVIEW_V1_CODEX2_REVIEW_V2_RECEIPT.md",
             "AUTOCODING_INSTALLED_REVIEW_DELIVERY_PROOF_V1_20260820_RECEIPT.md",
             "AUTOCODING_LANE_RESPONDER_4A06D1A_EXACT_HEAD_REVIEW_CODEX1_V3_RECONCILIATION_RECEIPT.md",
+            "AUTOCODING_LANE_UTILIZATION_METER_CLAUDE4_V1_RECEIPT.md",
             "AUTOCODING_PR74_EXACT_HEAD_SECURITY_REVIEW_CLAUDE4_V1_RECEIPT.md",
             "AUTOCODING_PR74_V20_GEMINI1_SOURCE_REVIEW_V1_RECEIPT.md",
             "AUTOCODING_PR74_V20_MERGE_GROUP_EVIDENCE_REPAIR_CLAUDE3_DIRECT_V1_RECEIPT.md",
