@@ -1,6 +1,6 @@
 {
   "schema": "REGIEKAMER_REALTIME_V1",
-  "gegenereerd_op": "2026-09-04T11:41:17Z",
+  "gegenereerd_op": "2026-09-04T11:46:25Z",
   "stack_root": "STACK_ROOT",
   "accounts": [
     {
@@ -8,7 +8,7 @@
       "status": "GEBLOKKEERD",
       "taak_id": "AUTOCODING_CONTROLLER_SELF_CLAIM_HELD_IN_FLIGHT_FIX_CLAUDE1_V2_RECEIPT_FULL_FROM_WORKTREE",
       "sinds": "2026-09-04T08:47:06Z",
-      "sinds_minuten": 174.1,
+      "sinds_minuten": 179.2,
       "bron": "outbox:receipt:AUTOCODING_CONTROLLER_SELF_CLAIM_HELD_IN_FLIGHT_FIX_CLAUDE1_V2_RECEIPT_FULL_FROM_WORKTREE.md"
     },
     {
@@ -16,23 +16,23 @@
       "status": "VRIJ",
       "taak_id": null,
       "sinds": "2026-09-04T07:46:32Z",
-      "sinds_minuten": 234.7,
+      "sinds_minuten": 239.8,
       "bron": "outbox:order_afgerond:DIRECTOR_BESLUIT_QUEUE_ADMISSIE_EN_MERGE_GATE_CLAUDE3_V1.md"
     },
     {
       "actor": "claude3",
-      "status": "WACHT",
+      "status": "GEBLOKKEERD",
       "taak_id": "DIRECTOR_BIJSTURING_OCHTENDAUDIT_20260904_CLAUDE3_V1",
-      "sinds": "2026-09-04T10:43:38Z",
-      "sinds_minuten": 57.6,
-      "bron": "outbox:order_open:DIRECTOR_BIJSTURING_OCHTENDAUDIT_20260904_CLAUDE3_V1.md"
+      "sinds": "2026-09-04T11:41:21Z",
+      "sinds_minuten": 5.0,
+      "bron": "outbox:receipt:DIRECTOR_BIJSTURING_OCHTENDAUDIT_20260904_CLAUDE3_V1_RECEIPT.md"
     },
     {
       "actor": "claude4",
       "status": "VRIJ",
       "taak_id": null,
       "sinds": "2026-09-04T07:54:17Z",
-      "sinds_minuten": 226.9,
+      "sinds_minuten": 232.1,
       "bron": "outbox:order_afgerond:AUTOCODING_LANE_UTILIZATION_METER_CLAUDE4_V1.md"
     },
     {
@@ -40,7 +40,7 @@
       "status": "VRIJ",
       "taak_id": null,
       "sinds": "2026-09-04T07:16:03Z",
-      "sinds_minuten": 265.1,
+      "sinds_minuten": 270.3,
       "bron": "outbox:order_afgerond:AUTOCODING_LANE_RESPONDER_193DF46_EXACT_HEAD_REVIEW_CODEX1_V1.md"
     },
     {
@@ -48,7 +48,7 @@
       "status": "GEBLOKKEERD",
       "taak_id": "AUTOCODING_CONTROLLER_SELF_CLAIM_HELD_IN_FLIGHT_FIX_CODEX2_V1_TRANSPORT",
       "sinds": "2026-09-04T09:01:00Z",
-      "sinds_minuten": 160.2,
+      "sinds_minuten": 165.3,
       "bron": "outbox:receipt:AUTOCODING_CONTROLLER_SELF_CLAIM_HELD_IN_FLIGHT_FIX_CODEX2_V1_TRANSPORT_RECEIPT.md"
     },
     {
@@ -56,7 +56,7 @@
       "status": "VRIJ",
       "taak_id": null,
       "sinds": "2026-09-04T07:16:03Z",
-      "sinds_minuten": 265.1,
+      "sinds_minuten": 270.3,
       "bron": "outbox:order_afgerond:AUTOCODING_FORWARDPORT_PR81_EXACT_HEAD_REVIEW_GEMINI1_V2.md"
     },
     {
@@ -72,7 +72,7 @@
       "status": "WACHT",
       "taak_id": "BANNERREGEL_BEWIJSPOORT_S19_CLAUDE3_V1",
       "sinds": "2026-09-03T05:04:50Z",
-      "sinds_minuten": 1836.3,
+      "sinds_minuten": 1841.5,
       "bron": "outbox:order_open:BANNERREGEL_BEWIJSPOORT_S19_CLAUDE3_V1.md"
     }
   ],
@@ -10752,15 +10752,15 @@
     "cmd": "bin/lane-capaciteit --json",
     "data": {
       "stack_root": "STACK_ROOT",
-      "generated_at": "2026-09-04T11:41:17Z",
+      "generated_at": "2026-09-04T11:46:25Z",
       "meta": {
-        "receipt_bestanden_totaal": 904,
-        "receipt_onparseerbaar": 132,
+        "receipt_bestanden_totaal": 905,
+        "receipt_onparseerbaar": 133,
         "jsonl": {
-          "total_lines": 685,
+          "total_lines": 686,
           "actor_lines": 0,
           "onparseerbaar": 0,
-          "zonder_actor": 685,
+          "zonder_actor": 686,
           "aanwezig": true
         },
         "verdict_classificatie": "heuristiek: prefix-match op verdict= (hoofdletterongevoelig); GESLAAGD={GO,PASS,DELIVERED}, GEBLOKKEERD={NO_GO,BLOCKED,REJECTED,FAILED}, onbekend/overig telt niet stilzwijgend mee als geslaagd of geblokkeerd"
@@ -11013,7 +11013,7 @@
         },
         {
           "actor": "ONPARSEERBAAR",
-          "orders": 132,
+          "orders": 133,
           "orders_met_duur": 0,
           "p50_duration_ms": null,
           "max_duration_ms": null,
@@ -11100,6 +11100,7 @@
             "AUTOCODING_WAAKVLAM_SUITE_R1_SUBTESTS_CLAUDE3_V1_ACTOR_RECEIPT.md",
             "DB-20260817-02_BUNDLE_VERIFICATION_RECEIPT.md",
             "DIRECTOR_BESLUIT_QUEUE_ADMISSIE_EN_MERGE_GATE_CLAUDE3_V1_RECEIPT.md",
+            "DIRECTOR_BIJSTURING_OCHTENDAUDIT_20260904_CLAUDE3_V1_RECEIPT.md",
             "DIRECTOR_IDLE_LANE_ENFORCEMENT_V2_GITHUB_RECEIPT.md",
             "DIRECTOR_STOP_ACK_BEFORE_REASSIGNMENT_GITHUB_RECEIPT.md",
             "DISPATCH_CLAUDE_TOOLPROFIEL_READ_ONLY_CODEX2_V1_ACTOR_RECEIPT.md",
@@ -11160,7 +11161,7 @@
         },
         {
           "actor": "ZONDER_ACTOR",
-          "orders": 685,
+          "orders": 686,
           "orders_met_duur": 0,
           "p50_duration_ms": null,
           "max_duration_ms": null,
@@ -11855,7 +11856,8 @@
             682,
             683,
             684,
-            685
+            685,
+            686
           ]
         }
       ]
