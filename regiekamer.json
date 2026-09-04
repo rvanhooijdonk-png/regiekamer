@@ -1,6 +1,6 @@
 {
   "schema": "REGIEKAMER_REALTIME_V1",
-  "gegenereerd_op": "2026-09-04T04:21:45Z",
+  "gegenereerd_op": "2026-09-04T04:26:59Z",
   "stack_root": "STACK_ROOT",
   "accounts": [
     {
@@ -8,23 +8,23 @@
       "status": "VRIJ",
       "taak_id": null,
       "sinds": "2026-09-04T04:00:59Z",
-      "sinds_minuten": 20.7,
+      "sinds_minuten": 25.8,
       "bron": "outbox:order_afgerond:AUTOCODING_VERIFY_ACCEPTANCE_TREE_BINDING_FIX_CLAUDE1_V1.md"
     },
     {
       "actor": "claude2",
-      "status": "BEZIG",
-      "taak_id": "AUTOCODING_REVIEWBOT_RELAY_REPLAY_STORE_FAILOPEN_RACE_FIX_CLAUDE2_V1",
-      "sinds": "2026-09-04T04:19:17Z",
-      "sinds_minuten": 2.4,
-      "bron": "ps:pid=65493"
+      "status": "GEBLOKKEERD",
+      "taak_id": "AUTOCODING_REVIEWBOT_RELAY_REPLAY_STORE_FAILOPEN_RACE_FIX_CLAUDE2_V1_TRANSPORT_RECEIPT_40",
+      "sinds": "2026-09-04T04:22:26Z",
+      "sinds_minuten": 4.4,
+      "bron": "outbox:receipt:AUTOCODING_REVIEWBOT_RELAY_REPLAY_STORE_FAILOPEN_RACE_FIX_CLAUDE2_V1_TRANSPORT_RECEIPT_40.md"
     },
     {
       "actor": "claude3",
       "status": "GEBLOKKEERD",
       "taak_id": "AUTOCODING_VERIFY_ACCEPTANCE_SUITE_TOKEN_FIX_CLAUDE3_V1_TRANSPORT",
       "sinds": "2026-09-04T03:26:03Z",
-      "sinds_minuten": 55.6,
+      "sinds_minuten": 60.8,
       "bron": "outbox:receipt:AUTOCODING_VERIFY_ACCEPTANCE_SUITE_TOKEN_FIX_CLAUDE3_V1_TRANSPORT_RECEIPT.md"
     },
     {
@@ -32,7 +32,7 @@
       "status": "VRIJ",
       "taak_id": null,
       "sinds": "2026-09-04T04:00:50Z",
-      "sinds_minuten": 20.8,
+      "sinds_minuten": 26.0,
       "bron": "outbox:order_afgerond:AUTOCODING_LANE_MONITOR_NONTERMINAL_CLASSIFICATION_REPAIR_CLAUDE4_V1.md"
     },
     {
@@ -40,7 +40,7 @@
       "status": "VRIJ",
       "taak_id": null,
       "sinds": "2026-09-04T04:00:55Z",
-      "sinds_minuten": 20.8,
+      "sinds_minuten": 25.9,
       "bron": "outbox:order_afgerond:AUTOCODING_LANE_RESPONDER_4A06D1A_EXACT_HEAD_REVIEW_CODEX1_V3.md"
     },
     {
@@ -48,7 +48,7 @@
       "status": "VRIJ",
       "taak_id": null,
       "sinds": "2026-09-04T04:01:06Z",
-      "sinds_minuten": 20.6,
+      "sinds_minuten": 25.7,
       "bron": "outbox:order_afgerond:AUTOCODING_WAAKVLAM_5099595_EXACT_HEAD_REVIEW_CODEX2_V1.md"
     },
     {
@@ -56,7 +56,7 @@
       "status": "GEBLOKKEERD",
       "taak_id": "AUTOCODING_VERIFY_ACCEPTANCE_SUITE_TOKEN_DEFECT_SECOND_OPINION_GEMINI1_V1_TRANSPORT",
       "sinds": "2026-09-04T02:49:27Z",
-      "sinds_minuten": 92.2,
+      "sinds_minuten": 97.4,
       "bron": "outbox:receipt:AUTOCODING_VERIFY_ACCEPTANCE_SUITE_TOKEN_DEFECT_SECOND_OPINION_GEMINI1_V1_TRANSPORT_RECEIPT.md"
     },
     {
@@ -72,7 +72,7 @@
       "status": "WACHT",
       "taak_id": "BANNERREGEL_BEWIJSPOORT_S19_CLAUDE3_V1",
       "sinds": "2026-09-03T05:04:50Z",
-      "sinds_minuten": 1396.8,
+      "sinds_minuten": 1402.0,
       "bron": "outbox:order_open:BANNERREGEL_BEWIJSPOORT_S19_CLAUDE3_V1.md"
     }
   ],
@@ -4416,6 +4416,30 @@
       "bron_type": "receipt",
       "status": "GEBLOKKEERD",
       "taak": "PR #76 mergen — geen enkele reviewpoging haalt de GitHub-reviews-API; buiten mijn bouwersrol",
+      "schatting_categorie": "GEEN_SCHATTING",
+      "schatting_min": null
+    },
+    {
+      "bron_bestand": "outbox/AUTOCODING_REVIEWBOT_RELAY_REPLAY_STORE_FAILOPEN_RACE_FIX_CLAUDE2_V1_TRANSPORT_RECEIPT_40.md",
+      "bron_type": "receipt",
+      "status": "GEBLOKKEERD",
+      "taak": "queue_state van canoniek orderbestand corrigeren (buiten allowed_paths van deze order)",
+      "schatting_categorie": "GEEN_SCHATTING",
+      "schatting_min": null
+    },
+    {
+      "bron_bestand": "outbox/AUTOCODING_REVIEWBOT_RELAY_REPLAY_STORE_FAILOPEN_RACE_FIX_CLAUDE2_V1_TRANSPORT_RECEIPT_40.md",
+      "bron_type": "receipt",
+      "status": "GEBLOKKEERD",
+      "taak": "CODEX2 verse exact-head-review op 7509c656 (R4, moet ander account zijn dan bouwer)",
+      "schatting_categorie": "GEEN_SCHATTING",
+      "schatting_min": null
+    },
+    {
+      "bron_bestand": "outbox/AUTOCODING_REVIEWBOT_RELAY_REPLAY_STORE_FAILOPEN_RACE_FIX_CLAUDE2_V1_TRANSPORT_RECEIPT_40.md",
+      "bron_type": "receipt",
+      "status": "KLAAR",
+      "taak": "code-fix + acceptatieproef (bewijs: 29x SUITE_PASS, laatst dit gesprek)",
       "schatting_categorie": "GEEN_SCHATTING",
       "schatting_min": null
     },
@@ -10061,8 +10085,8 @@
     }
   ],
   "taken_meta": {
-    "taken_totaal": 1246,
-    "taken_zonder_schatting": 1183,
+    "taken_totaal": 1249,
+    "taken_zonder_schatting": 1186,
     "bron_glob": "outbox/*.md (TAKENLIJST-blokken)",
     "classificatie": "regex op TAKENLIJST-tabelrijen (Status/Taak/Tijd) en kale lijstvorm; een cel zonder herkenbaar '~X min'-patroon telt als GEEN_SCHATTING, nooit stilzwijgend overgeslagen"
   },
@@ -10072,7 +10096,7 @@
     "cmd": "bin/lane-capaciteit --json",
     "data": {
       "stack_root": "STACK_ROOT",
-      "generated_at": "2026-09-04T04:21:45Z",
+      "generated_at": "2026-09-04T04:26:59Z",
       "meta": {
         "receipt_bestanden_totaal": 881,
         "receipt_onparseerbaar": 126,
