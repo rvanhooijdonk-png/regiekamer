@@ -1,6 +1,6 @@
 {
   "schema": "REGIEKAMER_REALTIME_V1",
-  "gegenereerd_op": "2026-09-04T15:06:49Z",
+  "gegenereerd_op": "2026-09-04T15:11:56Z",
   "stack_root": "STACK_ROOT",
   "accounts": [
     {
@@ -8,7 +8,7 @@
       "status": "GEBLOKKEERD",
       "taak_id": "AUTOCODING_TRANSPORT_HERDISPATCH_BACKOFF_QUARANTINE_CLAUDE1_V1_TRANSPORT",
       "sinds": "2026-09-04T14:55:55Z",
-      "sinds_minuten": 10.8,
+      "sinds_minuten": 15.9,
       "bron": "outbox:receipt:AUTOCODING_TRANSPORT_HERDISPATCH_BACKOFF_QUARANTINE_CLAUDE1_V1_TRANSPORT_RECEIPT.md"
     },
     {
@@ -16,15 +16,15 @@
       "status": "WACHT",
       "taak_id": "AUTOCODING_EVIDENCE_REASON_CLASS_PR65_EXACT_HEAD_REVIEW_CLAUDE2_V1",
       "sinds": "2026-09-04T14:53:59Z",
-      "sinds_minuten": 12.8,
+      "sinds_minuten": 17.9,
       "bron": "outbox:order_open:AUTOCODING_EVIDENCE_REASON_CLASS_PR65_EXACT_HEAD_REVIEW_CLAUDE2_V1.md"
     },
     {
       "actor": "claude3",
       "status": "GEBLOKKEERD",
       "taak_id": "DIRECTOR_BIJSTURING_AUDIT_1624_CLAUDE3_V1",
-      "sinds": "2026-09-04T14:50:45Z",
-      "sinds_minuten": 16.0,
+      "sinds": "2026-09-04T15:11:27Z",
+      "sinds_minuten": 0.4,
       "bron": "outbox:receipt:DIRECTOR_BIJSTURING_AUDIT_1624_CLAUDE3_V1_RECEIPT.md"
     },
     {
@@ -32,7 +32,7 @@
       "status": "WACHT",
       "taak_id": "AUTOCODING_LANE_RUNTIME_PIN_ROLLBACK_FIX_PR66_CLAUDE4_V1",
       "sinds": "2026-09-04T15:05:37Z",
-      "sinds_minuten": 1.1,
+      "sinds_minuten": 6.3,
       "bron": "outbox:order_open:AUTOCODING_LANE_RUNTIME_PIN_ROLLBACK_FIX_PR66_CLAUDE4_V1.md"
     },
     {
@@ -40,7 +40,7 @@
       "status": "WACHT",
       "taak_id": "AUTOCODING_TRANSPORT_HERDISPATCH_BACKOFF_QUARANTINE_EXACT_HEAD_REVIEW_CODEX1_V1",
       "sinds": "2026-09-04T15:06:24Z",
-      "sinds_minuten": 0.4,
+      "sinds_minuten": 5.5,
       "bron": "outbox:order_open:AUTOCODING_TRANSPORT_HERDISPATCH_BACKOFF_QUARANTINE_EXACT_HEAD_REVIEW_CODEX1_V1.md"
     },
     {
@@ -48,16 +48,16 @@
       "status": "GEBLOKKEERD",
       "taak_id": "AUTOCODING_LANE_RUNTIME_PIN_HELPER_PR66_EXACT_HEAD_REVIEW_CODEX2_V1",
       "sinds": "2026-09-04T14:56:54Z",
-      "sinds_minuten": 9.9,
+      "sinds_minuten": 15.0,
       "bron": "outbox:receipt:AUTOCODING_LANE_RUNTIME_PIN_HELPER_PR66_EXACT_HEAD_REVIEW_CODEX2_V1_RECEIPT.md"
     },
     {
       "actor": "gemini1",
-      "status": "BEZIG",
-      "taak_id": "order-x2",
-      "sinds": "2026-09-04T15:06:45Z",
-      "sinds_minuten": 0.0,
-      "bron": "ps:pid=60939"
+      "status": "VRIJ",
+      "taak_id": null,
+      "sinds": "2026-09-04T14:15:21Z",
+      "sinds_minuten": 56.5,
+      "bron": "outbox:order_afgerond:AUTOCODING_CONTROLLER_T24_DETERMINISTIC_FIVE_GREEN_RUNS_GEMINI1_V1.md"
     },
     {
       "actor": "dashboard-codex",
@@ -72,7 +72,7 @@
       "status": "WACHT",
       "taak_id": "BANNERREGEL_BEWIJSPOORT_S19_CLAUDE3_V1",
       "sinds": "2026-09-03T05:04:50Z",
-      "sinds_minuten": 2041.9,
+      "sinds_minuten": 2047.0,
       "bron": "outbox:order_open:BANNERREGEL_BEWIJSPOORT_S19_CLAUDE3_V1.md"
     }
   ],
@@ -7991,9 +7991,17 @@
       "bron_bestand": "outbox/DIRECTOR_BIJSTURING_AUDIT_1624_CLAUDE3_V1_RECEIPT.md",
       "bron_type": "receipt",
       "status": "BEZIG",
-      "taak": "Stap 3 — route-taak 10 afronden (#54/#63/#65/#66/#67, #66 eerst lokaal getest)",
+      "taak": "PR#66-fix (CLAUDE4, rollback-pad) + 5a-review (CODEX1) — beide net gedispatcht",
       "schatting_categorie": "GESCHAT",
-      "schatting_min": 40
+      "schatting_min": 25
+    },
+    {
+      "bron_bestand": "outbox/DIRECTOR_BIJSTURING_AUDIT_1624_CLAUDE3_V1_RECEIPT.md",
+      "bron_type": "receipt",
+      "status": "OPEN",
+      "taak": "PR#65 (evidence-reason-classes, reviewer CLAUDE2) — nog geen receipt",
+      "schatting_categorie": "GESCHAT",
+      "schatting_min": 15
     },
     {
       "bron_bestand": "outbox/DIRECTOR_BIJSTURING_AUDIT_1624_CLAUDE3_V1_RECEIPT.md",
@@ -8022,14 +8030,6 @@
     {
       "bron_bestand": "outbox/DIRECTOR_BIJSTURING_AUDIT_1624_CLAUDE3_V1_RECEIPT.md",
       "bron_type": "receipt",
-      "status": "OPEN",
-      "taak": "5a (CLAUDE1, pid nog levend) — receipt afwachten, geen ingreep",
-      "schatting_categorie": "GEEN_SCHATTING",
-      "schatting_min": null
-    },
-    {
-      "bron_bestand": "outbox/DIRECTOR_BIJSTURING_AUDIT_1624_CLAUDE3_V1_RECEIPT.md",
-      "bron_type": "receipt",
       "status": "KLAAR",
       "taak": "Stap 1 — runtime-pin op alle drie checkouts + plist-cutover + vier kickstarts + verse heartbeat/mtime-bewijs",
       "schatting_categorie": "GEEN_SCHATTING",
@@ -8040,6 +8040,22 @@
       "bron_type": "receipt",
       "status": "KLAAR",
       "taak": "Stap 2 — GEMINI1 STARTUP_STALE gediagnosticeerd (categorie vastgelegd, geen actie op secrets)",
+      "schatting_categorie": "GEEN_SCHATTING",
+      "schatting_min": null
+    },
+    {
+      "bron_bestand": "outbox/DIRECTOR_BIJSTURING_AUDIT_1624_CLAUDE3_V1_RECEIPT.md",
+      "bron_type": "receipt",
+      "status": "KLAAR",
+      "taak": "PR#63 gemerged (`a8330d5`)",
+      "schatting_categorie": "GEEN_SCHATTING",
+      "schatting_min": null
+    },
+    {
+      "bron_bestand": "outbox/DIRECTOR_BIJSTURING_AUDIT_1624_CLAUDE3_V1_RECEIPT.md",
+      "bron_type": "receipt",
+      "status": "KLAAR",
+      "taak": "PR#67 gemerged (`9dd45d5`)",
       "schatting_categorie": "GEEN_SCHATTING",
       "schatting_min": null
     },
@@ -11181,8 +11197,8 @@
     }
   ],
   "taken_meta": {
-    "taken_totaal": 1386,
-    "taken_zonder_schatting": 1314,
+    "taken_totaal": 1388,
+    "taken_zonder_schatting": 1315,
     "bron_glob": "outbox/*.md (TAKENLIJST-blokken)",
     "classificatie": "regex op TAKENLIJST-tabelrijen (Status/Taak/Tijd) en kale lijstvorm; een cel zonder herkenbaar '~X min'-patroon telt als GEEN_SCHATTING, nooit stilzwijgend overgeslagen"
   },
@@ -11192,7 +11208,7 @@
     "cmd": "bin/lane-capaciteit --json",
     "data": {
       "stack_root": "STACK_ROOT",
-      "generated_at": "2026-09-04T15:06:49Z",
+      "generated_at": "2026-09-04T15:11:56Z",
       "meta": {
         "receipt_bestanden_totaal": 920,
         "receipt_onparseerbaar": 135,
@@ -11410,7 +11426,7 @@
           "verdict_distribution_raw": {
             "STAP_1_RUNTIME_PIN_UITGEVOERD": 1
           },
-          "laatste_activiteit": "2026-09-04T14:50:45Z"
+          "laatste_activiteit": "2026-09-04T15:11:27Z"
         },
         {
           "actor": "director_claude_fable",
