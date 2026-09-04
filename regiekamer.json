@@ -1,30 +1,30 @@
 {
   "schema": "REGIEKAMER_REALTIME_V1",
-  "gegenereerd_op": "2026-09-04T14:51:25Z",
+  "gegenereerd_op": "2026-09-04T14:56:33Z",
   "stack_root": "STACK_ROOT",
   "accounts": [
     {
       "actor": "claude1",
-      "status": "VRIJ",
-      "taak_id": "AUTOCODING_TRANSPORT_HERDISPATCH_BACKOFF_QUARANTINE_CLAUDE1_V1",
-      "sinds": "2026-09-04T13:41:23Z",
-      "sinds_minuten": 70.0,
-      "bron": "outbox:receipt:AUTOCODING_TRANSPORT_HERDISPATCH_BACKOFF_QUARANTINE_CLAUDE1_V1_RECEIPT.md"
+      "status": "GEBLOKKEERD",
+      "taak_id": "AUTOCODING_TRANSPORT_HERDISPATCH_BACKOFF_QUARANTINE_CLAUDE1_V1_TRANSPORT",
+      "sinds": "2026-09-04T14:55:55Z",
+      "sinds_minuten": 0.6,
+      "bron": "outbox:receipt:AUTOCODING_TRANSPORT_HERDISPATCH_BACKOFF_QUARANTINE_CLAUDE1_V1_TRANSPORT_RECEIPT.md"
     },
     {
       "actor": "claude2",
-      "status": "GEBLOKKEERD",
-      "taak_id": "AUTOCODING_EVIDENCE_GATE_SCANNER_WORKTREE_OUTBOX_MATCH_CLAUDE2_V1_TRANSPORT",
-      "sinds": "2026-09-04T14:13:08Z",
-      "sinds_minuten": 38.2,
-      "bron": "outbox:receipt:AUTOCODING_EVIDENCE_GATE_SCANNER_WORKTREE_OUTBOX_MATCH_CLAUDE2_V1_TRANSPORT_RECEIPT.md"
+      "status": "WACHT",
+      "taak_id": "AUTOCODING_EVIDENCE_REASON_CLASS_PR65_EXACT_HEAD_REVIEW_CLAUDE2_V1",
+      "sinds": "2026-09-04T14:53:59Z",
+      "sinds_minuten": 2.5,
+      "bron": "outbox:order_open:AUTOCODING_EVIDENCE_REASON_CLASS_PR65_EXACT_HEAD_REVIEW_CLAUDE2_V1.md"
     },
     {
       "actor": "claude3",
       "status": "GEBLOKKEERD",
       "taak_id": "DIRECTOR_BIJSTURING_AUDIT_1624_CLAUDE3_V1",
       "sinds": "2026-09-04T14:50:45Z",
-      "sinds_minuten": 0.6,
+      "sinds_minuten": 5.7,
       "bron": "outbox:receipt:DIRECTOR_BIJSTURING_AUDIT_1624_CLAUDE3_V1_RECEIPT.md"
     },
     {
@@ -32,7 +32,7 @@
       "status": "GEBLOKKEERD",
       "taak_id": "AUTOCODING_CONTROLLER_T24_DETERMINISTIC_FIVE_GREEN_RUNS_CLAUDE4_V1_TRANSPORT",
       "sinds": "2026-09-04T14:04:17Z",
-      "sinds_minuten": 47.1,
+      "sinds_minuten": 52.2,
       "bron": "outbox:receipt:AUTOCODING_CONTROLLER_T24_DETERMINISTIC_FIVE_GREEN_RUNS_CLAUDE4_V1_TRANSPORT_RECEIPT.md"
     },
     {
@@ -40,24 +40,24 @@
       "status": "WACHT",
       "taak_id": "AUTOCODING_PR27_TICKER_FORWARDPORT_PR63_EXACT_HEAD_REVIEW_CODEX1_V1",
       "sinds": "2026-09-04T14:30:57Z",
-      "sinds_minuten": 20.4,
+      "sinds_minuten": 25.5,
       "bron": "outbox:order_open:AUTOCODING_PR27_TICKER_FORWARDPORT_PR63_EXACT_HEAD_REVIEW_CODEX1_V1.md"
     },
     {
       "actor": "codex2",
-      "status": "VRIJ",
-      "taak_id": null,
-      "sinds": "2026-09-04T13:50:24Z",
-      "sinds_minuten": 61.0,
-      "bron": "outbox:order_afgerond:AUTOCODING_ROUTE_TAAK_10_PR_BACKLOG_MEASUREMENT_CODEX2_V1.md"
+      "status": "WACHT",
+      "taak_id": "AUTOCODING_LANE_RUNTIME_PIN_HELPER_PR66_EXACT_HEAD_REVIEW_CODEX2_V1",
+      "sinds": "2026-09-04T14:54:30Z",
+      "sinds_minuten": 2.0,
+      "bron": "outbox:order_open:AUTOCODING_LANE_RUNTIME_PIN_HELPER_PR66_EXACT_HEAD_REVIEW_CODEX2_V1.md"
     },
     {
       "actor": "gemini1",
-      "status": "VRIJ",
-      "taak_id": null,
-      "sinds": "2026-09-04T14:15:21Z",
-      "sinds_minuten": 36.0,
-      "bron": "outbox:order_afgerond:AUTOCODING_CONTROLLER_T24_DETERMINISTIC_FIVE_GREEN_RUNS_GEMINI1_V1.md"
+      "status": "BEZIG",
+      "taak_id": "order",
+      "sinds": "2026-09-04T14:56:27Z",
+      "sinds_minuten": 0.0,
+      "bron": "ps:pid=85631"
     },
     {
       "actor": "dashboard-codex",
@@ -72,7 +72,7 @@
       "status": "WACHT",
       "taak_id": "BANNERREGEL_BEWIJSPOORT_S19_CLAUDE3_V1",
       "sinds": "2026-09-03T05:04:50Z",
-      "sinds_minuten": 2026.5,
+      "sinds_minuten": 2031.6,
       "bron": "outbox:order_open:BANNERREGEL_BEWIJSPOORT_S19_CLAUDE3_V1.md"
     }
   ],
@@ -11120,15 +11120,15 @@
     "cmd": "bin/lane-capaciteit --json",
     "data": {
       "stack_root": "STACK_ROOT",
-      "generated_at": "2026-09-04T14:51:25Z",
+      "generated_at": "2026-09-04T14:56:33Z",
       "meta": {
-        "receipt_bestanden_totaal": 917,
+        "receipt_bestanden_totaal": 918,
         "receipt_onparseerbaar": 135,
         "jsonl": {
-          "total_lines": 704,
+          "total_lines": 705,
           "actor_lines": 0,
           "onparseerbaar": 0,
-          "zonder_actor": 704,
+          "zonder_actor": 705,
           "aanwezig": true
         },
         "verdict_classificatie": "heuristiek: prefix-match op verdict= (hoofdletterongevoelig); GESLAAGD={GO,PASS,DELIVERED}, GEBLOKKEERD={NO_GO,BLOCKED,REJECTED,FAILED}, onbekend/overig telt niet stilzwijgend mee als geslaagd of geblokkeerd"
@@ -11151,16 +11151,16 @@
         },
         {
           "actor": "claude1",
-          "orders": 75,
-          "orders_met_duur": 68,
-          "p50_duration_ms": 261500,
-          "max_duration_ms": 3518000,
-          "orders_met_verdict": 18,
-          "geslaagd_pct": 27.8,
-          "geblokkeerd_pct": 61.1,
-          "overig_pct": 11.1,
+          "orders": 76,
+          "orders_met_duur": 69,
+          "p50_duration_ms": 267000,
+          "max_duration_ms": 4569000,
+          "orders_met_verdict": 19,
+          "geslaagd_pct": 26.3,
+          "geblokkeerd_pct": 63.2,
+          "overig_pct": 10.5,
           "verdict_distribution_raw": {
-            "BLOCKED_EVIDENCE": 10,
+            "BLOCKED_EVIDENCE": 11,
             "BUILD_COMPLETE_TESTS_GREEN": 1,
             "GO_READY_FOR_MERGE_GATE": 3,
             "GO_WITH_FINDINGS": 1,
@@ -11168,7 +11168,7 @@
             "NO_GO (herbevestigd, attempt 3, ongewijzigde oorzaak)": 1,
             "OPGELEVERD|BLOCKED_EVIDENCE": 1
           },
-          "laatste_activiteit": "2026-09-04T13:41:23Z"
+          "laatste_activiteit": "2026-09-04T14:55:55Z"
         },
         {
           "actor": "claude2",
@@ -11546,7 +11546,7 @@
         },
         {
           "actor": "ZONDER_ACTOR",
-          "orders": 704,
+          "orders": 705,
           "orders_met_duur": 0,
           "p50_duration_ms": null,
           "max_duration_ms": null,
@@ -12260,7 +12260,8 @@
             701,
             702,
             703,
-            704
+            704,
+            705
           ]
         }
       ]
