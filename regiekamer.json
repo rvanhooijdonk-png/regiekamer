@@ -1,6 +1,6 @@
 {
   "schema": "REGIEKAMER_REALTIME_V1",
-  "gegenereerd_op": "2026-09-04T05:18:37Z",
+  "gegenereerd_op": "2026-09-04T05:23:46Z",
   "stack_root": "STACK_ROOT",
   "accounts": [
     {
@@ -8,39 +8,39 @@
       "status": "GEBLOKKEERD",
       "taak_id": "AUTOCODING_VERIFY_ACCEPTANCE_TREE_BINDING_FIX_CLAUDE1_V1_TRANSPORT",
       "sinds": "2026-09-04T05:06:42Z",
-      "sinds_minuten": 11.7,
+      "sinds_minuten": 17.0,
       "bron": "outbox:receipt:AUTOCODING_VERIFY_ACCEPTANCE_TREE_BINDING_FIX_CLAUDE1_V1_TRANSPORT_RECEIPT.md"
     },
     {
       "actor": "claude2",
-      "status": "GEBLOKKEERD",
-      "taak_id": "AUTOCODING_MERGE_GATE_AUTONOMOUS_MERGE_CLAUDE2_V1",
-      "sinds": "2026-09-04T05:14:24Z",
-      "sinds_minuten": 4.0,
-      "bron": "outbox:receipt:AUTOCODING_MERGE_GATE_AUTONOMOUS_MERGE_CLAUDE2_V1_RECEIPT.md"
+      "status": "VRIJ",
+      "taak_id": null,
+      "sinds": "2026-09-04T05:18:43Z",
+      "sinds_minuten": 5.0,
+      "bron": "outbox:order_afgerond:AUTOCODING_MERGE_GATE_AUTONOMOUS_MERGE_CLAUDE2_V1.md"
     },
     {
       "actor": "claude3",
       "status": "VRIJ",
       "taak_id": null,
-      "sinds": "2026-09-04T05:11:49Z",
-      "sinds_minuten": 6.6,
+      "sinds": "2026-09-04T05:19:50Z",
+      "sinds_minuten": 3.8,
       "bron": "outbox:order_afgerond:AUTOCODING_VERIFY_ACCEPTANCE_SUITE_TOKEN_FIX_CLAUDE3_V1.md"
     },
     {
       "actor": "claude4",
-      "status": "BEZIG",
+      "status": "STALE",
       "taak_id": "AUTOCODING_LANE_UTILIZATION_METER_CLAUDE4_V1",
       "sinds": "2026-09-04T05:13:38Z",
-      "sinds_minuten": 4.8,
+      "sinds_minuten": 10.1,
       "bron": "ps:pid=74445"
     },
     {
       "actor": "codex1",
       "status": "VRIJ",
       "taak_id": null,
-      "sinds": "2026-09-04T05:11:49Z",
-      "sinds_minuten": 6.6,
+      "sinds": "2026-09-04T05:19:50Z",
+      "sinds_minuten": 3.8,
       "bron": "outbox:order_afgerond:AUTOCODING_LANE_RESPONDER_193DF46_EXACT_HEAD_REVIEW_CODEX1_V1.md"
     },
     {
@@ -48,7 +48,7 @@
       "status": "GEBLOKKEERD",
       "taak_id": "STACK_DIRECTOR_MAIN_BACKUP_BRANCH_RECONCILIATION_V2",
       "sinds": "2026-09-04T05:06:42Z",
-      "sinds_minuten": 11.7,
+      "sinds_minuten": 17.0,
       "bron": "outbox:receipt:STACK_DIRECTOR_MAIN_BACKUP_BRANCH_RECONCILIATION_V2_RECEIPT.md"
     },
     {
@@ -56,7 +56,7 @@
       "status": "GEBLOKKEERD",
       "taak_id": "AUTOCODING_VERIFY_ACCEPTANCE_SUITE_TOKEN_DEFECT_SECOND_OPINION_GEMINI1_V1_TRANSPORT",
       "sinds": "2026-09-04T05:06:42Z",
-      "sinds_minuten": 11.7,
+      "sinds_minuten": 17.0,
       "bron": "outbox:receipt:AUTOCODING_VERIFY_ACCEPTANCE_SUITE_TOKEN_DEFECT_SECOND_OPINION_GEMINI1_V1_TRANSPORT_RECEIPT.md"
     },
     {
@@ -72,7 +72,7 @@
       "status": "WACHT",
       "taak_id": "BANNERREGEL_BEWIJSPOORT_S19_CLAUDE3_V1",
       "sinds": "2026-09-03T05:04:50Z",
-      "sinds_minuten": 1453.6,
+      "sinds_minuten": 1458.8,
       "bron": "outbox:order_open:BANNERREGEL_BEWIJSPOORT_S19_CLAUDE3_V1.md"
     }
   ],
@@ -10128,15 +10128,15 @@
     "cmd": "bin/lane-capaciteit --json",
     "data": {
       "stack_root": "STACK_ROOT",
-      "generated_at": "2026-09-04T05:18:37Z",
+      "generated_at": "2026-09-04T05:23:46Z",
       "meta": {
         "receipt_bestanden_totaal": 884,
         "receipt_onparseerbaar": 126,
         "jsonl": {
-          "total_lines": 647,
+          "total_lines": 648,
           "actor_lines": 0,
           "onparseerbaar": 0,
-          "zonder_actor": 647,
+          "zonder_actor": 648,
           "aanwezig": true
         },
         "verdict_classificatie": "heuristiek: prefix-match op verdict= (hoofdletterongevoelig); GESLAAGD={GO,PASS,DELIVERED}, GEBLOKKEERD={NO_GO,BLOCKED,REJECTED,FAILED}, onbekend/overig telt niet stilzwijgend mee als geslaagd of geblokkeerd"
@@ -10530,7 +10530,7 @@
         },
         {
           "actor": "ZONDER_ACTOR",
-          "orders": 647,
+          "orders": 648,
           "orders_met_duur": 0,
           "p50_duration_ms": null,
           "max_duration_ms": null,
@@ -11187,7 +11187,8 @@
             644,
             645,
             646,
-            647
+            647,
+            648
           ]
         }
       ]
