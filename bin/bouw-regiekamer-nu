@@ -1,0 +1,619 @@
+#!/usr/bin/env python3
+"""
+REGIEKAMER NU — één plaat die alleen toont wat op dit moment gemeten is.
+
+Waarom dit bestaat, in één alinea. De publieke cockpit
+(rvh-speaking.github.io/stack-dashboard) leest acht bronnen waarvan er drie
+VERIFIED_CURRENT zijn; de overige vijf renderen als UNKNOWN en vullen toch een
+paneel. Dertien producten melden daar "UNKNOWN — 4 canonieke features · geen
+gekoppeld featurebewijs", "Nu actief" meldt UNKNOWN, en het tickerpaneel toont
+gebeurtenissen van 17 tot 28 augustus terwijl de levende ticker vandaag om
+19:27 nog schreef. Dat is de "te druk en niet correct" die de eigenaar
+beschreef: het scherm was druk mét onbewezen vlakken.
+
+De regel van deze plaat is daarom het spiegelbeeld: **een bron die niet
+gelezen kan worden krijgt geen paneel.** Geen UNKNOWN-vlakken, geen
+plaatsvervangende nullen. Elk paneel draagt zijn bronpad en zijn meetmoment,
+en de kop draagt het machinemerk `bronstand` — bewezen=N totaal=N. Zijn die
+twee getallen gelijk, dan staat er niets op het scherm dat niet gemeten is.
+Dat merk is meteen de acceptatieproef van dit bestand.
+
+Alles wordt inline in de HTML geschreven. Dat is geen slordigheid maar een
+eis: de plaat wordt met `open` vanaf de schijf bekeken, en op `file://`
+weigert de browser elke `fetch()`. Een plaat die zijn data ophaalt is op die
+route per definitie leeg.
+
+Leest uitsluitend; schrijft uitsluitend in ~/regiekamer/nu/. Raakt geen enkel
+pad van de autocoding-lane aan.
+"""
+
+from __future__ import annotations
+
+import html
+import json
+import os
+import sys
+from datetime import datetime, timezone
+from pathlib import Path
+
+HOME = Path.home()
+STACK = Path(os.environ.get("REGIEKAMER_STACK_ROOT", HOME / "Stack-Director"))
+REGIEKAMER = Path(os.environ.get("REGIEKAMER_ROOT", HOME / "regiekamer"))
+UIT = REGIEKAMER / "nu" / "index.html"
+
+# Hoeveel tickerregels de plaat toont. De bron is append-only en groeit; een
+# plaat die alles toont wordt onleesbaar en traag.
+TICKER_REGELS = 220
+
+
+# --------------------------------------------------------------------------
+# Meten. Elke lezer geeft (waarde, bron) terug of (None, bron) als er niets
+# te meten viel. Nergens een vervangwaarde: dat is precies het defect dat deze
+# plaat niet herhaalt.
+# --------------------------------------------------------------------------
+
+class Bron:
+    """Eén gelezen bron met zijn uitkomst. `bewezen` is waar als er echt iets is."""
+
+    def __init__(self, naam: str, pad: Path):
+        self.naam = naam
+        self.pad = pad
+        self.data = None
+        self.fout = None
+
+    @property
+    def bewezen(self) -> bool:
+        return self.data is not None and self.fout is None
+
+    @property
+    def kortpad(self) -> str:
+        try:
+            return str(self.pad.relative_to(HOME))
+        except ValueError:
+            return self.pad.name
+
+
+def lees_json(naam: str, pad: Path) -> Bron:
+    b = Bron(naam, pad)
+    try:
+        b.data = json.loads(pad.read_text(encoding="utf-8"))
+    except FileNotFoundError:
+        b.fout = "bestand bestaat niet"
+    except json.JSONDecodeError:
+        b.fout = "geen geldige JSON"
+    except OSError:
+        b.fout = "niet leesbaar"
+    return b
+
+
+def lees_ticker(pad: Path, maximum: int) -> Bron:
+    """
+    Append-only JSONL. Regels die niet parsen worden geteld, niet verzwegen en
+    niet gerepareerd — een stille reparatie maakt van een defect een cijfer.
+    """
+    b = Bron("ticker", pad)
+    try:
+        regels = pad.read_text(encoding="utf-8").splitlines()
+    except OSError:
+        b.fout = "niet leesbaar"
+        return b
+    events, stuk = [], 0
+    for regel in regels:
+        regel = regel.strip()
+        if not regel:
+            continue
+        try:
+            events.append(json.loads(regel))
+        except json.JSONDecodeError:
+            stuk += 1
+    if not events:
+        b.fout = "geen leesbare gebeurtenissen"
+        return b
+    events.sort(key=lambda e: str(e.get("tijd", "")), reverse=True)
+    b.data = {"events": events[:maximum], "totaal": len(events), "onparseerbaar": stuk}
+    return b
+
+
+# --------------------------------------------------------------------------
+# Weergave
+# --------------------------------------------------------------------------
+
+def e(x) -> str:
+    return html.escape("" if x is None else str(x), quote=True)
+
+
+def klok(iso: str | None) -> str:
+    """`2026-09-05T19:27:41Z` -> `21:27:41` in NL-tijd, of een streepje."""
+    if not iso:
+        return "—"
+    try:
+        d = datetime.fromisoformat(str(iso).replace("Z", "+00:00"))
+    except ValueError:
+        return "—"
+    return d.astimezone().strftime("%H:%M:%S")
+
+
+def datumklok(iso: str | None) -> str:
+    if not iso:
+        return "—"
+    try:
+        d = datetime.fromisoformat(str(iso).replace("Z", "+00:00"))
+    except ValueError:
+        return "—"
+    return d.astimezone().strftime("%d-%m %H:%M")
+
+
+def leeftijd(iso: str | None) -> str:
+    if not iso:
+        return "—"
+    try:
+        d = datetime.fromisoformat(str(iso).replace("Z", "+00:00"))
+    except ValueError:
+        return "—"
+    sec = int((datetime.now(timezone.utc) - d).total_seconds())
+    if sec < 90:
+        return f"{sec}s"
+    if sec < 5400:
+        return f"{sec // 60}m"
+    return f"{sec // 3600}u"
+
+
+# De statuswoorden die in de bronnen voorkomen, teruggebracht tot drie lampen.
+# Alles wat niet herkend wordt krijgt de neutrale lamp — nooit stilzwijgend
+# groen, dat was de valse-groen-fout van de oude plaat.
+def lamp(status: str | None) -> str:
+    s = (status or "").upper()
+    if any(k in s for k in ("GEBLOKKEERD", "BLOCKED", "NO_GO", "FAILED", "REJECTED", "ISSUES")):
+        return "rood"
+    if any(k in s for k in ("BEZIG", "RUNNING", "DISPATCHED")):
+        return "amber"
+    if any(k in s for k in ("VRIJ", "OK", "GO", "PASS", "DELIVERED", "COMPLETE", "GREEN")):
+        return "groen"
+    return "grijs"
+
+
+def paneel(titel: str, bron: Bron, gemeten: str | None, binnenkant: str) -> str:
+    """Eén paneel. Wordt alleen aangeroepen voor een bewezen bron."""
+    return f"""<section class="paneel">
+  <header class="paneel-kop">
+    <h2>{e(titel)}</h2>
+    <p class="herkomst"><span class="pad">{e(bron.kortpad)}</span><span class="tijd">gemeten {e(gemeten or '—')}</span></p>
+  </header>
+  {binnenkant}
+</section>"""
+
+
+def ontbreekt(bronnen: list[Bron]) -> str:
+    """
+    De enige plek waar een niet-gelezen bron zichtbaar is: als regel in de
+    voet, niet als leeg paneel. Ontbrekend bewijs hoort vermeld te worden,
+    niet uitgestald.
+    """
+    stuk = [b for b in bronnen if not b.bewezen]
+    if not stuk:
+        return '<p class="alles-gemeten">Alle bronnen op deze plaat zijn gelezen. Er staat niets op het scherm dat niet gemeten is.</p>'
+    rijen = "".join(
+        f"<li><span class=\"pad\">{e(b.kortpad)}</span> — {e(b.fout)}</li>" for b in stuk
+    )
+    return f'<div class="ontbreekt"><h3>Niet gelezen — daarom hierboven geen paneel</h3><ul>{rijen}</ul></div>'
+
+
+# --------------------------------------------------------------------------
+# De panelen
+# --------------------------------------------------------------------------
+
+def paneel_ticker(b: Bron) -> str:
+    ev = b.data["events"]
+    rijen = []
+    for x in ev:
+        res = x.get("resultaat") or x.get("overgang") or ""
+        rijen.append(
+            "<tr>"
+            f'<td class="t">{e(klok(x.get("tijd")))}</td>'
+            f'<td class="k">{e(x.get("kanaal"))}</td>'
+            f'<td class="w"><span class="taak">{e(x.get("taak_id"))}</span>'
+            f'<span class="overgang">{e(x.get("overgang"))}</span></td>'
+            f'<td class="s"><span class="lamp {lamp(res)}"></span>{e(res)}</td>'
+            "</tr>"
+        )
+    meta = (
+        f'<p class="tel">{b.data["totaal"]} gebeurtenissen in de bron · '
+        f'{len(ev)} getoond'
+        + (f' · {b.data["onparseerbaar"]} onparseerbaar' if b.data["onparseerbaar"] else "")
+        + "</p>"
+    )
+    return paneel(
+        "Wat er wordt gedaan",
+        b,
+        klok(ev[0].get("tijd")),
+        f"""{meta}
+<div class="logvenster">
+<table class="log">
+<thead><tr><th>Tijd</th><th>Kanaal</th><th>Wat</th><th>Status</th></tr></thead>
+<tbody>{''.join(rijen)}</tbody>
+</table>
+</div>""",
+    )
+
+
+def paneel_lanes(b: Bron) -> str:
+    d = b.data
+    accounts = d.get("accounts") or []
+    rijen = []
+    for a in accounts:
+        st = a.get("status")
+        minuten = a.get("sinds_minuten")
+        duur = "—" if minuten is None else (f"{int(minuten)}m" if minuten < 90 else f"{minuten / 60:.1f}u")
+        rijen.append(
+            "<tr>"
+            f'<td class="actor">{e(a.get("actor"))}</td>'
+            f'<td class="st"><span class="lamp {lamp(st)}"></span>{e(st)}</td>'
+            f'<td class="duur">{e(duur)}</td>'
+            f'<td class="taak">{e(a.get("taak_id"))}</td>'
+            "</tr>"
+        )
+    telling = {}
+    for a in accounts:
+        telling[a.get("status") or "?"] = telling.get(a.get("status") or "?", 0) + 1
+    samenvatting = " · ".join(f"{v}× {k.lower()}" for k, v in sorted(telling.items()))
+    return paneel(
+        "Wie werkt waaraan",
+        b,
+        klok(d.get("gegenereerd_op")),
+        f'<p class="tel">{e(samenvatting)}</p>'
+        f'<table class="lanes"><tbody>{"".join(rijen)}</tbody></table>',
+    )
+
+
+def paneel_poort(controller: Bron, supervisor: Bron) -> str:
+    """
+    De twee cijfers die samen zeggen of de fabriek draait. Ze staan bewust in
+    één paneel: los van elkaar zijn ze allebei misleidend. `dispatched=0` bij
+    `scanned=8` ziet er rustig uit; pas naast een oplopende supervisorstreak
+    is zichtbaar dat het geen rust is maar een klem.
+    """
+    c, s = controller.data, supervisor.data
+    esc = s.get("escalation") or {}
+    acties = s.get("actions") or []
+    categorie = acties[0].get("category") if acties else None
+    detail = acties[0].get("detail") if acties else None
+    streak = esc.get("streak")
+    drempel = esc.get("threshold")
+    klem = isinstance(streak, int) and isinstance(drempel, int) and streak > drempel
+
+    return paneel(
+        "Staat de poort open",
+        controller,
+        klok(c.get("heartbeat")),
+        f"""<div class="cijfers">
+  <div class="cijfer"><span class="waarde">{e(c.get('scanned'))}</span><span class="etiket">gescand</span></div>
+  <div class="cijfer{' alarm' if c.get('dispatched') == 0 else ''}"><span class="waarde">{e(c.get('dispatched'))}</span><span class="etiket">uitgezet</span></div>
+  <div class="cijfer"><span class="waarde">{e(c.get('skipped'))}</span><span class="etiket">overgeslagen</span></div>
+  <div class="cijfer{' alarm' if klem else ''}"><span class="waarde">{e(streak)}</span><span class="etiket">rondes vast</span></div>
+</div>
+<p class="duiding">{'De controller kijkt, telt en zet niets uit. De supervisor meldt dat al ' + e(streak) + ' rondes achtereen — bij een drempel van ' + e(drempel) + '. Dit is geen rust maar een klem.' if klem else 'Controller en supervisor melden geen klem.'}</p>
+<p class="tel">{e(categorie)}{' · ' + e(detail) if detail else ''} · supervisor gemeten {e(klok(s.get('heartbeat')))} · <span class="pad">{e(supervisor.kortpad)}</span></p>""",
+    )
+
+
+def paneel_beslisrij(b: Bron) -> str:
+    d = b.data.get("beslisrij") or {}
+    items = d.get("items") or []
+    if not items:
+        return ""
+    rijen = []
+    for it in items:
+        # De bron is markdown; de vetmarkering hoort niet in een HTML-cel.
+        besluit = str(it.get("besluit") or "").replace("**", "")
+        rijen.append(
+            "<li>"
+            f'<span class="nr">{e(it.get("nr"))}</span>'
+            f'<span class="besluit">{e(besluit)}</span>'
+            f'<span class="kost">{e(it.get("kost"))}</span>'
+            f'<span class="ontgrendelt">ontgrendelt: {e(it.get("ontgrendelt"))}</span>'
+            "</li>"
+        )
+    onparseerbaar = d.get("onparseerbaar_count") or 0
+    staart = (
+        f'<p class="tel">{onparseerbaar} regel(s) in de bron niet te lezen — niet meegeteld.</p>'
+        if onparseerbaar
+        else ""
+    )
+    return paneel(
+        f"Wacht op Richard ({len(items)})",
+        b,
+        klok(b.data.get("gegenereerd_op")),
+        f'<ol class="beslisrij">{"".join(rijen)}</ol>{staart}',
+    )
+
+
+def paneel_capaciteit(b: Bron) -> str:
+    cap = (b.data.get("capaciteit") or {}).get("data") or {}
+    lanes = [l for l in (cap.get("lanes") or []) if (l.get("orders") or 0) >= 5]
+    if not lanes:
+        return ""
+    lanes.sort(key=lambda l: l.get("orders") or 0, reverse=True)
+    rijen = []
+    for l in lanes[:12]:
+        geslaagd = l.get("geslaagd_pct") or 0.0
+        geblokkeerd = l.get("geblokkeerd_pct") or 0.0
+        overig = max(0.0, 100.0 - geslaagd - geblokkeerd)
+        rijen.append(
+            "<tr>"
+            f'<td class="actor">{e(l.get("actor"))}</td>'
+            f'<td class="n">{e(l.get("orders"))}</td>'
+            '<td class="balk"><span class="staaf">'
+            f'<i class="g" style="width:{geslaagd:.1f}%"></i>'
+            f'<i class="r" style="width:{geblokkeerd:.1f}%"></i>'
+            f'<i class="o" style="width:{overig:.1f}%"></i>'
+            "</span></td>"
+            f'<td class="pct">{geslaagd:.0f}%</td>'
+            f'<td class="laatst">{e(datumklok(l.get("laatste_activiteit")))}</td>'
+            "</tr>"
+        )
+    return paneel(
+        "Hoe vaak een lane afmaakt",
+        b,
+        klok(b.data.get("gegenereerd_op")),
+        '<p class="tel">Aandeel orders met een geslaagd verdict. Alleen lanes met minstens 5 orders. '
+        '<span class="sleutel"><i class="g"></i>geslaagd <i class="r"></i>geblokkeerd <i class="o"></i>overig</span></p>'
+        f'<table class="cap"><tbody>{"".join(rijen)}</tbody></table>',
+    )
+
+
+# --------------------------------------------------------------------------
+# Vormgeving. Eén vaste, donkere plaat — dit is een regiekamerscherm, geen
+# document; het kiest bewust één wereld in plaats van twee halve.
+# --------------------------------------------------------------------------
+
+STIJL = """
+:root{
+  --grond:#0d1117; --plaat:#151b23; --rand:#232c38; --rand-zacht:#1b232d;
+  --inkt:#e4e9f0; --inkt-zacht:#8b98a9; --inkt-stil:#5d6a7b;
+  --groen:#3fb27f; --amber:#d99b3d; --rood:#e05561; --grijs:#4a5666;
+  --sein:#54b5c9;
+}
+*{box-sizing:border-box}
+body{
+  margin:0;background:var(--grond);color:var(--inkt);
+  font-family:"IBM Plex Sans","Helvetica Neue",Arial,sans-serif;
+  font-size:14px;line-height:1.45;
+  -webkit-font-smoothing:antialiased;
+}
+.wrap{max-width:1500px;margin:0 auto;padding:22px 24px 40px}
+
+/* ---- kopstrip ---- */
+.kop{
+  display:flex;flex-wrap:wrap;align-items:baseline;gap:10px 20px;
+  padding-bottom:14px;margin-bottom:20px;border-bottom:1px solid var(--rand);
+}
+.kop h1{
+  margin:0;font-size:19px;font-weight:600;letter-spacing:-0.01em;
+}
+.kop .nu{
+  font-family:"IBM Plex Mono",ui-monospace,monospace;
+  font-size:19px;font-variant-numeric:tabular-nums;color:var(--sein);
+}
+.kop .merk{
+  margin-left:auto;font-family:"IBM Plex Mono",ui-monospace,monospace;
+  font-size:11.5px;color:var(--inkt-stil);letter-spacing:.02em;
+}
+.kop .merk b{color:var(--groen);font-weight:600}
+
+/* ---- rooster ---- */
+.rooster{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(0,1fr);gap:18px;align-items:start}
+@media (max-width:1080px){.rooster{grid-template-columns:1fr}}
+.kolom{display:flex;flex-direction:column;gap:18px;min-width:0}
+
+/* ---- paneel ---- */
+.paneel{background:var(--plaat);border:1px solid var(--rand);border-radius:6px;overflow:hidden}
+.paneel-kop{padding:13px 16px 11px;border-bottom:1px solid var(--rand-zacht)}
+.paneel-kop h2{margin:0;font-size:14.5px;font-weight:600;letter-spacing:-0.005em}
+.herkomst{
+  margin:4px 0 0;display:flex;flex-wrap:wrap;gap:4px 14px;
+  font-family:"IBM Plex Mono",ui-monospace,monospace;font-size:11px;color:var(--inkt-stil);
+}
+.pad{color:var(--inkt-stil)}
+.tijd{font-variant-numeric:tabular-nums}
+.tel{
+  margin:0;padding:9px 16px;font-size:11.5px;color:var(--inkt-zacht);
+  border-bottom:1px solid var(--rand-zacht);
+}
+.duiding{margin:0;padding:11px 16px;font-size:13px;color:var(--inkt-zacht);border-bottom:1px solid var(--rand-zacht)}
+
+/* ---- lampen ---- */
+.lamp{
+  display:inline-block;width:7px;height:7px;border-radius:50%;
+  margin-right:7px;vertical-align:1px;background:var(--grijs);flex:none;
+}
+.lamp.groen{background:var(--groen)}
+.lamp.amber{background:var(--amber)}
+.lamp.rood{background:var(--rood)}
+
+/* ---- het logvenster: de kern van de plaat ---- */
+.logvenster{max-height:calc(100vh - 230px);min-height:340px;overflow:auto}
+table.log{width:100%;border-collapse:collapse;font-family:"IBM Plex Mono",ui-monospace,monospace;font-size:11.5px}
+table.log thead th{
+  position:sticky;top:0;background:var(--plaat);text-align:left;
+  padding:7px 12px;font-weight:500;color:var(--inkt-stil);
+  border-bottom:1px solid var(--rand);font-size:10.5px;letter-spacing:.06em;text-transform:uppercase;
+}
+table.log td{padding:5px 12px;border-bottom:1px solid var(--rand-zacht);vertical-align:top}
+table.log tr:hover td{background:#1a222c}
+td.t{color:var(--sein);font-variant-numeric:tabular-nums;white-space:nowrap;width:1%}
+td.k{color:var(--inkt-zacht);white-space:nowrap;width:1%}
+td.w .taak{display:block;color:var(--inkt);word-break:break-all}
+td.w .overgang{display:block;color:var(--inkt-stil);font-size:10.5px;margin-top:1px}
+td.s{white-space:nowrap;width:1%;color:var(--inkt-zacht)}
+
+/* ---- cijferstrip ---- */
+.cijfers{display:grid;grid-template-columns:repeat(4,1fr);border-bottom:1px solid var(--rand-zacht)}
+.cijfer{padding:14px 16px;border-right:1px solid var(--rand-zacht)}
+.cijfer:last-child{border-right:0}
+.cijfer .waarde{
+  display:block;font-family:"IBM Plex Mono",ui-monospace,monospace;
+  font-size:27px;font-weight:600;line-height:1.05;font-variant-numeric:tabular-nums;
+}
+.cijfer .etiket{display:block;margin-top:3px;font-size:11px;color:var(--inkt-stil)}
+.cijfer.alarm .waarde{color:var(--rood)}
+
+/* ---- lanetabel ---- */
+table.lanes,table.cap{width:100%;border-collapse:collapse;font-size:12px}
+table.lanes td,table.cap td{padding:7px 16px;border-bottom:1px solid var(--rand-zacht);vertical-align:top}
+table.lanes tr:last-child td,table.cap tr:last-child td{border-bottom:0}
+td.actor{
+  font-family:"IBM Plex Mono",ui-monospace,monospace;font-size:11.5px;
+  white-space:nowrap;width:1%;color:var(--inkt);
+}
+td.st{white-space:nowrap;width:1%;color:var(--inkt-zacht);font-size:11.5px}
+td.duur{
+  white-space:nowrap;width:1%;text-align:right;color:var(--inkt-stil);
+  font-family:"IBM Plex Mono",ui-monospace,monospace;font-size:11px;font-variant-numeric:tabular-nums;
+}
+table.lanes td.taak{
+  font-family:"IBM Plex Mono",ui-monospace,monospace;font-size:10.5px;
+  color:var(--inkt-stil);word-break:break-all;
+}
+
+/* ---- capaciteitsbalken ---- */
+td.n,td.pct{
+  font-family:"IBM Plex Mono",ui-monospace,monospace;font-size:11px;
+  font-variant-numeric:tabular-nums;color:var(--inkt-stil);text-align:right;width:1%;white-space:nowrap;
+}
+td.pct{color:var(--inkt-zacht)}
+td.laatst{
+  font-family:"IBM Plex Mono",ui-monospace,monospace;font-size:10.5px;
+  color:var(--inkt-stil);white-space:nowrap;width:1%;text-align:right;
+}
+td.balk{min-width:110px}
+.staaf{display:flex;height:7px;border-radius:2px;overflow:hidden;background:var(--rand)}
+.staaf i{display:block;height:100%}
+.staaf i.g,.sleutel i.g{background:var(--groen)}
+.staaf i.r,.sleutel i.r{background:var(--rood)}
+.staaf i.o,.sleutel i.o{background:var(--grijs)}
+.sleutel{margin-left:8px;white-space:nowrap}
+.sleutel i{display:inline-block;width:7px;height:7px;border-radius:2px;margin:0 4px 0 10px;vertical-align:0}
+
+/* ---- beslisrij ---- */
+ol.beslisrij{margin:0;padding:4px 0;list-style:none}
+ol.beslisrij li{
+  display:grid;grid-template-columns:26px 1fr;gap:2px 10px;
+  padding:11px 16px;border-bottom:1px solid var(--rand-zacht);
+}
+ol.beslisrij li:last-child{border-bottom:0}
+.beslisrij .nr{
+  grid-row:span 3;font-family:"IBM Plex Mono",ui-monospace,monospace;
+  font-size:12px;color:var(--sein);padding-top:1px;
+}
+.beslisrij .besluit{font-size:12.5px;color:var(--inkt)}
+.beslisrij .kost{font-size:11px;color:var(--amber)}
+.beslisrij .ontgrendelt{font-size:11px;color:var(--inkt-stil)}
+
+/* ---- voet ---- */
+.voet{margin-top:22px;padding-top:14px;border-top:1px solid var(--rand);font-size:11.5px;color:var(--inkt-stil)}
+.voet h3{margin:0 0 6px;font-size:12px;font-weight:600;color:var(--inkt-zacht)}
+.ontbreekt ul{margin:0;padding-left:16px}
+.ontbreekt li{margin:2px 0;font-family:"IBM Plex Mono",ui-monospace,monospace;font-size:11px}
+.alles-gemeten{margin:0}
+.regel{margin:10px 0 0;line-height:1.6}
+"""
+
+# De klok is het enige script op de plaat. Hij rekent niets uit dat ook
+# gemeten had kunnen worden — hij laat alleen de wandklok en de leeftijd van
+# de laatste gebeurtenis oplopen, zodat een stilstaande generator meteen
+# zichtbaar is in plaats van als verse plaat door te gaan.
+SCRIPT = """
+(function(){
+  var k=document.getElementById('nu'), o=document.getElementById('ouderdom');
+  var t0=Number(document.body.dataset.laatsteEpoch||0);
+  function tik(){
+    var d=new Date();
+    k.textContent=String(d.getHours()).padStart(2,'0')+':'
+      +String(d.getMinutes()).padStart(2,'0')+':'
+      +String(d.getSeconds()).padStart(2,'0');
+    if(t0>0&&o){
+      var s=Math.max(0,Math.floor(d.getTime()/1000-t0));
+      o.textContent=s<90?s+'s geleden':(s<5400?Math.floor(s/60)+'m geleden':Math.floor(s/3600)+'u geleden');
+    }
+  }
+  tik(); setInterval(tik,1000);
+})();
+"""
+
+
+def bouw() -> int:
+    ticker = lees_ticker(STACK / "state" / "stack-ticker-events.jsonl", TICKER_REGELS)
+    regie = lees_json("regiekamer", REGIEKAMER / "regiekamer.json")
+    controller = lees_json("controller", STACK / "state" / "autocoder-controller-heartbeat.json")
+    supervisor = lees_json("supervisor", STACK / "state" / "autocoding-supervisor" / "status.json")
+    bronnen = [ticker, regie, controller, supervisor]
+
+    links, rechts = [], []
+    if ticker.bewezen:
+        links.append(paneel_ticker(ticker))
+    if controller.bewezen and supervisor.bewezen:
+        rechts.append(paneel_poort(controller, supervisor))
+    if regie.bewezen:
+        rechts.append(paneel_lanes(regie))
+        rechts.append(paneel_beslisrij(regie))
+        rechts.append(paneel_capaciteit(regie))
+    rechts = [p for p in rechts if p]
+
+    if not links and not rechts:
+        print("bouw-regiekamer-nu: geen enkele bron leesbaar — geen plaat geschreven", file=sys.stderr)
+        return 1
+
+    bewezen = sum(1 for b in bronnen if b.bewezen)
+    nu = datetime.now(timezone.utc)
+    laatste = ticker.data["events"][0].get("tijd") if ticker.bewezen else None
+    try:
+        laatste_epoch = int(
+            datetime.fromisoformat(str(laatste).replace("Z", "+00:00")).timestamp()
+        ) if laatste else 0
+    except ValueError:
+        laatste_epoch = 0
+
+    doc = f"""<!doctype html>
+<html lang="nl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<meta name="bronstand" content="bewezen={bewezen} totaal={len(bronnen)}">
+<meta name="gebouwd" content="{nu.isoformat().replace('+00:00', 'Z')}">
+<meta http-equiv="refresh" content="60">
+<title>Regiekamer nu</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
+<style>{STIJL}</style>
+</head>
+<body data-laatste-epoch="{laatste_epoch}">
+<div class="wrap">
+<div class="kop">
+  <h1>Regiekamer</h1>
+  <span class="nu" id="nu">--:--:--</span>
+  <span class="merk">laatste gebeurtenis <span id="ouderdom">{e(leeftijd(laatste))}</span> · plaat gebouwd {e(klok(nu.isoformat()))} · ververst elke 60 s · bronstand <b>bewezen={bewezen}</b> totaal={len(bronnen)}</span>
+</div>
+<div class="rooster">
+  <div class="kolom">{''.join(links)}</div>
+  <div class="kolom">{''.join(rechts)}</div>
+</div>
+<div class="voet">
+  {ontbreekt(bronnen)}
+  <p class="regel">Deze plaat toont uitsluitend bronnen die bij deze bouw gelezen zijn. Een bron die niet gelezen kon worden krijgt geen paneel maar een regel hierboven — er staat dus nooit een vlak op het scherm dat een meting suggereert die niet bestaat. De klok linksboven loopt in de browser; het bouwmoment ernaast niet. Lopen die twee ver uiteen, dan staat de generator stil en is de plaat oud, hoe vers hij er ook uitziet.</p>
+</div>
+</div>
+<script>{SCRIPT}</script>
+</body>
+</html>
+"""
+
+    UIT.parent.mkdir(parents=True, exist_ok=True)
+    UIT.write_text(doc, encoding="utf-8")
+    print(f"{UIT} · bronstand bewezen={bewezen} totaal={len(bronnen)}")
+    return 0
+
+
+if __name__ == "__main__":
+    sys.exit(bouw())
