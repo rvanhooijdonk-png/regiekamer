@@ -94,10 +94,10 @@ body.verberg-klaar tr.klaar{display:none}
 
 <header>
   <div class="kopbalk">
-    <div class="lamp groen" title="GROEN"></div>
+    <div class="lamp geel" title="GEEL"></div>
     <h1>Autocoding Peilbord</h1>
-    <div class="tik" id="tik">tik 21:33 · gemeten 21:37–21:38 · herschat 21:45</div>
-    <div class="regel" id="kopregel">Stap 1–3a vandaag af (plan 09-09); ee08807 twee GO's; d526b34 wacht op codex1; klaar-kolom herschat vanaf nu: cutover ~09-11, akkoord ~09-11.</div>
+    <div class="tik" id="tik">tik 21:43 · gemeten 21:47–21:51</div>
+    <div class="regel" id="kopregel">d526b34 en a2dd1e0 NO_GO → herstelrondes; ee08807 op main; stap 3a schuift ~1,5 u; cutover ~09-11.</div>
     <div class="eind">akkoord <b>09-12/13 → ~09-11</b> · parser weg <b>09-21 → ~09-20</b></div>
     <div class="knoppen">
       <button class="kn" id="knKlaar" aria-pressed="false">verberg ✅</button>
@@ -112,7 +112,7 @@ body.verberg-klaar tr.klaar{display:none}
   <div class="tabel"><table class="actie">
     <thead><tr><th>Actie Richard</th><th>Waarom</th><th>Als je het niet doet</th></tr></thead>
     <tbody>
-      <tr><td class="cmd">geen login meer nodig — aanmelding stond in ~/.codex1; director zette CODEX_HOME in bin/codex1 om (21:03)</td><td>codex1 sinds 21:36:20 op tweede stem d526b34 (pid 95646); GO op 85909b2 staat</td><td>n.v.t. — opgelost zonder jou (tik 39, e2dd1f9)</td></tr>
+      <tr><td class="cmd">geen login meer nodig — aanmelding stond in ~/.codex1; director zette CODEX_HOME in bin/codex1 om (21:03)</td><td>codex1 sinds 21:44:19 op PR103-review 5ad4d0c (pid 49172); NO_GO op d526b34 21:39</td><td>n.v.t. — opgelost zonder jou (tik 39, e2dd1f9)</td></tr>
       <tr><td class="cmd">akkoord op de autocoding-keten (nr 32) — nog niet aan de orde</td><td>staat gepland na de cutover, ~09-11</td><td>burn-in B (7 dagen) start niet; stap 8 blijft dicht</td></tr>
     </tbody>
   </table></div>
@@ -154,13 +154,13 @@ body.verberg-klaar tr.klaar{display:none}
 <section id="slot">
   <h2>Slot</h2>
   <div class="tabel"><table class="slot">
-    <thead><tr><th>Δ sinds vorige tik (21:23) + correctie 21:45</th><th>Volgende tik</th></tr></thead>
+    <thead><tr><th>Δ sinds vorige tik (21:33)</th><th>Volgende tik</th></tr></thead>
     <tbody><tr>
-      <td>Correctie 21:45 (Richard): de kolom "Klaar" toonde bij afgeronde taken nog de plandatum (09-09) terwijl ze vandaag klaar zijn. Nu: plan → werkelijke tijd bij ✅, plan → ~verwacht vanaf 21:45 bij open taken; groen = eerder dan plan. Stap 1, 2 en 3a zijn een dag vóór plan; herschatting: stap 3 ~09-09 02:30, stap 4–5 ~09-09/10, burn-in A ~09-11, cutover en akkoord ~09-11 (plan 09-12/13), parser weg ~09-20 (plan 09-21). Lamp naar 🟢: geen Richard-actie, geen datum die later schuift. Aanname: lanes draaien vannacht door zoals vanavond. — Klaar: 79 (gemini1 GO_WITH_FINDINGS op d526b34, 21:29:02 — eerste geldige gemini-review vanavond, met hanggrens 1800 s; transport gaf exit 6 = nieuwe klasse 9), 81 (claude4 NO_GO-herstel a2dd1e0, 21:38), 85 (ee08807 twee GO_READY_FOR_MERGE_GATE: codex2 21:36, gemini1 21:37). Gestart: 82 codex1 tweede stem d526b34 (21:36:20). Nieuw: 86 merge d526b34, 87 merge ee08807, 88 review a2dd1e0, 89 klasse 9 (validate_exact_review_body, bin/dispatch-actor:1505-1526). 55 🔵 → ⬜ (grond bewezen, fix na reparatiestop). Alarmen: controller FAIL → STUCK, supervisor-streak 100 → 4 (herstart op nieuwe issue-set), worktrees 430 → 428, watchdog 32093 s. origin/main 8c0eccb (supervisor-samenvatting 21:35). Vijfde valse rc 8: codex1 85909b2 transport 21:34.</td>
-      <td class="volgende">21:43 · meet 53, 82, 83, 86, 87, 88</td>
+      <td>82 ✅ codex1 NO_GO 21:39 (P1 corruptie-isolatie) · 87 ✅ ee08807 op main de3e7dd 21:40 · 83 ✅ 3e22fde 21:45 · 88 🔴 codex2 NO_GO a2dd1e0 21:46 · gestart: 90 claude4 21:42, 96 claude1 21:39, 93 gemini1 21:44, 95 codex1 21:44 · nieuw 91, 92, 94, 97 · 56 streak 3, 57 stuck 3, 58 rc-9 25, 59 32694 s, 62 worktrees 431 · lamp 🟡: stap 3a ronde 3 schuift 15/17/18 ~1,5 u, blijft 09-09</td>
+      <td class="volgende">21:53 · meet 90, 93, 95, 96, 53, 86</td>
     </tr></tbody>
   </table></div>
-  <div class="pad">volledig rapport: ~/stack-control/CONTROL/RAPPORTEN/board-2026-09-08-2133.md</div>
+  <div class="pad">volledig rapport: ~/stack-control/CONTROL/RAPPORTEN/board-2026-09-08-2143.md</div>
 </section>
 
 </main>
@@ -183,14 +183,16 @@ const T3 = [
  [12, "2 head", "R7 + merge stap 2", "K", "director", "—", "09-08 → 09-08 21:07", "tik 39 e2dd1f9: verse R7, geen CI-run op branch"],
  [13, "3 record", "Ontwerpaudit + herstelcontract §5.1a", "K", "codex2, director", "—", "09-09 → 09-08 19:49", "NO_GO 19:01; f6d9dd3 19:49"],
  [14, "3 record", "Bouw 3a lib/order_state.py + 6 proeven", "K", "claude4", "—", "09-09 → 09-08 20:21", "4f1b42d 20:21; transport exit 8 (pad)"],
- [15, "3 record", "Bouw 3b import + dispatcher + sweep", "O", "**niemand**", "~2 u", "09-09 → ~09-09 01:00", "wacht op 82 + merge d526b34; claude4 vrij 21:38"],
+ [15, "3 record", "Bouw 3b import + dispatcher + sweep", "O", "**niemand**", "~2 u", "09-09 → ~09-09 02:30", "wacht op 86; claude4 zit op ronde 3 (90)"],
  [16, "3 record", "Review 3a 4f1b42d (ronde 1)", "K", "codex2", "—", "09-09 → 09-08 20:34", "NO_GO 20:34:28; ronde 2 = 71"],
  [71, "3 record", "Bouw 3a ronde 2 (NO_GO-punten)", "K", "claude4", "—", "09-09 → 09-08 21:16", "d526b34; receipt 21:16:53; transport exit 8"],
  [79, "3 record", "Review 3a ronde 2 d526b34 (gemini1)", "K", "gemini1", "—", "09-09 → 09-08 21:29", "GO_WITH_FINDINGS 21:29:02; transport exit 6 = kl. 9"],
-[82, "3 record", "Tweede stem d526b34 (codex1)", "B", "codex1", "~15 min", "09-09 → ~09-08 22:00", "pid 95646 sinds 21:36:20; stderr groeit"],
-[86, "3 record", "R7 + merge d526b34 na tweede GO", "O", "director", "~15 min", "09-09 → ~09-08 22:15", "directortaak OPEN (tik 42); wacht op 82"],
- [17, "3 record", "Review 3b", "O", "**niemand**", "~30 min", "09-09 → ~09-09 02:00", "wacht op 15"],
- [18, "3 record", "R7 + merge stap 3", "O", "director", "~20 min", "09-09 → ~09-09 02:30", "wacht op 16, 17"],
+[82, "3 record", "Tweede stem d526b34 (codex1)", "K", "codex1", "—", "09-09 → 09-08 21:39", "NO_GO 21:39 (P1: [] en {status:[]} ontsnappen)"],
+[90, "3 record", "Bouw 3a ronde 3 (claude4)", "B", "claude4", "~45 min", "09-09 → ~09-08 22:30", "pid 29331 sinds 21:42:02; order NOGO_HERSTEL"],
+[91, "3 record", "Review 3a ronde 3 (twee stemmen)", "O", "**niemand**", "~40 min", "09-09 → ~09-08 23:15", "wacht op 90; nog geen order"],
+[86, "3 record", "R7 + merge stap 3a na twee GO's", "O", "director", "~15 min", "09-09 → ~09-08 23:30", "d526b34 NO_GO 21:39; wacht nu op 90, 91"],
+ [17, "3 record", "Review 3b", "O", "**niemand**", "~30 min", "09-09 → ~09-09 03:30", "wacht op 15"],
+ [18, "3 record", "R7 + merge stap 3", "O", "director", "~20 min", "09-09 → ~09-09 04:00", "wacht op 16, 17"],
  [19, "4 toelating", "Bouw toelatingsautomaat", "O", "**niemand**", "~3 u", "09-10 → ~09-09", "wacht op 18"],
  [20, "4 toelating", "Review stap 4", "O", "**niemand**", "~30 min", "09-10 → ~09-09", "wacht op 19"],
  [21, "4 toelating", "R7 + merge stap 4", "O", "director", "~20 min", "09-10 → ~09-09", "wacht op 20"],
@@ -231,27 +233,33 @@ const T4 = [
  [75, "klasse 8", "Bewijspoort-fix valse BLOCKED_EVIDENCE", "K", "director", "—", "09-08 → 09-08 21:17", "f6d4967; gemerged e1d5483 21:17:18 na R7"],
  [76, "klasse 8", "Review f6d4967 (codex2)", "K", "codex2", "—", "09-08 → 09-08 21:07", "GO_READY_FOR_MERGE_GATE 21:07:53 (44 KB)"],
  [77, "klasse 8", "Review 85909b2 (codex1)", "K", "codex1", "—", "09-08 → 09-08 21:23", "GO 21:23; transport exit 8 21:34 = 5e valse rc 8"],
- [53, "klasse 8", "Merge 85909b2 na R7", "O", "director", "~30 min", "09-08 → ~09-08 22:30", "director wil tweede stem (R4); basis 14371c5 achter"],
-[83, "klasse 8", "Versterking bewijspoortproef (claude2)", "B", "claude2", "~15 min", "09-08 → ~09-08 22:00", "pid 29570 sinds 21:21:50 (16 min); geen receipt"],
+ [93, "klasse 8", "Tweede stem 85909b2 (gemini1)", "B", "gemini1", "~20 min", "09-08 → ~09-08 22:10", "pid 48246 sinds 21:44:15; hanggrens 1800 s"],
+[53, "klasse 8", "Merge 85909b2 na R7", "O", "director", "~30 min", "09-08 → ~09-08 22:30", "wacht op 93; basis 14371c5 ligt achter"],
+[83, "klasse 8", "Versterking bewijspoortproef (claude2)", "K", "claude2", "—", "09-08 → 09-08 21:45", "3e22fde DONE_BUILD_AWAITING_REVIEW 21:45"],
+[92, "klasse 8", "Review 3e22fde (twee stemmen)", "O", "**niemand**", "~30 min", "09-08 → ~09-08 23:00", "geen order; claude2 vrij sinds 21:45"],
 [84, "supervisor", "Negatieve teller ≠ gezonde queue (claude1)", "K", "claude1", "—", "09-08 → 09-08 21:27", "ee08807 DONE_BUILD_AWAITING_REVIEW 21:27:45"],
 [85, "supervisor", "Review ee08807 (codex2 + gemini1)", "K", "codex2, gemini1", "—", "09-08 → 09-08 21:37", "beide GO_READY_FOR_MERGE_GATE 21:36/21:37"],
-[87, "supervisor", "R7 + merge ee08807", "O", "director", "~15 min", "09-08 → ~09-08 22:15", "twee GO's binnen; directortaak OPEN (tik 42)"],
+[87, "supervisor", "R7 + merge ee08807", "K", "director", "—", "09-08 → 09-08 21:40", "de3e7dd 21:40:27 op main; zie ook 97"],
+[95, "PR #103", "Review 5ad4d0c (codex1, herdispatch)", "B", "codex1", "~30 min", "09-08 → ~09-08 22:15", "pid 49172 sinds 21:44:19; stderr 255 KB"],
+[96, "klasse 9", "Ankerproef machineblok (claude1)", "B", "claude1", "~30 min", "09-08 → ~09-08 22:15", "pid 11564 sinds 21:38:54; stub rc 9 21:39"],
 ];
 const T5 = [
  [54, "codex1: geen ~/.codex/auth.json", "K", "director", "—", "19:45", "~/.codex1/auth.json 21:03; CODEX_HOME-fix"],
  [55, "gemini1 hanggrens 180 s (was STARTUP_STALE)", "O", "director", "~15 min", "20:12", "werkt met 1800 s (run 281 s); default-fix na stop"],
- [56, "supervisor-streak 4 (was 100), status DETECTED", "R", "director", "—", "~19:45", "herstart: issues nu RECEIPT_NONTERMINAL; 21:37:25"],
- [57, "controller STUCK (was FAIL) + 7 stuck-ids", "R", "director", "—", "20:21", "heartbeat 21:34:00; ORDERS_STUCK_NONTERMINAL; failed 0"],
- [58, "dubbeldispatch: 23 rc-9-artefacten vandaag", "R", "director", "stap 3", "20:09", "geen nieuwe sinds 21:27; claude4-stub overschreven"],
- [59, "watchdog STALE_DISPATCH 32093 s, bron onbekend", "R", "**niemand**", "—", "20:13", "alert 21:37:24; start ~12:42; niet in ps"],
+ [56, "supervisor-streak 3 (was 100), status DETECTED", "R", "director", "—", "~19:45", "status.json 21:47:29; DISPATCH_SUBPROCESS_FAILED"],
+ [57, "controller FAIL + 3 stuck-ids (was 7)", "R", "director", "—", "20:21", "heartbeat 21:45:13; DISPATCH_SUBPROCESS_FAILED; failed 2"],
+ [58, "dubbeldispatch: 25 rc-9-artefacten vandaag", "R", "director", "stap 3", "20:09", "2 nieuw: claude1 21:39, claude4 21:44 (stubs)"],
+ [59, "watchdog STALE_DISPATCH 32694 s, bron onbekend", "R", "**niemand**", "—", "20:13", "alert 21:47:25; start ~12:42; niet in ps"],
  [60, "lane-monitor vals-positief repareren", "K", "claude2", "—", "20:22", "c03b92c 20:58; receipt exit 0 MERGEABLE 21:00:47"],
  [78, "review c03b92c (claude1)", "K", "claude1", "—", "21:02", "GO_WITH_FINDINGS; transport exit 0 21:12:04"],
  [80, "merge c03b92c na R7", "R", "director", "—", "21:12", "codex2 NO_GO 21:23 (tegenvoorbeeld); herstel = 81"],
 [81, "NO_GO-herstel lane-monitor (claude4)", "K", "claude4", "—", "21:25", "a2dd1e0 DONE_BUILD_AWAITING_REVIEW 21:38 (11 KB)"],
-[88, "review a2dd1e0 (codex2 + gemini1) + merge", "O", "director", "~30 min", "21:38", "geen order; codex2 en gemini1 vrij sinds 21:37"],
-[89, "klasse 9: reviewsleutels uniek in héle stdout", "R", "director", "na stop", "21:29", "gemini1 d526b34 transport exit 6; :1505-1526"],
+[88, "review a2dd1e0 (codex2) + merge", "R", "director", "—", "21:38", "codex2 NO_GO 21:46 (P1 exe-identiteit één pad)"],
+[94, "NO_GO-herstel a2dd1e0 ronde 2", "O", "**niemand**", "~45 min", "21:46", "geen order; claude4 bezet (90), claude2 vrij"],
+[97, "reparatiestop geschonden: ee08807 raakt supervisor", "R", "director", "—", "21:44", "supervisor tik 66, e5540e1; wacht op bevestiging"],
+[89, "klasse 9: reviewsleutels uniek in héle stdout", "R", "director", "na stop", "21:29", "exit 6 op gemini1 d526b34; ankerproef = 96"],
  [61, "REPAIR_REQUESTS-map: 143 gemeld, nu niet gevonden", "O", "**niemand**", "—", "19:44", "ls state/REPAIR_REQUESTS: bestaat niet"],
- [62, "worktrees 428 (was 485), 6 verweesde claims", "O", "director", "~10 min", "18:15", "git worktree list 21:37; claims open"],
+ [62, "worktrees 431 (was 485), 6 verweesde claims", "O", "director", "~10 min", "18:15", "git worktree list 21:47; claims open"],
  [63, "director-heartbeat noemde gemini1 BEZIG (stale)", "K", "director", "—", "20:32", "heartbeat 20:44 zonder gemini1 BEZIG"],
  [73, "director-heartbeat 14 min oud (drempel 15)", "K", "director", "—", "20:44", "tik 39 heartbeat 19:08Z; e2dd1f9 21:07"],
  [64, "docs/review-relay.md corrigeren (4 secrets)", "O", "director", "~10 min", "20:12", "directorlijst OPEN"],
