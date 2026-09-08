@@ -118,6 +118,26 @@ body.verberg-klaar tr.klaar{display:none}
   </table></div>
 </section>
 
+<section id="b2b">
+  <h2><span class="n">2b</span> Grote problemen <span class="sub">wat er misging · oplossing · opgelost om (✅ = bewezen op main of in een receipt)</span></h2>
+  <div class="tabel"><table class="actie">
+    <thead><tr><th>Probleem</th><th>Wat er misging</th><th>Oplossing</th><th>Opgelost om</th></tr></thead>
+    <tbody>
+      <tr><td class="cmd">codex1 kon niet reviewen (exit 3)</td><td>elke codex1-order viel om: geen aanmelding in ~/.codex</td><td>aanmelding stond in ~/.codex1; director zette CODEX_HOME in bin/codex1 om (e2dd1f9)</td><td>✅ 21:03 · bewijs: GO op 85909b2 21:23</td></tr>
+      <tr><td class="cmd">gemini1 leverde nooit (hanggrens 180 s)</td><td>elke run na 180 s afgekapt als STARTUP_STALE</td><td>DISPATCH_GEMINI_HANG_TIMEOUT_S=1800; run van 281 s leverde GO</td><td>✅ 21:29 · standaardwaarde nog te fixen (nr 55)</td></tr>
+      <tr><td class="cmd">supervisor-streak 100 (negatieve teller)</td><td>teller onder nul gold als gezonde queue → eindeloze escalatie</td><td>ee08807 (claude1) gemerged als de3e7dd; streak nu 3</td><td>✅ 21:40 · nr 84/85/87</td></tr>
+      <tr><td class="cmd">klasse 9: geldige review afgekeurd (exit 6)</td><td>reviewsleutels moeten precies één keer in héle stdout; gemini1 herhaalt zijn blok</td><td>anker op laatste machineblok; ankerproef bij claude1 (nr 96); fix pas na reparatiestop</td><td>open · nr 89</td></tr>
+      <tr><td class="cmd">klasse 8: valse rc 8 na geldig receipt</td><td>transport meldt RERUN_TIMEOUT terwijl het canonieke receipt geldig is; 5× vandaag</td><td>85909b2 (claude4) receiptroute-allowlist; codex1 GO, gemini1 tweede stem loopt</td><td>open · nr 93, 53</td></tr>
+      <tr><td class="cmd">stap 3a: corrupt record houdt de rest op</td><td>d526b34 NO_GO: [] en {status:[]} ontsnappen aan de isolatie</td><td>ronde 3 bij claude4 sinds 21:42</td><td>open · nr 90, 91, 86</td></tr>
+      <tr><td class="cmd">lane-monitor meldt valse UNJUSTIFIED_IDLE</td><td>claude1/claude2 ten onrechte 'stil' gemeld; twee herstelpogingen NO_GO</td><td>a2dd1e0 NO_GO 21:46 (exe-identiteit); ronde 2 heeft nog geen eigenaar</td><td>open · nr 94</td></tr>
+      <tr><td class="cmd">controller FAIL met stuck-ids</td><td>orders zonder terminaal receipt blijven hangen (was 7)</td><td>5 opgelost via receipts; rest hoort bij stap 3 (record/sweep)</td><td>open · 3 over · nr 57</td></tr>
+      <tr><td class="cmd">dubbeldispatch (rc-9-stubs)</td><td>order twee keer gestart, tweede weigert op lane-claim; 25× vandaag</td><td>oorzaak zit in stap 3 (dispatcher/record); geen aparte fix</td><td>open · nr 58</td></tr>
+      <tr><td class="cmd">watchdog STALE_DISPATCH sinds ~12:42</td><td>bron van de alert staat niet in ps; niemand kijkt ernaar</td><td>geen</td><td>open · nr 59 · <b>niemand</b></td></tr>
+      <tr><td class="cmd">reparatiestop geschonden</td><td>ee08807 raakte bin/autocoding-supervisor zonder REPARATIE_STAP_-prefix</td><td>supervisor-bevinding e5540e1; wacht op bevestiging director/Richard</td><td>open · nr 97</td></tr>
+    </tbody>
+  </table></div>
+</section>
+
 <section id="b3">
   <h2><span class="n">3</span> Taken tot autocoding klaar <span class="sub">bouw / review / merge / klok elk een rij · nummers blijven vast</span></h2>
   <div class="tabel"><table id="t3">
@@ -156,7 +176,7 @@ body.verberg-klaar tr.klaar{display:none}
   <div class="tabel"><table class="slot">
     <thead><tr><th>Δ sinds vorige tik (21:33)</th><th>Volgende tik</th></tr></thead>
     <tbody><tr>
-      <td>82 ✅ codex1 NO_GO 21:39 (P1 corruptie-isolatie) · 87 ✅ ee08807 op main de3e7dd 21:40 · 83 ✅ 3e22fde 21:45 · 88 🔴 codex2 NO_GO a2dd1e0 21:46 · gestart: 90 claude4 21:42, 96 claude1 21:39, 93 gemini1 21:44, 95 codex1 21:44 · nieuw 91, 92, 94, 97 · 56 streak 3, 57 stuck 3, 58 rc-9 25, 59 32694 s, 62 worktrees 431 · lamp 🟡: stap 3a ronde 3 schuift 15/17/18 ~1,5 u, blijft 09-09</td>
+      <td>82 ✅ codex1 NO_GO 21:39 (P1 corruptie-isolatie) · 87 ✅ ee08807 op main de3e7dd 21:40 · 83 ✅ 3e22fde 21:45 · 88 🔴 codex2 NO_GO a2dd1e0 21:46 · gestart: 90 claude4 21:42, 96 claude1 21:39, 93 gemini1 21:44, 95 codex1 21:44 · nieuw 91, 92, 94, 97 · 56 streak 3, 57 stuck 3, 58 rc-9 25, 59 32694 s, 62 worktrees 431 · lamp 🟡: stap 3a ronde 3 schuift 15/17/18 ~1,5 u, blijft 09-09 · nieuw blok 2b "Grote problemen" (Richard 21:5x): 3 opgelost, 8 open</td>
       <td class="volgende">21:53 · meet 90, 93, 95, 96, 53, 86</td>
     </tr></tbody>
   </table></div>
