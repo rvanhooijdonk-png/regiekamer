@@ -94,13 +94,13 @@ body.verberg-klaar tr.klaar{display:none}
 
 <header>
   <div class="kopbalk">
-    <div class="lamp geel" title="GEEL"></div>
+    <div class="lamp rood" title="ROOD"></div>
     <h1>Autocoding Peilbord</h1>
-    <div class="tik" id="tik">tik 22:23 · gemeten 22:27–22:29</div>
-    <div class="regel" id="kopregel">3 leveringen (4ff627a, 869710f, acfc828) · 4 orders uit · gemini1 85909b2 exit 10 zonder verdict · streak 8 · 4/7 bezet · cutover ~09-11</div>
+    <div class="tik" id="tik">tik 22:33 · gemeten 22:37–22:39</div>
+    <div class="regel" id="kopregel">director-heartbeat 24 min stil (bevinding 0b4d2cf) · 2× NO_GO (869710f, acfc828), 4ff627a GO · streak 18 · 4/7 bezet · cutover ~09-11</div>
     <div class="eind">akkoord <b>09-12/13 → ~09-11</b> · parser weg <b>09-21 → ~09-20</b></div>
     <div class="knoppen">
-      <span class="tik">afgerond vandaag: 53 rijen (in rapport)</span>
+      <span class="tik">afgerond vandaag: 54 rijen (in rapport)</span>
     </div>
   </div>
 </header>
@@ -108,18 +108,18 @@ body.verberg-klaar tr.klaar{display:none}
 <main>
 
 <section id="b1b">
-  <h2><span class="n">1b</span> Kanaalbezetting (7 kanalen) <span class="sub">live gemeten 22:28 uit ps + state/DISPATCH_CLAIMS · elke tik opnieuw</span></h2>
+  <h2><span class="n">1b</span> Kanaalbezetting (7 kanalen) <span class="sub">live gemeten 22:39 uit ps + state/DISPATCH_CLAIMS · elke tik opnieuw</span></h2>
   <div class="tabel"><table class="actie">
     <thead><tr><th>Kanaal</th><th>Status</th><th>Order</th><th>Sinds</th><th>Duur</th><th>Nr</th><th>Bewijs</th></tr></thead>
     <tbody>
-      <tr><td class="cmd">claude1</td><td>🔵 bezet</td><td>herstel 41e1c11 ronde 2 (klasse 9)</td><td>22:24:37</td><td>~4 min</td><td>104</td><td>pid 30537 (+kind 30735); body nog leeg</td></tr>
-      <tr><td class="cmd">claude2</td><td>🔵 bezet</td><td>herstel 3e22fde ronde 3 (klasse 8)</td><td>22:24:39</td><td>~4 min</td><td>92</td><td>pid 30825 (+kind 31028); body nog leeg</td></tr>
-      <tr><td class="cmd">claude3</td><td>⬜ vrij</td><td>supervisor-sessie (tik 73)</td><td>—</td><td>—</td><td>—</td><td>geen dispatch; heartbeat 22:18 (9 min oud)</td></tr>
-      <tr><td class="cmd">claude4</td><td>⬜ vrij</td><td>acfc828 geleverd, receipt 22:20</td><td>22:20</td><td>—</td><td>103</td><td>pid 55524 weg; receipt 16 KB DONE_BUILD</td></tr>
-      <tr><td class="cmd">codex1</td><td>🔵 bezet</td><td>review 869710f ordersnapshot</td><td>22:27:06</td><td>~1 min</td><td>105</td><td>pid 45192; claim 22:27:10</td></tr>
-      <tr><td class="cmd">codex2</td><td>🔵 bezet</td><td>review acfc828 lane-monitor</td><td>22:26:07</td><td>~2 min</td><td>103</td><td>pid 35479; claim 22:26:10</td></tr>
-      <tr><td class="cmd">gemini1</td><td>⬜ vrij</td><td>85909b2 afgebroken zonder verdict</td><td>22:24</td><td>—</td><td>93</td><td>transport exit 10 WITHHELD; beide pids weg</td></tr>
-      <tr><td class="cmd">totaal</td><td>4/7 bezet</td><td>3 vrij: claude3 (supervisor), claude4, gemini1</td><td colspan="4">elk van de 4 pids heeft één kindproces uit dezelfde seconde = geen dubbeldispatch; roster en lane-meter blijven onbruikbaar</td></tr>
+      <tr><td class="cmd">claude1</td><td>🔵 bezet</td><td>herstel 41e1c11 ronde 2 (klasse 9)</td><td>22:24:37</td><td>~15 min</td><td>104</td><td>pid 30537; volgende order (107) ligt al klaar</td></tr>
+      <tr><td class="cmd">claude2</td><td>🔵 bezet</td><td>herstel 3e22fde ronde 3 (klasse 8)</td><td>22:24:39</td><td>~15 min</td><td>92</td><td>pid 30825; 22:30 dubbel geclaimd door controller</td></tr>
+      <tr><td class="cmd">claude3</td><td>⬜ vrij</td><td>supervisor-sessie (tik 76)</td><td>—</td><td>—</td><td>—</td><td>heartbeat 22:37; meldt DIRECTOR_STIL</td></tr>
+      <tr><td class="cmd">claude4</td><td>🔵 bezet</td><td>bewijsbron-receiptveld-proef (klasse 8)</td><td>22:34:12</td><td>~5 min</td><td>108</td><td>pid 27714; base 4dc05a4; --model opus</td></tr>
+      <tr><td class="cmd">codex1</td><td>⬜ vrij</td><td>869710f NO_GO geleverd</td><td>22:32</td><td>—</td><td>105</td><td>receipt 63 KB, transport exit 0</td></tr>
+      <tr><td class="cmd">codex2</td><td>🔵 bezet</td><td>tweede stem 4ff627a late-write</td><td>22:38:55</td><td>~1 min</td><td>106</td><td>pid 4054; acfc828 NO_GO 22:30 (2× gedraaid)</td></tr>
+      <tr><td class="cmd">gemini1</td><td>⬜ vrij</td><td>4ff627a GO geleverd (run 2 min)</td><td>22:30</td><td>—</td><td>106</td><td>receipt 7,8 KB exit 0; 85909b2 nog zonder 2e stem</td></tr>
+      <tr><td class="cmd">totaal</td><td>4/7 bezet</td><td>3 vrij: claude3 (supervisor), codex1, gemini1</td><td colspan="4">22:30 claimde de controller (pid 88986, runtime-autocoder) 3 lopende orders opnieuw; codex2-review acfc828 liep daardoor dubbel (REMEASURE 22:36); roster en lane-meter blijven onbruikbaar</td></tr>
     </tbody></table></div>
 </section>
 
@@ -128,6 +128,7 @@ body.verberg-klaar tr.klaar{display:none}
   <div class="tabel"><table class="actie">
     <thead><tr><th>Actie Richard</th><th>Waarom</th><th>Als je het niet doet</th></tr></thead>
     <tbody>
+      <tr><td class="cmd">directorvenster: tik 45 afsluiten en director-heartbeat.json schrijven (nr 109)</td><td>heartbeat staat op tik 44 / 22:14 terwijl de director sinds 22:23 zeven orders dispatchte; supervisor meldde DIRECTOR_STIL (0b4d2cf); om 22:44 valt de 1800 s-grens DIRECTOR_HERSTART_NODIG</td><td>supervisor escaleert naar herstart-eis; streak al 18; het board kan de directorstand niet meer uit de bron meten</td></tr>
       <tr><td class="cmd">akkoord op de autocoding-keten (nr 32) — nog niet aan de orde</td><td>staat gepland na de cutover, ~09-11</td><td>burn-in B (7 dagen) start niet; stap 8 blijft dicht</td></tr>
     </tbody>
   </table></div>
@@ -142,13 +143,14 @@ body.verberg-klaar tr.klaar{display:none}
       <tr><td class="cmd">gemini1 leverde nooit (hanggrens 180 s)</td><td>elke run na 180 s afgekapt als STARTUP_STALE</td><td>DISPATCH_GEMINI_HANG_TIMEOUT_S=1800; run van 281 s leverde GO</td><td>✅ 21:29 · standaardwaarde nog te fixen (nr 55)</td></tr>
       <tr><td class="cmd">supervisor-streak 100 (negatieve teller)</td><td>teller onder nul gold als gezonde queue → eindeloze escalatie</td><td>ee08807 (claude1) gemerged als de3e7dd; streak nu echt (8 om 22:16, escalatie weer aan, nr 56)</td><td>✅ 21:40 · nr 84/85/87</td></tr>
       <tr><td class="cmd">klasse 9: geldige review afgekeurd (exit 6)</td><td>reviewsleutels moeten precies één keer in héle stdout; gemini1 herhaalt zijn blok</td><td>anker op laatste machineblok; ankerproef 41e1c11 NO_GO codex1 22:16; herstel ronde 2 loopt op claude1 (22:24); fix pas na reparatiestop</td><td>open · nr 89, 104</td></tr>
-      <tr><td class="cmd">klasse 8: valse rc 8 na geldig receipt</td><td>transport meldt exit 8 terwijl het canonieke receipt geldig is; 8× vandaag (laatste claude1 41e1c11 22:03)</td><td>85909b2 (claude4) receiptroute-allowlist; codex1 GO 21:23; gemini1 tweede stem brak af (exit 10, 22:24), opnieuw nodig</td><td>open · nr 93, 53</td></tr>
-      <tr><td class="cmd">gemini1-review 85909b2 verloren (exit 10)</td><td>na 40 min: transport meldt WITHHELD_UNKNOWN_TRANSPORT_STATUS, geen verdict; twee processen liepen op één order</td><td>geen; director moet de tweede stem opnieuw dispatchen</td><td>open · nr 93</td></tr>
-      <tr><td class="cmd">stap 3a: corrupt record houdt de rest op</td><td>d526b34 NO_GO: [] en {status:[]} ontsnappen aan de isolatie</td><td>ronde 3 = daa3490, twee GO_WITH_FINDINGS, gemerged als a1f6ec0; ronde 4 geleverd 4ff627a 22:20, review nog te dispatchen</td><td>✅ 22:06 · a1f6ec0 · nr 106</td></tr>
-      <tr><td class="cmd">lane-monitor meldt valse UNJUSTIFIED_IDLE</td><td>claude1/claude2 ten onrechte 'stil' gemeld; twee herstelpogingen NO_GO</td><td>a2dd1e0 NO_GO 21:46 (exe-identiteit); herstel 2× geweigerd (modelmismatch); 3e poging geleverd als acfc828 22:20; review codex2 loopt (22:26)</td><td>open · nr 103</td></tr>
-      <tr><td class="cmd">controller FAIL met stuck-ids</td><td>orders zonder terminaal receipt blijven hangen (was 7)</td><td>5 opgelost via receipts; 22:04 en 22:25 drie als ABANDONED gereconcilieerd; VALSE_IDLE_CLAUDE2 en PR104 uit de lijst</td><td>open · 3 over · nr 57</td></tr>
+      <tr><td class="cmd">klasse 8: valse rc 8 na geldig receipt</td><td>transport meldt exit 8 terwijl het canonieke receipt geldig is; 8× vandaag (laatste claude1 41e1c11 22:03)</td><td>85909b2 (claude4) receiptroute-allowlist; codex1 GO 21:23; gemini1 2e stem brak af (exit 10); ordersnapshot-proef 869710f NO_GO codex1 22:32, ronde 2 klaargezet (107); receiptveld-proef loopt (108)</td><td>open · nr 93, 53, 107, 108</td></tr>
+      <tr><td class="cmd">gemini1-review 85909b2 verloren (exit 10)</td><td>na 40 min: transport meldt WITHHELD_UNKNOWN_TRANSPORT_STATUS, geen verdict; twee processen liepen op één order</td><td>geen; gemini1 kreeg 22:28 een andere review (4ff627a, GO); 85909b2 nog zonder 2e stem</td><td>open · nr 93</td></tr>
+      <tr><td class="cmd">stap 3a: corrupt record houdt de rest op</td><td>d526b34 NO_GO: [] en {status:[]} ontsnappen aan de isolatie</td><td>ronde 3 = daa3490, twee GO_WITH_FINDINGS, gemerged als a1f6ec0; ronde 4 geleverd 4ff627a 22:20; gemini1 GO 22:30; 2e stem codex2 loopt (22:38)</td><td>✅ 22:06 · a1f6ec0 · nr 106</td></tr>
+      <tr><td class="cmd">director-heartbeat stil terwijl de director werkt</td><td>tik 44 sinds 22:14 niet meer geschreven; orders wél gedispatcht (22:23–22:38); supervisor DIRECTOR_STIL tik 76 (1249 s)</td><td>geen; directorvenster moet de tik afsluiten (blok 2)</td><td>open · nr 109 · <b>Richard</b></td></tr>
+      <tr><td class="cmd">lane-monitor meldt valse UNJUSTIFIED_IDLE</td><td>claude1/claude2 ten onrechte 'stil' gemeld; twee herstelpogingen NO_GO</td><td>a2dd1e0 NO_GO 21:46 (exe-identiteit); herstel 2× geweigerd (modelmismatch); 3e poging acfc828 NO_GO codex2 22:30 (en 22:36 dubbel gedraaid: zelfde verdict); vierde poging nodig</td><td>open · nr 103</td></tr>
+      <tr><td class="cmd">controller FAIL met stuck-ids</td><td>orders zonder terminaal receipt blijven hangen (was 7)</td><td>5 opgelost via receipts; 3 als ABANDONED gereconcilieerd; heartbeat stil sinds 22:24:39; 22:30 dispatchte hij 3 lopende orders dubbel</td><td>open · 3 over · nr 57, 58</td></tr>
       <tr><td class="cmd">claude4 weigerde herstelorders (modelmismatch)</td><td>order vroeg opus; dispatch-actor zet claude-lanes standaard op sonnet; 2× GEWEIGERD (21:57, 22:03)</td><td>dispatchregel met --model opus (directordiscipline, geen codedefect)</td><td>✅ 22:03 · 3e poging geleverd 22:17 · nr 103</td></tr>
-      <tr><td class="cmd">dubbeldispatch (rc-9-stubs)</td><td>order twee keer gestart, tweede weigert op lane-claim; 32 stubs over (2 overschreven door echte receipts)</td><td>oorzaak zit in stap 3 (dispatcher/record); geen aparte fix</td><td>open · nr 58</td></tr>
+      <tr><td class="cmd">dubbeldispatch (rc-9-stubs)</td><td>order twee keer gestart, tweede weigert op lane-claim; 34 stubs; 22:30 controller naast director op 3 orders</td><td>oorzaak zit in stap 3 (dispatcher/record); geen aparte fix</td><td>open · nr 58</td></tr>
       <tr><td class="cmd">watchdog STALE_DISPATCH sinds ~12:42</td><td>bron van de alert staat niet in ps; niemand kijkt ernaar</td><td>geen</td><td>open · nr 59 · <b>niemand</b></td></tr>
       <tr><td class="cmd">reparatiestop geschonden</td><td>ee08807 raakte bin/autocoding-supervisor zonder REPARATIE_STAP_-prefix</td><td>supervisor-bevinding e5540e1; director erkende het en bond de commitvorm-eis vooruit in de bouworders</td><td>✅ 21:57 · director tik 43 · nr 97</td></tr>
     </tbody>
@@ -191,13 +193,13 @@ body.verberg-klaar tr.klaar{display:none}
 <section id="slot">
   <h2>Slot</h2>
   <div class="tabel"><table class="slot">
-    <thead><tr><th>Δ sinds vorige tik (22:13)</th><th>Volgende tik</th></tr></thead>
+    <thead><tr><th>Δ sinds vorige tik (22:23)</th><th>Volgende tik</th></tr></thead>
     <tbody><tr>
-      <td>100 ✅ late-write ronde 4 geleverd 4ff627a 22:20:55 (DONE_BUILD_AWAITING_REVIEW) · 102 ✅ ordersnapshot-proef geleverd 869710f 22:23:11 (DONE_BUILD_AWAITING_REVIEW) · 93 🔵→🔴 gemini1 85909b2 na 40 min afgebroken: transport exit 10 WITHHELD_UNKNOWN_TRANSPORT_STATUS, geen verdict · 92 🔴→🔵 herstel 3e22fde ronde 3 op claude2 (22:24) · 104 🔴→🔵 herstel 41e1c11 ronde 2 op claude1 (22:24) · 103 ⬜→🔵 review acfc828 op codex2 (22:26) · nieuw: 105 review 869710f op codex1 (22:27), 106 review 4ff627a (nog geen order) · 57 stuck 4→3 (PR103 gereconcilieerd 22:25) · 58 rc 9 34→32 · 50 PR #104 UNKNOWN→DIRTY · 62 worktrees 438, verweesde claims 6→2 · director-heartbeat 14 min oud (tik 44) terwijl de director wél dispatcht · lamp 🟡 blijft (supervisor-escalatie, gemini1-stem verloren, 3b zonder bouwer)</td>
-      <td class="volgende">22:33 · meet 92, 104, 103, 105, 106, 93, 46, 56</td>
+      <td>lamp 🟡→🔴: director-heartbeat 24 min stil (tik 44) terwijl de director wél dispatcht; supervisor-bevinding DIRECTOR_STIL 0b4d2cf; nieuw 109 (<b>Richard</b>, directorvenster) · 105 ✅ codex1-review 869710f geleverd 22:32 = NO_GO (63 KB) · 103 🔵→🔴 acfc828 NO_GO codex2 22:30 (dubbel gedraaid 22:36 via controller) · 106 ⬜→🔵 gemini1 GO_READY_FOR_MERGE_GATE 22:30:43, 2e stem codex2 gestart 22:38:55 · nieuw: 107 herstel 869710f ronde 2 (order 22:37, wacht op claude1), 108 bewijsbron-receiptveld-proef op claude4 (22:34) · 56 streak 8→18 · 57 controller-heartbeat stil sinds 22:24 · 58 rc 9 32→34 (controller-dubbeldispatch 22:30) · 62 worktrees 439 · 50 PR #104 weer UNKNOWN · supervisor tik 76, main 0b4d2cf + samenvatting 612674d</td>
+      <td class="volgende">22:43 · meet 109, 92, 104, 106, 108, 107, 103, 56</td>
     </tr></tbody>
   </table></div>
-  <div class="pad">volledig rapport: ~/stack-control/CONTROL/RAPPORTEN/board-2026-09-08-2223.md</div>
+  <div class="pad">volledig rapport: ~/stack-control/CONTROL/RAPPORTEN/board-2026-09-08-2233.md</div>
 </section>
 
 </main>
@@ -209,7 +211,7 @@ const T3 = [
  [5, "1 spook", "Restpunt 5f4ac0b", "O", "**niemand**", "~20 min", "09-09 → ~09-09", "niet in directorlijst"],
  [9, "2 head", "Review dc14cb9 gemini1", "R", "director", "—", "09-09 → vervallen 09-08", "vervallen: gemerged op V2; gemini1 timeout 90 s"],
  [15, "3 record", "Bouw 3b import + dispatcher + sweep", "O", "**niemand**", "~2 u", "09-09 → ~09-09 01:00", "3a gemerged 22:06; 3b nog niet gedispatcht"],
-[106, "3 record", "Review 4ff627a ronde 4 (twee stemmen)", "O", "director", "~40 min", "09-09 → ~09-08 23:15", "DONE_BUILD 22:20:55; nog geen revieworder"],
+[106, "3 record", "Review 4ff627a ronde 4 (twee stemmen)", "B", "codex2", "~20 min", "09-09 → ~09-08 23:00", "gemini1 GO 22:30:43; codex2 2e stem pid 4054 22:38:55"],
  [17, "3 record", "Review 3b", "O", "**niemand**", "~30 min", "09-09 → ~09-09 02:00", "wacht op 15"],
  [18, "3 record", "R7 + merge stap 3", "O", "director", "~20 min", "09-09 → ~09-09 02:30", "wacht op 16, 17"],
  [19, "4 toelating", "Bouw toelatingsautomaat", "O", "**niemand**", "~3 u", "09-10 → ~09-09", "wacht op 18"],
@@ -234,27 +236,29 @@ const T3 = [
 const T4 = [
  [46, "stack-status", "Arbitrage tweede NO_GO (Fable)", "B", "Fable", "tot 22:31", "09-08 → ~09-09 00:31", "termijn 00:31; verzoek ongewijzigd sinds 20:30"],
  [47, "stack-status", "Push + PR + R7 + merge", "O", "director", "~25 min", "09-08 → ~09-09", "wacht op 46; claude3 geblokkeerd"],
- [50, "PR #104", "Review 5984ca6 + R7 + merge", "O", "codex2, director", "~40 min", "09-09 → ~09-09", "mergeStateStatus DIRTY 22:28 (was UNKNOWN); rebase nodig"],
+ [50, "PR #104", "Review 5984ca6 + R7 + merge", "O", "codex2, director", "~40 min", "09-09 → ~09-09", "mergeStateStatus DIRTY 22:28, UNKNOWN 22:38; rebase nodig"],
  [72, "klasse 8", "Diagnose lezen en verwerken", "O", "director", "~20 min", "09-08 → ~09-09", "niet meer in directorlijst (tik 40); geen bewijs"],
- [93, "klasse 8", "Tweede stem 85909b2 (gemini1)", "R", "director", "—", "09-08 → ~09-09", "exit 10 WITHHELD 22:24 na 40 min; geen verdict; opnieuw"],
+ [93, "klasse 8", "Tweede stem 85909b2 (gemini1)", "R", "director", "—", "09-08 → ~09-09", "exit 10 WITHHELD 22:24; gemini1 kreeg 4ff627a i.p.v. herhaling"],
 [53, "klasse 8", "Merge 85909b2 na R7", "O", "director", "~30 min", "09-08 → ~09-09", "wacht op 93 (opnieuw); basis 14371c5 ligt achter"],
-[92, "klasse 8", "Herstel 3e22fde ronde 3 (claude2)", "B", "claude2", "~40 min", "09-08 → ~09-08 23:10", "pid 30825 sinds 22:24:39; base 3e22fde; --model opus"],
-[104, "klasse 9", "Herstel 41e1c11 ronde 2 (claude1)", "B", "claude1", "~40 min", "09-08 → ~09-08 23:10", "pid 30537 sinds 22:24:37; base 41e1c11; --model opus"],
-[105, "klasse 8", "Review 869710f ordersnapshot (codex1)", "B", "codex1", "~30 min", "09-08 → ~09-08 23:00", "pid 45192 sinds 22:27:06; head 869710f"],
+[92, "klasse 8", "Herstel 3e22fde ronde 3 (claude2)", "B", "claude2", "~30 min", "09-08 → ~09-08 23:10", "pid 30825 sinds 22:24:39 (15 min); base 3e22fde"],
+[104, "klasse 9", "Herstel 41e1c11 ronde 2 (claude1)", "B", "claude1", "~30 min", "09-08 → ~09-08 23:10", "pid 30537 sinds 22:24:37 (15 min); base 41e1c11"],
+[107, "klasse 8", "Herstel 869710f ronde 2 (claude1)", "O", "claude1", "~40 min", "09-08 → ~09-09 00:00", "order 22:37:04; wacht tot 104 klaar is"],
+[108, "klasse 8", "Bewijsbron-receiptveld-proef (claude4)", "B", "claude4", "~40 min", "09-08 → ~09-08 23:20", "pid 27714 sinds 22:34:12; base 4dc05a4"],
 ];
 const T5 = [
  [55, "gemini1 hanggrens 180 s (was STARTUP_STALE)", "O", "director", "~15 min", "20:12", "werkt met 1800 s (run 281 s); default-fix na stop"],
- [56, "supervisor ESCALATION_REQUIRED, streak 8 (4 issues)", "R", "director", "—", "~19:45", "22:27:20; nieuw: QUEUE_ADMISSION_STALLED, ORDERS_STUCK"],
- [57, "controller STUCK + 3 stuck-ids (was 4)", "R", "director", "—", "20:21", "22:24:39 ORDERS_STUCK_NONTERMINAL; PR103 22:25 gereconcilieerd"],
- [58, "dubbeldispatch: 32 rc-9-stubs over (was 34)", "R", "director", "stap 3", "20:09", "2 stubs overschreven door echte receipts 22:20/22:23"],
- [59, "watchdog STALE_DISPATCH 35100 s = eigen claim director", "R", "director", "~5 min", "20:13", "alert 22:27:31; claim 12:42 = pid 38043 leeft"],
+ [56, "supervisor ESCALATION_REQUIRED, streak 18 (was 8)", "R", "director", "—", "~19:45", "22:37:24; 4 issues; +10 in 10 min"],
+ [57, "controller STUCK, heartbeat stil sinds 22:24:39", "R", "director", "—", "20:21", "3 stuck-ids; 22:30 dubbele dispatch, geen heartbeat erna"],
+ [58, "dubbeldispatch: 34 rc-9-stubs (was 32)", "R", "director", "stap 3", "20:09", "22:30 controller pid 88986 claimde 3 lopende orders"],
+ [59, "watchdog STALE_DISPATCH 35701 s = eigen claim director", "R", "director", "~5 min", "20:13", "alert 22:37:32; claim 12:42 = pid 38043 leeft"],
+[109, "director-heartbeat stil: tik 44 / 22:14, 24 min", "R", "**Richard**", "~2 min", "22:14", "supervisor DIRECTOR_STIL 0b4d2cf; 1800 s om 22:44"],
  [80, "merge c03b92c na R7", "R", "director", "—", "21:12", "codex2 NO_GO 21:23 (tegenvoorbeeld); herstel = 81"],
 [88, "review a2dd1e0 (codex2) + merge", "R", "director", "—", "21:38", "codex2 NO_GO 21:46 (P1 exe-identiteit één pad)"],
-[103, "review acfc828 lane-monitor r2 (codex2, 1e stem)", "B", "codex2", "~30 min", "22:17", "pid 35479 sinds 22:26:07; 2e stem nog niet gedispatcht"],
+[103, "acfc828 lane-monitor r2 NO_GO (derde NO_GO op rij)", "R", "director", "—", "22:17", "codex2 NO_GO 22:30:08 (41 KB) + 22:36 dubbel; herstel nodig"],
 [99, "klasse 8: 8 gevallen vandaag (was 6)", "R", "director", "na stop", "21:50", "7e claude4 21:57, 8e claude1 41e1c11 22:03"],
 [89, "klasse 9: reviewsleutels uniek in héle stdout", "R", "director", "na stop", "21:29", "exit 6 gemini1 d526b34; herstel 41e1c11 ronde 2 loopt (104)"],
  [61, "REPAIR_REQUESTS-map: 143 gemeld, nu niet gevonden", "O", "**niemand**", "—", "19:44", "ls state/REPAIR_REQUESTS: bestaat niet"],
- [62, "worktrees 438 (was 436), 2 verweesde claims (was 6)", "O", "director", "~10 min", "18:15", "worktree list 22:28; 4 oude claims opgeruimd"],
+ [62, "worktrees 439 (was 438), 1 verweesde claim", "O", "director", "~10 min", "18:15", "worktree list 22:38; alleen directorclaim 12:42 over"],
  [64, "docs/review-relay.md corrigeren (4 secrets)", "O", "director", "~10 min", "20:12", "directorlijst OPEN"],
  [65, "ARBITRAGE-bestand 136597a gesloten, staat nog", "O", "director", "~5 min", "19:58", "§10 gesloten"],
 ];
@@ -264,7 +268,7 @@ const T6 = [
  [68, "Website", "V7 / V8 / V9", "O", "66, 67", "opdracht 20:15; geen document gemeten"],
  [69, "Task OS", "P0-min ter akkoord (PR #1104)", "O", "Richard", "stack-control #1104 OPEN 17:26Z"],
  [70, "Website+weblog", "Gecombineerd voorstel planning V1", "O", "Richard", "outbox 20:08:58"],
- [74, "Website", "Weblog readonly-scan Terra (ander venster)", "B", "—", "checkpoint 22:28; links.jsonl 181 MB"],
+ [74, "Website", "Weblog readonly-scan Terra (ander venster)", "B", "—", "checkpoint 22:37; links.jsonl 181 MB"],
 ];
 
 const ST = {K:"✅",B:"🔵",O:"⬜",R:"🔴"};
