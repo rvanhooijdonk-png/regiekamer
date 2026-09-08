@@ -95,8 +95,8 @@ body.verberg-klaar tr.klaar{display:none}
   <div class="kopbalk">
     <div class="lamp rood" title="ROOD"></div>
     <h1>Autocoding Peilbord</h1>
-    <div class="tik" id="tik">tik 20:53 · gemeten 20:57–20:58</div>
-    <div class="regel" id="kopregel">Codex1 wacht op jouw login; stap 2 en F1 beide GO met bevindingen; 3a ronde 2 wacht op claude4; cutover ~2 dagen later.</div>
+    <div class="tik" id="tik">tik 21:03 · gemeten 21:07–21:10</div>
+    <div class="regel" id="kopregel">Codex1 werkt weer (CODEX_HOME-fix, geen login nodig); stap 2 gemerged op reparatie/stap-2; 3a ronde 2 loopt bij claude4; cutover ~2 dagen later.</div>
     <div class="eind">akkoord <b>09-12/13 → ~09-15</b> · parser weg <b>09-21 → ~09-23</b></div>
     <div class="knoppen">
       <button class="kn" id="knKlaar" aria-pressed="false">verberg ✅</button>
@@ -111,7 +111,7 @@ body.verberg-klaar tr.klaar{display:none}
   <div class="tabel"><table class="actie">
     <thead><tr><th>Actie Richard</th><th>Waarom</th><th>Als je het niet doet</th></tr></thead>
     <tbody>
-      <tr class="rood"><td class="cmd"><code>codex login</code> in het codex1-profiel, zodat ~/.codex/auth.json bestaat</td><td>lane codex1 faalt exit 3 sinds 19:45; herpoging 20:21:16 faalt weer</td><td>stap 2(c) blijft onbewezen; alle reviews via codex2 alleen (wachtrij 13)</td></tr>
+      <tr><td class="cmd">geen login meer nodig — aanmelding stond in ~/.codex1; director zette CODEX_HOME in bin/codex1 om (21:03)</td><td>codex1 draait sinds 21:08:59 op review 85909b2 (pid 43453)</td><td>n.v.t. — opgelost zonder jou (tik 39, e2dd1f9)</td></tr>
       <tr><td class="cmd">akkoord op de autocoding-keten (nr 33) — nog niet aan de orde</td><td>staat gepland na de cutover, ~09-15</td><td>burn-in B (7 dagen) start niet; stap 8 blijft dicht</td></tr>
     </tbody>
   </table></div>
@@ -153,13 +153,13 @@ body.verberg-klaar tr.klaar{display:none}
 <section id="slot">
   <h2>Slot</h2>
   <div class="tabel"><table class="slot">
-    <thead><tr><th>Δ sinds vorige tik (20:43)</th><th>Volgende tik</th></tr></thead>
+    <thead><tr><th>Δ sinds vorige tik (20:53)</th><th>Volgende tik</th></tr></thead>
     <tbody><tr>
-      <td>Klaar: 42 (codex2 GO_WITH_FINDINGS op 3f0602a, 20:56:55); 8 door transport bevestigd 20:51:58. Nieuw: 73 (director-heartbeat 14 min oud), 74 (weblog-scan Terra, ander venster). Geen lane vrijgekomen: claude4 32 min, claude2 14 min bezig. Streak 62 → 71; controller-heartbeat sinds 20:45:54 niet ververst; origin/main 227a576 → 0ebb4d2 (tik 39). Tweede start van de teldekking-review 20:57:14 ná het GO (dubbeldispatch verwacht). Codex1 nog steeds zonder auth.json.</td>
-      <td class="volgende">21:03 · meet 10, 43, 46, 50, 52, 60, 71, 72, 73</td>
+      <td>Klaar: 10, 12 (stap 2 gemerged op reparatie/stap-2, e2dd1f9 21:07), 11 en 54 (codex1 draait weer: CODEX_HOME wees naar ~/.codex i.p.v. ~/.codex1 — geen login van Richard nodig), 52 (85909b2), 60 (c03b92c), 73 (heartbeat tik 39). Nieuw: 75/76 bewijspoort-fix f6d4967 + codex2 GO_READY_FOR_MERGE_GATE 21:07:53; 77 review 85909b2 bij codex1 (eerste codex1-run, 21:08:59); 78 review c03b92c bij claude1. Gestart: 71 (3a ronde 2) bij claude4 21:09:02. 55 gemini1: oorzaak starttimeout 90 s, van Richard naar director. 9 vervallen (🔴 met reden). Streak 71 → 81; watchdog 30288 s; worktrees 486 → 484. Actie Richard: geen open commando meer; KOP blijft rood door de datumverschuiving (akkoord ~09-15).</td>
+      <td class="volgende">21:13 · meet 15, 43, 50, 53, 71, 72, 77, 78</td>
     </tr></tbody>
   </table></div>
-  <div class="pad">volledig rapport: ~/stack-control/CONTROL/RAPPORTEN/board-2026-09-08-2053.md</div>
+  <div class="pad">volledig rapport: ~/stack-control/CONTROL/RAPPORTEN/board-2026-09-08-2103.md</div>
 </section>
 
 </main>
@@ -176,15 +176,15 @@ const T3 = [
  [6,"2 head","Bouw headbinding + modeldoorgifte","K","claude1","—","09-09","dc14cb9 19:51; 71/71"],
  [7,"2 head","Review dc14cb9 codex2 (V1)","K","codex2","—","09-09","BLOCKED_EVIDENCE 20:20; orderdefect toetspunt 5"],
  [8,"2 head","Review dc14cb9 V2 met mutatieroute","K","codex2","—","09-09","GO_WITH_FINDINGS 20:47; transport exit 0 20:51:58"],
- [9,"2 head","Review dc14cb9 gemini1","R","director","~15 min","09-09 → ~09-09","STARTUP_STALE 20:12; lane opnieuw stale 20:31"],
- [10,"2 head","Samenvoegen in reparatie/stap-2","O","director","~30 min","09-09 → ~09-09","V2 GO binnen; wacht op verse R7-meting"],
- [11,"2 head","codex1-wrapperfix bewijzen (2c)","R","**Richard**","~10 min","09-09 → ~09-09","exit 3 20:21:16; wacht op login"],
- [12,"2 head","R7 + merge stap 2","O","director","~20 min","09-09 → ~09-09","wacht op 10, 11"],
+ [9,"2 head","Review dc14cb9 gemini1","R","director","—","09-09 → ~09-09","vervallen: gemerged op V2; gemini1 timeout 90 s"],
+ [10,"2 head","Samenvoegen in reparatie/stap-2","K","director","—","09-08","reparatie/stap-2 = dc14cb9 (421d065..dc14cb9)"],
+ [11,"2 head","codex1-wrapperfix bewijzen (2c)","K","director","—","09-08","CODEX_HOME → ~/.codex1; lane draait 21:08:59"],
+ [12,"2 head","R7 + merge stap 2","K","director","—","09-08","tik 39 e2dd1f9: verse R7, geen CI-run op branch"],
  [13,"3 record","Ontwerpaudit + herstelcontract §5.1a","K","codex2, director","—","09-09","NO_GO 19:01; f6d9dd3 19:49"],
  [14,"3 record","Bouw 3a lib/order_state.py + 6 proeven","K","claude4","—","09-09","4f1b42d 20:21; transport exit 8 (pad)"],
  [15,"3 record","Bouw 3b import + dispatcher + sweep","O","**niemand**","~2 u","09-09 → ~09-10","wacht op 71"],
  [16,"3 record","Review 3a 4f1b42d (ronde 1)","K","codex2","—","09-09","NO_GO 20:34:28; ronde 2 = 71"],
- [71,"3 record","Bouw 3a ronde 2 (NO_GO-punten)","O","claude4","~1 u","09-09 → ~09-10","order nog niet uit; wacht op 52 (lane)"],
+ [71,"3 record","Bouw 3a ronde 2 (NO_GO-punten)","B","claude4","~1 u","09-09 → ~09-10","pid 45242 sinds 21:09:02; rc 9 20:38 was dubbel"],
  [17,"3 record","Review 3b","O","**niemand**","~30 min","09-09 → ~09-10","wacht op 15"],
  [18,"3 record","R7 + merge stap 3","O","director","~20 min","09-09 → ~09-10","wacht op 16, 17"],
  [19,"4 toelating","Bouw toelatingsautomaat","O","**niemand**","~3 u","09-10 → ~09-11","wacht op 18"],
@@ -213,31 +213,35 @@ const T4 = [
  [40,"PR #103","Effect op main bewezen","K","director","—","09-08","origin/main 0ebb4d2 bevat 14371c5"],
  [41,"PR #103","F1 stringcoercie bouwen","K","claude2","—","09-08","3f0602a 20:16; 43 OK; transport exit 8"],
  [42,"PR #103","F1 review 3f0602a (codex2)","K","codex2","—","09-08","GO_WITH_FINDINGS 20:56:55 (58 KB)"],
- [43,"PR #103","F1 bevindingen + R7 + merge","O","director","~20 min","09-08 → ~09-09","42 klaar; 3f0602a nog niet op origin"],
+ [43,"PR #103","F1 bevindingen + R7 + merge","O","director","~20 min","09-08 → ~09-09","42 klaar; 3f0602a op geen origin-branch"],
  [44,"stack-status","Bouw V3 markerafvanger + pid/exit","K","claude3","—","09-08","5d78498 20:05; 7 OK"],
  [45,"stack-status","Review 5d78498","K","codex2","—","09-08","NO_GO 20:28: 6 errors regel 59"],
  [46,"stack-status","Arbitrage tweede NO_GO (Fable)","B","Fable","tot 22:31","09-08 → ~09-09","ARBITRAGE_REQUESTS …MARKERAFVANGER 20:31"],
  [47,"stack-status","Push + PR + R7 + merge","O","director","~25 min","09-08 → ~09-09","wacht op 46; claude3 geblokkeerd"],
  [48,"PR #104","Exacte-head-revieworder","K","director","—","09-09","gelint, QUEUED codex2 20:45"],
  [49,"PR #104","Rood = ontbrekende review, geen conflict","K","director","—","09-09","gemeten 20:44; mergeState nu UNKNOWN"],
- [50,"PR #104","Review 5984ca6 + R7 + merge","O","codex2, director","~30 min","09-09 → ~09-09","QUEUED; rc 9 20:45:54 was dubbel"],
+ [50,"PR #104","Review 5984ca6 + R7 + merge","O","codex2, director","~30 min","09-09 → ~09-09","QUEUED; codex2 vrij sinds 21:08; reviews 0"],
  [51,"klasse 8","Diagnose valse FAILED_EVIDENCE","K","claude1","—","09-08","transport 20:46:50; 4 waarnemingen; poort exit 8"],
  [72,"klasse 8","Diagnose lezen en verwerken","O","director","~20 min","09-08 → ~09-09","wacht op 51 (klaar); directorlijst OPEN"],
- [52,"klasse 8","Bind receiptroute/worktree-allowlist","B","claude4","~15 min","09-08 → ~09-09","pid 89775 leeft sinds 20:25:51 (32 min)"],
- [53,"klasse 8","Review + merge bindorder","O","**niemand**","~30 min","09-08 → ~09-09","wacht op 52"],
+ [52,"klasse 8","Bind receiptroute/worktree-allowlist","K","claude4","—","09-08","85909b2 20:54; receipt 21:07:14 WACHT OP AKKOORD"],
+ [75,"klasse 8","Bewijspoort-fix valse BLOCKED_EVIDENCE","K","director","—","09-08","f6d4967 20:43:33 (governance-test)"],
+ [76,"klasse 8","Review f6d4967 (codex2)","K","codex2","—","09-08","GO_READY_FOR_MERGE_GATE 21:07:53 (44 KB)"],
+ [77,"klasse 8","Review 85909b2 (codex1)","B","codex1","~15 min","09-08 → ~09-09","pid 43453 sinds 21:08:59; eerste codex1-run"],
+ [53,"klasse 8","Merge 85909b2 + f6d4967 na R7","O","director","~30 min","09-08 → ~09-09","wacht op 77; transport 52 gaf zelf exit 8"],
 ];
 const T5 = [
- [54,"codex1: geen ~/.codex/auth.json","R","**Richard**","~5 min","19:45","worker exit 3 20:21:16"],
- [55,"gemini1 STARTUP_STALE, 2 orders vandaag","R","**Richard**","~15 min","20:12","rc 9 20:12 en 20:31:18; profiel read-only"],
- [56,"supervisor-streak 71 (drempel 5)","R","director","—","~19:45","status.json 20:57"],
- [57,"controller FAIL + 6 STUCK; heartbeat 12 min oud","R","director","—","20:21","laatste heartbeat 20:45:54; stuck 6"],
- [58,"dubbeldispatch: 17 rc-9-artefacten vandaag","R","director","stap 3","20:09","tweede start teldekking 20:57:14 na GO"],
- [59,"watchdog STALE_DISPATCH 29687 s, bron onbekend","R","**niemand**","—","20:13","alert 20:57:18; start ~12:42; niet in ps"],
- [60,"lane-monitor vals-positief repareren","B","claude2","~20 min","20:22","pid 9417 sinds 20:43:08 (14 min)"],
+ [54,"codex1: geen ~/.codex/auth.json","K","director","—","19:45","~/.codex1/auth.json 21:03; CODEX_HOME-fix"],
+ [55,"gemini1 STARTUP_STALE, 2 orders vandaag","R","director","~15 min","20:12","oorzaak: starttimeout 90 s (tik 39); geen order sinds"],
+ [56,"supervisor-streak 81 (drempel 5)","R","director","—","~19:45","status.json 21:07:27"],
+ [57,"controller FAIL + 6 STUCK","R","director","—","20:21","heartbeat 20:57:54; stuck 6 ongewijzigd"],
+ [58,"dubbeldispatch: 17 rc-9-artefacten vandaag","R","director","stap 3","20:09","2e start teldekking 20:57 zonder rc 9; 3a rc 9 20:38"],
+ [59,"watchdog STALE_DISPATCH 30288 s, bron onbekend","R","**niemand**","—","20:13","alert 21:07:19; start ~12:42; niet in ps"],
+ [60,"lane-monitor vals-positief repareren","K","claude2","—","20:22","c03b92c 20:58; receipt exit 0 MERGEABLE 21:00:47"],
+ [78,"review c03b92c (claude1) + merge","B","claude1","~15 min","21:02","pid 84067 sinds 21:02:32; receipt groeit (9,5 KB)"],
  [61,"REPAIR_REQUESTS-map: 143 gemeld, nu niet gevonden","O","**niemand**","—","19:44","ls state/REPAIR_REQUESTS: bestaat niet"],
- [62,"worktrees 486, prunable 60+, 6 verweesde claims","O","director","~10 min","18:15","supervisor-taak sinds 18:15"],
+ [62,"worktrees 484, prunable 60, 6 verweesde claims","O","director","~10 min","18:15","supervisor-bevinding 517a940 21:02"],
  [63,"director-heartbeat noemde gemini1 BEZIG (stale)","K","director","—","20:32","heartbeat 20:44 zonder gemini1 BEZIG"],
- [73,"director-heartbeat 14 min oud (drempel 15)","O","director","—","20:44","18:44Z; logboek wel vers: 0ebb4d2"],
+ [73,"director-heartbeat 14 min oud (drempel 15)","K","director","—","20:44","tik 39 heartbeat 19:08Z; e2dd1f9 21:07"],
  [64,"docs/review-relay.md corrigeren (4 secrets)","O","director","~10 min","20:12","directorlijst OPEN"],
  [65,"ARBITRAGE-bestand 136597a gesloten, staat nog","O","director","~5 min","19:58","§10 gesloten"],
 ];
@@ -247,7 +251,7 @@ const T6 = [
  [68,"Website","V7 / V8 / V9","O","66, 67","opdracht 20:15; geen document gemeten"],
  [69,"Task OS","P0-min ter akkoord (PR #1104)","O","Richard","stack-control #1104 OPEN 17:26Z"],
  [70,"Website+weblog","Gecombineerd voorstel planning V1","O","Richard","outbox 20:08:58"],
- [74,"Website","Weblog readonly-scan Terra (ander venster)","B","—","outbox runner.log 20:57:35; safety-stop"],
+ [74,"Website","Weblog readonly-scan Terra (ander venster)","B","—","checkpoint 21:07:57; links.jsonl 16 MB"],
 ];
 
 const ST = {K:"✅",B:"🔵",O:"⬜",R:"🔴"};
