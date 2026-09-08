@@ -66,6 +66,7 @@ td.bewijs{color:var(--inkt-zacht)}
 td.klaar{white-space:nowrap}
 td.klaar .schuift{color:var(--amber)}
 td.klaar .schuiftveel{color:var(--rood)}
+td.klaar .eerder{color:var(--groen)}
 tr.eind td{font-weight:600}
 tr.eind td.taak::before{content:"= ";color:var(--inkt-stil)}
 tr.groep td{border-top:1px solid var(--rand)}
@@ -93,11 +94,11 @@ body.verberg-klaar tr.klaar{display:none}
 
 <header>
   <div class="kopbalk">
-    <div class="lamp rood" title="ROOD"></div>
+    <div class="lamp groen" title="GROEN"></div>
     <h1>Autocoding Peilbord</h1>
-    <div class="tik" id="tik">tik 21:33 · gemeten 21:37–21:38</div>
-    <div class="regel" id="kopregel">Tik 42: ee08807 twee GO's, d526b34 GO gemini1 (eerste geldige), claude4-herstel a2dd1e0 geleverd; negende defectklasse; cutover ~2 dagen later.</div>
-    <div class="eind">akkoord <b>09-12/13 → ~09-15</b> · parser weg <b>09-21 → ~09-23</b></div>
+    <div class="tik" id="tik">tik 21:33 · gemeten 21:37–21:38 · herschat 21:45</div>
+    <div class="regel" id="kopregel">Stap 1–3a vandaag af (plan 09-09); ee08807 twee GO's; d526b34 wacht op codex1; klaar-kolom herschat vanaf nu: cutover ~09-11, akkoord ~09-11.</div>
+    <div class="eind">akkoord <b>09-12/13 → ~09-11</b> · parser weg <b>09-21 → ~09-20</b></div>
     <div class="knoppen">
       <button class="kn" id="knKlaar" aria-pressed="false">verberg ✅</button>
     </div>
@@ -112,7 +113,7 @@ body.verberg-klaar tr.klaar{display:none}
     <thead><tr><th>Actie Richard</th><th>Waarom</th><th>Als je het niet doet</th></tr></thead>
     <tbody>
       <tr><td class="cmd">geen login meer nodig — aanmelding stond in ~/.codex1; director zette CODEX_HOME in bin/codex1 om (21:03)</td><td>codex1 sinds 21:36:20 op tweede stem d526b34 (pid 95646); GO op 85909b2 staat</td><td>n.v.t. — opgelost zonder jou (tik 39, e2dd1f9)</td></tr>
-      <tr><td class="cmd">akkoord op de autocoding-keten (nr 33) — nog niet aan de orde</td><td>staat gepland na de cutover, ~09-15</td><td>burn-in B (7 dagen) start niet; stap 8 blijft dicht</td></tr>
+      <tr><td class="cmd">akkoord op de autocoding-keten (nr 32) — nog niet aan de orde</td><td>staat gepland na de cutover, ~09-11</td><td>burn-in B (7 dagen) start niet; stap 8 blijft dicht</td></tr>
     </tbody>
   </table></div>
 </section>
@@ -120,7 +121,7 @@ body.verberg-klaar tr.klaar{display:none}
 <section id="b3">
   <h2><span class="n">3</span> Taken tot autocoding klaar <span class="sub">bouw / review / merge / klok elk een rij · nummers blijven vast</span></h2>
   <div class="tabel"><table id="t3">
-    <thead><tr><th>Nr</th><th>Stap</th><th>Taak</th><th>St</th><th>Wie</th><th>Tijd</th><th>Klaar plan → nu</th><th>Bewijs / blokkade</th></tr></thead>
+    <thead><tr><th>Nr</th><th>Stap</th><th>Taak</th><th>St</th><th>Wie</th><th>Tijd</th><th>Klaar plan → werkelijk / ~verwacht</th><th>Bewijs / blokkade</th></tr></thead>
     <tbody></tbody>
   </table></div>
   <div class="legenda"><span><b>✅</b> klaar</span><span><b>🔵</b> loopt</span><span><b>⬜</b> open</span><span><b>🔴</b> geblokkeerd of geen eigenaar</span><span><b>~</b> eigen schatting</span><span><b>vet</b> Richard of niemand</span></div>
@@ -129,7 +130,7 @@ body.verberg-klaar tr.klaar{display:none}
 <section id="b4">
   <h2><span class="n">4</span> Parallel <span class="sub">sporen die vóór een stap dicht moeten</span></h2>
   <div class="tabel"><table id="t4">
-    <thead><tr><th>Nr</th><th>Spoor</th><th>Taak</th><th>St</th><th>Wie</th><th>Tijd</th><th>Klaar plan → nu</th><th>Bewijs / blokkade</th></tr></thead>
+    <thead><tr><th>Nr</th><th>Spoor</th><th>Taak</th><th>St</th><th>Wie</th><th>Tijd</th><th>Klaar plan → werkelijk / ~verwacht</th><th>Bewijs / blokkade</th></tr></thead>
     <tbody></tbody>
   </table></div>
 </section>
@@ -153,9 +154,9 @@ body.verberg-klaar tr.klaar{display:none}
 <section id="slot">
   <h2>Slot</h2>
   <div class="tabel"><table class="slot">
-    <thead><tr><th>Δ sinds vorige tik (21:23)</th><th>Volgende tik</th></tr></thead>
+    <thead><tr><th>Δ sinds vorige tik (21:23) + correctie 21:45</th><th>Volgende tik</th></tr></thead>
     <tbody><tr>
-      <td>Klaar: 79 (gemini1 GO_WITH_FINDINGS op d526b34, 21:29:02 — eerste geldige gemini-review vanavond, met hanggrens 1800 s; transport gaf exit 6 = nieuwe klasse 9), 81 (claude4 NO_GO-herstel a2dd1e0, 21:38), 85 (ee08807 twee GO_READY_FOR_MERGE_GATE: codex2 21:36, gemini1 21:37). Gestart: 82 codex1 tweede stem d526b34 (21:36:20). Nieuw: 86 merge d526b34, 87 merge ee08807, 88 review a2dd1e0, 89 klasse 9 (validate_exact_review_body, bin/dispatch-actor:1505-1526). 55 🔵 → ⬜ (grond bewezen, fix na reparatiestop). Alarmen: controller FAIL → STUCK, supervisor-streak 100 → 4 (herstart op nieuwe issue-set), worktrees 430 → 428, watchdog 32093 s. origin/main 8c0eccb (supervisor-samenvatting 21:35). Vijfde valse rc 8: codex1 85909b2 transport 21:34.</td>
+      <td>Correctie 21:45 (Richard): de kolom "Klaar" toonde bij afgeronde taken nog de plandatum (09-09) terwijl ze vandaag klaar zijn. Nu: plan → werkelijke tijd bij ✅, plan → ~verwacht vanaf 21:45 bij open taken; groen = eerder dan plan. Stap 1, 2 en 3a zijn een dag vóór plan; herschatting: stap 3 ~09-09 02:30, stap 4–5 ~09-09/10, burn-in A ~09-11, cutover en akkoord ~09-11 (plan 09-12/13), parser weg ~09-20 (plan 09-21). Lamp naar 🟢: geen Richard-actie, geen datum die later schuift. Aanname: lanes draaien vannacht door zoals vanavond. — Klaar: 79 (gemini1 GO_WITH_FINDINGS op d526b34, 21:29:02 — eerste geldige gemini-review vanavond, met hanggrens 1800 s; transport gaf exit 6 = nieuwe klasse 9), 81 (claude4 NO_GO-herstel a2dd1e0, 21:38), 85 (ee08807 twee GO_READY_FOR_MERGE_GATE: codex2 21:36, gemini1 21:37). Gestart: 82 codex1 tweede stem d526b34 (21:36:20). Nieuw: 86 merge d526b34, 87 merge ee08807, 88 review a2dd1e0, 89 klasse 9 (validate_exact_review_body, bin/dispatch-actor:1505-1526). 55 🔵 → ⬜ (grond bewezen, fix na reparatiestop). Alarmen: controller FAIL → STUCK, supervisor-streak 100 → 4 (herstart op nieuwe issue-set), worktrees 430 → 428, watchdog 32093 s. origin/main 8c0eccb (supervisor-samenvatting 21:35). Vijfde valse rc 8: codex1 85909b2 transport 21:34.</td>
       <td class="volgende">21:43 · meet 53, 82, 83, 86, 87, 88</td>
     </tr></tbody>
   </table></div>
@@ -168,113 +169,113 @@ body.verberg-klaar tr.klaar{display:none}
 // Status: K=✅ klaar, B=🔵 loopt, O=⬜ open, R=🔴 geblokkeerd / geen eigenaar
 // Wie: "**Richard**" of "**niemand**" wordt vet gezet.
 const T3 = [
- [1,"0 stop","Reparatiestop op bin/ en lib/","K","director","—","09-08","supervisor 20:21 schoon; a4ab87f"],
- [2,"1 spook","Bouw close-ghost-queue","K","claude3","—","09-09","582a4db 19:15"],
- [3,"1 spook","Review stap 1 (codex2 + gemini1)","K","codex2, gemini1","—","09-09","codex2 GO_WF 19:25; gemini V3 19:09"],
- [4,"1 spook","R7 + merge PR #105","K","director","—","09-09","3fdfeaa 19:29; 20 tests OK"],
- [5,"1 spook","Restpunt 5f4ac0b","O","**niemand**","~20 min","09-09 → ~09-09","niet in directorlijst"],
- [6,"2 head","Bouw headbinding + modeldoorgifte","K","claude1","—","09-09","dc14cb9 19:51; 71/71"],
- [7,"2 head","Review dc14cb9 codex2 (V1)","K","codex2","—","09-09","BLOCKED_EVIDENCE 20:20; orderdefect toetspunt 5"],
- [8,"2 head","Review dc14cb9 V2 met mutatieroute","K","codex2","—","09-09","GO_WITH_FINDINGS 20:47; transport exit 0 20:51:58"],
- [9,"2 head","Review dc14cb9 gemini1","R","director","—","09-09 → ~09-09","vervallen: gemerged op V2; gemini1 timeout 90 s"],
- [10,"2 head","Samenvoegen in reparatie/stap-2","K","director","—","09-08","reparatie/stap-2 = dc14cb9 (421d065..dc14cb9)"],
- [11,"2 head","codex1-wrapperfix bewijzen (2c)","K","director","—","09-08","CODEX_HOME → ~/.codex1; lane draait 21:08:59"],
- [12,"2 head","R7 + merge stap 2","K","director","—","09-08","tik 39 e2dd1f9: verse R7, geen CI-run op branch"],
- [13,"3 record","Ontwerpaudit + herstelcontract §5.1a","K","codex2, director","—","09-09","NO_GO 19:01; f6d9dd3 19:49"],
- [14,"3 record","Bouw 3a lib/order_state.py + 6 proeven","K","claude4","—","09-09","4f1b42d 20:21; transport exit 8 (pad)"],
- [15,"3 record","Bouw 3b import + dispatcher + sweep","O","**niemand**","~2 u","09-09 → ~09-10","wacht op 82 + merge d526b34; claude4 vrij 21:38"],
- [16,"3 record","Review 3a 4f1b42d (ronde 1)","K","codex2","—","09-09","NO_GO 20:34:28; ronde 2 = 71"],
- [71,"3 record","Bouw 3a ronde 2 (NO_GO-punten)","K","claude4","—","09-09","d526b34; receipt 21:16:53; transport exit 8"],
- [79,"3 record","Review 3a ronde 2 d526b34 (gemini1)","K","gemini1","—","09-09","GO_WITH_FINDINGS 21:29:02; transport exit 6 = kl. 9"],
-[82,"3 record","Tweede stem d526b34 (codex1)","B","codex1","~15 min","09-09 → ~09-09","pid 95646 sinds 21:36:20; stderr groeit"],
-[86,"3 record","R7 + merge d526b34 na tweede GO","O","director","~15 min","09-09 → ~09-09","directortaak OPEN (tik 42); wacht op 82"],
- [17,"3 record","Review 3b","O","**niemand**","~30 min","09-09 → ~09-10","wacht op 15"],
- [18,"3 record","R7 + merge stap 3","O","director","~20 min","09-09 → ~09-10","wacht op 16, 17"],
- [19,"4 toelating","Bouw toelatingsautomaat","O","**niemand**","~3 u","09-10 → ~09-11","wacht op 18"],
- [20,"4 toelating","Review stap 4","O","**niemand**","~30 min","09-10 → ~09-11","wacht op 19"],
- [21,"4 toelating","R7 + merge stap 4","O","director","~20 min","09-10 → ~09-11","wacht op 20"],
- [22,"5 ordercheck","Bouw order-check + review-ordergenerator","O","**niemand**","~3 u","09-10 → ~09-11","wacht op 21"],
- [23,"5 ordercheck","Review stap 5","O","**niemand**","~30 min","09-10 → ~09-12","wacht op 22"],
- [24,"5 ordercheck","R7 + merge stap 5","O","director","~20 min","09-10 → ~09-12","wacht op 23"],
- [25,"burn-in A","24 u klok: 0 verschillen record ↔ orderregel","O","klok","24 u","09-11 → ~09-13","wacht op 24"],
- [26,"6 daemons","Bouw monitor/responder/supervisor op record","O","**niemand**","~2 u","09-11 → ~09-13","mag tijdens 25; wacht op 24"],
- [27,"6 daemons","Review stap 6","O","**niemand**","~30 min","09-11 → ~09-13","wacht op 26"],
- [28,"6 daemons","R7 + merge stap 6","O","director","~20 min","09-11 → ~09-13","wacht op 27"],
- [29,"7 cutover","Import-smoke + droge cyclus","O","director","~1 u","09-12 → ~09-14","wacht op 25, 28"],
- [30,"7 cutover","Herpin 4 daemons op één head","O","director","~30 min","09-12 → ~09-14","wacht op 29"],
- [31,"7 cutover","Eerste gesloten cyclus bewezen","O","supervisor","~1 u","09-12 → ~09-14","wacht op 30"],
- [32,"akkoord","Akkoord op de nieuwe keten","O","**Richard**","~15 min","09-12/13 → ~09-15","wacht op 31"],
- [33,"burn-in B","7 d klok: legacy_fallback_hits = 0","O","klok","7 d","09-19/20 → ~09-22","wacht op 32"],
- [34,"8 parser","Vlag legacy-parser uit","O","director","~30 min","09-20 → ~09-22","wacht op 33"],
- [35,"8 parser","24 u later code weg + negatieve controle","O","**niemand**","~1 u","09-21 → ~09-23","wacht op 34"],
- [36,"8 parser","autocoding klaar: stap 8 EFFECT-BEWEZEN","O","supervisor","—","09-21 → ~09-23","wacht op 35"],
+ [1, "0 stop", "Reparatiestop op bin/ en lib/", "K", "director", "—", "09-08 → 09-08 20:21", "supervisor 20:21 schoon; a4ab87f"],
+ [2, "1 spook", "Bouw close-ghost-queue", "K", "claude3", "—", "09-09 → 09-08 19:15", "582a4db 19:15"],
+ [3, "1 spook", "Review stap 1 (codex2 + gemini1)", "K", "codex2, gemini1", "—", "09-09 → 09-08 19:25", "codex2 GO_WF 19:25; gemini V3 19:09"],
+ [4, "1 spook", "R7 + merge PR #105", "K", "director", "—", "09-09 → 09-08 19:29", "3fdfeaa 19:29; 20 tests OK"],
+ [5, "1 spook", "Restpunt 5f4ac0b", "O", "**niemand**", "~20 min", "09-09 → ~09-09", "niet in directorlijst"],
+ [6, "2 head", "Bouw headbinding + modeldoorgifte", "K", "claude1", "—", "09-09 → 09-08 19:51", "dc14cb9 19:51; 71/71"],
+ [7, "2 head", "Review dc14cb9 codex2 (V1)", "K", "codex2", "—", "09-09 → 09-08 20:20", "BLOCKED_EVIDENCE 20:20; orderdefect toetspunt 5"],
+ [8, "2 head", "Review dc14cb9 V2 met mutatieroute", "K", "codex2", "—", "09-09 → 09-08 20:51", "GO_WITH_FINDINGS 20:47; transport exit 0 20:51:58"],
+ [9, "2 head", "Review dc14cb9 gemini1", "R", "director", "—", "09-09 → vervallen 09-08", "vervallen: gemerged op V2; gemini1 timeout 90 s"],
+ [10, "2 head", "Samenvoegen in reparatie/stap-2", "K", "director", "—", "09-08 → 09-08 20:52", "reparatie/stap-2 = dc14cb9 (421d065..dc14cb9)"],
+ [11, "2 head", "codex1-wrapperfix bewijzen (2c)", "K", "director", "—", "09-08 → 09-08 21:08", "CODEX_HOME → ~/.codex1; lane draait 21:08:59"],
+ [12, "2 head", "R7 + merge stap 2", "K", "director", "—", "09-08 → 09-08 21:07", "tik 39 e2dd1f9: verse R7, geen CI-run op branch"],
+ [13, "3 record", "Ontwerpaudit + herstelcontract §5.1a", "K", "codex2, director", "—", "09-09 → 09-08 19:49", "NO_GO 19:01; f6d9dd3 19:49"],
+ [14, "3 record", "Bouw 3a lib/order_state.py + 6 proeven", "K", "claude4", "—", "09-09 → 09-08 20:21", "4f1b42d 20:21; transport exit 8 (pad)"],
+ [15, "3 record", "Bouw 3b import + dispatcher + sweep", "O", "**niemand**", "~2 u", "09-09 → ~09-09 01:00", "wacht op 82 + merge d526b34; claude4 vrij 21:38"],
+ [16, "3 record", "Review 3a 4f1b42d (ronde 1)", "K", "codex2", "—", "09-09 → 09-08 20:34", "NO_GO 20:34:28; ronde 2 = 71"],
+ [71, "3 record", "Bouw 3a ronde 2 (NO_GO-punten)", "K", "claude4", "—", "09-09 → 09-08 21:16", "d526b34; receipt 21:16:53; transport exit 8"],
+ [79, "3 record", "Review 3a ronde 2 d526b34 (gemini1)", "K", "gemini1", "—", "09-09 → 09-08 21:29", "GO_WITH_FINDINGS 21:29:02; transport exit 6 = kl. 9"],
+[82, "3 record", "Tweede stem d526b34 (codex1)", "B", "codex1", "~15 min", "09-09 → ~09-08 22:00", "pid 95646 sinds 21:36:20; stderr groeit"],
+[86, "3 record", "R7 + merge d526b34 na tweede GO", "O", "director", "~15 min", "09-09 → ~09-08 22:15", "directortaak OPEN (tik 42); wacht op 82"],
+ [17, "3 record", "Review 3b", "O", "**niemand**", "~30 min", "09-09 → ~09-09 02:00", "wacht op 15"],
+ [18, "3 record", "R7 + merge stap 3", "O", "director", "~20 min", "09-09 → ~09-09 02:30", "wacht op 16, 17"],
+ [19, "4 toelating", "Bouw toelatingsautomaat", "O", "**niemand**", "~3 u", "09-10 → ~09-09", "wacht op 18"],
+ [20, "4 toelating", "Review stap 4", "O", "**niemand**", "~30 min", "09-10 → ~09-09", "wacht op 19"],
+ [21, "4 toelating", "R7 + merge stap 4", "O", "director", "~20 min", "09-10 → ~09-09", "wacht op 20"],
+ [22, "5 ordercheck", "Bouw order-check + review-ordergenerator", "O", "**niemand**", "~3 u", "09-10 → ~09-09", "wacht op 21"],
+ [23, "5 ordercheck", "Review stap 5", "O", "**niemand**", "~30 min", "09-10 → ~09-10", "wacht op 22"],
+ [24, "5 ordercheck", "R7 + merge stap 5", "O", "director", "~20 min", "09-10 → ~09-10", "wacht op 23"],
+ [25, "burn-in A", "24 u klok: 0 verschillen record ↔ orderregel", "O", "klok", "24 u", "09-11 → ~09-11", "wacht op 24"],
+ [26, "6 daemons", "Bouw monitor/responder/supervisor op record", "O", "**niemand**", "~2 u", "09-11 → ~09-10", "mag tijdens 25; wacht op 24"],
+ [27, "6 daemons", "Review stap 6", "O", "**niemand**", "~30 min", "09-11 → ~09-10", "wacht op 26"],
+ [28, "6 daemons", "R7 + merge stap 6", "O", "director", "~20 min", "09-11 → ~09-10", "wacht op 27"],
+ [29, "7 cutover", "Import-smoke + droge cyclus", "O", "director", "~1 u", "09-12 → ~09-11", "wacht op 25, 28"],
+ [30, "7 cutover", "Herpin 4 daemons op één head", "O", "director", "~30 min", "09-12 → ~09-11", "wacht op 29"],
+ [31, "7 cutover", "Eerste gesloten cyclus bewezen", "O", "supervisor", "~1 u", "09-12 → ~09-11", "wacht op 30"],
+ [32, "akkoord", "Akkoord op de nieuwe keten", "O", "**Richard**", "~15 min", "09-12/13 → ~09-11", "wacht op 31"],
+ [33, "burn-in B", "7 d klok: legacy_fallback_hits = 0", "O", "klok", "7 d", "09-19/20 → ~09-18", "wacht op 32"],
+ [34, "8 parser", "Vlag legacy-parser uit", "O", "director", "~30 min", "09-20 → ~09-19", "wacht op 33"],
+ [35, "8 parser", "24 u later code weg + negatieve controle", "O", "**niemand**", "~1 u", "09-21 → ~09-20", "wacht op 34"],
+ [36, "8 parser", "autocoding klaar: stap 8 EFFECT-BEWEZEN", "O", "supervisor", "—", "09-21 → ~09-20", "wacht op 35"],
 ];
 const T4 = [
- [37,"PR #103","Bouw booleanuitsluiting tellers","K","claude2","—","09-08","f4276d7 19:53; 40 OK"],
- [38,"PR #103","Review f4276d7","K","codex2","—","09-08","GO_WITH_FINDINGS 20:01 (F1)"],
- [39,"PR #103","Relay + R7 + merge","K","director","—","09-08","14371c5 in origin/main; readiness success"],
- [40,"PR #103","Effect op main bewezen","K","director","—","09-08","origin/main 0ebb4d2 bevat 14371c5"],
- [41,"PR #103","F1 stringcoercie bouwen","K","claude2","—","09-08","3f0602a 20:16; 43 OK; transport exit 8"],
- [42,"PR #103","F1 review 3f0602a (codex2)","K","codex2","—","09-08","GO_WITH_FINDINGS 20:56:55 (58 KB)"],
- [43,"PR #103","F1 bevindingen + R7 + merge","K","director","—","09-08","f604731 21:11:57 op origin/main"],
- [44,"stack-status","Bouw V3 markerafvanger + pid/exit","K","claude3","—","09-08","5d78498 20:05; 7 OK"],
- [45,"stack-status","Review 5d78498","K","codex2","—","09-08","NO_GO 20:28: 6 errors regel 59"],
- [46,"stack-status","Arbitrage tweede NO_GO (Fable)","B","Fable","tot 22:31","09-08 → ~09-09","ARBITRAGE_REQUESTS …MARKERAFVANGER 20:31"],
- [47,"stack-status","Push + PR + R7 + merge","O","director","~25 min","09-08 → ~09-09","wacht op 46; claude3 geblokkeerd"],
- [48,"PR #104","Exacte-head-revieworder","K","director","—","09-09","gelint, QUEUED codex2 20:45"],
- [49,"PR #104","Rood = ontbrekende review, geen conflict","K","director","—","09-09","gemeten 20:44; mergeState nu UNKNOWN"],
- [50,"PR #104","Review 5984ca6 + R7 + merge","O","codex2, director","~40 min","09-09 → ~09-09","director tik 41: eerst rebase op 3f0602a; UNKNOWN"],
- [51,"klasse 8","Diagnose valse FAILED_EVIDENCE","K","claude1","—","09-08","transport 20:46:50; 4 waarnemingen; poort exit 8"],
- [72,"klasse 8","Diagnose lezen en verwerken","O","director","~20 min","09-08 → ~09-09","niet meer in directorlijst (tik 40); geen bewijs"],
- [52,"klasse 8","Bind receiptroute/worktree-allowlist","K","claude4","—","09-08","85909b2 20:54; receipt 21:07:14 WACHT OP AKKOORD"],
- [75,"klasse 8","Bewijspoort-fix valse BLOCKED_EVIDENCE","K","director","—","09-08","f6d4967; gemerged e1d5483 21:17:18 na R7"],
- [76,"klasse 8","Review f6d4967 (codex2)","K","codex2","—","09-08","GO_READY_FOR_MERGE_GATE 21:07:53 (44 KB)"],
- [77,"klasse 8","Review 85909b2 (codex1)","K","codex1","—","09-08","GO 21:23; transport exit 8 21:34 = 5e valse rc 8"],
- [53,"klasse 8","Merge 85909b2 na R7","O","director","~30 min","09-08 → ~09-09","director wil tweede stem (R4); basis 14371c5 achter"],
-[83,"klasse 8","Versterking bewijspoortproef (claude2)","B","claude2","~15 min","09-08 → ~09-09","pid 29570 sinds 21:21:50 (16 min); geen receipt"],
-[84,"supervisor","Negatieve teller ≠ gezonde queue (claude1)","K","claude1","—","09-08","ee08807 DONE_BUILD_AWAITING_REVIEW 21:27:45"],
-[85,"supervisor","Review ee08807 (codex2 + gemini1)","K","codex2, gemini1","—","09-08","beide GO_READY_FOR_MERGE_GATE 21:36/21:37"],
-[87,"supervisor","R7 + merge ee08807","O","director","~15 min","09-08 → ~09-09","twee GO's binnen; directortaak OPEN (tik 42)"],
+ [37, "PR #103", "Bouw booleanuitsluiting tellers", "K", "claude2", "—", "09-08 → 09-08 19:53", "f4276d7 19:53; 40 OK"],
+ [38, "PR #103", "Review f4276d7", "K", "codex2", "—", "09-08 → 09-08 20:01", "GO_WITH_FINDINGS 20:01 (F1)"],
+ [39, "PR #103", "Relay + R7 + merge", "K", "director", "—", "09-08 → 09-08 20:10", "14371c5 in origin/main; readiness success"],
+ [40, "PR #103", "Effect op main bewezen", "K", "director", "—", "09-08 → 09-08 20:12", "origin/main 0ebb4d2 bevat 14371c5"],
+ [41, "PR #103", "F1 stringcoercie bouwen", "K", "claude2", "—", "09-08 → 09-08 20:16", "3f0602a 20:16; 43 OK; transport exit 8"],
+ [42, "PR #103", "F1 review 3f0602a (codex2)", "K", "codex2", "—", "09-08 → 09-08 20:56", "GO_WITH_FINDINGS 20:56:55 (58 KB)"],
+ [43, "PR #103", "F1 bevindingen + R7 + merge", "K", "director", "—", "09-08 → 09-08 21:11", "f604731 21:11:57 op origin/main"],
+ [44, "stack-status", "Bouw V3 markerafvanger + pid/exit", "K", "claude3", "—", "09-08 → 09-08 20:05", "5d78498 20:05; 7 OK"],
+ [45, "stack-status", "Review 5d78498", "K", "codex2", "—", "09-08 → 09-08 20:28", "NO_GO 20:28: 6 errors regel 59"],
+ [46, "stack-status", "Arbitrage tweede NO_GO (Fable)", "B", "Fable", "tot 22:31", "09-08 → ~09-09 00:31", "ARBITRAGE_REQUESTS …MARKERAFVANGER 20:31"],
+ [47, "stack-status", "Push + PR + R7 + merge", "O", "director", "~25 min", "09-08 → ~09-09", "wacht op 46; claude3 geblokkeerd"],
+ [48, "PR #104", "Exacte-head-revieworder", "K", "director", "—", "09-09 → 09-08 20:45", "gelint, QUEUED codex2 20:45"],
+ [49, "PR #104", "Rood = ontbrekende review, geen conflict", "K", "director", "—", "09-09 → 09-08 20:44", "gemeten 20:44; mergeState nu UNKNOWN"],
+ [50, "PR #104", "Review 5984ca6 + R7 + merge", "O", "codex2, director", "~40 min", "09-09 → ~09-09", "director tik 41: eerst rebase op 3f0602a; UNKNOWN"],
+ [51, "klasse 8", "Diagnose valse FAILED_EVIDENCE", "K", "claude1", "—", "09-08 → 09-08 20:46", "transport 20:46:50; 4 waarnemingen; poort exit 8"],
+ [72, "klasse 8", "Diagnose lezen en verwerken", "O", "director", "~20 min", "09-08 → ~09-09", "niet meer in directorlijst (tik 40); geen bewijs"],
+ [52, "klasse 8", "Bind receiptroute/worktree-allowlist", "K", "claude4", "—", "09-08 → 09-08 21:07", "85909b2 20:54; receipt 21:07:14 WACHT OP AKKOORD"],
+ [75, "klasse 8", "Bewijspoort-fix valse BLOCKED_EVIDENCE", "K", "director", "—", "09-08 → 09-08 21:17", "f6d4967; gemerged e1d5483 21:17:18 na R7"],
+ [76, "klasse 8", "Review f6d4967 (codex2)", "K", "codex2", "—", "09-08 → 09-08 21:07", "GO_READY_FOR_MERGE_GATE 21:07:53 (44 KB)"],
+ [77, "klasse 8", "Review 85909b2 (codex1)", "K", "codex1", "—", "09-08 → 09-08 21:23", "GO 21:23; transport exit 8 21:34 = 5e valse rc 8"],
+ [53, "klasse 8", "Merge 85909b2 na R7", "O", "director", "~30 min", "09-08 → ~09-08 22:30", "director wil tweede stem (R4); basis 14371c5 achter"],
+[83, "klasse 8", "Versterking bewijspoortproef (claude2)", "B", "claude2", "~15 min", "09-08 → ~09-08 22:00", "pid 29570 sinds 21:21:50 (16 min); geen receipt"],
+[84, "supervisor", "Negatieve teller ≠ gezonde queue (claude1)", "K", "claude1", "—", "09-08 → 09-08 21:27", "ee08807 DONE_BUILD_AWAITING_REVIEW 21:27:45"],
+[85, "supervisor", "Review ee08807 (codex2 + gemini1)", "K", "codex2, gemini1", "—", "09-08 → 09-08 21:37", "beide GO_READY_FOR_MERGE_GATE 21:36/21:37"],
+[87, "supervisor", "R7 + merge ee08807", "O", "director", "~15 min", "09-08 → ~09-08 22:15", "twee GO's binnen; directortaak OPEN (tik 42)"],
 ];
 const T5 = [
- [54,"codex1: geen ~/.codex/auth.json","K","director","—","19:45","~/.codex1/auth.json 21:03; CODEX_HOME-fix"],
- [55,"gemini1 hanggrens 180 s (was STARTUP_STALE)","O","director","~15 min","20:12","werkt met 1800 s (run 281 s); default-fix na stop"],
- [56,"supervisor-streak 4 (was 100), status DETECTED","R","director","—","~19:45","herstart: issues nu RECEIPT_NONTERMINAL; 21:37:25"],
- [57,"controller STUCK (was FAIL) + 7 stuck-ids","R","director","—","20:21","heartbeat 21:34:00; ORDERS_STUCK_NONTERMINAL; failed 0"],
- [58,"dubbeldispatch: 23 rc-9-artefacten vandaag","R","director","stap 3","20:09","geen nieuwe sinds 21:27; claude4-stub overschreven"],
- [59,"watchdog STALE_DISPATCH 32093 s, bron onbekend","R","**niemand**","—","20:13","alert 21:37:24; start ~12:42; niet in ps"],
- [60,"lane-monitor vals-positief repareren","K","claude2","—","20:22","c03b92c 20:58; receipt exit 0 MERGEABLE 21:00:47"],
- [78,"review c03b92c (claude1)","K","claude1","—","21:02","GO_WITH_FINDINGS; transport exit 0 21:12:04"],
- [80,"merge c03b92c na R7","R","director","—","21:12","codex2 NO_GO 21:23 (tegenvoorbeeld); herstel = 81"],
-[81,"NO_GO-herstel lane-monitor (claude4)","K","claude4","—","21:25","a2dd1e0 DONE_BUILD_AWAITING_REVIEW 21:38 (11 KB)"],
-[88,"review a2dd1e0 (codex2 + gemini1) + merge","O","director","~30 min","21:38","geen order; codex2 en gemini1 vrij sinds 21:37"],
-[89,"klasse 9: reviewsleutels uniek in héle stdout","R","director","na stop","21:29","gemini1 d526b34 transport exit 6; :1505-1526"],
- [61,"REPAIR_REQUESTS-map: 143 gemeld, nu niet gevonden","O","**niemand**","—","19:44","ls state/REPAIR_REQUESTS: bestaat niet"],
- [62,"worktrees 428 (was 485), 6 verweesde claims","O","director","~10 min","18:15","git worktree list 21:37; claims open"],
- [63,"director-heartbeat noemde gemini1 BEZIG (stale)","K","director","—","20:32","heartbeat 20:44 zonder gemini1 BEZIG"],
- [73,"director-heartbeat 14 min oud (drempel 15)","K","director","—","20:44","tik 39 heartbeat 19:08Z; e2dd1f9 21:07"],
- [64,"docs/review-relay.md corrigeren (4 secrets)","O","director","~10 min","20:12","directorlijst OPEN"],
- [65,"ARBITRAGE-bestand 136597a gesloten, staat nog","O","director","~5 min","19:58","§10 gesloten"],
+ [54, "codex1: geen ~/.codex/auth.json", "K", "director", "—", "19:45", "~/.codex1/auth.json 21:03; CODEX_HOME-fix"],
+ [55, "gemini1 hanggrens 180 s (was STARTUP_STALE)", "O", "director", "~15 min", "20:12", "werkt met 1800 s (run 281 s); default-fix na stop"],
+ [56, "supervisor-streak 4 (was 100), status DETECTED", "R", "director", "—", "~19:45", "herstart: issues nu RECEIPT_NONTERMINAL; 21:37:25"],
+ [57, "controller STUCK (was FAIL) + 7 stuck-ids", "R", "director", "—", "20:21", "heartbeat 21:34:00; ORDERS_STUCK_NONTERMINAL; failed 0"],
+ [58, "dubbeldispatch: 23 rc-9-artefacten vandaag", "R", "director", "stap 3", "20:09", "geen nieuwe sinds 21:27; claude4-stub overschreven"],
+ [59, "watchdog STALE_DISPATCH 32093 s, bron onbekend", "R", "**niemand**", "—", "20:13", "alert 21:37:24; start ~12:42; niet in ps"],
+ [60, "lane-monitor vals-positief repareren", "K", "claude2", "—", "20:22", "c03b92c 20:58; receipt exit 0 MERGEABLE 21:00:47"],
+ [78, "review c03b92c (claude1)", "K", "claude1", "—", "21:02", "GO_WITH_FINDINGS; transport exit 0 21:12:04"],
+ [80, "merge c03b92c na R7", "R", "director", "—", "21:12", "codex2 NO_GO 21:23 (tegenvoorbeeld); herstel = 81"],
+[81, "NO_GO-herstel lane-monitor (claude4)", "K", "claude4", "—", "21:25", "a2dd1e0 DONE_BUILD_AWAITING_REVIEW 21:38 (11 KB)"],
+[88, "review a2dd1e0 (codex2 + gemini1) + merge", "O", "director", "~30 min", "21:38", "geen order; codex2 en gemini1 vrij sinds 21:37"],
+[89, "klasse 9: reviewsleutels uniek in héle stdout", "R", "director", "na stop", "21:29", "gemini1 d526b34 transport exit 6; :1505-1526"],
+ [61, "REPAIR_REQUESTS-map: 143 gemeld, nu niet gevonden", "O", "**niemand**", "—", "19:44", "ls state/REPAIR_REQUESTS: bestaat niet"],
+ [62, "worktrees 428 (was 485), 6 verweesde claims", "O", "director", "~10 min", "18:15", "git worktree list 21:37; claims open"],
+ [63, "director-heartbeat noemde gemini1 BEZIG (stale)", "K", "director", "—", "20:32", "heartbeat 20:44 zonder gemini1 BEZIG"],
+ [73, "director-heartbeat 14 min oud (drempel 15)", "K", "director", "—", "20:44", "tik 39 heartbeat 19:08Z; e2dd1f9 21:07"],
+ [64, "docs/review-relay.md corrigeren (4 secrets)", "O", "director", "~10 min", "20:12", "directorlijst OPEN"],
+ [65, "ARBITRAGE-bestand 136597a gesloten, staat nog", "O", "director", "~5 min", "19:58", "§10 gesloten"],
 ];
 const T6 = [
- [66,"Website","Herstelorder weblog-audit V2 (PR #1102)","O","Richard: D1–D13","stack-control #1102 OPEN 17:00Z"],
- [67,"Website","16-onderdelen voorstel (PR #1101)","O","Richard","stack-control #1101 OPEN"],
- [68,"Website","V7 / V8 / V9","O","66, 67","opdracht 20:15; geen document gemeten"],
- [69,"Task OS","P0-min ter akkoord (PR #1104)","O","Richard","stack-control #1104 OPEN 17:26Z"],
- [70,"Website+weblog","Gecombineerd voorstel planning V1","O","Richard","outbox 20:08:58"],
- [74,"Website","Weblog readonly-scan Terra (ander venster)","B","—","checkpoint 21:07:57; links.jsonl 16 MB"],
+ [66, "Website", "Herstelorder weblog-audit V2 (PR #1102)", "O", "Richard: D1–D13", "stack-control #1102 OPEN 17:00Z"],
+ [67, "Website", "16-onderdelen voorstel (PR #1101)", "O", "Richard", "stack-control #1101 OPEN"],
+ [68, "Website", "V7 / V8 / V9", "O", "66, 67", "opdracht 20:15; geen document gemeten"],
+ [69, "Task OS", "P0-min ter akkoord (PR #1104)", "O", "Richard", "stack-control #1104 OPEN 17:26Z"],
+ [70, "Website+weblog", "Gecombineerd voorstel planning V1", "O", "Richard", "outbox 20:08:58"],
+ [74, "Website", "Weblog readonly-scan Terra (ander venster)", "B", "—", "checkpoint 21:07:57; links.jsonl 16 MB"],
 ];
 
 const ST = {K:"✅",B:"🔵",O:"⬜",R:"🔴"};
 const STN = {K:"klaar",B:"loopt",O:"open",R:"geblokkeerd"};
 function wie(w){ const m=w.match(/^\*\*(.+)\*\*$/); return m?m[1]:w; }
 function klaar(k){
-  const m=k.match(/^(\S+)\s*→\s*(~?)(\S+)$/);
+  const m=k.match(/^(\S+)\s*→\s*(~?)(.+)$/);
   if(!m) return esc(k);
   const [,plan,tilde,nu]=m;
-  const dag=s=>{const d=s.split("/")[0].split("-");return d.length>1?+d[1]:0;};
+  const dag=s=>{const d=s.split("/")[0].split(" ")[0].split("-");return d.length>1?+d[1]:NaN;};
   const diff=dag(nu)-dag(plan);
-  const cls=diff>1?"schuiftveel":(diff>0?"schuift":"");
+  const cls=isNaN(diff)?"":(diff>1?"schuiftveel":(diff>0?"schuift":(diff<0?"eerder":"")));
   return esc(plan)+' → <span class="'+cls+'">'+tilde+esc(nu)+'</span>';
 }
 function esc(s){return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;");}
