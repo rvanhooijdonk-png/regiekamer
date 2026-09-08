@@ -1,6 +1,6 @@
 {
   "schema": "REGIEKAMER_REALTIME_V1",
-  "gegenereerd_op": "2026-09-08T09:31:53Z",
+  "gegenereerd_op": "2026-09-08T09:37:11Z",
   "stack_root": "STACK_ROOT",
   "accounts": [
     {
@@ -8,7 +8,7 @@
       "status": "GEBLOKKEERD",
       "taak_id": "DIRECTOR_REPARATIE_STAP1_20260908",
       "sinds": "2026-09-08T09:27:19Z",
-      "sinds_minuten": 4.3,
+      "sinds_minuten": 9.7,
       "bron": "outbox:receipt:DIRECTOR_REPARATIE_STAP1_20260908_RECEIPT.md"
     },
     {
@@ -16,7 +16,7 @@
       "status": "GEBLOKKEERD",
       "taak_id": "DIRECTOR_REPARATIE_STAP1_20260908",
       "sinds": "2026-09-08T09:27:19Z",
-      "sinds_minuten": 4.3,
+      "sinds_minuten": 9.7,
       "bron": "outbox:receipt:DIRECTOR_REPARATIE_STAP1_20260908_RECEIPT.md"
     },
     {
@@ -24,7 +24,7 @@
       "status": "VRIJ",
       "taak_id": null,
       "sinds": "2026-09-08T09:22:54Z",
-      "sinds_minuten": 8.7,
+      "sinds_minuten": 14.1,
       "bron": "outbox:order_afgerond:KEYNOTE_KA_B_NOTES_PROOF_A4ED1B8_INDEPENDENT_REVIEW_V1.md"
     },
     {
@@ -32,7 +32,7 @@
       "status": "VRIJ",
       "taak_id": null,
       "sinds": "2026-09-08T09:22:54Z",
-      "sinds_minuten": 8.7,
+      "sinds_minuten": 14.1,
       "bron": "outbox:order_afgerond:AUTOCODING_LEGACY_ALIAS_TOETSGATE_MISMATCH_CLAUDE4_V1.md"
     },
     {
@@ -40,7 +40,7 @@
       "status": "GEBLOKKEERD",
       "taak_id": "AUTOCODING_VALIDATE_RECEIPT_ADDITIVE_COUNTER_LINE_GATEFIX_CODEX1_V2",
       "sinds": "2026-09-08T09:22:54Z",
-      "sinds_minuten": 8.7,
+      "sinds_minuten": 14.1,
       "bron": "outbox:receipt:AUTOCODING_VALIDATE_RECEIPT_ADDITIVE_COUNTER_LINE_GATEFIX_CODEX1_V2.md"
     },
     {
@@ -48,16 +48,16 @@
       "status": "BEZIG",
       "taak_id": "DIRECTOR_REPARATIE_STAP1_20260908_EXACT_HEAD_REVIEW_V1_CODEX2",
       "sinds": "2026-09-08T09:31:34Z",
-      "sinds_minuten": 0.1,
+      "sinds_minuten": 5.4,
       "bron": "ps:pid=34862"
     },
     {
       "actor": "gemini1",
-      "status": "WACHT",
+      "status": "GEBLOKKEERD",
       "taak_id": "DIRECTOR_REPARATIE_STAP1_20260908_EXACT_HEAD_REVIEW_V1_GEMINI1",
-      "sinds": "2026-09-08T09:29:41Z",
-      "sinds_minuten": 2.0,
-      "bron": "outbox:order_open:DIRECTOR_REPARATIE_STAP1_20260908_EXACT_HEAD_REVIEW_V1_GEMINI1.md"
+      "sinds": "2026-09-08T09:34:02Z",
+      "sinds_minuten": 3.0,
+      "bron": "outbox:receipt:DIRECTOR_REPARATIE_STAP1_20260908_EXACT_HEAD_REVIEW_V1_GEMINI1_RECEIPT.md"
     },
     {
       "actor": "dashboard-codex",
@@ -72,7 +72,7 @@
       "status": "GEBLOKKEERD",
       "taak_id": "CONTENT_INTELLIGENCE_M3_PARITY_CURRENT_HEAD_CORRECTION_20260906",
       "sinds": "2026-09-06T05:52:30Z",
-      "sinds_minuten": 3099.1,
+      "sinds_minuten": 3104.5,
       "bron": "outbox:receipt:CONTENT_INTELLIGENCE_M3_PARITY_CURRENT_HEAD_CORRECTION_20260906_RECEIPT.md"
     }
   ],
@@ -15788,6 +15788,38 @@
       "schatting_min": null
     },
     {
+      "bron_bestand": "outbox/SUPERVISOR_SAMENVATTING_20260908_0932.md",
+      "bron_type": "order",
+      "status": "BEZIG",
+      "taak": "Doorlopende §A/§B-tik elke 5 min",
+      "schatting_categorie": "GEEN_SCHATTING",
+      "schatting_min": null
+    },
+    {
+      "bron_bestand": "outbox/SUPERVISOR_SAMENVATTING_20260908_0932.md",
+      "bron_type": "order",
+      "status": "OPEN",
+      "taak": "§A-verificatie REPARATIE_STAP_2 zodra gecommit",
+      "schatting_categorie": "GESCHAT",
+      "schatting_min": 15
+    },
+    {
+      "bron_bestand": "outbox/SUPERVISOR_SAMENVATTING_20260908_0932.md",
+      "bron_type": "order",
+      "status": "KLAAR",
+      "taak": "§A-verificatie REPARATIE_STAP_1 (bewijs: SUPERVISOR_VERIFICATIE_STAP1_20260908_RECEIPT.md)",
+      "schatting_categorie": "GEEN_SCHATTING",
+      "schatting_min": null
+    },
+    {
+      "bron_bestand": "outbox/SUPERVISOR_SAMENVATTING_20260908_0932.md",
+      "bron_type": "order",
+      "status": "KLAAR",
+      "taak": "Auditbron-op-main SHA-256-check (commit b66e4b1)",
+      "schatting_categorie": "GEEN_SCHATTING",
+      "schatting_min": null
+    },
+    {
       "bron_bestand": "outbox/SUPERVISOR_STAP0E_TIK_OPGEZET_20260908_RECEIPT.md",
       "bron_type": "receipt",
       "status": "BEZIG",
@@ -16125,8 +16157,8 @@
     }
   ],
   "taken_meta": {
-    "taken_totaal": 2004,
-    "taken_zonder_schatting": 1803,
+    "taken_totaal": 2008,
+    "taken_zonder_schatting": 1806,
     "bron_glob": "outbox/*.md (TAKENLIJST-blokken)",
     "classificatie": "regex op TAKENLIJST-tabelrijen (Status/Taak/Tijd) en kale lijstvorm; een cel zonder herkenbaar '~X min'-patroon telt als GEEN_SCHATTING, nooit stilzwijgend overgeslagen"
   },
@@ -16136,10 +16168,10 @@
     "cmd": "bin/lane-capaciteit --json",
     "data": {
       "stack_root": "STACK_ROOT",
-      "generated_at": "2026-09-08T09:31:53Z",
+      "generated_at": "2026-09-08T09:37:11Z",
       "meta": {
-        "receipt_bestanden_totaal": 1242,
-        "receipt_onparseerbaar": 240,
+        "receipt_bestanden_totaal": 1245,
+        "receipt_onparseerbaar": 241,
         "jsonl": {
           "total_lines": 803,
           "actor_lines": 0,
@@ -16380,9 +16412,9 @@
         },
         {
           "actor": "codex2",
-          "orders": 141,
-          "orders_met_duur": 127,
-          "p50_duration_ms": 199000,
+          "orders": 142,
+          "orders_met_duur": 128,
+          "p50_duration_ms": 201000,
           "max_duration_ms": 3723000,
           "orders_met_verdict": 80,
           "geslaagd_pct": 20.0,
@@ -16403,7 +16435,7 @@
             "TOETS_GO": 1,
             "TOETS_NO_GO": 5
           },
-          "laatste_activiteit": "2026-09-08T06:54:05Z"
+          "laatste_activiteit": "2026-09-08T09:36:30Z"
         },
         {
           "actor": "director",
@@ -16451,9 +16483,9 @@
         },
         {
           "actor": "gemini1",
-          "orders": 73,
-          "orders_met_duur": 67,
-          "p50_duration_ms": 88000,
+          "orders": 74,
+          "orders_met_duur": 68,
+          "p50_duration_ms": 88500,
           "max_duration_ms": 7351000,
           "orders_met_verdict": 50,
           "geslaagd_pct": 34.0,
@@ -16474,7 +16506,7 @@
             "REJECTED": 1,
             "REVIEW_ENV_UNAVAILABLE": 2
           },
-          "laatste_activiteit": "2026-09-06T14:02:52Z"
+          "laatste_activiteit": "2026-09-08T09:33:33Z"
         },
         {
           "actor": "gemini1_via_hostroute",
@@ -16508,7 +16540,7 @@
         },
         {
           "actor": "ONPARSEERBAAR",
-          "orders": 240,
+          "orders": 241,
           "orders_met_duur": 0,
           "p50_duration_ms": null,
           "max_duration_ms": null,
@@ -16692,6 +16724,7 @@
             "DIRECTOR_BIJSTURING_OCHTENDAUDIT_20260904_CLAUDE3_V1_RECEIPT.md",
             "DIRECTOR_IDLE_LANE_ENFORCEMENT_V2_GITHUB_RECEIPT.md",
             "DIRECTOR_NULMETING_REPARATIE_20260908_RECEIPT.md",
+            "DIRECTOR_REPARATIE_STAP1_20260908_EXACT_HEAD_REVIEW_V1_CODEX2_RECEIPT.md",
             "DIRECTOR_REPARATIE_STAP1_20260908_RECEIPT.md",
             "DIRECTOR_STOP_ACK_BEFORE_REASSIGNMENT_GITHUB_RECEIPT.md",
             "DISPATCH_CLAUDE_TOOLPROFIEL_READ_ONLY_CODEX2_V1_ACTOR_RECEIPT.md",
@@ -17623,6 +17656,66 @@
   },
   "beslisrij_onparseerbaar_count": 0,
   "ticker_events": [
+    {
+      "event_id": 4702,
+      "tijd": "2026-09-08T09:36:32Z",
+      "taak_id": "AUTOCODING_SUPERVISOR",
+      "project": "STACK_DIRECTOR",
+      "kanaal": "AUTOCODING",
+      "account": "SUPERVISOR",
+      "overgang": "HEARTBEAT",
+      "bewijsref": "state/autocoding-supervisor/status.json",
+      "resultaat": "ISSUES_ORDERS_STUCK_NONTERMINAL_RECEIPT_QUEUE_ADMISSION_STALLED_RECEIPT_NONTERMINAL",
+      "integriteit": null
+    },
+    {
+      "event_id": 4701,
+      "tijd": "2026-09-08T09:35:32Z",
+      "taak_id": "AUTOCODING_SUPERVISOR",
+      "project": "STACK_DIRECTOR",
+      "kanaal": "AUTOCODING",
+      "account": "SUPERVISOR",
+      "overgang": "HEARTBEAT",
+      "bewijsref": "state/autocoding-supervisor/status.json",
+      "resultaat": "ISSUES_ORDERS_STUCK_NONTERMINAL_RECEIPT_QUEUE_ADMISSION_STALLED_RECEIPT_NONTERMINAL",
+      "integriteit": null
+    },
+    {
+      "event_id": 4700,
+      "tijd": "2026-09-08T09:34:32Z",
+      "taak_id": "AUTOCODING_SUPERVISOR",
+      "project": "STACK_DIRECTOR",
+      "kanaal": "AUTOCODING",
+      "account": "SUPERVISOR",
+      "overgang": "HEARTBEAT",
+      "bewijsref": "state/autocoding-supervisor/status.json",
+      "resultaat": "ISSUES_ORDERS_STUCK_NONTERMINAL_RECEIPT_QUEUE_ADMISSION_STALLED_RECEIPT_NONTERMINAL",
+      "integriteit": null
+    },
+    {
+      "event_id": 4699,
+      "tijd": "2026-09-08T09:33:32Z",
+      "taak_id": "AUTOCODING_SUPERVISOR",
+      "project": "STACK_DIRECTOR",
+      "kanaal": "AUTOCODING",
+      "account": "SUPERVISOR",
+      "overgang": "HEARTBEAT",
+      "bewijsref": "state/autocoding-supervisor/status.json",
+      "resultaat": "ISSUES_ORDERS_STUCK_NONTERMINAL_RECEIPT_QUEUE_ADMISSION_STALLED_RECEIPT_NONTERMINAL",
+      "integriteit": null
+    },
+    {
+      "event_id": 4698,
+      "tijd": "2026-09-08T09:32:31Z",
+      "taak_id": "AUTOCODING_SUPERVISOR",
+      "project": "STACK_DIRECTOR",
+      "kanaal": "AUTOCODING",
+      "account": "SUPERVISOR",
+      "overgang": "HEARTBEAT",
+      "bewijsref": "state/autocoding-supervisor/status.json",
+      "resultaat": "ISSUES_ORDERS_STUCK_NONTERMINAL_RECEIPT_QUEUE_ADMISSION_STALLED_RECEIPT_NONTERMINAL",
+      "integriteit": null
+    },
     {
       "event_id": 4697,
       "tijd": "2026-09-08T09:31:31Z",
@@ -73990,10 +74083,10 @@
   ],
   "ticker_meta": {
     "bron_pad": "state/stack-ticker-events.jsonl",
-    "last_event_at": "2026-09-08T09:31:31Z",
+    "last_event_at": "2026-09-08T09:36:32Z",
     "publicatieleeftijd": "NO_DATA_ZONDER_GEAUTORISEERDE_PUBLICATIE",
     "client_refresh_max_seconds": 5,
-    "event_count": 4697,
+    "event_count": 4702,
     "classificatie": "append-only JSONL; niet-monotone of incomplete events blijven NO_DATA"
   }
 }
