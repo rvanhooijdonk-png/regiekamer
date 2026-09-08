@@ -1,0 +1,298 @@
+<!doctype html>
+<html lang="nl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<meta http-equiv="refresh" content="300">
+<title>Autocoding Peilbord</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+:root{
+  --grond:#f3f4f2;--plaat:#ffffff;--plaat2:#eaedea;--rand:#d3d8d4;--rand-zacht:#e3e7e3;
+  --inkt:#161c19;--inkt-zacht:#4f5b55;--inkt-stil:#7f8a84;
+  --groen:#1f8a5a;--amber:#b7791f;--rood:#c53a44;--sein:#1f7f95;--blauw:#2f6fd1;
+  --rood-vlak:#fbe9ea;--amber-vlak:#fbf1de;--groen-vlak:#e3f3ea;--blauw-vlak:#e6eefb;--richard-vlak:#fff4d6;
+  --schaduw:0 1px 2px rgba(20,30,25,.08);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --grond:#0d1117;--plaat:#151b23;--plaat2:#1b232d;--rand:#232c38;--rand-zacht:#1b232d;
+    --inkt:#e4e9f0;--inkt-zacht:#8b98a9;--inkt-stil:#5d6a7b;
+    --groen:#3fb27f;--amber:#d99b3d;--rood:#e05561;--sein:#54b5c9;--blauw:#6aa0ff;
+    --rood-vlak:#2a1519;--amber-vlak:#2a2112;--groen-vlak:#0f2a1e;--blauw-vlak:#132036;--richard-vlak:#2e2410;
+    --schaduw:none;
+  }
+}
+:root[data-theme="dark"]{
+  --grond:#0d1117;--plaat:#151b23;--plaat2:#1b232d;--rand:#232c38;--rand-zacht:#1b232d;
+  --inkt:#e4e9f0;--inkt-zacht:#8b98a9;--inkt-stil:#5d6a7b;
+  --groen:#3fb27f;--amber:#d99b3d;--rood:#e05561;--sein:#54b5c9;--blauw:#6aa0ff;
+  --rood-vlak:#2a1519;--amber-vlak:#2a2112;--groen-vlak:#0f2a1e;--blauw-vlak:#132036;--richard-vlak:#2e2410;
+  --schaduw:none;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--grond);color:var(--inkt);font:14px/1.45 "IBM Plex Sans","Helvetica Neue",Arial,sans-serif;-webkit-font-smoothing:antialiased}
+.mono{font-family:"IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,monospace}
+header{position:sticky;top:0;z-index:5;background:var(--plaat);border-bottom:1px solid var(--rand);box-shadow:var(--schaduw)}
+.kopbalk{max-width:1440px;margin:0 auto;padding:12px 20px;display:flex;align-items:center;gap:16px;flex-wrap:wrap}
+.lamp{width:14px;height:14px;border-radius:50%;flex:none}
+.lamp.rood{background:var(--rood);box-shadow:0 0 0 4px var(--rood-vlak)}
+.lamp.geel{background:var(--amber);box-shadow:0 0 0 4px var(--amber-vlak)}
+.lamp.groen{background:var(--groen);box-shadow:0 0 0 4px var(--groen-vlak)}
+h1{font-size:15px;font-weight:600;margin:0;letter-spacing:.01em;white-space:nowrap}
+.tik{font-family:"IBM Plex Mono",monospace;font-size:12px;color:var(--inkt-zacht);white-space:nowrap}
+.regel{flex:1 1 420px;font-size:14px;font-weight:500;min-width:0}
+.eind{font-family:"IBM Plex Mono",monospace;font-size:12px;color:var(--inkt-zacht);white-space:nowrap}
+.eind b{color:var(--inkt);font-weight:500}
+.knoppen{display:flex;gap:8px;margin-left:auto}
+button.kn{font:inherit;font-size:12px;padding:5px 10px;border:1px solid var(--rand);background:var(--plaat2);color:var(--inkt);border-radius:4px;cursor:pointer}
+button.kn[aria-pressed="true"]{background:var(--inkt);color:var(--plaat);border-color:var(--inkt)}
+button.kn:focus-visible{outline:2px solid var(--sein);outline-offset:2px}
+main{max-width:1440px;margin:0 auto;padding:18px 20px 60px;display:grid;gap:28px}
+section h2{font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--inkt-zacht);margin:0 0 8px;display:flex;align-items:baseline;gap:10px}
+section h2 .n{font-family:"IBM Plex Mono",monospace;color:var(--inkt-stil)}
+section h2 .sub{font-weight:400;text-transform:none;letter-spacing:0;color:var(--inkt-stil)}
+.tabel{overflow-x:auto;border:1px solid var(--rand);border-radius:6px;background:var(--plaat)}
+table{border-collapse:collapse;width:100%;font-size:13px}
+thead th{position:sticky;top:0;background:var(--plaat2);color:var(--inkt-zacht);font-weight:500;font-size:11.5px;letter-spacing:.04em;text-transform:uppercase;text-align:left;padding:7px 10px;border-bottom:1px solid var(--rand);white-space:nowrap}
+td{padding:6px 10px;border-bottom:1px solid var(--rand-zacht);vertical-align:top}
+tbody tr:last-child td{border-bottom:0}
+td.nr,td.tijd,td.klaar,td.bewijs,td.sinds,td.wie{font-family:"IBM Plex Mono",ui-monospace,monospace;font-size:12.5px;font-variant-numeric:tabular-nums}
+td.nr{color:var(--inkt-stil);text-align:right;width:3ch}
+td.status{width:3ch;text-align:center;font-size:14px}
+td.stap{color:var(--inkt-zacht);white-space:nowrap}
+td.bewijs{color:var(--inkt-zacht)}
+td.klaar{white-space:nowrap}
+td.klaar .schuift{color:var(--amber)}
+td.klaar .schuiftveel{color:var(--rood)}
+tr.eind td{font-weight:600}
+tr.eind td.taak::before{content:"= ";color:var(--inkt-stil)}
+tr.groep td{border-top:1px solid var(--rand)}
+tr.rood td{background:var(--rood-vlak)}
+tr.bezig td{background:var(--blauw-vlak)}
+tr.richard td.wie{background:var(--richard-vlak);font-weight:600}
+tr.niemand td.wie{color:var(--rood);font-weight:600}
+tr.klaar td{color:var(--inkt-zacht)}
+tr.klaar td.taak{text-decoration:line-through;text-decoration-color:var(--inkt-stil);text-decoration-thickness:1px}
+body.verberg-klaar tr.klaar{display:none}
+.actie td.cmd{font-family:"IBM Plex Mono",monospace;font-size:12.5px}
+.actie td.cmd code{background:var(--plaat2);padding:1px 5px;border-radius:3px}
+.slot td{font-size:13px}
+.slot td.volgende{font-family:"IBM Plex Mono",monospace;font-size:12.5px;white-space:nowrap}
+.pad{font-family:"IBM Plex Mono",monospace;font-size:12px;color:var(--inkt-stil);margin-top:6px;word-break:break-all}
+.legenda{font-size:12px;color:var(--inkt-stil);display:flex;gap:14px;flex-wrap:wrap;margin-top:6px}
+.legenda span b{color:var(--inkt-zacht);font-weight:500}
+@media (max-width:700px){h1{white-space:normal}.regel{flex-basis:100%}}
+@media (prefers-reduced-motion:no-preference){.lamp.rood{animation:puls 2.4s ease-in-out infinite}}
+@keyframes puls{50%{box-shadow:0 0 0 7px var(--rood-vlak)}}
+</style>
+<style>body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+</head>
+<body>
+
+<header>
+  <div class="kopbalk">
+    <div class="lamp rood" title="ROOD"></div>
+    <h1>Autocoding Peilbord</h1>
+    <div class="tik" id="tik">tik 20:33 · gemeten 20:28–20:34</div>
+    <div class="regel" id="kopregel">Codex1 wacht op jouw login; gemini1 valt weer uit; stack-status naar arbitrage; cutover schuift ~2 dagen.</div>
+    <div class="eind">akkoord <b>09-12/13 → ~09-15</b> · parser weg <b>09-21 → ~09-23</b></div>
+    <div class="knoppen">
+      <button class="kn" id="knKlaar" aria-pressed="false">verberg ✅</button>
+    </div>
+  </div>
+</header>
+
+<main>
+
+<section id="b2">
+  <h2><span class="n">2</span> Actie Richard</h2>
+  <div class="tabel"><table class="actie">
+    <thead><tr><th>Actie Richard</th><th>Waarom</th><th>Als je het niet doet</th></tr></thead>
+    <tbody>
+      <tr class="rood"><td class="cmd"><code>codex login</code> in het codex1-profiel, zodat ~/.codex/auth.json bestaat</td><td>lane codex1 faalt exit 3 sinds 19:45; herpoging 20:21:16 faalt weer</td><td>stap 2(c) blijft onbewezen; alle reviews via codex2 alleen (wachtrij 13)</td></tr>
+      <tr><td class="cmd">akkoord op de autocoding-keten (nr 33) — nog niet aan de orde</td><td>staat gepland na de cutover, ~09-15</td><td>burn-in B (7 dagen) start niet; stap 8 blijft dicht</td></tr>
+    </tbody>
+  </table></div>
+</section>
+
+<section id="b3">
+  <h2><span class="n">3</span> Taken tot autocoding klaar <span class="sub">bouw / review / merge / klok elk een rij · nummers blijven vast</span></h2>
+  <div class="tabel"><table id="t3">
+    <thead><tr><th>Nr</th><th>Stap</th><th>Taak</th><th>St</th><th>Wie</th><th>Tijd</th><th>Klaar plan → nu</th><th>Bewijs / blokkade</th></tr></thead>
+    <tbody></tbody>
+  </table></div>
+  <div class="legenda"><span><b>✅</b> klaar</span><span><b>🔵</b> loopt</span><span><b>⬜</b> open</span><span><b>🔴</b> geblokkeerd of geen eigenaar</span><span><b>~</b> eigen schatting</span><span><b>vet</b> Richard of niemand</span></div>
+</section>
+
+<section id="b4">
+  <h2><span class="n">4</span> Parallel <span class="sub">sporen die vóór een stap dicht moeten</span></h2>
+  <div class="tabel"><table id="t4">
+    <thead><tr><th>Nr</th><th>Spoor</th><th>Taak</th><th>St</th><th>Wie</th><th>Tijd</th><th>Klaar plan → nu</th><th>Bewijs / blokkade</th></tr></thead>
+    <tbody></tbody>
+  </table></div>
+</section>
+
+<section id="b5">
+  <h2><span class="n">5</span> Onderhoud / alarmen</h2>
+  <div class="tabel"><table id="t5">
+    <thead><tr><th>Nr</th><th>Taak</th><th>St</th><th>Wie</th><th>Tijd</th><th>Sinds</th><th>Bewijs</th></tr></thead>
+    <tbody></tbody>
+  </table></div>
+</section>
+
+<section id="b6">
+  <h2><span class="n">6</span> Na autocoding <span class="sub">indicatief, zonder datum</span></h2>
+  <div class="tabel"><table id="t6">
+    <thead><tr><th>Nr</th><th>Project</th><th>Taak</th><th>St</th><th>Wacht op</th><th>Bron</th></tr></thead>
+    <tbody></tbody>
+  </table></div>
+</section>
+
+<section id="slot">
+  <h2>Slot</h2>
+  <div class="tabel"><table class="slot">
+    <thead><tr><th>Δ sinds vorige tik (20:23)</th><th>Volgende tik</th></tr></thead>
+    <tbody><tr>
+      <td>Eerste tik in dit format, nummering nieuw. Klaar: 45 (codex2 NO_GO op 5d78498, 20:28). Gestart: 16 (codex2 op 3a, 20:29:57), 46 (arbitrage Fable, termijn 22:31). Rood: 42 en 55 (gemini1 weer STARTUP_STALE 20:31:18), 9 blijft rood. Herschreven: 8 (dc14cb9 V2-order, QUEUED). Streak 38 → 49. Codex1 nog steeds exit 3, geen auth.json.</td>
+      <td class="volgende">20:43 · meet 8, 16, 46, 51, 52, 54, 55, 59</td>
+    </tr></tbody>
+  </table></div>
+  <div class="pad">volledig rapport: ~/stack-control/CONTROL/RAPPORTEN/board-2026-09-08-2033.md</div>
+</section>
+
+</main>
+
+<script>
+// Status: K=✅ klaar, B=🔵 loopt, O=⬜ open, R=🔴 geblokkeerd / geen eigenaar
+// Wie: "**Richard**" of "**niemand**" wordt vet gezet.
+const T3 = [
+ [1,"0 stop","Reparatiestop op bin/ en lib/","K","director","—","09-08","supervisor 20:21 schoon; a4ab87f"],
+ [2,"1 spook","Bouw close-ghost-queue","K","claude3","—","09-09","582a4db 19:15"],
+ [3,"1 spook","Review stap 1 (codex2 + gemini1)","K","codex2, gemini1","—","09-09","codex2 GO_WF 19:25; gemini V3 19:09"],
+ [4,"1 spook","R7 + merge PR #105","K","director","—","09-09","3fdfeaa 19:29; 20 tests OK"],
+ [5,"1 spook","Restpunt 5f4ac0b","O","**niemand**","~20 min","09-09 → ~09-09","niet in directorlijst"],
+ [6,"2 head","Bouw headbinding + modeldoorgifte","K","claude1","—","09-09","dc14cb9 19:51; 71/71"],
+ [7,"2 head","Review dc14cb9 codex2 (V1)","K","codex2","—","09-09","BLOCKED_EVIDENCE 20:20; orderdefect toetspunt 5"],
+ [8,"2 head","Review dc14cb9 V2 met mutatieroute","O","codex2","~30 min","09-09 → ~09-09","order geschreven 20:31, QUEUED; wacht op 16"],
+ [9,"2 head","Review dc14cb9 gemini1","R","director","~15 min","09-09 → ~09-09","STARTUP_STALE 20:12; lane opnieuw stale 20:31"],
+ [10,"2 head","Samenvoegen in reparatie/stap-2","O","director","~30 min","09-09 → ~09-09","wacht op 8"],
+ [11,"2 head","codex1-wrapperfix bewijzen (2c)","R","**Richard**","~10 min","09-09 → ~09-09","exit 3 20:21:16; wacht op login"],
+ [12,"2 head","R7 + merge stap 2","O","director","~20 min","09-09 → ~09-09","wacht op 10, 11"],
+ [13,"3 record","Ontwerpaudit + herstelcontract §5.1a","K","codex2, director","—","09-09","NO_GO 19:01; f6d9dd3 19:49"],
+ [14,"3 record","Bouw 3a lib/order_state.py + 6 proeven","K","claude4","—","09-09","4f1b42d 20:21; transport exit 8 (pad)"],
+ [15,"3 record","Bouw 3b import + dispatcher + sweep","O","**niemand**","~2 u","09-09 → ~09-10","order nog niet uit; wacht op 14"],
+ [16,"3 record","Review 3a 4f1b42d","B","codex2","~20 min","09-09 → ~09-09","pid 5062 sinds 20:29:57; body 20:33"],
+ [17,"3 record","Review 3b","O","**niemand**","~30 min","09-09 → ~09-10","wacht op 15"],
+ [18,"3 record","R7 + merge stap 3","O","director","~20 min","09-09 → ~09-10","wacht op 16, 17"],
+ [19,"4 toelating","Bouw toelatingsautomaat","O","**niemand**","~3 u","09-10 → ~09-11","wacht op 18"],
+ [20,"4 toelating","Review stap 4","O","**niemand**","~30 min","09-10 → ~09-11","wacht op 19"],
+ [21,"4 toelating","R7 + merge stap 4","O","director","~20 min","09-10 → ~09-11","wacht op 20"],
+ [22,"5 ordercheck","Bouw order-check + review-ordergenerator","O","**niemand**","~3 u","09-10 → ~09-11","wacht op 21"],
+ [23,"5 ordercheck","Review stap 5","O","**niemand**","~30 min","09-10 → ~09-12","wacht op 22"],
+ [24,"5 ordercheck","R7 + merge stap 5","O","director","~20 min","09-10 → ~09-12","wacht op 23"],
+ [25,"burn-in A","24 u klok: 0 verschillen record ↔ orderregel","O","klok","24 u","09-11 → ~09-13","wacht op 24"],
+ [26,"6 daemons","Bouw monitor/responder/supervisor op record","O","**niemand**","~2 u","09-11 → ~09-13","mag tijdens 25; wacht op 24"],
+ [27,"6 daemons","Review stap 6","O","**niemand**","~30 min","09-11 → ~09-13","wacht op 26"],
+ [28,"6 daemons","R7 + merge stap 6","O","director","~20 min","09-11 → ~09-13","wacht op 27"],
+ [29,"7 cutover","Import-smoke + droge cyclus","O","director","~1 u","09-12 → ~09-14","wacht op 25, 28"],
+ [30,"7 cutover","Herpin 4 daemons op één head","O","director","~30 min","09-12 → ~09-14","wacht op 29"],
+ [31,"7 cutover","Eerste gesloten cyclus bewezen","O","supervisor","~1 u","09-12 → ~09-14","wacht op 30"],
+ [32,"akkoord","Akkoord op de nieuwe keten","O","**Richard**","~15 min","09-12/13 → ~09-15","wacht op 31"],
+ [33,"burn-in B","7 d klok: legacy_fallback_hits = 0","O","klok","7 d","09-19/20 → ~09-22","wacht op 32"],
+ [34,"8 parser","Vlag legacy-parser uit","O","director","~30 min","09-20 → ~09-22","wacht op 33"],
+ [35,"8 parser","24 u later code weg + negatieve controle","O","**niemand**","~1 u","09-21 → ~09-23","wacht op 34"],
+ [36,"8 parser","autocoding klaar: stap 8 EFFECT-BEWEZEN","O","supervisor","—","09-21 → ~09-23","wacht op 35"],
+];
+const T4 = [
+ [37,"PR #103","Bouw booleanuitsluiting tellers","K","claude2","—","09-08","f4276d7 19:53; 40 OK"],
+ [38,"PR #103","Review f4276d7","K","codex2","—","09-08","GO_WITH_FINDINGS 20:01 (F1)"],
+ [39,"PR #103","Relay + R7 + merge","K","director","—","09-08","14371c5 in origin/main; readiness success"],
+ [40,"PR #103","Effect op main bewezen","K","director","—","09-08","9d56b80 bevat 14371c5 (gemeten)"],
+ [41,"PR #103","F1 stringcoercie bouwen","K","claude2","—","09-08","3f0602a 20:16; 43 OK; transport exit 8"],
+ [42,"PR #103","F1 review 3f0602a (gemini1)","R","director","~20 min","09-08 → ~09-09","STARTUP_STALE rc 9 20:31:18; lane dood"],
+ [43,"PR #103","F1 R7 + merge","O","director","~15 min","09-08 → ~09-09","wacht op 42; 3f0602a niet op origin"],
+ [44,"stack-status","Bouw V3 markerafvanger + pid/exit","K","claude3","—","09-08","5d78498 20:05; 7 OK"],
+ [45,"stack-status","Review 5d78498","K","codex2","—","09-08","NO_GO 20:28: 6 errors regel 59"],
+ [46,"stack-status","Arbitrage tweede NO_GO (Fable)","B","Fable","tot 22:31","09-08 → ~09-09","ARBITRAGE_REQUESTS …MARKERAFVANGER 20:31"],
+ [47,"stack-status","Push + PR + R7 + merge","O","director","~25 min","09-08 → ~09-09","wacht op 46; claude3 geblokkeerd"],
+ [48,"PR #104","Exacte-head-revieworder","O","director","~20 min","09-09 → ~09-09","0 reviews op 5984ca6"],
+ [49,"PR #104","Mergeconflict oplossen","R","**niemand**","~30 min","09-09 → ~09-09","mergeState DIRTY; readiness FAILURE"],
+ [50,"PR #104","Review + R7 + merge","O","director","~20 min","09-09 → ~09-09","wacht op 48, 49"],
+ [51,"klasse 8","Diagnose valse FAILED_EVIDENCE","B","claude1","~20 min","09-08 → ~09-08","pid 59640 sinds 20:13:29"],
+ [52,"klasse 8","Bind receiptroute/worktree-allowlist","B","claude4","~40 min","09-08 → ~09-09","pid 89775 leeft; canoniek rc 9 20:32 (dubbel 15)"],
+ [53,"klasse 8","Review + merge bindorder","O","**niemand**","~30 min","09-08 → ~09-09","wacht op 52"],
+];
+const T5 = [
+ [54,"codex1: geen ~/.codex/auth.json","R","**Richard**","~5 min","19:45","worker exit 3 20:21:16"],
+ [55,"gemini1 STARTUP_STALE, 2 orders vandaag","R","**Richard**","~15 min","20:12","rc 9 20:12 en 20:31:18; profiel read-only"],
+ [56,"supervisor-streak 49 (drempel 5)","R","director","—","~19:45","status.json 20:33:32"],
+ [57,"controller FAIL + 6 STUCK","R","director","—","20:21","heartbeat 20:32:57; stuck 6"],
+ [58,"dubbeldispatch: 15 rc-9-artefacten vandaag","R","director","stap 3","20:09","laatste 20:32:42 (claude4)"],
+ [59,"watchdog STALE_DISPATCH 28304 s, bron onbekend","R","**niemand**","—","20:13","alert 20:34:15; start ~12:42; niet in ps"],
+ [60,"lane-monitor UNJUSTIFIED_IDLE claude1/2 (vals)","O","director","—","20:22","dispatch claude1 leeft"],
+ [61,"REPAIR_REQUESTS-map: 143 gemeld, nu niet gevonden","O","**niemand**","—","19:44","ls state/REPAIR_REQUESTS: bestaat niet"],
+ [62,"worktrees 482, prunable 60, 6 verweesde claims","O","director","~10 min","18:15","supervisor-taak sinds 18:15"],
+ [63,"director-heartbeat noemt gemini1 BEZIG (is stale)","O","director","—","20:32","tik 36b 20:32 vs receipt rc 9 20:31"],
+ [64,"docs/review-relay.md corrigeren (4 secrets)","O","director","~10 min","20:12","directorlijst OPEN"],
+ [65,"ARBITRAGE-bestand 136597a gesloten, staat nog","O","director","~5 min","19:58","§10 gesloten"],
+];
+const T6 = [
+ [66,"Website","Herstelorder weblog-audit V2 (PR #1102)","O","Richard: D1–D13","stack-control #1102 OPEN 17:00Z"],
+ [67,"Website","16-onderdelen voorstel (PR #1101)","O","Richard","stack-control #1101 OPEN"],
+ [68,"Website","V7 / V8 / V9","O","66, 67","opdracht 20:15; geen document gemeten"],
+ [69,"Task OS","P0-min ter akkoord (PR #1104)","O","Richard","stack-control #1104 OPEN 17:26Z"],
+ [70,"Website+weblog","Gecombineerd voorstel planning V1","O","Richard","outbox 20:08:58"],
+];
+
+const ST = {K:"✅",B:"🔵",O:"⬜",R:"🔴"};
+const STN = {K:"klaar",B:"loopt",O:"open",R:"geblokkeerd"};
+function wie(w){ const m=w.match(/^\*\*(.+)\*\*$/); return m?m[1]:w; }
+function klaar(k){
+  const m=k.match(/^(\S+)\s*→\s*(~?)(\S+)$/);
+  if(!m) return esc(k);
+  const [,plan,tilde,nu]=m;
+  const dag=s=>{const d=s.split("/")[0].split("-");return d.length>1?+d[1]:0;};
+  const diff=dag(nu)-dag(plan);
+  const cls=diff>1?"schuiftveel":(diff>0?"schuift":"");
+  return esc(plan)+' → <span class="'+cls+'">'+tilde+esc(nu)+'</span>';
+}
+function esc(s){return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;");}
+function rij(cellen, opties){
+  const {st,w,groep,eind}=opties;
+  const cls=[];
+  if(st==="K")cls.push("klaar"); if(st==="B")cls.push("bezig"); if(st==="R")cls.push("rood");
+  if(/\*\*Richard\*\*/.test(w))cls.push("richard"); if(/\*\*niemand\*\*/.test(w))cls.push("niemand");
+  if(groep)cls.push("groep"); if(eind)cls.push("eind");
+  return '<tr class="'+cls.join(" ")+'">'+cellen.join("")+'</tr>';
+}
+function td(c,v){return '<td class="'+c+'">'+v+'</td>';}
+function stcel(st){return '<td class="status" title="'+STN[st]+'">'+ST[st]+'</td>';}
+
+function vul3(id,rows,stapkop){
+  let prev=null, html="";
+  rows.forEach((r,i)=>{
+    const [nr,stap,taak,st,w,tijd,k,bewijs]=r;
+    const groep=prev!==null && stap!==prev; prev=stap;
+    html+=rij([td("nr",nr),td("stap",esc(stap)),td("taak",esc(taak)),stcel(st),td("wie",esc(wie(w))),td("tijd",esc(tijd)),td("klaar",klaar(k)),td("bewijs",esc(bewijs))],
+              {st,w,groep,eind: id==="t3" && i===rows.length-1});
+  });
+  document.querySelector("#"+id+" tbody").innerHTML=html;
+}
+vul3("t3",T3); vul3("t4",T4);
+document.querySelector("#t5 tbody").innerHTML=T5.map(r=>{const [nr,taak,st,w,tijd,sinds,bewijs]=r;
+  return rij([td("nr",nr),td("taak",esc(taak)),stcel(st),td("wie",esc(wie(w))),td("tijd",esc(tijd)),td("sinds",esc(sinds)),td("bewijs",esc(bewijs))],{st,w});}).join("");
+document.querySelector("#t6 tbody").innerHTML=T6.map(r=>{const [nr,proj,taak,st,wacht,bron]=r;
+  return rij([td("nr",nr),td("stap",esc(proj)),td("taak",esc(taak)),stcel(st),td("wie",esc(wacht)),td("bewijs",esc(bron))],{st,w:""});}).join("");
+
+// verberg ✅ (per-viewer voorkeur)
+const kn=document.getElementById("knKlaar");
+let verberg=false; try{verberg=localStorage.getItem("peilbord.verbergKlaar")==="1";}catch(e){}
+function zet(v){verberg=v;document.body.classList.toggle("verberg-klaar",v);kn.setAttribute("aria-pressed",v?"true":"false");try{localStorage.setItem("peilbord.verbergKlaar",v?"1":"0");}catch(e){}}
+zet(verberg);
+kn.addEventListener("click",()=>zet(!verberg));
+</script>
+
+</body>
+</html>
