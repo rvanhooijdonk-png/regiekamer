@@ -1,22 +1,22 @@
 {
   "schema": "REGIEKAMER_REALTIME_V1",
-  "gegenereerd_op": "2026-09-09T17:44:33Z",
+  "gegenereerd_op": "2026-09-09T17:49:55Z",
   "stack_root": "STACK_ROOT",
   "accounts": [
     {
       "actor": "claude1",
-      "status": "WACHT",
+      "status": "STALE",
       "taak_id": "DIRECTOR_STAP1_V3_BOUW_20260909_CLAUDE1_V1",
-      "sinds": "2026-09-09T17:36:29Z",
-      "sinds_minuten": 0.0,
-      "bron": "outbox:order_open:DIRECTOR_STAP1_V3_BOUW_20260909_CLAUDE1_V1.md"
+      "sinds": "2026-09-09T17:36:34Z",
+      "sinds_minuten": 13.2,
+      "bron": "ps:pid=19564"
     },
     {
       "actor": "claude2",
       "status": "VRIJ",
       "taak_id": "DIRECTOR_STAP3_RECORDIMPORT_20260909_CLAUDE2_V2_RECONCILIATION",
       "sinds": "2026-09-09T17:24:07Z",
-      "sinds_minuten": 12.4,
+      "sinds_minuten": 25.7,
       "bron": "outbox:receipt:DIRECTOR_STAP3_RECORDIMPORT_20260909_CLAUDE2_V2_RECONCILIATION_RECEIPT.md"
     },
     {
@@ -24,40 +24,40 @@
       "status": "GEBLOKKEERD",
       "taak_id": "DIRECTOR_STAP5_RACEPROEF_V2_20260909_CLAUDE3_V1_TRANSPORT",
       "sinds": "2026-09-09T16:25:58Z",
-      "sinds_minuten": 70.6,
+      "sinds_minuten": 83.8,
       "bron": "outbox:receipt:DIRECTOR_STAP5_RACEPROEF_V2_20260909_CLAUDE3_V1_TRANSPORT_RECEIPT.md"
     },
     {
       "actor": "claude4",
-      "status": "STALE",
-      "taak_id": "DIRECTOR_STAP3_V5_BOUW_20260909_CLAUDE4_V1",
-      "sinds": "2026-09-09T17:17:16Z",
-      "sinds_minuten": 19.3,
-      "bron": "ps:pid=89625"
+      "status": "VRIJ",
+      "taak_id": "DIRECTOR_STAP3_V5_BOUW_20260909_CLAUDE4_V1_TRANSPORT",
+      "sinds": "2026-09-09T17:37:19Z",
+      "sinds_minuten": 12.5,
+      "bron": "outbox:receipt:DIRECTOR_STAP3_V5_BOUW_20260909_CLAUDE4_V1_TRANSPORT_RECEIPT.md"
     },
     {
       "actor": "codex1",
-      "status": "BEZIG",
+      "status": "GEBLOKKEERD",
       "taak_id": "DIRECTOR_STAP5_WORKTREECONTRACT_V4B_20260909_CODEX1_V1",
-      "sinds": "2026-09-09T17:33:40Z",
-      "sinds_minuten": 2.9,
-      "bron": "ps:pid=90649"
+      "sinds": "2026-09-09T17:49:37Z",
+      "sinds_minuten": 0.1,
+      "bron": "outbox:receipt:DIRECTOR_STAP5_WORKTREECONTRACT_V4B_20260909_CODEX1_V1_RECEIPT.md"
     },
     {
       "actor": "codex2",
       "status": "BEZIG",
-      "taak_id": "DIRECTOR_RELAY1_V9C_BOUW_20260909_CODEX2_V1",
-      "sinds": "2026-09-09T17:34:51Z",
-      "sinds_minuten": 1.7,
-      "bron": "ps:pid=502"
+      "taak_id": "DIRECTOR_STAP3REVIEW_B07CF901_20260909_CODEX2_V1",
+      "sinds": "2026-09-09T17:44:47Z",
+      "sinds_minuten": 5.0,
+      "bron": "ps:pid=87241"
     },
     {
       "actor": "gemini1",
-      "status": "GEBLOKKEERD",
-      "taak_id": "DIRECTOR_STAP6LEESREVIEW_8CC56408_20260909_GEMINI1_V1",
-      "sinds": "2026-09-09T14:01:36Z",
-      "sinds_minuten": 214.9,
-      "bron": "outbox:receipt:DIRECTOR_STAP6LEESREVIEW_8CC56408_20260909_GEMINI1_V1_RECEIPT.md"
+      "status": "BEZIG",
+      "taak_id": "order-s6",
+      "sinds": "2026-09-09T17:49:44Z",
+      "sinds_minuten": 0.0,
+      "bron": "ps:pid=84031"
     },
     {
       "actor": "dashboard-codex",
@@ -71,8 +71,8 @@
       "actor": "directie",
       "status": "WACHT",
       "taak_id": "GLOBAL_LANE_CONTINUITY_SELF_EXECUTION_V3_ORDER_PROPOSAL_20260909",
-      "sinds": "2026-09-09T17:42:23Z",
-      "sinds_minuten": -5.9,
+      "sinds": "2026-09-09T17:47:38Z",
+      "sinds_minuten": 2.1,
       "bron": "outbox:order_open:GLOBAL_LANE_CONTINUITY_SELF_EXECUTION_V3_ORDER_PROPOSAL_20260909.md"
     }
   ],
@@ -12308,6 +12308,118 @@
       "schatting_min": null
     },
     {
+      "bron_bestand": "outbox/DIRECTOR_SAMENVATTING_20260909_1945.md",
+      "bron_type": "order",
+      "status": "BEZIG",
+      "taak": "Stap 5 worktree-contract — V4B bouwt bij codex1; V9C-relayreview staat QUEUED voor codex1",
+      "schatting_categorie": "GESCHAT",
+      "schatting_min": 45
+    },
+    {
+      "bron_bestand": "outbox/DIRECTOR_SAMENVATTING_20260909_1945.md",
+      "bron_type": "order",
+      "status": "OPEN",
+      "taak": "Stap 1 spookwachtrij — V3 bouwt bij claude1, daarna revieworder",
+      "schatting_categorie": "GESCHAT",
+      "schatting_min": 40
+    },
+    {
+      "bron_bestand": "outbox/DIRECTOR_SAMENVATTING_20260909_1945.md",
+      "bron_type": "order",
+      "status": "OPEN",
+      "taak": "Stap 3 statusrecord — `b07cf901` in review bij codex2, daarna R7-meting en merge",
+      "schatting_categorie": "GESCHAT",
+      "schatting_min": 30
+    },
+    {
+      "bron_bestand": "outbox/DIRECTOR_SAMENVATTING_20260909_1945.md",
+      "bron_type": "order",
+      "status": "OPEN",
+      "taak": "Stap 2(a) receiptbinding — vers bewijs vandaag: `RECEIPT_PATH_DIVERTED` verstopte een reviewverdict in het transportreceipt",
+      "schatting_categorie": "GESCHAT",
+      "schatting_min": 60
+    },
+    {
+      "bron_bestand": "outbox/DIRECTOR_SAMENVATTING_20260909_1945.md",
+      "bron_type": "order",
+      "status": "OPEN",
+      "taak": "Stap 2(b)/(c)/(e) headbinding, modeldoorgifte, inhoudsbinding",
+      "schatting_categorie": "GESCHAT",
+      "schatting_min": 90
+    },
+    {
+      "bron_bestand": "outbox/DIRECTOR_SAMENVATTING_20260909_1945.md",
+      "bron_type": "order",
+      "status": "OPEN",
+      "taak": "Stap 4 toelatingsautomaat — moet het `queue_state`-schrijfpad van de lane-responder weghalen",
+      "schatting_categorie": "GESCHAT",
+      "schatting_min": 60
+    },
+    {
+      "bron_bestand": "outbox/DIRECTOR_SAMENVATTING_20260909_1945.md",
+      "bron_type": "order",
+      "status": "OPEN",
+      "taak": "Stap 6 monitor/responder/supervisor op het record",
+      "schatting_categorie": "GESCHAT",
+      "schatting_min": 60
+    },
+    {
+      "bron_bestand": "outbox/DIRECTOR_SAMENVATTING_20260909_1945.md",
+      "bron_type": "order",
+      "status": "OPEN",
+      "taak": "Stap 7 runtime-cutover, daarna burn-in B (7 dagen)",
+      "schatting_categorie": "GESCHAT",
+      "schatting_min": 45
+    },
+    {
+      "bron_bestand": "outbox/DIRECTOR_SAMENVATTING_20260909_1945.md",
+      "bron_type": "order",
+      "status": "OPEN",
+      "taak": "Stap 8 legacy-parser weg",
+      "schatting_categorie": "GESCHAT",
+      "schatting_min": 30
+    },
+    {
+      "bron_bestand": "outbox/DIRECTOR_SAMENVATTING_20260909_1945.md",
+      "bron_type": "order",
+      "status": "GEBLOKKEERD",
+      "taak": "PR #115–#119 — `MISSING_INDEPENDENT_REVIEW`, hangt aan relay-1",
+      "schatting_categorie": "GEEN_SCHATTING",
+      "schatting_min": null
+    },
+    {
+      "bron_bestand": "outbox/DIRECTOR_SAMENVATTING_20260909_1945.md",
+      "bron_type": "order",
+      "status": "GEBLOKKEERD",
+      "taak": "Stap 5 raceproef V2 — wacht op claude3-credits, wektaak staat op 03:04",
+      "schatting_categorie": "GEEN_SCHATTING",
+      "schatting_min": null
+    },
+    {
+      "bron_bestand": "outbox/DIRECTOR_SAMENVATTING_20260909_1945.md",
+      "bron_type": "order",
+      "status": "KLAAR",
+      "taak": "Relay-1 gedragsreparatie (bewijs: receipt `462b45bf`, 37/0, CODEX1-review)",
+      "schatting_categorie": "GEEN_SCHATTING",
+      "schatting_min": null
+    },
+    {
+      "bron_bestand": "outbox/DIRECTOR_SAMENVATTING_20260909_1945.md",
+      "bron_type": "order",
+      "status": "KLAAR",
+      "taak": "Relay-1 dekkingsreparatie gebouwd (bewijs: receipt `3d9afd48`, 39/0, beide mutanten gericht rood)",
+      "schatting_categorie": "GEEN_SCHATTING",
+      "schatting_min": null
+    },
+    {
+      "bron_bestand": "outbox/DIRECTOR_SAMENVATTING_20260909_1945.md",
+      "bron_type": "order",
+      "status": "KLAAR",
+      "taak": "Stap 3 gebouwd (bewijs: receipt `b07cf901`, 30/0, negatieve controles op basis)",
+      "schatting_categorie": "GEEN_SCHATTING",
+      "schatting_min": null
+    },
+    {
       "bron_bestand": "outbox/DIRECTOR_STACKSTATUS_BLINDE_SERVICELAAG_20260908_CLAUDE3_V1_TRANSPORT_RECEIPT.md",
       "bron_type": "receipt",
       "status": "KLAAR",
@@ -20485,8 +20597,8 @@
     }
   ],
   "taken_meta": {
-    "taken_totaal": 2549,
-    "taken_zonder_schatting": 2069,
+    "taken_totaal": 2563,
+    "taken_zonder_schatting": 2074,
     "bron_glob": "outbox/*.md (TAKENLIJST-blokken)",
     "classificatie": "regex op TAKENLIJST-tabelrijen (Status/Taak/Tijd) en kale lijstvorm; een cel zonder herkenbaar '~X min'-patroon telt als GEEN_SCHATTING, nooit stilzwijgend overgeslagen"
   },
@@ -20496,15 +20608,15 @@
     "cmd": "bin/lane-capaciteit --json",
     "data": {
       "stack_root": "STACK_ROOT",
-      "generated_at": "2026-09-09T17:44:33Z",
+      "generated_at": "2026-09-09T17:49:54Z",
       "meta": {
-        "receipt_bestanden_totaal": 1229,
+        "receipt_bestanden_totaal": 1231,
         "receipt_onparseerbaar": 216,
         "jsonl": {
-          "total_lines": 652,
+          "total_lines": 653,
           "actor_lines": 0,
           "onparseerbaar": 0,
-          "zonder_actor": 652,
+          "zonder_actor": 653,
           "aanwezig": true
         },
         "verdict_classificatie": "heuristiek: prefix-match op verdict= (hoofdletterongevoelig); GESLAAGD={GO,PASS,DELIVERED}, GEBLOKKEERD={NO_GO,BLOCKED,REJECTED,FAILED}, onbekend/overig telt niet stilzwijgend mee als geslaagd of geblokkeerd"
@@ -20699,16 +20811,16 @@
         },
         {
           "actor": "codex1",
-          "orders": 180,
-          "orders_met_duur": 176,
-          "p50_duration_ms": 155500,
+          "orders": 181,
+          "orders_met_duur": 177,
+          "p50_duration_ms": 156000,
           "max_duration_ms": 3481000,
-          "orders_met_verdict": 91,
-          "geslaagd_pct": 26.4,
-          "geblokkeerd_pct": 70.3,
+          "orders_met_verdict": 92,
+          "geslaagd_pct": 26.1,
+          "geblokkeerd_pct": 70.7,
           "overig_pct": 3.3,
           "verdict_distribution_raw": {
-            "BLOCKED_EVIDENCE": 39,
+            "BLOCKED_EVIDENCE": 40,
             "CONTRACT_CONCEPT_GELEVERD": 1,
             "GO_READY_FOR_MERGE_GATE": 18,
             "GO_WITH_FINDINGS": 4,
@@ -20718,13 +20830,13 @@
             "TRIAGE_PARTIAL": 1,
             "V1_1_GELEVERD": 1
           },
-          "laatste_activiteit": "2026-09-09T17:32:37Z"
+          "laatste_activiteit": "2026-09-09T17:49:37Z"
         },
         {
           "actor": "codex2",
-          "orders": 140,
-          "orders_met_duur": 133,
-          "p50_duration_ms": 187000,
+          "orders": 141,
+          "orders_met_duur": 134,
+          "p50_duration_ms": 185000,
           "max_duration_ms": 3264000,
           "orders_met_verdict": 68,
           "geslaagd_pct": 27.9,
@@ -20742,7 +20854,7 @@
             "NO_GO": 17,
             "REVIEW_PENDING": 1
           },
-          "laatste_activiteit": "2026-09-09T17:38:59Z"
+          "laatste_activiteit": "2026-09-09T17:49:15Z"
         },
         {
           "actor": "director",
@@ -21062,7 +21174,7 @@
         },
         {
           "actor": "ZONDER_ACTOR",
-          "orders": 652,
+          "orders": 653,
           "orders_met_duur": 0,
           "p50_duration_ms": null,
           "max_duration_ms": null,
@@ -21724,7 +21836,8 @@
             649,
             650,
             651,
-            652
+            652,
+            653
           ]
         }
       ]
@@ -21771,6 +21884,71 @@
   },
   "beslisrij_onparseerbaar_count": 0,
   "ticker_events": [
+    {
+      "event_id": 1207,
+      "tijd": "2026-09-09T17:49:16Z",
+      "taak_id": "AUTOCODING_SUPERVISOR",
+      "project": "STACK_DIRECTOR",
+      "kanaal": "AUTOCODING",
+      "account": "SUPERVISOR",
+      "overgang": "HEARTBEAT",
+      "bewijsref": "state/autocoding-supervisor/status.json",
+      "resultaat": "ISSUES_QUEUE_ADMISSION_STALLED_TRANSPORT_FAILED_TRANSPORT_FAILED_RECEIPT_PRESENT",
+      "integriteit": null,
+      "betekenisvol": false
+    },
+    {
+      "event_id": 1206,
+      "tijd": "2026-09-09T17:48:15Z",
+      "taak_id": "AUTOCODING_SUPERVISOR",
+      "project": "STACK_DIRECTOR",
+      "kanaal": "AUTOCODING",
+      "account": "SUPERVISOR",
+      "overgang": "HEARTBEAT",
+      "bewijsref": "state/autocoding-supervisor/status.json",
+      "resultaat": "ISSUES_QUEUE_ADMISSION_STALLED_TRANSPORT_FAILED_TRANSPORT_FAILED_RECEIPT_PRESENT",
+      "integriteit": null,
+      "betekenisvol": false
+    },
+    {
+      "event_id": 1205,
+      "tijd": "2026-09-09T17:47:11Z",
+      "taak_id": "AUTOCODING_SUPERVISOR",
+      "project": "STACK_DIRECTOR",
+      "kanaal": "AUTOCODING",
+      "account": "SUPERVISOR",
+      "overgang": "HEARTBEAT",
+      "bewijsref": "state/autocoding-supervisor/status.json",
+      "resultaat": "ISSUES_QUEUE_ADMISSION_STALLED_TRANSPORT_FAILED_TRANSPORT_FAILED_RECEIPT_PRESENT",
+      "integriteit": null,
+      "betekenisvol": false
+    },
+    {
+      "event_id": 1204,
+      "tijd": "2026-09-09T17:46:09Z",
+      "taak_id": "AUTOCODING_SUPERVISOR",
+      "project": "STACK_DIRECTOR",
+      "kanaal": "AUTOCODING",
+      "account": "SUPERVISOR",
+      "overgang": "HEARTBEAT",
+      "bewijsref": "state/autocoding-supervisor/status.json",
+      "resultaat": "ISSUES_QUEUE_ADMISSION_STALLED_TRANSPORT_FAILED_TRANSPORT_FAILED_RECEIPT_PRESENT",
+      "integriteit": null,
+      "betekenisvol": false
+    },
+    {
+      "event_id": 1203,
+      "tijd": "2026-09-09T17:45:08Z",
+      "taak_id": "AUTOCODING_SUPERVISOR",
+      "project": "STACK_DIRECTOR",
+      "kanaal": "AUTOCODING",
+      "account": "SUPERVISOR",
+      "overgang": "HEARTBEAT",
+      "bewijsref": "state/autocoding-supervisor/status.json",
+      "resultaat": "ISSUES_QUEUE_ADMISSION_STALLED_TRANSPORT_FAILED_TRANSPORT_FAILED_RECEIPT_PRESENT",
+      "integriteit": null,
+      "betekenisvol": false
+    },
     {
       "event_id": 1202,
       "tijd": "2026-09-09T17:44:02Z",
@@ -37400,27 +37578,27 @@
   ],
   "ticker_meta": {
     "bron_pad": "state/stack-ticker-events.jsonl",
-    "last_event_at": "2026-09-09T17:44:02Z",
+    "last_event_at": "2026-09-09T17:49:16Z",
     "publicatieleeftijd": "NO_DATA_ZONDER_GEAUTORISEERDE_PUBLICATIE",
     "client_refresh_max_seconds": 5,
-    "event_count": 1202,
+    "event_count": 1207,
     "betekenisvol_count": 82,
     "classificatie": "append-only JSONL; niet-monotone of incomplete events blijven NO_DATA. betekenisvol=false markeert een HEARTBEAT die hetzelfde resultaat meldt als de vorige regel — een levensteken, geen gebeurtenis"
   },
   "route": {
     "status": "OK",
     "bron_pad": "state/run/director-heartbeat.json",
-    "tik": 177,
+    "tik": 178,
     "tijd": "NO_DATA",
     "leeftijd_seconden": null,
     "huidige_stap": "1/3/5 parallel",
-    "bezig": "relay-1 V9B (462b45bf) in exact-head-review bij CODEX1; V4B-ordercorrectie geschreven en gelint, wacht op vrije codex1-laan",
+    "bezig": "stap 3 b07cf901 in review bij codex2; V4B bouwt bij codex1; stap 1 V3 bouwt bij claude1; relay-1 REVIEW10 QUEUED voor codex1",
     "nu_op_de_rol": [
-      "BEZIG: CODEX1 reviewt relay-1 462b45bf (37/0 op head, 35/2 op basis)",
-      "OPEN: V4B worktreecontract dispatchen zodra codex1 vrij is",
-      "OPEN: CLAUDE1's tweede stem op stap1 4ae35acd oogsten",
-      "OPEN: stap3 V5 bij CLAUDE4 oogsten (loopt)",
-      "OPEN: R7-meting en merge zodra relay-1 een GO heeft"
+      "stap 1 — V3 bouwt bij claude1 (ast-telling, basisbinding, navolgbaar poortgetal)",
+      "stap 3 — b07cf901 groen, revieworder gedispatcht naar codex2",
+      "stap 5 relay-1 — 3d9afd48 groen, REVIEW10 gelint en QUEUED voor codex1",
+      "stap 5 worktree-contract — V4B bouwt bij codex1",
+      "stap 2/4/6/7/8 — open, wachten op de bouwlanen"
     ],
     "unjustified_idle": null,
     "merge_deze_tik": null,
@@ -37472,12 +37650,12 @@
       {
         "stap": "STAP5",
         "taken_totaal": 27,
-        "met_receipt": 23,
-        "zonder_receipt": 4,
-        "geblokkeerd": 11,
+        "met_receipt": 24,
+        "zonder_receipt": 3,
+        "geblokkeerd": 12,
         "werk_mislukt": 8,
-        "administratie_mislukt": 3,
-        "laatste_activiteit": "2026-09-09T17:40:54Z",
+        "administratie_mislukt": 4,
+        "laatste_activiteit": "2026-09-09T17:49:37Z",
         "status": "OPEN"
       },
       {
@@ -37493,7 +37671,7 @@
       }
     ],
     "werk_mislukt_totaal": 30,
-    "administratie_mislukt_totaal": 12,
+    "administratie_mislukt_totaal": 13,
     "stappen_status": "OK",
     "stappen_bron_pad": "outbox/*STAP<n>*.md",
     "classificatie": "nu_op_de_rol is de letterlijke taken[]-lijst uit de director-heartbeat; stappen zijn mechanisch geteld uit de STAP-orders in outbox — een taak telt als afgehandeld zodra er een *_RECEIPT.md naast de order ligt. werk_mislukt = het werk zelf faalde (verdict NO_GO/BLOCKED/FAILED, exclusief BLOCKED_EVIDENCE); administratie_mislukt = het werk leverde een uitkomst op maar het receipt kwam niet op het toegestane pad aan (verdict BLOCKED_EVIDENCE). Alleen werk_mislukt maakt een stap GEBLOKKEERD; loutere administratie_mislukt geeft KLAAR_ADMINISTRATIE_ONVOLLEDIG. BEZIG volgt uit het stap-veld van de director, niet uit een schatting",
@@ -37542,42 +37720,331 @@
           "spoor": "Infra (Mac mini + backup)"
         }
       ],
-      "leeftijd_seconden": 824156,
+      "leeftijd_seconden": 824477,
       "verouderd": true,
       "classificatie": "handgeschreven document, geen heartbeat: de sporen zijn de '## <n>. <titel>'-koppen uit het overzicht. verouderd=true zodra het bestand ouder is dan twee dagen — dan is dit geschiedenis en geen stand, en moet het overzicht worden bijgewerkt"
     }
   },
   "problemen": {
-    "status": "NO_DATA_JSON_DECODEFOUT",
+    "status": "OK",
     "bron_pad": "state/run/supervisor-heartbeat.json",
-    "tik": null,
-    "tijd": "NO_DATA",
-    "leeftijd_seconden": null,
-    "open": [],
-    "open_count": 0,
-    "opgelost_recent": [],
-    "opgelost_count": 0,
+    "tik": 304,
+    "tijd": "2026-09-09T17:49:30Z",
+    "leeftijd_seconden": 25,
+    "open": [
+      {
+        "id": "SUPERVISOR_DISPATCH_SUBPROCESS_FAILED_20260909_1648Z",
+        "ernst": "HOOG",
+        "probleem": "Na de CONTROLLER_STALE-episode (tick289) toont de eerste verse controller-heartbeat-cyclus (state/autocoder-controller-heartbeat.json, 2026-09-09T16:43:10Z) status=FAIL i.p.v. het eerdere ATTENTION: scanned=52, dispatched=0, failed=3, failure_category=DISPATCH_SUBPROCESS_FAILED. Onafhankelijk gecorroboreerd in state/autocoding-supervisor/status.json (heartbeat 16:46:54Z): nieuwe categorie DISPATCH_SUBPROCESS_FAILED verschijnt in issues[]/issue_streaks (streak=4, dus al aanwezig sinds vlak vóór de vorige stale-episode eindigde), terwijl CONTROLLER_STALE en QUEUE_ADMISSION_STALLED tegelijk uit issues[] verdwenen zijn -- geen vermelding in resolved_categories[] (blijft leeg, bevestigt het al eerder gesignaleerde structurele patroon dat dit veld resoluties niet registreert). De drie reeds langer lopende categorieen (ORDER_LINT_REJECTED 16->22, RECEIPT_NONTERMINAL 26->32, TRANSPORT_FAILED 258->264) groeien onverminderd door. SLUITING (tick297, 17:14Z, bevestigd tick298 17:18Z): de streak groeide door tot 25 (tick296) en verdween daarna stil uit issues[]/issue_streaks{} tegelijk met de verse controller-heartbeat-cyclus (17:12:39Z, status FAIL->ATTENTION, dispatched 0->2, failed 3->0). Twee opeenvolgende metingen (17:14Z en 17:18Z) bevestigen dat de categorie afwezig blijft -- geen terugval. resolved_categories[] bleef bij deze sluiting leeg, zelfde structurele patroon als bij alle eerdere categorie-transities deze sessie.",
+        "oplossing": "gesloten -- geen Richard-escalatie geweest, is zelf opgelost via een verse controllercyclus (dispatched=2, failed=0). Ter info in eerstvolgende samenvatting; geen verdere actie.",
+        "opgepakt": "GEVOLGD"
+      },
+      {
+        "id": "SUPERVISOR_AUDITBRON_AFWIJKEND_20260909_1733Z",
+        "ernst": "MIDDEL",
+        "probleem": "Addendum1 §1-auditbron-check voor het eerst daadwerkelijk uitgevoerd (in eerdere tikken steeds als 'niet getriggerd' gelogd zonder de vergelijking echt te maken). state/AUDIT_AUTOCODING_REGIE_2026-09-08.md staat op origin/main sinds commit b66e4b11 ('REPARATIE_STAP_0: auditbron vastgelegd (hash-geverifieerd)'). Huidige inhoud-hash, onafhankelijk bevestigd via twee methoden (shasum op de working-tree-kopie EN shasum op de git-blob-inhoud via `git cat-file -p`): `90ae7c2b3445b8d2005a454519f5683c1f760de8e591b7882e5f719566d78912`. Verwachte waarde per ADDENDUM1 §1: `359d5d238f31b36fda7c12d96a814a8bd3c35bf74d0be83656f0547e0d673f26`. Wijkt af. Belangrijk detail: de hash van de allereerste commit (b66e4b11) is óók al `ead001b1ed8e793f4c86f08543e8c080c76c9c4a6f6a7b2a605f2ff2c1969153` -- eveneens afwijkend van de pinned referentie -- dus de mismatch bestond al bij de oorspronkelijke vastlegging, niet pas na een latere wijziging. Het bestand kreeg tussen b66e4b11 en de huidige head wel een echte, herleidbare inhoudswijziging (commit f6d9dd36 voegde §5.1a 'Herstelcontract' toe, expliciet gemotiveerd door codex2's NO_GO op stap3) -- dat verklaart een deel van het huidige verschil maar niet de oorspronkelijke mismatch al bij vastlegging. Meest waarschijnlijke verklaring: de in het opdrachtdocument gepinde referentiehash was al bij het schrijven ervan niet de hash van de exacte git-blob-inhoud (mogelijk een hash van een pre-commit brontekst, andere regeleinding, of transcriptiefout) -- geen aanwijzing voor stiekeme manipulatie tijdens de sessie, wel dat het mechanische verificatiemiddel zelf niet functioneert zoals bedoeld.",
+        "oplossing": "geen zelfstandige mutatie (ik overschrijf nooit de canonieke bron of de opdracht). Wel melden: de gepinde SHA-256 in ADDENDUM1 §1 kan de huidige auditbron niet bevestigen en heeft dat vermoedelijk nooit gekund sinds de eerste vastlegging. Aanbeveling aan Richard/director: ofwel de referentiehash herpinnen op de huidige (of b66e4b11-)inhoud met een expliciete herleidbare methode, ofwel bevestigen dat dit veld nooit als hard verificatiemiddel heeft gewerkt. Tot die tijd blijft elke toekomstige auditbron-check op dit bestand structureel AFWIJKEND rapporteren -- dat is verwacht gedrag, geen nieuwe escalatie per tik.",
+        "opgepakt": "IN_UITVOERING"
+      },
+      {
+        "id": "SUPERVISOR_ORDERS_STUCK_NONTERMINAL_RECEIPT_20260909_1723Z",
+        "ernst": "MIDDEL",
+        "probleem": "autocoder-controller-heartbeat.json ging bij 17:23:18Z van status=ATTENTION (tick297/298) naar status=STUCK, met een nieuwe failure_category ORDERS_STUCK_NONTERMINAL_RECEIPT en voor het eerst dit tik een gevulde stuck_task_ids: ['DIRECTOR_STAP3_RECORDIMPORT_20260909_CLAUDE2_V2'] (stuck_count=1). autocoding-supervisor/status.json corroboreert: dezelfde categorie verschijnt in issues[]/issue_streaks (streak 1 bij 17:24:09Z, doorgegroeid naar 4 bij 17:27:10Z), TRANSPORT_FAILED_RECEIPT_PRESENT is tegelijk uit issues[] verdwenen (zie de aparte transient-bevinding hierboven) -- dit lijkt dus een categorie-vervanging, niet een nieuwe stapeling. actions[] toont action=NONE/detail=already_requested voor deze categorie, dus autocoding-supervisor heeft zelf al reparatie aangevraagd. escalation.streak bleef ondertussen doorgroeien (296->300->303), ongeacht welke individuele categorie momenteel actief is.",
+        "oplossing": "geen Richard-escalatie: R3-meetpunt, reparatie al zelf aangevraagd (already_requested). Blijven volgen of DIRECTOR_STAP3_RECORDIMPORT_20260909_CLAUDE2_V2 loskomt of dat stuck_count verder oploopt; STUCK-status met een benoemde vastzittende taak weegt zwaarder dan het eerdere ATTENTION, dus bij aanhoudende groei (>~30min) of een tweede stuck_task_id zou dit een signalering verdienen. SLUITING (tick301, 17:40:23Z): controller-heartbeat stond bij 17:32:56Z alweer op status=ATTENTION met stuck_count=0/stuck_task_ids=[] en failure_category=TRANSPORT_FAILED_RECEIPT_PRESENT; status.json corroboreert -- ORDERS_STUCK_NONTERMINAL_RECEIPT is uit issues[]/issue_streaks verdwenen. ACTOR_LEDGER.md (director, read-only gemeten, niet overgenomen als premisse) beschrijft zelf de oorzaak: order DIRECTOR_STAP5_RACEPROEF_DETERMINISTISCH_20260909_CLAUDE2_V1 werd om 17:24:02Z door de lane-responder gereconcilieerd naar QUARANTINED (verdict=ABANDONED_NONTERMINAL_RECONCILED, live_pid=false, valid_lease=false) nadat een verschaalde laanclaim een niet-terminaal receipt achterliet dat de hele dispatchlus stillegde. Director noteert zelf als vervolgdefect dat de responder daarmee zelf queue_state schreef -- het schrijfpad dat stap 4 hem moet afnemen; dat is hun eigen regiewerk, geen nieuwe R3-bevinding van mij. Sluiting <30min na ontstaan (17:23Z->17:32Z), consistent met het eerder vastgestelde zelfsluitende patroon van deze keten.",
+        "opgepakt": "IN_UITVOERING"
+      },
+      {
+        "id": "SUPERVISOR_CI_HERSTELD_CLAIM_ONGECORROBOREERD_20260909_1721Z",
+        "ernst": "MIDDEL",
+        "probleem": "state/run/director-heartbeat.json (tik176, 17:21:00Z) meldt: 'GitHub Actions zelf nagemeten en weer werkend bevonden' -- een claim die de lange, stabiele CI/billing-blokkade van deze hele sessie zou opheffen. R3-verificatie tegen de canonieke GitHub-bron (gh CLI, read-only) weerspreekt dit vooralsnog: `gh run list` toont geen enkele workflow-run (queued/in_progress/completed) na 2026-09-09T15:29:12Z -- bijna 2 uur voor het meetmoment, ondanks aantoonbaar actieve bouwlanes in dezelfde periode (relay1 V8/V9/V9B, stap1/stap3-bouworders, worktreecontract-reviews, per ACTOR_LEDGER). `gh pr list` toont PR's 115-119 allemaal nog `mergeStateStatus=BLOCKED` (mergeable=MERGEABLE, dus een geblokkeerde requiredcheck, geen echte conflict), met `updatedAt` tussen 12:27Z en 15:40Z -- geen enkele PR bewoog sinds vóór de claim. Geen van beide canonieke bronnen corroboreert 'weer werkend'. Mogelijke verklaringen (geen van beide bevestigd): (a) director doelt op een andere meting dan een getriggerde workflow-run (bv. een directe billing-dashboardcheck die ik niet kan zien via gh CLI); (b) de net gedispatchte bouworders (V9B/stap3-V5/worktreecontract-V4) zijn nog niet gepusht/PR-geopend, dus er is simpelweg nog geen nieuwe run om te tonen. Geen tegenspraak bewezen, alleen: nog geen bevestiging.",
+        "oplossing": "geen Richard-escalatie: R3-meetpunt, geen mutatie. Blijven volgen of de eerstvolgende push/PR-update op 115-119 of een nieuwe workflow-run de claim alsnog bevestigt; bij aanhoudende BLOCKED-status ondanks herhaalde 'werkend'-claims zou dat een eigen signalering verdienen (canon vs. verhaal-divergentie). UPDATE 17:28:18Z (tweede onafhankelijke meting, ~7min later): `gh pr list` toont PR's 115-119 nog altijd exact dezelfde mergeStateStatus=BLOCKED met ongewijzigde updatedAt-tijdstempels -- géén enkele beweging sinds vóór de claim, tweede meting bevestigt de eerste. Nieuw signaal ernaast (geen onderdeel van de claim zelf, wel op hetzelfde meetmoment ontdekt): PR #120 (de eigen branch van de gedeelde werkmap, wip/board-oorzakenteller-20260909) ging tussen de twee metingen van mergeStateStatus=UNKNOWN/mergeable=UNKNOWN naar mergeStateStatus=DIRTY/mergeable=CONFLICTING -- een echte nieuwe degradatie, losstaand van de CI-claim, puur R3-observatie, geen actie vanuit dit mandaat.",
+        "opgepakt": "IN_UITVOERING"
+      },
+      {
+        "id": "SUPERVISOR_CONTROLLER_STALE_HERONTSTAAN_20260909_1641Z",
+        "ernst": "MIDDEL",
+        "probleem": "CONTROLLER_STALE keerde terug in state/autocoding-supervisor/status.json's issues[]/issue_streaks{} (streak=3, heartbeat=16:40:52Z, controller_age_seconds=1025) na een lange periode van afwezigheid sinds de vroeger deze sessie getrackte reeks episodes (laatst gesloten: 'zevende episode', 13:49:40Z). Onafhankelijk gecorroboreerd tegen de canonieke bron: state/autocoder-controller-heartbeat.json staat vast op 2026-09-09T16:23:47Z sinds tick284, geen enkele nieuwe cyclus gedurende vijf opeenvolgende tikken (285-289, ~17,5 min), bevestigd via herhaalde 'wasted call -- unchanged'-antwoorden op elke Read-poging. Consistent met eerder in deze sessie vastgesteld patroon: de controller-daemon staakt periodiek zijn scancyclus zonder actief herstelmechanisme, alleen toevallige verse hartslagen; resolved_categories[] bleef bij alle eerdere episodes leeg (geen enkele formele sluiting ooit geregistreerd) en is ook nu leeg. SLUITING (tick297, 17:14Z): de streak liep op tot 11 (tick296, controller_age_seconds=1529, ~25,5min) -- dus zelf opgelost vlak vóór het bereiken van de zelfgestelde >30min-overweegdrempel (streak 2->6->8->11, resolved bij 17:12:39Z na ~29,5min stilstand sinds 16:43:10Z). Dit is de achtste episode in deze sessie die zichzelf oplost via een toevallige verse hartslag, nooit via resolved_categories[] (blijft leeg).",
+        "oplossing": "gesloten -- geen Richard-escalatie geweest, patroon consistent met alle eerdere episodes (zelfherstel zonder formele resolved_categories-registratie). Ter info in eerstvolgende samenvatting.",
+        "opgepakt": "GEVOLGD"
+      },
+      {
+        "id": "SUPERVISOR_CONTROLLER_STALE_ZEVENDE_EPISODE_20260909_1322Z",
+        "ernst": "MIDDEL",
+        "probleem": "CONTROLLER_STALE verscheen voor de ZEVENDE losstaande keer in status.json's issues[]/issue_streaks{} (streak=2, gemeten bij heartbeat=13:22:29Z, controller_age_seconds=965). Onafhankelijk gecorroboreerd: autocoder-controller-heartbeat.json staat vast op 13:06:24Z sinds tick244 -- geen enkele nieuwe cyclus in >16 min (13:22:29Z - 13:06:24Z = 965s, exact gelijk aan controller_age_seconds, sluitend bewijs echte daemon-stilstand). Dit is een andere situatie dan de tick246-observatie (status.json's scanned-veld bleef kort op 91 staan na de ghost-queue-closure) -- dat was een verklaarde lag van een veld dat uit de controller-heartbeat leest; dit is de staleness-detectie zelf (bin/autocoding-supervisor:2296-2297) die daadwerkelijk >900s meet omdat de daemon zelf geen nieuwe cyclus heeft gedraaid. resolved_categories[] bleef ook nu leeg. Patroon nu zeven episodes diep, duur wisselend (episode 6 duurde ~11 min, dit is de langste stilstand tot nu toe gemeten bij detectiemoment: al >16 min en nog actief). SLUITING (tick253, 13:49:40Z): autocoder-controller-heartbeat.json bijgewerkt naar 13:44:59Z, controller_age_seconds terug naar 219, CONTROLLER_STALE verdwenen uit issue_streaks/issues[]. Totale duur episode 7: van vóór tick247 (heartbeat al vast op 13:06:24Z) tot 13:44:59Z -- >38 minuten, de langste episode tot nu toe gemeten. resolved_categories[] bleef bij sluiting leeg (negende misser op rij, patroon onveranderd).",
+        "oplossing": "gesloten -- geen verdere actie, ter info in eerstvolgende samenvatting.",
+        "opgepakt": "GEVOLGD"
+      },
+      {
+        "id": "SUPERVISOR_CONTROLLER_STALE_VIJFDE_EPISODE_20260909_1213Z",
+        "ernst": "MIDDEL",
+        "probleem": "CONTROLLER_STALE verscheen voor de VIJFDE losstaande keer in status.json's issues[]/issue_streaks{} (streak=2, gemeten bij heartbeat=12:13:32Z, controller_age_seconds=985) -- exact het scenario dat ik in de tick230-samenvatting (outbox/SUPERVISOR_SAMENVATTING_20260909_1145.md, commit 6a37b4b6) expliciet als criterium vastlegde: 'een hernieuwde CONTROLLER_STALE na deze sluiting zou een vijfde losstaande episode zijn'. Episode 4 was tick224-230 (verschenen 11:08:47Z, gesloten uiterlijk 11:45Z) en bleef daarna volledig afwezig tick231 t/m tick235 (5 opeenvolgende metingen, controller_age_seconds normaal doorgroeiend 19->79->381->683). Onafhankelijk gecorroboreerd tegen autocoder-controller-heartbeat.json: die stond vast op de tick232-snapshot (11:57:07Z) door tick233-236 heen -- geen enkele nieuwe cyclus gedurende die hele periode, consistent met de leeftijd die opliep tot 985s. Episode 5 bleek DIT KEER kortstondig: bij de eerstvolgende meting (heartbeat=12:18:33Z, ~5 min later) was CONTROLLER_STALE alweer afwezig uit issues[]/issue_streaks{}/escalating_categories[], controller_age_seconds gedaald naar 80, en de controller-heartbeat.json toonde een verse cyclus (12:17:13Z) -- de eerste sinds de tick232-snapshot. resolved_categories[] bleef ook bij deze vijfde episode leeg (zoals bij alle voorgaande vier): stille verdwijning, geen formele sluiting. Patroon over vijf episodes nu bevestigd: de controller-daemon staakt periodiek zijn cyclus (soms >16 min, deze keer >20 min), status.json's staleness-detectie reageert correct binnen een cyclus, maar het onderliggende defect (waarom de daemon zelf periodiek stopt met doorcyclen) is nooit verholpen -- alleen telkens vanzelf hersteld door een verse hartslag, nooit door een actieve reparatie.",
+        "oplossing": "geen Richard-escalatie: R3-meetpunt, geen mutatie door mij. Dit is nu vijf episodes van hetzelfde stille-verdwijning-patroon zonder ooit een resolved_categories-vermelding -- als dit zich een zesde keer herhaalt is dat zelf reden om de vraag scherper te stellen of status.json's episode-tracking structureel geen sluitingen registreert (categoriespecifiek defect) versus of de controller-daemon zelf structureel periodiek stalt (procesdefect). Blijven volgen of een zesde episode volgt en of resolved_categories[] ooit voor het eerst gevuld wordt.",
+        "opgepakt": "IN_UITVOERING"
+      },
+      {
+        "id": "SUPERVISOR_CONTROLLER_STALE_VIERDE_RECIDIVE_20260909_1108Z",
+        "ernst": "MIDDEL",
+        "probleem": "CONTROLLER_STALE verscheen voor de VIERDE losstaande keer in status.json's issues[]/issue_streaks{} (streak=1, overgang gemeten tussen 11:04:07Z (afwezig, tick223) en 11:08:47Z (aanwezig, tick224)). Episodegeschiedenis (uit dit bestand's eigen bevindingenlog): sluiting 1 om 08:48:35Z (resolved_categories destijds gevuld) -> episode 2 ('TWEEDE', ~09:44:35Z) -> episode 3 (bevestigd 10:01:40Z tik210, streak groeide 23->50 tot tick220, daarna 3 opeenvolgende tikken afwezig gemeten tick221-223) -> episode 4 (nu, tick224). resolved_categories[] is bij GEEN van deze vier episodes ooit gevuld -- elke sluiting is stil, nooit formeel vastgelegd. Onafhankelijk gecorroboreerd tegen autocoder-controller-heartbeat.json: de heartbeat staat nog steeds op 2026-09-09T10:52:39Z (~988s/16,5 min oud bij deze meting, geen enkele nieuwe cyclus sinds die ene schrijfbeurt). Dit ontkracht mijn eerdere interpretatie (tick221-223) dat episode 3's afwezigheid een 'duurzame sluiting' was: het was een eenmalige verse hartslag (veroorzaakt door director's drie SIGTERM-kills die het vastzittende dispatch-subproces bevrijdden, zoals director zelf diagnosticeerde in controller_bevinding), gevolgd door geen enkele vervolgcyclus -- de leeftijd liep vanzelf weer over de staleness-drempel. Het onderliggende defect (de controller draait niet continu door; dispatched blijft op 0 sinds 10:52:39Z) is dus nooit verholpen, alleen tijdelijk gemaskeerd door de leeftijd-reset. Dit is nu het patroon dat de eerder vastgelegde drempel triggert: een categoriespecifieke bevinding over CONTROLLER_STALE's detectie-/sluitlogica, los van de cross-categorie-metabevinding (die op twee onafhankelijke categorieen blijft staan: ORDER_LINT_REJECTED en CONTROLLER_STALE zelf).",
+        "oplossing": "geen Richard-escalatie: R3-meetpunt, geen mutatie door mij. Wel relevant voor de director: de w13-effectorder en de drie te herdispatchen orders (claude4/claude3/claude2) lossen dit niet op zolang de controller zelf geen doorlopende cyclus hervat -- dispatched blijft 0. Blijven volgen: of er een vijfde episode volgt (zou het patroon verder bevestigen als structureel, niet incidenteel), en of resolved_categories[] ooit voor het eerst gevuld wordt bij een toekomstige sluiting.",
+        "opgepakt": "GEVOLGD"
+      },
+      {
+        "id": "SUPERVISOR_CONTROLLER_STALE_HERONTSTAAN_TWEEDE_20260909_0944Z",
+        "ernst": "MIDDEL",
+        "probleem": "CONTROLLER_STALE keerde terug in status.json (issues[]/issue_streaks{CONTROLLER_STALE:1}, overgang gemeten tussen 09:43:34Z en 09:44:35Z) nadat de categorie eerder dit tik-venster formeel gesloten was via resolved_categories (08:48:35Z, zie bevinding CONTROLLER_STALE_HEROPEND hieronder, destijds ook al een herontstaan van een nóg eerdere sluiting). Onafhankelijk gecorroboreerd tegen autocoder-controller-heartbeat.json (>16 min zonder nieuwe cyclus, daarna wél bewogen binnen dezelfde tik). TREND-BEVESTIGING (tik209, metingen 09:48:36Z en 09:52:37Z): de categorie is opnieuw afwezig uit issues[]/issue_streaks{} en resolved_categories[] blijft leeg -- géén formele sluiting, stille verdwijning, tweede keer waargenomen. Dit is nu hetzelfde mechanisme (stille verdwijning zonder resolved_categories-vermelding) als bij ORDER_LINT_REJECTED (zie aparte bevinding), gemeten bij twee losse categorieën -- versterkt maar bewijst nog niet dat dit een structureel kenmerk is van de tracking in status.json i.p.v. toeval. Bijkomend: de controller-heartbeat is tik209 alwéér stale aan het worden (laatste echte cyclus 09:45:50Z, controller_age_seconds=407 en groeiend bij status.json-heartbeat 09:52:37Z) -- een mogelijke derde episode, nog niet in issues[] verschenen.",
+        "oplossing": "geen Richard-escalatie: R3-meetpunt. TIK210-BEVESTIGING (10:01:40Z): de derde episode is nu werkelijk verschenen -- status.json toont CONTROLLER_STALE weer in issues[]/issue_streaks{CONTROLLER_STALE:1}, actions[] toont category CONTROLLER_STALE detail=already_requested op hetzelfde tijdstip. Onafhankelijk gecorroboreerd: controller-heartbeat staat nog steeds vast op 09:45:50Z (nu >16 min oud). Dit is de derde keer dat dezelfde categorie zonder resolved_categories-vermelding verdwijnt en terugkeert (08:48:35Z sluiting -> heropening -> 09:44:35Z tweede heropening na tweede stille verdwijning -> nu een derde verschijning na de tik209-groeifase). Dit is drie recidieven van dezelfde categorie, niet drie verschillende categorieën met hetzelfde patroon -- de eerder gestelde meta-drempel (drie onafhankelijke categorieën) is dus NIET geraakt door deze meting; die drempel blijft op twee (ORDER_LINT_REJECTED, CONTROLLER_STALE). Wel op zichzelf een groeiend gegeven: CONTROLLER_STALE flappert nu op eigen kracht (drie cycli binnen enkele tikken) zonder ooit een resolved_categories-vermelding te krijgen -- bij een vierde recidief van dezelfde categorie wordt dat zelf een aparte MIDDEL-bevinding over de detectie-/sluitlogica specifiek van deze categorie, los van de cross-categorie-metabevinding.",
+        "opgepakt": "GEVOLGD"
+      },
+      {
+        "id": "SUPERVISOR_ORDER_LINT_REJECTED_STILLE_VERDWIJNING_20260909_0932Z",
+        "ernst": "MIDDEL",
+        "probleem": "Derde opeenvolgende meting (09:36:33Z) bevestigt: ORDER_LINT_REJECTED blijft afwezig uit issues[]/issue_streaks{}/escalating_categories[] sinds 09:31:32Z (was tik205 nog streak 23/26). resolved_categories[] blijft leeg. Director's nieuwe DOODALARM-order (13755d39, DIRECTOR_SUPERVISOR_DOODALARM_HERMELDING_20260909_CLAUDE2_V1) diagnosticeert een verwant maar ander defect (permanente demping van hermelding via een tijdloze fingerprint in de reparatieverzoek-dedup) -- verklaart niet waarom deze categorie volledig uit de tellingen verdween. Blijft apart getrackt.",
+        "oplossing": "geen Richard-escalatie: R3-meetpunt. Volgen of de categorie terugkeert of alsnog een resolved_categories-vermelding verschijnt; ook volgen of de DOODALARM-order na landing toevallig dit gedrag mede verklaart of verandert.",
+        "opgepakt": "IN_UITVOERING"
+      },
+      {
+        "id": "SUPERVISOR_RECEIPT_NONTERMINAL_NIEUWE_CATEGORIE_20260909_0922Z",
+        "ernst": "MIDDEL",
+        "probleem": "Vierde meting tik207 (09:36:33Z): issue_streaks RECEIPT_NONTERMINAL 13->18, blijft in escalating_categories[] en already_requested in actions[]. Controller-heartbeat ongewijzigd sinds 09:28:54Z (geen nieuwe cyclus), stuck_task_ids ongewijzigd, geen next_action.",
+        "oplossing": "geen Richard-escalatie: R3-meetpunt. Volgen of de twee stuck_task_ids een next_action krijgen of de streak verder groeit; bij ouder dan 4u zonder next_action geldt de NONTERMINAAL-drempel uit §B onverkort.",
+        "opgepakt": "GEVOLGD"
+      },
+      {
+        "id": "SUPERVISOR_WATCHDOG_ALERT_HERONTSTAAN_20260909_0740Z",
+        "ernst": "MIDDEL",
+        "probleem": "Discontinuiteit gemeten: age daalde van 6258s (tik206) naar 2547s (detected_at 09:36:48Z), en groeit sindsdien normaal door naar 2608s (09:37:49Z) -- dus geen meetfout maar een echte wisseling van 'oudste dispatch'. De eerder gevolgde vierde episode (>104 min) is niet langer de oudste stale dispatch; een jongere (~43 min bij eerste meting) is dat nu. Niet vastgesteld of de oude episode is afgerond (dispatch voltooid) of om een andere reden niet meer de oudste is -- geen aanname gedaan, apart blijven meten.",
+        "oplossing": "geen Richard-escalatie: NO_KILL_NO_RETRY blijft van kracht op de huidige oudste dispatch. Volgen of dit een echte vijfde episode is of een staartje van de vierde.",
+        "opgepakt": "GEVOLGD"
+      },
+      {
+        "id": "SUPERVISOR_ARBITRAGE_ONTBREEKT_20260909_0840Z",
+        "ernst": "MIDDEL",
+        "probleem": "state/ARBITRAGE_REQUESTS/DIRECTOR_RECEIPTROUTE_TWEEDE_NOGO_93D82C8D_20260909_FABLE_V2.md tussen twee meetmomenten binnen tik198 verdwenen; sidecar bleef intact. Onverklaard. NO_GO-verdictclaim blijft van kracht; termijn 2026-09-09T10:55Z nog niet verstreken.",
+        "oplossing": "geen Richard-escalatie: volgen of het bestand terugkeert of definitief weg blijft; geen mutatie op hoofdbestand.",
+        "opgepakt": "GEVOLGD"
+      },
+      {
+        "id": "SUPERVISOR_DISPATCH_SUBPROCESS_OORZAAK_GEMETEN_20260909_0816Z",
+        "ernst": "MIDDEL",
+        "probleem": "Director's tik120-taken bevestigen actieve doorloop: 'stap6-reviews oogsten (codex2 + gemini1)', 'supervisor-doodalarm bouwen (CLAUDE2, loopt)', 'controller-levensteken V2 dispatchen zodra claude4 vrij is'. Order DIRECTOR_CONTROLLER_LEVENSTEKEN_TIJDENS_DISPATCH_20260909_CLAUDE4_V1.md blijft QUEUED, wacht op vrije lane.",
+        "oplossing": "geen Richard-escalatie: actief door de director vervolgde reparatie, meerdere sporen tegelijk in beweging.",
+        "opgepakt": "IN_UITVOERING"
+      },
+      {
+        "id": "SUPERVISOR_ESCALATION_REQUIRED_STATUS_20260909_0802Z",
+        "ernst": "MIDDEL",
+        "probleem": "Zestiende meting (09:36:33Z): streak 158->163. Issues=[DISPATCH_SUBPROCESS_FAILED, RECEIPT_NONTERMINAL] (ORDER_LINT_REJECTED derde meting afwezig, zie aparte bevinding). escalating_categories[]=[DISPATCH_SUBPROCESS_FAILED, LEGACY_ESCALATION_CARRIED, RECEIPT_NONTERMINAL]. Director diagnosticeerde zelf de root cause van het algemene alarm-verstommingspatroon (tijdloze dedup-fingerprint) en dispatchte order DIRECTOR_SUPERVISOR_DOODALARM_HERMELDING_20260909_CLAUDE2_V1 (QUEUED, lane claude2) om dit te repareren -- nog niet gebouwd/gereviewed/gemerged.",
+        "oplossing": "geen Richard-escalatie: meetpunt (R3); DISPATCH_SUBPROCESS_FAILED en RECEIPT_NONTERMINAL blijven volgen; DOODALARM-order volgen tot landing+verificatie.",
+        "opgepakt": "GEVOLGD"
+      },
+      {
+        "id": "SUPERVISOR_RESOLVED_CATEGORIES_TRANSIENT_20260909_1728Z",
+        "ernst": "LAAG",
+        "probleem": "Belangrijke correctie op de doorlopend gedocumenteerde 'resolved_categories[] blijft altijd leeg'-waarneming (die deze sessie bij 9+ stille categorie-sluitingen werd genoteerd): bij de meting van 17:24:09Z bevatte resolved_categories voor het eerst deze hele sessie een waarde (['TRANSPORT_FAILED_RECEIPT_PRESENT']), maar bij de eerstvolgende meting (17:27:10Z, ~3 min later) stond het veld alweer terug op []. De categorie zelf is ook echt uit issues[]/issue_streaks verdwenen en niet teruggekeerd. Conclusie: resolved_categories[] is kennelijk een eenmalig, transiënt signaal dat maar één scancyclus zichtbaar blijft (de cyclus waarin de sluiting plaatsvindt), geen persistente log. Dit verklaart vermoedelijk de eerdere 'stille' sluitingen: die categorieën zijn hoogstwaarschijnlijk ook ooit kort door resolved_categories[] gegaan, maar op een moment tussen twee van mijn metingen in (5-min tik-cadans vs. een cyclus die mogelijk korter duurt) -- geen bewijs van een registratiedefect, wel van een meetgat door bemonsteringsfrequentie.",
+        "oplossing": "geen Richard-escalatie: informatief R3-inzicht, geen mutatie. Update de eigen interpretatie: toekomstige 'stille sluiting'-bevindingen moeten dit transiënte karakter benoemen in plaats van het als aanhoudend registratiedefect te framen, tenzij een sluiting herhaaldelijk over meerdere opeenvolgende metingen heen nooit in resolved_categories[] verschijnt (dat zou wel een echt registratiedefect signaleren).",
+        "opgepakt": "GEVOLGD"
+      },
+      {
+        "id": "SUPERVISOR_TRANSPORT_FAILED_RECEIPT_PRESENT_NIEUWE_CATEGORIE_20260909_1712Z",
+        "ernst": "LAAG",
+        "probleem": "Bij dezelfde verse controller-heartbeat-cyclus (17:12:39Z) die CONTROLLER_STALE en DISPATCH_SUBPROCESS_FAILED sloot, verschijnt een nieuwe failure_category TRANSPORT_FAILED_RECEIPT_PRESENT (nooit eerder gezien deze sessie), gecorroboreerd in status.json's issue_streaks (streak 2 bij 17:13:57Z, doorgegroeid naar 6 bij 17:18:02Z). Anders dan de tick290-HOOG-bevinding is dit karakter overwegend positief: status ging van FAIL naar ATTENTION, dispatched ging van 0 naar 2 (eerste echte dispatches sinds tick290), failed=0 (was 3). Bij de eerstvolgende meting (17:18:10Z) viel dispatched terug naar 0 en transport_failed_known=1 (was 0) -- de nieuwe categorie blijft dus aanwezig en groeit door, nog geen sluiting. resolved_categories[] registreerde, zoals gebruikelijk, geen van de drie gelijktijdige sluitingen (CONTROLLER_STALE, DISPATCH_SUBPROCESS_FAILED, ORDER_LINT_REJECTED).",
+        "oplossing": "geen Richard-escalatie: action=NONE/detail=already_requested in actions[], autocoding-supervisor heeft zelf al reparatie aangevraagd. Blijven volgen of TRANSPORT_FAILED_RECEIPT_PRESENT verder oploopt/escaleert of vanzelf sluit zoals de drie categorieën die het verving; bij aanhoudende groei zonder resolutie (>~30min) weegt dit zwaarder mee richting een signalering.",
+        "opgepakt": "IN_UITVOERING"
+      },
+      {
+        "id": "SUPERVISOR_DIRECTOR_STIL_DREMPEL_20260909_1330Z",
+        "ernst": "LAAG",
+        "probleem": "Mechanische DIRECTOR_STIL-drempel (director-heartbeat.json ouder dan 15 min) voor het eerst overschreden deze sessie: state/run/director-heartbeat.json staat vast op tik152/tijd=13:14:00Z, gemeten leeftijd 928s bij tick249 (13:29:45Z). Bestandsmtime (13:12 lokaal) bevestigt dat het bestand echt niet herschreven is sinds ~13:12-13:14Z. Onafhankelijk gecorroboreerd tegen de canonieke git-bron: twee nieuwe commits landden NA dat tijdstip (75d332df 13:2x, 7ba8828b 13:2x -- REPARATIE_STAP_5-terugroep-order en ledger-update met PR #117-opening), wat aantoont dat de director-sessie in diezelfde periode wel degelijk actief werkte. Dit wijst op een heartbeat-schrijflag (het bestand wordt niet bij elke handeling herschreven) eerder dan een echte vastgelopen sessie -- vergelijkbaar met de controller-heartbeat/scanned-veld-lags eerder gemeten, maar dit is de eerste keer dat de 15-min-DIRECTOR_STIL-drempel zelf wordt geraakt. SLUITING (tick251, 13:43:10Z): director-heartbeat.json is bijgewerkt naar tik154/tijd=13:42:27Z, leeftijd bij meting ~43s -- ruim onder de drempel. Bevestigt de destijds getrokken conclusie: dit was een schrijflag, geen echte stilstand. Geen HERSTART_NODIG nodig geweest.",
+        "oplossing": "gesloten -- geen verdere actie, ter info in eerstvolgende samenvatting.",
+        "opgepakt": "IN_UITVOERING"
+      },
+      {
+        "id": "SUPERVISOR_CONTROLLER_STALE_ZESDE_EPISODE_20260909_1233Z",
+        "ernst": "LAAG",
+        "probleem": "CONTROLLER_STALE verscheen voor de ZESDE losstaande keer in status.json's issues[]/issue_streaks{} (streak=2, gemeten bij heartbeat=12:33:41Z, controller_age_seconds=988). Precies het kijkpunt dat ik zelf vastlegde in de tick236-bevinding (episode 5) en herhaalde in de tick237/238-heartbeats: 'blijven volgen of een zesde episode volgt'. Onafhankelijk gecorroboreerd: autocoder-controller-heartbeat.json staat vast op 12:17:13Z sinds tick236 -- geen enkele nieuwe cyclus in >16 minuten (12:33:41Z - 12:17:13Z = 988s, exact gelijk aan controller_age_seconds -- sluitend bewijs dat de daemon zelf stilligt, geen meetartefact). resolved_categories[] bleef ook nu leeg -- zes van zes episodes zonder ooit een formele sluiting. Patroon nu zes episodes diep: de controller-daemon staakt herhaaldelijk zijn cyclus (episode-duur varieert: episode 4 was tick224-230, episode 5 duurde ~5 min, deze zesde loopt al >16 min en is nog niet gesloten op meetmoment). Dit raakt nu de zelf-vastgelegde drempel om de vraag scherper te stellen: is dit een status.json-trackingdefect (nooit sluitingen registreren, ongeacht de werkelijke daemon-toestand) of een structureel daemon-procesdefect (periodieke stalling zonder herstelmechanisme, alleen toevallige verse hartslagen)? Zes stille verdwijningen zonder één resolved_categories-entry is zelf sterk bewijs richting het eerste (trackingdefect), maar dat is een hypothese, geen meting -- ik heb de broncode van de staleness-detectie niet gelezen en trek geen conclusie zonder die meting. UPDATE tick240 (12:45:07Z): deze zesde episode is inmiddels GESLOTEN -- laatst gemeten bij streak=7/age=1290s (12:38:43Z), volledig afwezig in issues[] bij 12:44:45Z (controller_age_seconds=114, verse controllerheartbeat=12:42:51Z na >25 min stilstand -- de langste episode van alle zes). resolved_categories[] bleef ook op dit sluitingsmoment leeg (zevende misser op rij), MAAR read-only broncode- en state-onderzoek (bin/autocoding-supervisor:2296-2297 detectie, 2716-2725 resolved_categories-berekening, plus last-scan-issues.json op het sluitingsmoment gelezen) wijst de verklaring nu eerder naar een meetcadans-artefact van mijn eigen 5-minuten-tiksampling (die de exacte interne scancyclus van de overgang blijkbaar elke keer net mist) dan naar een structureel trackingdefect in de code zelf, die op leescontrole correct oogt. Niet volledig uitgesloten: de escalation-streak-sectie voorbij regel 2769 is nog niet volledig gelezen.",
+        "oplossing": "geen Richard-escalatie: R3-meetpunt, geen mutatie door mij. De zesde episode is gesloten; deze bevinding blijft ter naslag staan (LAAG, was MIDDEL) omdat de sampling-artefact-conclusie de eerdere trackingdefect-hypothese vervangt zonder haar volledig uit te sluiten. Geen vervolgactie tenzij een zevende episode optreedt of de resterende code (regel 2769+) alsnog een concrete bug oplevert.",
+        "opgepakt": "IN_UITVOERING"
+      },
+      {
+        "id": "SUPERVISOR_LANE_MONITOR_UNJUSTIFIED_IDLE_20260909_0719Z",
+        "ernst": "LAAG",
+        "probleem": "Tik207 (09:37:44Z): attention_lanes ongewijzigd claude1,claude2,claude4. Lane-responder (09:36:38Z) actions ongewijzigd op 2 entries. Alle nog vermelde lanes tonen UNJUSTIFIED_IDLE. STAP5-V2/STAP6 blijven onleesbaar.",
+        "oplossing": "geen Richard-escalatie: volgen tot DIRECTOR_CONTROLLER_LEVENSTEKEN_TIJDENS_DISPATCH landt.",
+        "opgepakt": "GEVOLGD"
+      },
+      {
+        "id": "SUPERVISOR_ARBITRAGE_SLUITMETHODE_GECORRIGEERD_20260909_0659Z",
+        "ernst": "LAAG",
+        "probleem": "Zie ook bevinding ARBITRAGE_ONTBREEKT hierboven. Termijn 10:55Z nog niet verstreken.",
+        "oplossing": "geen Richard-escalatie",
+        "opgepakt": "GEVOLGD"
+      },
+      {
+        "id": "SUPERVISOR_AUDITBRON_AFWIJKEND_20260909_0539Z",
+        "ernst": "LAAG",
+        "probleem": "SHA-256 mismatch ongewijzigd, verklaring blijft legitiem amendement f6d9dd36. TIK211-herverificatie (10:05:17Z): main-blob-hash 90ae7c2b3445b8d2005a454519f5683c1f760de8e591b7882e5f719566d78912 (git show origin/main:..., geen diff met werkkopie), nog steeds afwijkend van de opdracht-verwachting 359d5d238f31b36fda7c12d96a814a8bd3c35bf74d0be83656f0547e0d673f26, consistent met eerdere metingen.",
+        "oplossing": "geen Richard-escalatie",
+        "opgepakt": "GEVOLGD"
+      },
+      {
+        "id": "SUPERVISOR_ORDER_LINT_REJECTED_GROEI_20260909_1420Z",
+        "ernst": "LAAG",
+        "probleem": "issue_streaks.ORDER_LINT_REJECTED groeide vier metingen op rij (tick256:4, tick257:6, tick258-eerste-meting:10, laatste meting 14:18:05Z:14) zonder ooit te resetten. Gecorroboreerd tegen de canonieke bron state/autocoder-controller.out: isolatie van de meest recente scancyclus (tail + grep tussen de laatste twee SUMMARY-regels, niet het hele append-only dagbestand) geeft exact zoveel SKIP_ORDER_LINT_REJECTED-regels als de streak-teller, met dezelfde ~10 herkenbare DIRECTOR_*_REVIEW_*_CODEX2_V1-achtige ordernamen die elke cyclus opnieuw falen (spot-check queue_state=QUEUED_FOR_AUTOCODING op meerdere ervan bevestigt: nog steeds live/vast, niet stale). Broncode-analyse van run_lint_order() in bin/autocoder-controller (regels 1383-1432) toont dat GEWEIGERD [LINT_ORDER_EXECUTION_ERROR] uitsluitend optreedt bij een uitvoeringsfout (ontbrekende order_text bij een destination-herschrijving, een subprocess-exceptie op bin/lint-order, of een tempdir-cleanup-OSError) — nooit bij een inhoudelijke lint-afwijzing. Structureel dezelfde soort bevinding als de eerder correct gediagnosticeerde gemini1/DISPATCH_SUBPROCESS_FAILED-stuck-groep: een vaste deelverzameling QUEUED-orders blijft elke cyclus opnieuw falen en voedt escalation.streak zonder ooit af te lopen. SLUITINGSUPDATE (tick261, 14:28:40Z): tweede opeenvolgende meting bevestigt dat ORDER_LINT_REJECTED uit issue_streaks is verdwenen (was 17 bij tick259, afwezig bij tick260 14:24:02Z EN tick261 14:28:40Z) en dat de controller consistent is overgegaan van status=FAIL/failure_category=DISPATCH_SUBPROCESS_FAILED naar status=STUCK/failure_category=ORDERS_STUCK_NONTERMINAL_RECEIPT. Twee metingen op rij zonder terugval is voldoende corroboratie (eigen precedent) om dit als een echte transitie te behandelen, niet een steekproef-hobbel. resolved_categories[] bleef desondanks leeg -- consistente miskleur, zelfde patroon als alle eerdere transities deze hele opdracht. Geen eigen ingreep verricht (reparatiestop); dit is een R3-meting, geen door mij bewezen oorzaak-en-gevolg met een specifieke directoractie.",
+        "oplossing": "geen Richard-escalatie: R3-meetpunt (valt onder reparatiestop bin/autocoder-controller — melding, geen ingreep; concept-correctie is aan de director)",
+        "opgepakt": "IN_UITVOERING"
+      },
+      {
+        "id": "SUPERVISOR_ARBITRAGE_ONTBREEKT_RELAY1V3_20260909_1503Z",
+        "ernst": "MIDDEN",
+        "probleem": "NO_DATA",
+        "oplossing": "NO_DATA",
+        "opgepakt": "GEVOLGD"
+      },
+      {
+        "id": "SUPERVISOR_DIRECTOR_STIL_20260909_1511Z",
+        "ernst": "MIDDEN",
+        "probleem": "NO_DATA",
+        "oplossing": "NO_DATA",
+        "opgepakt": "GEVOLGD"
+      }
+    ],
+    "open_count": 25,
+    "opgelost_recent": [
+      {
+        "id": "SUPERVISOR_ARBITRAGE_MARKERAFVANGER_GESLOTEN_20260909_0952Z",
+        "ernst": "LAAG",
+        "probleem": "OPGELOST/GESLOTEN, direct gemeten (adff3771, HEAD 09:54Z): DIRECTOR_STACKSTATUS_MARKERAFVANGER_20260908_FABLE_V1 -- het item dat ik zelf op 2026-09-08 tik97 (22:34:30Z) als ARBITRAGE_VERLOPEN signaleerde in mijn .SUPERVISOR_NOTE.md -- is nu door DIRECTOR_CLAUDE zelf beslist: GO_WITH_FINDINGS, grond TERMIJN_VERSTREKEN_EN_ARBITER_ONBESCHIKBAAR (11u21m over de 4u-termijn, FABLE-arbiter onbereikbaar tot 2026-09-12 wegens Fable-credit op lane claude2). Correcte toepassing van R5 (geen stilstand op onbereikbare arbiter) en R7 (verse canonieke meting vlak vóór de merge: exacte head 5d78498c, test 7/7 groen op wegwerpkopie, merge-tree conflictvrij, geen drift op geraakte bestanden). CODEX2's oorspronkelijke bezwaar wordt niet weggestreept maar expliciet vastgehouden als open bevinding REVIEWGRENS_GEDEELDE_MARKERAFVANGER voor de volgende keer dat het geraakte testbestand om een andere reden wordt geopend.",
+        "oplossing": "geen Richard-escalatie: opgelost, mijn eigen eerdere signalering is aantoonbaar door director opgepakt en canoniek afgesloten.",
+        "markering": "OPGELOST"
+      },
+      {
+        "id": "SUPERVISOR_GEDEELDE_CHECKOUT_ANOMALIE_20260909_0438Z",
+        "ernst": "LAAG",
+        "probleem": "OPGELOST (tik201, direct gemeten): HEAD staat niet langer detached, gedeelde checkout op director/tik-record-20260909-b, ook op origin.",
+        "oplossing": "geen Richard-escalatie: opgelost, structurele fix aantoonbaar toegepast.",
+        "markering": "OPGELOST"
+      },
+      {
+        "id": "SUPERVISOR_RONDE3_MERGE_ZELFSTANDIG_GEVERIFIEERD_20260909_0904Z",
+        "ernst": "LAAG",
+        "probleem": "AFGEROND EN ZELF GEVERIFIEERD: origin/main-merge (1ed6d654 -> 3cfb5457) onafhankelijk herhaald op scratch worktree, identieke uitkomst (28 tests OK rc0, PASS=541 FAIL=0 rc0).",
+        "oplossing": "geen Richard-escalatie: §A-verificatie afgerond met eigen testrun, claim bevestigd.",
+        "markering": "AFGEROND"
+      }
+    ],
+    "opgelost_count": 5,
     "classificatie": "open versus opgelost volgt uitsluitend uit een markering (OPGELOST/AFGEROND/OPGEHELDERD) aan het begin van de omschrijving; opgepakt=IN_UITVOERING alleen bij een expliciete literal uit een gesloten lijst (gedispatcht/loopt/bouwen/reparatie/…), anders GEVOLGD — GEVOLGD betekent gemeten, niet in behandeling"
   },
   "werk": {
-    "status": "NO_DATA_JSON_DECODEFOUT",
+    "status": "OK",
     "bron_pad": "state/run/supervisor-heartbeat.json",
-    "bezig": [],
-    "open": [],
-    "klaar_recent": [],
-    "open_count": 0,
-    "klaar_count": 0,
+    "bezig": [
+      {
+        "taak": "§A-verificatie STAP5-V2 en STAP6 zodra receipts stabiel leesbaar zijn",
+        "status": "BEZIG",
+        "sinds": "2026-09-09T08:04:31Z",
+        "loopt_seconden": 35124,
+        "verwacht_min": 20,
+        "bewijs": "nog steeds niet opnieuw geprobeerd op déze receipts"
+      }
+    ],
+    "open": [
+      {
+        "taak": "Verdwenen FABLE_V2.md-hoofdbestand volgen (terugkeer of definitieve afwezigheid)",
+        "status": "OPEN",
+        "sinds": "2026-09-09T08:40:00Z",
+        "loopt_seconden": 32995,
+        "verwacht_min": 10,
+        "bewijs": "hoofdbestand blijft afwezig; niet dit tik herverifieerd"
+      },
+      {
+        "taak": "Astra-identificatie vs. director's ledger reconciliëren",
+        "status": "OPEN",
+        "sinds": "2026-09-09T08:24:10Z",
+        "loopt_seconden": 33945,
+        "verwacht_min": 10,
+        "bewijs": "niet dit tik opnieuw gemeten"
+      },
+      {
+        "taak": "Watchdog-episode volgen (vierde episode mogelijk niet meer oudste dispatch)",
+        "status": "OPEN",
+        "sinds": "2026-09-09T08:03:29Z",
+        "loopt_seconden": 35186,
+        "verwacht_min": 15,
+        "bewijs": "age-discontinuiteit gemeten: 6258s->2547s->2608s, nieuwe oudste dispatch, oorzaak (afronding vierde episode vs. nieuwe stale dispatch) nog niet vastgesteld"
+      },
+      {
+        "taak": "status.json ESCALATION_REQUIRED-status blijven volgen -- ORDER_LINT_REJECTED stil verdwenen, DISPATCH_SUBPROCESS_FAILED + RECEIPT_NONTERMINAL escaleren, DOODALARM-order volgen tot landing",
+        "status": "OPEN",
+        "sinds": "2026-09-09T08:04:31Z",
+        "loopt_seconden": 35124,
+        "verwacht_min": 10,
+        "bewijs": "streak 175->179; RECEIPT_NONTERMINAL streak 30->34; DOODALARM-order status niet dit tik herverifieerd"
+      },
+      {
+        "taak": "STAP7_BEZETTE_LANE: wachten op échte dispatch zodra lane:claude3 vrij is",
+        "status": "OPEN",
+        "sinds": "2026-09-09T06:59:30Z",
+        "loopt_seconden": 39025,
+        "verwacht_min": 20,
+        "bewijs": "STAP7-receipt gelezen: claim_gate=REFUSED_LANE_CLAIM_HELD"
+      },
+      {
+        "taak": "Arbitrage-item RECEIPTROUTE_TWEEDE_NOGO V2 volgen tot FABLE-oordeel of termijn",
+        "status": "OPEN",
+        "sinds": "2026-09-09T06:59:30Z",
+        "loopt_seconden": 39025,
+        "verwacht_min": 135,
+        "bewijs": "hoofdbestand verdwenen, termijn 10:55Z"
+      },
+      {
+        "taak": "ADDENDUM2 A5 / ghost-queue-test / evidence-poort teller / pid 92415",
+        "status": "OPEN",
+        "sinds": "2026-09-09T03:19:13Z",
+        "loopt_seconden": 52242,
+        "verwacht_min": 30,
+        "bewijs": "niet dit tik herverifieerd"
+      }
+    ],
+    "klaar_recent": [
+      {
+        "taak": "HEAD-detached-status volgen",
+        "status": "KLAAR",
+        "sinds": "2026-09-09T08:41:00Z",
+        "loopt_seconden": 32935,
+        "verwacht_min": 0,
+        "bewijs": "OPGELOST: HEAD blijft stabiel op een echte branch (director/tik-record-20260909-b) door tik206-209 heen, laatste twee commits a1444158->adff3771, allen director's eigen commits, niet-anomaal"
+      },
+      {
+        "taak": "QUEUED-telling via scan_candidate_orders herstellen (outbox_dir-argument, resultaatobjecttype)",
+        "status": "KLAAR",
+        "sinds": "2026-09-09T09:16:00Z",
+        "loopt_seconden": 30835,
+        "verwacht_min": 0,
+        "bewijs": "OPGELOST: functiedefinitie gegrept (bin/autocoder-controller:632), correcte aanroep mod.scan_candidate_orders('outbox') + filter op o[2].get('queue_state') (tuples, geen objecten) -- total scanned=78 queued=78, consistent met laatst bekende 77, geen echte afwijking t.o.v. director-heartbeat queued{} (ander metric)"
+      },
+      {
+        "taak": "CONTROLLER_STALE-recidief: derde episode volgen tot verschijning/sluiting",
+        "status": "KLAAR",
+        "sinds": "2026-09-09T09:52:37Z",
+        "loopt_seconden": 28638,
+        "verwacht_min": 0,
+        "bewijs": "BEVESTIGD: derde episode verscheen om 10:01:40Z (issues[]/issue_streaks{CONTROLLER_STALE:1}, actions[] category=CONTROLLER_STALE detail=already_requested), controller-heartbeat nog vast op 09:45:50Z (>16 min). Meta-drempel (drie ONAFHANKELIJKE categorieën) niet geraakt -- dit is drie recidieven van dezelfde categorie; bij een vierde recidief wordt dat een eigen bevinding over deze categorie specifiek."
+      }
+    ],
+    "open_count": 7,
+    "klaar_count": 3,
     "classificatie": "letterlijke taken[]-lijst uit de supervisor-heartbeat, gesplitst op het status-veld"
   },
   "analyse": {
     "status": "OK",
-    "opgesteld_op": "2026-09-09T17:44:33Z",
+    "opgesteld_op": "2026-09-09T17:49:55Z",
     "oordeel": "SLECHT",
     "kop": "De keten komt niet vooruit: 4 bronnen tegelijk fout (autocoder-controller, autocoding-supervisor, lanes, route).",
     "hoofdoorzaken": {
       "autocoding_issues": 3,
       "bouwstappen_werk_mislukt": 30,
-      "bouwstappen_administratie_mislukt": 12,
+      "bouwstappen_administratie_mislukt": 13,
       "bronnen_slecht": [
         "autocoder-controller",
         "autocoding-supervisor",
@@ -37589,7 +38056,7 @@
     "gronden": [
       {
         "punt": "autocoder-controller",
-        "waarde": "ATTENTION",
+        "waarde": "FAIL",
         "richting": "SLECHT",
         "bron": "autocoder-controller"
       },
@@ -37601,7 +38068,7 @@
       },
       {
         "punt": "escalatiereeks",
-        "waarde": "3 openstaande oorzaken · al 317 cycli onopgelost (drempel 5) · oudste: niet meetbaar (geen bron voor eerste-detectietijd per oorzaak)",
+        "waarde": "3 openstaande oorzaken · al 322 cycli onopgelost (drempel 5) · oudste: niet meetbaar (geen bron voor eerste-detectietijd per oorzaak)",
         "richting": "SLECHT",
         "bron": "autocoding-supervisor"
       },
@@ -37631,13 +38098,13 @@
       },
       {
         "punt": "bouwstappen mislukt (administratie, bewijs niet aangekomen)",
-        "waarde": "12",
+        "waarde": "13",
         "richting": "LET_OP",
         "bron": "route"
       },
       {
         "punt": "beeld onveranderd sinds",
-        "waarde": "3 min",
+        "waarde": "9 min",
         "richting": "GOED",
         "bron": "ticker"
       },
@@ -37649,14 +38116,20 @@
       },
       {
         "punt": "activiteit laatste uur",
-        "waarde": "22 orders uitgezet · 18 receipts binnen · 9 verdicts binnen · PR's geopend: niet gemeten",
+        "waarde": "24 orders uitgezet · 20 receipts binnen · 10 verdicts binnen · PR's geopend: niet gemeten",
         "richting": "GOED",
         "bron": "route"
+      },
+      {
+        "punt": "vastzittende taken",
+        "waarde": "1",
+        "richting": "LET_OP",
+        "bron": "autocoder-controller"
       }
     ],
     "beweging": {
       "laatste_wisseling": "2026-09-09T17:40:47Z",
-      "stilstand_seconden": 226,
+      "stilstand_seconden": 548,
       "wisselingen_laatste_uur": 5
     },
     "bronnen": [
@@ -37679,11 +38152,33 @@
     "status": "OK",
     "bron_pad": "outbox/*_RECEIPT*.md",
     "classificatie": "Jongste receipt per taak, op bestandstijd. verdict= is de laatste regel die exact 'verdict=WAARDE' luidt; GOED/SLECHT volgens de gesloten verdictlijsten, SLECHT wint bij overlap. Zonder verdict maar met actor_dispatched=false is de uitkomst NIET_UITGEVOERD en draagt 'reden' de failure_category uit het receipt. Een receipt dat niet te lezen was heet ONLEESBAAR, niet GEEN_VERDICT. ketenuitkomst herclassificeert verdict voor de keten-brede telling: BLOCKED_EVIDENCE wordt ADMINISTRATIE_MISLUKT in plaats van WERK_MISLUKT (het werk leverde een uitkomst op, alleen het bewijs kwam niet aan) — uitkomst zelf blijft ongewijzigd.",
-    "receipts_totaal": 1452,
+    "receipts_totaal": 1454,
     "items": [
       {
+        "tijd": "2026-09-09T17:49:37Z",
+        "leeftijd_seconden": 17,
+        "actor": "codex1",
+        "stap": "STAP5",
+        "taak": "DIRECTOR_STAP5_WORKTREECONTRACT_V4B_20260909_CODEX1_V1",
+        "verdict": "BLOCKED_EVIDENCE",
+        "uitkomst": "SLECHT",
+        "ketenuitkomst": "ADMINISTRATIE_MISLUKT",
+        "reden": "WITHHELD_ORDER_FILE_TAMPERED"
+      },
+      {
+        "tijd": "2026-09-09T17:49:15Z",
+        "leeftijd_seconden": 39,
+        "actor": "codex2",
+        "stap": null,
+        "taak": "DIRECTOR_STACKSTATUS_REVIEW_AD55D21_20260908_CODEX2_V1",
+        "verdict": null,
+        "uitkomst": "NIET_UITGEVOERD",
+        "ketenuitkomst": null,
+        "reden": "REFUSED_LANE_CLAIM_HELD"
+      },
+      {
         "tijd": "2026-09-09T17:41:32Z",
-        "leeftijd_seconden": 181,
+        "leeftijd_seconden": 502,
         "actor": "claude1",
         "stap": "STAP1",
         "taak": "DIRECTOR_STAP1_V3_BOUW_20260909_CLAUDE1_V1",
@@ -37694,7 +38189,7 @@
       },
       {
         "tijd": "2026-09-09T17:39:11Z",
-        "leeftijd_seconden": 322,
+        "leeftijd_seconden": 643,
         "actor": "codex2",
         "stap": null,
         "taak": "DIRECTOR_RELAY1_V9C_BOUW_20260909_CODEX2_V1",
@@ -37705,7 +38200,7 @@
       },
       {
         "tijd": "2026-09-09T17:37:19Z",
-        "leeftijd_seconden": 434,
+        "leeftijd_seconden": 755,
         "actor": "claude4",
         "stap": "STAP3",
         "taak": "DIRECTOR_STAP3_V5_BOUW_20260909_CLAUDE4_V1",
@@ -37716,7 +38211,7 @@
       },
       {
         "tijd": "2026-09-09T17:32:51Z",
-        "leeftijd_seconden": 701,
+        "leeftijd_seconden": 1023,
         "actor": "claude1",
         "stap": "STAP1",
         "taak": "DIRECTOR_STAP1REVIEW_4AE35ACD_20260909_CLAUDE1_V1",
@@ -37727,7 +38222,7 @@
       },
       {
         "tijd": "2026-09-09T17:32:49Z",
-        "leeftijd_seconden": 704,
+        "leeftijd_seconden": 1025,
         "actor": "codex1",
         "stap": null,
         "taak": "DIRECTOR_RELAY1REVIEW9_462B45BF_20260909_CODEX1_V1",
@@ -37738,7 +38233,7 @@
       },
       {
         "tijd": "2026-09-09T17:24:07Z",
-        "leeftijd_seconden": 1226,
+        "leeftijd_seconden": 1547,
         "actor": "claude2",
         "stap": "STAP3",
         "taak": "DIRECTOR_STAP3_RECORDIMPORT_20260909_CLAUDE2_V2_RECONCILIATION",
@@ -37749,7 +38244,7 @@
       },
       {
         "tijd": "2026-09-09T17:20:25Z",
-        "leeftijd_seconden": 1448,
+        "leeftijd_seconden": 1769,
         "actor": "codex2",
         "stap": null,
         "taak": "DIRECTOR_RELAY1_V9B_BOUW_20260909_CODEX2_V1",
@@ -37760,7 +38255,7 @@
       },
       {
         "tijd": "2026-09-09T17:20:07Z",
-        "leeftijd_seconden": 1465,
+        "leeftijd_seconden": 1787,
         "actor": "codex1",
         "stap": "STAP5",
         "taak": "DIRECTOR_STAP5_WORKTREECONTRACT_V4_20260909_CODEX1_V1",
@@ -37771,7 +38266,7 @@
       },
       {
         "tijd": "2026-09-09T17:13:00Z",
-        "leeftijd_seconden": 1893,
+        "leeftijd_seconden": 2214,
         "actor": "codex1",
         "stap": "STAP3",
         "taak": "DIRECTOR_STAP3REVIEW_2BB1ADF9_20260909_CODEX1_V1",
@@ -37782,7 +38277,7 @@
       },
       {
         "tijd": "2026-09-09T17:13:00Z",
-        "leeftijd_seconden": 1893,
+        "leeftijd_seconden": 2214,
         "actor": "codex2",
         "stap": null,
         "taak": "DIRECTOR_RELAY1_V9_BOUW_20260909_CODEX2_V1",
@@ -37793,7 +38288,7 @@
       },
       {
         "tijd": "2026-09-09T17:12:37Z",
-        "leeftijd_seconden": 1915,
+        "leeftijd_seconden": 2237,
         "actor": "claude4",
         "stap": null,
         "taak": "DIRECTOR_WTCREVIEW_2D0C8177_20260909_CLAUDE4_V1",
@@ -37804,7 +38299,7 @@
       },
       {
         "tijd": "2026-09-09T17:06:18Z",
-        "leeftijd_seconden": 2295,
+        "leeftijd_seconden": 2616,
         "actor": "codex2",
         "stap": "STAP1",
         "taak": "DIRECTOR_STAP1REVIEW_4AE35ACD_20260909_CODEX2_V1",
@@ -37815,32 +38310,10 @@
       },
       {
         "tijd": "2026-09-09T17:05:22Z",
-        "leeftijd_seconden": 2351,
+        "leeftijd_seconden": 2672,
         "actor": "codex1",
         "stap": null,
         "taak": "DIRECTOR_RELAY1REVIEW8_5A1A8113_20260909_CODEX1_V1",
-        "verdict": "NO_GO",
-        "uitkomst": "SLECHT",
-        "ketenuitkomst": "WERK_MISLUKT",
-        "reden": null
-      },
-      {
-        "tijd": "2026-09-09T16:57:22Z",
-        "leeftijd_seconden": 2830,
-        "actor": "claude1",
-        "stap": "STAP3",
-        "taak": "DIRECTOR_STAP3_V4_BOUW_20260909_CLAUDE1_V1",
-        "verdict": null,
-        "uitkomst": "GEEN_VERDICT",
-        "ketenuitkomst": null,
-        "reden": null
-      },
-      {
-        "tijd": "2026-09-09T16:56:13Z",
-        "leeftijd_seconden": 2900,
-        "actor": "codex2",
-        "stap": null,
-        "taak": "DIRECTOR_STACKSTATUS_REVIEW_5D78498_20260908_CODEX2_V1",
         "verdict": "NO_GO",
         "uitkomst": "SLECHT",
         "ketenuitkomst": "WERK_MISLUKT",
