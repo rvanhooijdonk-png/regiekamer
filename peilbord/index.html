@@ -268,6 +268,12 @@ function render(data){
   const events   = objecten(d.ticker_events);
   const taken    = objecten(d.taken_met_estimate);
   const beslis   = objecten(d.beslisrij?.items);
+  // De generator geeft een beslisregel die hij niet kon lezen bewust letterlijk door
+  // in plaats van hem weg te laten (R2). Toonde het bord alleen `items`, dan gooide de
+  // renderlaag alsnog weg wat de generator juist had bewaard — en erger: een bord met
+  // uitsluitend onleesbare regels meldde "Niets dat op jou wacht." Reviewbevinding, ronde 5.
+  const beslisOnleesbaar = objecten(d.beslisrij?.onparseerbare_regels);
+  const beslisTotaal = beslis.length + beslisOnleesbaar.length;
   const cap      = (d.capaciteit && typeof d.capaciteit.data === "object" && d.capaciteit.data) ? d.capaciteit.data : {};
   const capLanes = objecten(cap.lanes);
   const analyse  = d.analyse;
@@ -289,7 +295,7 @@ function render(data){
   const telStatus = (s) => lanes.filter(l => l.status === s).length;
   const tGeblok = telStatus("GEBLOKKEERD"), tStale = telStatus("STALE"), tBezig = telStatus("BEZIG");
   el("tellers").innerHTML = [
-    beslis.length ? `<span class="teller geel">jij beslist <b>${beslis.length}</b></span>` : "",
+    beslisTotaal ? `<span class="teller geel">jij beslist <b>${beslisTotaal}</b></span>` : "",
     `<span class="teller blauw">bezig <b>${tBezig}</b>/${lanes.length}</span>`,
     tGeblok ? `<span class="teller rood">kanaal vast <b>${tGeblok}</b></span>` : "",
     tStale  ? `<span class="teller amber">stil <b>${tStale}</b></span>` : "",
@@ -326,16 +332,19 @@ function render(data){
 
   /* ---- 2. WAT JIJ MOET BESLISSEN ---- */
   blokken.push(`
-  <section class="${beslis.length ? "urgent" : ""}">
-    <div class="kopje"><span class="n">${beslis.length}</span><h2>Wat jij moet beslissen</h2>
+  <section class="${beslisTotaal ? "urgent" : ""}">
+    <div class="kopje"><span class="n">${beslisTotaal}</span><h2>Wat jij moet beslissen</h2>
       <span class="bron">bron: ${schoon(d.beslisrij?.bron_pad || "—")}</span></div>
-    ${geenBron(d.beslisrij, "Geen beslisrij") || (beslis.length ? `<table>
+    ${geenBron(d.beslisrij, "Geen beslisrij") || (beslisTotaal ? `<table>
       <thead><tr><th class="mono">nr</th><th>Besluit</th><th>Kost</th><th>Ontgrendelt</th></tr></thead>
       <tbody>${beslis.map(b => `
         <tr><td class="nr mono">${schoon(b.nr)}</td>
         <td class="besluit">${schoon(b.besluit)}</td>
         <td class="mono strak">${schoon(b.kost)}</td>
-        <td class="ontgrendelt">${schoon(b.ontgrendelt)}</td></tr>`).join("")}
+        <td class="ontgrendelt">${schoon(b.ontgrendelt)}</td></tr>`).join("")}${beslisOnleesbaar.map(r => `
+        <tr><td class="nr mono">?</td>
+        <td class="besluit" colspan="3"><span class="pil onleesbaar">ONLEESBAAR</span>
+        ${schoon(r.ruwe_regel)}</td></tr>`).join("")}
       </tbody></table>` : `<div class="leeg">Niets dat op jou wacht.</div>`)}
   </section>`);
 
