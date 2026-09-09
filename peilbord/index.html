@@ -101,8 +101,8 @@ body.verberg-klaar tr.klaar{display:none}
   <div class="kopbalk">
     <div class="lamp rood" title="ROOD"></div>
     <h1>Autocoding Peilbord</h1>
-    <div class="tik" id="tik">tik 09:13 · gemeten 09:01–09:13</div>
-    <div class="regel" id="kopregel">1/7 bezet: claude3/207 nu ~97 min vast (watchdog) · streak 16→22 (DISPATCH_SUBPROCESS_FAILED/RECEIPT_NONTERMINAL), LEGACY_ESCALATION_CARRIED blijft 16 · director-tik 104: stap-7-herpin loste R2-mislabeling NIET op — nieuwe order 231 (BEZETTE_LANE_GEEN_MISLUKKING) gequeued op claude3 · vervolgorder 230 nog niet opgepakt · codex auth blijft weg. <b>Richard</b>: 115.</div>
+    <div class="tik" id="tik">tik 09:17 · gemeten 09:13–09:17</div>
+    <div class="regel" id="kopregel">3/7 bezet (was 1/7): controller draaide om 09:05:33 een nieuwe scan en dispatchte claude1 (232) en claude4 (233) — claude3/207 loopt door (~102 min) · nieuw: CONTROLLER_STALE (heartbeat vast op 07:00:32Z, 235) · streak 22→25 · herstelorder 234 (retry-plafond 228) gequeued op claude2, nog niet opgepakt · supervisor corrigeerde eigen sluitmethode op de heropende arbitrage (bestandsafwezigheid ≠ opgelost) · codex auth blijft weg. <b>Richard</b>: 115.</div>
     <div class="eind">akkoord <b>09-12/13 → ~09-11</b> · parser weg <b>09-21 → ~09-20</b></div>
     <div class="knoppen">
       <span class="tik">afgerond vandaag: 129 rijen (in rapport)</span>
@@ -117,14 +117,14 @@ body.verberg-klaar tr.klaar{display:none}
   <div class="tabel"><table class="actie">
     <thead><tr><th>Kanaal</th><th>Status</th><th>Order</th><th>Sinds</th><th>Duur</th><th>Nr</th><th>Bewijs</th></tr></thead>
     <tbody>
-      <tr><td class="cmd">claude1</td><td>⬜ vrij</td><td>203 klaar (mislukt) 06:58Z</td><td>tot 06:58Z</td><td>—</td><td>203</td><td>FAILED_TRANSPORT_EXECUTION_CONTEXT; checkout-anomalie blijft HOOG</td></tr>
+      <tr><td class="cmd">claude1</td><td>🔵 232</td><td>SUPERVISOR_NEGATIEVE_TELLER V1</td><td>09:07:51</td><td>~10 min</td><td>232</td><td>net gestart, nog geen receipt</td></tr>
       <tr><td class="cmd">claude2</td><td>⬜ vrij</td><td>224 klaar 08:48</td><td>tot 08:48</td><td>—</td><td>224</td><td>ongewijzigd: labeldefect (zie 2b)</td></tr>
-      <tr><td class="cmd">claude3</td><td>🔵 207</td><td>WRAPPER_ZELFKOPIE_UITVOERING V1 (+231 gequeued erbovenop)</td><td>07:35:06</td><td class="rood">~97 min</td><td>207/231</td><td>watchdog blijft op deze lane; 231 wacht op vrije lane</td></tr>
-      <tr><td class="cmd">claude4</td><td>⬜ vrij</td><td>223 klaar (BLOCKED_EVIDENCE) 06:56Z</td><td>tot 06:56Z</td><td>—</td><td>223</td><td>form-defect; vervolg 230→codex2; geen Richard-actie meer</td></tr>
+      <tr><td class="cmd">claude3</td><td>🔵 207</td><td>WRAPPER_ZELFKOPIE_UITVOERING V1 (+231 gequeued erbovenop)</td><td>07:35:06</td><td class="rood">~102 min</td><td>207/231</td><td>watchdog blijft op deze lane; 231 wacht nog steeds op vrije lane</td></tr>
+      <tr><td class="cmd">claude4</td><td>🔵 233</td><td>STAP3A_HERSTELCONTRACT_RONDE2 V1</td><td>09:07:39</td><td>~10 min</td><td>233</td><td>net gestart, nog geen receipt</td></tr>
       <tr><td class="cmd">codex1</td><td>⬜ vrij</td><td>227 klaar 08:44</td><td>tot 08:44</td><td>—</td><td>227</td><td>ongewijzigd, nog geen vervolgorder</td></tr>
-      <tr><td class="cmd">codex2</td><td>⬜ vrij</td><td>228 NO_GO binnen, 230 queued</td><td>tot 08:58Z</td><td>—</td><td>228/230</td><td>228 NO_GO nieuw; 230 nog niet opgepakt (QUEUED)</td></tr>
+      <tr><td class="cmd">codex2</td><td>⬜ vrij</td><td>228 NO_GO afgehandeld; 230 queued</td><td>tot 08:58Z</td><td>—</td><td>228/230</td><td>230 nog niet opgepakt (QUEUED); herstel op 228 loopt via claude2 (234)</td></tr>
       <tr><td class="cmd">gemini1</td><td>⬜ vrij</td><td>226 evidence-gate PASS</td><td>tot 06:42Z</td><td>—</td><td>226</td><td>ongewijzigd, nog geen eindreceipt</td></tr>
-      <tr><td class="cmd">totaal</td><td>1/7 bezet</td><td>6 vrij — nog grotere leegloop</td><td colspan="4">controller-heartbeat vast op 07:00:32Z (nog niet ververst deze tik); escalation-streak 16→22; director-tik 104 vond stap7 R2-mislabeling NIET opgelost, order 231 gequeued; codex auth blijft weg</td></tr>
+      <tr><td class="cmd">totaal</td><td>3/7 bezet</td><td>4 vrij</td><td colspan="4">controller-heartbeat nog steeds vast op 07:00:32Z (CONTROLLER_STALE nieuw, 235); escalation-streak 22→25; codex auth blijft weg</td></tr>
     </tbody></table></div>
 </section>
 
@@ -164,6 +164,11 @@ body.verberg-klaar tr.klaar{display:none}
       <tr><td class="cmd">136597a NO_GO gevonden, nog niet eerder op bord (nr 229, nieuw)</td><td>STAP1_REVIEW_136597A (codex2): verdict=NO_GO, receipt-mtime 06:38Z vandaag maar onderliggende bouw dateert van 2026-09-08 11:32Z — kennelijk niet eerder gemeten</td><td>order-regel: bij NO_GO gaan de punten terug naar de bouwer op een nieuwe poging</td><td>open · nr 229 · <b>director</b></td></tr>
       <tr><td class="cmd">vervolgorder na 223 gedispatcht (nr 230, nieuw)</td><td>REVIEWLANE_MEETVERMOGEN_REVIEW_765163FB naar codex2 (builder CLAUDE4), PICKUP_STATUS=QUEUED_FOR_AUTOCODING — nog niet opgepakt (geen proces in ps)</td><td>afwachten of codex2 hem oppakt</td><td>open · nr 230 · <b>niemand</b></td></tr>
       <tr><td class="cmd">stap-7-herpin loste R2-mislabeling niet op (nr 231, nieuw)</td><td>director-tik 104 (07:08:43Z) mat opnieuw ná de runtime-herpin (9ca63a87): mislabeling staat nog; order DIRECTOR_STAP7_BEZETTE_LANE_GEEN_MISLUKKING_20260909_CLAUDE3_V1 geschreven, lint OK</td><td>QUEUED_FOR_AUTOCODING op claude3 (lane bezet met 207, dus wacht)</td><td>open · nr 231 · <b>niemand</b></td></tr>
+            <tr><td class="cmd">controller-heartbeat staat stil (nr 235, nieuw)</td><td>vast op 07:00:32Z, nu &gt;15 min oud; supervisor vlagt zelf nieuw CONTROLLER_STALE (streak 1) — een lopende scan (pid 98102, gestart 09:05:33) dispatchte al wel twee nieuwe orders (232/233) vóór hij zijn heartbeat schreef</td><td>afwachten of de lopende scan zijn heartbeat alsnog schrijft</td><td>open · nr 235 · <b>niemand</b></td></tr>
+      <tr><td class="cmd">nieuwe dispatch op claude1 (nr 232, nieuw)</td><td>SUPERVISOR_NEGATIEVE_TELLER V1 gestart 09:07:51, onderdeel van dezelfde scan als 233</td><td>afwachten op receipt</td><td>open · nr 232 · <b>niemand</b></td></tr>
+      <tr><td class="cmd">nieuwe dispatch op claude4 (nr 233, nieuw)</td><td>STAP3A_HERSTELCONTRACT_RONDE2 V1 gestart 09:07:39</td><td>afwachten op receipt</td><td>open · nr 233 · <b>niemand</b></td></tr>
+      <tr><td class="cmd">herstelorder op 228's bevindingen (nr 234, nieuw)</td><td>GEWEIGERDE_START_HERDISPATCH V1 op claude2 al klaar (DONE_BUILD_AWAITING_REVIEW); V2 voegt retry-plafond toe, reviewer CODEX2, QUEUED_FOR_AUTOCODING</td><td>afwachten of claude2 hem oppakt</td><td>open · nr 234 · <b>niemand</b></td></tr>
+      <tr><td class="cmd">supervisor corrigeert eigen sluitmethode op arbitrage 93d82c8d</td><td>eerdere sluiting ("bestand niet meer aanwezig") erkend als ongeldige grond; alle vier onderliggende claims zelf herverifieerd (NO_GO staat, geen van beide commits gemergd, geen ronde-3-branch) — item terecht heropend, termijn 10:55Z nog ruim</td><td>geen — methodefout zelf hersteld, geen Richard-actie</td><td>✅ 09:06 · <b>director/supervisor</b></td></tr>
       <tr><td class="cmd">codex1 kon niet reviewen (exit 3)</td><td>elke codex1-order viel om: geen aanmelding in ~/.codex</td><td>aanmelding stond in ~/.codex1; director zette CODEX_HOME in bin/codex1 om (e2dd1f9); 23:03 opnieuw rc 3 (director tik 46), 112 omgeleid naar codex2</td><td>✅ 21:03 (GO 21:23) · <b>terug 23:03</b> · nr 115 · <b>Richard</b></td></tr>
       <tr><td class="cmd">gemini1 leverde nooit (hanggrens 180 s)</td><td>elke run na 180 s afgekapt als STARTUP_STALE</td><td>DISPATCH_GEMINI_HANG_TIMEOUT_S=1800; run van 281 s leverde GO</td><td>✅ 21:29 · standaardwaarde nog te fixen (nr 55)</td></tr>
       <tr><td class="cmd">supervisor-streak 100 (negatieve teller)</td><td>teller onder nul gold als gezonde queue → eindeloze escalatie</td><td>ee08807 (claude1) gemerged als de3e7dd; streak nu echt (8 om 22:16, escalatie weer aan, nr 56)</td><td>✅ 21:40 · nr 84/85/87</td></tr>
@@ -220,13 +225,13 @@ body.verberg-klaar tr.klaar{display:none}
 <section id="slot">
   <h2>Slot</h2>
   <div class="tabel"><table class="slot">
-    <thead><tr><th>Δ sinds vorige tik (08:56)</th><th>Volgende tik</th></tr></thead>
+    <thead><tr><th>Δ sinds vorige tik (09:13)</th><th>Volgende tik</th></tr></thead>
     <tbody><tr>
-      <td>lamp 🔴: claude1/203 en claude4/223 beide klaar (203 mislukt transport, 223 BLOCKED_EVIDENCE) — lane-bezetting 3/7→1/7 · watchdog-doelwit claude1→claude3/207 (nu ~97 min) · nieuw 228 NO_GO, 229 NO_GO gevonden, vervolgorder 230 gequeued (codex2, niet opgepakt) · director-tik 104: stap7-herpin loste R2-mislabeling NIET op, order 231 gequeued op claude3 · escalation-streak 16→22 · controller-heartbeat vast op 07:00:32Z</td>
-      <td class="volgende">~09:23 · loopt claude3/207 door richting 2 uur? pakt codex2 vervolgorder 230 op? verversst controller-heartbeat eindelijk voorbij 07:00:32Z? wordt 231 opgepakt zodra 207 vrijkomt? arbitrage-deadline 10:55Z nog ver weg</td>
+      <td>lamp 🔴: lane-bezetting 1/7→3/7 — controllerscan (09:05:33) dispatchte claude1 (232) en claude4 (233), claude3/207 loopt door (nu ~102 min) · nieuw CONTROLLER_STALE (235, heartbeat vast op 07:00:32Z, &gt;15 min oud ondanks lopende scan) · escalation-streak 22→25 · herstelorder 234 (retry-plafond op 228) gequeued op claude2 · supervisor corrigeerde eigen sluitmethode op arbitrage 93d82c8d (bestandsafwezigheid ≠ opgelost)</td>
+      <td class="volgende">~09:27 · schrijft de lopende controllerscan (pid 98102) alsnog een verse heartbeat? krijgen 232/233 een receipt? pakt claude2 order 234 op? loopt claude3/207 door richting 2 uur? arbitrage-deadline 10:55Z nog ver weg</td>
     </tr></tbody>
   </table></div>
-  <div class="pad">volledig rapport: ~/stack-control/CONTROL/RAPPORTEN/board-2026-09-09-0913.md</div>
+  <div class="pad">volledig rapport: ~/stack-control/CONTROL/RAPPORTEN/board-2026-09-09-0917.md</div>
 </section>
 
 </main>
