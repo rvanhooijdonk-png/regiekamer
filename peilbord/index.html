@@ -96,8 +96,8 @@ body.verberg-klaar tr.klaar{display:none}
   <div class="kopbalk">
     <div class="lamp rood" title="ROOD"></div>
     <h1>Autocoding Peilbord</h1>
-    <div class="tik" id="tik">tik 07:27 · gemeten 07:26–07:27</div>
-    <div class="regel" id="kopregel">7/7 bezet (was 3/7) — dispatches hervat, controller stuurt codex1/codex2/claude3/gemini1 aan via geïsoleerde runtime-kopie · claude4 nog vast op leaseorder sinds 06:12 (~74 min), watchdog age 4442s, NO_KILL_NO_RETRY · codex1 draait ondanks ontbrekend auth.json óók op nieuwe order 208 — anomalie houdt aan · eade798b-NO_GO (codex2) bleek gemeten tegen verkeerde baseline-commit; op de echte basis b7e2e7f8 is de proef 4/2 rood, voorwaarde is wél gehaald — gecorrigeerde V2-order klaar, wacht op dispatch · tik92-vondst: bin/dispatch-actor bewerken tijdens executie corrumpeert de lopende run (bash leest door op byte-positie) — wrapper-zelfkopie-fix 207 QUEUED, nog niet gedispatcht · supervisor streak 11→21 ESCALATION_REQUIRED · controller-heartbeat blijft 05:17:17Z FAIL · worktrees 512→513 · geen PR open. <b>Richard</b>: 115.</div>
+    <div class="tik" id="tik">tik 07:39 · gemeten 07:31–07:39</div>
+    <div class="regel" id="kopregel">4/7 bezet: claude1 203 (~32 min, watchdogdoel), claude3→207 wrapper-fix (net gedispatcht), codex1 208 (~15 min, auth mist), codex2→213 eade798b-V2 (net gedispatcht) · vrij: claude2 204, claude4 205 (beide DONE_BUILD_AWAITING_REVIEW), gemini1 (V3 GO_WITH_FINDINGS) · 211 BLOCKED_EVIDENCE · streak 24→7, CONTROLLER_STALE nieuw. <b>Richard</b>: 115.</div>
     <div class="eind">akkoord <b>09-12/13 → ~09-11</b> · parser weg <b>09-21 → ~09-20</b></div>
     <div class="knoppen">
       <span class="tik">afgerond vandaag: 129 rijen (in rapport)</span>
@@ -108,18 +108,18 @@ body.verberg-klaar tr.klaar{display:none}
 <main>
 
 <section id="b1b">
-  <h2><span class="n">1b</span> Kanaalbezetting (7 kanalen) <span class="sub">live gemeten 07:26–07:27 uit ps · elke tik opnieuw</span></h2>
+  <h2><span class="n">1b</span> Kanaalbezetting (7 kanalen) <span class="sub">live gemeten 07:31–07:39 uit ps · elke tik opnieuw</span></h2>
   <div class="tabel"><table class="actie">
     <thead><tr><th>Kanaal</th><th>Status</th><th>Order</th><th>Sinds</th><th>Duur</th><th>Nr</th><th>Bewijs</th></tr></thead>
     <tbody>
-      <tr><td class="cmd">claude1</td><td>🔵 203</td><td>GEDEELDE_CHECKOUT_REFVERPLAATSING V1</td><td>07:07:13</td><td>~20 min</td><td>203</td><td>loopt door; bewerkt bin/dispatch-actor (mtime 07:19)</td></tr>
-      <tr><td class="cmd">claude2</td><td>🔵 204</td><td>GEWEIGERDE_START_HERDISPATCH V1</td><td>06:46:30</td><td>~41 min</td><td>204</td><td>bouwt geweigerde-startcategorie + failed_dispatches</td></tr>
-      <tr><td class="cmd">claude3</td><td>🔵 209</td><td>STAP1_B2C_R2_HERSTEL V1</td><td>07:22:17</td><td>~5 min</td><td>209</td><td>nieuw; controller-dispatched via runtime-kopie</td></tr>
-      <tr><td class="cmd">claude4</td><td>🔵 205</td><td>LEASE_VASTLEGGEN V3</td><td>06:12:54</td><td class="rood">~74 min</td><td>205</td><td>WATCHDOG STALE_DISPATCH (4442 s, drempel 900 s); NO_KILL_NO_RETRY — onafhankelijke review nodig</td></tr>
-      <tr><td class="cmd">codex1</td><td>🔵 (auth ontbreekt)</td><td>RECEIPTROUTE_REVIEW_85909b2 V1</td><td>07:24:09</td><td>~3 min</td><td>208</td><td>nieuwe order, ondanks ls-check "No such file"; anomalie houdt aan</td></tr>
-      <tr><td class="cmd">codex2</td><td>🔵 211</td><td>AUTOCODING_QUEUE_EMPTY_ALL_TERMINAL_DETECTOR V1</td><td>07:22:55</td><td>~4 min</td><td>211</td><td>nieuw; controller-dispatched via runtime-kopie</td></tr>
-      <tr><td class="cmd">gemini1</td><td>🔵 210</td><td>STAP1_REVIEW_F1842C8 V1</td><td>07:22:55</td><td>~4 min</td><td>210</td><td>nieuw; controller-dispatched via runtime-kopie</td></tr>
-      <tr><td class="cmd">totaal</td><td>7/7 bezet</td><td>0 vrij — dispatches hervat deze tik</td><td colspan="4">controller-heartbeat blijft 05:17:17Z FAIL; supervisor streak 21 ESCALATION_REQUIRED (was 11); geen PR open</td></tr>
+      <tr><td class="cmd">claude1</td><td>🔵 203</td><td>GEDEELDE_CHECKOUT_REFVERPLAATSING V1</td><td>07:07:13</td><td class="rood">~32 min</td><td>203</td><td>watchdogdoel nu (age ~1845s)</td></tr>
+      <tr><td class="cmd">claude2</td><td>⬜ vrij</td><td>204 afgerond</td><td>06:46–07:2x</td><td>—</td><td>204</td><td>DONE_BUILD_AWAITING_REVIEW</td></tr>
+      <tr><td class="cmd">claude3</td><td>🔵 207</td><td>WRAPPER_ZELFKOPIE_UITVOERING V1</td><td>07:35:06</td><td>~4 min</td><td>207</td><td>eindelijk gedispatcht; 209 klaar exit 0</td></tr>
+      <tr><td class="cmd">claude4</td><td>⬜ vrij</td><td>205+212 afgerond</td><td>tot 07:2x</td><td>—</td><td>205,212</td><td>205 DONE_BUILD_AWAITING_REVIEW; 212 WACHT OP AKKOORD</td></tr>
+      <tr><td class="cmd">codex1</td><td>🔵 (auth mist)</td><td>RECEIPTROUTE_REVIEW_85909b2 V1</td><td>07:24:09</td><td>~15 min</td><td>208</td><td>2e order eade798b REFUSED_LANE_CLAIM_HELD, correct herroute</td></tr>
+      <tr><td class="cmd">codex2</td><td>🔵 213</td><td>KLASSEBINDING_REVIEW_EADE798B V2</td><td>07:35:04</td><td>~4 min</td><td>213</td><td>eindelijk gedispatcht; 211 klaar BLOCKED_EVIDENCE</td></tr>
+      <tr><td class="cmd">gemini1</td><td>⬜ vrij</td><td>210 afgerond</td><td>tot 07:2x</td><td>—</td><td>210</td><td>V1 STARTUP_STALE, V3-retry GO_WITH_FINDINGS</td></tr>
+      <tr><td class="cmd">totaal</td><td>4/7 bezet</td><td>3 vrij — 207+213 na 2 tikken QUEUED nu gedispatcht</td><td colspan="4">streak 24→7 (nog ESCALATION_REQUIRED); CONTROLLER_STALE nieuw; worktrees 513→514; geen PR open</td></tr>
     </tbody></table></div>
 </section>
 
@@ -129,7 +129,7 @@ body.verberg-klaar tr.klaar{display:none}
     <thead><tr><th>Actie Richard</th><th>Waarom</th><th>Als je het niet doet</th></tr></thead>
     <tbody>
       <tr><td class="cmd">terminal: <code>codex login</code> zodat ~/.codex/auth.json terugkomt (nr 115)</td><td>codex1 geblokkeerd sinds 23:03; nog steeds afwezig om 07:27 — draait nu wél op nieuwe order 208</td><td>codex1 blijft een onverklaarde anomalie; reviews stapelen op codex2/gemini1 zodra dit misgaat</td></tr>
-      <tr><td class="cmd">directorvenster: 7/7 bezet, claude4 vast 74 min (watchdog); eade798b-NO_GO bleek verkeerde-baseline-fout, V2-order klaar — geen Richard-actie, alleen ter info</td><td>tik 92/93: bin/dispatch-actor-corruptie tijdens executie gevonden + baseline-fout in codex2-review; wrapper-zelfkopie-fix 207 QUEUED</td><td>Δ sinds tik 07:17: streak 11→21, worktrees 512→513, 3/7→7/7 bezet, dispatch-pauze opgeheven</td></tr>
+      <tr><td class="cmd">directorvenster: 207+213 na 2 tikken wachten eindelijk gedispatcht — alleen ter info</td><td>tik94: claude1-schuld ingetrokken, 2e vreemde sessie gevonden (zie 2b)</td><td>streak 24→7, 4/7 bezet, 211 BLOCKED_EVIDENCE</td></tr>
       <tr><td class="cmd">akkoord op de autocoding-keten (nr 32) — nog niet aan de orde</td><td>staat gepland na de cutover, ~09-11</td><td>burn-in B (7 dagen) start niet; stap 8 blijft dicht</td></tr>
     </tbody>
   </table></div>
@@ -142,7 +142,8 @@ body.verberg-klaar tr.klaar{display:none}
     <tbody>
       <tr><td class="cmd">claude4 vast op lease-order (nr 205)</td><td>LEASE_VASTLEGGEN V3 loopt sinds 06:12:54, 74 min — watchdog STALE_DISPATCH (4442 s, drempel 900 s)</td><td>NO_KILL_NO_RETRY: niemand doodt hem; onafhankelijke review vereist, geen zelfherstel bekend</td><td>open · nr 205 · <b>niemand</b></td></tr>
       <tr><td class="cmd">write_lane_lease faalt stil (nr 202, nieuw gevonden)</td><td>claude1's NO_GO op 21e91f0b: elk vroeg-faalpad in write_lane_lease (bin/dispatch-actor:837-870) keert terug zonder de al gegunde claim aan te raken — een geldige claim zonder lease, race blijft open</td><td>nog geen herstelorder gezet; volgt op de lease-commit-reparatie</td><td>open · nr 202</td></tr>
-      <tr><td class="cmd">bin/dispatch-actor-bewerking tijdens executie corrumpeert runs (nr 207, tik92/93-vondst)</td><td>claude1 bewerkt bin/dispatch-actor in de gedeelde checkout terwijl kopieën ervan draaien; bash leest verder op byte-positie in de nieuwe tekst en voert commentaartekst uit als commando — verklaart codex2's eade798b-run rc=1 én eerdere verdwenen tempbestanden; apart gevonden: diezelfde eade798b-NO_GO was ook gemeten tegen de verkeerde baseline-commit (op b7e2e7f8 is de proef 4/2 rood, voorwaarde ís gehaald)</td><td>wrapper-zelfkopie-fix DIRECTOR_WRAPPER_ZELFKOPIE_UITVOERING geschreven en gelint; dispatch bewust gehouden tot claude1 zijn laneclaim op bin/dispatch-actor loslaat; gecorrigeerde eade798b-revieworder V2 klaar</td><td>open · nr 207 · <b>niemand</b> (QUEUED, wacht op vrije lane)</td></tr>
+      <tr><td class="cmd">dispatch-actor-bewerking tijdens executie corrumpeert runs (nr 207)</td><td>tik94-correctie: schuld aan claude1 ingetrokken — 2e vreemde sessie (weblog-project) commit ongevraagd in dezelfde checkout; claude1's eigen werk apart spoorloos (ongecommit, niet op eigen branch)</td><td>wrapper-zelfkopie-fix nu BEZIG op claude3 sinds 07:35; eade798b-V2-review parallel BEZIG op codex2 (213)</td><td>open · nr 207 · <b>claude3</b> (BEZIG)</td></tr>
+      <tr><td class="cmd">queue-empty-detector zonder bewijs geleverd (nr 211)</td><td>codex2 exit BLOCKED_EVIDENCE — claim zonder commando-output (R1-schending)</td><td>nog geen herstelorder</td><td>open · nr 211 · <b>niemand</b></td></tr>
       <tr><td class="cmd">codex1 kon niet reviewen (exit 3)</td><td>elke codex1-order viel om: geen aanmelding in ~/.codex</td><td>aanmelding stond in ~/.codex1; director zette CODEX_HOME in bin/codex1 om (e2dd1f9); 23:03 opnieuw rc 3 (director tik 46), 112 omgeleid naar codex2</td><td>✅ 21:03 (GO 21:23) · <b>terug 23:03</b> · nr 115 · <b>Richard</b></td></tr>
       <tr><td class="cmd">gemini1 leverde nooit (hanggrens 180 s)</td><td>elke run na 180 s afgekapt als STARTUP_STALE</td><td>DISPATCH_GEMINI_HANG_TIMEOUT_S=1800; run van 281 s leverde GO</td><td>✅ 21:29 · standaardwaarde nog te fixen (nr 55)</td></tr>
       <tr><td class="cmd">supervisor-streak 100 (negatieve teller)</td><td>teller onder nul gold als gezonde queue → eindeloze escalatie</td><td>ee08807 (claude1) gemerged als de3e7dd; streak nu echt (8 om 22:16, escalatie weer aan, nr 56)</td><td>✅ 21:40 · nr 84/85/87</td></tr>
@@ -199,13 +200,13 @@ body.verberg-klaar tr.klaar{display:none}
 <section id="slot">
   <h2>Slot</h2>
   <div class="tabel"><table class="slot">
-    <thead><tr><th>Δ sinds vorige tik (07:17)</th><th>Volgende tik</th></tr></thead>
+    <thead><tr><th>Δ sinds vorige tik (07:27)</th><th>Volgende tik</th></tr></thead>
     <tbody><tr>
-      <td>lamp blijft 🔴: 115 (<b>Richard</b>, codex login) staat nog, codex1 draait desondanks door · 1b 3/7→7/7: nieuw 209 (claude3), 208 (codex1), 210 (gemini1), 211 (codex2) — dispatch-pauze opgeheven · nieuw 207 🔴 wrapper-zelfkopie-fix QUEUED, wacht op claude1 · eade798b-NO_GO gecorrigeerd: verkeerde baseline, V2-order klaar · 205 blijft 🔴 vast, 65→74 min, watchdog 3841→4442 s · streak 11→21 · worktrees 512→513 · controller-heartbeat ongewijzigd 05:17:17Z · gh pr 104/open ongewijzigd</td>
-      <td class="volgende">~07:37 · meet 208/209/210/211 (nieuwe orders, eerste verdicten?), 205 (watchdog verder oplopend?), 207 (gedispatcht zodra claude1 vrij?), controller-heartbeat (ververst voorbij 05:17:17Z?), streak (verder omhoog of kentering?), codex1-auth (nog steeds anomaal?), 115</td>
+      <td>lamp blijft 🔴: 115 staat nog · 207+213 eindelijk gedispatcht (2 tikken gewacht) · 204+205 DONE_BUILD_AWAITING_REVIEW · 211 BLOCKED_EVIDENCE · gemini1-V3 GO_WITH_FINDINGS · streak 21→7 · CONTROLLER_STALE nieuw · watchdogdoel verschoven naar 203 (claude1) · worktrees 513→514</td>
+      <td class="volgende">~07:49 · 207/213 voortgang? 204/205 review gestart? 203-watchdog verder? CONTROLLER_STALE aanhoudend? 115</td>
     </tr></tbody>
   </table></div>
-  <div class="pad">volledig rapport: ~/stack-control/CONTROL/RAPPORTEN/board-2026-09-09-0727.md</div>
+  <div class="pad">volledig rapport: ~/stack-control/CONTROL/RAPPORTEN/board-2026-09-09-0739.md</div>
 </section>
 
 </main>
