@@ -1,13 +1,4 @@
-<!doctype html>
-<html lang="nl">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="robots" content="noindex">
-<meta http-equiv="refresh" content="300">
-<title>Autocoding Peilbord</title>
-</head>
-<title>Autocoding Peilbord</title>
+<!doctype html><html lang="nl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="robots" content="noindex"><meta http-equiv="refresh" content="300"><title>Autocoding Peilbord</title></head><title>Autocoding Peilbord</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
 <style>
 :root{
@@ -94,10 +85,10 @@ body.verberg-klaar tr.klaar{display:none}
 
 <header>
   <div class="kopbalk">
-    <div class="lamp geel" title="GEEL"></div>
+    <div class="lamp rood" title="ROOD"></div>
     <h1>Autocoding Peilbord</h1>
-    <div class="tik" id="tik">tik 12:25 · gemeten 11:55–12:25</div>
-    <div class="regel" id="kopregel"><b>nr264 (nieuw): watchdog-doel claude4 concludeerde BLOCKED_EVIDENCE</b> — eigen claim <code>DONE_AWAITING_REVIEW</code> afgewezen door de receipt-validator (evidence_source=STDOUT_FALLBACK_NO_CANONICAL_RECEIPT), terminaal exit_code=8; codex2-review LEVENSTEKENREVIEW_6D275922 al zelf geketend (R5), QUEUED · <b>nr263: laneleegloop verscherpt</b> — nu slechts 2/7 lanes draaien (codex1, codex2), 5/7 zijn vrij mét klaarstaand werk (nr260 claude3, nr261 claude2, nr262 claude1, nr264 claude4, gemini1) dat de controller niet oppikt (heartbeat vast op 09:45:50Z, nu &gt;40 min stil) · <b>nr260</b> claude3’s watchdog eindigde BLOCKED_EVIDENCE, V2 zelf geketend maar QUEUED · <b>nr261</b> claude2’s doodalarm-fix GO_READY_FOR_MERGE_GATE, codex2-review QUEUED · <b>nr262</b> claude1’s stap5b DONE_BUILD_AWAITING_REVIEW, dubbele review QUEUED · nr248: gemini1’s 3e leespoging op 8cc56408 faalde opnieuw transport (WITHHELD_BODY_AFTER_RECEIPT_INVALID), codex2 zelf nog bezig (~50 min) · codex1 op RECEIPTROUTE_REVIEW_85909B2 (~33 min, nog geen receipt) · CONTROLLER_STALE 7→<b>23</b>, DISPATCH_SUBPROCESS_FAILED 194→210, RECEIPT_NONTERMINAL 49→65 (alle drie versnellen verder) · PR115/PR104 ongewijzigd geblokkeerd · nr253-termijn nog ~30 min (10:55Z) · codex auth blijft weg.</div>
+    <div class="tik" id="tik">tik 12:35 · gemeten 12:25–12:35</div>
+    <div class="regel" id="kopregel"><b>nr265 (nieuw): codex2's STAP6REVIEW_8CC56408 (nr248) concludeerde na ~51 min</b> verdict=<code>NO_GO</code> op head 8cc56408 — codex2-lane weer vrij; director zette meteen twee vervolgorders klaar (claude3 CLAIMHOUDER_ZONDER_STARTTIJD, claude4 STAP6_NOGO1_TAAKVREEMDE_CLAIM), nog geen van beide gedispatcht · <b>nr263 verder verscherpt: bezetting op laagste punt van de sessie</b> — nu nog maar <b>1/7</b> lanes draait (alleen codex1), 6/7 vrij mét klaarstaand werk; controller-heartbeat vast op 09:45:50Z (nu &gt;49 min stil), stuck_count=2 · streak-versnelling neemt toe: CONTROLLER_STALE 23→<b>32</b>, DISPATCH_SUBPROCESS_FAILED 210→<b>219</b>, RECEIPT_NONTERMINAL 65→<b>74</b> in ~10 min (sneller dan vorig interval) · codex1 op RECEIPTROUTE_REVIEW_85909B2 (~43 min, nog geen receipt) · nr253-arbitrage (93d82c8d) nog steeds OPEN, termijn ~20 min resterend (10:55Z) · PR115/PR104 ongewijzigd geblokkeerd · codex auth blijft weg.</div>
     <div class="eind">akkoord <b>09-12/13 → ~09-11</b> · parser weg <b>09-21 → ~09-20</b></div>
     <div class="knoppen">
       <span class="tik">afgerond vandaag: 129 rijen (in rapport)</span>
@@ -108,7 +99,7 @@ body.verberg-klaar tr.klaar{display:none}
 <main>
 
 <section id="b1b">
-  <h2><span class="n">1b</span> Kanaalbezetting (7 kanalen) <span class="sub">live gemeten 12:25 uit ps · elke tik opnieuw</span></h2>
+  <h2><span class="n">1b</span> Kanaalbezetting (7 kanalen) <span class="sub">live gemeten 12:35 uit ps · elke tik opnieuw</span></h2>
   <div class="tabel"><table class="actie">
     <thead><tr><th>Kanaal</th><th>Status</th><th>Order</th><th>Sinds</th><th>Duur</th><th>Nr</th><th>Bewijs</th></tr></thead>
     <tbody>
@@ -116,10 +107,10 @@ body.verberg-klaar tr.klaar{display:none}
       <tr><td class="cmd">claude2</td><td>⬜ vrij</td><td>doodalarm-fix concludeerde GO_READY_FOR_MERGE_GATE</td><td>—</td><td>—</td><td>261</td><td>codex2-review (DOODALARMREVIEW_822AB377) + eigen vervolgorder (RERUNVELDEN_ONNAVOLGBAAR) beide QUEUED, controller dispatcht niet</td></tr>
       <tr><td class="cmd">claude3</td><td>⬜ vrij</td><td>watchdog WRAPPERKOPIE_HERSTEL_P1P2 concludeerde BLOCKED_EVIDENCE</td><td>—</td><td>—</td><td>260</td><td>V2-herstelorder zelf geketend (R5), QUEUED, controller dispatcht niet</td></tr>
       <tr><td class="cmd">claude4</td><td>⬜ vrij</td><td>watchdog-doel LEVENSTEKEN_TIJDENS_DISPATCH V2 concludeerde BLOCKED_EVIDENCE</td><td>—</td><td>—</td><td>264</td><td>eigen claim DONE_AWAITING_REVIEW afgewezen; codex2-review LEVENSTEKENREVIEW_6D275922 QUEUED, controller dispatcht niet</td></tr>
-      <tr><td class="cmd">codex1</td><td>🔵</td><td>RECEIPTROUTE_REVIEW_85909B2 (REVIEW)</td><td>11:52:18</td><td>~33 min</td><td>—</td><td>nog in-flight, alleen streaming sidecars, geen _RECEIPT.md</td></tr>
-      <tr><td class="cmd">codex2</td><td>🔵 258-review</td><td>STAP6REVIEW_8CC56408 (REVIEW)</td><td>11:35:47</td><td>~50 min</td><td>248</td><td>nog geen terminaal receipt; drie vervolgorders (nr261/nr264-review + eigen) wachten erachter</td></tr>
+      <tr><td class="cmd">codex1</td><td>🔵</td><td>RECEIPTROUTE_REVIEW_85909B2 (REVIEW)</td><td>11:52:18</td><td>~43 min</td><td>—</td><td>nog in-flight, alleen streaming sidecars, geen _RECEIPT.md</td></tr>
+      <tr><td class="cmd">codex2</td><td>⬜ vrij</td><td>STAP6REVIEW_8CC56408 concludeerde NO_GO</td><td>—</td><td>—</td><td>265</td><td>~51 min gelopen (11:35:47→12:26); lane nu vrij, nog niet herdispatcht</td></tr>
       <tr><td class="cmd">gemini1</td><td>⬜ vrij</td><td>3e leespoging STAP6LEESREVIEW_8CC56408 faalde transport</td><td>—</td><td>—</td><td>248</td><td>WITHHELD_BODY_AFTER_RECEIPT_INVALID (3e op 3 mislukt, andere categorie dan 2e); eigen STAP5BLEESREVIEW-order (nr262) QUEUED</td></tr>
-      <tr><td class="cmd">totaal</td><td>2/7 bezet</td><td>5/7 vrij-met-wachtend-werk</td><td colspan="4">controller-heartbeat 09:45:50Z (&gt;40 min stil), stuck_count=2; nr260/261/262/264 + gemini1's vervolgorder liggen QUEUED zonder dispatch — laagste bezetting deze sessie (nr263, was 6-7/7 tot ~11:35)</td></tr>
+      <tr><td class="cmd">totaal</td><td>1/7 bezet</td><td>6/7 vrij-met-wachtend-werk</td><td colspan="4">controller-heartbeat 09:45:50Z (&gt;49 min stil), stuck_count=2; nr260/261/262/264/265-vervolg liggen QUEUED zonder dispatch — nieuw laagste punt deze sessie (nr263, was 6-7/7 tot ~11:35)</td></tr>
 </tbody></table></div>
 </section>
 
@@ -185,14 +176,15 @@ body.verberg-klaar tr.klaar{display:none}
       <tr><td class="cmd">claude2 STAP2_FIXTUREHELFT_VERDICTCASE (nr 245, nieuw)</td><td>order klaargezet 09:40 (head 48f7c213, proef governance/test_dispatch_actor_verdict_case_and_worktree_evidence.sh)</td><td>opgepakt en afgerond: verdict=GO_WITH_FINDINGS, queue_state=MERGED_1ED6D654_20260909</td><td>✅ 09:13 · nr 245 · <b>niemand</b></td></tr>
       <tr><td class="cmd">codex2 FIXTUREHELFT_REVIEW_6B033A4A (nr 246, nieuw)</td><td>verdict=GO_READY_FOR_MERGE_GATE — reviewer merget zelf niets</td><td>director moet R7 meten op de exacte head vóór de mergepoort; nog geen bewijs dat dit gebeurd is</td><td>✅ (verdict) · nr 246 · <b>director</b></td></tr>
       <tr><td class="cmd">claude2 STAP2_VERDICTCASE_HARNAS (nr 247, nieuw)</td><td>oudere order (klaargezet 06:38, harnasfix-lijn) kreeg pas nu 09:52:14 een terminaal receipt: verdict=GO</td><td>geen — afgehandeld</td><td>✅ 09:52:14 · nr 247 · <b>niemand</b></td></tr>
-      <tr><td class="cmd">nr248 STAP6-build (head 8cc56408) — dubbele review loopt door</td><td>codex2 (STAP6REVIEW, sinds 11:35, ~50 min) nog geen verdict; gemini1's 3e leespoging faalde ook transport, andere categorie (WITHHELD_BODY_AFTER_RECEIPT_INVALID i.p.v. exit 10) — 3 op 3 mislukt</td><td>drie vervolgorders (nr261 DOODALARMREVIEW, nr264 LEVENSTEKENREVIEW, eigen) wachten al achter dit verdict; gemini1 vrij maar geen 4e poging gezien dit tik</td><td>🔵 review lopend (~50 min) · nr 248 · <b>niemand</b></td></tr>
+      <tr><td class="cmd">nr248 STAP6-build (head 8cc56408) — review geconcludeerd</td><td>codex2 (STAP6REVIEW, 11:35:47→12:26, ~51 min): verdict=<b>NO_GO</b>; gemini1's leespoging bleef 3 op 3 mislukt (transport)</td><td>zie nr265 voor de twee vervolgorders die director hierop zette (claude3, claude4)</td><td>🔴 NO_GO · nr 248 → <b>nr265</b> · <b>niemand</b></td></tr>
       <tr><td class="cmd">nr258 (nieuw): PR115 zelf-gecorrigeerd door director</td><td>director besliste na verstreken arbitragetermijn zelf GO_WITH_FINDINGS (R7 groen op eigen head 3273d93b), maar mat vlak vóór merge zelf MISSING_INDEPENDENT_REVIEW én CI merge-readiness=FAILURE</td><td>merge terecht opgeschort — poort werkt zoals bedoeld; PR115 blijft open tot onafhankelijke review + groene CI</td><td>🟡 opgeschort · nr 258 · <b>niemand</b></td></tr>
       <tr><td class="cmd">nr259 (nieuw): 5 vervolgorders REFUSED_LANE_CLAIM_HELD</td><td>rond 11:51-11:52 weigerde de dispatcher 5 vervolgorders (claude1/2/3/4, codex2) omdat alle 7 lanes al bezet waren; categorie correct behouden (R2), geen crash of dataverlies</td><td>alle vier lanes (claude1/2/3/4) zijn inmiddels vrij, maar de controller herdispatcht niet (zie nr263) — nog geen bevestigde herdispatch van deze vijf</td><td>🟡 wacht op controller · nr 259 · <b>niemand</b></td></tr>
             <tr><td class="cmd">nr260 (nieuw): claude3's watchdog-episode (~90 min) concludeerde</td><td>WRAPPERKOPIE_HERSTEL_P1P2 V1: exit_code=8, evidence_gate=FAILED_EVIDENCE, verdict=BLOCKED_EVIDENCE — na de langste watchdog-episode van deze sessie</td><td>director ketende zelf door (R5): V2-herstelorder al geschreven en QUEUED, nog niet opgepikt</td><td>🟡 QUEUED (V2) · nr 260 · <b>niemand</b></td></tr>
       <tr><td class="cmd">nr261 (nieuw): claude2's DOODALARM_HERMELDING-fix concludeerde</td><td>SUPERVISOR_DOODALARM_HERMELDING: verdict=GO_READY_FOR_MERGE_GATE — root-cause fix op de alarm-dedup-fingerprint bevestigd door de bouwer zelf</td><td>codex2-review (DOODALARMREVIEW_822AB377) QUEUED, wacht op codex2's lane (bezet op STAP6REVIEW)</td><td>🟡 QUEUED (review) · nr 261 · <b>niemand</b></td></tr>
       <tr><td class="cmd">nr262 (nieuw): claude1's stap5b (nr244-lijn) concludeerde</td><td>VERWACHTINGSTABEL_AFGELEID op head 8811b554: verdict=DONE_BUILD_AWAITING_REVIEW</td><td>dubbele review al geschreven en QUEUED (codex2 STAP5BREVIEW + gemini1 STAP5BLEESREVIEW), geen van beide lanes heeft hem nog opgepikt</td><td>🟡 QUEUED (dubbele review) · nr 262 · <b>niemand</b></td></tr>
-      <tr><td class="cmd">nr263 (nieuw, verscherpt): controllerstilstand geeft nu de laagste lanebezetting van de sessie</td><td>autocoder-controller-heartbeat vast op 09:45:50Z (&gt;40 min stil), stuck_count=2; CONTROLLER_STALE-streak liep in dit tikinterval door van 14 naar 23; DISPATCH_SUBPROCESS_FAILED 201→210, RECEIPT_NONTERMINAL 56→65 — bezetting zakte van 3/7 naar 2/7, 5 lanes vrij mét klaarstaand werk</td><td>geen herstelorder gezet dit tik; puur een meetsignaal zolang de director zelf nog wel losse dispatches doet (codex1/codex2 lopen door, niet via de controller)</td><td>🔴 open · nr 263 · <b>niemand</b></td></tr>
+      <tr><td class="cmd">nr263 (verder verscherpt): bezetting nu op 1/7, laagste van de sessie</td><td>autocoder-controller-heartbeat nog steeds vast op 09:45:50Z (&gt;49 min stil), stuck_count=2; CONTROLLER_STALE 23→32, DISPATCH_SUBPROCESS_FAILED 210→219, RECEIPT_NONTERMINAL 65→74 — versnelling t.o.v. vorig interval; bezetting zakte van 2/7 naar 1/7 (alleen codex1)</td><td>geen herstelorder gezet dit tik; director dispatcht zelf nog los (codex1 loopt door), controller zelf blijft stil</td><td>🔴 open · nr 263 · <b>niemand</b></td></tr>
       <tr><td class="cmd">nr264 (nieuw): watchdog-doel claude4 concludeerde</td><td>CONTROLLER_LEVENSTEKEN_TIJDENS_DISPATCH V2: eigen claim verdict=DONE_AWAITING_REVIEW werd door de receipt-validator afgewezen (claimed_verdict_rejected), terminaal verdict=BLOCKED_EVIDENCE, exit_code=8, evidence_source=STDOUT_FALLBACK_NO_CANONICAL_RECEIPT</td><td>zelf geketend (R5): codex2-review LEVENSTEKENREVIEW_6D275922 (base 3cfb5457) al geschreven en QUEUED, wacht op codex2's lane</td><td>🟡 QUEUED (review) · nr 264 · <b>niemand</b></td></tr>
+      <tr><td class="cmd">nr265 (nieuw): codex2's STAP6REVIEW_8CC56408 concludeerde</td><td>verdict=<b>NO_GO</b> op head 8cc56408 na ~51 min (11:35:47→12:26) — eerste terminale conclusie op deze head na drie mislukte gemini1-leespogingen</td><td>director zette meteen twee vervolgorders klaar: claude3 CLAIMHOUDER_ZONDER_STARTTIJD (12:28) en claude4 STAP6_NOGO1_TAAKVREEMDE_CLAIM (12:32), beide nog niet gedispatcht</td><td>🔴 NO_GO · nr 265 · <b>niemand</b></td></tr>
       <tr><td class="cmd">codex2 PR104_REVIEW_5984CA6 (nr 249)</td><td>afgerond 10:05:54 verdict=GO_WITH_FINDINGS, maar PR104 bleek al MERGED onder ander commit (c999085, niet 5984ca6) — supervisor sloot dit als overbodig</td><td>director noemt een "houdbaarheidstermijn op revieworders" als mogelijke eigen vervolgstap; geen Richard-actie</td><td>✅ 10:05:54 · nr 249 · <b>niemand</b></td></tr>
       <tr><td class="cmd">codex1 kon niet reviewen (exit 3)</td><td>elke codex1-order viel om: geen aanmelding in ~/.codex</td><td>aanmelding stond in ~/.codex1; director zette CODEX_HOME in bin/codex1 om (e2dd1f9); 23:03 opnieuw rc 3 (director tik 46), 112 omgeleid naar codex2</td><td>✅ 21:03 (GO 21:23) · <b>terug 23:03</b> · nr 115 · <b>Richard</b></td></tr>
       <tr><td class="cmd">gemini1 leverde nooit (hanggrens 180 s)</td><td>elke run na 180 s afgekapt als STARTUP_STALE</td><td>DISPATCH_GEMINI_HANG_TIMEOUT_S=1800; run van 281 s leverde GO</td><td>✅ 21:29 · standaardwaarde nog te fixen (nr 55)</td></tr>
@@ -250,13 +242,13 @@ body.verberg-klaar tr.klaar{display:none}
 <section id="slot">
   <h2>Slot</h2>
   <div class="tabel"><table class="slot">
-    <thead><tr><th>Δ sinds vorige tik (11:55)</th><th>Volgende tik</th></tr></thead>
+    <thead><tr><th>Δ sinds vorige tik (12:25)</th><th>Volgende tik</th></tr></thead>
     <tbody><tr>
-      <td>lamp 🟡 blijft: vier lopende builds/watchdog-episodes bereikten een terminaal verdict sinds vorige tik (<b>nr260</b> claude3 BLOCKED_EVIDENCE, <b>nr261</b> claude2 GO_READY_FOR_MERGE_GATE, <b>nr262</b> claude1 DONE_BUILD_AWAITING_REVIEW, <b>nr264</b> claude4 BLOCKED_EVIDENCE — eigen claim afgewezen) maar geen van de vier vervolgorders is opgepikt — <b>nr263 verscherpt</b>: bezetting zakte van 3/7 naar 2/7 (alleen codex1/codex2 nog bezig), controller-heartbeat &gt;40 min stil (09:45:50Z) · gemini1’s 3e leespoging op 8cc56408 (nr248) faalde opnieuw transport, andere categorie dan de 2e · CONTROLLER_STALE 14→23, DISPATCH_SUBPROCESS_FAILED 201→210, RECEIPT_NONTERMINAL 56→65 · nr257/258/259 ongewijzigd (PR103 geweigerd, PR115 geblokkeerd op dezelfde CI-tijdstempel) · nr253-termijn nog ~30 min (10:55Z)</td>
-      <td class="volgende">~12:45 · komt de controller weer tot leven en dispatcht hij nr260/261/262/264 + gemini1's vervolgorder? concludeert codex1's RECEIPTROUTE_REVIEW_85909B2 (~33 min)? levert codex2 eindelijk een verdict op de STAP6-build (nr248, head 8cc56408), en waagt gemini1 een 4e leespoging? krijgt PR115 (nr258) alsnog een onafhankelijke review + groene CI? blijft CONTROLLER_STALE (23) verder oplopen of hervat de controller zichzelf? landt alsnog een FABLE-verdict op 93d82c8d vóór de termijn (10:55Z, nog ~30 min)?</td>
+      <td>lamp 🔴 (was geel): <b>nr265 (nieuw)</b> codex2's STAP6REVIEW_8CC56408 concludeerde eindelijk NO_GO na ~51 min — twee vervolgorders (claude3, claude4) al klaargezet, nog niet gedispatcht — maar <b>nr263 verder verscherpt</b>: bezetting zakte verder van 2/7 naar <b>1/7</b>, nieuw laagste punt van de sessie; controller-heartbeat nu &gt;49 min stil (09:45:50Z) · streaks versnellen: CONTROLLER_STALE 23→32, DISPATCH_SUBPROCESS_FAILED 210→219, RECEIPT_NONTERMINAL 65→74 · nr257/258/259/260/261/262/264 ongewijzigd, allemaal nog QUEUED zonder dispatch · nr253-arbitrage nog steeds OPEN, termijn nog ~20 min (10:55Z)</td>
+      <td class="volgende">~12:55 · komt de controller weer tot leven en dispatcht hij nr260/261/262/264/265-vervolg? concludeert codex1's RECEIPTROUTE_REVIEW_85909B2 (~43 min)? blijft de bezetting op 1/7 staan of zakt hij verder? blijven CONTROLLER_STALE (32) en de andere streaks in dit tempo doorversnellen? verloopt de nr253-termijn (10:55Z) alsnog zonder FABLE-verdict?</td>
     </tr></tbody>
   </table></div>
-  <div class="pad">volledig rapport: ~/stack-control/CONTROL/RAPPORTEN/board-2026-09-09-1225.md</div>
+  <div class="pad">volledig rapport: ~/stack-control/CONTROL/RAPPORTEN/board-2026-09-09-1235.md</div>
 </section>
 
 </main>
@@ -389,5 +381,4 @@ document.querySelector("#t6 tbody").innerHTML=T6.map(r=>{const [nr,proj,taak,st,
 
 // ✅-rijen staan niet meer op het bord (Richard 22:06); archief in de rapporten
 </script>
-
 </html>
