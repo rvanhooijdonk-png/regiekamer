@@ -10,6 +10,12 @@ const html = fs.readFileSync(SJABLOON, 'utf8');
 const script = html.match(/<script>([\s\S]*)<\/script>/)[1];
 
 const SPUIT = '"><img src=x onerror=alert(1)>';
+// Precies wat het sjabloon van SPUIT hoort te maken: elk gevaarlijk teken één keer
+// geëscapet, niet vaker. Bewust hier uitgeschreven en niet uit het sjabloon geleend —
+// een toets die zijn verwachting uit de code haalt die hij toetst, toetst niets.
+// Ronde 8, Codex: hiermee is de volledige weergegeven tekst gebonden, niet slechts
+// een herkenbaar fragment ervan.
+const SPUIT_ESC = '&quot;&gt;&lt;img src=x onerror=alert(1)&gt;';
 
 const GEVALLEN = [
   ['JSON-wortel is null', null],
@@ -88,8 +94,8 @@ const GEVALLEN = [
     beslisrij: { status: 'OK', bron_pad: 'state/PROJECT_OVERZICHT.md', items: [],
       onparseerbaar_count: 1,
       onparseerbare_regels: [{ categorie: 'ONPARSEERBAAR', ruwe_regel: `| 3 | fixture-besluit-drie-onparseerbaar ${SPUIT}` }] },
-  }, (uit) => !uit.includes('fixture-besluit-drie-onparseerbaar')
-      ? 'de onleesbare beslisregel verdween van het bord'
+  }, (uit) => !uit.includes(`| 3 | fixture-besluit-drie-onparseerbaar ${SPUIT_ESC}`)
+      ? 'de onleesbare regeltekst kwam niet volledig en correct geëscapet op het bord'
       : uit.includes('Niets dat op jou wacht')
         ? 'een onleesbare beslisregel werd gepresenteerd als niets te beslissen'
       : !uit.includes('ONLEESBAAR')
@@ -101,8 +107,8 @@ const GEVALLEN = [
       items: [{ nr: '1', besluit: 'geldig besluit', kost: '2 u', ontgrendelt: 'X' }],
       onparseerbaar_count: 1,
       onparseerbare_regels: [{ categorie: 'ONPARSEERBAAR', ruwe_regel: `| 3 | fixture-besluit-drie-onparseerbaar ${SPUIT}` }] },
-  }, (uit) => !uit.includes('fixture-besluit-drie-onparseerbaar')
-      ? 'de onleesbare beslisregel verdween naast de geldige rij'
+  }, (uit) => !uit.includes(`| 3 | fixture-besluit-drie-onparseerbaar ${SPUIT_ESC}`)
+      ? 'de onleesbare regeltekst kwam niet volledig en correct geëscapet naast de geldige rij'
       : !uit.includes('geldig besluit') ? 'de geldige rij ging verloren'
       : !uit.includes('ONLEESBAAR')
         ? 'de regel werd getoond zonder de ONLEESBAAR-markering'
@@ -118,10 +124,10 @@ const GEVALLEN = [
       onparseerbare_regels: [
         { categorie: 'ONPARSEERBAAR', ruwe_regel: '| 3 | fixture-onleesbaar-EEN' },
         { categorie: 'ONPARSEERBAAR', ruwe_regel: `| 4 | fixture-onleesbaar-TWEE ${SPUIT}` }] },
-  }, (uit) => !uit.includes('fixture-onleesbaar-EEN')
-      ? 'de eerste onleesbare regel verdween'
-      : !uit.includes('fixture-onleesbaar-TWEE')
-        ? 'alleen de eerste onleesbare regel werd getoond — de rest verdween stil'
+  }, (uit) => !uit.includes('| 3 | fixture-onleesbaar-EEN')
+      ? 'de eerste onleesbare regel verdween of werd niet volledig getoond'
+      : !uit.includes(`| 4 | fixture-onleesbaar-TWEE ${SPUIT_ESC}`)
+        ? 'alleen de eerste onleesbare regel werd getoond — de rest verdween stil, of kwam niet volledig geëscapet door'
       : (uit.match(/ONLEESBAAR/g) || []).length < 2
         ? 'niet elke onleesbare regel kreeg zijn eigen markering'
       : !/jij beslist <b>2<\/b>/.test(uit)
@@ -169,6 +175,11 @@ async function keur(naam, data, extraKeuring) {
   if (!uit.length) problemen.push('er is niets gerenderd — de proef zou niets bewijzen');
   if (/class="fout"/.test(nodes.main.innerHTML)) problemen.push('render viel terug op de foutmelding');
   if (uit.includes('<img src=x')) problemen.push('HTML uit de bron kwam ongefilterd door');
+  // Ronde 8, Codex: te wéinig escapen is een lek, te váák escapen is bederf. Bij
+  // dubbele escaping ziet de lezer "&lt;img" letterlijk op het bord staan in plaats
+  // van de brontekst. Een entiteit waarvan de & zelf nog eens is geëscapet kan alleen
+  // door dubbel escapen ontstaan, dus dit is de scherpe controle erop.
+  if (/&amp;(lt|gt|quot|amp|#39);/.test(uit)) problemen.push('brontekst is dubbel geëscapet — het bord toont de entiteit in plaats van de tekst');
   if (/NaN/.test(uit)) problemen.push('NaN op het bord');
   if (/undefined/.test(uit)) problemen.push('undefined op het bord');
   if (/width:\s*(?!\d)/.test(uit)) problemen.push('balkbreedte is geen getal');
