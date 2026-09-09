@@ -91,6 +91,7 @@ td.strak{white-space:nowrap}
 .pil.slecht{background:var(--rood-vlak);color:var(--rood)}
 .pil.niet_uitgevoerd{background:var(--rood-vlak);color:var(--rood)}
 .pil.geen_verdict,.pil.overig{background:var(--plaat2);color:var(--inkt-zacht)}
+.pil.onleesbaar{background:var(--amber-vlak);color:var(--amber)}
 tr.rij-geblokkeerd td:first-child{box-shadow:inset 3px 0 0 var(--rood)}
 tr.rij-stale td:first-child{box-shadow:inset 3px 0 0 var(--amber)}
 tr.rij-bezig td:first-child{box-shadow:inset 3px 0 0 var(--blauw)}
@@ -192,6 +193,15 @@ const esc = (s) => String(s ?? "").replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&l
 const schoon = (s) => esc(String(s ?? "").replace(/\*\*/g, "").trim());
 // klassenaam uit brondata: alleen letters/cijfers/underscore, nooit een attribuutbreuk
 const klasse = (s) => String(s ?? "").toLowerCase().replace(/[^a-z0-9_]/g, "");
+// Een getal uit de JSON kan een string, null of onzin zijn. Alles wat gerekend of
+// als breedte gebruikt wordt gaat hier eerst doorheen: liever een 0 dan een "NaN%"
+// op het bord of een balk die het hele blok meesleept.
+const getal = (v) => { const n = Number(v); return Number.isFinite(n) ? n : 0; };
+const isGetal = (v) => v !== null && v !== "" && v !== undefined && Number.isFinite(Number(v));
+// breedte van een balk: altijd binnen 0-100, nooit een attribuutbreuk
+const pct = (v) => Math.max(0, Math.min(100, getal(v))).toFixed(1);
+// alles wat als lijst uit de JSON komt: geen null-gaten, geen losse waarden
+const objecten = (v) => Array.isArray(v) ? v.filter(x => x && typeof x === "object") : [];
 
 function minGeleden(iso){
   if(!iso) return null;
@@ -200,14 +210,15 @@ function minGeleden(iso){
   return (Date.now() - t) / 60000;
 }
 function duurTekst(min){
-  if(min === null || min === undefined) return "—";
-  if(min < 1) return "<1 min";
-  if(min < 90) return Math.round(min) + " min";
-  const u = Math.floor(min/60), m = Math.round(min%60);
-  return u + "u" + (m ? " " + m + "m" : "");
+  if(!isGetal(min)) return "—";
+  const m = Number(min);
+  if(m < 1) return "<1 min";
+  if(m < 90) return Math.round(m) + " min";
+  const u = Math.floor(m/60), r = Math.round(m%60);
+  return u + "u" + (r ? " " + r + "m" : "");
 }
 function secTekst(sec){
-  return (sec === null || sec === undefined) ? "—" : duurTekst(sec/60);
+  return isGetal(sec) ? duurTekst(Number(sec)/60) : "—";
 }
 function klok(iso){
   if(!iso) return "—";
@@ -217,19 +228,25 @@ function klok(iso){
 }
 // één plek voor "die bron is er niet" — zonder bron toont het bord geen cijfer
 function geenBron(blok, wat){
-  const st = blok?.status;
-  if(!blok) return `<div class="geenbron">${wat} — dit veld staat niet in <code>regiekamer.json</code>.</div>`;
-  if(st && st !== "OK") return `<div class="geenbron">${wat} — bron <code>${schoon(blok.bron_pad)}</code>: ${schoon(st)}.</div>`;
+  if(!blok || typeof blok !== "object") return `<div class="geenbron">${esc(wat)} — dit veld staat niet in <code>regiekamer.json</code>.</div>`;
+  const st = blok.status;
+  if(st && st !== "OK") return `<div class="geenbron">${esc(wat)} — bron <code>${schoon(blok.bron_pad)}</code>: ${schoon(st)}.</div>`;
   return null;
 }
 
-function render(d){
-  const lanes    = Array.isArray(d.accounts) ? d.accounts : [];
-  const events   = Array.isArray(d.ticker_events) ? d.ticker_events : [];
-  const taken    = Array.isArray(d.taken_met_estimate) ? d.taken_met_estimate : [];
-  const beslis   = (d.beslisrij && Array.isArray(d.beslisrij.items)) ? d.beslisrij.items : [];
-  const cap      = (d.capaciteit && d.capaciteit.data) ? d.capaciteit.data : {};
-  const capLanes = Array.isArray(cap.lanes) ? cap.lanes : [];
+// keuzes van de kijker die een ververssing moeten overleven
+let alleVastOpen = false;
+
+function render(data){
+  // Een lege of kapotte JSON is een bronfout, geen renderfout: het bord moet dat
+  // melden en overeind blijven, niet halverwege een blok stukvallen.
+  const d = (data && typeof data === "object" && !Array.isArray(data)) ? data : {};
+  const lanes    = objecten(d.accounts);
+  const events   = objecten(d.ticker_events);
+  const taken    = objecten(d.taken_met_estimate);
+  const beslis   = objecten(d.beslisrij?.items);
+  const cap      = (d.capaciteit && typeof d.capaciteit.data === "object" && d.capaciteit.data) ? d.capaciteit.data : {};
+  const capLanes = objecten(cap.lanes);
   const analyse  = d.analyse;
   const route    = d.route;
   const prob     = d.problemen;
@@ -253,8 +270,8 @@ function render(d){
     `<span class="teller blauw">bezig <b>${tBezig}</b>/${lanes.length}</span>`,
     tGeblok ? `<span class="teller rood">kanaal vast <b>${tGeblok}</b></span>` : "",
     tStale  ? `<span class="teller amber">stil <b>${tStale}</b></span>` : "",
-    prob?.open_count ? `<span class="teller rood">problemen <b>${prob.open_count}</b></span>` : "",
-    prob?.opgelost_count ? `<span class="teller">opgelost <b>${prob.opgelost_count}</b></span>` : ""
+    getal(prob?.open_count) ? `<span class="teller rood">problemen <b>${getal(prob.open_count)}</b></span>` : "",
+    getal(prob?.opgelost_count) ? `<span class="teller">opgelost <b>${getal(prob.opgelost_count)}</b></span>` : ""
   ].filter(Boolean).join("");
 
   const blokken = [];
@@ -301,15 +318,15 @@ function render(d){
   {
     const ontbreekt = geenBron(route, "Geen route");
     const rol = Array.isArray(route?.nu_op_de_rol) ? route.nu_op_de_rol : [];
-    const stappen = Array.isArray(route?.stappen) ? route.stappen : [];
+    const stappen = objecten(route?.stappen);
     const na = route?.na_autocoding;
-    const sporen = Array.isArray(na?.sporen) ? na.sporen : [];
-    const naDagen = na?.leeftijd_seconden == null ? null : Math.round(na.leeftijd_seconden/86400);
+    const sporen = objecten(na?.sporen);
+    const naDagen = isGetal(na?.leeftijd_seconden) ? Math.round(getal(na.leeftijd_seconden)/86400) : null;
 
     blokken.push(`<div class="rij2">
     <section>
       <div class="kopje"><span class="n">${rol.length}</span><h2>Tot autocoding werkt</h2>
-        <span class="bron">director-hartslag tik ${route?.tik ?? "?"} · ${secTekst(route?.leeftijd_seconden)} oud</span></div>
+        <span class="bron">director-hartslag tik ${schoon(route?.tik ?? "?")} · ${secTekst(route?.leeftijd_seconden)} oud</span></div>
       ${ontbreekt || `
       ${route.bezig && route.bezig !== "NO_DATA" ? `<div class="bezigregel">${schoon(route.bezig)}</div>` : ""}
       <div class="nurol">
@@ -321,15 +338,16 @@ function render(d){
       ${stappen.length ? `<table>
         <thead><tr><th>Stap</th><th>Status</th><th>Voortgang</th><th class="mono">af / totaal</th><th class="mono">laatst</th></tr></thead>
         <tbody>${stappen.map(s => {
-          const t = s.taken_totaal || 1;
-          const kPct = (s.met_receipt - s.geblokkeerd) / t * 100;
-          const bPct = s.geblokkeerd / t * 100;
+          const totaal = getal(s.taken_totaal), af = getal(s.met_receipt), vast = getal(s.geblokkeerd);
+          const noemer = totaal || 1;
+          const kPct = (af - vast) / noemer * 100;
+          const bPct = vast / noemer * 100;
           return `<tr class="rij-${klasse(s.status)}">
             <td class="mono strak">${schoon(s.stap)}</td>
             <td><span class="pil ${klasse(s.status)}">${schoon(s.status)}</span></td>
-            <td><div class="voortgang" title="${s.met_receipt} van ${s.taken_totaal} met receipt, ${s.geblokkeerd} geblokkeerd">
-              <i class="k" style="width:${kPct}%"></i><i class="b" style="width:${bPct}%"></i></div></td>
-            <td class="mono strak">${esc(s.met_receipt)} / ${esc(s.taken_totaal)}${s.geblokkeerd ? ` <span style="color:var(--rood)">${esc(s.geblokkeerd)} vast</span>` : ""}</td>
+            <td><div class="voortgang" title="${esc(af)} van ${esc(totaal)} met receipt, ${esc(vast)} geblokkeerd">
+              <i class="k" style="width:${pct(kPct)}%"></i><i class="b" style="width:${pct(bPct)}%"></i></div></td>
+            <td class="mono strak">${esc(af)} / ${esc(totaal)}${vast ? ` <span style="color:var(--rood)">${esc(vast)} vast</span>` : ""}</td>
             <td class="mono strak" style="color:var(--inkt-stil)">${klok(s.laatste_activiteit)}</td>
           </tr>`;
         }).join("")}</tbody></table>` : ""}`}
@@ -339,7 +357,7 @@ function render(d){
       <div class="kopje"><span class="n">${sporen.length}</span><h2>Daarna</h2>
         <span class="bron">bron: ${schoon(na?.bron_pad || "—")}</span></div>
       ${geenBron(na, "Geen overzicht van werk na autocoding") || `
-      ${na.verouderd ? `<div class="verouderd">Dit overzicht is <b>${naDagen} dagen</b> oud en dus geschiedenis,
+      ${na.verouderd ? `<div class="verouderd">Dit overzicht is <b>${naDagen === null ? "onbekend veel" : esc(naDagen)} dagen</b> oud en dus geschiedenis,
         geen stand. Zolang er geen hartslag voor werk ná autocoding bestaat, is dit het enige wat er is —
         bijwerken van <code>${schoon(na.bron_pad)}</code> is de enige manier om dit blok te vertrouwen.</div>` : ""}
       <div class="sporen">${sporen.map(s => `
@@ -351,12 +369,12 @@ function render(d){
   /* ---- 4. GROTE PROBLEMEN + OPLOSSING ---- */
   {
     const ontbreekt = geenBron(prob, "Geen problemenlijst");
-    const open = Array.isArray(prob?.open) ? prob.open : [];
-    const opgelost = Array.isArray(prob?.opgelost_recent) ? prob.opgelost_recent : [];
+    const open = objecten(prob?.open);
+    const opgelost = objecten(prob?.opgelost_recent);
     blokken.push(`
     <section class="${open.some(p => p.ernst === "HOOG") ? "urgent" : ""}">
       <div class="kopje"><span class="n">${open.length}</span><h2>Grote problemen — en wat eraan gebeurt</h2>
-        <span class="bron">supervisor tik ${prob?.tik ?? "?"} · ${secTekst(prob?.leeftijd_seconden)} oud</span></div>
+        <span class="bron">supervisor tik ${schoon(prob?.tik ?? "?")} · ${secTekst(prob?.leeftijd_seconden)} oud</span></div>
       ${ontbreekt || (open.length ? `<table>
         <thead><tr><th>Ernst</th><th>Opgepakt</th><th>Probleem — en de oplossing die eraan hangt</th></tr></thead>
         <tbody>${open.map(p => `
@@ -367,7 +385,7 @@ function render(d){
         </tbody></table>` : `<div class="leeg">Geen open problemen.</div>`)}
       ${opgelost.length ? `<div class="opgelost">
         <div class="kopje"><span class="n">${opgelost.length}</span><h2>Net opgelost</h2>
-          <span class="bron">laatste ${opgelost.length} van ${prob.opgelost_count} afgehandeld</span></div>
+          <span class="bron">laatste ${opgelost.length} van ${getal(prob.opgelost_count)} afgehandeld</span></div>
         <table><tbody>${opgelost.map(p => `
           <tr class="rij-klaar"><td><span class="pil klaar">${schoon(p.markering)}</span></td>
           <td><div class="probleem">${schoon(p.probleem)}</div></td></tr>`).join("")}
@@ -378,7 +396,7 @@ function render(d){
   /* ---- 5. KANALEN NU ---- */
   const volgorde = {GEBLOKKEERD:0, STALE:1, BEZIG:2, WACHT:3, VRIJ:4};
   const gesorteerd = lanes.slice().sort((a,b) =>
-    (volgorde[a.status] ?? 9) - (volgorde[b.status] ?? 9) || (b.sinds_minuten||0) - (a.sinds_minuten||0));
+    (volgorde[a.status] ?? 9) - (volgorde[b.status] ?? 9) || getal(b.sinds_minuten) - getal(a.sinds_minuten));
   blokken.push(`
   <section>
     <div class="kopje"><span class="n">${lanes.length}</span><h2>Kanalen nu</h2>
@@ -388,7 +406,7 @@ function render(d){
       <tbody>${gesorteerd.map(l => {
         const st = klasse(l.status);
         const m = l.sinds_minuten;
-        const dk = m == null ? "" : (m > 90 ? " zeerlang" : m > 45 ? " lang" : "");
+        const dk = !isGetal(m) ? "" : (getal(m) > 90 ? " zeerlang" : getal(m) > 45 ? " lang" : "");
         return `<tr class="rij-${st}">
           <td class="mono strak">${schoon(l.actor)}</td>
           <td><span class="pil ${st}">${schoon(l.status)}</span></td>
@@ -404,14 +422,14 @@ function render(d){
   // meldt dát de issue-verzameling wijzigde. Wat een kanaal opleverde staat in
   // het receipt — met verdict, of met de reden waarom het nooit is uitgevoerd.
   const geb = d.gebeurtenissen;
-  const gebItems = Array.isArray(geb?.items) ? geb.items : [];
+  const gebItems = objecten(geb?.items);
   const nietUit = gebItems.filter(i => i.uitkomst === "NIET_UITGEVOERD").length;
   const vast = taken.filter(t => t.status === "GEBLOKKEERD");
 
   blokken.push(`<div class="rij2">
   <section class="${nietUit > gebItems.length/2 ? "urgent" : ""}">
     <div class="kopje"><span class="n">${gebItems.length}</span><h2>Wat er echt gebeurde</h2>
-      <span class="bron">jongste receipt per taak · ${geb?.receipts_totaal ?? "?"} receipts in outbox</span></div>
+      <span class="bron">jongste receipt per taak · ${isGetal(geb?.receipts_totaal) ? getal(geb.receipts_totaal) : "?"} receipts in outbox</span></div>
     ${geenBron(geb, "Geen gebeurtenissen") || (gebItems.length ? `
       ${nietUit ? `<div class="bezigregel" style="background:var(--rood-vlak);color:var(--rood)">
         <b>${nietUit} van deze ${gebItems.length} orders is nooit uitgevoerd.</b>
@@ -420,7 +438,9 @@ function render(d){
       <thead><tr><th class="mono">tijd</th><th>Kanaal</th><th>Uitkomst</th><th>Taak</th></tr></thead>
       <tbody>${gebItems.map(i => {
         const u = klasse(i.uitkomst);
-        return `<tr class="rij-${u === "slecht" || u === "niet_uitgevoerd" ? "geblokkeerd" : u === "goed" ? "klaar" : ""}">
+        const rij = (u === "slecht" || u === "niet_uitgevoerd") ? "geblokkeerd"
+                  : u === "goed" ? "klaar" : u === "onleesbaar" ? "stale" : "";
+        return `<tr class="rij-${rij}">
           <td class="mono strak">${klok(i.tijd)}</td>
           <td class="mono strak">${schoon(i.actor)}</td>
           <td><span class="pil ${u}">${schoon(i.uitkomst).replace(/_/g," ")}</span>
@@ -445,9 +465,9 @@ function render(d){
 
   /* ---- 7. WAT DE SUPERVISOR ONDERHANDEN HEEFT ---- */
   {
-    const bezig = Array.isArray(werk?.bezig) ? werk.bezig : [];
-    const open = Array.isArray(werk?.open) ? werk.open : [];
-    const klaar = Array.isArray(werk?.klaar_recent) ? werk.klaar_recent : [];
+    const bezig = objecten(werk?.bezig);
+    const open = objecten(werk?.open);
+    const klaar = objecten(werk?.klaar_recent);
     const rijen = bezig.concat(open).concat(klaar);
     blokken.push(`
     <section>
@@ -460,31 +480,31 @@ function render(d){
             <td><span class="pil ${klasse(t.status)}">${schoon(t.status)}</span></td>
             <td>${schoon(t.taak)}<div class="taakid">${schoon(t.bewijs)}</div></td>
             <td class="mono strak">${secTekst(t.loopt_seconden)}</td>
-            <td class="mono strak" style="color:var(--inkt-stil)">${t.verwacht_min != null ? esc(t.verwacht_min) + " min" : "—"}</td>
+            <td class="mono strak" style="color:var(--inkt-stil)">${isGetal(t.verwacht_min) ? getal(t.verwacht_min) + " min" : "—"}</td>
           </tr>`).join("")}
         </tbody></table>` : `<div class="leeg">Geen taken.</div>`)}
     </section>`);
   }
 
   /* ---- 8. PRESTATIE PER KANAAL ---- */
-  const actief = capLanes.filter(l => (l.orders||0) > 0)
-    .sort((a,b) => (b.orders||0) - (a.orders||0)).slice(0,10);
+  const actief = capLanes.filter(l => getal(l.orders) > 0)
+    .sort((a,b) => getal(b.orders) - getal(a.orders)).slice(0,10);
   blokken.push(`
   <section>
     <div class="kopje"><span class="n">${actief.length}</span><h2>Prestatie per kanaal</h2>
-      <span class="bron">${cap.meta?.receipt_bestanden_totaal ?? "?"} receipts · ${cap.meta?.receipt_onparseerbaar ?? "?"} onleesbaar (niet meegeteld)</span></div>
+      <span class="bron">${schoon(cap.meta?.receipt_bestanden_totaal ?? "?")} receipts · ${schoon(cap.meta?.receipt_onparseerbaar ?? "?")} onleesbaar (niet meegeteld)</span></div>
     ${actief.length ? `<table>
       <thead><tr><th>Kanaal</th><th class="mono">orders</th><th class="mono">p50 duur</th>
         <th>geslaagd / geblokkeerd / overig</th><th class="mono">laatst actief</th></tr></thead>
       <tbody>${actief.map(l => {
-        const g = l.geslaagd_pct||0, r = l.geblokkeerd_pct||0, o = l.overig_pct||0;
-        const p50 = l.p50_duration_ms ? duurTekst(l.p50_duration_ms/60000) : "geen duur gemeten";
+        const g = getal(l.geslaagd_pct), r = getal(l.geblokkeerd_pct), o = getal(l.overig_pct);
+        const p50 = getal(l.p50_duration_ms) ? duurTekst(getal(l.p50_duration_ms)/60000) : "geen duur gemeten";
         return `<tr>
           <td class="mono strak">${schoon(l.actor)}</td>
-          <td class="mono">${esc(l.orders)}</td>
-          <td class="mono strak" style="color:var(--inkt-zacht)">${p50}</td>
+          <td class="mono">${getal(l.orders)}</td>
+          <td class="mono strak" style="color:var(--inkt-zacht)">${esc(p50)}</td>
           <td><div class="balk" title="${g.toFixed(0)}% geslaagd · ${r.toFixed(0)}% geblokkeerd · ${o.toFixed(0)}% overig">
-            <i class="g" style="width:${g}%"></i><i class="r" style="width:${r}%"></i><i class="o" style="width:${o}%"></i></div></td>
+            <i class="g" style="width:${pct(g)}%"></i><i class="r" style="width:${pct(r)}%"></i><i class="o" style="width:${pct(o)}%"></i></div></td>
           <td class="mono strak" style="color:var(--inkt-stil)">${klok(l.laatste_activiteit)}</td>
         </tr>`;
       }).join("")}</tbody></table>` : `<div class="leeg">Geen ordergeschiedenis.</div>`}
@@ -492,17 +512,21 @@ function render(d){
 
   el("main").innerHTML = blokken.join("");
 
-  // "toon alle" voor vastgelopen werk
-  const knop = el("meer-vast");
-  if(knop) knop.addEventListener("click", () => {
-    el("vast-body").innerHTML = vast.map(t => `
+  // "toon alle" voor vastgelopen werk. De keuze overleeft de ververssing van 60 s:
+  // anders klapt de lijst onder je handen dicht terwijl je hem aan het lezen bent.
+  function toonAlleVast(){
+    const body = el("vast-body");
+    if(!body) return;
+    body.innerHTML = vast.map(t => `
       <tr><td>${schoon(t.taak) || "<i style='color:var(--inkt-stil)'>zonder omschrijving</i>"}
       <div class="taakid mono">${schoon(t.bron_bestand)}</div></td></tr>`).join("");
-    knop.parentElement.remove();
-  });
+    el("meer-vast")?.parentElement?.remove();
+  }
+  if(alleVastOpen) toonAlleVast();
+  el("meer-vast")?.addEventListener("click", () => { alleVastOpen = true; toonAlleVast(); });
 
   /* ---- voetnoot: wat dit bord bewust NIET toont ---- */
-  const zonder = d.taken_meta?.taken_zonder_schatting, totaal = d.taken_meta?.taken_totaal;
+  const zonder = getal(d.taken_meta?.taken_zonder_schatting), totaal = getal(d.taken_meta?.taken_totaal);
   const levenstekens = events.filter(e => e.betekenisvol === false).length;
   el("voet").innerHTML = `
     Dit bord leest <code>regiekamer.json</code> (${(JSON.stringify(d).length/1024/1024).toFixed(1)} MB,
@@ -523,10 +547,16 @@ async function laad(){
     if(!r.ok) throw new Error("HTTP " + r.status);
     render(await r.json());
   }catch(e){
+    // Alles wegvegen wat uit de vorige lading kwam. Bleven de tellers en de voetnoot
+    // staan, dan las het bord als een verse meting terwijl er geen data is — precies
+    // de verwarring die dit bord moet wegnemen.
     el("main").innerHTML = `<div class="fout"><b>Data niet geladen.</b><br>
-      ${esc(e.message)} — bron: <code>${esc(BRON)}</code>.<br>
+      ${esc(e && e.message ? e.message : e)} — bron: <code>${esc(BRON)}</code>.<br>
       Het bord toont liever niets dan verouderde cijfers.</div>`;
+    el("tellers").innerHTML = "";
+    el("voet").innerHTML = "";
     el("lamp").className = "lamp rood";
+    el("versheid").className = "versheid mono rood";
     el("versheid").textContent = "geen data";
   }
 }
