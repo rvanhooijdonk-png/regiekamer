@@ -108,6 +108,24 @@ const GEVALLEN = [
         ? 'de regel werd getoond zonder de ONLEESBAAR-markering'
       : !/jij beslist <b>2<\/b>/.test(uit)
         ? 'de teller telde de geldige en de onleesbare rij niet samen op' : null],
+  // Ronde 7, Codex: met één onleesbare regel per geval bleef "toon alleen de eerste"
+  // groen. Een tweede regel is nodig om de lus zelf te binden — anders kan een
+  // slice(0,1) ongemerkt de rest van de onleesbare besluiten laten verdwijnen, wat
+  // precies de oorspronkelijke bevinding terugbrengt voor alles ná de eerste.
+  ['twee onleesbare beslisregels', {
+    beslisrij: { status: 'OK', bron_pad: 'state/PROJECT_OVERZICHT.md', items: [],
+      onparseerbaar_count: 2,
+      onparseerbare_regels: [
+        { categorie: 'ONPARSEERBAAR', ruwe_regel: '| 3 | fixture-onleesbaar-EEN' },
+        { categorie: 'ONPARSEERBAAR', ruwe_regel: `| 4 | fixture-onleesbaar-TWEE ${SPUIT}` }] },
+  }, (uit) => !uit.includes('fixture-onleesbaar-EEN')
+      ? 'de eerste onleesbare regel verdween'
+      : !uit.includes('fixture-onleesbaar-TWEE')
+        ? 'alleen de eerste onleesbare regel werd getoond — de rest verdween stil'
+      : (uit.match(/ONLEESBAAR/g) || []).length < 2
+        ? 'niet elke onleesbare regel kreeg zijn eigen markering'
+      : !/jij beslist <b>2<\/b>/.test(uit)
+        ? 'de teller telde niet beide onleesbare regels' : null],
   // Ronde 4, Gemini: prim() liet booleans door, dus Number(true)===1 maakte van een
   // boolean in een getalveld een echte duur ("<1 min" i.p.v. een streepje).
   ['boolean in een getalveld', {
