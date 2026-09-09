@@ -1,4 +1,17 @@
-<!doctype html><html lang="nl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="robots" content="noindex"><meta http-equiv="refresh" content="300"><title>Autocoding Peilbord</title>
+<!doctype html>
+<html lang="nl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<meta http-equiv="refresh" content="300">
+<style>
+:root{color-scheme:light dark}
+body{margin:0;background:#0b0d10;font-family:system-ui,-apple-system,sans-serif}
+</style>
+</head>
+<body>
+<title>Autocoding Peilbord</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
 <style>
 :root{
@@ -85,10 +98,10 @@ body.verberg-klaar tr.klaar{display:none}
 
 <header>
   <div class="kopbalk">
-    <div class="lamp rood" title="ROOD"></div>
+    <div class="lamp geel" title="GEEL"></div>
     <h1>Autocoding Peilbord</h1>
-    <div class="tik" id="tik">tik 12:56 · gemeten 12:51–12:56</div>
-    <div class="regel" id="kopregel"><b>nr253 zelfgesloten</b> — director sloot de 93d82c8d-arbitrage om <b>10:55:08Z</b> na verstreken termijn (§5), NO_GO-verdict blijft staan · <b>nr266</b> bypass-dispatch bleek OOM: claude4/claude3/claude2 gedood, machineregel voortaan <b>één dispatch tegelijk</b>; redispatch van claude3/claude2 is nu expliciet directorwerk — controller ziet ze als afgehandeld (transportreceipt) en stuurt ze niet opnieuw · director (tik133) werkt aan de w13-effectorder vóór herdispatch · controller-heartbeat blijft op 10:52:39Z (dispatched=0, skipped=72) — geen echt herstel · CONTROLLER_STALE weer uit resolved_categories verdwenen (noch issue, noch resolved) — bevestigt de instabiele tracking · streaks lopen door: DISPATCH_SUBPROCESS_FAILED 238→<b>246</b>, RECEIPT_NONTERMINAL 93→<b>101</b> · watchdog-leeftijd 3690s→<b>4173s</b> · geheugen vrij 40% · PR115/PR104 ongewijzigd geblokkeerd · codex auth blijft weg.</div>
+    <div class="tik" id="tik">tik 13:35 · gemeten 12:56–13:35</div>
+    <div class="regel" id="kopregel"><b>nr267</b> controller dispatchte 6 lanes zelfstandig (12:58-12:59Z) maar herdispatchte daarbij twee al-terminale orders (claude4, codex1) — bug op minstens 3 lanes, heartbeat-bestand blijft bevroren op 10:52:39Z (&gt;2u40m) ondanks echte dispatches · <b>nr268</b> codex1's marathonreview 85909b2 concludeerde GO_WITH_FINDINGS (11:03:06Z), twee documentfouten gevonden, voedde w13- en stap6V2-orders · <b>nr269</b> CONTROLLER_STALE 4e losstaande recidive (11:08:47Z) — supervisor trok eigen "duurzame sluiting"-lezing in, resolved_categories[] nooit gevuld · <b>nr270</b> director bewees zélf een valse BLOCKED_EVIDENCE: claude2/claude4's afwijzingen kwamen uit een hoofdcheckout-rerun (2 pass/5 fail); dezelfde code in de eigen worktree draait 7/7 groen rc=0 — evidence-gate mat het verkeerde checkout · <b>nr271</b> codex2's onafhankelijke review van claude2's doodalarm-fix 822ab377 concludeerde <b>NO_GO</b> (5 defectklassen), tegen claude2's eigen GO_READY_FOR_MERGE_GATE-claim in; vervolgorder SUPERVISOR_DOODALARM_NOGO1 draait al op claude2 · streaks: escalatie 246→<b>266</b>, CONTROLLER_STALE 7→<b>17</b>, DISPATCH_SUBPROCESS_FAILED→<b>266</b>, RECEIPT_NONTERMINAL→<b>121</b> · watchdog-leeftijd viel terug naar <b>1669s</b> (verse dispatch) · geheugen vrij ~39% · PR115/PR104 ongewijzigd geblokkeerd · codex auth blijft weg.</div>
     <div class="eind">akkoord <b>09-12/13 → ~09-11</b> · parser weg <b>09-21 → ~09-20</b></div>
     <div class="knoppen">
       <span class="tik">afgerond vandaag: 129 rijen (in rapport)</span>
@@ -99,18 +112,18 @@ body.verberg-klaar tr.klaar{display:none}
 <main>
 
 <section id="b1b">
-  <h2><span class="n">1b</span> Kanaalbezetting (7 kanalen) <span class="sub">live gemeten 12:56 uit ps · elke tik opnieuw</span></h2>
+  <h2><span class="n">1b</span> Kanaalbezetting (7 kanalen) <span class="sub">live gemeten 13:35 uit ps · elke tik opnieuw</span></h2>
   <div class="tabel"><table class="actie">
     <thead><tr><th>Kanaal</th><th>Status</th><th>Order</th><th>Sinds</th><th>Duur</th><th>Nr</th><th>Bewijs</th></tr></thead>
     <tbody>
-      <tr><td class="cmd">claude1</td><td>⬜ vrij</td><td>stap5b concludeerde DONE_BUILD_AWAITING_REVIEW</td><td>—</td><td>—</td><td>262</td><td>dubbele review (codex2 STAP5BREVIEW + gemini1 STAP5BLEESREVIEW) op 8811b554 QUEUED, nog niet opgepikt</td></tr>
-      <tr><td class="cmd">claude2</td><td>⬜ vrij</td><td>RERUNVELDEN_ONNAVOLGBAAR OOM-killed na ~2,5 min</td><td>—</td><td>—</td><td>266</td><td>alleen worktree-opzet verloren; claim netjes vrijgegeven op SIGTERM; nog niet herdispatcht (één-tegelijk-regel)</td></tr>
-      <tr><td class="cmd">claude3</td><td>⬜ vrij</td><td>CLAIMHOUDER_ZONDER_STARTTIJD OOM-killed na ~2,5 min</td><td>—</td><td>—</td><td>266</td><td>alleen worktree-opzet verloren; claim netjes vrijgegeven op SIGTERM; nr260 nog steeds QUEUED</td></tr>
-      <tr><td class="cmd">claude4</td><td>⬜ vrij</td><td>STAP6_NOGO1_TAAKVREEMDE_CLAIM OOM-killed na ~12 min</td><td>—</td><td>—</td><td>266</td><td>geen commit, wel 118 regels ongecommit werk bewaard in de worktree; claim netjes vrijgegeven op SIGTERM</td></tr>
-      <tr><td class="cmd">codex1</td><td>🔵</td><td>RECEIPTROUTE_REVIEW_85909B2 (REVIEW)</td><td>11:52:18</td><td>~64 min</td><td>—</td><td>nog in-flight, alleen streaming sidecars, geen _RECEIPT.md</td></tr>
-      <tr><td class="cmd">codex2</td><td>⬜ vrij</td><td>STAP6REVIEW_8CC56408 concludeerde NO_GO</td><td>—</td><td>—</td><td>265</td><td>~51 min gelopen (11:35:47→12:26); lane nu vrij, nog niet herdispatcht</td></tr>
+      <tr><td class="cmd">claude1</td><td>🔵</td><td>W13_EFFECTBINDING (BUILD)</td><td>13:19:02</td><td>~16 min</td><td>268</td><td>bindt proef w13 aan echt gedrag i.p.v. marker+mock, uit codex1's reviewbevinding</td></tr>
+      <tr><td class="cmd">claude2</td><td>🔵</td><td>SUPERVISOR_DOODALARM_NOGO1 (BUILD)</td><td>13:26:39</td><td>~9 min</td><td>271</td><td>net gestart: herstel op codex2's NO_GO (5 defectklassen op 822ab377)</td></tr>
+      <tr><td class="cmd">claude3</td><td>🔵</td><td>WRAPPERKOPIE_HERSTEL_P1P2 V2 (BUILD)</td><td>12:59:33</td><td>~36 min</td><td>260</td><td>nr260's eigen geketende V2-herstelorder draait nog, geen receipt</td></tr>
+      <tr><td class="cmd">claude4</td><td>⬜ vrij</td><td>LANEMONITOR_NOGO_HERSTEL: duplicate-dispatch ontdekt</td><td>—</td><td>—</td><td>267</td><td>dit task_id was al 2026-09-08T19:38:12Z afgeleverd; lane vrij, geen nieuwe order gezet</td></tr>
+      <tr><td class="cmd">codex1</td><td>⬜ vrij</td><td>RECEIPTROUTE_REVIEW_85909B2 concludeerde GO_WITH_FINDINGS</td><td>—</td><td>—</td><td>268</td><td>11:03:06Z klaar; tweede wrapper (duplicate-dispatch) inmiddels vanzelf geëindigd, lane weer vrij</td></tr>
+      <tr><td class="cmd">codex2</td><td>⬜ vrij</td><td>DOODALARMREVIEW_822AB377 concludeerde NO_GO</td><td>—</td><td>—</td><td>271</td><td>13:20 klaar (5 defectklassen); lane vrij, vervolgorder al op claude2 gedispatcht</td></tr>
       <tr><td class="cmd">gemini1</td><td>⬜ vrij</td><td>3e leespoging STAP6LEESREVIEW_8CC56408 faalde transport</td><td>—</td><td>—</td><td>248</td><td>WITHHELD_BODY_AFTER_RECEIPT_INVALID (3e op 3 mislukt, andere categorie dan 2e); eigen STAP5BLEESREVIEW-order (nr262) QUEUED</td></tr>
-      <tr><td class="cmd">totaal</td><td>1/7 bezet</td><td>6/7 vrij</td><td colspan="4">alle drie bypass-dispatches OOM-killed (~700MB/actor × 3 = te veel geheugen); nieuwe machineregel: één dispatch tegelijk; controller-heartbeat bewoog eenmalig (10:52:39Z) maar dispatched=0, geen echt herstel</td></tr>
+      <tr><td class="cmd">totaal</td><td>3/7 bezet</td><td>4/7 vrij</td><td colspan="4">codex1/codex2 landden en zijn weer vrij; claude1/claude2/claude3 bezet; gemini1 blijft QUARANTINED; heartbeat-bestand blijft bevroren op 10:52:39Z ondanks aantoonbaar echte dispatches</td></tr>
 </tbody></table></div>
 </section>
 
@@ -179,12 +192,17 @@ body.verberg-klaar tr.klaar{display:none}
       <tr><td class="cmd">nr248 STAP6-build (head 8cc56408) — review geconcludeerd</td><td>codex2 (STAP6REVIEW, 11:35:47→12:26, ~51 min): verdict=<b>NO_GO</b>; gemini1's leespoging bleef 3 op 3 mislukt (transport)</td><td>zie nr265 voor de twee vervolgorders die director hierop zette (claude3, claude4)</td><td>🔴 NO_GO · nr 248 → <b>nr265</b> · <b>niemand</b></td></tr>
       <tr><td class="cmd">nr258 (nieuw): PR115 zelf-gecorrigeerd door director</td><td>director besliste na verstreken arbitragetermijn zelf GO_WITH_FINDINGS (R7 groen op eigen head 3273d93b), maar mat vlak vóór merge zelf MISSING_INDEPENDENT_REVIEW én CI merge-readiness=FAILURE</td><td>merge terecht opgeschort — poort werkt zoals bedoeld; PR115 blijft open tot onafhankelijke review + groene CI</td><td>🟡 opgeschort · nr 258 · <b>niemand</b></td></tr>
       <tr><td class="cmd">nr259 (nieuw): 5 vervolgorders REFUSED_LANE_CLAIM_HELD</td><td>rond 11:51-11:52 weigerde de dispatcher 5 vervolgorders (claude1/2/3/4, codex2) omdat alle 7 lanes al bezet waren; categorie correct behouden (R2), geen crash of dataverlies</td><td>alle vier lanes (claude1/2/3/4) zijn inmiddels vrij, maar de controller herdispatcht niet (zie nr263) — nog geen bevestigde herdispatch van deze vijf</td><td>🟡 wacht op controller · nr 259 · <b>niemand</b></td></tr>
-            <tr><td class="cmd">nr260 (nieuw): claude3's watchdog-episode (~90 min) concludeerde</td><td>WRAPPERKOPIE_HERSTEL_P1P2 V1: exit_code=8, evidence_gate=FAILED_EVIDENCE, verdict=BLOCKED_EVIDENCE — na de langste watchdog-episode van deze sessie</td><td>director ketende zelf door (R5): V2-herstelorder al geschreven en QUEUED, nog niet opgepikt</td><td>🟡 QUEUED (V2) · nr 260 · <b>niemand</b></td></tr>
-      <tr><td class="cmd">nr261 (nieuw): claude2's DOODALARM_HERMELDING-fix concludeerde</td><td>SUPERVISOR_DOODALARM_HERMELDING: verdict=GO_READY_FOR_MERGE_GATE — root-cause fix op de alarm-dedup-fingerprint bevestigd door de bouwer zelf</td><td>codex2-review (DOODALARMREVIEW_822AB377) QUEUED, wacht op codex2's lane (bezet op STAP6REVIEW)</td><td>🟡 QUEUED (review) · nr 261 · <b>niemand</b></td></tr>
+            <tr><td class="cmd">nr260: V2-herstelorder loopt nu &gt;36 min zonder receipt</td><td>WRAPPERKOPIE_HERSTEL_P1P2 V2 op claude3 sinds 12:59:33 — langer dan de watchdog-drempel van 900s, maar dit is de enige lane die al zo lang loopt</td><td>afwachten; bij verdere vertraging wordt dit een eigen watchdog-bevinding</td><td>🔵 BEZIG (V2, lang) · nr 260 · <b>claude3</b></td></tr>
+      <tr><td class="cmd">nr261: codex2-review weersprak claude2's eigen GO-claim</td><td>claude2 claimde zelf GO_READY_FOR_MERGE_GATE; codex2's onafhankelijke review concludeerde <b>NO_GO</b> (5 defectklassen, zie nr271) — R4-reviewscheiding werkte precies zoals bedoeld</td><td>herstelorder SUPERVISOR_DOODALARM_NOGO1 al gedispatcht naar claude2 (13:26:39)</td><td>✅ NO_GO vastgesteld, herstel BEZIG · nr 261 · <b>claude2</b></td></tr>
       <tr><td class="cmd">nr262 (nieuw): claude1's stap5b (nr244-lijn) concludeerde</td><td>VERWACHTINGSTABEL_AFGELEID op head 8811b554: verdict=DONE_BUILD_AWAITING_REVIEW</td><td>dubbele review al geschreven en QUEUED (codex2 STAP5BREVIEW + gemini1 STAP5BLEESREVIEW), geen van beide lanes heeft hem nog opgepikt</td><td>🟡 QUEUED (dubbele review) · nr 262 · <b>niemand</b></td></tr>
-      <tr><td class="cmd">nr263: 1/7 blijft — herdispatch is directorwerk, controller doet het niet</td><td>controller-heartbeat blijft 10:52:39Z, dispatched=0, skipped=72 — ziet de 3 gedode orders als afgehandeld (transportreceipt) en stuurt ze niet opnieuw; streaks: DISPATCH_SUBPROCESS_FAILED 238→246, RECEIPT_NONTERMINAL 93→101; watchdog-leeftijd 3690s→4173s</td><td>director (tik133) schrijft eerst de w13-effectorder, dan claude3/claude2 één-voor-één herdispatchen; codex1 nog steeds enige actieve lane</td><td>🔴 open · nr 263 · <b>niemand</b></td></tr>
+      <tr><td class="cmd">nr263: bezetting herstelde zelfstandig via de controller (6/7 piek, nu 3/7)</td><td>controller dispatchte zonder directortussenkomst; twee van de zes bleken duplicate-dispatch (nr267); heartbeat-bestand blijft desondanks bevroren</td><td>claude1/claude2/claude3 lopen door; codex1/codex2 al geland</td><td>🟡 verbeterd, met bijwerking · nr 263 · <b>niemand</b></td></tr>
       <tr><td class="cmd">nr264 (nieuw): watchdog-doel claude4 concludeerde</td><td>CONTROLLER_LEVENSTEKEN_TIJDENS_DISPATCH V2: eigen claim verdict=DONE_AWAITING_REVIEW werd door de receipt-validator afgewezen (claimed_verdict_rejected), terminaal verdict=BLOCKED_EVIDENCE, exit_code=8, evidence_source=STDOUT_FALLBACK_NO_CANONICAL_RECEIPT</td><td>zelf geketend (R5): codex2-review LEVENSTEKENREVIEW_6D275922 (base 3cfb5457) al geschreven en QUEUED, wacht op codex2's lane</td><td>🟡 QUEUED (review) · nr 264 · <b>niemand</b></td></tr>
       <tr><td class="cmd">nr265: beide vervolgorders OOM-killed vóór afronding, nog niet herdispatcht</td><td>verdict=<b>NO_GO</b> op head 8cc56408 na ~51 min (11:35:47→12:26) — eerste terminale conclusie op deze head na drie mislukte gemini1-leespogingen</td><td>claude4 (~12 min, 118 regels bewaard) en claude3 (~2,5 min, alleen worktree) beide gedood wegens geheugen (nr266); moeten één-voor-één opnieuw</td><td>🔴 vervolg onderbroken · nr 265 · <b>niemand</b></td></tr>
+      <tr><td class="cmd">controller herdispatcht al-terminale orders (nr267, nieuw)</td><td>claude4's LANEMONITOR_NOGO_HERSTEL was al 2026-09-08T19:38:12Z volledig afgeleverd (43/43 groen); controller dispatchte hem 2026-09-09 opnieuw → SKIPPED_DUPLICATE_DISPATCH; codex1's revieworder kreeg een tweede wrapper ondanks twee bestaande terminale receipts — bug op minstens 3 lanes</td><td>geen herstelorder nodig; de duplicate-detectie zelf ving het correct op, beide extra wrappers zijn inmiddels vanzelf geëindigd</td><td>open (detectielogica) · nr 267 · <b>niemand</b></td></tr>
+      <tr><td class="cmd">codex1's marathonreview 85909b2 klaar (nr268, nieuw)</td><td>GO_WITH_FINDINGS om 11:03:06Z: proef w13 bindt een marker plus hardgecodeerde mock, niet het gedrag; twee aantoonbaar onjuiste passages in de reparatietekst zelf</td><td>voedt w13-effectbinding (claude1, loopt sinds 13:19:02) en stap6 V2 (claude4, commit fc66b5d4)</td><td>✅ 11:03:06Z, vervolg BEZIG · nr 268 · <b>director</b></td></tr>
+      <tr><td class="cmd">CONTROLLER_STALE vierde losstaande recidive (nr269, nieuw)</td><td>terug in issues[] om 11:08:47Z, streak inmiddels 17; supervisor trekt eigen "duurzame sluiting"-lezing van episode 3 in — heartbeat bewoog nooit structureel, alleen via director's SIGTERM's; resolved_categories[] nog nooit gevuld</td><td>per supervisors eigen regel verdient een 4e recidive een aparte MIDDEL-bevinding over de detectie-/sluitlogica — nog niet apart geschreven</td><td>🔴 open · nr 269 · <b>niemand</b></td></tr>
+      <tr><td class="cmd">valse BLOCKED_EVIDENCE ontmaskerd (nr270, nieuw)</td><td>director (tik137) herdraaide claude2/claude4's afgewezen claims in de eigen worktree: 7/7 groen rc=0 — de oorspronkelijke evidence_gate=FAILED kwam uit een hoofdcheckout-rerun (2 pass/5 fail) op een ander checkout dan de bouwer gebruikte</td><td>evidence-gate-mechanisme zelf verdient onderzoek: mat het verkeerde checkout, niet het bouwresultaat</td><td>🔴 open (poortdefect) · nr 270 · <b>niemand</b></td></tr>
+      <tr><td class="cmd">codex2 weerspreekt claude2's eigen GO-claim (nr271, nieuw)</td><td>claude2 claimde GO_READY_FOR_MERGE_GATE op de doodalarm-dedup-fix; codex2's onafhankelijke review vond 5 defectklassen en concludeerde NO_GO — inclusief een BLOCKED_EVIDENCE op de volledige acceptatieproef zelf (120s timeout, geen reproduceerbare regressie)</td><td>SUPERVISOR_DOODALARM_NOGO1 al gedispatcht naar claude2 (13:26:39), R5-zelfketening werkte</td><td>🔵 herstel BEZIG · nr 271 · <b>claude2</b></td></tr>
       <tr><td class="cmd">codex2 PR104_REVIEW_5984CA6 (nr 249)</td><td>afgerond 10:05:54 verdict=GO_WITH_FINDINGS, maar PR104 bleek al MERGED onder ander commit (c999085, niet 5984ca6) — supervisor sloot dit als overbodig</td><td>director noemt een "houdbaarheidstermijn op revieworders" als mogelijke eigen vervolgstap; geen Richard-actie</td><td>✅ 10:05:54 · nr 249 · <b>niemand</b></td></tr>
       <tr><td class="cmd">codex1 kon niet reviewen (exit 3)</td><td>elke codex1-order viel om: geen aanmelding in ~/.codex</td><td>aanmelding stond in ~/.codex1; director zette CODEX_HOME in bin/codex1 om (e2dd1f9); 23:03 opnieuw rc 3 (director tik 46), 112 omgeleid naar codex2</td><td>✅ 21:03 (GO 21:23) · <b>terug 23:03</b> · nr 115 · <b>Richard</b></td></tr>
       <tr><td class="cmd">gemini1 leverde nooit (hanggrens 180 s)</td><td>elke run na 180 s afgekapt als STARTUP_STALE</td><td>DISPATCH_GEMINI_HANG_TIMEOUT_S=1800; run van 281 s leverde GO</td><td>✅ 21:29 · standaardwaarde nog te fixen (nr 55)</td></tr>
@@ -242,13 +260,13 @@ body.verberg-klaar tr.klaar{display:none}
 <section id="slot">
   <h2>Slot</h2>
   <div class="tabel"><table class="slot">
-    <thead><tr><th>Δ sinds vorige tik (12:51)</th><th>Volgende tik</th></tr></thead>
+    <thead><tr><th>Δ sinds vorige tik (12:56)</th><th>Volgende tik</th></tr></thead>
     <tbody><tr>
-      <td>lamp blijft 🔴: <b>nr253 zelfgesloten</b> door director om 10:55:08Z (§5, NO_GO blijft staan) · <b>nr266</b> bypass-OOM: drie lanes gedood, machineregel één dispatch tegelijk · <b>nr263</b> blijft 1/7 — controller herdispatcht de 3 gedode orders niet (ziet transportreceipt als afgehandeld), redispatch is directorwerk; director (tik133) schrijft eerst de w13-effectorder · CONTROLLER_STALE weer uit resolved_categories verdwenen — bevestigt instabiele tracking · streaks: DISPATCH_SUBPROCESS_FAILED 238→246, RECEIPT_NONTERMINAL 93→101 · watchdog-leeftijd 3690s→4173s · geheugen vrij 40%</td>
-      <td class="volgende">~13:11 · dispatcht de director claude4's nr265-vervolgorder (118 bewaarde regels) als eerste onder de één-tegelijk-regel, ná de w13-effectorder? blijft de controller-heartbeat bewegen of valt hij terug stil? concludeert codex1's RECEIPTROUTE_REVIEW_85909B2 (nu al zeer lang)? komt CONTROLLER_STALE terug in issues[] (vierde recidive)?</td>
+      <td>lamp 🔴→🟡: controller dispatchte zelfstandig 6 lanes (piek), nu 3/7 · <b>nr267</b> duplicate-dispatch-bug op minstens 3 lanes ontdekt · <b>nr268</b> codex1's review klaar (GO_WITH_FINDINGS), voedt twee vervolgorders · <b>nr269</b> CONTROLLER_STALE 4e recidive, supervisor trekt eigen eerdere lezing in · <b>nr270</b> valse BLOCKED_EVIDENCE ontmaskerd door director zelf — evidence-gate mat verkeerd checkout · <b>nr271</b> codex2 weerspreekt claude2's eigen GO-claim, NO_GO met 5 defectklassen, herstel al BEZIG · streaks 246→266/101→121, CONTROLLER_STALE 7→17 · watchdog 4173s→1669s (verse dispatch) · geheugen vrij ~39%</td>
+      <td class="volgende">~13:50 · landt claude3's WRAPPERKOPIE_HERSTEL_P1P2 V2 (dan al &gt;50 min, mogelijk eigen watchdog-bevinding)? landt claude1's w13-effectbinding en claude2's doodalarm-herstel? volgt er een MIDDEL-bevinding op CONTROLLER_STALE's 4e recidive of een 5e? onderzoekt iemand het evidence-gate-checkout-defect (nr270)?</td>
     </tr></tbody>
   </table></div>
-  <div class="pad">volledig rapport: ~/stack-control/CONTROL/RAPPORTEN/board-2026-09-09-1256.md</div>
+  <div class="pad">volledig rapport: ~/stack-control/CONTROL/RAPPORTEN/board-2026-09-09-1335.md</div>
 </section>
 
 </main>
@@ -381,4 +399,6 @@ document.querySelector("#t6 tbody").innerHTML=T6.map(r=>{const [nr,proj,taak,st,
 
 // ✅-rijen staan niet meer op het bord (Richard 22:06); archief in de rapporten
 </script>
-</head><body></body></html>
+
+</body>
+</html>
