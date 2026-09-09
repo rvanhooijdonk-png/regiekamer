@@ -305,13 +305,24 @@ function render(data){
     // objecten() en niet Array.isArray: één null in de lijst sloopte hieronder de
     // hele render op `g.richting`. Reviewbevinding, ronde 4.
     const gronden = objecten(analyse?.gronden);
-    const nSlecht = gronden.filter(g => g.richting === "SLECHT").length;
-    const nLetOp  = gronden.filter(g => g.richting === "LET_OP").length;
+    // Richard, "INSTRUCTIE AAN HET BOARD-TEAM" 2026-09-09, eindoordeel-punt: tel
+    // bronnen (onderliggende oorzaken), niet losse gronden — "10 punten los gemeten
+    // · 4 fout" weegt tien ongelijke dingen even zwaar terwijl vandaag alle rode
+    // punten op één storing terugvoerden. hoofdoorzaken.bronnen_* is al zo geteld
+    // in de generator (build_analyse); hier alleen dezelfde telling tonen i.p.v.
+    // opnieuw over losse gronden tellen. Zonder hoofdoorzaken (oudere JSON) valt dit
+    // terug op de oude, minder precieze grond-telling.
+    const hoofdoorzaken = analyse?.hoofdoorzaken;
+    const bronnenAlle = new Set(gronden.map(g => g.bron).filter(Boolean)).size;
+    const nSlecht = hoofdoorzaken ? getal(hoofdoorzaken.bronnen_slecht?.length) : gronden.filter(g => g.richting === "SLECHT").length;
+    const nLetOp  = hoofdoorzaken ? getal(hoofdoorzaken.bronnen_let_op?.length) : gronden.filter(g => g.richting === "LET_OP").length;
+    const nTotaal = hoofdoorzaken && bronnenAlle ? bronnenAlle : gronden.length;
+    const subtitelWoord = hoofdoorzaken && bronnenAlle ? "bronnen" : "punten los";
     blokken.push(`
     <section class="analyse${oordeel === "slecht" || oordeel === "zorgelijk" ? " urgent" : ""}">
       <div class="kopje"><h2>Hoe staat de stack ervoor</h2>
-        <span class="bron">${gronden.length} punten los gemeten ·
-          ${nSlecht} fout, ${nLetOp} let op, ${gronden.length - nSlecht - nLetOp} goed</span></div>
+        <span class="bron">${nTotaal} ${subtitelWoord} gemeten ·
+          ${nSlecht} fout, ${nLetOp} let op, ${Math.max(0, nTotaal - nSlecht - nLetOp)} goed</span></div>
       ${ontbreekt || `
       <div class="oordeel">
         <div class="stempel ${oordeel}">${schoon(analyse.oordeel)}</div>
@@ -370,14 +381,22 @@ function render(data){
   }
 
   // 3c. TOT AUTOCODING — de zes stappen, mechanisch geteld uit de outbox
+  // Richard, "INSTRUCTIE AAN HET BOARD-TEAM" 2026-09-09, punt 4: mislukt werk en
+  // mislukt bewijs (BLOCKED_EVIDENCE — het werk leverde wél een uitkomst op, alleen
+  // het bewijs kwam niet op het toegestane pad aan) zijn geen hetzelfde "VAST".
+  // s.werk_mislukt/s.administratie_mislukt bestaan pas sinds die fix; op oudere
+  // gecachte JSON (nog geen van beide velden) valt dit terug op het oude s.geblokkeerd.
   for(const s of objecten(route?.stappen)){
-    const totaal = getal(s.taken_totaal), af = getal(s.met_receipt), vast = getal(s.geblokkeerd);
+    const totaal = getal(s.taken_totaal), af = getal(s.met_receipt);
+    const vast = isGetal(s.werk_mislukt) ? getal(s.werk_mislukt) : getal(s.geblokkeerd);
+    const admin = isGetal(s.administratie_mislukt) ? getal(s.administratie_mislukt) : 0;
     const st = klasse(s.status);
     rijen.push({fase:"TOT AUTOCODING",
       stand:vast ? "VAST" : (schoon(s.status) || "OPEN"), klas:vast ? "vast" : (st || "open"),
       taak:kort(leesbaar(s.stap), 62),
-      actie:`${esc(af)} van ${esc(totaal)} af` + (vast ? ` · <b>${esc(vast)} zit vast</b>` : "") +
-            (totaal - af - vast > 0 ? ` · ${esc(totaal - af - vast)} te gaan` : ""),
+      actie:`${esc(af)} van ${esc(totaal)} af` + (vast ? ` · <b>${esc(vast)} werk mislukt</b>` : "") +
+            (admin ? ` · ${esc(admin)} administratie mislukt (bewijs niet aangekomen)` : "") +
+            (totaal - af - vast - admin > 0 ? ` · ${esc(totaal - af - vast - admin)} te gaan` : ""),
       loopt:"laatst " + klok(s.laatste_activiteit), verwacht:"—"});
   }
 
