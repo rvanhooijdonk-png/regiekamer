@@ -1,4 +1,11 @@
-<!doctype html><html lang="nl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="robots" content="noindex"><meta http-equiv="refresh" content="300"><title>Autocoding Peilbord</title></head><title>Autocoding Peilbord</title>
+<!doctype html>
+<html lang="nl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<meta http-equiv="refresh" content="300">
+<title>Autocoding Peilbord</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
 <style>
 :root{
@@ -87,8 +94,8 @@ body.verberg-klaar tr.klaar{display:none}
   <div class="kopbalk">
     <div class="lamp rood" title="ROOD"></div>
     <h1>Autocoding Peilbord</h1>
-    <div class="tik" id="tik">tik 12:35 · gemeten 12:25–12:35</div>
-    <div class="regel" id="kopregel"><b>nr265 (nieuw): codex2's STAP6REVIEW_8CC56408 (nr248) concludeerde na ~51 min</b> verdict=<code>NO_GO</code> op head 8cc56408 — codex2-lane weer vrij; director zette meteen twee vervolgorders klaar (claude3 CLAIMHOUDER_ZONDER_STARTTIJD, claude4 STAP6_NOGO1_TAAKVREEMDE_CLAIM), nog geen van beide gedispatcht · <b>nr263 verder verscherpt: bezetting op laagste punt van de sessie</b> — nu nog maar <b>1/7</b> lanes draait (alleen codex1), 6/7 vrij mét klaarstaand werk; controller-heartbeat vast op 09:45:50Z (nu &gt;49 min stil), stuck_count=2 · streak-versnelling neemt toe: CONTROLLER_STALE 23→<b>32</b>, DISPATCH_SUBPROCESS_FAILED 210→<b>219</b>, RECEIPT_NONTERMINAL 65→<b>74</b> in ~10 min (sneller dan vorig interval) · codex1 op RECEIPTROUTE_REVIEW_85909B2 (~43 min, nog geen receipt) · nr253-arbitrage (93d82c8d) nog steeds OPEN, termijn ~20 min resterend (10:55Z) · PR115/PR104 ongewijzigd geblokkeerd · codex auth blijft weg.</div>
+    <div class="tik" id="tik">tik 12:51 · gemeten 12:35–12:51</div>
+    <div class="regel" id="kopregel"><b>nr263: director dispatcht nu drie lanes tegelijk buiten de controller om</b> — na claude4 (12:40, STAP6_NOGO1_TAAKVREEMDE_CLAIM) ook <b>claude3</b> (12:49, CLAIMHOUDER_ZONDER_STARTTIJD) en <b>claude2</b> (12:49, RERUNVELDEN_ONNAVOLGBAAR) direct via bin/dispatch-actor gestart — bezetting sprong van 1/7 naar <b>4/7</b> (codex1+claude4+claude3+claude2), maar dit is een bypass, geen controllerherstel: heartbeat nog steeds vast op 09:45:50Z (nu &gt;65 min stil) · streaks blijven doorlopen: CONTROLLER_STALE 40→<b>49</b>, DISPATCH_SUBPROCESS_FAILED 227→<b>236</b>, RECEIPT_NONTERMINAL 82→<b>91</b> · watchdog oldest_dispatch_age nu <b>3463s</b> (was 2921s), NO_KILL_NO_RETRY blijft van kracht · codex1 op RECEIPTROUTE_REVIEW_85909B2 (~59 min, nog geen receipt) · <b>nr253-arbitrage (93d82c8d) nog steeds OPEN, termijn nu nog maar ~4 min</b> (10:55Z) · PR115/PR104 ongewijzigd geblokkeerd · codex auth blijft weg.</div>
     <div class="eind">akkoord <b>09-12/13 → ~09-11</b> · parser weg <b>09-21 → ~09-20</b></div>
     <div class="knoppen">
       <span class="tik">afgerond vandaag: 129 rijen (in rapport)</span>
@@ -99,18 +106,18 @@ body.verberg-klaar tr.klaar{display:none}
 <main>
 
 <section id="b1b">
-  <h2><span class="n">1b</span> Kanaalbezetting (7 kanalen) <span class="sub">live gemeten 12:35 uit ps · elke tik opnieuw</span></h2>
+  <h2><span class="n">1b</span> Kanaalbezetting (7 kanalen) <span class="sub">live gemeten 12:51 uit ps · elke tik opnieuw</span></h2>
   <div class="tabel"><table class="actie">
     <thead><tr><th>Kanaal</th><th>Status</th><th>Order</th><th>Sinds</th><th>Duur</th><th>Nr</th><th>Bewijs</th></tr></thead>
     <tbody>
       <tr><td class="cmd">claude1</td><td>⬜ vrij</td><td>stap5b concludeerde DONE_BUILD_AWAITING_REVIEW</td><td>—</td><td>—</td><td>262</td><td>dubbele review (codex2 STAP5BREVIEW + gemini1 STAP5BLEESREVIEW) op 8811b554 QUEUED, nog niet opgepikt</td></tr>
-      <tr><td class="cmd">claude2</td><td>⬜ vrij</td><td>doodalarm-fix concludeerde GO_READY_FOR_MERGE_GATE</td><td>—</td><td>—</td><td>261</td><td>codex2-review (DOODALARMREVIEW_822AB377) + eigen vervolgorder (RERUNVELDEN_ONNAVOLGBAAR) beide QUEUED, controller dispatcht niet</td></tr>
-      <tr><td class="cmd">claude3</td><td>⬜ vrij</td><td>watchdog WRAPPERKOPIE_HERSTEL_P1P2 concludeerde BLOCKED_EVIDENCE</td><td>—</td><td>—</td><td>260</td><td>V2-herstelorder zelf geketend (R5), QUEUED, controller dispatcht niet</td></tr>
-      <tr><td class="cmd">claude4</td><td>⬜ vrij</td><td>watchdog-doel LEVENSTEKEN_TIJDENS_DISPATCH V2 concludeerde BLOCKED_EVIDENCE</td><td>—</td><td>—</td><td>264</td><td>eigen claim DONE_AWAITING_REVIEW afgewezen; codex2-review LEVENSTEKENREVIEW_6D275922 QUEUED, controller dispatcht niet</td></tr>
-      <tr><td class="cmd">codex1</td><td>🔵</td><td>RECEIPTROUTE_REVIEW_85909B2 (REVIEW)</td><td>11:52:18</td><td>~43 min</td><td>—</td><td>nog in-flight, alleen streaming sidecars, geen _RECEIPT.md</td></tr>
+      <tr><td class="cmd">claude2</td><td>🔵</td><td>RERUNVELDEN_ONNAVOLGBAAR (nr261-vervolg, BUILD)</td><td>12:49:41</td><td>~2 min</td><td>261</td><td>director dispatchte direct (bin/dispatch-actor) — derde bypass-dispatch dit tik</td></tr>
+      <tr><td class="cmd">claude3</td><td>🔵</td><td>CLAIMHOUDER_ZONDER_STARTTIJD (nr265-vervolg, BUILD)</td><td>12:49:39</td><td>~2 min</td><td>265</td><td>director dispatchte direct (bin/dispatch-actor) — bypass, controller stond stil; nr260 V2-herstelorder nog steeds QUEUED</td></tr>
+      <tr><td class="cmd">claude4</td><td>🔵</td><td>STAP6_NOGO1_TAAKVREEMDE_CLAIM (nr265-vervolg, BUILD)</td><td>12:40:00</td><td>~11 min</td><td>265</td><td>director dispatchte direct (bin/dispatch-actor) — eerste van de drie bypass-dispatches dit tik</td></tr>
+      <tr><td class="cmd">codex1</td><td>🔵</td><td>RECEIPTROUTE_REVIEW_85909B2 (REVIEW)</td><td>11:52:18</td><td>~59 min</td><td>—</td><td>nog in-flight, alleen streaming sidecars, geen _RECEIPT.md</td></tr>
       <tr><td class="cmd">codex2</td><td>⬜ vrij</td><td>STAP6REVIEW_8CC56408 concludeerde NO_GO</td><td>—</td><td>—</td><td>265</td><td>~51 min gelopen (11:35:47→12:26); lane nu vrij, nog niet herdispatcht</td></tr>
       <tr><td class="cmd">gemini1</td><td>⬜ vrij</td><td>3e leespoging STAP6LEESREVIEW_8CC56408 faalde transport</td><td>—</td><td>—</td><td>248</td><td>WITHHELD_BODY_AFTER_RECEIPT_INVALID (3e op 3 mislukt, andere categorie dan 2e); eigen STAP5BLEESREVIEW-order (nr262) QUEUED</td></tr>
-      <tr><td class="cmd">totaal</td><td>1/7 bezet</td><td>6/7 vrij-met-wachtend-werk</td><td colspan="4">controller-heartbeat 09:45:50Z (&gt;49 min stil), stuck_count=2; nr260/261/262/264/265-vervolg liggen QUEUED zonder dispatch — nieuw laagste punt deze sessie (nr263, was 6-7/7 tot ~11:35)</td></tr>
+      <tr><td class="cmd">totaal</td><td>4/7 bezet</td><td>3/7 vrij</td><td colspan="4">controller-heartbeat nog steeds 09:45:50Z (&gt;65 min stil), stuck_count=2; bezetting sprong 1/7→4/7 via drie directe director-bypass-dispatches (claude4, claude3, claude2) — geen controllerherstel, watchdog-alert leeftijd 3463s</td></tr>
 </tbody></table></div>
 </section>
 
@@ -182,9 +189,9 @@ body.verberg-klaar tr.klaar{display:none}
             <tr><td class="cmd">nr260 (nieuw): claude3's watchdog-episode (~90 min) concludeerde</td><td>WRAPPERKOPIE_HERSTEL_P1P2 V1: exit_code=8, evidence_gate=FAILED_EVIDENCE, verdict=BLOCKED_EVIDENCE — na de langste watchdog-episode van deze sessie</td><td>director ketende zelf door (R5): V2-herstelorder al geschreven en QUEUED, nog niet opgepikt</td><td>🟡 QUEUED (V2) · nr 260 · <b>niemand</b></td></tr>
       <tr><td class="cmd">nr261 (nieuw): claude2's DOODALARM_HERMELDING-fix concludeerde</td><td>SUPERVISOR_DOODALARM_HERMELDING: verdict=GO_READY_FOR_MERGE_GATE — root-cause fix op de alarm-dedup-fingerprint bevestigd door de bouwer zelf</td><td>codex2-review (DOODALARMREVIEW_822AB377) QUEUED, wacht op codex2's lane (bezet op STAP6REVIEW)</td><td>🟡 QUEUED (review) · nr 261 · <b>niemand</b></td></tr>
       <tr><td class="cmd">nr262 (nieuw): claude1's stap5b (nr244-lijn) concludeerde</td><td>VERWACHTINGSTABEL_AFGELEID op head 8811b554: verdict=DONE_BUILD_AWAITING_REVIEW</td><td>dubbele review al geschreven en QUEUED (codex2 STAP5BREVIEW + gemini1 STAP5BLEESREVIEW), geen van beide lanes heeft hem nog opgepikt</td><td>🟡 QUEUED (dubbele review) · nr 262 · <b>niemand</b></td></tr>
-      <tr><td class="cmd">nr263 (verder verscherpt): bezetting nu op 1/7, laagste van de sessie</td><td>autocoder-controller-heartbeat nog steeds vast op 09:45:50Z (&gt;49 min stil), stuck_count=2; CONTROLLER_STALE 23→32, DISPATCH_SUBPROCESS_FAILED 210→219, RECEIPT_NONTERMINAL 65→74 — versnelling t.o.v. vorig interval; bezetting zakte van 2/7 naar 1/7 (alleen codex1)</td><td>geen herstelorder gezet dit tik; director dispatcht zelf nog los (codex1 loopt door), controller zelf blijft stil</td><td>🔴 open · nr 263 · <b>niemand</b></td></tr>
+      <tr><td class="cmd">nr263: bezetting herstelde naar 4/7 via drievoudige bypass, niet via de controller</td><td>autocoder-controller-heartbeat nog steeds vast op 09:45:50Z (&gt;65 min stil), stuck_count=2; director dispatchte na claude4 (12:40) ook claude3 en claude2 (beide 12:49) rechtstreeks; streaks lopen door: CONTROLLER_STALE 40→49, DISPATCH_SUBPROCESS_FAILED 227→236, RECEIPT_NONTERMINAL 82→91; watchdog oldest_dispatch_age 2921s→3463s</td><td>drie handmatige director-dispatches (bin/dispatch-actor) dit tik; controller zelf blijft stil, geen zelfherstel — bezetting is nu 4/7, hoogste punt sinds de terugval</td><td>🟡 verbeterd (bypass, niet zelfherstel) · nr 263 · <b>niemand</b></td></tr>
       <tr><td class="cmd">nr264 (nieuw): watchdog-doel claude4 concludeerde</td><td>CONTROLLER_LEVENSTEKEN_TIJDENS_DISPATCH V2: eigen claim verdict=DONE_AWAITING_REVIEW werd door de receipt-validator afgewezen (claimed_verdict_rejected), terminaal verdict=BLOCKED_EVIDENCE, exit_code=8, evidence_source=STDOUT_FALLBACK_NO_CANONICAL_RECEIPT</td><td>zelf geketend (R5): codex2-review LEVENSTEKENREVIEW_6D275922 (base 3cfb5457) al geschreven en QUEUED, wacht op codex2's lane</td><td>🟡 QUEUED (review) · nr 264 · <b>niemand</b></td></tr>
-      <tr><td class="cmd">nr265 (nieuw): codex2's STAP6REVIEW_8CC56408 concludeerde</td><td>verdict=<b>NO_GO</b> op head 8cc56408 na ~51 min (11:35:47→12:26) — eerste terminale conclusie op deze head na drie mislukte gemini1-leespogingen</td><td>director zette meteen twee vervolgorders klaar: claude3 CLAIMHOUDER_ZONDER_STARTTIJD (12:28) en claude4 STAP6_NOGO1_TAAKVREEMDE_CLAIM (12:32), beide nog niet gedispatcht</td><td>🔴 NO_GO · nr 265 · <b>niemand</b></td></tr>
+      <tr><td class="cmd">nr265: beide vervolgorders nu gedispatcht (claude4 sinds 12:40, claude3 sinds 12:49)</td><td>verdict=<b>NO_GO</b> op head 8cc56408 na ~51 min (11:35:47→12:26) — eerste terminale conclusie op deze head na drie mislukte gemini1-leespogingen</td><td>claude4 STAP6_NOGO1_TAAKVREEMDE_CLAIM (~11 min) en claude3 CLAIMHOUDER_ZONDER_STARTTIJD (~2 min) beide BEZIG via director-bypass; nog geen van beide klaar</td><td>🔵 beide vervolg BEZIG · nr 265 · <b>niemand</b></td></tr>
       <tr><td class="cmd">codex2 PR104_REVIEW_5984CA6 (nr 249)</td><td>afgerond 10:05:54 verdict=GO_WITH_FINDINGS, maar PR104 bleek al MERGED onder ander commit (c999085, niet 5984ca6) — supervisor sloot dit als overbodig</td><td>director noemt een "houdbaarheidstermijn op revieworders" als mogelijke eigen vervolgstap; geen Richard-actie</td><td>✅ 10:05:54 · nr 249 · <b>niemand</b></td></tr>
       <tr><td class="cmd">codex1 kon niet reviewen (exit 3)</td><td>elke codex1-order viel om: geen aanmelding in ~/.codex</td><td>aanmelding stond in ~/.codex1; director zette CODEX_HOME in bin/codex1 om (e2dd1f9); 23:03 opnieuw rc 3 (director tik 46), 112 omgeleid naar codex2</td><td>✅ 21:03 (GO 21:23) · <b>terug 23:03</b> · nr 115 · <b>Richard</b></td></tr>
       <tr><td class="cmd">gemini1 leverde nooit (hanggrens 180 s)</td><td>elke run na 180 s afgekapt als STARTUP_STALE</td><td>DISPATCH_GEMINI_HANG_TIMEOUT_S=1800; run van 281 s leverde GO</td><td>✅ 21:29 · standaardwaarde nog te fixen (nr 55)</td></tr>
@@ -242,13 +249,13 @@ body.verberg-klaar tr.klaar{display:none}
 <section id="slot">
   <h2>Slot</h2>
   <div class="tabel"><table class="slot">
-    <thead><tr><th>Δ sinds vorige tik (12:25)</th><th>Volgende tik</th></tr></thead>
+    <thead><tr><th>Δ sinds vorige tik (12:35)</th><th>Volgende tik</th></tr></thead>
     <tbody><tr>
-      <td>lamp 🔴 (was geel): <b>nr265 (nieuw)</b> codex2's STAP6REVIEW_8CC56408 concludeerde eindelijk NO_GO na ~51 min — twee vervolgorders (claude3, claude4) al klaargezet, nog niet gedispatcht — maar <b>nr263 verder verscherpt</b>: bezetting zakte verder van 2/7 naar <b>1/7</b>, nieuw laagste punt van de sessie; controller-heartbeat nu &gt;49 min stil (09:45:50Z) · streaks versnellen: CONTROLLER_STALE 23→32, DISPATCH_SUBPROCESS_FAILED 210→219, RECEIPT_NONTERMINAL 65→74 · nr257/258/259/260/261/262/264 ongewijzigd, allemaal nog QUEUED zonder dispatch · nr253-arbitrage nog steeds OPEN, termijn nog ~20 min (10:55Z)</td>
-      <td class="volgende">~12:55 · komt de controller weer tot leven en dispatcht hij nr260/261/262/264/265-vervolg? concludeert codex1's RECEIPTROUTE_REVIEW_85909B2 (~43 min)? blijft de bezetting op 1/7 staan of zakt hij verder? blijven CONTROLLER_STALE (32) en de andere streaks in dit tempo doorversnellen? verloopt de nr253-termijn (10:55Z) alsnog zonder FABLE-verdict?</td>
+      <td>lamp blijft 🔴 (bezetting 🟡 verbeterd): <b>nr263</b> bezetting sprong 1/7→<b>4/7</b> doordat de director in dit tik drie lanes tegelijk rechtstreeks dispatchte (claude4 12:40, claude3+claude2 beide 12:49) — allemaal bypass van de vastgelopen controller, geen zelfherstel: heartbeat blijft 09:45:50Z (&gt;65 min stil) · streaks lopen door: CONTROLLER_STALE 40→49, DISPATCH_SUBPROCESS_FAILED 227→236, RECEIPT_NONTERMINAL 82→91 · watchdog-alertleeftijd 2921s→3463s · <b>nr253-arbitrage termijn nu nog maar ~4 min</b> (10:55Z), director kondigde eigen sluiting aan bij verstrijken</td>
+      <td class="volgende">~13:01 · verstrijkt de nr253-termijn (10:55Z) zonder FABLE-verdict en sluit de director zelf zoals aangekondigd? concluderen claude3/claude4's vervolgorders? wordt ook codex2 of gemini1 weer ingezet, zodat de bezetting naar 5-6/7 gaat? concludeert codex1's RECEIPTROUTE_REVIEW_85909B2 (~59 min, nu al zeer lang)? komt de controller zelf ooit weer tot leven, of blijft handmatige bypass de enige route?</td>
     </tr></tbody>
   </table></div>
-  <div class="pad">volledig rapport: ~/stack-control/CONTROL/RAPPORTEN/board-2026-09-09-1235.md</div>
+  <div class="pad">volledig rapport: ~/stack-control/CONTROL/RAPPORTEN/board-2026-09-09-1251.md</div>
 </section>
 
 </main>
@@ -381,4 +388,8 @@ document.querySelector("#t6 tbody").innerHTML=T6.map(r=>{const [nr,proj,taak,st,
 
 // ✅-rijen staan niet meer op het bord (Richard 22:06); archief in de rapporten
 </script>
+
+</head>
+<body>
+</body>
 </html>
