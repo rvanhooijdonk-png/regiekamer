@@ -193,7 +193,12 @@ const el = (id) => document.getElementById(id);
 // throw sloopt de hele render, niet alleen die ene cel. Elke bronwaarde wordt
 // daarom eerst op type getoetst: wat geen primitieve waarde is, telt als afwezig.
 const prim = (v) => (typeof v === "string" || typeof v === "number" || typeof v === "boolean") ? v : "";
-const esc = (s) => String(prim(s)).replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+// Ook de enkele quote wordt ontsnapt. In dit sjabloon staat vandaag geen enkel
+// attribuut in enkele quotes, dus het is nu niet uitbuitbaar — maar dan hangt de
+// veiligheid van esc() af van hoe een latere regel toevallig geschreven wordt, en
+// dat is geen veiligheid. Reviewbevinding, ronde 4.
+const esc = (s) => String(prim(s)).replace(/[&<>"']/g,
+  c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
 // markdown-vet uit brondocumenten wegstrippen, geen HTML doorlaten
 const schoon = (s) => esc(String(prim(s)).replace(/\*\*/g, "").trim());
 // klassenaam uit brondata: alleen letters/cijfers/underscore, nooit een attribuutbreuk
@@ -201,8 +206,13 @@ const klasse = (s) => String(prim(s)).toLowerCase().replace(/[^a-z0-9_]/g, "");
 // Een getal uit de JSON kan een string, null of onzin zijn. Alles wat gerekend of
 // als breedte gebruikt wordt gaat hier eerst doorheen: liever een 0 dan een "NaN%"
 // op het bord of een balk die het hele blok meesleept.
-const getal = (v) => { const n = Number(prim(v)); return Number.isFinite(n) ? n : 0; };
-const isGetal = (v) => { const p = prim(v); return p !== "" && Number.isFinite(Number(p)); };
+// Een boolean is géén getal, ook al maakt Number(true) er een 1 van: secTekst(true)
+// toonde daardoor "<1 min" waar een streepje hoort. Alleen een echt getal of een
+// string die een getal ís telt mee. Reviewbevinding, ronde 4.
+const cijfer = (v) => typeof v === "number" ? v
+  : (typeof v === "string" && v.trim() !== "" && Number.isFinite(Number(v))) ? Number(v) : null;
+const getal = (v) => { const n = cijfer(v); return n !== null && Number.isFinite(n) ? n : 0; };
+const isGetal = (v) => { const n = cijfer(v); return n !== null && Number.isFinite(n); };
 // breedte van een balk: altijd binnen 0-100, nooit een attribuutbreuk
 const pct = (v) => Math.max(0, Math.min(100, getal(v))).toFixed(1);
 // alles wat als lijst uit de JSON komt: geen null-gaten, geen losse waarden
@@ -293,7 +303,9 @@ function render(data){
   {
     const ontbreekt = geenBron(analyse, "Geen analyse");
     const oordeel = klasse(analyse?.oordeel) || "no_data";
-    const gronden = Array.isArray(analyse?.gronden) ? analyse.gronden : [];
+    // objecten() en niet Array.isArray: één null in de lijst sloopte hieronder de
+    // hele render op `g.richting`. Reviewbevinding, ronde 4.
+    const gronden = objecten(analyse?.gronden);
     const nSlecht = gronden.filter(g => g.richting === "SLECHT").length;
     const nLetOp  = gronden.filter(g => g.richting === "LET_OP").length;
     blokken.push(`
@@ -317,14 +329,14 @@ function render(data){
   <section class="${beslis.length ? "urgent" : ""}">
     <div class="kopje"><span class="n">${beslis.length}</span><h2>Wat jij moet beslissen</h2>
       <span class="bron">bron: ${schoon(d.beslisrij?.bron_pad || "—")}</span></div>
-    ${beslis.length ? `<table>
+    ${geenBron(d.beslisrij, "Geen beslisrij") || (beslis.length ? `<table>
       <thead><tr><th class="mono">nr</th><th>Besluit</th><th>Kost</th><th>Ontgrendelt</th></tr></thead>
       <tbody>${beslis.map(b => `
         <tr><td class="nr mono">${schoon(b.nr)}</td>
         <td class="besluit">${schoon(b.besluit)}</td>
         <td class="mono strak">${schoon(b.kost)}</td>
         <td class="ontgrendelt">${schoon(b.ontgrendelt)}</td></tr>`).join("")}
-      </tbody></table>` : `<div class="leeg">Niets dat op jou wacht.</div>`}
+      </tbody></table>` : `<div class="leeg">Niets dat op jou wacht.</div>`)}
   </section>`);
 
   /* ---- 3. DE ROUTE: tot autocoding + daarna ---- */
@@ -408,8 +420,13 @@ function render(data){
 
   /* ---- 5. KANALEN NU ---- */
   const volgorde = {GEBLOKKEERD:0, STALE:1, BEZIG:2, WACHT:3, VRIJ:4};
+  // volgorde[a.status] converteert de bronwaarde naar een sleutel, en dat is dezelfde
+  // ToPrimitive-val als String(): een status-object met kapotte toString sloopte de
+  // sortering en daarmee de hele render. Sleutel dus via esc/prim, niet rauw.
+  // Reviewbevinding, ronde 4 — de proef zag het niet omdat één account nooit sorteert.
+  const rang = (a) => volgorde[String(prim(a?.status))] ?? 9;
   const gesorteerd = lanes.slice().sort((a,b) =>
-    (volgorde[a.status] ?? 9) - (volgorde[b.status] ?? 9) || getal(b.sinds_minuten) - getal(a.sinds_minuten));
+    rang(a) - rang(b) || getal(b.sinds_minuten) - getal(a.sinds_minuten));
   blokken.push(`
   <section>
     <div class="kopje"><span class="n">${lanes.length}</span><h2>Kanalen nu</h2>
