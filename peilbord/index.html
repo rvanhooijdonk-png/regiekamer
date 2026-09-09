@@ -1,4 +1,18 @@
-<!doctype html><html lang="nl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="robots" content="noindex"><meta http-equiv="refresh" content="300"><title>peilbord</title></head><body><title>Autocoding Peilbord</title>
+<!doctype html>
+<html lang="nl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<meta http-equiv="refresh" content="300">
+<title>Regiekamer — peilbord</title>
+<style>
+  * { box-sizing: border-box; }
+  body { margin: 0; }
+</style>
+</head>
+<body>
+<title>Autocoding Peilbord</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
 <style>
 :root{
@@ -87,8 +101,8 @@ body.verberg-klaar tr.klaar{display:none}
   <div class="kopbalk">
     <div class="lamp rood" title="ROOD"></div>
     <h1>Autocoding Peilbord</h1>
-    <div class="tik" id="tik">tik 08:56 · gemeten 08:41–08:56</div>
-    <div class="regel" id="kopregel">controller-heartbeat eindelijk ververst (06:48Z, was 06:34 vast) · 4 lanes vrij: 225 EFFECT-BEWEZEN, 227 nieuw NO_GO, 226 evidence-gate PASS (nog geen eindreceipt), 224 label-defect (WACHT OP AKKOORD maar receipt zegt "geen") · claude4 (223) blijft &gt;80 min geblokkeerd, ongewijzigd · streak 13→16 (LEGACY_ESCALATION_CARRIED) · codex auth blijft weg. <b>Richard</b>: 115, 223.</div>
+    <div class="tik" id="tik">tik 09:13 · gemeten 09:01–09:13</div>
+    <div class="regel" id="kopregel">1/7 bezet: claude3/207 nu ~97 min vast (watchdog) · streak 16→22 (DISPATCH_SUBPROCESS_FAILED/RECEIPT_NONTERMINAL), LEGACY_ESCALATION_CARRIED blijft 16 · director-tik 104: stap-7-herpin loste R2-mislabeling NIET op — nieuwe order 231 (BEZETTE_LANE_GEEN_MISLUKKING) gequeued op claude3 · vervolgorder 230 nog niet opgepakt · codex auth blijft weg. <b>Richard</b>: 115.</div>
     <div class="eind">akkoord <b>09-12/13 → ~09-11</b> · parser weg <b>09-21 → ~09-20</b></div>
     <div class="knoppen">
       <span class="tik">afgerond vandaag: 129 rijen (in rapport)</span>
@@ -99,18 +113,18 @@ body.verberg-klaar tr.klaar{display:none}
 <main>
 
 <section id="b1b">
-  <h2><span class="n">1b</span> Kanaalbezetting (7 kanalen) <span class="sub">live gemeten 08:41–08:56 uit ps · elke tik opnieuw</span></h2>
+  <h2><span class="n">1b</span> Kanaalbezetting (7 kanalen) <span class="sub">live gemeten 08:56–09:01 uit ps · elke tik opnieuw</span></h2>
   <div class="tabel"><table class="actie">
     <thead><tr><th>Kanaal</th><th>Status</th><th>Order</th><th>Sinds</th><th>Duur</th><th>Nr</th><th>Bewijs</th></tr></thead>
     <tbody>
-      <tr><td class="cmd">claude1</td><td>🔵 203</td><td>GEDEELDE_CHECKOUT_REFVERPLAATSING V1</td><td>07:07:13</td><td class="rood">~109 min</td><td>203</td><td>watchdogdoel, ongewijzigd vast</td></tr>
-      <tr><td class="cmd">claude2</td><td>⬜ vrij</td><td>224 klaar 08:48</td><td>tot 08:48</td><td>—</td><td>224</td><td>WACHT OP AKKOORD, maar receipt zelf: "Wacht op Richard: geen" — labeldefect</td></tr>
-      <tr><td class="cmd">claude3</td><td>🔵 207</td><td>WRAPPER_ZELFKOPIE_UITVOERING V1</td><td>07:35:06</td><td>~81 min</td><td>207</td><td>nog geen verdict; ongewijzigd</td></tr>
-      <tr><td class="cmd">claude4</td><td>🔴 GEBLOKKEERD</td><td>REVIEWLANE_MEETVERMOGEN_POORT V1</td><td>07:37:13</td><td>~79 min stil</td><td>223</td><td>modelmismatch; wacht op Richard sinds 07:37, ongewijzigd</td></tr>
-      <tr><td class="cmd">codex1</td><td>⬜ vrij</td><td>227 klaar 08:44</td><td>tot 08:44</td><td>—</td><td>227</td><td>GEBLOKKEERD/NO_GO op SERVICELAAG_REVIEW — lane weer vrij</td></tr>
-      <tr><td class="cmd">codex2</td><td>⬜ vrij</td><td>225 klaar 08:44</td><td>tot 08:44</td><td>—</td><td>225</td><td>EFFECT-BEWEZEN — GO_WITH_FINDINGS-review met bevinding (herstel te smal)</td></tr>
-      <tr><td class="cmd">gemini1</td><td>⬜ vrij</td><td>226 evidence-gate PASS</td><td>tot 06:42Z</td><td>—</td><td>226</td><td>DIRECTOR_RERUN_GREEN, maar nog geen eindreceipt op canoniek pad</td></tr>
-      <tr><td class="cmd">totaal</td><td>3/7 bezet</td><td>4 vrij — grote leegloop deze tik</td><td colspan="4">controller-heartbeat eindelijk ververst (06:48:25Z); streak 13→16 (LEGACY_ESCALATION_CARRIED); codex auth blijft weg; origin/main +1 (supervisor tik174-commit 9ca63a87)</td></tr>
+      <tr><td class="cmd">claude1</td><td>⬜ vrij</td><td>203 klaar (mislukt) 06:58Z</td><td>tot 06:58Z</td><td>—</td><td>203</td><td>FAILED_TRANSPORT_EXECUTION_CONTEXT; checkout-anomalie blijft HOOG</td></tr>
+      <tr><td class="cmd">claude2</td><td>⬜ vrij</td><td>224 klaar 08:48</td><td>tot 08:48</td><td>—</td><td>224</td><td>ongewijzigd: labeldefect (zie 2b)</td></tr>
+      <tr><td class="cmd">claude3</td><td>🔵 207</td><td>WRAPPER_ZELFKOPIE_UITVOERING V1 (+231 gequeued erbovenop)</td><td>07:35:06</td><td class="rood">~97 min</td><td>207/231</td><td>watchdog blijft op deze lane; 231 wacht op vrije lane</td></tr>
+      <tr><td class="cmd">claude4</td><td>⬜ vrij</td><td>223 klaar (BLOCKED_EVIDENCE) 06:56Z</td><td>tot 06:56Z</td><td>—</td><td>223</td><td>form-defect; vervolg 230→codex2; geen Richard-actie meer</td></tr>
+      <tr><td class="cmd">codex1</td><td>⬜ vrij</td><td>227 klaar 08:44</td><td>tot 08:44</td><td>—</td><td>227</td><td>ongewijzigd, nog geen vervolgorder</td></tr>
+      <tr><td class="cmd">codex2</td><td>⬜ vrij</td><td>228 NO_GO binnen, 230 queued</td><td>tot 08:58Z</td><td>—</td><td>228/230</td><td>228 NO_GO nieuw; 230 nog niet opgepakt (QUEUED)</td></tr>
+      <tr><td class="cmd">gemini1</td><td>⬜ vrij</td><td>226 evidence-gate PASS</td><td>tot 06:42Z</td><td>—</td><td>226</td><td>ongewijzigd, nog geen eindreceipt</td></tr>
+      <tr><td class="cmd">totaal</td><td>1/7 bezet</td><td>6 vrij — nog grotere leegloop</td><td colspan="4">controller-heartbeat vast op 07:00:32Z (nog niet ververst deze tik); escalation-streak 16→22; director-tik 104 vond stap7 R2-mislabeling NIET opgelost, order 231 gequeued; codex auth blijft weg</td></tr>
     </tbody></table></div>
 </section>
 
@@ -119,8 +133,7 @@ body.verberg-klaar tr.klaar{display:none}
   <div class="tabel"><table class="actie">
     <thead><tr><th>Actie Richard</th><th>Waarom</th><th>Als je het niet doet</th></tr></thead>
     <tbody>
-      <tr><td class="cmd">terminal: <code>codex login</code> zodat ~/.codex/auth.json terugkomt (nr 115)</td><td>codex1 geblokkeerd sinds 23:03; nog steeds afwezig om 07:27 — draait nu wél op nieuwe order 208</td><td>codex1 blijft een onverklaarde anomalie; reviews stapelen op codex2/gemini1 zodra dit misgaat</td></tr>
-      <tr><td class="cmd">directorvenster: kies voor claude4 (nr 223) — (a) lane herstarten met Opus, of (b) akkoord dat Sonnet 5 deze hoog-risico BUILD-order (dispatch-actor) mag doen</td><td>claude4 zit sinds 07:37 vast op modelmismatch (order vraagt opus, sessie draait Sonnet 5) — nu &gt;79 min, ongewijzigd</td><td>lane blijft stil zonder dat het als blokkade zichtbaar was</td></tr>
+      <tr><td class="cmd">terminal: <code>codex login</code> zodat ~/.codex/auth.json terugkomt (nr 115)</td><td>codex1 geblokkeerd sinds 23:03; nog steeds afwezig om 09:01</td><td>codex1 blijft een onverklaarde anomalie; reviews stapelen op codex2/gemini1 zodra dit misgaat</td></tr>
       <tr><td class="cmd">akkoord op de autocoding-keten (nr 32) — nog niet aan de orde</td><td>staat gepland na de cutover, ~09-11</td><td>burn-in B (7 dagen) start niet; stap 8 blijft dicht</td></tr>
     </tbody>
   </table></div>
@@ -141,11 +154,16 @@ body.verberg-klaar tr.klaar{display:none}
       <tr><td class="cmd">test_close_ghost_queue.py rood (nr 219)</td><td>14 failures, 5 errors op de proef; oorzaak nog niet in het bord verwerkt</td><td>PROEFBINDING-fix QUEUED voor claude3, dispatchpoging 06:28:01 correct REFUSED (lane bezet), wacht op vrije lane</td><td>open · nr 219 · <b>niemand</b></td></tr>
       <tr><td class="cmd">208 claim GO_WITH_FINDINGS maar evidence-gate FAILED (nr 221, nieuw)</td><td>TRANSPORT_RECEIPT_2 (mtime 08:22:06): evidence_gate=FAILED_EVIDENCE, evidence_reason=RERUN_TIMEOUT, exit_code=8; codex1's eigen claim GO_WITH_FINDINGS blijft claimed_verdict_unconfirmed — verdict dus technisch onbevestigd. Verband met director tik101: "C.2-herkenning verbreden naar vier verdictspellingen" (OPEN)</td><td>director tik101 zelf BEZIG met revieworders voor niet-herkende bouwleveringen</td><td>open · nr 221 · <b>director</b> (BEZIG)</td></tr>
       <tr><td class="cmd">controller dispatch 222 geslaagd</td><td>codex1 STAP3A_REVIEW_DAA3490: eerste succesvolle dispatch na lange stilstand, verdict binnen</td><td>Stand EFFECT-BEWEZEN, verdict=GO_WITH_FINDINGS; lane 08:33 weer vrij</td><td>✅ 08:33 · nr 222</td></tr>
-      <tr><td class="cmd">claude4 modelmismatch gemist in vorige tik (nr 223, nieuw)</td><td>receipt REVIEWLANE_MEETVERMOGEN_POORT toont Stand=WACHT OP AKKOORD sinds 07:37 (order vraagt opus, sessie draait Sonnet 5); niet gesignaleerd in de 08:19/08:31-tik</td><td>keuze aan Richard: lane herstarten met opus, of expliciet akkoord voor Sonnet 5 op deze hoog-risico BUILD-order</td><td>open · nr 223 · <b>Richard</b></td></tr>
+      <tr><td class="cmd">claude4 modelmismatch loste zichzelf op (nr 223)</td><td>REVIEWLANE_MEETVERMOGEN_POORT eindigde 06:56:11Z exit_code=8 evidence_gate=FAILED_EVIDENCE (TEST_COUNTER_WITHOUT_COMMAND_BINDING), verdict=BLOCKED_EVIDENCE — vóór Richard hoefde te kiezen; Richard-actie vervalt</td><td>vervolgorder 230 naar codex2 gezet</td><td>✅ 06:56Z · nr 223 · vervolg → 230</td></tr>
       <tr><td class="cmd">225 codex2 klaar</td><td>BEWIJSPOORT_REVIEW_F6D4967: exacte-head-review op c03b92c2, 6 toetspunten PASS, toetspunt 6 bevinding: diagnostische reparatie te smal (A1/B1 blijven falen), vervolgorder nodig met bredere assertions</td><td>Stand EFFECT-BEWEZEN; geen NO_GO, wel een bouwvervolg nodig — nog niet gezet</td><td>✅ 08:44 · nr 225</td></tr>
       <tr><td class="cmd">227 codex1 klaar (nieuw)</td><td>SERVICELAAG_REVIEW_5D78498C: tweede order na 222, kwam terug als NO_GO</td><td>Stand GEBLOKKEERD/NO_GO; lane weer vrij, vervolgorder nog niet gezet</td><td>✅ 08:44 · nr 227 · <b>niemand</b></td></tr>
       <tr><td class="cmd">226 gemini1 evidence-gate PASS, geen eindreceipt</td><td>STAP1_REVIEW_F1842C8 TRANSPORT_RECEIPT_3: evidence_gate=PASS/DIRECTOR_RERUN_GREEN (06:42:24Z), maar geen plain _RECEIPT.md op het canonieke pad — lane wel vrijgekomen (proces niet meer in ps)</td><td>afwachten of het eindreceipt alsnog landt</td><td>open · nr 226 · <b>niemand</b></td></tr>
       <tr><td class="cmd">224 claude2 labeldefect (nieuw)</td><td>LANEMONITOR_VALSE_IDLE: Stand=WACHT OP AKKOORD, maar receipt zelf zegt letterlijk "Wacht op Richard: geen" — het openstaande werk (exacte-head-review dispatchen naar codex2/gemini1, R7-meting) is aan DIRECTOR_CLAUDE, niet aan Richard. Dit is het D-0034-patroon uit werkwijze-regels.md (stand claimt stilstand terwijl de keten zelfstandig doorloopt)</td><td>geen Richard-actie; gemeld als rapportagekwaliteit, niet als blokkade</td><td>open · nr 224 · <b>director</b></td></tr>
+      <tr><td class="cmd">checkout-anomalie-reparatie faalt op transport (nr 203, nieuw)</td><td>GEDEELDE_CHECKOUT_REFVERPLAATSING liep 05:07–06:58Z (bijna 2 uur) en eindigde FAILED_TRANSPORT_EXECUTION_CONTEXT (HEADLESS_NO_WARP_TAB) — geen inhoudelijk verdict; de HOOG-severity checkout-anomalie zelf blijft onopgelost</td><td>redispatch nodig; nog niet gezet</td><td>open · nr 203 · <b>niemand</b></td></tr>
+      <tr><td class="cmd">622dbe20 NO_GO op codex2 (nr 228, nieuw)</td><td>GEWEIGERDE_START_REVIEW (builder CLAUDE2): geen bovengrens op REFUSED_START-herdispatch, hartslagregressie overleeft de voorgeschreven suite, testdekking te zwak — ACTIE_RICHARD=geen (expliciet in receipt)</td><td>DIRECTOR_CLAUDE routeert herstel; vervolgorder nog niet gezet</td><td>✅ 08:57Z · nr 228 · <b>director</b></td></tr>
+      <tr><td class="cmd">136597a NO_GO gevonden, nog niet eerder op bord (nr 229, nieuw)</td><td>STAP1_REVIEW_136597A (codex2): verdict=NO_GO, receipt-mtime 06:38Z vandaag maar onderliggende bouw dateert van 2026-09-08 11:32Z — kennelijk niet eerder gemeten</td><td>order-regel: bij NO_GO gaan de punten terug naar de bouwer op een nieuwe poging</td><td>open · nr 229 · <b>director</b></td></tr>
+      <tr><td class="cmd">vervolgorder na 223 gedispatcht (nr 230, nieuw)</td><td>REVIEWLANE_MEETVERMOGEN_REVIEW_765163FB naar codex2 (builder CLAUDE4), PICKUP_STATUS=QUEUED_FOR_AUTOCODING — nog niet opgepakt (geen proces in ps)</td><td>afwachten of codex2 hem oppakt</td><td>open · nr 230 · <b>niemand</b></td></tr>
+      <tr><td class="cmd">stap-7-herpin loste R2-mislabeling niet op (nr 231, nieuw)</td><td>director-tik 104 (07:08:43Z) mat opnieuw ná de runtime-herpin (9ca63a87): mislabeling staat nog; order DIRECTOR_STAP7_BEZETTE_LANE_GEEN_MISLUKKING_20260909_CLAUDE3_V1 geschreven, lint OK</td><td>QUEUED_FOR_AUTOCODING op claude3 (lane bezet met 207, dus wacht)</td><td>open · nr 231 · <b>niemand</b></td></tr>
       <tr><td class="cmd">codex1 kon niet reviewen (exit 3)</td><td>elke codex1-order viel om: geen aanmelding in ~/.codex</td><td>aanmelding stond in ~/.codex1; director zette CODEX_HOME in bin/codex1 om (e2dd1f9); 23:03 opnieuw rc 3 (director tik 46), 112 omgeleid naar codex2</td><td>✅ 21:03 (GO 21:23) · <b>terug 23:03</b> · nr 115 · <b>Richard</b></td></tr>
       <tr><td class="cmd">gemini1 leverde nooit (hanggrens 180 s)</td><td>elke run na 180 s afgekapt als STARTUP_STALE</td><td>DISPATCH_GEMINI_HANG_TIMEOUT_S=1800; run van 281 s leverde GO</td><td>✅ 21:29 · standaardwaarde nog te fixen (nr 55)</td></tr>
       <tr><td class="cmd">supervisor-streak 100 (negatieve teller)</td><td>teller onder nul gold als gezonde queue → eindeloze escalatie</td><td>ee08807 (claude1) gemerged als de3e7dd; streak nu echt (8 om 22:16, escalatie weer aan, nr 56)</td><td>✅ 21:40 · nr 84/85/87</td></tr>
@@ -202,13 +220,13 @@ body.verberg-klaar tr.klaar{display:none}
 <section id="slot">
   <h2>Slot</h2>
   <div class="tabel"><table class="slot">
-    <thead><tr><th>Δ sinds vorige tik (08:41)</th><th>Volgende tik</th></tr></thead>
+    <thead><tr><th>Δ sinds vorige tik (08:56)</th><th>Volgende tik</th></tr></thead>
     <tbody><tr>
-      <td>lamp blijft 🔴 (claude4/223 ongewijzigd): controller-heartbeat eindelijk ververst (was sinds meerdere ticks vast op 06:34Z) · grote leegloop — 4 van 6 lopende orders sloten deze tik (225 ✅ EFFECT-BEWEZEN, 227 nieuw NO_GO, 226 evidence-gate PASS zonder eindreceipt, 224 label-defect zonder Richard-actie) · claude1 203 en claude3 207 ongewijzigd, geen verdict · streak 13→16 (nieuw mechanisme LEGACY_ESCALATION_CARRIED) · codex auth blijft weg</td>
-      <td class="volgende">~09:06 · Richard-keuze op 223 nog steeds open? komt het 226-eindreceipt alsnog? vervolgorder op 225 (bevinding toetspunt 6) en 227 (NO_GO)? claude1 203-watchdogleeftijd?</td>
+      <td>lamp 🔴: claude1/203 en claude4/223 beide klaar (203 mislukt transport, 223 BLOCKED_EVIDENCE) — lane-bezetting 3/7→1/7 · watchdog-doelwit claude1→claude3/207 (nu ~97 min) · nieuw 228 NO_GO, 229 NO_GO gevonden, vervolgorder 230 gequeued (codex2, niet opgepakt) · director-tik 104: stap7-herpin loste R2-mislabeling NIET op, order 231 gequeued op claude3 · escalation-streak 16→22 · controller-heartbeat vast op 07:00:32Z</td>
+      <td class="volgende">~09:23 · loopt claude3/207 door richting 2 uur? pakt codex2 vervolgorder 230 op? verversst controller-heartbeat eindelijk voorbij 07:00:32Z? wordt 231 opgepakt zodra 207 vrijkomt? arbitrage-deadline 10:55Z nog ver weg</td>
     </tr></tbody>
   </table></div>
-  <div class="pad">volledig rapport: ~/stack-control/CONTROL/RAPPORTEN/board-2026-09-09-0856.md</div>
+  <div class="pad">volledig rapport: ~/stack-control/CONTROL/RAPPORTEN/board-2026-09-09-0913.md</div>
 </section>
 
 </main>
@@ -341,4 +359,6 @@ document.querySelector("#t6 tbody").innerHTML=T6.map(r=>{const [nr,proj,taak,st,
 
 // ✅-rijen staan niet meer op het bord (Richard 22:06); archief in de rapporten
 </script>
-</body></html>
+
+</body>
+</html>
