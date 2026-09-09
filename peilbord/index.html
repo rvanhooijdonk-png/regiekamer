@@ -1,10 +1,17 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="nl">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex">
 <meta http-equiv="refresh" content="300">
+<title>peilbord</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;font-family:system-ui,-apple-system,sans-serif}
+</style>
+</head>
+<body>
 <title>Autocoding Peilbord</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
 <style>
@@ -89,15 +96,13 @@ body.verberg-klaar tr.klaar{display:none}
 @media (prefers-reduced-motion:no-preference){.lamp.rood{animation:puls 2.4s ease-in-out infinite}}
 @keyframes puls{50%{box-shadow:0 0 0 7px var(--rood-vlak)}}
 </style>
-</head>
-<body>
 
 <header>
   <div class="kopbalk">
     <div class="lamp rood" title="ROOD"></div>
     <h1>Autocoding Peilbord</h1>
-    <div class="tik" id="tik">tik 07:48 · gemeten 07:39–07:48</div>
-    <div class="regel" id="kopregel">6/7 bezet: claude1 203 (~41 min, watchdog) · 213 eade798b GO (1/2 stemmen, niet mergen) · 212 model-mismatch-stop → herdispatcht opus · 214+207 lopen door · 215 modeldoorgifte-fix nieuw · 216 QUEUED · streak 7→16, CONTROLLER_STALE blijft · nieuw defect 217 (receipt zonder verdict). <b>Richard</b>: 115.</div>
+    <div class="tik" id="tik">tik 08:19 · gemeten 08:11–08:19</div>
+    <div class="regel" id="kopregel">208 GO_WITH_FINDINGS binnen (mtime 08:11) maar pid 5227 niet opgehaald + nieuw dispatchpoging 48446 op dezelfde order — live bewijs voor 218 · codex2 902604AC levert NO_GO (nr 220, nog geen herstelorder) · streak 39→46 · claude1 203 watchdog ~72min. <b>Richard</b>: 115.</div>
     <div class="eind">akkoord <b>09-12/13 → ~09-11</b> · parser weg <b>09-21 → ~09-20</b></div>
     <div class="knoppen">
       <span class="tik">afgerond vandaag: 129 rijen (in rapport)</span>
@@ -108,18 +113,18 @@ body.verberg-klaar tr.klaar{display:none}
 <main>
 
 <section id="b1b">
-  <h2><span class="n">1b</span> Kanaalbezetting (7 kanalen) <span class="sub">live gemeten 07:39–07:48 uit ps · elke tik opnieuw</span></h2>
+  <h2><span class="n">1b</span> Kanaalbezetting (7 kanalen) <span class="sub">live gemeten 08:11–08:19 uit ps · elke tik opnieuw</span></h2>
   <div class="tabel"><table class="actie">
     <thead><tr><th>Kanaal</th><th>Status</th><th>Order</th><th>Sinds</th><th>Duur</th><th>Nr</th><th>Bewijs</th></tr></thead>
     <tbody>
-      <tr><td class="cmd">claude1</td><td>🔵 203</td><td>GEDEELDE_CHECKOUT_REFVERPLAATSING V1</td><td>07:07:13</td><td class="rood">~41 min</td><td>203</td><td>watchdogdoel, leeftijd nu ~2447s</td></tr>
-      <tr><td class="cmd">claude2</td><td>🔵 215</td><td>MODELDOORGIFTE_POORT V1</td><td>07:42:29</td><td>~6 min</td><td>215</td><td>fix: --model opus nu doorgegeven aan wrapper</td></tr>
-      <tr><td class="cmd">claude3</td><td>🔵 207</td><td>WRAPPER_ZELFKOPIE_UITVOERING V1</td><td>07:35:06</td><td>~13 min</td><td>207</td><td>nog geen verdict</td></tr>
-      <tr><td class="cmd">claude4</td><td>🔵 212</td><td>REVIEWLANE_MEETVERMOGEN_POORT V1 (herdispatcht)</td><td>07:38:05</td><td>~10 min</td><td>212</td><td>1e poging STOP modelmismatch; nu herdispatcht met opus</td></tr>
-      <tr><td class="cmd">codex1</td><td>🔵 (auth mist)</td><td>RECEIPTROUTE_REVIEW_85909b2 V1</td><td>07:24:09</td><td>~24 min</td><td>208</td><td>ongewijzigd; auth.json nog afwezig</td></tr>
-      <tr><td class="cmd">codex2</td><td>🔵 214</td><td>LEASE_VASTLEGGEN_REVIEW_902604ac V1</td><td>07:38:38</td><td>~9 min</td><td>214</td><td>213 afgerond GO; 216 QUEUED erachter</td></tr>
+      <tr><td class="cmd">claude1</td><td>🔵 203</td><td>GEDEELDE_CHECKOUT_REFVERPLAATSING V1</td><td>07:07:13</td><td class="rood">~72 min</td><td>203</td><td>watchdogdoel, ongewijzigd vast</td></tr>
+      <tr><td class="cmd">claude2</td><td>🔵 215</td><td>MODELDOORGIFTE_POORT V1</td><td>07:42:29</td><td>~37 min</td><td>215</td><td>nog geen verdict</td></tr>
+      <tr><td class="cmd">claude3</td><td>🔵 207</td><td>WRAPPER_ZELFKOPIE_UITVOERING V1</td><td>07:35:06</td><td>~44 min</td><td>207</td><td>nog geen verdict; 219 QUEUED erachter</td></tr>
+      <tr><td class="cmd">claude4</td><td>🔵 212</td><td>REVIEWLANE_MEETVERMOGEN_POORT V1 (herdispatcht opus)</td><td>07:38:05</td><td>~41 min</td><td>212</td><td>nog geen verdict; 218 QUEUED erachter</td></tr>
+      <tr><td class="cmd">codex1</td><td>🔵 (auth mist)</td><td>RECEIPTROUTE_REVIEW_85909b2 V1 — herdispatch 08:11:44</td><td>07:24:09</td><td>208 klaar 46 min; nieuwe poging ~8 min</td><td>208</td><td>GO_WITH_FINDINGS binnen (08:11); pid 5227 niet opgehaald, pid 48446 dispatcht dezelfde order opnieuw — bewijs voor 218</td></tr>
+      <tr><td class="cmd">codex2</td><td>⬜ net vrij</td><td>LEASE_VASTLEGGEN_REVIEW_902604ac V1</td><td>07:38:38</td><td>klaar na ~39 min</td><td>220</td><td>NO_GO om 08:17 — GEBLOKKEERD op los signaalorakel (cl11s), bouwerherstel nodig</td></tr>
       <tr><td class="cmd">gemini1</td><td>⬜ vrij</td><td>geen order sinds 210</td><td>tot 07:2x</td><td>—</td><td>210</td><td>V3 GO_WITH_FINDINGS (ongewijzigd)</td></tr>
-      <tr><td class="cmd">totaal</td><td>6/7 bezet</td><td>1 vrij — 213 GO binnen, 212 herdispatcht na modelstop</td><td colspan="4">streak 7→16 (nog ESCALATION_REQUIRED); CONTROLLER_STALE blijft; worktrees 514→516; geen PR open</td></tr>
+      <tr><td class="cmd">totaal</td><td>5/7 bezet</td><td>2 vrij — 208 klaar, 220(NO_GO) net binnen</td><td colspan="4">streak 39→46 (erger); CONTROLLER_STALE blijft; PR114 (eade798b) BLOCKED/MISSING_INDEPENDENT_REVIEW; origin/main ongewijzigd</td></tr>
     </tbody></table></div>
 </section>
 
@@ -129,7 +134,7 @@ body.verberg-klaar tr.klaar{display:none}
     <thead><tr><th>Actie Richard</th><th>Waarom</th><th>Als je het niet doet</th></tr></thead>
     <tbody>
       <tr><td class="cmd">terminal: <code>codex login</code> zodat ~/.codex/auth.json terugkomt (nr 115)</td><td>codex1 geblokkeerd sinds 23:03; nog steeds afwezig om 07:27 — draait nu wél op nieuwe order 208</td><td>codex1 blijft een onverklaarde anomalie; reviews stapelen op codex2/gemini1 zodra dit misgaat</td></tr>
-      <tr><td class="cmd">directorvenster: 213 GO binnen (1/2), 212 herdispatcht met opus — alleen ter info</td><td>215 modeldoorgifte-fix pakt de model-mismatch-stops aan</td><td>streak 7→16, 6/7 bezet, nieuw defect 217</td></tr>
+      <tr><td class="cmd">directorvenster: 208 klaar maar niet opgehaald + herdispatch, 220 NO_GO — alleen ter info</td><td>218/219 QUEUED; 220 wacht nog op herstelorder (net binnen)</td><td>streak 39→46, controller dispatcht niets, aanbod loopt op</td></tr>
       <tr><td class="cmd">akkoord op de autocoding-keten (nr 32) — nog niet aan de orde</td><td>staat gepland na de cutover, ~09-11</td><td>burn-in B (7 dagen) start niet; stap 8 blijft dicht</td></tr>
     </tbody>
   </table></div>
@@ -144,7 +149,10 @@ body.verberg-klaar tr.klaar{display:none}
       <tr><td class="cmd">write_lane_lease faalt stil (nr 202, nieuw gevonden)</td><td>claude1's NO_GO op 21e91f0b: elk vroeg-faalpad in write_lane_lease (bin/dispatch-actor:837-870) keert terug zonder de al gegunde claim aan te raken — een geldige claim zonder lease, race blijft open</td><td>nog geen herstelorder gezet; volgt op de lease-commit-reparatie</td><td>open · nr 202</td></tr>
       <tr><td class="cmd">dispatch-actor-bewerking tijdens executie corrumpeert runs (nr 207)</td><td>tik94-correctie: schuld aan claude1 ingetrokken — 2e vreemde sessie (weblog-project) commit ongevraagd in dezelfde checkout; claude1's eigen werk apart spoorloos (ongecommit, niet op eigen branch)</td><td>wrapper-zelfkopie-fix nu BEZIG op claude3 sinds 07:35; eade798b-V2-review parallel BEZIG op codex2 (213)</td><td>open · nr 207 · <b>claude3</b> (BEZIG)</td></tr>
       <tr><td class="cmd">queue-empty-detector zonder bewijs geleverd (nr 211)</td><td>codex2 exit BLOCKED_EVIDENCE — claim zonder commando-output (R1-schending)</td><td>nog geen herstelorder</td><td>open · nr 211 · <b>niemand</b></td></tr>
-      <tr><td class="cmd">claim-weigering schrijft receipt zonder verdict (nr 217)</td><td>REFUSED_LANE_CLAIM_HELD landt op het canonieke receiptpad zonder verdict-veld — telt als afgehandeld terwijl de order nooit draaide</td><td>nog geen herstelorder</td><td>open · nr 217 · <b>niemand</b></td></tr>
+      <tr><td class="cmd">claim-weigering schrijft receipt zonder verdict (nr 217)</td><td>REFUSED_LANE_CLAIM_HELD landt op het canonieke receiptpad zonder verdict-veld — telt als afgehandeld terwijl de order nooit draaide</td><td>director zelf BEZIG: aanbodtelling repareren als vast meetinstrument (tik99)</td><td>open · nr 217 · <b>director</b> (BEZIG)</td></tr>
+      <tr><td class="cmd">controller blokkeert synchroon op één dispatchkind (nr 218)</td><td>208 leverde 08:11 een receipt, maar pid 5227 bleef staan en pid 48446 dispatchte dezelfde order 08:11:44 opnieuw — live bewijs dat de controller voltooid werk niet herkent</td><td>DISPATCHVENSTER-fix QUEUED voor claude4 (stap 4), wacht op vrije lane</td><td>open · nr 218 · <b>niemand</b></td></tr>
+      <tr><td class="cmd">codex2 NO_GO op signaalorakel cl11s (nr 220, nieuw)</td><td>LEASE_VASTLEGGEN_REVIEW_902604ac: cl11s kan groen blijven zonder geslaagde signaalinjectie — reviewtaken klaar, GEBLOKKEERD op bouwerherstel</td><td>nog geen herstelorder (net binnen 08:17, director/supervisor hebben dit nog niet verwerkt)</td><td>open · nr 220 · <b>niemand</b></td></tr>
+      <tr><td class="cmd">test_close_ghost_queue.py rood (nr 219)</td><td>14 failures, 5 errors op de proef; oorzaak nog niet in het bord verwerkt</td><td>PROEFBINDING-fix QUEUED voor claude3 (stap 1), wacht op vrije lane</td><td>open · nr 219 · <b>niemand</b></td></tr>
       <tr><td class="cmd">codex1 kon niet reviewen (exit 3)</td><td>elke codex1-order viel om: geen aanmelding in ~/.codex</td><td>aanmelding stond in ~/.codex1; director zette CODEX_HOME in bin/codex1 om (e2dd1f9); 23:03 opnieuw rc 3 (director tik 46), 112 omgeleid naar codex2</td><td>✅ 21:03 (GO 21:23) · <b>terug 23:03</b> · nr 115 · <b>Richard</b></td></tr>
       <tr><td class="cmd">gemini1 leverde nooit (hanggrens 180 s)</td><td>elke run na 180 s afgekapt als STARTUP_STALE</td><td>DISPATCH_GEMINI_HANG_TIMEOUT_S=1800; run van 281 s leverde GO</td><td>✅ 21:29 · standaardwaarde nog te fixen (nr 55)</td></tr>
       <tr><td class="cmd">supervisor-streak 100 (negatieve teller)</td><td>teller onder nul gold als gezonde queue → eindeloze escalatie</td><td>ee08807 (claude1) gemerged als de3e7dd; streak nu echt (8 om 22:16, escalatie weer aan, nr 56)</td><td>✅ 21:40 · nr 84/85/87</td></tr>
@@ -201,13 +209,13 @@ body.verberg-klaar tr.klaar{display:none}
 <section id="slot">
   <h2>Slot</h2>
   <div class="tabel"><table class="slot">
-    <thead><tr><th>Δ sinds vorige tik (07:39)</th><th>Volgende tik</th></tr></thead>
+    <thead><tr><th>Δ sinds vorige tik (08:11)</th><th>Volgende tik</th></tr></thead>
     <tbody><tr>
-      <td>lamp blijft 🔴: 115 staat nog · 213 GO binnen (1/2 stemmen) · 212 modelstop → herdispatcht opus (215) · 214+207 lopen door · 216 nieuw QUEUED · streak 7→16 · nieuw defect 217 (receipt zonder verdict) · watchdog 203 nu ~41min (2447s) · worktrees 514→516</td>
-      <td class="volgende">~07:58 · 213 mergen? 214/207 verdict? 212-retry resultaat? 216 gedispatcht? streak? 115</td>
+      <td>lamp blijft 🔴: 208 leverde GO_WITH_FINDINGS (08:11) maar controller haalde het niet op — pid 5227 bleef staan, pid 48446 dispatchte 208 opnieuw (live bewijs 218) · codex2 (220) NO_GO op cl11s-signaalorakel, nog geen herstelorder · streak 39→46 · director schakelde over naar PR114 (eade798b) BLOCKED/MISSING_INDEPENDENT_REVIEW · claude1 203 watchdog nu ~72min, ongewijzigd vast</td>
+      <td class="volgende">~08:29 · haalt controller 208 alsnog op / stopt de dubbele dispatch? 220 herstelorder geschreven? 215/207/212 verdict? PR114 tweede review binnen?</td>
     </tr></tbody>
   </table></div>
-  <div class="pad">volledig rapport: ~/stack-control/CONTROL/RAPPORTEN/board-2026-09-09-0748.md</div>
+  <div class="pad">volledig rapport: ~/stack-control/CONTROL/RAPPORTEN/board-2026-09-09-0819.md</div>
 </section>
 
 </main>
