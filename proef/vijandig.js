@@ -79,22 +79,35 @@ const GEVALLEN = [
   // door (R2), maar het bord toonde alleen `items` — dus gooide de renderlaag weg wat
   // de generator juist bewaard had. Beide invoervormen: alleen onleesbare regels, en
   // een onleesbare regel naast geldige.
+  // Ronde 6, Codex: het bestaan van de regel was gebonden, maar drie eigenschappen
+  // ervan niet — de ONLEESBAAR-markering, de telling, en de escaping van de ruwe
+  // tekst. Alle drie konden weggemuteerd worden terwijl de proef groen bleef. De
+  // ruwe regel draagt daarom nu de injectiespuit: hij komt uit een markdownbestand
+  // en is dus de enige plek waar bronbytes ongefilterd het bord in zouden lopen.
   ['onleesbare beslisregel als enige inhoud', {
     beslisrij: { status: 'OK', bron_pad: 'state/PROJECT_OVERZICHT.md', items: [],
       onparseerbaar_count: 1,
-      onparseerbare_regels: [{ categorie: 'ONPARSEERBAAR', ruwe_regel: '| 3 | fixture-besluit-drie-onparseerbaar' }] },
+      onparseerbare_regels: [{ categorie: 'ONPARSEERBAAR', ruwe_regel: `| 3 | fixture-besluit-drie-onparseerbaar ${SPUIT}` }] },
   }, (uit) => !uit.includes('fixture-besluit-drie-onparseerbaar')
       ? 'de onleesbare beslisregel verdween van het bord'
       : uit.includes('Niets dat op jou wacht')
-        ? 'een onleesbare beslisregel werd gepresenteerd als niets te beslissen' : null],
+        ? 'een onleesbare beslisregel werd gepresenteerd als niets te beslissen'
+      : !uit.includes('ONLEESBAAR')
+        ? 'de regel werd getoond zonder de ONLEESBAAR-markering — onleesbaar las als een echt besluit'
+      : !/jij beslist <b>1<\/b>/.test(uit)
+        ? 'de onleesbare regel telde niet mee in "jij beslist"' : null],
   ['onleesbare beslisregel naast een geldige', {
     beslisrij: { status: 'OK', bron_pad: 'state/PROJECT_OVERZICHT.md',
       items: [{ nr: '1', besluit: 'geldig besluit', kost: '2 u', ontgrendelt: 'X' }],
       onparseerbaar_count: 1,
-      onparseerbare_regels: [{ categorie: 'ONPARSEERBAAR', ruwe_regel: '| 3 | fixture-besluit-drie-onparseerbaar' }] },
+      onparseerbare_regels: [{ categorie: 'ONPARSEERBAAR', ruwe_regel: `| 3 | fixture-besluit-drie-onparseerbaar ${SPUIT}` }] },
   }, (uit) => !uit.includes('fixture-besluit-drie-onparseerbaar')
       ? 'de onleesbare beslisregel verdween naast de geldige rij'
-      : !uit.includes('geldig besluit') ? 'de geldige rij ging verloren' : null],
+      : !uit.includes('geldig besluit') ? 'de geldige rij ging verloren'
+      : !uit.includes('ONLEESBAAR')
+        ? 'de regel werd getoond zonder de ONLEESBAAR-markering'
+      : !/jij beslist <b>2<\/b>/.test(uit)
+        ? 'de teller telde de geldige en de onleesbare rij niet samen op' : null],
   // Ronde 4, Gemini: prim() liet booleans door, dus Number(true)===1 maakte van een
   // boolean in een getalveld een echte duur ("<1 min" i.p.v. een streepje).
   ['boolean in een getalveld', {
