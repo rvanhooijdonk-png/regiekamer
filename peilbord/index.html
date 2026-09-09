@@ -1,15 +1,4 @@
-<!doctype html>
-<html lang="nl">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="robots" content="noindex">
-<meta http-equiv="refresh" content="300">
-<title>Autocoding Peilbord</title>
-<style>*{box-sizing:border-box}body{margin:0}</style>
-</head>
-<body>
-<title>Autocoding Peilbord</title>
+<!doctype html><html lang="nl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="robots" content="noindex"><meta http-equiv="refresh" content="300"><title>Autocoding Peilbord</title><style>*{box-sizing:border-box}body{margin:0}</style></head><body><title>Autocoding Peilbord</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
 <style>
 :root{
@@ -98,8 +87,8 @@ body.verberg-klaar tr.klaar{display:none}
   <div class="kopbalk">
     <div class="lamp rood" title="ROOD"></div>
     <h1>Autocoding Peilbord</h1>
-    <div class="tik" id="tik">tik 09:48 · gemeten 09:34–09:48</div>
-    <div class="regel" id="kopregel">3/7 bezet: <b>zelfde defect twee keer terug</b> — 242 (codex1) én 244 (claude1) allebei REFUSED_LANE_CLAIM_HELD, net als 231 eerder; claude1 zelf-geketend naar V2 (R5); watchdog schakelde om naar codex1/242 (~19 min) · main gevorderd naar 1ed6d654 (stap-2 merge) · claude2/234 klaar (DONE_BUILD_AWAITING_REVIEW), 245 nog gequeued, oudere 247 (VERDICTCASE_HARNAS) net GO · nieuw bezet: claude4/248 (LANEMONITOR_NAAMFILTER) en codex2/249 (PR104-review), beide net gestart · CONTROLLER_STALE weer terug (age 663s, oplopend) · nieuwe issue-categorie LOG_WINDOW_UNPROVEN_PERSISTENT (streak 4) · escalation-streak blijft versnellen: 54→62 · codex auth blijft weg. <b>Richard</b>: 115.</div>
+    <div class="tik" id="tik">tik 10:08 · gemeten 09:58–10:08</div>
+    <div class="regel" id="kopregel">3/7 bezet: <b>proces-hygiëne-anomalie zelf opgelost, 4e REFUSED_LANE_CLAIM_HELD-geval erbij</b> — codex1/242's dispatch-actor-proces (pid 23617/23623) is nu bevestigd dood, geen ingreep gezien; watchdog schoof live door naar claude4/248 (leeftijd 1141s om 08:07:30Z) · REFUSED_LANE_CLAIM_HELD trof om 09:59:53 ook codex2 (622DBE20-review, lane toen bezet door 249) — 4e onafhankelijk gemeten geval na 231/242/244v1 · 234v2/245/247/249 alle vier afgerond (245 al MERGED_1ED6D654); gemini1 leverde 2 nieuwe reviews (NO_GO + GO_READY_FOR_MERGE_GATE) ondanks "quarantaine"-label — apart te verklaren · CONTROLLER_STALE 2→9, LOG_WINDOW_UNPROVEN_PERSISTENT 9→16, escalation-streak blijft versnellen: 67→74 · checkout-anomalie nr203 groeit door (lokaal-only 45→49, origin/main ongewijzigd op 1ed6d654) · arbitrage-deadline 10:55Z nog ~47 min · codex auth blijft weg. <b>Richard</b>: 115.</div>
     <div class="eind">akkoord <b>09-12/13 → ~09-11</b> · parser weg <b>09-21 → ~09-20</b></div>
     <div class="knoppen">
       <span class="tik">afgerond vandaag: 129 rijen (in rapport)</span>
@@ -114,14 +103,14 @@ body.verberg-klaar tr.klaar{display:none}
   <div class="tabel"><table class="actie">
     <thead><tr><th>Kanaal</th><th>Status</th><th>Order</th><th>Sinds</th><th>Duur</th><th>Nr</th><th>Bewijs</th></tr></thead>
     <tbody>
-      <tr><td class="cmd">claude1</td><td>🔵 244v2</td><td>STAP5_BEWIJSPOORT V2 (BUILD)</td><td>09:53:26</td><td>~0 min</td><td>244</td><td>V1 kreeg exit_code=9 REFUSED_LANE_CLAIM_HELD; zelf-geketend (R5) naar V2, proef governance/test_dispatch_hardening.sh</td></tr>
-      <tr><td class="cmd">claude2</td><td>⬜ vrij</td><td>234 klaar (DONE_BUILD_AWAITING_REVIEW); 247 klaar (GO)</td><td>tot ~09:5x</td><td>—</td><td>234/247</td><td>vrij; 245 (FIXTUREHELFT_VERDICTCASE) al 13 min gequeued, nog niet opgepakt</td></tr>
-      <tr><td class="cmd">claude3</td><td>⬜ vrij</td><td>207/231 onveranderd</td><td>tot ~09:3x</td><td>—</td><td>207/231</td><td>231 (REFUSED_LANE_CLAIM_HELD) nog steeds niet herdispatcht, ondanks dat 242/244 hetzelfde defect nu ook raakten</td></tr>
-      <tr><td class="cmd">claude4</td><td>🔵 248</td><td>STAP6_LANEMONITOR_NAAMFILTER V1</td><td>09:48:29</td><td>~5 min</td><td>248</td><td>nieuw order, nog geen receipt (alleen transport-plumbing snapshots)</td></tr>
-      <tr><td class="cmd">codex1</td><td>⬜ vrij</td><td>242 klaar (REFUSED_LANE_CLAIM_HELD)</td><td>tot 09:49:32</td><td>~15 min</td><td>242</td><td>zelfde defect als 231/244; was watchdog-target (1148s), nu vrij</td></tr>
-      <tr><td class="cmd">codex2</td><td>🔵 249</td><td>PR104_REVIEW_5984CA6 V1</td><td>09:48:13</td><td>~5 min</td><td>249</td><td>nieuw order, nog geen receipt; 243/1FA17AD8 blijft daarachter wachten</td></tr>
-      <tr><td class="cmd">gemini1</td><td>🔴 quarantaine</td><td>226 evidence-gate PASS (oud)</td><td>tot 06:42Z</td><td>—</td><td>226/237</td><td>ongewijzigd: FAILED_TRANSPORT_QUARANTINED (exit_code=11), tweede stem blijft uit</td></tr>
-      <tr><td class="cmd">totaal</td><td>3/7 bezet</td><td>3 vrij (1 in quarantaine)</td><td colspan="4">242 én 244 allebei REFUSED_LANE_CLAIM_HELD (zelfde patroon als 231, nu 3x) — watchdog schakelde live om van 234 naar 242; CONTROLLER_STALE terug (age 663s); escalation-streak 54→62, blijft versnellen; codex auth blijft weg</td></tr>
+      <tr><td class="cmd">claude1</td><td>🔵 244v2</td><td>STAP5_BEWIJSPOORT V2 (BUILD)</td><td>09:53:26</td><td>~15 min</td><td>244</td><td>nog geen terminaal receipt; V1 had exit_code=9 REFUSED_LANE_CLAIM_HELD</td></tr>
+      <tr><td class="cmd">claude2</td><td>⬜ vrij</td><td>234v2/245/247 klaar</td><td>tot 09:41:54</td><td>—</td><td>234/245/247</td><td>234v2 DONE_BUILD_AWAITING_REVIEW (nu dubbel in review); 245 GO_WITH_FINDINGS, MERGED_1ED6D654</td></tr>
+      <tr><td class="cmd">claude3</td><td>⬜ vrij</td><td>207/231 onveranderd</td><td>tot ~09:3x</td><td>—</td><td>207/231</td><td>231 (REFUSED_LANE_CLAIM_HELD, claim_holder=WRAPPER_ZELFKOPIE) nog steeds niet herdispatcht</td></tr>
+      <tr><td class="cmd">claude4</td><td>🔵 248</td><td>STAP6_LANEMONITOR_NAAMFILTER V1</td><td>09:48:29</td><td>~20 min</td><td>248</td><td>nog geen terminaal receipt; nu watchdog-target (age 1141s om 08:07:30Z)</td></tr>
+      <tr><td class="cmd">codex1</td><td>⬜ vrij</td><td>242 klaar</td><td>tot 09:49:32</td><td>—</td><td>242</td><td>proces (pid 23617/23623) nu bevestigd dood — hygiëne-anomalie zelf opgelost, geen ingreep gezien</td></tr>
+      <tr><td class="cmd">codex2</td><td>🔵 1b7c76ae</td><td>HERREVIEW_1B7C76AE (2e stem)</td><td>10:08:00</td><td>~0 min</td><td>234</td><td>net gestart; 249 concludeerde 10:05:54 GO_WITH_FINDINGS; tussendoor 09:59:53 exit_code=9 REFUSED_LANE_CLAIM_HELD op 622DBE20-review (lane toen nog bezet)</td></tr>
+      <tr><td class="cmd">gemini1</td><td>⬜ vrij</td><td>622DBE20/1B7C76AE reviews klaar</td><td>tot 10:05:39</td><td>—</td><td>228/234</td><td>2 nieuwe reviews dit venster afgerond (NO_GO + GO_READY_FOR_MERGE_GATE) — oude quarantaine 226/237 blokkeert kennelijk niet alle dispatch, apart te verklaren</td></tr>
+      <tr><td class="cmd">totaal</td><td>3/7 bezet</td><td>4 vrij (quarantaine-label twijfelachtig)</td><td colspan="4">codex1/242-hygiëne zelf opgelost; 4e onafhankelijk REFUSED_LANE_CLAIM_HELD-geval (codex2/622DBE20-review); CONTROLLER_STALE 2→9, LOG_WINDOW_UNPROVEN_PERSISTENT 9→16, escalation-streak 67→74; codex auth blijft weg</td></tr>
     </tbody></table></div>
 </section>
 
@@ -164,7 +153,7 @@ body.verberg-klaar tr.klaar{display:none}
             <tr><td class="cmd">controller-heartbeat valt herhaaldelijk stil (nr 235)</td><td>ververste kort naar 07:18:29Z, maar staat om 09:34 opnieuw &gt;15 min stil; CONTROLLER_STALE kwam terug in de supervisor-issues (streak opnieuw 1) — een terugkerend patroon, geen eenmalige hik</td><td>geen herstelorder gezet; puur een meetsignaal zolang de controller zelf nog draait</td><td>open · nr 235 · <b>niemand</b></td></tr>
       <tr><td class="cmd">nieuwe dispatch op claude1 (nr 232)</td><td>SUPERVISOR_NEGATIEVE_TELLER V1 gestart 09:07:51, geconcludeerd verdict=DONE_BUILD_AWAITING_REVIEW</td><td>wacht op aparte review-order (geen Richard-actie)</td><td>✅ 09:2x · nr 232 · <b>niemand</b></td></tr>
       <tr><td class="cmd">nieuwe dispatch op claude4 (nr 233)</td><td>STAP3A_HERSTELCONTRACT_RONDE2 V1 concludeerde SUPERSEDED_ALREADY_MERGED; opvolger 238 (STAP3A_ORDER_STATE_BIBLIOTHEEK) ook al geconcludeerd — zie 238</td><td>geen — beide ketens gesloten zonder Richard-actie</td><td>✅ 09:2x/09:3x · nr 233 · <b>niemand</b></td></tr>
-      <tr><td class="cmd">herstelorder op 228's bevindingen (nr 234)</td><td>GEWEIGERDE_START_HERDISPATCH V2 (retry-plafond, reviewer CODEX2) loopt sinds 09:23:38 op claude2, ~11 min, nog geen receipt</td><td>afwachten op receipt</td><td>open · nr 234 · <b>claude3</b>→<b>claude2</b> (BEZIG)</td></tr>
+      <tr><td class="cmd">herstelorder op 228's bevindingen (nr 234)</td><td>GEWEIGERDE_START_HERDISPATCH V1 én V2 beide verdict=DONE_BUILD_AWAITING_REVIEW (V2 receipt 09:41:54); nu dubbel in review: gemini1 GO_READY_FOR_MERGE_GATE (10:05:26, als HERREVIEW_1B7C76AE), codex2 net gestart (10:08:00)</td><td>afwachten op codex2's tweede stem</td><td>open · nr 234 · <b>codex2</b> (BEZIG)</td></tr>
       <tr><td class="cmd">supervisor corrigeert eigen sluitmethode op arbitrage 93d82c8d</td><td>eerdere sluiting ("bestand niet meer aanwezig") erkend als ongeldige grond; alle vier onderliggende claims zelf herverifieerd (NO_GO staat, geen van beide commits gemergd, geen ronde-3-branch) — item terecht heropend, termijn 10:55Z nog ruim</td><td>geen — methodefout zelf hersteld, geen Richard-actie</td><td>✅ 09:06 · <b>director/supervisor</b></td></tr>
       <tr><td class="cmd">4 leveringen stranden op bewijspoort ondanks echte verdicts (nr 236, nieuw)</td><td>director-tik 106: 2x RERUN_RC_NONZERO + 2x CLAIM_WITHOUT_COMMAND_OUTPUT — de evidence-gate zelf blokkeert leveringen die wel een inhoudelijk verdict dragen</td><td>director noemt dit systematisch (mogelijk gate-defect); nog geen herstelorder</td><td>open · nr 236 · <b>director</b></td></tr>
       <tr><td class="cmd">gemini1 in transportquarantaine (nr 237, nieuw)</td><td>FAILED_TRANSPORT_QUARANTINED, exit_code=11 — tweede reviewstem (naast codex) tijdelijk uitgevallen; STAP1_REVIEW_F1842C8 blijft NOT_DISPATCHED_TRANSPORT_HERDISPATCH_QUARANTINED</td><td>geen herstelorder; wacht op quarantaine-vrijgave</td><td>open · nr 237 · <b>niemand</b></td></tr>
@@ -172,14 +161,15 @@ body.verberg-klaar tr.klaar{display:none}
       <tr><td class="cmd">codex2 PR103_REVIEW_F4276D7 (nr 239, nieuw)</td><td>verdict=GO_WITH_FINDINGS — bevindingen nog niet geroute</td><td>director routeert vervolg; ook PR103-NO_GO apart gesloten op 5ad4d0cf (al in main, ledger-commit 53219ac7)</td><td>open · nr 239 · <b>director</b></td></tr>
       <tr><td class="cmd">claude3/207 eindelijk KLAAR na ~2 uur watchdog (nr 240, nieuw)</td><td>WRAPPER_ZELFKOPIE_UITVOERING: 1105/1105 proeven groen op de exacte head; geen verdict=-veld maar volledige TAKENLIJST ✅ en VOLGENDE_STAP=geen (order af binnen grenzen, merge/push verboden voor deze order)</td><td>wacht op aparte review-/merge-order van een andere actor (R4); watchdog-alertbestand is nu weg</td><td>✅ 09:3x · nr 240 · <b>niemand</b></td></tr>
       <tr><td class="cmd">arbitrage 93d82c8d gesloten zonder merge (nr 241, nieuw)</td><td>STACKSTATUS_MARKERAFVANGER: BESLIST_DOOR_DIRECTOR_NA_TERMIJNVERLOOP; 5d78498 niet gemerged — R7-meting rood (141 commits basisdrift, merge zou 143 bestanden terugdraaien)</td><td>forward-port van de twee main-onaangeraakte paden gequeued op claude1 (DIRECTOR_STACKSTATUS_VOORWAARTS)</td><td>✅ 09:xx · nr 241 · <b>director</b></td></tr>
-      <tr><td class="cmd">codex1 review WRAPPERKOPIE_CBB75F51 (nr 242)</td><td>exit_code=9 REFUSED_LANE_CLAIM_HELD — zelfde weigeringspatroon als 231 (claude3), nu ook bij codex1; was 19 min de watchdog-target (1148s > drempel 900s) tot conclusie 09:49:32</td><td>geen redispatch gezien deze tik; defect komt nu 2x voor buiten 231 (zie 244)</td><td>✅ 09:49:32 · nr 242 · <b>director</b></td></tr>
+      <tr><td class="cmd">codex1 review WRAPPERKOPIE_CBB75F51 (nr 242)</td><td>receipt: exit_code=9 REFUSED_LANE_CLAIM_HELD (09:49:32); proces (pid 23617/23623) bleef tot minstens 09:58 leven na eigen terminale conclusie</td><td>proces nu (10:08) bevestigd dood via ps -p — hygiëne-anomalie zelfstandig opgelost, geen ingreep gezien; oorzaak niet onderzocht</td><td>✅ 10:08 (proces dood) · nr 242 · <b>niemand</b></td></tr>
+      <tr><td class="cmd">codex2 REFUSED_LANE_CLAIM_HELD op 622DBE20-review (nr 250, nieuw)</td><td>om 09:59:53 exit_code=9 REFUSED_LANE_CLAIM_HELD toen 622DBE20-review codex2's lane claimde terwijl 249 (PR104) nog liep — 4e onafhankelijk gemeten geval van dit patroon deze sessie (na 231, 242, 244v1)</td><td>geen herdispatch nodig: gemini1 leverde wel een stem (NO_GO, 10:05:39); codex2 werd 10:08 vrij en pakte de nauw verwante 1B7C76AE-review op</td><td>open · nr 250 · <b>niemand</b></td></tr>
       <tr><td class="cmd">codex2 twee nieuwe reviews gequeued (nr 243, nieuw)</td><td>PR103_REVIEW_5AD4D0C (exact-head, base b4bfe187) en REFVERPLAATSING_REVIEW_1FA17AD8 (builder CLAUDE1) — beide QUEUED, nog niet opgepakt</td><td>codex2 inmiddels bezet op 249 (PR104), 243 blijft erachter wachten</td><td>open · nr 243 · <b>niemand</b></td></tr>
-      <tr><td class="cmd">claude1 STAP5_BEWIJSPOORT_OORZAAK (nr 244, nieuw)</td><td>V1 gaf exit_code=9 REFUSED_LANE_CLAIM_HELD — derde keer dat dit exacte defect optreedt (na 231, 242); order richt zich op het R2-gat in bin/verify-acceptance (regels 191-192/253/256: trap ruimt $TMP op vóór de oorzaak bewaard is)</td><td>zelf-geketend (R5): V2 direct gedispatcht 09:53:26, proef governance/test_dispatch_hardening.sh, nu 🔵 lopend</td><td>open · nr 244 · <b>claude1</b> (BEZIG op V2)</td></tr>
-      <tr><td class="cmd">claude2 STAP2_FIXTUREHELFT_VERDICTCASE (nr 245, nieuw)</td><td>order klaargezet 09:40 (head 48f7c213, proef governance/test_dispatch_actor_verdict_case_and_worktree_evidence.sh) — nog steeds niet opgepakt, 13+ min in QUEUED</td><td>afwachten of claude2 oppikt (claude2 is vrij sinds 234/247)</td><td>open · nr 245 · <b>niemand</b></td></tr>
+      <tr><td class="cmd">claude1 STAP5_BEWIJSPOORT_OORZAAK (nr 244, nieuw)</td><td>V1 gaf exit_code=9 REFUSED_LANE_CLAIM_HELD (1e van 4 gemeten gevallen dit patroon); order richt zich op het R2-gat in bin/verify-acceptance (regels 191-192/253/256: trap ruimt $TMP op vóór de oorzaak bewaard is)</td><td>zelf-geketend (R5): V2 gedispatcht 09:53:26, proef governance/test_dispatch_hardening.sh, loopt nu ~15 min, nog geen terminaal receipt</td><td>open · nr 244 · <b>claude1</b> (BEZIG op V2)</td></tr>
+      <tr><td class="cmd">claude2 STAP2_FIXTUREHELFT_VERDICTCASE (nr 245, nieuw)</td><td>order klaargezet 09:40 (head 48f7c213, proef governance/test_dispatch_actor_verdict_case_and_worktree_evidence.sh)</td><td>opgepakt en afgerond: verdict=GO_WITH_FINDINGS, queue_state=MERGED_1ED6D654_20260909</td><td>✅ 09:13 · nr 245 · <b>niemand</b></td></tr>
       <tr><td class="cmd">codex2 FIXTUREHELFT_REVIEW_6B033A4A (nr 246, nieuw)</td><td>verdict=GO_READY_FOR_MERGE_GATE — reviewer merget zelf niets</td><td>director moet R7 meten op de exacte head vóór de mergepoort; nog geen bewijs dat dit gebeurd is</td><td>✅ (verdict) · nr 246 · <b>director</b></td></tr>
       <tr><td class="cmd">claude2 STAP2_VERDICTCASE_HARNAS (nr 247, nieuw)</td><td>oudere order (klaargezet 06:38, harnasfix-lijn) kreeg pas nu 09:52:14 een terminaal receipt: verdict=GO</td><td>geen — afgehandeld</td><td>✅ 09:52:14 · nr 247 · <b>niemand</b></td></tr>
-      <tr><td class="cmd">claude4 STAP6_LANEMONITOR_NAAMFILTER (nr 248, nieuw)</td><td>nieuw order gestart 09:48:29, nog geen terminaal receipt (alleen transport-plumbing-snapshots aanwezig)</td><td>afwachten op receipt</td><td>open · nr 248 · <b>claude4</b> (BEZIG)</td></tr>
-      <tr><td class="cmd">codex2 PR104_REVIEW_5984CA6 (nr 249, nieuw)</td><td>nieuw order gestart 09:48:13, nog geen terminaal receipt (alleen transport-plumbing-snapshots aanwezig)</td><td>afwachten op receipt; 243 blijft hierachter wachten</td><td>open · nr 249 · <b>codex2</b> (BEZIG)</td></tr>
+      <tr><td class="cmd">claude4 STAP6_LANEMONITOR_NAAMFILTER (nr 248)</td><td>loopt sinds 09:48:29, nu ~20 min, nog geen terminaal receipt</td><td>nu watchdog-target (leeftijd 1141s om 08:07:30Z); afwachten op receipt</td><td>open · nr 248 · <b>claude4</b> (BEZIG)</td></tr>
+      <tr><td class="cmd">codex2 PR104_REVIEW_5984CA6 (nr 249)</td><td>liep sinds 09:48:13</td><td>afgerond 10:05:54: verdict=GO_WITH_FINDINGS; lane meteen daarna doorgezet naar HERREVIEW_1B7C76AE (nr234)</td><td>✅ 10:05:54 · nr 249 · <b>niemand</b></td></tr>
       <tr><td class="cmd">codex1 kon niet reviewen (exit 3)</td><td>elke codex1-order viel om: geen aanmelding in ~/.codex</td><td>aanmelding stond in ~/.codex1; director zette CODEX_HOME in bin/codex1 om (e2dd1f9); 23:03 opnieuw rc 3 (director tik 46), 112 omgeleid naar codex2</td><td>✅ 21:03 (GO 21:23) · <b>terug 23:03</b> · nr 115 · <b>Richard</b></td></tr>
       <tr><td class="cmd">gemini1 leverde nooit (hanggrens 180 s)</td><td>elke run na 180 s afgekapt als STARTUP_STALE</td><td>DISPATCH_GEMINI_HANG_TIMEOUT_S=1800; run van 281 s leverde GO</td><td>✅ 21:29 · standaardwaarde nog te fixen (nr 55)</td></tr>
       <tr><td class="cmd">supervisor-streak 100 (negatieve teller)</td><td>teller onder nul gold als gezonde queue → eindeloze escalatie</td><td>ee08807 (claude1) gemerged als de3e7dd; streak nu echt (8 om 22:16, escalatie weer aan, nr 56)</td><td>✅ 21:40 · nr 84/85/87</td></tr>
@@ -236,13 +226,13 @@ body.verberg-klaar tr.klaar{display:none}
 <section id="slot">
   <h2>Slot</h2>
   <div class="tabel"><table class="slot">
-    <thead><tr><th>Δ sinds vorige tik (09:34)</th><th>Volgende tik</th></tr></thead>
+    <thead><tr><th>Δ sinds vorige tik (09:58)</th><th>Volgende tik</th></tr></thead>
     <tbody><tr>
-      <td>lamp 🔴: <b>zelfde defect drie keer</b> — REFUSED_LANE_CLAIM_HELD trof nu ook 242 (codex1) en 244 (claude1), naast het al bekende 231 (claude3); geen van de drie is herdispatcht behalve 244 die zichzelf ketende (R5) naar V2 · watchdog schakelde live om van 234 naar 242 en is nu weer weg na 242's conclusie · main gevorderd naar 1ed6d654 (stap-2 merge, eigen R7-meting door de director) · 234 klaar (DONE_BUILD_AWAITING_REVIEW), oudere 247 ook klaar (GO) · nieuw bezet: 248 (claude4) en 249 (codex2), beide net gestart · CONTROLLER_STALE weer terug (age 663s, oplopend vanaf 164s) · nieuwe issue-categorie LOG_WINDOW_UNPROVEN_PERSISTENT (streak 4, nog niet eerder gezien) · escalation-streak 54→62, blijft versnellen ondanks dat individuele symptomen (watchdog, CONTROLLER_STALE) telkens weer oplossen — dat uiteenlopen is zelf het opvallendste patroon van deze tik</td>
-      <td class="volgende">~09:58 · lost claude1/244-V2 het bewijspoort-defect op, of valt ook deze op REFUSED_LANE_CLAIM_HELD? krijgt 248/249 een receipt? pakt claude2 eindelijk 245 op? wordt 231 (nog steeds niet herdispatcht) nu wél opgepakt nu het patroon 3x optreedt? blijft de escalation-streak doorstijgen ondanks opgeloste losse symptomen? arbitrage-deadline 10:55Z nog ~57 min weg</td>
+      <td>lamp 🔴→🟡: <b>hygiëne-anomalie zelf opgelost, patroon eenmaal herhaald</b> — codex1/242's proces (23617/23623) nu bevestigd dood, geen ingreep gezien · 234v2/245/247/249 alle vier afgerond (245 al MERGED_1ED6D654, 249 GO_WITH_FINDINGS, 234v2 dubbel in review) · REFUSED_LANE_CLAIM_HELD trof een 4e onafhankelijk geval (codex2, 622DBE20-review, 09:59:53) · gemini1 leverde 2 reviews ondanks quarantaine-label · watchdog schoof door naar claude4/248 · CONTROLLER_STALE 2→9, LOG_WINDOW_UNPROVEN_PERSISTENT 9→16, escalation-streak 67→74, blijft versnellen ondanks dat individuele orders wél concluderen · checkout-anomalie nr203 groeit door (45→49) · main ongewijzigd 1ed6d654</td>
+      <td class="volgende">~10:23 · geeft codex2 zijn tweede stem op HERREVIEW_1B7C76AE, en mag dan gemerged worden (R7 op exacte head)? concludeert claude1/244-V2 eindelijk? krijgt claude4/248 een receipt vóór de watchdog opnieuw slaat? komt 231 nu (4x patroon) alsnog aan de beurt? blijft escalation-streak doorstijgen ondanks concluderende orders? arbitrage-deadline 10:55Z nog ~47 min</td>
     </tr></tbody>
   </table></div>
-  <div class="pad">volledig rapport: ~/stack-control/CONTROL/RAPPORTEN/board-2026-09-09-0948.md</div>
+  <div class="pad">volledig rapport: ~/stack-control/CONTROL/RAPPORTEN/board-2026-09-09-1008.md</div>
 </section>
 
 </main>
@@ -375,6 +365,4 @@ document.querySelector("#t6 tbody").innerHTML=T6.map(r=>{const [nr,proj,taak,st,
 
 // ✅-rijen staan niet meer op het bord (Richard 22:06); archief in de rapporten
 </script>
-
-</body>
-</html>
+</body></html>
