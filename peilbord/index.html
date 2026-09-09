@@ -188,24 +188,33 @@ footer code{font-family:"IBM Plex Mono",monospace;background:var(--plaat2);paddi
 const BRON = "../regiekamer.json";
 const VERVERS_MS = 60000;
 const el = (id) => document.getElementById(id);
-const esc = (s) => String(s ?? "").replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+// String() en Number() roepen toString/valueOf van de bronwaarde aan. JSON.parse
+// kan {"toString":null} opleveren — dan gooit die conversie een TypeError, en één
+// throw sloopt de hele render, niet alleen die ene cel. Elke bronwaarde wordt
+// daarom eerst op type getoetst: wat geen primitieve waarde is, telt als afwezig.
+const prim = (v) => (typeof v === "string" || typeof v === "number" || typeof v === "boolean") ? v : "";
+const esc = (s) => String(prim(s)).replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
 // markdown-vet uit brondocumenten wegstrippen, geen HTML doorlaten
-const schoon = (s) => esc(String(s ?? "").replace(/\*\*/g, "").trim());
+const schoon = (s) => esc(String(prim(s)).replace(/\*\*/g, "").trim());
 // klassenaam uit brondata: alleen letters/cijfers/underscore, nooit een attribuutbreuk
-const klasse = (s) => String(s ?? "").toLowerCase().replace(/[^a-z0-9_]/g, "");
+const klasse = (s) => String(prim(s)).toLowerCase().replace(/[^a-z0-9_]/g, "");
 // Een getal uit de JSON kan een string, null of onzin zijn. Alles wat gerekend of
 // als breedte gebruikt wordt gaat hier eerst doorheen: liever een 0 dan een "NaN%"
 // op het bord of een balk die het hele blok meesleept.
-const getal = (v) => { const n = Number(v); return Number.isFinite(n) ? n : 0; };
-const isGetal = (v) => v !== null && v !== "" && v !== undefined && Number.isFinite(Number(v));
+const getal = (v) => { const n = Number(prim(v)); return Number.isFinite(n) ? n : 0; };
+const isGetal = (v) => { const p = prim(v); return p !== "" && Number.isFinite(Number(p)); };
 // breedte van een balk: altijd binnen 0-100, nooit een attribuutbreuk
 const pct = (v) => Math.max(0, Math.min(100, getal(v))).toFixed(1);
 // alles wat als lijst uit de JSON komt: geen null-gaten, geen losse waarden
 const objecten = (v) => Array.isArray(v) ? v.filter(x => x && typeof x === "object") : [];
 
+// Date.parse() en new Date() converteren hun argument net zo goed via toString als
+// String() dat doet, dus ook hier eerst prim(): een tijdstempel die geen tekst is,
+// is geen tijdstempel — en mag de render niet meeslepen.
 function minGeleden(iso){
-  if(!iso) return null;
-  const t = Date.parse(iso);
+  const s = prim(iso);
+  if(!s) return null;
+  const t = Date.parse(s);
   if(Number.isNaN(t)) return null;
   return (Date.now() - t) / 60000;
 }
@@ -221,8 +230,9 @@ function secTekst(sec){
   return isGetal(sec) ? duurTekst(Number(sec)/60) : "—";
 }
 function klok(iso){
-  if(!iso) return "—";
-  const d = new Date(iso);
+  const s = prim(iso);
+  if(!s) return "—";
+  const d = new Date(s);
   if(Number.isNaN(+d)) return "—";
   return String(d.getHours()).padStart(2,"0") + ":" + String(d.getMinutes()).padStart(2,"0");
 }
