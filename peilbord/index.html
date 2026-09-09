@@ -209,10 +209,13 @@ const pct = (v) => Math.max(0, Math.min(100, getal(v))).toFixed(1);
 const objecten = (v) => Array.isArray(v) ? v.filter(x => x && typeof x === "object") : [];
 
 // Date.parse() en new Date() converteren hun argument net zo goed via toString als
-// String() dat doet, dus ook hier eerst prim(): een tijdstempel die geen tekst is,
-// is geen tijdstempel — en mag de render niet meeslepen.
+// String() dat doet, dus een tijdstempel moet vóór conversie op type getoetst worden.
+// prim() volstaat daar niet: dat laat getallen en booleans door, en `new Date(1)`
+// levert dan doodleuk 1 januari 1970 op — een verzonnen tijd op het bord is erger
+// dan een streepje. De bron levert ISO-tekst; wat geen tekst is, is geen tijdstempel.
+const tijd = (v) => typeof v === "string" ? v.trim() : "";
 function minGeleden(iso){
-  const s = prim(iso);
+  const s = tijd(iso);
   if(!s) return null;
   const t = Date.parse(s);
   if(Number.isNaN(t)) return null;
@@ -230,7 +233,7 @@ function secTekst(sec){
   return isGetal(sec) ? duurTekst(Number(sec)/60) : "—";
 }
 function klok(iso){
-  const s = prim(iso);
+  const s = tijd(iso);
   if(!s) return "—";
   const d = new Date(s);
   if(Number.isNaN(+d)) return "—";
