@@ -7,8 +7,9 @@
 <meta http-equiv="refresh" content="300">
 <title>Regiekamer — peilbord</title>
 <style>
-  * { box-sizing: border-box; }
-  body { margin: 0; }
+*{box-sizing:border-box}
+body{margin:0;background:#0b0d10;color:#e5e7eb;font:14px/1.4 -apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif}
+img{max-width:100%}
 </style>
 </head>
 <body>
@@ -101,8 +102,8 @@ body.verberg-klaar tr.klaar{display:none}
   <div class="kopbalk">
     <div class="lamp rood" title="ROOD"></div>
     <h1>Autocoding Peilbord</h1>
-    <div class="tik" id="tik">tik 09:17 · gemeten 09:13–09:17</div>
-    <div class="regel" id="kopregel">3/7 bezet (was 1/7): controller draaide om 09:05:33 een nieuwe scan en dispatchte claude1 (232) en claude4 (233) — claude3/207 loopt door (~102 min) · nieuw: CONTROLLER_STALE (heartbeat vast op 07:00:32Z, 235) · streak 22→25 · herstelorder 234 (retry-plafond 228) gequeued op claude2, nog niet opgepakt · supervisor corrigeerde eigen sluitmethode op de heropende arbitrage (bestandsafwezigheid ≠ opgelost) · codex auth blijft weg. <b>Richard</b>: 115.</div>
+    <div class="tik" id="tik">tik 09:34 · gemeten 09:17–09:34</div>
+    <div class="regel" id="kopregel">2/7 bezet (was 4/7): <b>claude3/207 eindelijk KLAAR</b> na ~2 uur watchdog-vasthouding — 1105/1105 groen, wacht op aparte review/merge-order (240) · 238 (claude4) en 239 (codex2) ook klaar, beide zonder Richard-actie · 231 (claude3-lane) REFUSED_LANE_CLAIM_HELD, komt nu vrij · nieuw bezet: codex1/242 · codex2 2 nieuwe reviews gequeued (243) · CONTROLLER_STALE keerde terug (heartbeat weer &gt;15 min oud) · escalation-streak 37→43 (blijft versnellen) · arbitrage 93d82c8d (241) gesloten zonder merge (R7 rood) · codex auth blijft weg. <b>Richard</b>: 115.</div>
     <div class="eind">akkoord <b>09-12/13 → ~09-11</b> · parser weg <b>09-21 → ~09-20</b></div>
     <div class="knoppen">
       <span class="tik">afgerond vandaag: 129 rijen (in rapport)</span>
@@ -117,14 +118,14 @@ body.verberg-klaar tr.klaar{display:none}
   <div class="tabel"><table class="actie">
     <thead><tr><th>Kanaal</th><th>Status</th><th>Order</th><th>Sinds</th><th>Duur</th><th>Nr</th><th>Bewijs</th></tr></thead>
     <tbody>
-      <tr><td class="cmd">claude1</td><td>🔵 232</td><td>SUPERVISOR_NEGATIEVE_TELLER V1</td><td>09:07:51</td><td>~10 min</td><td>232</td><td>net gestart, nog geen receipt</td></tr>
-      <tr><td class="cmd">claude2</td><td>⬜ vrij</td><td>224 klaar 08:48</td><td>tot 08:48</td><td>—</td><td>224</td><td>ongewijzigd: labeldefect (zie 2b)</td></tr>
-      <tr><td class="cmd">claude3</td><td>🔵 207</td><td>WRAPPER_ZELFKOPIE_UITVOERING V1 (+231 gequeued erbovenop)</td><td>07:35:06</td><td class="rood">~102 min</td><td>207/231</td><td>watchdog blijft op deze lane; 231 wacht nog steeds op vrije lane</td></tr>
-      <tr><td class="cmd">claude4</td><td>🔵 233</td><td>STAP3A_HERSTELCONTRACT_RONDE2 V1</td><td>09:07:39</td><td>~10 min</td><td>233</td><td>net gestart, nog geen receipt</td></tr>
-      <tr><td class="cmd">codex1</td><td>⬜ vrij</td><td>227 klaar 08:44</td><td>tot 08:44</td><td>—</td><td>227</td><td>ongewijzigd, nog geen vervolgorder</td></tr>
-      <tr><td class="cmd">codex2</td><td>⬜ vrij</td><td>228 NO_GO afgehandeld; 230 queued</td><td>tot 08:58Z</td><td>—</td><td>228/230</td><td>230 nog niet opgepakt (QUEUED); herstel op 228 loopt via claude2 (234)</td></tr>
-      <tr><td class="cmd">gemini1</td><td>⬜ vrij</td><td>226 evidence-gate PASS</td><td>tot 06:42Z</td><td>—</td><td>226</td><td>ongewijzigd, nog geen eindreceipt</td></tr>
-      <tr><td class="cmd">totaal</td><td>3/7 bezet</td><td>4 vrij</td><td colspan="4">controller-heartbeat nog steeds vast op 07:00:32Z (CONTROLLER_STALE nieuw, 235); escalation-streak 22→25; codex auth blijft weg</td></tr>
+      <tr><td class="cmd">claude1</td><td>⬜ vrij</td><td>232 klaar (DONE_BUILD_AWAITING_REVIEW)</td><td>tot ~09:2x</td><td>—</td><td>232</td><td>vrij; kandidaat voor forward-port 241 of herdispatch 231</td></tr>
+      <tr><td class="cmd">claude2</td><td>🔵 234</td><td>GEWEIGERDE_START_HERDISPATCH V2</td><td>09:23:38</td><td>~11 min</td><td>234</td><td>herstel op 228 (retry-plafond), reviewer codex2, nog geen receipt</td></tr>
+      <tr><td class="cmd">claude3</td><td>⬜ vrij</td><td>207 KLAAR (1105/1105, wacht op review/merge-order)</td><td>tot ~09:3x</td><td>—</td><td>207/240</td><td>watchdog-alert weg; 231 (REFUSED_LANE_CLAIM_HELD) kan nu opnieuw</td></tr>
+      <tr><td class="cmd">claude4</td><td>⬜ vrij</td><td>238 klaar (SUPERSEDED_ALREADY_MERGED_ON_MAIN)</td><td>tot ~09:3x</td><td>—</td><td>238</td><td>na BLOCKED_EVIDENCE alsnog gesloten: werk al elders gemerged</td></tr>
+      <tr><td class="cmd">codex1</td><td>🔵 242</td><td>WRAPPERKOPIE_REVIEW_CBB75F51 V1</td><td>09:34:14</td><td>~0 min</td><td>242</td><td>net gestart (mode=REVIEW), nog geen receipt</td></tr>
+      <tr><td class="cmd">codex2</td><td>⬜ vrij</td><td>239 klaar (GO_WITH_FINDINGS)</td><td>tot ~09:3x</td><td>—</td><td>239/243</td><td>2 nieuwe reviews (5AD4D0C, 1FA17AD8) gequeued, nog niet opgepakt; 230 blijft erachter wachten</td></tr>
+      <tr><td class="cmd">gemini1</td><td>🔴 quarantaine</td><td>226 evidence-gate PASS (oud)</td><td>tot 06:42Z</td><td>—</td><td>226/237</td><td>ongewijzigd: FAILED_TRANSPORT_QUARANTINED (exit_code=11), tweede stem blijft uit</td></tr>
+      <tr><td class="cmd">totaal</td><td>2/7 bezet</td><td>4 vrij (1 in quarantaine)</td><td colspan="4">claude3/207 eindelijk klaar (~2u watchdog voorbij); controller-heartbeat opnieuw stil (CONTROLLER_STALE terug); escalation-streak 37→43 (blijft versnellen); codex auth blijft weg</td></tr>
     </tbody></table></div>
 </section>
 
@@ -133,7 +134,7 @@ body.verberg-klaar tr.klaar{display:none}
   <div class="tabel"><table class="actie">
     <thead><tr><th>Actie Richard</th><th>Waarom</th><th>Als je het niet doet</th></tr></thead>
     <tbody>
-      <tr><td class="cmd">terminal: <code>codex login</code> zodat ~/.codex/auth.json terugkomt (nr 115)</td><td>codex1 geblokkeerd sinds 23:03; nog steeds afwezig om 09:01</td><td>codex1 blijft een onverklaarde anomalie; reviews stapelen op codex2/gemini1 zodra dit misgaat</td></tr>
+      <tr><td class="cmd">terminal: <code>codex login</code> zodat ~/.codex/auth.json terugkomt (nr 115)</td><td>codex1 geblokkeerd sinds 23:03; nog steeds afwezig om 09:34 (codex1 draait nu wel via los CODEX_HOME-pad, zie 2b)</td><td>codex1 blijft een onverklaarde anomalie; reviews stapelen op codex2/gemini1 zodra dit misgaat</td></tr>
       <tr><td class="cmd">akkoord op de autocoding-keten (nr 32) — nog niet aan de orde</td><td>staat gepland na de cutover, ~09-11</td><td>burn-in B (7 dagen) start niet; stap 8 blijft dicht</td></tr>
     </tbody>
   </table></div>
@@ -163,12 +164,20 @@ body.verberg-klaar tr.klaar{display:none}
       <tr><td class="cmd">622dbe20 NO_GO op codex2 (nr 228, nieuw)</td><td>GEWEIGERDE_START_REVIEW (builder CLAUDE2): geen bovengrens op REFUSED_START-herdispatch, hartslagregressie overleeft de voorgeschreven suite, testdekking te zwak — ACTIE_RICHARD=geen (expliciet in receipt)</td><td>DIRECTOR_CLAUDE routeert herstel; vervolgorder nog niet gezet</td><td>✅ 08:57Z · nr 228 · <b>director</b></td></tr>
       <tr><td class="cmd">136597a NO_GO gevonden, nog niet eerder op bord (nr 229, nieuw)</td><td>STAP1_REVIEW_136597A (codex2): verdict=NO_GO, receipt-mtime 06:38Z vandaag maar onderliggende bouw dateert van 2026-09-08 11:32Z — kennelijk niet eerder gemeten</td><td>order-regel: bij NO_GO gaan de punten terug naar de bouwer op een nieuwe poging</td><td>open · nr 229 · <b>director</b></td></tr>
       <tr><td class="cmd">vervolgorder na 223 gedispatcht (nr 230, nieuw)</td><td>REVIEWLANE_MEETVERMOGEN_REVIEW_765163FB naar codex2 (builder CLAUDE4), PICKUP_STATUS=QUEUED_FOR_AUTOCODING — nog niet opgepakt (geen proces in ps)</td><td>afwachten of codex2 hem oppakt</td><td>open · nr 230 · <b>niemand</b></td></tr>
-      <tr><td class="cmd">stap-7-herpin loste R2-mislabeling niet op (nr 231, nieuw)</td><td>director-tik 104 (07:08:43Z) mat opnieuw ná de runtime-herpin (9ca63a87): mislabeling staat nog; order DIRECTOR_STAP7_BEZETTE_LANE_GEEN_MISLUKKING_20260909_CLAUDE3_V1 geschreven, lint OK</td><td>QUEUED_FOR_AUTOCODING op claude3 (lane bezet met 207, dus wacht)</td><td>open · nr 231 · <b>niemand</b></td></tr>
-            <tr><td class="cmd">controller-heartbeat staat stil (nr 235, nieuw)</td><td>vast op 07:00:32Z, nu &gt;15 min oud; supervisor vlagt zelf nieuw CONTROLLER_STALE (streak 1) — een lopende scan (pid 98102, gestart 09:05:33) dispatchte al wel twee nieuwe orders (232/233) vóór hij zijn heartbeat schreef</td><td>afwachten of de lopende scan zijn heartbeat alsnog schrijft</td><td>open · nr 235 · <b>niemand</b></td></tr>
-      <tr><td class="cmd">nieuwe dispatch op claude1 (nr 232, nieuw)</td><td>SUPERVISOR_NEGATIEVE_TELLER V1 gestart 09:07:51, onderdeel van dezelfde scan als 233</td><td>afwachten op receipt</td><td>open · nr 232 · <b>niemand</b></td></tr>
-      <tr><td class="cmd">nieuwe dispatch op claude4 (nr 233, nieuw)</td><td>STAP3A_HERSTELCONTRACT_RONDE2 V1 gestart 09:07:39</td><td>afwachten op receipt</td><td>open · nr 233 · <b>niemand</b></td></tr>
-      <tr><td class="cmd">herstelorder op 228's bevindingen (nr 234, nieuw)</td><td>GEWEIGERDE_START_HERDISPATCH V1 op claude2 al klaar (DONE_BUILD_AWAITING_REVIEW); V2 voegt retry-plafond toe, reviewer CODEX2, QUEUED_FOR_AUTOCODING</td><td>afwachten of claude2 hem oppakt</td><td>open · nr 234 · <b>niemand</b></td></tr>
+      <tr><td class="cmd">stap-7-herpin loste R2-mislabeling niet op (nr 231)</td><td>bleef QUEUED_FOR_AUTOCODING op bezette lane; nu afgerond met exit_code=9 REFUSED_LANE_CLAIM_HELD (lane-claim geweigerd, order draaide nooit)</td><td>claude3 nu vrij (207 klaar) — order 231 kan opnieuw aangeboden worden</td><td>✅ 09:3x · nr 231 · <b>niemand</b></td></tr>
+            <tr><td class="cmd">controller-heartbeat valt herhaaldelijk stil (nr 235)</td><td>ververste kort naar 07:18:29Z, maar staat om 09:34 opnieuw &gt;15 min stil; CONTROLLER_STALE kwam terug in de supervisor-issues (streak opnieuw 1) — een terugkerend patroon, geen eenmalige hik</td><td>geen herstelorder gezet; puur een meetsignaal zolang de controller zelf nog draait</td><td>open · nr 235 · <b>niemand</b></td></tr>
+      <tr><td class="cmd">nieuwe dispatch op claude1 (nr 232)</td><td>SUPERVISOR_NEGATIEVE_TELLER V1 gestart 09:07:51, geconcludeerd verdict=DONE_BUILD_AWAITING_REVIEW</td><td>wacht op aparte review-order (geen Richard-actie)</td><td>✅ 09:2x · nr 232 · <b>niemand</b></td></tr>
+      <tr><td class="cmd">nieuwe dispatch op claude4 (nr 233)</td><td>STAP3A_HERSTELCONTRACT_RONDE2 V1 concludeerde SUPERSEDED_ALREADY_MERGED; opvolger 238 (STAP3A_ORDER_STATE_BIBLIOTHEEK) ook al geconcludeerd — zie 238</td><td>geen — beide ketens gesloten zonder Richard-actie</td><td>✅ 09:2x/09:3x · nr 233 · <b>niemand</b></td></tr>
+      <tr><td class="cmd">herstelorder op 228's bevindingen (nr 234)</td><td>GEWEIGERDE_START_HERDISPATCH V2 (retry-plafond, reviewer CODEX2) loopt sinds 09:23:38 op claude2, ~11 min, nog geen receipt</td><td>afwachten op receipt</td><td>open · nr 234 · <b>claude3</b>→<b>claude2</b> (BEZIG)</td></tr>
       <tr><td class="cmd">supervisor corrigeert eigen sluitmethode op arbitrage 93d82c8d</td><td>eerdere sluiting ("bestand niet meer aanwezig") erkend als ongeldige grond; alle vier onderliggende claims zelf herverifieerd (NO_GO staat, geen van beide commits gemergd, geen ronde-3-branch) — item terecht heropend, termijn 10:55Z nog ruim</td><td>geen — methodefout zelf hersteld, geen Richard-actie</td><td>✅ 09:06 · <b>director/supervisor</b></td></tr>
+      <tr><td class="cmd">4 leveringen stranden op bewijspoort ondanks echte verdicts (nr 236, nieuw)</td><td>director-tik 106: 2x RERUN_RC_NONZERO + 2x CLAIM_WITHOUT_COMMAND_OUTPUT — de evidence-gate zelf blokkeert leveringen die wel een inhoudelijk verdict dragen</td><td>director noemt dit systematisch (mogelijk gate-defect); nog geen herstelorder</td><td>open · nr 236 · <b>director</b></td></tr>
+      <tr><td class="cmd">gemini1 in transportquarantaine (nr 237, nieuw)</td><td>FAILED_TRANSPORT_QUARANTINED, exit_code=11 — tweede reviewstem (naast codex) tijdelijk uitgevallen; STAP1_REVIEW_F1842C8 blijft NOT_DISPATCHED_TRANSPORT_HERDISPATCH_QUARANTINED</td><td>geen herstelorder; wacht op quarantaine-vrijgave</td><td>open · nr 237 · <b>niemand</b></td></tr>
+      <tr><td class="cmd">claude4 STAP3A_ORDER_STATE_BIBLIOTHEEK (nr 238, nieuw)</td><td>BLOCKED_EVIDENCE bij eerste run; director sloot de keten daarna als SUPERSEDED_ALREADY_MERGED_ON_MAIN (werk al elders gemerged)</td><td>geen — director meet zelf nog of stap 3b nog open staat</td><td>✅ 09:3x · nr 238 · <b>niemand</b></td></tr>
+      <tr><td class="cmd">codex2 PR103_REVIEW_F4276D7 (nr 239, nieuw)</td><td>verdict=GO_WITH_FINDINGS — bevindingen nog niet geroute</td><td>director routeert vervolg; ook PR103-NO_GO apart gesloten op 5ad4d0cf (al in main, ledger-commit 53219ac7)</td><td>open · nr 239 · <b>director</b></td></tr>
+      <tr><td class="cmd">claude3/207 eindelijk KLAAR na ~2 uur watchdog (nr 240, nieuw)</td><td>WRAPPER_ZELFKOPIE_UITVOERING: 1105/1105 proeven groen op de exacte head; geen verdict=-veld maar volledige TAKENLIJST ✅ en VOLGENDE_STAP=geen (order af binnen grenzen, merge/push verboden voor deze order)</td><td>wacht op aparte review-/merge-order van een andere actor (R4); watchdog-alertbestand is nu weg</td><td>✅ 09:3x · nr 240 · <b>niemand</b></td></tr>
+      <tr><td class="cmd">arbitrage 93d82c8d gesloten zonder merge (nr 241, nieuw)</td><td>STACKSTATUS_MARKERAFVANGER: BESLIST_DOOR_DIRECTOR_NA_TERMIJNVERLOOP; 5d78498 niet gemerged — R7-meting rood (141 commits basisdrift, merge zou 143 bestanden terugdraaien)</td><td>forward-port van de twee main-onaangeraakte paden gequeued op claude1 (DIRECTOR_STACKSTATUS_VOORWAARTS)</td><td>✅ 09:xx · nr 241 · <b>director</b></td></tr>
+      <tr><td class="cmd">codex1 nieuwe reviewopdracht (nr 242, nieuw)</td><td>WRAPPERKOPIE_REVIEW_CBB75F51 gestart 09:34:14, mode=REVIEW, base db0a7f75→head cbb75f51</td><td>afwachten op receipt</td><td>open · nr 242 · <b>codex1</b> (BEZIG)</td></tr>
+      <tr><td class="cmd">codex2 twee nieuwe reviews gequeued (nr 243, nieuw)</td><td>PR103_REVIEW_5AD4D0C (exact-head, base b4bfe187) en REFVERPLAATSING_REVIEW_1FA17AD8 (builder CLAUDE1) — beide QUEUED, nog niet opgepakt (codex2 niet in ps)</td><td>afwachten of codex2 oppikt</td><td>open · nr 243 · <b>niemand</b></td></tr>
       <tr><td class="cmd">codex1 kon niet reviewen (exit 3)</td><td>elke codex1-order viel om: geen aanmelding in ~/.codex</td><td>aanmelding stond in ~/.codex1; director zette CODEX_HOME in bin/codex1 om (e2dd1f9); 23:03 opnieuw rc 3 (director tik 46), 112 omgeleid naar codex2</td><td>✅ 21:03 (GO 21:23) · <b>terug 23:03</b> · nr 115 · <b>Richard</b></td></tr>
       <tr><td class="cmd">gemini1 leverde nooit (hanggrens 180 s)</td><td>elke run na 180 s afgekapt als STARTUP_STALE</td><td>DISPATCH_GEMINI_HANG_TIMEOUT_S=1800; run van 281 s leverde GO</td><td>✅ 21:29 · standaardwaarde nog te fixen (nr 55)</td></tr>
       <tr><td class="cmd">supervisor-streak 100 (negatieve teller)</td><td>teller onder nul gold als gezonde queue → eindeloze escalatie</td><td>ee08807 (claude1) gemerged als de3e7dd; streak nu echt (8 om 22:16, escalatie weer aan, nr 56)</td><td>✅ 21:40 · nr 84/85/87</td></tr>
@@ -225,13 +234,13 @@ body.verberg-klaar tr.klaar{display:none}
 <section id="slot">
   <h2>Slot</h2>
   <div class="tabel"><table class="slot">
-    <thead><tr><th>Δ sinds vorige tik (09:13)</th><th>Volgende tik</th></tr></thead>
+    <thead><tr><th>Δ sinds vorige tik (09:17)</th><th>Volgende tik</th></tr></thead>
     <tbody><tr>
-      <td>lamp 🔴: lane-bezetting 1/7→3/7 — controllerscan (09:05:33) dispatchte claude1 (232) en claude4 (233), claude3/207 loopt door (nu ~102 min) · nieuw CONTROLLER_STALE (235, heartbeat vast op 07:00:32Z, &gt;15 min oud ondanks lopende scan) · escalation-streak 22→25 · herstelorder 234 (retry-plafond op 228) gequeued op claude2 · supervisor corrigeerde eigen sluitmethode op arbitrage 93d82c8d (bestandsafwezigheid ≠ opgelost)</td>
-      <td class="volgende">~09:27 · schrijft de lopende controllerscan (pid 98102) alsnog een verse heartbeat? krijgen 232/233 een receipt? pakt claude2 order 234 op? loopt claude3/207 door richting 2 uur? arbitrage-deadline 10:55Z nog ver weg</td>
+      <td>lamp 🟡: lane-bezetting 4/7→2/7 — <b>claude3/207 eindelijk klaar</b> na ~2 uur watchdog-vasthouding (1105/1105 groen, wacht op review/merge-order 240) · 238 en 239 ook geconcludeerd, beide zonder Richard-actie · 231 vrijgekomen via REFUSED_LANE_CLAIM_HELD · nieuw bezet: codex1 (242, net gestart) · codex2 2 reviews gequeued (243), nog niet opgepakt · CONTROLLER_STALE terug (heartbeat weer &gt;15 min stil) · escalation-streak 37→43, blijft versnellen ondanks het geslaagde bouwwerk · arbitrage 93d82c8d gesloten zonder merge (241, R7 rood) · nieuwe bevindingen 236 (bewijspoort-mismatch) en 237 (gemini1 quarantaine)</td>
+      <td class="volgende">~09:44 · pakt claude1/claude3/claude4 iets nieuws op (forward-port 241, herdispatch 231, of iets anders)? krijgt codex1/242 een receipt? pakt codex2 de 2 gequeuede reviews (243) op? concludeert claude2/234? schrijft de controller alsnog een verse heartbeat? blijft de escalation-streak versnellen ondanks het opgeloste watchdog-geval? arbitrage-deadline 10:55Z nog ~1u20 weg</td>
     </tr></tbody>
   </table></div>
-  <div class="pad">volledig rapport: ~/stack-control/CONTROL/RAPPORTEN/board-2026-09-09-0917.md</div>
+  <div class="pad">volledig rapport: ~/stack-control/CONTROL/RAPPORTEN/board-2026-09-09-0934.md</div>
 </section>
 
 </main>
