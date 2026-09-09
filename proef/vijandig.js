@@ -17,6 +17,27 @@ const SPUIT = '"><img src=x onerror=alert(1)>';
 // een herkenbaar fragment ervan.
 const SPUIT_ESC = '&quot;&gt;&lt;img src=x onerror=alert(1)&gt;';
 
+// Ronde 9, Codex: `<span hidden>${schoon(r.ruwe_regel)}</span>` bleef groen. De proef
+// doorzocht de opmaak, niet wat de lezer ziet — en daarmee kwam de oorspronkelijke
+// bevinding terug: de regel stond er wel, maar onzichtbaar.
+//
+// De proef heeft geen echte DOM (innerHTML is hier een string), dus "zichtbaar" moet
+// uit de opmaak zelf worden afgeleid: eerst weg wat de browser niet toont, dan de tags
+// eraf, dan de entiteiten terug naar gewone tekst. Wat overblijft is wat Richard leest.
+//
+// &amp; wordt bewust als LAATSTE teruggedraaid. Anders zou "&amp;lt;" via "&lt;" alsnog
+// "<" worden, en juist dat onderscheid is de hele toets: één keer escapen hoort de
+// brontekst terug te geven, twee keer hoort de entiteit te tonen.
+function zichtbareTekst(html) {
+  return String(html)
+    .replace(/<([a-z]+)\b[^>]*?(?:\shidden(?=[\s>])|style="[^"]*display:\s*none[^"]*")[^>]*>[\s\S]*?<\/\1>/gi, '')
+    .replace(/<(script|style)\b[^>]*>[\s\S]*?<\/\1>/gi, '')
+    .replace(/<[^>]+>/g, '')
+    .replace(/&lt;/g, '<').replace(/&gt;/g, '>')
+    .replace(/&quot;/g, '"').replace(/&#39;/g, "'")
+    .replace(/&amp;/g, '&');
+}
+
 const GEVALLEN = [
   ['JSON-wortel is null', null],
   ['JSON-wortel is een lijst', [1, 2, 3]],
@@ -94,8 +115,10 @@ const GEVALLEN = [
     beslisrij: { status: 'OK', bron_pad: 'state/PROJECT_OVERZICHT.md', items: [],
       onparseerbaar_count: 1,
       onparseerbare_regels: [{ categorie: 'ONPARSEERBAAR', ruwe_regel: `| 3 | fixture-besluit-drie-onparseerbaar ${SPUIT}` }] },
-  }, (uit) => !uit.includes(`| 3 | fixture-besluit-drie-onparseerbaar ${SPUIT_ESC}`)
+  }, (uit, zichtbaar) => !uit.includes(`| 3 | fixture-besluit-drie-onparseerbaar ${SPUIT_ESC}`)
       ? 'de onleesbare regeltekst kwam niet volledig en correct geëscapet op het bord'
+      : !zichtbaar.includes(`| 3 | fixture-besluit-drie-onparseerbaar ${SPUIT}`)
+        ? 'de regel staat wel in de opmaak maar de lezer krijgt hem niet ongeschonden te zien'
       : uit.includes('Niets dat op jou wacht')
         ? 'een onleesbare beslisregel werd gepresenteerd als niets te beslissen'
       : !uit.includes('ONLEESBAAR')
@@ -107,9 +130,11 @@ const GEVALLEN = [
       items: [{ nr: '1', besluit: 'geldig besluit', kost: '2 u', ontgrendelt: 'X' }],
       onparseerbaar_count: 1,
       onparseerbare_regels: [{ categorie: 'ONPARSEERBAAR', ruwe_regel: `| 3 | fixture-besluit-drie-onparseerbaar ${SPUIT}` }] },
-  }, (uit) => !uit.includes(`| 3 | fixture-besluit-drie-onparseerbaar ${SPUIT_ESC}`)
+  }, (uit, zichtbaar) => !uit.includes(`| 3 | fixture-besluit-drie-onparseerbaar ${SPUIT_ESC}`)
       ? 'de onleesbare regeltekst kwam niet volledig en correct geëscapet naast de geldige rij'
-      : !uit.includes('geldig besluit') ? 'de geldige rij ging verloren'
+      : !zichtbaar.includes(`| 3 | fixture-besluit-drie-onparseerbaar ${SPUIT}`)
+        ? 'de onleesbare regel staat wel in de opmaak maar is voor de lezer niet zichtbaar'
+      : !zichtbaar.includes('geldig besluit') ? 'de geldige rij ging verloren'
       : !uit.includes('ONLEESBAAR')
         ? 'de regel werd getoond zonder de ONLEESBAAR-markering'
       : !/jij beslist <b>2<\/b>/.test(uit)
@@ -124,14 +149,33 @@ const GEVALLEN = [
       onparseerbare_regels: [
         { categorie: 'ONPARSEERBAAR', ruwe_regel: '| 3 | fixture-onleesbaar-EEN' },
         { categorie: 'ONPARSEERBAAR', ruwe_regel: `| 4 | fixture-onleesbaar-TWEE ${SPUIT}` }] },
-  }, (uit) => !uit.includes('| 3 | fixture-onleesbaar-EEN')
+  }, (uit, zichtbaar) => !uit.includes('| 3 | fixture-onleesbaar-EEN')
       ? 'de eerste onleesbare regel verdween of werd niet volledig getoond'
       : !uit.includes(`| 4 | fixture-onleesbaar-TWEE ${SPUIT_ESC}`)
         ? 'alleen de eerste onleesbare regel werd getoond — de rest verdween stil, of kwam niet volledig geëscapet door'
+      : !zichtbaar.includes('| 3 | fixture-onleesbaar-EEN')
+        || !zichtbaar.includes(`| 4 | fixture-onleesbaar-TWEE ${SPUIT}`)
+        ? 'niet elke onleesbare regel is voor de lezer zichtbaar'
       : (uit.match(/ONLEESBAAR/g) || []).length < 2
         ? 'niet elke onleesbare regel kreeg zijn eigen markering'
       : !/jij beslist <b>2<\/b>/.test(uit)
         ? 'de teller telde niet beide onleesbare regels' : null],
+  // Ronde 9, Codex + eigen meting: het algemene entiteitenverbod sloeg vals positief op
+  // een bronregel die zélf "&lt;" bevat — correct één keer escapen maakt daar "&amp;lt;"
+  // van, en dat werd afgekeurd. Een toets die goed gedrag afkeurt is erger dan geen
+  // toets: hij dwingt een latere bouwer de escaping te breken om groen te worden. Dit
+  // geval legt de goede kant vast, zodat die vals-positief niet stilletjes terug kan
+  // komen; het blijft rood bij dubbel escapen, want dan leest er "&amp;lt;" op het bord.
+  ['onleesbare regel met een letterlijke entiteit in de brontekst', {
+    beslisrij: { status: 'OK', bron_pad: 'state/PROJECT_OVERZICHT.md', items: [],
+      onparseerbaar_count: 1,
+      onparseerbare_regels: [{ categorie: 'ONPARSEERBAAR', ruwe_regel: '| 3 | bron bevat letterlijk &lt; en &amp; als tekst' }] },
+  }, (uit, zichtbaar) => !zichtbaar.includes('| 3 | bron bevat letterlijk &lt; en &amp; als tekst')
+      ? 'de lezer krijgt de brontekst niet terug zoals hij in de bron stond'
+      : !uit.includes('ONLEESBAAR')
+        ? 'de regel werd getoond zonder de ONLEESBAAR-markering'
+      : !/jij beslist <b>1<\/b>/.test(uit)
+        ? 'de regel telde niet mee in "jij beslist"' : null],
   // Ronde 4, Gemini: prim() liet booleans door, dus Number(true)===1 maakte van een
   // boolean in een getalveld een echte duur ("<1 min" i.p.v. een streepje).
   ['boolean in een getalveld', {
@@ -175,16 +219,22 @@ async function keur(naam, data, extraKeuring) {
   if (!uit.length) problemen.push('er is niets gerenderd — de proef zou niets bewijzen');
   if (/class="fout"/.test(nodes.main.innerHTML)) problemen.push('render viel terug op de foutmelding');
   if (uit.includes('<img src=x')) problemen.push('HTML uit de bron kwam ongefilterd door');
-  // Ronde 8, Codex: te wéinig escapen is een lek, te váák escapen is bederf. Bij
-  // dubbele escaping ziet de lezer "&lt;img" letterlijk op het bord staan in plaats
-  // van de brontekst. Een entiteit waarvan de & zelf nog eens is geëscapet kan alleen
-  // door dubbel escapen ontstaan, dus dit is de scherpe controle erop.
-  if (/&amp;(lt|gt|quot|amp|#39);/.test(uit)) problemen.push('brontekst is dubbel geëscapet — het bord toont de entiteit in plaats van de tekst');
+  // Ronde 8: te wéinig escapen is een lek, te váák escapen is bederf — bij dubbele
+  // escaping leest de lezer "&lt;img" waar de bron "<img" had staan.
+  //
+  // Ronde 9, Codex + eigen meting: de controle die hier stond ("nergens &amp;lt;")
+  // was ONJUIST en is verwijderd. Een bronregel die zelf de tekst "&lt;" bevat wordt
+  // correct tot "&amp;lt;" geëscapet, en werd dan afgekeurd terwijl het bord klopte.
+  // De juiste toets is bronafhankelijk en staat nu per geval hieronder: wat de lezer
+  // ziet moet gelijk zijn aan wat er in de bron stond — niet meer en niet minder.
+  // Te weinig escapen valt op door de injectiecontrole hierboven, te veel escapen
+  // doordat de zichtbare tekst dan de entiteit toont in plaats van het teken.
+  const zichtbaar = zichtbareTekst(uit);
   if (/NaN/.test(uit)) problemen.push('NaN op het bord');
   if (/undefined/.test(uit)) problemen.push('undefined op het bord');
   if (/width:\s*(?!\d)/.test(uit)) problemen.push('balkbreedte is geen getal');
   // Sommige gevallen hebben een eigen, geval-specifieke eis bovenop de algemene.
-  if (extraKeuring) { const extra = extraKeuring(uit); if (extra) problemen.push(extra); }
+  if (extraKeuring) { const extra = extraKeuring(uit, zichtbaar); if (extra) problemen.push(extra); }
   if (problemen.length) { console.log(`  FAIL ${naam}: ${problemen.join('; ')}`); fouten++; }
   else console.log(`  PASS ${naam} (${uit.length} tekens gerenderd)`);
 }
