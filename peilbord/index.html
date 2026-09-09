@@ -56,8 +56,6 @@ h1{font-size:15px;font-weight:600;margin:0;white-space:nowrap}
 
 /* ---------- layout ---------- */
 main{max-width:1280px;margin:0 auto;padding:18px 20px 70px;display:grid;gap:20px}
-.rij2{display:grid;grid-template-columns:1fr 1fr;gap:20px}
-@media (max-width:960px){.rij2{grid-template-columns:1fr}}
 section{background:var(--plaat);border:1px solid var(--rand);border-radius:7px;overflow:hidden}
 section.urgent{border-color:var(--amber);box-shadow:0 0 0 3px var(--amber-vlak)}
 .kopje{padding:9px 14px;border-bottom:1px solid var(--rand);background:var(--plaat2);
@@ -79,25 +77,31 @@ td.strak{white-space:nowrap}
   font-family:"IBM Plex Mono",monospace}
 .pil.bezig{background:var(--blauw-vlak);color:var(--blauw)}
 .pil.vrij,.pil.klaar{background:var(--groen-vlak);color:var(--groen)}
-.pil.geblokkeerd{background:var(--rood-vlak);color:var(--rood)}
-.pil.stale{background:var(--amber-vlak);color:var(--amber)}
+.pil.vast,.pil.geblokkeerd{background:var(--rood-vlak);color:var(--rood)}
+.pil.stil,.pil.stale{background:var(--amber-vlak);color:var(--amber)}
 .pil.wacht,.pil.open{background:var(--plaat2);color:var(--inkt-zacht)}
 .pil.hoog{background:var(--rood-vlak);color:var(--rood)}
 .pil.middel{background:var(--amber-vlak);color:var(--amber)}
 .pil.laag{background:var(--plaat2);color:var(--inkt-zacht)}
-.pil.in_uitvoering{background:var(--blauw-vlak);color:var(--blauw)}
-.pil.gevolgd{background:var(--plaat2);color:var(--inkt-zacht)}
 .pil.goed{background:var(--groen-vlak);color:var(--groen)}
 .pil.slecht{background:var(--rood-vlak);color:var(--rood)}
-.pil.niet_uitgevoerd{background:var(--rood-vlak);color:var(--rood)}
-.pil.geen_verdict,.pil.overig{background:var(--plaat2);color:var(--inkt-zacht)}
 .pil.onleesbaar{background:var(--amber-vlak);color:var(--amber)}
-tr.rij-geblokkeerd td:first-child{box-shadow:inset 3px 0 0 var(--rood)}
-tr.rij-stale td:first-child{box-shadow:inset 3px 0 0 var(--amber)}
+.pil.ja{background:var(--blauw-vlak);color:var(--blauw)}
+.pil.nee{background:var(--plaat2);color:var(--inkt-stil)}
+tr.rij-vast td:first-child,tr.rij-geblokkeerd td:first-child{box-shadow:inset 3px 0 0 var(--rood)}
+tr.rij-stil td:first-child,tr.rij-stale td:first-child{box-shadow:inset 3px 0 0 var(--amber)}
 tr.rij-bezig td:first-child{box-shadow:inset 3px 0 0 var(--blauw)}
 tr.rij-klaar td:first-child{box-shadow:inset 3px 0 0 var(--groen)}
 
-.taakid{color:var(--inkt-zacht);font-size:11.5px}
+/* ---------- de centrale takenlijst ---------- */
+/* Richard, 2026-09-09: "Mijn voorkeur is een centrale takenlijst, zodat ik daar ook
+   kan zien wat geblokkeerd is, wat vast zit." Daarom is dit ÉÉN tabel met fase-koppen
+   erin, geen vier aparte blokken die je naast elkaar moet leggen. */
+tr.fase td{background:var(--plaat2);border-bottom:1px solid var(--rand);padding:7px 14px}
+tr.fase b{font-size:11px;font-weight:600;letter-spacing:.07em;text-transform:uppercase;color:var(--inkt-zacht)}
+tr.fase span.tel{font-family:"IBM Plex Mono",monospace;font-size:11px;color:var(--inkt-stil);margin-left:8px}
+td.taak{font-weight:500;min-width:16ch}
+.actie{color:var(--inkt-zacht);font-size:12.5px;line-height:1.4}
 .duur.lang{color:var(--amber);font-weight:600}
 .duur.zeerlang{color:var(--rood);font-weight:600}
 
@@ -125,44 +129,12 @@ section.analyse .kopje{border-bottom:0}
 .grond.let_op{background:var(--amber-vlak);border-color:var(--amber);color:var(--amber)}
 .grond.goed{background:var(--groen-vlak);border-color:var(--groen);color:var(--groen)}
 
-/* ---------- route ---------- */
-.nurol{padding:11px 14px 13px;border-bottom:1px solid var(--rand-zacht)}
-.nurol .stap{font-size:12px;color:var(--inkt-stil);margin-bottom:7px}
-.nurol .stap b{color:var(--inkt);font-family:"IBM Plex Mono",monospace;font-weight:600}
-.nurol ol{margin:0;padding-left:22px;display:grid;gap:5px}
-.nurol li{font-size:13.5px;line-height:1.45}
-.nurol li:first-child{font-weight:500}
-.bezigregel{padding:9px 14px;background:var(--blauw-vlak);color:var(--blauw);font-size:12.5px;line-height:1.45;
-  border-bottom:1px solid var(--rand-zacht)}
-.voortgang{display:flex;height:6px;border-radius:99px;overflow:hidden;background:var(--rand-zacht);min-width:86px}
-.voortgang i{display:block;height:100%}
-.voortgang i.k{background:var(--groen)}.voortgang i.b{background:var(--rood)}.voortgang i.o{background:var(--rand)}
 .verouderd{padding:9px 14px;background:var(--amber-vlak);color:var(--amber);font-size:12.5px;line-height:1.45;
   border-bottom:1px solid var(--rand-zacht)}
-.sporen{display:flex;flex-wrap:wrap;gap:6px;padding:12px 14px}
-.spoor{font-size:12.5px;padding:4px 10px;border-radius:5px;background:var(--plaat2);border:1px solid var(--rand)}
-.spoor i{font-style:normal;color:var(--inkt-stil);font-family:"IBM Plex Mono",monospace;margin-right:5px}
-
-/* ---------- problemen ---------- */
-.probleem{font-size:13.5px;line-height:1.45}
-.oplossing{color:var(--inkt-zacht);font-size:12.5px;line-height:1.4;margin-top:4px}
-.oplossing::before{content:"→ ";color:var(--inkt-stil)}
-.opgelost{border-top:1px solid var(--rand)}
-.opgelost .kopje{background:var(--groen-vlak)}
-.opgelost .kopje h2{color:var(--groen)}
-
-.ev-in{color:var(--groen)}.ev-uit{color:var(--rood)}.ev-neutraal{color:var(--inkt-zacht)}
-td.overgang{white-space:nowrap;font-size:11.5px}
-td.resultaat{font-size:12px;color:var(--inkt-zacht);line-height:1.35}
 .leeg{padding:20px 14px;color:var(--inkt-stil);font-size:13px;text-align:center}
-.meer{padding:8px 14px;border-top:1px solid var(--rand-zacht);background:var(--plaat2)}
-.meer button{font:inherit;font-size:12px;color:var(--blauw);background:none;border:0;cursor:pointer;padding:0}
-.meer button:hover{text-decoration:underline}
-.balk{height:5px;background:var(--rand-zacht);border-radius:99px;overflow:hidden;min-width:70px;display:flex}
-.balk i{display:block;height:100%}
-.balk i.g{background:var(--groen)}.balk i.r{background:var(--rood)}.balk i.o{background:var(--inkt-stil)}
 footer{max-width:1280px;margin:0 auto;padding:0 20px 40px;font-size:11.5px;color:var(--inkt-stil);line-height:1.7}
 footer code{font-family:"IBM Plex Mono",monospace;background:var(--plaat2);padding:1px 5px;border-radius:3px}
+footer a{color:var(--blauw)}
 .fout{margin:20px;padding:14px;border:1px solid var(--rood);background:var(--rood-vlak);color:var(--rood);border-radius:6px}
 .geenbron{padding:14px;color:var(--amber);background:var(--amber-vlak);font-size:12.5px;line-height:1.5}
 </style>
@@ -187,6 +159,9 @@ footer code{font-family:"IBM Plex Mono",monospace;background:var(--plaat2);paddi
 <script>
 const BRON = "../regiekamer.json";
 const VERVERS_MS = 60000;
+// Richard, 2026-09-09: "enkele 'gerede' taken zien, maximaal 2/3 per update."
+// Harde bovengrens op wat er van het afgeronde werk getoond wordt.
+const MAX_KLAAR = 3;
 const el = (id) => document.getElementById(id);
 // String() en Number() roepen toString/valueOf van de bronwaarde aan. JSON.parse
 // kan {"toString":null} opleveren — dan gooit die conversie een TypeError, en één
@@ -213,8 +188,6 @@ const cijfer = (v) => typeof v === "number" ? v
   : (typeof v === "string" && v.trim() !== "" && Number.isFinite(Number(v))) ? Number(v) : null;
 const getal = (v) => { const n = cijfer(v); return n !== null && Number.isFinite(n) ? n : 0; };
 const isGetal = (v) => { const n = cijfer(v); return n !== null && Number.isFinite(n); };
-// breedte van een balk: altijd binnen 0-100, nooit een attribuutbreuk
-const pct = (v) => Math.max(0, Math.min(100, getal(v))).toFixed(1);
 // alles wat als lijst uit de JSON komt: geen null-gaten, geen losse waarden
 const objecten = (v) => Array.isArray(v) ? v.filter(x => x && typeof x === "object") : [];
 
@@ -249,6 +222,44 @@ function klok(iso){
   if(Number.isNaN(+d)) return "—";
   return String(d.getHours()).padStart(2,"0") + ":" + String(d.getMinutes()).padStart(2,"0");
 }
+
+// Richard, 2026-09-09: "Grote problemen is veel te uitgebreid. Houd het simpel en
+// gebruik teksten die ik kan begrijpen." De bron levert probleemteksten van 1700+
+// tekens. Hier wordt daar één leesbare regel van: de eerste zin, en anders een
+// afgekapte regel met een zichtbare … erachter. Die … is er met opzet — er wordt
+// nooit iets ingekort zonder dat de lezer ziet dát er meer was.
+// Deze aanhef staat letterlijk voor elke oplossingstekst in de bron en zegt de lezer
+// niets nieuws — hij herhaalt zich elf keer onder elkaar. De informatie die erin zit
+// ("jij hoeft niets te doen") staat al in de opgepakt-pil ernaast.
+const RUIS = /^\s*(geen Richard-escalatie|geen escalatie|Richard-escalatie: nee)\s*[:;-]*\s*/i;
+function kort(s, n){
+  const grens = isGetal(n) ? Number(n) : 90;
+  let t = String(prim(s)).replace(/\*\*/g, "").replace(/\s+/g, " ").replace(RUIS, "").trim();
+  if(!t) return "";
+  // Eerste hele zin, als die er is. "Astra-identificatie vs. de rest" mag daarbij niet
+  // op "vs." breken: een punt achter een woord van hoogstens drie letters is een
+  // afkorting, geen zinseinde.
+  const zin = t.match(/^[^.!?]{24,}?[.!?](?=\s|$)/);
+  if(zin && zin[0].length <= grens + 25 && !/(^|\s)\S{1,3}[.!?]$/.test(zin[0])) t = zin[0].trim();
+  if(t.length <= grens) return esc(t);
+  const knip = t.slice(0, grens);
+  const spatie = knip.lastIndexOf(" ");
+  return esc((spatie > grens * 0.6 ? knip.slice(0, spatie) : knip).trim()) + "…";
+}
+
+// Order-ids zijn machinetaal: DIRECTOR_STAP6REVIEW_951F90B8_20260909_CODEX1_V1.
+// De hexadecimale hash, de datum en de versiestaart zeggen een lezer niets; de rest
+// wel. Wat overblijft is de leesbare kern, in gewone kleine letters.
+function leesbaar(s){
+  const t = String(prim(s)).trim();
+  if(!t) return "";
+  if(!/^[A-Z0-9_]+$/.test(t)) return t;          // gewone tekst blijft gewone tekst
+  const woorden = t.split(/_+/).filter(w =>
+    w && !/^(?=.*\d)[0-9A-Fa-f]{6,}$/.test(w) && !/^\d{4,}$/.test(w) && !/^V\d+$/i.test(w)
+      && !/^\d{3,4}Z$/i.test(w));   // 1108Z is een kloktijd in een id, geen woord
+  return woorden.length ? woorden.join(" ").toLowerCase() : t.toLowerCase();
+}
+
 // één plek voor "die bron is er niet" — zonder bron toont het bord geen cijfer
 function geenBron(blok, wat){
   if(!blok || typeof blok !== "object") return `<div class="geenbron">${esc(wat)} — dit veld staat niet in <code>regiekamer.json</code>.</div>`;
@@ -257,16 +268,12 @@ function geenBron(blok, wat){
   return null;
 }
 
-// keuzes van de kijker die een ververssing moeten overleven
-let alleVastOpen = false;
-
 function render(data){
   // Een lege of kapotte JSON is een bronfout, geen renderfout: het bord moet dat
   // melden en overeind blijven, niet halverwege een blok stukvallen.
   const d = (data && typeof data === "object" && !Array.isArray(data)) ? data : {};
   const lanes    = objecten(d.accounts);
   const events   = objecten(d.ticker_events);
-  const taken    = objecten(d.taken_met_estimate);
   const beslis   = objecten(d.beslisrij?.items);
   // De generator geeft een beslisregel die hij niet kon lezen bewust letterlijk door
   // in plaats van hem weg te laten (R2). Toonde het bord alleen `items`, dan gooide de
@@ -274,8 +281,6 @@ function render(data){
   // uitsluitend onleesbare regels meldde "Niets dat op jou wacht." Reviewbevinding, ronde 5.
   const beslisOnleesbaar = objecten(d.beslisrij?.onparseerbare_regels);
   const beslisTotaal = beslis.length + beslisOnleesbaar.length;
-  const cap      = (d.capaciteit && typeof d.capaciteit.data === "object" && d.capaciteit.data) ? d.capaciteit.data : {};
-  const capLanes = objecten(cap.lanes);
   const analyse  = d.analyse;
   const route    = d.route;
   const prob     = d.problemen;
@@ -290,18 +295,6 @@ function render(data){
     ? "geen tijdstempel in de data"
     : "data van " + klok(d.gegenereerd_op) + " · " + duurTekst(oud) + " oud"
       + (oud > 20 ? "  ⚠ de generator ververst niet meer" : "");
-
-  /* ---- tellers ---- */
-  const telStatus = (s) => lanes.filter(l => l.status === s).length;
-  const tGeblok = telStatus("GEBLOKKEERD"), tStale = telStatus("STALE"), tBezig = telStatus("BEZIG");
-  el("tellers").innerHTML = [
-    beslisTotaal ? `<span class="teller geel">jij beslist <b>${beslisTotaal}</b></span>` : "",
-    `<span class="teller blauw">bezig <b>${tBezig}</b>/${lanes.length}</span>`,
-    tGeblok ? `<span class="teller rood">kanaal vast <b>${tGeblok}</b></span>` : "",
-    tStale  ? `<span class="teller amber">stil <b>${tStale}</b></span>` : "",
-    getal(prob?.open_count) ? `<span class="teller rood">problemen <b>${getal(prob.open_count)}</b></span>` : "",
-    getal(prob?.opgelost_count) ? `<span class="teller">opgelost <b>${getal(prob.opgelost_count)}</b></span>` : ""
-  ].filter(Boolean).join("");
 
   const blokken = [];
 
@@ -348,234 +341,170 @@ function render(data){
       </tbody></table>` : `<div class="leeg">Niets dat op jou wacht.</div>`)}
   </section>`);
 
-  /* ---- 3. DE ROUTE: tot autocoding + daarna ---- */
-  {
-    const ontbreekt = geenBron(route, "Geen route");
-    const rol = Array.isArray(route?.nu_op_de_rol) ? route.nu_op_de_rol : [];
-    const stappen = objecten(route?.stappen);
-    const na = route?.na_autocoding;
-    const sporen = objecten(na?.sporen);
-    const naDagen = isGetal(na?.leeftijd_seconden) ? Math.round(getal(na.leeftijd_seconden)/86400) : null;
+  /* ---- 3. DE CENTRALE TAKENLIJST ---- */
+  // Alles wat een taak is staat hier, in één lijst, in de volgorde waarin het aan de
+  // beurt komt: nu · tot autocoding · daarna · net klaar. Wat vastzit staat er niet
+  // apart onder maar ertússen, als een rij met de stand VAST — anders moet je twee
+  // lijsten naast elkaar leggen om te zien wat er stilstaat.
+  const rijen = [];
+  const KLAAR_MARKERING = /^\s*(GEDAAN|KLAAR|OPGELOST|AFGEROND|OPGEHELDERD|GESLOTEN)\b[:\s-]*/i;
 
-    blokken.push(`<div class="rij2">
-    <section>
-      <div class="kopje"><span class="n">${rol.length}</span><h2>Tot autocoding werkt</h2>
-        <span class="bron">director-hartslag tik ${schoon(route?.tik ?? "?")} · ${secTekst(route?.leeftijd_seconden)} oud</span></div>
-      ${ontbreekt || `
-      ${route.bezig && route.bezig !== "NO_DATA" ? `<div class="bezigregel">${schoon(route.bezig)}</div>` : ""}
-      <div class="nurol">
-        ${route.huidige_stap && route.huidige_stap !== "NO_DATA"
-          ? `<div class="stap">nu aan de beurt: <b>${schoon(route.huidige_stap)}</b></div>` : ""}
-        ${rol.length ? `<ol>${rol.map(t => `<li>${schoon(t)}</li>`).join("")}</ol>`
-                     : `<div class="leeg">Geen taken op de rol.</div>`}
-      </div>
-      ${stappen.length ? `<table>
-        <thead><tr><th>Stap</th><th>Status</th><th>Voortgang</th><th class="mono">af / totaal</th><th class="mono">laatst</th></tr></thead>
-        <tbody>${stappen.map(s => {
-          const totaal = getal(s.taken_totaal), af = getal(s.met_receipt), vast = getal(s.geblokkeerd);
-          const noemer = totaal || 1;
-          const kPct = (af - vast) / noemer * 100;
-          const bPct = vast / noemer * 100;
-          return `<tr class="rij-${klasse(s.status)}">
-            <td class="mono strak">${schoon(s.stap)}</td>
-            <td><span class="pil ${klasse(s.status)}">${schoon(s.status)}</span></td>
-            <td><div class="voortgang" title="${esc(af)} van ${esc(totaal)} met receipt, ${esc(vast)} geblokkeerd">
-              <i class="k" style="width:${pct(kPct)}%"></i><i class="b" style="width:${pct(bPct)}%"></i></div></td>
-            <td class="mono strak">${esc(af)} / ${esc(totaal)}${vast ? ` <span style="color:var(--rood)">${esc(vast)} vast</span>` : ""}</td>
-            <td class="mono strak" style="color:var(--inkt-stil)">${klok(s.laatste_activiteit)}</td>
-          </tr>`;
-        }).join("")}</tbody></table>` : ""}`}
-    </section>
-
-    <section>
-      <div class="kopje"><span class="n">${sporen.length}</span><h2>Daarna</h2>
-        <span class="bron">bron: ${schoon(na?.bron_pad || "—")}</span></div>
-      ${geenBron(na, "Geen overzicht van werk na autocoding") || `
-      ${na.verouderd ? `<div class="verouderd">Dit overzicht is <b>${naDagen === null ? "onbekend veel" : esc(naDagen)} dagen</b> oud en dus geschiedenis,
-        geen stand. Zolang er geen hartslag voor werk ná autocoding bestaat, is dit het enige wat er is —
-        bijwerken van <code>${schoon(na.bron_pad)}</code> is de enige manier om dit blok te vertrouwen.</div>` : ""}
-      <div class="sporen">${sporen.map(s => `
-        <span class="spoor"><i>${esc(s.nummer)}</i>${schoon(s.spoor)}</span>`).join("")}
-      </div>`}
-    </section></div>`);
+  // 3a. NU — het lopende en het openstaande werk van de supervisor
+  for(const t of objecten(werk?.bezig).concat(objecten(werk?.open))){
+    const st = klasse(t.status) === "bezig" ? "bezig" : "open";
+    rijen.push({fase:"NU", stand:st === "bezig" ? "BEZIG" : "OPEN", klas:st,
+      taak:kort(leesbaar(t.taak), 62), actie:kort(t.bewijs, 78),
+      loopt:secTekst(t.loopt_seconden),
+      verwacht:isGetal(t.verwacht_min) ? getal(t.verwacht_min) + " min" : "—",
+      loopMin:isGetal(t.loopt_seconden) ? getal(t.loopt_seconden)/60 : null});
   }
 
-  /* ---- 4. GROTE PROBLEMEN + OPLOSSING ---- */
-  {
-    const ontbreekt = geenBron(prob, "Geen problemenlijst");
-    const open = objecten(prob?.open);
-    const opgelost = objecten(prob?.opgelost_recent);
-    blokken.push(`
-    <section class="${open.some(p => p.ernst === "HOOG") ? "urgent" : ""}">
-      <div class="kopje"><span class="n">${open.length}</span><h2>Grote problemen — en wat eraan gebeurt</h2>
-        <span class="bron">supervisor tik ${schoon(prob?.tik ?? "?")} · ${secTekst(prob?.leeftijd_seconden)} oud</span></div>
-      ${ontbreekt || (open.length ? `<table>
-        <thead><tr><th>Ernst</th><th>Opgepakt</th><th>Probleem — en de oplossing die eraan hangt</th></tr></thead>
-        <tbody>${open.map(p => `
-          <tr><td><span class="pil ${klasse(p.ernst)}">${schoon(p.ernst)}</span></td>
-          <td><span class="pil ${klasse(p.opgepakt)}">${schoon(p.opgepakt).replace("_"," ")}</span></td>
-          <td><div class="probleem">${schoon(p.probleem)}</div>
-              <div class="oplossing">${schoon(p.oplossing)}</div></td></tr>`).join("")}
-        </tbody></table>` : `<div class="leeg">Geen open problemen.</div>`)}
-      ${opgelost.length ? `<div class="opgelost">
-        <div class="kopje"><span class="n">${opgelost.length}</span><h2>Net opgelost</h2>
-          <span class="bron">laatste ${opgelost.length} van ${getal(prob.opgelost_count)} afgehandeld</span></div>
-        <table><tbody>${opgelost.map(p => `
-          <tr class="rij-klaar"><td><span class="pil klaar">${schoon(p.markering)}</span></td>
-          <td><div class="probleem">${schoon(p.probleem)}</div></td></tr>`).join("")}
-        </tbody></table></div>` : ""}
-    </section>`);
+  // 3b. NU — wat vastzit. Richard: "Werk dat vast zit: zet dat in de lijst met taken."
+  // De ernst zit in de stand-kolom als tweede pil; de oplossing is de actiekolom,
+  // want dat ís wat er moet gebeuren.
+  for(const p of objecten(prob?.open)){
+    rijen.push({fase:"NU", stand:"VAST", klas:"vast", ernst:schoon(p.ernst),
+      opgepakt:schoon(p.opgepakt).replace(/_/g," "),
+      taak:kort(leesbaar(p.id) || p.probleem, 62), actie:kort(p.oplossing, 78),
+      loopt:"—", verwacht:"—"});
   }
 
-  /* ---- 5. KANALEN NU ---- */
-  const volgorde = {GEBLOKKEERD:0, STALE:1, BEZIG:2, WACHT:3, VRIJ:4};
+  // 3c. TOT AUTOCODING — de zes stappen, mechanisch geteld uit de outbox
+  for(const s of objecten(route?.stappen)){
+    const totaal = getal(s.taken_totaal), af = getal(s.met_receipt), vast = getal(s.geblokkeerd);
+    const st = klasse(s.status);
+    rijen.push({fase:"TOT AUTOCODING",
+      stand:vast ? "VAST" : (schoon(s.status) || "OPEN"), klas:vast ? "vast" : (st || "open"),
+      taak:kort(leesbaar(s.stap), 62),
+      actie:`${esc(af)} van ${esc(totaal)} af` + (vast ? ` · <b>${esc(vast)} zit vast</b>` : "") +
+            (totaal - af - vast > 0 ? ` · ${esc(totaal - af - vast)} te gaan` : ""),
+      loopt:"laatst " + klok(s.laatste_activiteit), verwacht:"—"});
+  }
+
+  // 3d. DAARNA — de sporen ná autocoding
+  const na = route?.na_autocoding;
+  for(const s of objecten(na?.sporen)){
+    rijen.push({fase:"DAARNA", stand:"OPEN", klas:"open",
+      taak:kort(s.spoor, 62), actie:"", loopt:"—", verwacht:"—"});
+  }
+
+  // 3e. NET KLAAR — hoogstens MAX_KLAAR, want meer wil Richard hier niet zien.
+  const klaarBron = objecten(werk?.klaar_recent)
+    .map(t => ({taak:t.taak, actie:t.bewijs}))
+    .concat(objecten(prob?.opgelost_recent).map(p => ({taak:p.id, actie:p.probleem})))
+    .concat((Array.isArray(route?.nu_op_de_rol) ? route.nu_op_de_rol : [])
+      .filter(r => KLAAR_MARKERING.test(String(prim(r))))
+      .map(r => ({taak:String(prim(r)).replace(KLAAR_MARKERING, ""), actie:""})));
+  const klaarTotaal = klaarBron.length;
+  for(const k of klaarBron.slice(0, MAX_KLAAR)){
+    rijen.push({fase:"NET KLAAR", stand:"KLAAR", klas:"klaar",
+      taak:kort(leesbaar(k.taak), 62), actie:kort(k.actie, 78), loopt:"—", verwacht:"—"});
+  }
+
+  const nuRijen  = rijen.filter(r => r.fase === "NU");
+  const nVast    = rijen.filter(r => r.stand === "VAST").length;
+  const nOpen    = rijen.filter(r => r.stand === "OPEN" || r.stand === "BEZIG").length;
+  const FASES = [
+    ["NU",             "waar nu aan gewerkt wordt, en wat daarbij vastzit"],
+    ["TOT AUTOCODING", "de stappen die af moeten voordat autocoding werkt"],
+    ["DAARNA",         "het werk dat daarna aan de beurt is"],
+    ["NET KLAAR",      `hoogstens ${MAX_KLAAR}${klaarTotaal > MAX_KLAAR ? ` van ${klaarTotaal}` : ""} — de rest staat op de stack-ticker`]
+  ];
+
+  blokken.push(`
+  <section class="${nVast ? "urgent" : ""}">
+    <div class="kopje"><span class="n">${rijen.length}</span><h2>Takenlijst</h2>
+      <span class="bron">director-hartslag tik ${schoon(route?.tik ?? "?")} · ${secTekst(route?.leeftijd_seconden)} oud
+        · supervisor tik ${schoon(prob?.tik ?? "?")} · ${secTekst(prob?.leeftijd_seconden)} oud</span></div>
+    ${rijen.length ? `<table>
+      <thead><tr><th>Taak</th><th>Stand</th><th>Waar het nu staat</th>
+        <th class="mono">loopt al</th><th class="mono">verwacht</th></tr></thead>
+      <tbody>${FASES.map(([fase, uitleg]) => {
+        const inFase = rijen.filter(r => r.fase === fase);
+        if(!inFase.length) return "";
+        return `<tr class="fase"><td colspan="5"><b>${esc(fase)}</b><span class="tel">${esc(inFase.length)} — ${esc(uitleg)}</span></td></tr>`
+          + inFase.map(r => `
+          <tr class="rij-${esc(r.klas)}">
+            <td class="taak">${r.taak}</td>
+            <td class="strak"><span class="pil ${esc(r.klas)}">${esc(r.stand)}</span>${
+              r.ernst ? ` <span class="pil ${klasse(r.ernst)}">${r.ernst}</span>` : ""}${
+              r.opgepakt ? ` <span class="pil open">${r.opgepakt}</span>` : ""}</td>
+            <td class="actie">${r.actie || "<span style='color:var(--inkt-stil)'>—</span>"}</td>
+            <td class="mono strak duur${r.loopMin === null || r.loopMin === undefined ? "" :
+              (r.loopMin > 90 ? " zeerlang" : r.loopMin > 45 ? " lang" : "")}">${esc(r.loopt)}</td>
+            <td class="mono strak" style="color:var(--inkt-stil)">${esc(r.verwacht)}</td>
+          </tr>`).join("");
+      }).join("")}</tbody></table>
+      ${na && na.verouderd ? `<div class="verouderd">De regels onder <b>DAARNA</b> komen uit
+        <code>${schoon(na.bron_pad)}</code>, een handgeschreven document van
+        <b>${isGetal(na.leeftijd_seconden) ? esc(Math.round(getal(na.leeftijd_seconden)/86400)) : "onbekend veel"} dagen</b> oud.
+        Dat is geschiedenis, geen stand — bijwerken van dat bestand is de enige manier om die regels te vertrouwen.</div>` : ""}`
+      : `<div class="leeg">Geen taken in de bron.</div>`}
+  </section>`);
+
+  /* ---- 4. KANALEN — bezet of niet, en waarmee ---- */
+  // Richard, 2026-09-09: "Ik wil per kanaal zien of deze bezet is en waarmee.
+  // Geslaagd, geblokkeerd weg." De percentagebalken uit `capaciteit` staan hier
+  // daarom niet meer; wat overblijft is de vraag die hij stelt.
+  const volgorde = {BEZIG:0, GEBLOKKEERD:1, STALE:2, WACHT:3, VRIJ:4};
   // volgorde[a.status] converteert de bronwaarde naar een sleutel, en dat is dezelfde
   // ToPrimitive-val als String(): een status-object met kapotte toString sloopte de
-  // sortering en daarmee de hele render. Sleutel dus via esc/prim, niet rauw.
+  // sortering en daarmee de hele render. Sleutel dus via prim, niet rauw.
   // Reviewbevinding, ronde 4 — de proef zag het niet omdat één account nooit sorteert.
   const rang = (a) => volgorde[String(prim(a?.status))] ?? 9;
   const gesorteerd = lanes.slice().sort((a,b) =>
     rang(a) - rang(b) || getal(b.sinds_minuten) - getal(a.sinds_minuten));
+  const bezet = lanes.filter(l => String(prim(l.status)) === "BEZIG").length;
+  // "bezet" is één vraag met één antwoord: draait er werk op dit kanaal, ja of nee.
+  // Alles wat geen levend proces is — GEBLOKKEERD, STALE, WACHT, VRIJ — is niet bezet;
+  // de reden staat ernaast, zodat "nee" nooit hetzelfde leest als "vrij".
+  const woord = {BEZIG:"", GEBLOKKEERD:"zit vast", STALE:"stil, geen teken van leven",
+                 WACHT:"order uitgezet, nog geen antwoord", VRIJ:"vrij"};
   blokken.push(`
   <section>
-    <div class="kopje"><span class="n">${lanes.length}</span><h2>Kanalen nu</h2>
+    <div class="kopje"><span class="n">${bezet}/${lanes.length}</span><h2>Kanalen — bezet of vrij</h2>
       <span class="bron">live gemeten uit draaiende processen + outbox</span></div>
-    <table>
-      <thead><tr><th>Kanaal</th><th>Status</th><th>Duur</th><th>Order</th></tr></thead>
+    ${lanes.length ? `<table>
+      <thead><tr><th>Kanaal</th><th>Bezet?</th><th>Waarmee</th><th class="mono">al</th></tr></thead>
       <tbody>${gesorteerd.map(l => {
-        const st = klasse(l.status);
+        const st = String(prim(l.status));
+        const isBezet = st === "BEZIG";
         const m = l.sinds_minuten;
         const dk = !isGetal(m) ? "" : (getal(m) > 90 ? " zeerlang" : getal(m) > 45 ? " lang" : "");
-        return `<tr class="rij-${st}">
+        const reden = Object.prototype.hasOwnProperty.call(woord, st) ? woord[st] : schoon(l.status).toLowerCase();
+        return `<tr class="rij-${klasse(l.status)}">
           <td class="mono strak">${schoon(l.actor)}</td>
-          <td><span class="pil ${st}">${schoon(l.status)}</span></td>
+          <td class="strak"><span class="pil ${isBezet ? "ja" : "nee"}">${isBezet ? "JA" : "NEE"}</span>${
+            reden ? ` <span class="pil ${klasse(l.status)}">${esc(reden)}</span>` : ""}</td>
+          <td>${l.taak_id ? esc(leesbaar(l.taak_id)) : "<span style='color:var(--inkt-stil)'>niets</span>"}</td>
           <td class="mono strak duur${dk}">${duurTekst(m)}</td>
-          <td class="taakid mono">${l.taak_id ? schoon(l.taak_id) : "<span style='color:var(--inkt-stil)'>—</span>"}</td>
         </tr>`;
       }).join("")}</tbody>
-    </table>
+    </table>` : `<div class="leeg">Geen kanalen gemeten.</div>`}
   </section>`);
 
-  /* ---- 6. WAT ER ECHT GEBEURDE + WERK DAT VASTZIT ---- */
-  // Uit de receipts, niet uit de ticker: de ticker is één bron (SUPERVISOR) die
-  // meldt dát de issue-verzameling wijzigde. Wat een kanaal opleverde staat in
-  // het receipt — met verdict, of met de reden waarom het nooit is uitgevoerd.
-  const geb = d.gebeurtenissen;
-  const gebItems = objecten(geb?.items);
-  const nietUit = gebItems.filter(i => i.uitkomst === "NIET_UITGEVOERD").length;
-  const vast = taken.filter(t => t.status === "GEBLOKKEERD");
-
-  blokken.push(`<div class="rij2">
-  <section class="${nietUit > gebItems.length/2 ? "urgent" : ""}">
-    <div class="kopje"><span class="n">${gebItems.length}</span><h2>Wat er echt gebeurde</h2>
-      <span class="bron">jongste receipt per taak · ${isGetal(geb?.receipts_totaal) ? getal(geb.receipts_totaal) : "?"} receipts in outbox</span></div>
-    ${geenBron(geb, "Geen gebeurtenissen") || (gebItems.length ? `
-      ${nietUit ? `<div class="bezigregel" style="background:var(--rood-vlak);color:var(--rood)">
-        <b>${nietUit} van deze ${gebItems.length} orders is nooit uitgevoerd.</b>
-        Er kwam geen oordeel omdat er geen werk draaide — de reden staat per regel.</div>` : ""}
-      <table>
-      <thead><tr><th class="mono">tijd</th><th>Kanaal</th><th>Uitkomst</th><th>Taak</th></tr></thead>
-      <tbody>${gebItems.map(i => {
-        const u = klasse(i.uitkomst);
-        const rij = (u === "slecht" || u === "niet_uitgevoerd") ? "geblokkeerd"
-                  : u === "goed" ? "klaar" : u === "onleesbaar" ? "stale" : "";
-        return `<tr class="rij-${rij}">
-          <td class="mono strak">${klok(i.tijd)}</td>
-          <td class="mono strak">${schoon(i.actor)}</td>
-          <td><span class="pil ${u}">${schoon(i.uitkomst).replace(/_/g," ")}</span>
-              <div class="taakid mono">${schoon(i.verdict || i.reden || "")}</div></td>
-          <td>${i.stap ? `<span class="pil open">${schoon(i.stap)}</span> ` : ""}
-              <span class="taakid mono">${schoon(i.taak)}</span></td>
-        </tr>`;
-      }).join("")}</tbody></table>` : `<div class="leeg">Geen receipts.</div>`)}
-  </section>
-
-  <section>
-    <div class="kopje"><span class="n">${vast.length}</span><h2>Werk dat vastzit</h2>
-      <span class="bron">status GEBLOKKEERD uit de receipts</span></div>
-    ${vast.length ? `<table>
-      <tbody id="vast-body">${vast.slice(0,10).map(t => `
-        <tr><td>${schoon(t.taak) || "<i style='color:var(--inkt-stil)'>zonder omschrijving</i>"}
-        <div class="taakid mono">${schoon(t.bron_bestand)}</div></td></tr>`).join("")}
-      </tbody></table>
-      ${vast.length > 10 ? `<div class="meer"><button id="meer-vast">toon alle ${vast.length}</button></div>` : ""}`
-      : `<div class="leeg">Niets geblokkeerd.</div>`}
-  </section></div>`);
-
-  /* ---- 7. WAT DE SUPERVISOR ONDERHANDEN HEEFT ---- */
-  {
-    const bezig = objecten(werk?.bezig);
-    const open = objecten(werk?.open);
-    const klaar = objecten(werk?.klaar_recent);
-    const rijen = bezig.concat(open).concat(klaar);
-    blokken.push(`
-    <section>
-      <div class="kopje"><span class="n">${bezig.length + open.length}</span><h2>Onderhanden bij de supervisor</h2>
-        <span class="bron">${klaar.length ? `plus de laatste ${klaar.length} afgeronde` : "bron: supervisor-hartslag"}</span></div>
-      ${geenBron(werk, "Geen takenlijst") || (rijen.length ? `<table>
-        <thead><tr><th>Status</th><th>Taak</th><th class="mono">loopt</th><th class="mono">verwacht</th></tr></thead>
-        <tbody>${rijen.map(t => `
-          <tr class="rij-${klasse(t.status)}">
-            <td><span class="pil ${klasse(t.status)}">${schoon(t.status)}</span></td>
-            <td>${schoon(t.taak)}<div class="taakid">${schoon(t.bewijs)}</div></td>
-            <td class="mono strak">${secTekst(t.loopt_seconden)}</td>
-            <td class="mono strak" style="color:var(--inkt-stil)">${isGetal(t.verwacht_min) ? getal(t.verwacht_min) + " min" : "—"}</td>
-          </tr>`).join("")}
-        </tbody></table>` : `<div class="leeg">Geen taken.</div>`)}
-    </section>`);
-  }
-
-  /* ---- 8. PRESTATIE PER KANAAL ---- */
-  const actief = capLanes.filter(l => getal(l.orders) > 0)
-    .sort((a,b) => getal(b.orders) - getal(a.orders)).slice(0,10);
-  blokken.push(`
-  <section>
-    <div class="kopje"><span class="n">${actief.length}</span><h2>Prestatie per kanaal</h2>
-      <span class="bron">${schoon(cap.meta?.receipt_bestanden_totaal ?? "?")} receipts · ${schoon(cap.meta?.receipt_onparseerbaar ?? "?")} onleesbaar (niet meegeteld)</span></div>
-    ${actief.length ? `<table>
-      <thead><tr><th>Kanaal</th><th class="mono">orders</th><th class="mono">p50 duur</th>
-        <th>geslaagd / geblokkeerd / overig</th><th class="mono">laatst actief</th></tr></thead>
-      <tbody>${actief.map(l => {
-        const g = getal(l.geslaagd_pct), r = getal(l.geblokkeerd_pct), o = getal(l.overig_pct);
-        const p50 = getal(l.p50_duration_ms) ? duurTekst(getal(l.p50_duration_ms)/60000) : "geen duur gemeten";
-        return `<tr>
-          <td class="mono strak">${schoon(l.actor)}</td>
-          <td class="mono">${getal(l.orders)}</td>
-          <td class="mono strak" style="color:var(--inkt-zacht)">${esc(p50)}</td>
-          <td><div class="balk" title="${g.toFixed(0)}% geslaagd · ${r.toFixed(0)}% geblokkeerd · ${o.toFixed(0)}% overig">
-            <i class="g" style="width:${pct(g)}%"></i><i class="r" style="width:${pct(r)}%"></i><i class="o" style="width:${pct(o)}%"></i></div></td>
-          <td class="mono strak" style="color:var(--inkt-stil)">${klok(l.laatste_activiteit)}</td>
-        </tr>`;
-      }).join("")}</tbody></table>` : `<div class="leeg">Geen ordergeschiedenis.</div>`}
-  </section>`);
+  /* ---- tellers: dezelfde vier getallen die de lijst hierboven laat zien ---- */
+  el("tellers").innerHTML = [
+    beslisTotaal ? `<span class="teller geel">jij beslist <b>${beslisTotaal}</b></span>` : "",
+    `<span class="teller blauw">taken open <b>${nOpen}</b></span>`,
+    nVast ? `<span class="teller rood">zit vast <b>${nVast}</b></span>` : "",
+    `<span class="teller">kanalen bezet <b>${bezet}</b>/${lanes.length}</span>`
+  ].filter(Boolean).join("");
 
   el("main").innerHTML = blokken.join("");
 
-  // "toon alle" voor vastgelopen werk. De keuze overleeft de ververssing van 60 s:
-  // anders klapt de lijst onder je handen dicht terwijl je hem aan het lezen bent.
-  function toonAlleVast(){
-    const body = el("vast-body");
-    if(!body) return;
-    body.innerHTML = vast.map(t => `
-      <tr><td>${schoon(t.taak) || "<i style='color:var(--inkt-stil)'>zonder omschrijving</i>"}
-      <div class="taakid mono">${schoon(t.bron_bestand)}</div></td></tr>`).join("");
-    el("meer-vast")?.parentElement?.remove();
-  }
-  if(alleVastOpen) toonAlleVast();
-  el("meer-vast")?.addEventListener("click", () => { alleVastOpen = true; toonAlleVast(); });
-
   /* ---- voetnoot: wat dit bord bewust NIET toont ---- */
-  const zonder = getal(d.taken_meta?.taken_zonder_schatting), totaal = getal(d.taken_meta?.taken_totaal);
-  const levenstekens = events.filter(e => e.betekenisvol === false).length;
   el("voet").innerHTML = `
     Dit bord leest <code>regiekamer.json</code> (${(JSON.stringify(d).length/1024/1024).toFixed(1)} MB,
     gebouwd door <code>bin/regiekamer-generator</code> via <code>bin/regiekamer-runner</code>)
     en toont niets dat daar niet in staat. Ververst zichzelf elke ${VERVERS_MS/1000} s.<br>
-    Bewust weggelaten: de stack-ticker (${events.length} regels, waarvan ${levenstekens} levenstekens
-    die melden dat er niets veranderde) — die komt volledig van de supervisor en zegt alleen dát de
-    lijst openstaande issues wijzigde; die issues staan hierboven al bij de problemen
-    ${totaal ? ` · tijdschattingen op de takenlijst — ${zonder} van ${totaal} taken (${Math.round(zonder/totaal*100)}%) hebben er geen, dus een tijdkolom zou grotendeels verzonnen zijn` : ""}
-    · opgeloste problemen ouder dan de laatste drie.`;
+    Namen en omschrijvingen zijn ingekort tot één leesbare regel; een <b>…</b> betekent dat er meer stond.<br>
+    Bewust weggelaten — dit is een takenlijst, geen logboek:
+    wat er per order gebeurde (${events.length} tickerregels en ${
+      isGetal(d.gebeurtenissen?.receipts_totaal) ? getal(d.gebeurtenissen.receipts_totaal) : "?"} receipts)
+    staat op de <a href="../stack-ticker/">stack-ticker</a> ·
+    slaag- en blokkadepercentages per kanaal ·
+    opgeloste taken ouder dan de laatste ${MAX_KLAAR}.`;
 }
 
 async function laad(){
