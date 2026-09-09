@@ -6,10 +6,6 @@
 <meta name="robots" content="noindex">
 <meta http-equiv="refresh" content="300">
 <title>peilbord</title>
-<style>
-*{box-sizing:border-box}
-body{margin:0;font-family:system-ui,-apple-system,sans-serif}
-</style>
 </head>
 <body>
 <title>Autocoding Peilbord</title>
@@ -101,8 +97,8 @@ body.verberg-klaar tr.klaar{display:none}
   <div class="kopbalk">
     <div class="lamp rood" title="ROOD"></div>
     <h1>Autocoding Peilbord</h1>
-    <div class="tik" id="tik">tik 08:31 · gemeten 08:19–08:31</div>
-    <div class="regel" id="kopregel">Controller dispatchte codex1 op nieuwe order DAA3490 (08:28:58, nr 222) · 218/219/BOOTSTRAPCLAIM correct REFUSED_LANE_CLAIM_HELD (lanes bezet, geen bug) · 208 evidence-gate FAILED, onbevestigd (nr 221) · streak 1→8, zelfde issues aanhoudend · codex auth blijft weg. <b>Richard</b>: 115.</div>
+    <div class="tik" id="tik">tik 08:41 · gemeten 08:31–08:41</div>
+    <div class="regel" id="kopregel">222 klaar: EFFECT-BEWEZEN GO_WITH_FINDINGS · zelfcorrectie: claude4 al sinds 07:37 GEBLOKKEERD op model-mismatch, vorige tik gemist (nr 223) · 3 nieuwe dispatches (224/225/226) · streak schommelt 8→3→7 · codex auth blijft weg. <b>Richard</b>: 115, 223.</div>
     <div class="eind">akkoord <b>09-12/13 → ~09-11</b> · parser weg <b>09-21 → ~09-20</b></div>
     <div class="knoppen">
       <span class="tik">afgerond vandaag: 129 rijen (in rapport)</span>
@@ -113,18 +109,18 @@ body.verberg-klaar tr.klaar{display:none}
 <main>
 
 <section id="b1b">
-  <h2><span class="n">1b</span> Kanaalbezetting (7 kanalen) <span class="sub">live gemeten 08:19–08:31 uit ps · elke tik opnieuw</span></h2>
+  <h2><span class="n">1b</span> Kanaalbezetting (7 kanalen) <span class="sub">live gemeten 08:31–08:41 uit ps · elke tik opnieuw</span></h2>
   <div class="tabel"><table class="actie">
     <thead><tr><th>Kanaal</th><th>Status</th><th>Order</th><th>Sinds</th><th>Duur</th><th>Nr</th><th>Bewijs</th></tr></thead>
     <tbody>
-      <tr><td class="cmd">claude1</td><td>🔵 203</td><td>GEDEELDE_CHECKOUT_REFVERPLAATSING V1</td><td>07:07:13</td><td class="rood">~84 min</td><td>203</td><td>watchdogdoel, ongewijzigd vast</td></tr>
-      <tr><td class="cmd">claude2</td><td>🔵 215</td><td>MODELDOORGIFTE_POORT V1</td><td>07:42:29</td><td>~49 min</td><td>215</td><td>nog geen verdict; herdispatchpoging op eigen lane 06:27:53 correct REFUSED (lane bezet)</td></tr>
-      <tr><td class="cmd">claude3</td><td>🔵 207</td><td>WRAPPER_ZELFKOPIE_UITVOERING V1</td><td>07:35:06</td><td>~56 min</td><td>207</td><td>nog geen verdict; 219 QUEUED, dispatchpoging 06:28:01 REFUSED (lane bezet)</td></tr>
-      <tr><td class="cmd">claude4</td><td>🔵 212</td><td>REVIEWLANE_MEETVERMOGEN_POORT V1 (herdispatcht opus)</td><td>07:38:05</td><td>~53 min</td><td>212</td><td>nog geen verdict; 218 QUEUED, dispatchpoging 06:27:53 REFUSED (lane bezet)</td></tr>
-      <tr><td class="cmd">codex1</td><td>🔵 222 (auth mist)</td><td>STAP3A_REVIEW_DAA3490 V1 (nieuw)</td><td>08:28:58</td><td>~2 min</td><td>222</td><td>controller dispatchte dit zelf — eerste succesvolle dispatch na 208; nog geen verdict</td></tr>
-      <tr><td class="cmd">codex2</td><td>⬜ vrij</td><td>geen order sinds 220</td><td>tot 08:17</td><td>—</td><td>220</td><td>NO_GO om 08:17 — GEBLOKKEERD op los signaalorakel (cl11s), nog geen herstelorder</td></tr>
-      <tr><td class="cmd">gemini1</td><td>⬜ vrij</td><td>geen order sinds 210</td><td>tot 07:2x</td><td>—</td><td>210</td><td>V3 GO_WITH_FINDINGS (ongewijzigd)</td></tr>
-      <tr><td class="cmd">totaal</td><td>5/7 bezet</td><td>2 vrij — codex1 terug in actie op 222</td><td colspan="4">streak 1→8 (zelfde issues DISPATCH_SUBPROCESS_FAILED/RECEIPT_NONTERMINAL aanhoudend); controller_age 472s; PR114 MERGED 668712a8 (ongewijzigd); worktrees 516 ongewijzigd</td></tr>
+      <tr><td class="cmd">claude1</td><td>🔵 203</td><td>GEDEELDE_CHECKOUT_REFVERPLAATSING V1</td><td>07:07:13</td><td class="rood">~94 min</td><td>203</td><td>watchdogdoel, ongewijzigd vast</td></tr>
+      <tr><td class="cmd">claude2</td><td>🔵 224 (nieuw)</td><td>LANEMONITOR_VALSE_IDLE V1</td><td>08:39:46</td><td>~1 min</td><td>224</td><td>215 klaar 08:32 GEREED_VOOR_REVIEW, meteen doorgeschakeld naar 224</td></tr>
+      <tr><td class="cmd">claude3</td><td>🔵 207</td><td>WRAPPER_ZELFKOPIE_UITVOERING V1</td><td>07:35:06</td><td>~66 min</td><td>207</td><td>nog geen verdict; ongewijzigd</td></tr>
+      <tr><td class="cmd">claude4</td><td>🔴 GEBLOKKEERD</td><td>REVIEWLANE_MEETVERMOGEN_POORT V1</td><td>07:37:13</td><td>~64 min stil</td><td>223</td><td>modelmismatch (opus vereist); wacht op Richard sinds 07:37, vorige tik gemist</td></tr>
+      <tr><td class="cmd">codex1</td><td>⬜ vrij</td><td>geen order sinds 222</td><td>tot 08:33</td><td>—</td><td>222</td><td>EFFECT-BEWEZEN GO_WITH_FINDINGS om 08:33 — eerste geslaagde dispatch bevestigd</td></tr>
+      <tr><td class="cmd">codex2</td><td>🔵 225 (nieuw)</td><td>BEWIJSPOORT_REVIEW_F6D4967 V1</td><td>08:39:34</td><td>~2 min</td><td>225</td><td>eindelijk herstelorder na 220 NO_GO; nog geen verdict</td></tr>
+      <tr><td class="cmd">gemini1</td><td>🔵 226 (nieuw)</td><td>STAP1_REVIEW_F1842C8 V1</td><td>08:40:28</td><td>~1 min</td><td>226</td><td>nieuw gedispatcht; V2/V3 van dezelfde order bestaan al, mogelijk hernomen</td></tr>
+      <tr><td class="cmd">totaal</td><td>6/7 bezet</td><td>1 vrij — codex1 net vrijgekomen</td><td colspan="4">streak schommelt 8→3→7 (niet monotoon); controller_age 420s; codex auth blijft weg; PR114 MERGED 668712a8 (ongewijzigd)</td></tr>
     </tbody></table></div>
 </section>
 
@@ -134,7 +130,7 @@ body.verberg-klaar tr.klaar{display:none}
     <thead><tr><th>Actie Richard</th><th>Waarom</th><th>Als je het niet doet</th></tr></thead>
     <tbody>
       <tr><td class="cmd">terminal: <code>codex login</code> zodat ~/.codex/auth.json terugkomt (nr 115)</td><td>codex1 geblokkeerd sinds 23:03; nog steeds afwezig om 07:27 — draait nu wél op nieuwe order 208</td><td>codex1 blijft een onverklaarde anomalie; reviews stapelen op codex2/gemini1 zodra dit misgaat</td></tr>
-      <tr><td class="cmd">directorvenster: controller dispatcht weer (222) maar 218/219 blijven QUEUED, 220 nog geen herstelorder — alleen ter info</td><td>218/219-dispatchpogingen correct REFUSED (lane bezet); 220 wacht sinds 08:17</td><td>streak loopt weer op (1→8), aanbod van QUEUED-orders groeit niet af</td></tr>
+      <tr><td class="cmd">directorvenster: kies voor claude4 (nr 223) — (a) lane herstarten met Opus, of (b) akkoord dat Sonnet 5 deze hoog-risico BUILD-order (dispatch-actor) mag doen</td><td>claude4 zit sinds 07:37 vast op modelmismatch (order vraagt opus, sessie draait Sonnet 5) — vorige tik gemist</td><td>lane blijft &gt;1u stil zonder dat het als blokkade zichtbaar was</td></tr>
       <tr><td class="cmd">akkoord op de autocoding-keten (nr 32) — nog niet aan de orde</td><td>staat gepland na de cutover, ~09-11</td><td>burn-in B (7 dagen) start niet; stap 8 blijft dicht</td></tr>
     </tbody>
   </table></div>
@@ -154,7 +150,9 @@ body.verberg-klaar tr.klaar{display:none}
       <tr><td class="cmd">codex2 NO_GO op signaalorakel cl11s (nr 220)</td><td>LEASE_VASTLEGGEN_REVIEW_902604ac: cl11s kan groen blijven zonder geslaagde signaalinjectie — reviewtaken klaar, GEBLOKKEERD op bouwerherstel</td><td>nog geen herstelorder</td><td>open · nr 220 · <b>niemand</b></td></tr>
       <tr><td class="cmd">test_close_ghost_queue.py rood (nr 219)</td><td>14 failures, 5 errors op de proef; oorzaak nog niet in het bord verwerkt</td><td>PROEFBINDING-fix QUEUED voor claude3, dispatchpoging 06:28:01 correct REFUSED (lane bezet), wacht op vrije lane</td><td>open · nr 219 · <b>niemand</b></td></tr>
       <tr><td class="cmd">208 claim GO_WITH_FINDINGS maar evidence-gate FAILED (nr 221, nieuw)</td><td>TRANSPORT_RECEIPT_2 (mtime 08:22:06): evidence_gate=FAILED_EVIDENCE, evidence_reason=RERUN_TIMEOUT, exit_code=8; codex1's eigen claim GO_WITH_FINDINGS blijft claimed_verdict_unconfirmed — verdict dus technisch onbevestigd. Verband met director tik101: "C.2-herkenning verbreden naar vier verdictspellingen" (OPEN)</td><td>director tik101 zelf BEZIG met revieworders voor niet-herkende bouwleveringen</td><td>open · nr 221 · <b>director</b> (BEZIG)</td></tr>
-      <tr><td class="cmd">controller dispatchte eindelijk weer (nr 222, nieuw)</td><td>na streak 46→1 zelfherstel: codex1 kreeg 08:28:58 een verse order (STAP3A_REVIEW_DAA3490) — eerste succesvolle dispatch sinds lange tijd, nog geen verdict</td><td>afwachten of dit een structureel herstel is of een eenmalige dispatch (streak liep na dit moment alweer op naar 8)</td><td>open · nr 222 · <b>niemand</b></td></tr>
+      <tr><td class="cmd">controller dispatch 222 geslaagd</td><td>codex1 STAP3A_REVIEW_DAA3490: eerste succesvolle dispatch na lange stilstand, verdict binnen</td><td>Stand EFFECT-BEWEZEN, verdict=GO_WITH_FINDINGS; lane 08:33 weer vrij</td><td>✅ 08:33 · nr 222</td></tr>
+      <tr><td class="cmd">claude4 modelmismatch gemist in vorige tik (nr 223, nieuw)</td><td>receipt REVIEWLANE_MEETVERMOGEN_POORT toont Stand=WACHT OP AKKOORD sinds 07:37 (order vraagt opus, sessie draait Sonnet 5); niet gesignaleerd in de 08:19/08:31-tik</td><td>keuze aan Richard: lane herstarten met opus, of expliciet akkoord voor Sonnet 5 op deze hoog-risico BUILD-order</td><td>open · nr 223 · <b>Richard</b></td></tr>
+      <tr><td class="cmd">drie nieuwe dispatches (nr 224/225/226, nieuw)</td><td>claude2→LANEMONITOR_VALSE_IDLE (08:39:46), codex2→BEWIJSPOORT_REVIEW_F6D4967 (08:39:34, eerste herstelorder na 220), gemini1→STAP1_REVIEW_F1842C8 (08:40:28) — alle drie te vers voor verdict</td><td>afwachten op verdicten volgende tik</td><td>open · nr 224, 225, 226 · <b>niemand</b></td></tr>
       <tr><td class="cmd">codex1 kon niet reviewen (exit 3)</td><td>elke codex1-order viel om: geen aanmelding in ~/.codex</td><td>aanmelding stond in ~/.codex1; director zette CODEX_HOME in bin/codex1 om (e2dd1f9); 23:03 opnieuw rc 3 (director tik 46), 112 omgeleid naar codex2</td><td>✅ 21:03 (GO 21:23) · <b>terug 23:03</b> · nr 115 · <b>Richard</b></td></tr>
       <tr><td class="cmd">gemini1 leverde nooit (hanggrens 180 s)</td><td>elke run na 180 s afgekapt als STARTUP_STALE</td><td>DISPATCH_GEMINI_HANG_TIMEOUT_S=1800; run van 281 s leverde GO</td><td>✅ 21:29 · standaardwaarde nog te fixen (nr 55)</td></tr>
       <tr><td class="cmd">supervisor-streak 100 (negatieve teller)</td><td>teller onder nul gold als gezonde queue → eindeloze escalatie</td><td>ee08807 (claude1) gemerged als de3e7dd; streak nu echt (8 om 22:16, escalatie weer aan, nr 56)</td><td>✅ 21:40 · nr 84/85/87</td></tr>
@@ -211,13 +209,13 @@ body.verberg-klaar tr.klaar{display:none}
 <section id="slot">
   <h2>Slot</h2>
   <div class="tabel"><table class="slot">
-    <thead><tr><th>Δ sinds vorige tik (08:19)</th><th>Volgende tik</th></tr></thead>
+    <thead><tr><th>Δ sinds vorige tik (08:31)</th><th>Volgende tik</th></tr></thead>
     <tbody><tr>
-      <td>lamp blijft 🔴: PR114 (eade798b) MERGED 668712a8 na R7 · controller zelf hersteld (streak 46→1) en dispatchte codex1 op nieuwe order (222, 08:28:58) — eerste succes sinds lang, maar streak liep alweer op naar 8 · 208's evidence-gate-rerun FAILED (RERUN_TIMEOUT) → verdict blijft onbevestigd, nr 221 nieuw, gekoppeld aan director tik101's eigen "C.2-herkenning" taak · 218/219-dispatchpogingen correct REFUSED_LANE_CLAIM_HELD (geen bug, lanes gewoon bezet) · 220 nog geen herstelorder · codex auth blijft weg (nr 115) · claude1 203 watchdog nu ~84min, ongewijzigd vast</td>
-      <td class="volgende">~08:41 · blijft streak stijgen of stabiliseert na 222? verdict 222/215/207/212? herstelorder voor 220? codex auth terug?</td>
+      <td>lamp blijft 🔴: 222 EFFECT-BEWEZEN GO_WITH_FINDINGS, codex1 weer vrij · zelfcorrectie: claude4 (223) al sinds 07:37 GEBLOKKEERD op modelmismatch, vorige tik gemist — wacht op Richard-keuze · drie nieuwe dispatches (224/225/226), nog geen verdict · streak schommelt 8→3→7, niet monotoon · codex auth blijft weg (nr 115) · claude1 203 watchdog nu ~94min, ongewijzigd vast</td>
+      <td class="volgende">~08:51 · Richard-keuze op 223? verdicten 224/225/226? claude1 203/claude3 207 nog steeds geen verdict? codex auth terug?</td>
     </tr></tbody>
   </table></div>
-  <div class="pad">volledig rapport: ~/stack-control/CONTROL/RAPPORTEN/board-2026-09-09-0831.md</div>
+  <div class="pad">volledig rapport: ~/stack-control/CONTROL/RAPPORTEN/board-2026-09-09-0841.md</div>
 </section>
 
 </main>
