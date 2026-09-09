@@ -2,377 +2,329 @@
 <html lang="nl">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="robots" content="noindex">
-<meta http-equiv="refresh" content="300">
 <title>Regiekamer — peilbord</title>
-<style>
-*{box-sizing:border-box}
-body{margin:0;background:#0b0d10;color:#e5e7eb;font:14px/1.4 -apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif}
-img{max-width:100%}
-</style>
-</head>
-<body>
-<title>Autocoding Peilbord</title>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
 <style>
 :root{
-  --grond:#f3f4f2;--plaat:#ffffff;--plaat2:#eaedea;--rand:#d3d8d4;--rand-zacht:#e3e7e3;
+  --grond:#f3f4f2;--plaat:#fff;--plaat2:#eaedea;--rand:#d3d8d4;--rand-zacht:#e3e7e3;
   --inkt:#161c19;--inkt-zacht:#4f5b55;--inkt-stil:#7f8a84;
-  --groen:#1f8a5a;--amber:#b7791f;--rood:#c53a44;--sein:#1f7f95;--blauw:#2f6fd1;
-  --rood-vlak:#fbe9ea;--amber-vlak:#fbf1de;--groen-vlak:#e3f3ea;--blauw-vlak:#e6eefb;--richard-vlak:#fff4d6;
+  --groen:#1f8a5a;--amber:#b7791f;--rood:#c53a44;--blauw:#2f6fd1;--paars:#6b4fa8;
+  --groen-vlak:#e3f3ea;--amber-vlak:#fbf1de;--rood-vlak:#fbe9ea;--blauw-vlak:#e6eefb;--geel-vlak:#fff4d6;
   --schaduw:0 1px 2px rgba(20,30,25,.08);
 }
-@media (prefers-color-scheme: dark){
-  :root:not([data-theme="light"]){
-    --grond:#0d1117;--plaat:#151b23;--plaat2:#1b232d;--rand:#232c38;--rand-zacht:#1b232d;
-    --inkt:#e4e9f0;--inkt-zacht:#8b98a9;--inkt-stil:#5d6a7b;
-    --groen:#3fb27f;--amber:#d99b3d;--rood:#e05561;--sein:#54b5c9;--blauw:#6aa0ff;
-    --rood-vlak:#2a1519;--amber-vlak:#2a2112;--groen-vlak:#0f2a1e;--blauw-vlak:#132036;--richard-vlak:#2e2410;
-    --schaduw:none;
-  }
-}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --grond:#0d1117;--plaat:#151b23;--plaat2:#1b232d;--rand:#232c38;--rand-zacht:#1b232d;
+  --inkt:#e4e9f0;--inkt-zacht:#8b98a9;--inkt-stil:#5d6a7b;
+  --groen:#3fb27f;--amber:#d99b3d;--rood:#e05561;--blauw:#6aa0ff;--paars:#a98cdd;
+  --groen-vlak:#0f2a1e;--amber-vlak:#2a2112;--rood-vlak:#2a1519;--blauw-vlak:#132036;--geel-vlak:#2e2410;
+  --schaduw:none;
+}}
 :root[data-theme="dark"]{
   --grond:#0d1117;--plaat:#151b23;--plaat2:#1b232d;--rand:#232c38;--rand-zacht:#1b232d;
   --inkt:#e4e9f0;--inkt-zacht:#8b98a9;--inkt-stil:#5d6a7b;
-  --groen:#3fb27f;--amber:#d99b3d;--rood:#e05561;--sein:#54b5c9;--blauw:#6aa0ff;
-  --rood-vlak:#2a1519;--amber-vlak:#2a2112;--groen-vlak:#0f2a1e;--blauw-vlak:#132036;--richard-vlak:#2e2410;
+  --groen:#3fb27f;--amber:#d99b3d;--rood:#e05561;--blauw:#6aa0ff;--paars:#a98cdd;
+  --groen-vlak:#0f2a1e;--amber-vlak:#2a2112;--rood-vlak:#2a1519;--blauw-vlak:#132036;--geel-vlak:#2e2410;
   --schaduw:none;
 }
 *{box-sizing:border-box}
-body{margin:0;background:var(--grond);color:var(--inkt);font:14px/1.45 "IBM Plex Sans","Helvetica Neue",Arial,sans-serif;-webkit-font-smoothing:antialiased}
-.mono{font-family:"IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,monospace}
-header{position:sticky;top:0;z-index:5;background:var(--plaat);border-bottom:1px solid var(--rand);box-shadow:var(--schaduw)}
-.kopbalk{max-width:1440px;margin:0 auto;padding:12px 20px;display:flex;align-items:center;gap:16px;flex-wrap:wrap}
-.lamp{width:14px;height:14px;border-radius:50%;flex:none}
-.lamp.rood{background:var(--rood);box-shadow:0 0 0 4px var(--rood-vlak)}
-.lamp.geel{background:var(--amber);box-shadow:0 0 0 4px var(--amber-vlak)}
+body{margin:0;background:var(--grond);color:var(--inkt);
+  font:14px/1.45 "IBM Plex Sans","Helvetica Neue",Arial,sans-serif;-webkit-font-smoothing:antialiased}
+.mono{font-family:"IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,monospace;font-variant-numeric:tabular-nums}
+
+/* ---------- kopbalk ---------- */
+header{position:sticky;top:0;z-index:9;background:var(--plaat);border-bottom:1px solid var(--rand);box-shadow:var(--schaduw)}
+.kop{max-width:1280px;margin:0 auto;padding:11px 20px;display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+.lamp{width:13px;height:13px;border-radius:50%;flex:none;background:var(--inkt-stil)}
 .lamp.groen{background:var(--groen);box-shadow:0 0 0 4px var(--groen-vlak)}
-h1{font-size:15px;font-weight:600;margin:0;letter-spacing:.01em;white-space:nowrap}
-.tik{font-family:"IBM Plex Mono",monospace;font-size:12px;color:var(--inkt-zacht);white-space:nowrap}
-.regel{flex:1 1 420px;font-size:14px;font-weight:500;min-width:0}
-.eind{font-family:"IBM Plex Mono",monospace;font-size:12px;color:var(--inkt-zacht);white-space:nowrap}
-.eind b{color:var(--inkt);font-weight:500}
-.knoppen{display:flex;gap:8px;margin-left:auto}
-button.kn{font:inherit;font-size:12px;padding:5px 10px;border:1px solid var(--rand);background:var(--plaat2);color:var(--inkt);border-radius:4px;cursor:pointer}
-button.kn[aria-pressed="true"]{background:var(--inkt);color:var(--plaat);border-color:var(--inkt)}
-button.kn:focus-visible{outline:2px solid var(--sein);outline-offset:2px}
-main{max-width:1440px;margin:0 auto;padding:18px 20px 60px;display:grid;gap:28px}
-section h2{font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--inkt-zacht);margin:0 0 8px;display:flex;align-items:baseline;gap:10px}
-section h2 .n{font-family:"IBM Plex Mono",monospace;color:var(--inkt-stil)}
-section h2 .sub{font-weight:400;text-transform:none;letter-spacing:0;color:var(--inkt-stil)}
-.tabel{overflow-x:auto;border:1px solid var(--rand);border-radius:6px;background:var(--plaat)}
-table{border-collapse:collapse;width:100%;font-size:13px}
-thead th{position:sticky;top:0;background:var(--plaat2);color:var(--inkt-zacht);font-weight:500;font-size:11.5px;letter-spacing:.04em;text-transform:uppercase;text-align:left;padding:7px 10px;border-bottom:1px solid var(--rand);white-space:nowrap}
-td{padding:6px 10px;border-bottom:1px solid var(--rand-zacht);vertical-align:top;overflow-wrap:anywhere;word-break:break-word;min-width:0}
-td.nr,td.status{overflow-wrap:normal;word-break:normal}
-tbody tr:last-child td{border-bottom:0}
-td.nr,td.tijd,td.klaar,td.bewijs,td.sinds,td.wie{font-family:"IBM Plex Mono",ui-monospace,monospace;font-size:12.5px;font-variant-numeric:tabular-nums}
-td.nr{color:var(--inkt-stil);text-align:right;width:3ch}
-td.status{width:3ch;text-align:center;font-size:14px}
-td.stap{color:var(--inkt-zacht);white-space:nowrap}
-td.bewijs{color:var(--inkt-zacht)}
-td.klaar{white-space:nowrap}
-td.klaar .schuift{color:var(--amber)}
-td.klaar .schuiftveel{color:var(--rood)}
-td.klaar .eerder{color:var(--groen)}
-tr.eind td{font-weight:600}
-tr.eind td.taak::before{content:"= ";color:var(--inkt-stil)}
-tr.groep td{border-top:1px solid var(--rand)}
-tr.rood td{background:var(--rood-vlak)}
-tr.bezig td{background:var(--blauw-vlak)}
-tr.richard td.wie{background:var(--richard-vlak);font-weight:600}
-tr.niemand td.wie{color:var(--rood);font-weight:600}
-tr.klaar td{color:var(--inkt-zacht)}
-tr.klaar td.taak{text-decoration:line-through;text-decoration-color:var(--inkt-stil);text-decoration-thickness:1px}
-body.verberg-klaar tr.klaar{display:none}
-.actie td.cmd{font-family:"IBM Plex Mono",monospace;font-size:12.5px}
-.actie td.cmd code{background:var(--plaat2);padding:1px 5px;border-radius:3px}
-.slot td{font-size:13px}
-.slot td.volgende{font-family:"IBM Plex Mono",monospace;font-size:12.5px;white-space:nowrap}
-.pad{font-family:"IBM Plex Mono",monospace;font-size:12px;color:var(--inkt-stil);margin-top:6px;word-break:break-all}
-.legenda{font-size:12px;color:var(--inkt-stil);display:flex;gap:14px;flex-wrap:wrap;margin-top:6px}
-.legenda span b{color:var(--inkt-zacht);font-weight:500}
-@media (max-width:700px){h1{white-space:normal}.regel{flex-basis:100%}}
+.lamp.amber{background:var(--amber);box-shadow:0 0 0 4px var(--amber-vlak)}
+.lamp.rood{background:var(--rood);box-shadow:0 0 0 4px var(--rood-vlak)}
 @media (prefers-reduced-motion:no-preference){.lamp.rood{animation:puls 2.4s ease-in-out infinite}}
-@keyframes puls{50%{box-shadow:0 0 0 7px var(--rood-vlak)}}
+@keyframes puls{50%{box-shadow:0 0 0 8px var(--rood-vlak)}}
+h1{font-size:15px;font-weight:600;margin:0;white-space:nowrap}
+.versheid{font-size:12px;color:var(--inkt-zacht)}
+.versheid.rood{color:var(--rood);font-weight:600}
+.tellers{display:flex;gap:6px;margin-left:auto;flex-wrap:wrap}
+.teller{font-size:12px;padding:3px 9px;border-radius:99px;border:1px solid var(--rand);background:var(--plaat2);white-space:nowrap}
+.teller b{font-family:"IBM Plex Mono",monospace;font-weight:600}
+.teller.rood{background:var(--rood-vlak);border-color:var(--rood);color:var(--rood)}
+.teller.amber{background:var(--amber-vlak);border-color:var(--amber);color:var(--amber)}
+.teller.blauw{background:var(--blauw-vlak);border-color:var(--blauw);color:var(--blauw)}
+.teller.geel{background:var(--geel-vlak);border-color:var(--amber);color:var(--inkt)}
+
+/* ---------- layout ---------- */
+main{max-width:1280px;margin:0 auto;padding:18px 20px 70px;display:grid;gap:20px}
+.rij2{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+@media (max-width:960px){.rij2{grid-template-columns:1fr}}
+section{background:var(--plaat);border:1px solid var(--rand);border-radius:7px;overflow:hidden}
+section.urgent{border-color:var(--amber);box-shadow:0 0 0 3px var(--amber-vlak)}
+.kopje{padding:9px 14px;border-bottom:1px solid var(--rand);background:var(--plaat2);
+  display:flex;align-items:baseline;gap:9px;flex-wrap:wrap}
+.kopje h2{font-size:11.5px;font-weight:600;letter-spacing:.07em;text-transform:uppercase;color:var(--inkt-zacht);margin:0}
+.kopje .n{font-family:"IBM Plex Mono",monospace;font-size:12px;color:var(--inkt);font-weight:600}
+.kopje .bron{font-size:11px;color:var(--inkt-stil);margin-left:auto;text-align:right}
+
+table{border-collapse:collapse;width:100%;font-size:13px}
+th{font-size:10.5px;letter-spacing:.05em;text-transform:uppercase;color:var(--inkt-stil);font-weight:500;
+  text-align:left;padding:6px 14px;border-bottom:1px solid var(--rand-zacht);white-space:nowrap}
+td{padding:8px 14px;border-bottom:1px solid var(--rand-zacht);vertical-align:top;overflow-wrap:anywhere}
+tbody tr:last-child td{border-bottom:0}
+td.mono,th.mono{font-family:"IBM Plex Mono",monospace;font-variant-numeric:tabular-nums;font-size:12.5px}
+td.nr{color:var(--inkt-stil);text-align:right;width:3ch}
+td.strak{white-space:nowrap}
+
+.pil{display:inline-block;font-size:11px;font-weight:600;padding:2px 8px;border-radius:99px;white-space:nowrap;
+  font-family:"IBM Plex Mono",monospace}
+.pil.bezig{background:var(--blauw-vlak);color:var(--blauw)}
+.pil.vrij{background:var(--groen-vlak);color:var(--groen)}
+.pil.geblokkeerd{background:var(--rood-vlak);color:var(--rood)}
+.pil.stale{background:var(--amber-vlak);color:var(--amber)}
+.pil.wacht{background:var(--plaat2);color:var(--inkt-zacht)}
+tr.rij-geblokkeerd td:first-child{box-shadow:inset 3px 0 0 var(--rood)}
+tr.rij-stale td:first-child{box-shadow:inset 3px 0 0 var(--amber)}
+tr.rij-bezig td:first-child{box-shadow:inset 3px 0 0 var(--blauw)}
+
+.taakid{color:var(--inkt-zacht);font-size:11.5px}
+.duur.lang{color:var(--amber);font-weight:600}
+.duur.zeerlang{color:var(--rood);font-weight:600}
+
+.besluit{font-weight:500}
+.besluit .kost{display:inline-block;font-size:11px;color:var(--inkt-stil);font-family:"IBM Plex Mono",monospace}
+.ontgrendelt{color:var(--inkt-zacht);font-size:12.5px}
+.ontgrendelt::before{content:"⤷ ";color:var(--inkt-stil)}
+
+.ev-in{color:var(--groen)}.ev-uit{color:var(--rood)}.ev-neutraal{color:var(--inkt-zacht)}
+td.overgang{white-space:nowrap;font-size:11.5px}
+td.resultaat{font-size:12px;color:var(--inkt-zacht);line-height:1.35}
+.leeg{padding:20px 14px;color:var(--inkt-stil);font-size:13px;text-align:center}
+.meer{padding:8px 14px;border-top:1px solid var(--rand-zacht);background:var(--plaat2)}
+.meer button{font:inherit;font-size:12px;color:var(--blauw);background:none;border:0;cursor:pointer;padding:0}
+.meer button:hover{text-decoration:underline}
+.balk{height:5px;background:var(--rand-zacht);border-radius:99px;overflow:hidden;min-width:70px;display:flex}
+.balk i{display:block;height:100%}
+.balk i.g{background:var(--groen)}.balk i.r{background:var(--rood)}.balk i.o{background:var(--inkt-stil)}
+footer{max-width:1280px;margin:0 auto;padding:0 20px 40px;font-size:11.5px;color:var(--inkt-stil);line-height:1.7}
+footer code{font-family:"IBM Plex Mono",monospace;background:var(--plaat2);padding:1px 5px;border-radius:3px}
+.fout{margin:20px;padding:14px;border:1px solid var(--rood);background:var(--rood-vlak);color:var(--rood);border-radius:6px}
 </style>
+</head>
+<body>
 
 <header>
-  <div class="kopbalk">
-    <div class="lamp rood" title="ROOD"></div>
-    <h1>Autocoding Peilbord</h1>
-    <div class="tik" id="tik">tik 09:34 · gemeten 09:17–09:34</div>
-    <div class="regel" id="kopregel">2/7 bezet (was 4/7): <b>claude3/207 eindelijk KLAAR</b> na ~2 uur watchdog-vasthouding — 1105/1105 groen, wacht op aparte review/merge-order (240) · 238 (claude4) en 239 (codex2) ook klaar, beide zonder Richard-actie · 231 (claude3-lane) REFUSED_LANE_CLAIM_HELD, komt nu vrij · nieuw bezet: codex1/242 · codex2 2 nieuwe reviews gequeued (243) · CONTROLLER_STALE keerde terug (heartbeat weer &gt;15 min oud) · escalation-streak 37→43 (blijft versnellen) · arbitrage 93d82c8d (241) gesloten zonder merge (R7 rood) · codex auth blijft weg. <b>Richard</b>: 115.</div>
-    <div class="eind">akkoord <b>09-12/13 → ~09-11</b> · parser weg <b>09-21 → ~09-20</b></div>
-    <div class="knoppen">
-      <span class="tik">afgerond vandaag: 129 rijen (in rapport)</span>
-    </div>
+  <div class="kop">
+    <div class="lamp" id="lamp"></div>
+    <h1>Regiekamer — peilbord</h1>
+    <div class="versheid mono" id="versheid">laden…</div>
+    <div class="tellers" id="tellers"></div>
   </div>
 </header>
 
-<main>
-
-<section id="b1b">
-  <h2><span class="n">1b</span> Kanaalbezetting (7 kanalen) <span class="sub">live gemeten 08:56–09:01 uit ps · elke tik opnieuw</span></h2>
-  <div class="tabel"><table class="actie">
-    <thead><tr><th>Kanaal</th><th>Status</th><th>Order</th><th>Sinds</th><th>Duur</th><th>Nr</th><th>Bewijs</th></tr></thead>
-    <tbody>
-      <tr><td class="cmd">claude1</td><td>⬜ vrij</td><td>232 klaar (DONE_BUILD_AWAITING_REVIEW)</td><td>tot ~09:2x</td><td>—</td><td>232</td><td>vrij; kandidaat voor forward-port 241 of herdispatch 231</td></tr>
-      <tr><td class="cmd">claude2</td><td>🔵 234</td><td>GEWEIGERDE_START_HERDISPATCH V2</td><td>09:23:38</td><td>~11 min</td><td>234</td><td>herstel op 228 (retry-plafond), reviewer codex2, nog geen receipt</td></tr>
-      <tr><td class="cmd">claude3</td><td>⬜ vrij</td><td>207 KLAAR (1105/1105, wacht op review/merge-order)</td><td>tot ~09:3x</td><td>—</td><td>207/240</td><td>watchdog-alert weg; 231 (REFUSED_LANE_CLAIM_HELD) kan nu opnieuw</td></tr>
-      <tr><td class="cmd">claude4</td><td>⬜ vrij</td><td>238 klaar (SUPERSEDED_ALREADY_MERGED_ON_MAIN)</td><td>tot ~09:3x</td><td>—</td><td>238</td><td>na BLOCKED_EVIDENCE alsnog gesloten: werk al elders gemerged</td></tr>
-      <tr><td class="cmd">codex1</td><td>🔵 242</td><td>WRAPPERKOPIE_REVIEW_CBB75F51 V1</td><td>09:34:14</td><td>~0 min</td><td>242</td><td>net gestart (mode=REVIEW), nog geen receipt</td></tr>
-      <tr><td class="cmd">codex2</td><td>⬜ vrij</td><td>239 klaar (GO_WITH_FINDINGS)</td><td>tot ~09:3x</td><td>—</td><td>239/243</td><td>2 nieuwe reviews (5AD4D0C, 1FA17AD8) gequeued, nog niet opgepakt; 230 blijft erachter wachten</td></tr>
-      <tr><td class="cmd">gemini1</td><td>🔴 quarantaine</td><td>226 evidence-gate PASS (oud)</td><td>tot 06:42Z</td><td>—</td><td>226/237</td><td>ongewijzigd: FAILED_TRANSPORT_QUARANTINED (exit_code=11), tweede stem blijft uit</td></tr>
-      <tr><td class="cmd">totaal</td><td>2/7 bezet</td><td>4 vrij (1 in quarantaine)</td><td colspan="4">claude3/207 eindelijk klaar (~2u watchdog voorbij); controller-heartbeat opnieuw stil (CONTROLLER_STALE terug); escalation-streak 37→43 (blijft versnellen); codex auth blijft weg</td></tr>
-    </tbody></table></div>
-</section>
-
-<section id="b2">
-  <h2><span class="n">2</span> Actie Richard</h2>
-  <div class="tabel"><table class="actie">
-    <thead><tr><th>Actie Richard</th><th>Waarom</th><th>Als je het niet doet</th></tr></thead>
-    <tbody>
-      <tr><td class="cmd">terminal: <code>codex login</code> zodat ~/.codex/auth.json terugkomt (nr 115)</td><td>codex1 geblokkeerd sinds 23:03; nog steeds afwezig om 09:34 (codex1 draait nu wel via los CODEX_HOME-pad, zie 2b)</td><td>codex1 blijft een onverklaarde anomalie; reviews stapelen op codex2/gemini1 zodra dit misgaat</td></tr>
-      <tr><td class="cmd">akkoord op de autocoding-keten (nr 32) — nog niet aan de orde</td><td>staat gepland na de cutover, ~09-11</td><td>burn-in B (7 dagen) start niet; stap 8 blijft dicht</td></tr>
-    </tbody>
-  </table></div>
-</section>
-
-<section id="b2b">
-  <h2><span class="n">2b</span> Grote problemen <span class="sub">wat er misging · oplossing · opgelost om (✅ = bewezen op main of in een receipt)</span></h2>
-  <div class="tabel"><table class="actie">
-    <thead><tr><th>Probleem</th><th>Wat er misging</th><th>Oplossing</th><th>Opgelost om</th></tr></thead>
-    <tbody>
-      <tr><td class="cmd">claude4 vast op lease-order (nr 205)</td><td>LEASE_VASTLEGGEN V3 loopt sinds 06:12:54, 74 min — watchdog STALE_DISPATCH (4442 s, drempel 900 s)</td><td>NO_KILL_NO_RETRY: niemand doodt hem; onafhankelijke review vereist, geen zelfherstel bekend</td><td>open · nr 205 · <b>niemand</b></td></tr>
-      <tr><td class="cmd">write_lane_lease faalt stil (nr 202, nieuw gevonden)</td><td>claude1's NO_GO op 21e91f0b: elk vroeg-faalpad in write_lane_lease (bin/dispatch-actor:837-870) keert terug zonder de al gegunde claim aan te raken — een geldige claim zonder lease, race blijft open</td><td>nog geen herstelorder gezet; volgt op de lease-commit-reparatie</td><td>open · nr 202</td></tr>
-      <tr><td class="cmd">dispatch-actor-bewerking tijdens executie corrumpeert runs (nr 207)</td><td>tik94-correctie: schuld aan claude1 ingetrokken — 2e vreemde sessie (weblog-project) commit ongevraagd in dezelfde checkout; claude1's eigen werk apart spoorloos (ongecommit, niet op eigen branch)</td><td>wrapper-zelfkopie-fix nu BEZIG op claude3 sinds 07:35; eade798b-V2-review parallel BEZIG op codex2 (213)</td><td>open · nr 207 · <b>claude3</b> (BEZIG)</td></tr>
-      <tr><td class="cmd">queue-empty-detector zonder bewijs geleverd (nr 211)</td><td>codex2 exit BLOCKED_EVIDENCE — claim zonder commando-output (R1-schending)</td><td>nog geen herstelorder</td><td>open · nr 211 · <b>niemand</b></td></tr>
-      <tr><td class="cmd">claim-weigering schrijft receipt zonder verdict (nr 217)</td><td>REFUSED_LANE_CLAIM_HELD landt op het canonieke receiptpad zonder verdict-veld — telt als afgehandeld terwijl de order nooit draaide</td><td>director zelf BEZIG: aanbodtelling repareren als vast meetinstrument (tik99)</td><td>open · nr 217 · <b>director</b> (BEZIG)</td></tr>
-      <tr><td class="cmd">controller blokkeert synchroon op één dispatchkind (nr 218)</td><td>208 leverde 08:11 een receipt, pid 5227 bleef staan, pid 48446 dispatchte 208 opnieuw. Nuance 08:31: dat was vermoedelijk de eigen DIRECTOR_RERUN evidence-gate-retry, geen bewezen dubbeldispatch — zie nr 221. Kernklacht blijft staan: DISPATCHVENSTER-fix zelf toont dat de lane-claim wél correct weigert (06:27:53 REFUSED)</td><td>DISPATCHVENSTER-fix QUEUED voor claude4, wacht op vrije lane</td><td>open · nr 218 · <b>niemand</b></td></tr>
-      <tr><td class="cmd">codex2 NO_GO op signaalorakel cl11s (nr 220)</td><td>LEASE_VASTLEGGEN_REVIEW_902604ac: cl11s kan groen blijven zonder geslaagde signaalinjectie — reviewtaken klaar, GEBLOKKEERD op bouwerherstel</td><td>nog geen herstelorder</td><td>open · nr 220 · <b>niemand</b></td></tr>
-      <tr><td class="cmd">test_close_ghost_queue.py rood (nr 219)</td><td>14 failures, 5 errors op de proef; oorzaak nog niet in het bord verwerkt</td><td>PROEFBINDING-fix QUEUED voor claude3, dispatchpoging 06:28:01 correct REFUSED (lane bezet), wacht op vrije lane</td><td>open · nr 219 · <b>niemand</b></td></tr>
-      <tr><td class="cmd">208 claim GO_WITH_FINDINGS maar evidence-gate FAILED (nr 221, nieuw)</td><td>TRANSPORT_RECEIPT_2 (mtime 08:22:06): evidence_gate=FAILED_EVIDENCE, evidence_reason=RERUN_TIMEOUT, exit_code=8; codex1's eigen claim GO_WITH_FINDINGS blijft claimed_verdict_unconfirmed — verdict dus technisch onbevestigd. Verband met director tik101: "C.2-herkenning verbreden naar vier verdictspellingen" (OPEN)</td><td>director tik101 zelf BEZIG met revieworders voor niet-herkende bouwleveringen</td><td>open · nr 221 · <b>director</b> (BEZIG)</td></tr>
-      <tr><td class="cmd">controller dispatch 222 geslaagd</td><td>codex1 STAP3A_REVIEW_DAA3490: eerste succesvolle dispatch na lange stilstand, verdict binnen</td><td>Stand EFFECT-BEWEZEN, verdict=GO_WITH_FINDINGS; lane 08:33 weer vrij</td><td>✅ 08:33 · nr 222</td></tr>
-      <tr><td class="cmd">claude4 modelmismatch loste zichzelf op (nr 223)</td><td>REVIEWLANE_MEETVERMOGEN_POORT eindigde 06:56:11Z exit_code=8 evidence_gate=FAILED_EVIDENCE (TEST_COUNTER_WITHOUT_COMMAND_BINDING), verdict=BLOCKED_EVIDENCE — vóór Richard hoefde te kiezen; Richard-actie vervalt</td><td>vervolgorder 230 naar codex2 gezet</td><td>✅ 06:56Z · nr 223 · vervolg → 230</td></tr>
-      <tr><td class="cmd">225 codex2 klaar</td><td>BEWIJSPOORT_REVIEW_F6D4967: exacte-head-review op c03b92c2, 6 toetspunten PASS, toetspunt 6 bevinding: diagnostische reparatie te smal (A1/B1 blijven falen), vervolgorder nodig met bredere assertions</td><td>Stand EFFECT-BEWEZEN; geen NO_GO, wel een bouwvervolg nodig — nog niet gezet</td><td>✅ 08:44 · nr 225</td></tr>
-      <tr><td class="cmd">227 codex1 klaar (nieuw)</td><td>SERVICELAAG_REVIEW_5D78498C: tweede order na 222, kwam terug als NO_GO</td><td>Stand GEBLOKKEERD/NO_GO; lane weer vrij, vervolgorder nog niet gezet</td><td>✅ 08:44 · nr 227 · <b>niemand</b></td></tr>
-      <tr><td class="cmd">226 gemini1 evidence-gate PASS, geen eindreceipt</td><td>STAP1_REVIEW_F1842C8 TRANSPORT_RECEIPT_3: evidence_gate=PASS/DIRECTOR_RERUN_GREEN (06:42:24Z), maar geen plain _RECEIPT.md op het canonieke pad — lane wel vrijgekomen (proces niet meer in ps)</td><td>afwachten of het eindreceipt alsnog landt</td><td>open · nr 226 · <b>niemand</b></td></tr>
-      <tr><td class="cmd">224 claude2 labeldefect (nieuw)</td><td>LANEMONITOR_VALSE_IDLE: Stand=WACHT OP AKKOORD, maar receipt zelf zegt letterlijk "Wacht op Richard: geen" — het openstaande werk (exacte-head-review dispatchen naar codex2/gemini1, R7-meting) is aan DIRECTOR_CLAUDE, niet aan Richard. Dit is het D-0034-patroon uit werkwijze-regels.md (stand claimt stilstand terwijl de keten zelfstandig doorloopt)</td><td>geen Richard-actie; gemeld als rapportagekwaliteit, niet als blokkade</td><td>open · nr 224 · <b>director</b></td></tr>
-      <tr><td class="cmd">checkout-anomalie-reparatie faalt op transport (nr 203, nieuw)</td><td>GEDEELDE_CHECKOUT_REFVERPLAATSING liep 05:07–06:58Z (bijna 2 uur) en eindigde FAILED_TRANSPORT_EXECUTION_CONTEXT (HEADLESS_NO_WARP_TAB) — geen inhoudelijk verdict; de HOOG-severity checkout-anomalie zelf blijft onopgelost</td><td>redispatch nodig; nog niet gezet</td><td>open · nr 203 · <b>niemand</b></td></tr>
-      <tr><td class="cmd">622dbe20 NO_GO op codex2 (nr 228, nieuw)</td><td>GEWEIGERDE_START_REVIEW (builder CLAUDE2): geen bovengrens op REFUSED_START-herdispatch, hartslagregressie overleeft de voorgeschreven suite, testdekking te zwak — ACTIE_RICHARD=geen (expliciet in receipt)</td><td>DIRECTOR_CLAUDE routeert herstel; vervolgorder nog niet gezet</td><td>✅ 08:57Z · nr 228 · <b>director</b></td></tr>
-      <tr><td class="cmd">136597a NO_GO gevonden, nog niet eerder op bord (nr 229, nieuw)</td><td>STAP1_REVIEW_136597A (codex2): verdict=NO_GO, receipt-mtime 06:38Z vandaag maar onderliggende bouw dateert van 2026-09-08 11:32Z — kennelijk niet eerder gemeten</td><td>order-regel: bij NO_GO gaan de punten terug naar de bouwer op een nieuwe poging</td><td>open · nr 229 · <b>director</b></td></tr>
-      <tr><td class="cmd">vervolgorder na 223 gedispatcht (nr 230, nieuw)</td><td>REVIEWLANE_MEETVERMOGEN_REVIEW_765163FB naar codex2 (builder CLAUDE4), PICKUP_STATUS=QUEUED_FOR_AUTOCODING — nog niet opgepakt (geen proces in ps)</td><td>afwachten of codex2 hem oppakt</td><td>open · nr 230 · <b>niemand</b></td></tr>
-      <tr><td class="cmd">stap-7-herpin loste R2-mislabeling niet op (nr 231)</td><td>bleef QUEUED_FOR_AUTOCODING op bezette lane; nu afgerond met exit_code=9 REFUSED_LANE_CLAIM_HELD (lane-claim geweigerd, order draaide nooit)</td><td>claude3 nu vrij (207 klaar) — order 231 kan opnieuw aangeboden worden</td><td>✅ 09:3x · nr 231 · <b>niemand</b></td></tr>
-            <tr><td class="cmd">controller-heartbeat valt herhaaldelijk stil (nr 235)</td><td>ververste kort naar 07:18:29Z, maar staat om 09:34 opnieuw &gt;15 min stil; CONTROLLER_STALE kwam terug in de supervisor-issues (streak opnieuw 1) — een terugkerend patroon, geen eenmalige hik</td><td>geen herstelorder gezet; puur een meetsignaal zolang de controller zelf nog draait</td><td>open · nr 235 · <b>niemand</b></td></tr>
-      <tr><td class="cmd">nieuwe dispatch op claude1 (nr 232)</td><td>SUPERVISOR_NEGATIEVE_TELLER V1 gestart 09:07:51, geconcludeerd verdict=DONE_BUILD_AWAITING_REVIEW</td><td>wacht op aparte review-order (geen Richard-actie)</td><td>✅ 09:2x · nr 232 · <b>niemand</b></td></tr>
-      <tr><td class="cmd">nieuwe dispatch op claude4 (nr 233)</td><td>STAP3A_HERSTELCONTRACT_RONDE2 V1 concludeerde SUPERSEDED_ALREADY_MERGED; opvolger 238 (STAP3A_ORDER_STATE_BIBLIOTHEEK) ook al geconcludeerd — zie 238</td><td>geen — beide ketens gesloten zonder Richard-actie</td><td>✅ 09:2x/09:3x · nr 233 · <b>niemand</b></td></tr>
-      <tr><td class="cmd">herstelorder op 228's bevindingen (nr 234)</td><td>GEWEIGERDE_START_HERDISPATCH V2 (retry-plafond, reviewer CODEX2) loopt sinds 09:23:38 op claude2, ~11 min, nog geen receipt</td><td>afwachten op receipt</td><td>open · nr 234 · <b>claude3</b>→<b>claude2</b> (BEZIG)</td></tr>
-      <tr><td class="cmd">supervisor corrigeert eigen sluitmethode op arbitrage 93d82c8d</td><td>eerdere sluiting ("bestand niet meer aanwezig") erkend als ongeldige grond; alle vier onderliggende claims zelf herverifieerd (NO_GO staat, geen van beide commits gemergd, geen ronde-3-branch) — item terecht heropend, termijn 10:55Z nog ruim</td><td>geen — methodefout zelf hersteld, geen Richard-actie</td><td>✅ 09:06 · <b>director/supervisor</b></td></tr>
-      <tr><td class="cmd">4 leveringen stranden op bewijspoort ondanks echte verdicts (nr 236, nieuw)</td><td>director-tik 106: 2x RERUN_RC_NONZERO + 2x CLAIM_WITHOUT_COMMAND_OUTPUT — de evidence-gate zelf blokkeert leveringen die wel een inhoudelijk verdict dragen</td><td>director noemt dit systematisch (mogelijk gate-defect); nog geen herstelorder</td><td>open · nr 236 · <b>director</b></td></tr>
-      <tr><td class="cmd">gemini1 in transportquarantaine (nr 237, nieuw)</td><td>FAILED_TRANSPORT_QUARANTINED, exit_code=11 — tweede reviewstem (naast codex) tijdelijk uitgevallen; STAP1_REVIEW_F1842C8 blijft NOT_DISPATCHED_TRANSPORT_HERDISPATCH_QUARANTINED</td><td>geen herstelorder; wacht op quarantaine-vrijgave</td><td>open · nr 237 · <b>niemand</b></td></tr>
-      <tr><td class="cmd">claude4 STAP3A_ORDER_STATE_BIBLIOTHEEK (nr 238, nieuw)</td><td>BLOCKED_EVIDENCE bij eerste run; director sloot de keten daarna als SUPERSEDED_ALREADY_MERGED_ON_MAIN (werk al elders gemerged)</td><td>geen — director meet zelf nog of stap 3b nog open staat</td><td>✅ 09:3x · nr 238 · <b>niemand</b></td></tr>
-      <tr><td class="cmd">codex2 PR103_REVIEW_F4276D7 (nr 239, nieuw)</td><td>verdict=GO_WITH_FINDINGS — bevindingen nog niet geroute</td><td>director routeert vervolg; ook PR103-NO_GO apart gesloten op 5ad4d0cf (al in main, ledger-commit 53219ac7)</td><td>open · nr 239 · <b>director</b></td></tr>
-      <tr><td class="cmd">claude3/207 eindelijk KLAAR na ~2 uur watchdog (nr 240, nieuw)</td><td>WRAPPER_ZELFKOPIE_UITVOERING: 1105/1105 proeven groen op de exacte head; geen verdict=-veld maar volledige TAKENLIJST ✅ en VOLGENDE_STAP=geen (order af binnen grenzen, merge/push verboden voor deze order)</td><td>wacht op aparte review-/merge-order van een andere actor (R4); watchdog-alertbestand is nu weg</td><td>✅ 09:3x · nr 240 · <b>niemand</b></td></tr>
-      <tr><td class="cmd">arbitrage 93d82c8d gesloten zonder merge (nr 241, nieuw)</td><td>STACKSTATUS_MARKERAFVANGER: BESLIST_DOOR_DIRECTOR_NA_TERMIJNVERLOOP; 5d78498 niet gemerged — R7-meting rood (141 commits basisdrift, merge zou 143 bestanden terugdraaien)</td><td>forward-port van de twee main-onaangeraakte paden gequeued op claude1 (DIRECTOR_STACKSTATUS_VOORWAARTS)</td><td>✅ 09:xx · nr 241 · <b>director</b></td></tr>
-      <tr><td class="cmd">codex1 nieuwe reviewopdracht (nr 242, nieuw)</td><td>WRAPPERKOPIE_REVIEW_CBB75F51 gestart 09:34:14, mode=REVIEW, base db0a7f75→head cbb75f51</td><td>afwachten op receipt</td><td>open · nr 242 · <b>codex1</b> (BEZIG)</td></tr>
-      <tr><td class="cmd">codex2 twee nieuwe reviews gequeued (nr 243, nieuw)</td><td>PR103_REVIEW_5AD4D0C (exact-head, base b4bfe187) en REFVERPLAATSING_REVIEW_1FA17AD8 (builder CLAUDE1) — beide QUEUED, nog niet opgepakt (codex2 niet in ps)</td><td>afwachten of codex2 oppikt</td><td>open · nr 243 · <b>niemand</b></td></tr>
-      <tr><td class="cmd">codex1 kon niet reviewen (exit 3)</td><td>elke codex1-order viel om: geen aanmelding in ~/.codex</td><td>aanmelding stond in ~/.codex1; director zette CODEX_HOME in bin/codex1 om (e2dd1f9); 23:03 opnieuw rc 3 (director tik 46), 112 omgeleid naar codex2</td><td>✅ 21:03 (GO 21:23) · <b>terug 23:03</b> · nr 115 · <b>Richard</b></td></tr>
-      <tr><td class="cmd">gemini1 leverde nooit (hanggrens 180 s)</td><td>elke run na 180 s afgekapt als STARTUP_STALE</td><td>DISPATCH_GEMINI_HANG_TIMEOUT_S=1800; run van 281 s leverde GO</td><td>✅ 21:29 · standaardwaarde nog te fixen (nr 55)</td></tr>
-      <tr><td class="cmd">supervisor-streak 100 (negatieve teller)</td><td>teller onder nul gold als gezonde queue → eindeloze escalatie</td><td>ee08807 (claude1) gemerged als de3e7dd; streak nu echt (8 om 22:16, escalatie weer aan, nr 56)</td><td>✅ 21:40 · nr 84/85/87</td></tr>
-      <tr><td class="cmd">klasse 9: geldige review afgekeurd (exit 6)</td><td>reviewsleutels moeten precies één keer in héle stdout; gemini1 herhaalt zijn blok</td><td>anker op laatste machineblok; ankerproef 41e1c11 NO_GO codex1 22:16; herstel ronde 2 loopt op claude1 (22:24); fix pas na reparatiestop</td><td>open · nr 89, 104, 133, 174, 176, 180 · ✅ 179, 172, 123, 127, 142, 143, 146, 149, 151, 153, 154, 165, 166, 171 (REPARATIE_PASS 01:13 op 81b24ee1, transport rc 8 = poortdefect 2, ook op 141 om 01:36; codex2 143 NO_GO 01:29:36: de receiptpoort accepteert een nagemaakte worktree en maskeert een padweigering (F1–F3); herstel 146 geleverd 01:42:23 als 24c3ee9b — transport rc 8 TRANSCRIPT_OUTPUT_NOT_TESTOUTPUT = opnieuw poortdefect 2, director-hermeting PASS=14 FAIL=0; eerste stem 149 gemini1 GO 01:52:54 (PASS=14 FAIL=0, mutant 7/7 gevangen; transport rc 8 TEST_COUNTER_WITHOUT_COMMAND_BINDING = alweer poortdefect 2); tweede stem 151 claude2 01:59:54–02:07:14 NO_GO op één punt: de registratielijst-check regel 168 van F1 heeft geen toets die hem onafhankelijk doodt, gedrag F1/F2/F3 bewezen correct; receipt is een stdout-terugval (evidence_gate FAILED_EVIDENCE CLAIM_WITHOUT_COMMAND_OUTPUT, geen canoniek receipt, geen transport-receipt om 02:09) — gemini1 GO tegenover claude2 NO_GO; director tik 61 sloot 151 terminaal als NO_GO en zette bouworder 154 (regel-168-dekking, claude2) uit: weging 153 beslist)</td></tr>
-      <tr><td class="cmd">klasse 8: valse rc 8 na geldig receipt</td><td>transport meldde exit 8 terwijl het canonieke receipt geldig was; ~9x opgetreden, laatste 03:08 (73dfe3d8)</td><td>oorzaak: orders zonder receipt=-veld; c8f0914 voerde het veld in; sinds 03:08 geen nieuwe valse rc 8 gemeten</td><td>open · nr 93, 53, 107, 116, 118, 120, 122, 123, 182, 186, 189, 195, 198, 201, 202, 50, 162, 164 · veel ✅ (zie rapporten 00:00–03:15)</td></tr>
-      <tr><td class="cmd">gemini1-review 85909b2 verloren (exit 10)</td><td>25 runs, 7 verdicten sinds gisteravond; herhaaldelijk STARTUP_STALE/geen verdict; startvenster te kort (90s) bleek oorzaak (tik 68), opgerekt naar 180s</td><td>sinds dat venster levert gemini1 weer normaal (166 GO, 175 GO); geen nieuwe verloren run deze tik</td><td>open · nr 93, 118, 117, 138, 150, 182, 186, 185 · volledige log in rapporten 22:41–04:44 · ✅ 136, 142, 144, 145, 147, 149</td></tr>
-      <tr><td class="cmd">stap 3a: corrupt record houdt de rest op</td><td>d526b34 NO_GO: [] en {status:[]} ontsnappen aan de isolatie</td><td>ronde 3 = daa3490, twee GO_WITH_FINDINGS, gemerged als a1f6ec0; ronde 4 4ff627a: gemini1 GO 22:30, codex2 GO_WITH_FINDINGS 22:50, PR #106 gemergd 23:10 (a379c30, MERGE_GATE_ADMIN_INTERIM); merge-readiness-gat = MISSING_INDEPENDENT_REVIEW, director noemt dit structureel (tik 47)</td><td>✅ 22:06 · a1f6ec0 · ronde 4 ✅ 23:10 · nr 106, 18, 114</td></tr>
-      <tr><td class="cmd">director-heartbeat stil terwijl de director werkt</td><td>tik 44 sinds 22:14 niet meer geschreven; orders wél gedispatcht (22:23–22:38); supervisor DIRECTOR_STIL tik 76 (1249 s)</td><td>director schreef tik 45 om 22:41:00, 3,5 min vóór de 1800 s-grens; supervisor tik 78: zelfhersteld</td><td>✅ 22:41 · tik 45 · nr 109</td></tr>
-      <tr><td class="cmd">lane-monitor meldt valse UNJUSTIFIED_IDLE</td><td>claude1/claude2 ten onrechte 'stil' gemeld; twee herstelpogingen NO_GO; director tik 80 §2: arbitrage LANEMONITOR_DERDE_NOGO na termijn zelf beslist → route B met waarnemingsstap eerst (bezetting uit bin/claim-dispatch check, dezelfde bron als de dispatcher), als eis 4 in order 178</td><td>a2dd1e0 NO_GO 21:46 (exe-identiteit); herstel 2× geweigerd (modelmismatch); 3e poging acfc828 NO_GO codex2 22:30 (en 22:36 dubbel gedraaid: zelfde verdict); director tik 70 §5: oorzaak = naamfilter, de monitor ziet alleen workers met AUTOCOD in de naam en meldt de reparatielanes vals als UNJUSTIFIED_IDLE (lane_monitor_vals_positief=true) → bouworder 178 claude4 03:42 (base 85c0df6a, proef python3 governance/test_autocoding_lane_monitor.py, reviewer NIET_CLAUDE4 twee stemmen, opus high), QUEUED achter 193 (lease vastleggen, 05:06; geleverd 05:34:14, 28 min); director tik 74/75: dispatchen zodra claude4 vrij is, samen met 164</td><td>open · nr 103, 178</td></tr>
-      <tr><td class="cmd">controller FAIL met stuck-ids</td><td>heartbeat blijft FAIL/DISPATCH_SUBPROCESS_FAILED ondanks meerdere reparaties (ca1105be gemerged 05:33 als #113)</td><td>oorzaak: heartbeat wordt pas ná een cyclus geschreven, niet tussentijds — supervisor leest dat soms als STALE terwijl de cyclus draait (tik 67/78); actuele heartbeat 05:06:09Z FAIL, scanned 68 dispatched 0 skipped 63 failed 5</td><td>open · nr 57, 113, 116, 120 · volledige incidenthistorie 22:44–05:39 in rapporten</td></tr>
-      <tr><td class="cmd">claude4 weigerde herstelorders (modelmismatch)</td><td>order vroeg opus; dispatch-actor zet claude-lanes standaard op sonnet; 2× GEWEIGERD (21:57, 22:03)</td><td>dispatchregel met --model opus (directordiscipline, geen codedefect)</td><td>✅ 22:03 · 3e poging geleverd 22:17 · nr 103</td></tr>
-      <tr><td class="cmd">mergepoort leest geen actorverdicts (elke PR BLOCKED)</td><td>check_autocoding_merge_readiness.py zag geen GitHub-reviews; twee reparaties nodig (152, 167) plus builder-identity-fix</td><td>05:33+05:36: PR #113 en #112 (de relayreparatie zelf) gemerged, op main sinds a724f97d/2da0bdd3; poort zou nu zonder --admin moeten werken, nog niet apart bevestigd</td><td>open · nr 162, 170, 167, 172, 120, 122, 116 · ✅ 199, 200, 197, 134, 137, 138, 141, 147, 148, 152, 157, 159</td></tr>
-      <tr><td class="cmd">dubbeldispatch (rc-9-stubs)</td><td>order twee keer gestart (controller + director), tweede weigert op lane-claim; tientallen stubs vannacht</td><td>mitigatie (lease-pleister, tik 62-63) hield stubs weg sinds 03:50; echte reparatie ca1105be (179) gemerged 05:33 als onderdeel van #113</td><td>open · nr 58, 113, 116 · volledige log in rapporten 22:30–05:16</td></tr>
-      <tr><td class="cmd">werkboom ~/Stack-Director leeggeveegd door reviewer</td><td>gemini1 deed 22:45 git stash -u + checkout 85909b2 in de gedeelde checkout; 12.338 bestanden weg, 5 orders exit 12 TAMPERED, controller- en supervisorbeeld vals</td><td>director: 7 bestanden + ledger terug uit stash@{1}^3, branch terug, verbod in ledger (c8f0914 22:54); stash niet gepopt; arbitrageverzoeken 22:59 teruggezet, watchdog + rc-9-stubs nog in stash; director noemt het incident 23:03 opgelost ("grond was mijn eigen orderregel"); watchdog-alert 23:17 opnieuw geschreven; alleen 32 rc-9-stubs en directorclaim 12:42 nog in stash@{1}</td><td>open · nr 110</td></tr>
-      <tr><td class="cmd">watchdog STALE_DISPATCH sinds ~12:42</td><td>bron van de alert staat niet in ps; niemand kijkt ernaar</td><td>geen; 23:17:40 nieuwe alert (oudste dispatch 1326 s), 23:27 weg, 23:37:44 terug (1379 s), 23:40:44 (1559 s), 23:47:45 (1980 s = claude1 71352, de directororder 104), 23:57:47 (1156 s) , 00:01 (1337 s), 00:07:49 (1758 s) en 00:17:50 (2359 s = codex2 84544, order 119); 00:27 alertbestand weg (codex2 sloot 00:23), 00:37:53 terug, 01:37 4892 s = claude2 53693 (order 126, 82 min), 01:47 5493 s, 01:53 1945 s, 01:58 2306 s, 02:07:06 2847 s = claude1 39111 (order 129, eindigde 02:07:26); alertbestand afwezig 02:18 en 02:22; terug 02:28:10 STALE_DISPATCH_DETECTED 1026 s = claude2 108 (154, sinds 02:11:04); 02:37:11 1437 s = claude3 23929 (156); afwezig 02:41 (156 geleverd 02:39:33); terug 02:48:13 1146 s, 02:57:14 1687 s, 03:01 1928 s, 03:07:16 2289 s, 03:17 2891 s, 03:27 3492 s, 03:38 4154 s, 03:47 4695 s, 03:57 5297 s, 04:07 5898 s, 04:17 6500 s, 04:27 7102 s, 04:37 7703 s, 04:48 8365 s, 04:57 8907 s = claude4 96064 (einde ±05:00), 05:07:35 1892 s = claude1 67528 (geleverd 05:07:59); alertbestand weg 05:17; terug 05:23:37 1048 s = claude4 25863 (193, sinds 05:06:09), 05:27:38 1289 s (22 min), geleverd 05:34:14; 05:35:39 1149 s = claude2 75633 (195, sinds 05:16:30), 05:38:40 1330 s (23 min) (163, sinds 02:29:07); wisselt per tik, niemand leest hem</td><td>open · nr 59 · <b>niemand</b></td></tr>
-      <tr><td class="cmd">reparatiestop geschonden</td><td>ee08807 raakte bin/autocoding-supervisor zonder REPARATIE_STAP_-prefix</td><td>supervisor-bevinding e5540e1; director erkende het en bond de commitvorm-eis vooruit in de bouworders</td><td>✅ 21:57 · director tik 43 · nr 97</td></tr>
-    </tbody>
-  </table></div>
-</section>
-
-<section id="b3">
-  <h2><span class="n">3</span> Taken tot autocoding klaar <span class="sub">alleen open werk · nummers blijven vast · afgerond staat in het rapport</span></h2>
-  <div class="tabel"><table id="t3">
-    <thead><tr><th>Nr</th><th>Stap</th><th>Taak</th><th>St</th><th>Wie</th><th>Tijd</th><th>Klaar plan → werkelijk / ~verwacht</th><th>Bewijs / blokkade</th></tr></thead>
-    <tbody></tbody>
-  </table></div>
-  <div class="legenda"><span><b>🔵</b> loopt</span><span><b>⬜</b> open</span><span><b>🔴</b> geblokkeerd of geen eigenaar</span><span><b>~</b> eigen schatting</span><span><b>vet</b> Richard of niemand</span></div>
-</section>
-
-<section id="b4">
-  <h2><span class="n">4</span> Parallel <span class="sub">sporen die vóór een stap dicht moeten</span></h2>
-  <div class="tabel"><table id="t4">
-    <thead><tr><th>Nr</th><th>Spoor</th><th>Taak</th><th>St</th><th>Wie</th><th>Tijd</th><th>Klaar plan → werkelijk / ~verwacht</th><th>Bewijs / blokkade</th></tr></thead>
-    <tbody></tbody>
-  </table></div>
-</section>
-
-<section id="b5">
-  <h2><span class="n">5</span> Onderhoud / alarmen</h2>
-  <div class="tabel"><table id="t5">
-    <thead><tr><th>Nr</th><th>Taak</th><th>St</th><th>Wie</th><th>Tijd</th><th>Sinds</th><th>Bewijs</th></tr></thead>
-    <tbody></tbody>
-  </table></div>
-</section>
-
-<section id="b6">
-  <h2><span class="n">6</span> Na autocoding <span class="sub">indicatief, zonder datum</span></h2>
-  <div class="tabel"><table id="t6">
-    <thead><tr><th>Nr</th><th>Project</th><th>Taak</th><th>St</th><th>Wacht op</th><th>Bron</th></tr></thead>
-    <tbody></tbody>
-  </table></div>
-</section>
-
-<section id="slot">
-  <h2>Slot</h2>
-  <div class="tabel"><table class="slot">
-    <thead><tr><th>Δ sinds vorige tik (09:17)</th><th>Volgende tik</th></tr></thead>
-    <tbody><tr>
-      <td>lamp 🟡: lane-bezetting 4/7→2/7 — <b>claude3/207 eindelijk klaar</b> na ~2 uur watchdog-vasthouding (1105/1105 groen, wacht op review/merge-order 240) · 238 en 239 ook geconcludeerd, beide zonder Richard-actie · 231 vrijgekomen via REFUSED_LANE_CLAIM_HELD · nieuw bezet: codex1 (242, net gestart) · codex2 2 reviews gequeued (243), nog niet opgepakt · CONTROLLER_STALE terug (heartbeat weer &gt;15 min stil) · escalation-streak 37→43, blijft versnellen ondanks het geslaagde bouwwerk · arbitrage 93d82c8d gesloten zonder merge (241, R7 rood) · nieuwe bevindingen 236 (bewijspoort-mismatch) en 237 (gemini1 quarantaine)</td>
-      <td class="volgende">~09:44 · pakt claude1/claude3/claude4 iets nieuws op (forward-port 241, herdispatch 231, of iets anders)? krijgt codex1/242 een receipt? pakt codex2 de 2 gequeuede reviews (243) op? concludeert claude2/234? schrijft de controller alsnog een verse heartbeat? blijft de escalation-streak versnellen ondanks het opgeloste watchdog-geval? arbitrage-deadline 10:55Z nog ~1u20 weg</td>
-    </tr></tbody>
-  </table></div>
-  <div class="pad">volledig rapport: ~/stack-control/CONTROL/RAPPORTEN/board-2026-09-09-0934.md</div>
-</section>
-
+<main id="main">
+  <div class="leeg" id="laadmelding">Data ophalen…</div>
 </main>
 
+<footer id="voet"></footer>
+
 <script>
-// Status: K=✅ klaar, B=🔵 loopt, O=⬜ open, R=🔴 geblokkeerd / geen eigenaar
-// Wie: "**Richard**" of "**niemand**" wordt vet gezet.
-const T3 = [
- [5, "1 spook", "Restpunt 5f4ac0b", "O", "**niemand**", "~20 min", "09-09 → ~09-09", "niet in directorlijst"],
- [9, "2 head", "Review dc14cb9 gemini1", "R", "director", "—", "09-09 → vervallen 09-08", "vervallen: gemerged op V2; gemini1 timeout 90 s"],
- [15, "3 record", "Bouw 3b import + dispatcher + sweep", "O", "**niemand**", "~2 u", "09-09 → ~09-09 01:00", "3a gemerged 22:06; 3b nog niet gedispatcht"],
- [17, "3 record", "Review 3b", "O", "**niemand**", "~30 min", "09-09 → ~09-09 02:00", "wacht op 15"],
- [19, "4 toelating", "Bouw toelatingsautomaat", "O", "**niemand**", "~3 u", "09-10 → ~09-09", "18 klaar 23:10; nog niet gedispatcht"],
- [20, "4 toelating", "Review stap 4", "O", "**niemand**", "~30 min", "09-10 → ~09-09", "wacht op 19"],
- [21, "4 toelating", "R7 + merge stap 4", "O", "director", "~20 min", "09-10 → ~09-09", "wacht op 20"],
- [22, "5 ordercheck", "Bouw order-check + review-ordergenerator", "O", "**niemand**", "~3 u", "09-10 → ~09-09", "wacht op 21"],
- [23, "5 ordercheck", "Review stap 5", "O", "**niemand**", "~30 min", "09-10 → ~09-10", "wacht op 22"],
- [24, "5 ordercheck", "R7 + merge stap 5", "O", "director", "~20 min", "09-10 → ~09-10", "wacht op 23"],
- [25, "burn-in A", "24 u klok: 0 verschillen record ↔ orderregel", "O", "klok", "24 u", "09-11 → ~09-11", "wacht op 24"],
- [26, "6 daemons", "Bouw monitor/responder/supervisor op record", "O", "**niemand**", "~2 u", "09-11 → ~09-10", "mag tijdens 25; wacht op 24"],
- [27, "6 daemons", "Review stap 6", "O", "**niemand**", "~30 min", "09-11 → ~09-10", "wacht op 26"],
- [28, "6 daemons", "R7 + merge stap 6", "O", "director", "~20 min", "09-11 → ~09-10", "wacht op 27"],
- [29, "7 cutover", "Import-smoke + droge cyclus", "O", "director", "~1 u", "09-12 → ~09-11", "wacht op 25, 28"],
- [30, "7 cutover", "Herpin 4 daemons op één head", "O", "director", "~30 min", "09-12 → ~09-11", "wacht op 29"],
- [31, "7 cutover", "Eerste gesloten cyclus bewezen", "O", "supervisor", "~1 u", "09-12 → ~09-11", "wacht op 30"],
- [32, "akkoord", "Akkoord op de nieuwe keten", "O", "**Richard**", "~15 min", "09-12/13 → ~09-11", "wacht op 31"],
- [33, "burn-in B", "7 d klok: legacy_fallback_hits = 0", "O", "klok", "7 d", "09-19/20 → ~09-18", "wacht op 32"],
- [34, "8 parser", "Vlag legacy-parser uit", "O", "director", "~30 min", "09-20 → ~09-19", "wacht op 33"],
- [35, "8 parser", "24 u later code weg + negatieve controle", "O", "**niemand**", "~1 u", "09-21 → ~09-20", "wacht op 34"],
- [36, "8 parser", "autocoding klaar: stap 8 EFFECT-BEWEZEN", "O", "supervisor", "—", "09-21 → ~09-20", "wacht op 35"],
-];
-const T4 = [
- [47, "stack-status", "Push + PR + R7 + merge", "O", "director", "~25 min", "09-08 → ~09-09", "wacht op 46; claude3 geblokkeerd"],
- [50, "PR #104", "Review c9990850 + R7 + merge", "R", "director", "~60 min", "09-09 → ~09-09 07:00", "gh 05:39: PR 104 OPEN UNKNOWN c9990850, reviews 0; director tik 81: GEBLOKKEERD \"merge PR 104 op 97414501 — NO_GO plus onherdraaibare suite\"; relayherstel is 05:36:11 gemerged (PR #112 → 2da0bdd3): de poort leest nu de bouweridentiteit uit het commit-object — ronde 3 voor 104 (telling met commandobinding) kan; nog niet in een heartbeat of ledgertik"],
- [125, "PR #104", "PR 104: main in de branch mergen (claude1)", "R", "director", "~10 min", "09-09 → ~09-09 04:30", "129 ✅ f593af82; conflict opgelost door 169 als merge-commit c9990850, order 169 gesloten CLOSED_TERMINAAL_RECEIPT_DONE (tik 71); PR-head c9990850; merge wacht op R7 via 177"],
- [72, "klasse 8", "Diagnose lezen en verwerken", "O", "director", "~20 min", "09-08 → ~09-09", "niet meer in directorlijst (tik 40); geen bewijs"],
- [93, "klasse 8", "Tweede stem 85909b2 (gemini1)", "R", "director", "—", "09-08 → ~09-09", "15 runs, 4 verdicts; 150 rc 10; director tik 62: 93d82c8d \"niet op gemini1\" reviewen"],
-[53, "klasse 8", "Merge 85909b2 na R7", "O", "director", "~30 min", "09-08 → ~09-09", "126 gesloten 02:00; 150 rc 10 zonder verdict; herdispatch 1/3 aangekondigd (tik 62), nog niet gezet"],
- [189, "receiptroute", "Arbitrage tweede NO_GO 93d82c8d (Fable)", "R", "Fable", "—", "09-09 → ~09-09 08:53", "director tik 80 §1 (04:58): tweede NO_GO op dezelfde lijn (ronde 1 één literal, ronde 2 twee) → §C.3 arbitrage naar Fable, termijn 4 u (06:53Z = 08:53); state/ARBITRAGE_REQUESTS/DIRECTOR_RECEIPTROUTE_TWEEDE_NOGO_20260909_FABLE_V1.md OPEN; vraag: mag een teksttrigger bewijzen dat de receiptroute werkt? drie routes: derde ronde / bewijsmechanisme vervangen / claim versmallen, directors weging voor de derde zonder besluit; geen merge, geen derde ronde, geen order op w13 tot het besluit"],
- [199, "PR #104", "PR #112 9b6bdded relayherstel: CI + merge 3(b) (director)", "K", "director", "—", "09-09 → 09-09 05:36", "MERGED 05:36:11, mergecommit 2da0bdd3 \"Relayherstel: de bouweridentiteit komt uit de commitboodschap op de gecontroleerde SHA (MERGE_GATE_ADMIN_INTERIM)\"; geopend 05:23:32 op de exacte head (basisdrift 11 commits met overlap, merge-tree conflictvrij); stemmen 191 claude3 + 196 codex2; controller-contract CI success, merge-readiness failure (relaykategorie) → --admin interim 3(b); derde en laatste merge van het reparatiepad; gh 05:39 MERGED"],
- [201, "harnasfix", "Eerste stem lease-commit 21e91f0b (codex2)", "B", "codex2", "~12 min", "09-09 → ~09-09 05:50", "order DIRECTOR_LEASE_VASTLEGGEN_REVIEW_21E91F0B_20260909_CODEX2_V1 05:38 (5220 B, REVIEW, head 21e91f0b, base 76841ec4, branch reparatie/dispatch-actor-lease-20260909, proef bash governance/test_dispatch_hardening.sh, reviewer CODEX2, opus, high, issued_by DIRECTOR_CLAUDE); pid 78114 sinds 05:38:21, claim 78114; stderr 84759 B om 05:39; volgt op 193 (claude4, commit 05:34:14)"],
- [202, "harnasfix", "Tweede stem lease-commit 21e91f0b (claude1)", "B", "claude1", "~15 min", "09-09 → ~09-09 05:55", "order DIRECTOR_LEASE_VASTLEGGEN_TWEEDE_STEM_21E91F0B_20260909_CLAUDE1_V1 05:39 (5086 B, REVIEW, head 21e91f0b, base 76841ec4, zelfde proef, reviewer CLAUDE1, opus, high, issued_by DIRECTOR_CLAUDE); pid 87362/87822 sinds 05:39:18, claim 87362; direct gedispatcht (controller stil); 198 blijft erachter QUEUED"],
- [117, "klasse 8", "Review 582cfe2 (3e22fde r3): NO_GO → ronde 4", "R", "director", "—", "09-08 → ~09-09", "codex2 NO_GO 23:37:30; gemini1 exit 9 23:42:52; vervolg = 122"],
- [122, "klasse 8", "Herstel 3e22fde ronde 4 (claude2) + review + merge", "O", "director", "~30 min", "09-08 → ~09-09 04:45", "GO 139 + 144; PR #108 03:48 MERGEABLE/BLOCKED; poort = relay zonder builder-id → 177 eerst"],
- [133, "klasse 9", "Poortdefect 2: echt receipt afgewezen (exit 8)", "R", "director", "—", "09-08 → ~09-09 05:30", "oorzaak tik 69: geweigerde claim (rc 9) schrijft stub op canoniek receiptpad; tik 72: herdispatch → 179 = ca1105be geleverd 04:39 (rc 8 padreden, derde keer); tik 73: 176 → 180 QUEUED (kreeg 04:46 zelf een stub); 184 04:28 rc 8 padreden; 183 04:40 rc 8 TEST_COUNTER_WITHOUT_COMMAND_BINDING op een canoniek receipt (padbevinding op claude2 weg); director tik 79: \"transportdefect, geen inhoudelijk oordeel\" — vier van vier leveringen sinds 04:00 rood op transport, nul op inhoud; stemmen lopen (187, 188)"],
- [176, "klasse 9", "Bouw ronde 1: weigeringsstub weg van canoniek receiptpad (claude3)", "R", "director", "—", "09-09 → ronde 2 (180)", "run 03:27:10–03:59:28 (32 min): exit 8, evidence FAILED_EVIDENCE CLAIM_WITHOUT_COMMAND_OUTPUT, verdict BLOCKED_EVIDENCE (aankondiging i.p.v. uitvoer, R6); director mat de worktree: proeven cl11/cl11k/cl12 + bin/detect-diverted-claim-refusal-stubs bewaard, bin/dispatch-actor ongewijzigd t.o.v. 927487a7 (fix verloren bij negatieve controle, geen stash); order gesloten CLOSED_TERMINAAL_RECEIPT_BLOCKED_EVIDENCE"],
- [180, "klasse 9", "Bouw ronde 2: stub weg van canoniek pad", "O", "claude3", "~40 min", "09-09 → ~09-09 06:15", "V2-order tik 73 04:02 (8585 B, base 927487a7, proef test_dispatch_hardening.sh, reviewer NIET_CLAUDE3 twee stemmen, opus); 04:46:40 rc-9-stub (houder 187); claude3 vrij sinds 05:17:18 (22 min om 05:39; director dispatchte 05:38–05:39 wel op codex2/claude1) — QUEUED, controller-heartbeat stil, dispatch waarschijnlijk direct; hb tik 82: claude3 QUEUED 2"],
- [182, "PR #104", "Tweede stem relayherstel 97414501 (gemini1)", "R", "director", "—", "09-09 → achterhaald (183)", "run 04:15:33–04:18:37: exit 10, 184 s = hangvenster 180 s + overhead (director tik 78 §5), FAILED_EVIDENCE RERUN_RC_NONZERO, REVIEW_PENDING_TRANSPORT; geen verdict; order gesloten; head 97414501 achterhaald door ronde 2 (183)"],
- [186, "klasse 9", "Eerste stem bewijspoort-rerunvenster 6702042e (gemini1)", "R", "director", "—", "09-09 → afgevoerd (187)", "drie pogingen, geen verdict: 1) 04:31 STARTUP_STALE 93 s; 2) 04:33–04:36 rc 10 184 s; 3) 04:37:59–04:40:29 rc 0 150 s COMPLETED, receipt eindigt in voornemens; director tik 79 §1: levende mutant achtergelaten (RERUN_TIMEOUT_SECONDS=601, regel 149) en om 04:44 zelf teruggedraaid; oordeel: gemini1 krijgt geen reviewwerk meer op deze reparatie, stem naar claude3 = 187; order blijft DISPATCHED_DIRECT_BY_DIRECTOR; TRANSPORT_RECEIPT(_2).md bewaard als meting"],
- [195, "controller", "Bouw receiptbestemming reviewlane (claude2)", "B", "claude2", "~30 min", "09-09 → ~09-09 06:05", "order DIRECTOR_RECEIPTBESTEMMING_REVIEWLANE_20260909_CLAUDE2_V1 05:11 (5033 B, BUILD, base origin/main, branch reparatie/receiptbestemming-reviewlane-20260909, proef bash governance/test_dispatch_hardening.sh, reviewer CLAUDE1, opus, hoog) QUEUED → controllercyclus 62447 dispatchte 05:16:30 (pid 75633/76373, claims 75633 + 62447, worker 78242573); 23 min om 05:39 (watchdog 05:38:40 1330 s wijst hierheen); hb tik 82 OPEN: verdict wegen"],
- [198, "klasse 9", "Bouw tellerbinding bewijspoort (claude1)", "O", "claude1", "~45 min", "09-09 → ~09-09 06:30", "order DIRECTOR_TELLERBINDING_BEWIJSPOORT_20260909_CLAUDE1_V1 05:22 (5057 B, BUILD, base origin/main, branch reparatie/tellerbinding-bewijspoort-20260909, proef bash governance/test_validate_receipt.sh, reviewer CLAUDE3, opus, hoog) QUEUED_FOR_AUTOCODING: tik 82 §4 — teller uit de mutantproef (35/1 i.p.v. 36/0), faalsom uit een ander blok, validate-receipt:948 slaat de padvolgende receiptroute over; claude1 vrij 05:22:02–05:39:18, daarna 202 (lease-review) — 198 blijft QUEUED achter die review"],
- [174, "klasse 9", "Weeg NO_GO 901db3c4 (123) + terugroute ronde 3", "O", "director", "~20 min", "09-09 → ~09-09 06:30", "codex2 receipt 03:12: verdict=NO_GO, P2 toolcache + P1 watchdog-procesrest; order 123 05:28 nog QUEUED; niet in tik 73–82 (director: merges #112/#113 in 3(b)-volgorde, lease wegen, 195/198 wegen, arbitrage 189)"],
- [107, "klasse 8", "Herstel 869710f ronde 2 (claude1)", "O", "claude1", "~40 min", "09-08 → ~09-09 00:30", "104 geleverd 23:54:32; review 123 loopt op codex2 sinds 02:46:02 (via controller 90243)"],
- [118, "klasse 8", "Review 9489af5 bewijsbron: codex2 NO_GO, gemini1 geen verdict", "R", "director", "—", "09-08 → ~09-09", "codex2 NO_GO 23:27; gemini1 exit 10 WITHHELD 23:32:03; herstel = 120"],
- [120, "klasse 8", "Herstel 9489af5 NO_GO (bewijsbron, claude4)", "O", "director", "~15 min", "09-08 → ~09-09 04:45", "PR #107 03:48 MERGEABLE/BLOCKED; GO 132 + 136; wacht op 177 + twee stemmen + merge"],
- [138, "mergepoort", "Mergepoort-review cc84ac3f (gemini1)", "R", "director", "—", "09-09 → ~09-09", "rc 9 STARTUP_STALE 01:11:40, herpoging rc 10 01:15:32 zonder verdict; 137 NO_GO beslist"],
- [162, "mergepoort", "PR #109 8e349d0b: R7 + merge", "R", "director", "—", "09-09 → ~09-09 04:45", "geopend 02:36 (GO 157 + 159); 03:48 MERGEABLE/BLOCKED, reviews 0; relayroute NO_GO codex2 → 177 loopt"],
- [170, "mergepoort", "PR #110 2e5716c4: R7 + merge", "R", "director", "—", "09-09 → ~09-09 04:45", "geopend 02:50:22Z (GO 165 + 166); 03:48 MERGEABLE/BLOCKED, reviews 0; zelfde poort; wacht op 177 + merge"],
- [116, "harnasfix", "Oogst 6b033a4 (claude4) + R7 + merge", "R", "director", "~30 min", "09-08 → ~09-09 04:45", "a16dbf97: 155 GO vs 158 NO_GO; weging 160 ✅; 158 gesloten 02:54:38; terugroute 164 wacht op claude4 (163, 78 min)"],
- [164, "harnasfix", "Terugroute a16dbf97: proefversterking (claude4)", "O", "claude4", "~30 min", "09-09 → ~09-09 06:15", "order DIRECTOR_TRANSPORTVENSTER_PROEFVERSTERKING 02:35:32 QUEUED; rc-9-pogingen 02:46:21 en 03:15 (controller); director tik 75/76: samen met 178 zodra claude4 vrij is — claude4 nu op 193 (17 min, sinds 05:06:09)"],
- [115, "codex1", "codex1 rc 3: ~/.codex/auth.json afwezig", "R", "**Richard**", "~5 min", "09-08 → ~09-09", "ls: No such file (04:37); director tik 78: GEBLOKKEERD \"zes revieworders achter codex1 (Not logged in)\"; BESLISPUNT 04:16: standaardkeuze = over de overige lanes verdelen; supervisor tik 143: codex1-login BESLISPUNT volgen; enige vrije kanaal om 04:37"],
-];
-const T5 = [
- [55, "gemini1 hanggrens 180 s (was STARTUP_STALE)", "O", "director", "~15 min", "20:12", "werkt met 1800 s (run 281 s); default-fix na stop"],
- [56, "supervisor: streak 17 → 3 → 14 (ESCALATION_REQUIRED 05:39, age 1717; CONTROLLER_STALE-recidive); tik 153: REPARATIESTOP_GESCHONDEN op de merge 84372dee", "R", "director", "—", "~19:45", "status.json 05:28 DETECTED streak 3 → 05:39 ESCALATION_REQUIRED streak 14, controller_age 1717, issues CONTROLLER_STALE/DISPATCH_SUBPROCESS_FAILED/RECEIPT_NONTERMINAL; supervisor tik 153 05:29:55 SUPERVISOR_OK scanned 17: nieuwe bevinding MIDDEN — 84372dee en 6702042e wijzigen bin/verify-acceptance zonder REPARATIE_STAP_-prefix (inhoudelijk onderbouwd, alleen naamgeving; gevonden via git log -m, methode aangescherpt), gepubliceerd commit 3ec6f32e; CONTROLLER_STALE-recidive LAAG (age 932, eerste sinds tik 144); streak 14→1; supervisor tik 154 05:32:10 OK scanned 17, geen nieuwe bevinding, 3 open; director hb tik 82: streak 15, unjustified_idle 2 — drie tellers, drie getallen"],
- [57, "controller FAIL DISPATCH_SUBPROCESS_FAILED (heartbeat 05:10:21, om 05:28 niet ververst; scanned 15, dispatched 0, failed 1) — cyclus 62447 leeft 24 min", "R", "director", "—", "20:21", "heartbeat 05:10:21 FAIL scanned 15 dispatched 0 skipped 14 skipped_terminal 6 failed 1, stuck 3; cyclus 62447 sinds 05:15:21 dispatchte 195 (05:16:30) maar schreef geen heartbeat (age 1053 → CONTROLLER_STALE); cyclus 65555 (05:22:44) weg zonder heartbeat; 194 en de drie vrije lanes (QUEUED 2/2/3) hangen aan directe dispatch; reparatie ca1105be = PR #113 (200) gemerged 05:33:23 → a724f97d; PR #112 gemerged 05:36:11 → 2da0bdd3; heartbeat daarna (05:39) nog steeds 05:10:21, age 1717 — de gerepareerde controller draait pas na een nieuwe start; 201/202 direct gedispatcht"],
- [130, "bouworder CONTROLLER_STALE-meetdefect (claude2)", "O", "claude2", "~30 min", "00:34", "order 00:34 (+206 regels 00:57, bewijs tik 67 03:02); tik 71: teruggevonden in de volledige aanbodtelling; claude2 nu op 195 (receiptbestemming, sinds 05:16:30) — hb tik 82: claude2 QUEUED 6, de controller koos 195 boven 130; CONTROLLER_STALE 05:28 weer in de issues"],
- [58, "rc 9: weigeringsstubs cyclisch per controllerronde (17 opzij gezet, 3 nieuw sinds 04:46)", "R", "director", "stap 3", "20:09", "tik 69: 26 stubs, 13 met echt receipt ernaast; tik 70–73: 17 stubs verplaatst; 03:50–04:46 geen nieuwe; 04:46:39 163 (houder = eigen task_id pid 96064), 04:46:40 180 (houder 187), 04:52:24 178 (houder 163/96064) — alle drie op het canonieke _RECEIPT.md-pad; de klasse van 179/ca1105be (eerste stem groen, 188) en 180 (pad, QUEUED)"],
- [140, "canon REQUEST_REPAIR op TRANSPORT_FAILED (no_preapproved_remediation)", "R", "director", "—", "01:14", "supervisor tik 105 01:14:16: eerste verse canon-actie; nu action=NONE/already_requested"],
-[110, "werkboom leeggeveegd; hersteld op stubs + claim na", "O", "director", "~10 min", "22:45", "watchdog terug 23:17; 32 stubs + claim 12:42 in stash@{1}"],
- [113, "controller dispatcht naast de directie (ook directororders)", "R", "director", "—", "22:55", "run 03:35:47: vier directororders op bezette lanes → vier stubs; run 03:42:35: bezette lanes overgeslagen (skipped 15), alleen codex1 rc 3; tik 71: cyclisch, herclassificatie in 130"],
- [80, "merge c03b92c na R7", "R", "director", "—", "21:12", "codex2 NO_GO 21:23 (tegenvoorbeeld); herstel = 81"],
-[88, "review a2dd1e0 (codex2) + merge", "R", "director", "—", "21:38", "codex2 NO_GO 21:46 (P1 exe-identiteit één pad)"],
-[178, "bouworder lane-monitor-naamfilter (claude4): elke lane-worker zien, niet alleen AUTOCOD", "O", "claude4", "~30 min", "03:42", "order DIRECTOR_LANEMONITOR_NAAMFILTER_20260909_CLAUDE4_V1 herschreven 04:54 (7303 B, base 85c0df6a, proef python3 governance/test_autocoding_lane_monitor.py, reviewer NIET_CLAUDE4 twee stemmen, opus, hoog): eis 4 — bezetting uit bin/claim-dispatch check --resource lane:<lane>; lint OK; 04:52:24 rc-9-stub (houder 163); QUEUED claude4 vrij sinds 05:34:14 (193 ✅ commit 21e91f0b, in review 201/202), QUEUED op claude4 4, controller stil, geen dispatch om 05:39"],
-[99, "klasse 8: 8 gevallen vandaag (was 6)", "R", "director", "na stop", "21:50", "7e claude4 21:57, 8e claude1 41e1c11 22:03"],
-[89, "klasse 9: reviewsleutels uniek in héle stdout", "R", "director", "na stop", "21:29", "exit 6 gemini1 d526b34; herstel 41e1c11 (104) exit 12 22:57"],
- [61, "REPAIR_REQUESTS-map: 143 gemeld, nu niet gevonden", "O", "**niemand**", "—", "19:44", "ls state/REPAIR_REQUESTS: bestaat niet"],
- [62, "worktrees 507; 8 claimbestanden om 05:39 (3 levend + controller + 4 oud)", "O", "director", "~10 min", "18:15", "worktree list 05:39 (507); claims: 87362 claude1 (202), 78114 codex2 (201), 75633 claude2 (195) + controllerclaim 62447 op 195 + 4 oud (63247, 18494, 52716, 66700); 57633 claude1 en 25863 claude4 vrijgegeven; origin/main 84372dee 05:25:09 (merge PR #111) → 3ec6f32e 05:29 (supervisor-bevinding) → a724f97d 05:33:23 (merge PR #113) → 2da0bdd3 05:36:11 (merge PR #112)"],
- [64, "docs/review-relay.md corrigeren (4 secrets)", "O", "director", "~10 min", "20:12", "directorlijst OPEN"],
- [65, "ARBITRAGE-bestand 136597a gesloten, staat nog", "O", "director", "~5 min", "19:58", "§10 gesloten"],
-];
-const T6 = [
- [66, "Website", "Herstelorder weblog-audit V2 (PR #1102)", "O", "Richard: D1–D13", "stack-control #1102 OPEN 17:00Z"],
- [67, "Website", "16-onderdelen voorstel (PR #1101)", "O", "Richard", "stack-control #1101 OPEN"],
- [68, "Website", "V7 / V8 / V9", "O", "66, 67", "opdracht 20:15; geen document gemeten"],
- [69, "Task OS", "P0-min ter akkoord (PR #1104)", "O", "Richard", "stack-control #1104 OPEN 17:26Z"],
- [70, "Website+weblog", "Gecombineerd voorstel planning V1", "O", "Richard", "outbox 20:08:58"],
- [74, "Website", "Weblog readonly-scan Terra (ander venster)", "B", "—", "checkpoint 23:02; loopt door"],
-];
+const BRON = "../regiekamer.json";
+const VERVERS_MS = 60000;
+const el = (id) => document.getElementById(id);
+const esc = (s) => String(s ?? "").replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+// markdown-vet uit brondocumenten wegstrippen, geen HTML doorlaten
+const schoon = (s) => esc(String(s ?? "").replace(/\*\*/g, "").trim());
 
-const ST = {K:"✅",B:"🔵",O:"⬜",R:"🔴"};
-const STN = {K:"klaar",B:"loopt",O:"open",R:"geblokkeerd"};
-function wie(w){ const m=w.match(/^\*\*(.+)\*\*$/); return m?m[1]:w; }
-function klaar(k){
-  const m=k.match(/^(\S+)\s*→\s*(~?)(.+)$/);
-  if(!m) return esc(k);
-  const [,plan,tilde,nu]=m;
-  const dag=s=>{const d=s.split("/")[0].split(" ")[0].split("-");return d.length>1?+d[1]:NaN;};
-  const diff=dag(nu)-dag(plan);
-  const cls=isNaN(diff)?"":(diff>1?"schuiftveel":(diff>0?"schuift":(diff<0?"eerder":"")));
-  return esc(plan)+' → <span class="'+cls+'">'+tilde+esc(nu)+'</span>';
+function minGeleden(iso){
+  if(!iso) return null;
+  const t = Date.parse(iso);
+  if(Number.isNaN(t)) return null;
+  return (Date.now() - t) / 60000;
 }
-function esc(s){return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;");}
-function rij(cellen, opties){
-  const {st,w,groep,eind}=opties;
-  const cls=[];
-  if(st==="K")cls.push("klaar"); if(st==="B")cls.push("bezig"); if(st==="R")cls.push("rood");
-  if(/\*\*Richard\*\*/.test(w))cls.push("richard"); if(/\*\*niemand\*\*/.test(w))cls.push("niemand");
-  if(groep)cls.push("groep"); if(eind)cls.push("eind");
-  return '<tr class="'+cls.join(" ")+'">'+cellen.join("")+'</tr>';
+function duurTekst(min){
+  if(min === null || min === undefined) return "—";
+  if(min < 1) return "<1 min";
+  if(min < 90) return Math.round(min) + " min";
+  const u = Math.floor(min/60), m = Math.round(min%60);
+  return u + "u" + (m ? " " + m + "m" : "");
 }
-function td(c,v){return '<td class="'+c+'">'+v+'</td>';}
-function stcel(st){return '<td class="status" title="'+STN[st]+'">'+ST[st]+'</td>';}
+function klok(iso){
+  if(!iso) return "—";
+  const d = new Date(iso);
+  if(Number.isNaN(+d)) return "—";
+  return String(d.getHours()).padStart(2,"0") + ":" + String(d.getMinutes()).padStart(2,"0");
+}
 
-function vul3(id,rows,stapkop){
-  let prev=null, html="";
-  rows.forEach((r,i)=>{
-    const [nr,stap,taak,st,w,tijd,k,bewijs]=r;
-    const groep=prev!==null && stap!==prev; prev=stap;
-    html+=rij([td("nr",nr),td("stap",esc(stap)),td("taak",esc(taak)),stcel(st),td("wie",esc(wie(w))),td("tijd",esc(tijd)),td("klaar",klaar(k)),td("bewijs",esc(bewijs))],
-              {st,w,groep,eind: id==="t3" && i===rows.length-1});
+function render(d){
+  const lanes    = Array.isArray(d.accounts) ? d.accounts : [];
+  const events   = Array.isArray(d.ticker_events) ? d.ticker_events : [];
+  const taken    = Array.isArray(d.taken_met_estimate) ? d.taken_met_estimate : [];
+  const beslis   = (d.beslisrij && Array.isArray(d.beslisrij.items)) ? d.beslisrij.items : [];
+  const cap      = (d.capaciteit && d.capaciteit.data) ? d.capaciteit.data : {};
+  const capLanes = Array.isArray(cap.lanes) ? cap.lanes : [];
+
+  /* ---- versheid: de enige echte gezondheidsmeting van dit bord ---- */
+  const oud = minGeleden(d.gegenereerd_op);
+  const versKlasse = oud === null ? "" : (oud > 20 ? "rood" : oud > 10 ? "amber" : "groen");
+  el("lamp").className = "lamp " + versKlasse;
+  el("versheid").className = "versheid mono" + (versKlasse === "rood" ? " rood" : "");
+  el("versheid").textContent = oud === null
+    ? "geen tijdstempel in de data"
+    : "data van " + klok(d.gegenereerd_op) + " · " + duurTekst(oud) + " oud"
+      + (oud > 20 ? "  ⚠ BOARD ververst niet meer" : "");
+
+  /* ---- tellers ---- */
+  const telStatus = (s) => lanes.filter(l => l.status === s).length;
+  const tGeblok = telStatus("GEBLOKKEERD"), tStale = telStatus("STALE"), tBezig = telStatus("BEZIG");
+  const tk = {};
+  for(const t of taken) tk[t.status] = (tk[t.status]||0) + 1;
+  el("tellers").innerHTML = [
+    beslis.length ? `<span class="teller geel">jij beslist <b>${beslis.length}</b></span>` : "",
+    `<span class="teller blauw">bezig <b>${tBezig}</b>/${lanes.length}</span>`,
+    tGeblok ? `<span class="teller rood">kanaal vast <b>${tGeblok}</b></span>` : "",
+    tStale  ? `<span class="teller amber">stil <b>${tStale}</b></span>` : "",
+    `<span class="teller">werk open <b>${(tk.OPEN||0)+(tk.BEZIG||0)}</b> · vast <b>${tk.GEBLOKKEERD||0}</b></span>`
+  ].filter(Boolean).join("");
+
+  const blokken = [];
+
+  /* ---- 1. WAT JIJ MOET BESLISSEN ---- */
+  blokken.push(`
+  <section class="${beslis.length ? "urgent" : ""}">
+    <div class="kopje"><span class="n">${beslis.length}</span><h2>Wat jij moet beslissen</h2>
+      <span class="bron">bron: ${schoon(d.beslisrij?.bron_pad || "—")}</span></div>
+    ${beslis.length ? `<table>
+      <thead><tr><th class="mono">nr</th><th>Besluit</th><th>Kost</th><th>Ontgrendelt</th></tr></thead>
+      <tbody>${beslis.map(b => `
+        <tr><td class="nr mono">${schoon(b.nr)}</td>
+        <td class="besluit">${schoon(b.besluit)}</td>
+        <td class="mono strak">${schoon(b.kost)}</td>
+        <td class="ontgrendelt">${schoon(b.ontgrendelt)}</td></tr>`).join("")}
+      </tbody></table>` : `<div class="leeg">Niets dat op jou wacht.</div>`}
+  </section>`);
+
+  /* ---- 2. KANALEN NU ---- */
+  const volgorde = {GEBLOKKEERD:0, STALE:1, BEZIG:2, WACHT:3, VRIJ:4};
+  const gesorteerd = lanes.slice().sort((a,b) =>
+    (volgorde[a.status] ?? 9) - (volgorde[b.status] ?? 9) || (b.sinds_minuten||0) - (a.sinds_minuten||0));
+  blokken.push(`
+  <section>
+    <div class="kopje"><span class="n">${lanes.length}</span><h2>Kanalen nu</h2>
+      <span class="bron">live gemeten uit draaiende processen + outbox</span></div>
+    <table>
+      <thead><tr><th>Kanaal</th><th>Status</th><th>Duur</th><th>Order</th></tr></thead>
+      <tbody>${gesorteerd.map(l => {
+        const st = String(l.status||"").toLowerCase();
+        const m = l.sinds_minuten;
+        const dk = m == null ? "" : (m > 90 ? " zeerlang" : m > 45 ? " lang" : "");
+        return `<tr class="rij-${st}">
+          <td class="mono strak">${schoon(l.actor)}</td>
+          <td><span class="pil ${st}">${schoon(l.status)}</span></td>
+          <td class="mono strak duur${dk}">${duurTekst(m)}</td>
+          <td class="taakid mono">${l.taak_id ? schoon(l.taak_id) : "<span style='color:var(--inkt-stil)'>—</span>"}</td>
+        </tr>`;
+      }).join("")}</tbody>
+    </table>
+  </section>`);
+
+  /* ---- 3. WAT ER NET GEBEURDE + 4. WERK DAT VASTZIT ---- */
+  // de bron garandeert geen volgorde: expliciet op tijd sorteren, nieuwste eerst
+  const laatste = events.slice()
+    .sort((a,b) => (Date.parse(b.tijd)||0) - (Date.parse(a.tijd)||0))
+    .slice(0,14);
+  const evKlasse = (o) => /GO|PASS|DELIVER|DONE|MERGED|OK/i.test(o||"") ? "ev-in"
+                   : /BLOCK|FAIL|NO_GO|REJECT|STALE|ERROR|ABANDON/i.test(o||"") ? "ev-uit" : "ev-neutraal";
+  const vast = taken.filter(t => t.status === "GEBLOKKEERD");
+
+  blokken.push(`<div class="rij2">
+  <section>
+    <div class="kopje"><span class="n">${laatste.length}</span><h2>Wat er net gebeurde</h2>
+      <span class="bron">laatste ${laatste.length} van ${events.length} gebeurtenissen</span></div>
+    ${laatste.length ? `<table>
+      <thead><tr><th class="mono">tijd</th><th>Kanaal</th><th>Overgang</th><th>Resultaat</th></tr></thead>
+      <tbody>${laatste.map(e => `
+        <tr><td class="mono strak">${klok(e.tijd)}</td>
+        <td class="mono strak">${schoon(e.account || e.kanaal)}</td>
+        <td class="mono overgang ${evKlasse(e.overgang)}">${schoon(e.overgang)}</td>
+        <td class="resultaat mono">${schoon(e.resultaat)}</td></tr>`).join("")}
+      </tbody></table>` : `<div class="leeg">Geen gebeurtenissen.</div>`}
+  </section>
+
+  <section>
+    <div class="kopje"><span class="n">${vast.length}</span><h2>Werk dat vastzit</h2>
+      <span class="bron">status GEBLOKKEERD uit de receipts</span></div>
+    ${vast.length ? `<table>
+      <tbody id="vast-body">${vast.slice(0,10).map(t => `
+        <tr><td>${schoon(t.taak) || "<i style='color:var(--inkt-stil)'>zonder omschrijving</i>"}
+        <div class="taakid mono">${schoon(t.bron_bestand)}</div></td></tr>`).join("")}
+      </tbody></table>
+      ${vast.length > 10 ? `<div class="meer"><button id="meer-vast">toon alle ${vast.length}</button></div>` : ""}`
+      : `<div class="leeg">Niets geblokkeerd.</div>`}
+  </section></div>`);
+
+  /* ---- 5. PRESTATIE PER KANAAL ---- */
+  const actief = capLanes.filter(l => (l.orders||0) > 0)
+    .sort((a,b) => (b.orders||0) - (a.orders||0)).slice(0,10);
+  blokken.push(`
+  <section>
+    <div class="kopje"><span class="n">${actief.length}</span><h2>Prestatie per kanaal</h2>
+      <span class="bron">${cap.meta?.receipt_bestanden_totaal ?? "?"} receipts · ${cap.meta?.receipt_onparseerbaar ?? "?"} onleesbaar (niet meegeteld)</span></div>
+    ${actief.length ? `<table>
+      <thead><tr><th>Kanaal</th><th class="mono">orders</th><th class="mono">p50 duur</th>
+        <th>geslaagd / geblokkeerd / overig</th><th class="mono">laatst actief</th></tr></thead>
+      <tbody>${actief.map(l => {
+        const g = l.geslaagd_pct||0, r = l.geblokkeerd_pct||0, o = l.overig_pct||0;
+        const p50 = l.p50_duration_ms ? duurTekst(l.p50_duration_ms/60000) : "geen duur gemeten";
+        return `<tr>
+          <td class="mono strak">${schoon(l.actor)}</td>
+          <td class="mono">${esc(l.orders)}</td>
+          <td class="mono strak" style="color:var(--inkt-zacht)">${p50}</td>
+          <td><div class="balk" title="${g.toFixed(0)}% geslaagd · ${r.toFixed(0)}% geblokkeerd · ${o.toFixed(0)}% overig">
+            <i class="g" style="width:${g}%"></i><i class="r" style="width:${r}%"></i><i class="o" style="width:${o}%"></i></div></td>
+          <td class="mono strak" style="color:var(--inkt-stil)">${klok(l.laatste_activiteit)}</td>
+        </tr>`;
+      }).join("")}</tbody></table>` : `<div class="leeg">Geen ordergeschiedenis.</div>`}
+  </section>`);
+
+  el("main").innerHTML = blokken.join("");
+
+  // "toon alle" voor vastgelopen werk
+  const knop = el("meer-vast");
+  if(knop) knop.addEventListener("click", () => {
+    el("vast-body").innerHTML = vast.map(t => `
+      <tr><td>${schoon(t.taak) || "<i style='color:var(--inkt-stil)'>zonder omschrijving</i>"}
+      <div class="taakid mono">${schoon(t.bron_bestand)}</div></td></tr>`).join("");
+    knop.parentElement.remove();
   });
-  document.querySelector("#"+id+" tbody").innerHTML=html;
+
+  /* ---- voetnoot: wat dit bord bewust NIET toont ---- */
+  const zonder = d.taken_meta?.taken_zonder_schatting, totaal = d.taken_meta?.taken_totaal;
+  el("voet").innerHTML = `
+    Dit bord leest <code>regiekamer.json</code> (${(JSON.stringify(d).length/1024/1024).toFixed(1)} MB,
+    gebouwd door <code>bin/bouw-regiekamer-nu</code>) en toont niets dat daar niet in staat.
+    Ververst zichzelf elke ${VERVERS_MS/1000} s.<br>
+    Bewust weggelaten: ${tk.KLAAR ?? 0} afgeronde taken (staan in het rapport, niet op een peilbord)
+    ${totaal ? ` · tijdschattingen — ${zonder} van ${totaal} taken (${Math.round(zonder/totaal*100)}%) hebben er geen, dus een tijdkolom zou grotendeels verzonnen zijn` : ""}
+    · opgeloste problemen uit het verleden.`;
 }
-vul3("t3",T3); vul3("t4",T4);
-document.querySelector("#t5 tbody").innerHTML=T5.map(r=>{const [nr,taak,st,w,tijd,sinds,bewijs]=r;
-  return rij([td("nr",nr),td("taak",esc(taak)),stcel(st),td("wie",esc(wie(w))),td("tijd",esc(tijd)),td("sinds",esc(sinds)),td("bewijs",esc(bewijs))],{st,w});}).join("");
-document.querySelector("#t6 tbody").innerHTML=T6.map(r=>{const [nr,proj,taak,st,wacht,bron]=r;
-  return rij([td("nr",nr),td("stap",esc(proj)),td("taak",esc(taak)),stcel(st),td("wie",esc(wacht)),td("bewijs",esc(bron))],{st,w:""});}).join("");
 
-// ✅-rijen staan niet meer op het bord (Richard 22:06); archief in de rapporten
+async function laad(){
+  try{
+    // no-cache (niet no-store, geen cache-buster): de browser stuurt If-None-Match, GitHub Pages
+    // antwoordt 304 + 0 bytes zolang de bron niet herbouwd is. Scheelt ~1 MB per ververssing.
+    const r = await fetch(BRON, {cache:"no-cache"});
+    if(!r.ok) throw new Error("HTTP " + r.status);
+    render(await r.json());
+  }catch(e){
+    el("main").innerHTML = `<div class="fout"><b>Data niet geladen.</b><br>
+      ${esc(e.message)} — bron: <code>${esc(BRON)}</code>.<br>
+      Het bord toont liever niets dan verouderde cijfers.</div>`;
+    el("lamp").className = "lamp rood";
+    el("versheid").textContent = "geen data";
+  }
+}
+laad();
+setInterval(laad, VERVERS_MS);
 </script>
-
 </body>
 </html>
