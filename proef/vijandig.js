@@ -21,16 +21,40 @@ const SPUIT_ESC = '&quot;&gt;&lt;img src=x onerror=alert(1)&gt;';
 // doorzocht de opmaak, niet wat de lezer ziet — en daarmee kwam de oorspronkelijke
 // bevinding terug: de regel stond er wel, maar onzichtbaar.
 //
-// De proef heeft geen echte DOM (innerHTML is hier een string), dus "zichtbaar" moet
-// uit de opmaak zelf worden afgeleid: eerst weg wat de browser niet toont, dan de tags
-// eraf, dan de entiteiten terug naar gewone tekst. Wat overblijft is wat Richard leest.
+// Ronde 10, Codex: mijn eerste antwoord daarop — de opmaak omrekenen naar zichtbare
+// tekst — was een verloren wedloop. Codex mat vier manieren die er dwars doorheen
+// liepen en groen bleven: visibility:hidden, een CSS-klasse, hidden="hidden", en een
+// geneste lege span (de regex stopt bij de eerste sluittag). Elke reparatie van de
+// benadering nodigt de volgende vorm uit. Een tekstbenadering van een browser blijft
+// altijd achterlopen op de vindingrijkheid van wat ze moet betrappen.
+//
+// Daarom niet meer benaderen maar verbieden. Op DIT bord hoort niets onzichtbaar te
+// zijn: alles wat gerenderd wordt is bedoeld om gelezen te worden, en het hele defect
+// dat we bestrijden is "de informatie staat er wel maar Richard ziet haar niet". Een
+// verbod op elke verbergconstructie is dus geen grofheid maar precies de eis. En anders
+// dan een benadering is het niet te omzeilen door nesting of syntaxisvarianten: het
+// patroon staat waar het staat, hoe je het ook inpakt.
+const VERBERG_PATROON = /\shidden(?=[\s>=])|display\s*:\s*none|visibility\s*:\s*hidden|opacity\s*:\s*0(?![.\d])|font-size\s*:\s*0(?![.\d])|text-indent\s*:\s*-/i;
+
+// De CSS-klasseroute loopt niet via de gerenderde uitvoer maar via de stylesheet, dus
+// die wordt apart en eenmalig getoetst. Staat er geen enkele verbergregel in het
+// sjabloon, dan bestaat de klasse waarmee verborgen zou kunnen worden simpelweg niet.
+const STIJLBLOK = (html.match(/<style>([\s\S]*?)<\/style>/) || [, ''])[1];
+
+// De zichtbare tekst blijft nodig voor de andere helft van de eis: niet alleen dát de
+// regel er staat, maar dat de lezer hem ongeschonden terugkrijgt. Te veel escapen laat
+// hier de entiteit zien in plaats van het teken.
 //
 // &amp; wordt bewust als LAATSTE teruggedraaid. Anders zou "&amp;lt;" via "&lt;" alsnog
 // "<" worden, en juist dat onderscheid is de hele toets: één keer escapen hoort de
 // brontekst terug te geven, twee keer hoort de entiteit te tonen.
+//
+// Ronde 10, Codex: deze decoder is bewust onvolledig (&#60;, &#x3c; en &nbsp; blijven
+// staan). Dat mag, omdat esc() in het sjabloon uitsluitend deze vijf entiteiten maakt.
+// Zou het sjabloon ooit numerieke entiteiten gaan produceren, dan valt dat op doordat de
+// bronvergelijking dan niet meer sluit.
 function zichtbareTekst(html) {
   return String(html)
-    .replace(/<([a-z]+)\b[^>]*?(?:\shidden(?=[\s>])|style="[^"]*display:\s*none[^"]*")[^>]*>[\s\S]*?<\/\1>/gi, '')
     .replace(/<(script|style)\b[^>]*>[\s\S]*?<\/\1>/gi, '')
     .replace(/<[^>]+>/g, '')
     .replace(/&lt;/g, '<').replace(/&gt;/g, '>')
@@ -192,7 +216,10 @@ const GEVALLEN = [
 let fouten = 0;
 const tik = () => new Promise(r => setTimeout(r, 20));
 
-async function keur(naam, data, extraKeuring) {
+async function keur(naam, data, extraKeuring, scriptOverride, stil) {
+  // Ronde 10: het sjabloonscript is normaal het echte script; de negatieve controle
+  // geeft er een opzettelijk verminkte versie voor in de plaats.
+  const draaiScript = scriptOverride || script;
   const nodes = {};
   class Node {
     constructor() { this._html = ''; this._text = ''; this.className = ''; }
@@ -208,7 +235,7 @@ async function keur(naam, data, extraKeuring) {
     setInterval: () => 0,
   };
   try {
-    new Function('document', 'fetch', 'setInterval', script)(
+    new Function('document', 'fetch', 'setInterval', draaiScript)(
       omgeving.document, omgeving.fetch, omgeving.setInterval);
   } catch (e) {
     console.log(`  FAIL ${naam}: sjabloon wierp ${e.message}`); fouten++; return;
@@ -230,13 +257,21 @@ async function keur(naam, data, extraKeuring) {
   // Te weinig escapen valt op door de injectiecontrole hierboven, te veel escapen
   // doordat de zichtbare tekst dan de entiteit toont in plaats van het teken.
   const zichtbaar = zichtbareTekst(uit);
+  // Ronde 10: het verbod, niet de benadering. Zie de toelichting bij VERBERG_PATROON.
+  if (VERBERG_PATROON.test(uit))
+    problemen.push('er wordt iets verborgen in de uitvoer — op dit bord hoort niets onzichtbaar te zijn');
   if (/NaN/.test(uit)) problemen.push('NaN op het bord');
   if (/undefined/.test(uit)) problemen.push('undefined op het bord');
   if (/width:\s*(?!\d)/.test(uit)) problemen.push('balkbreedte is geen getal');
   // Sommige gevallen hebben een eigen, geval-specifieke eis bovenop de algemene.
   if (extraKeuring) { const extra = extraKeuring(uit, zichtbaar); if (extra) problemen.push(extra); }
+  // De negatieve controle hieronder draait keur() opzettelijk op een verminkt sjabloon
+  // en moet dan een afkeuring zien. Die run mag niet meetellen als echte fout en niet
+  // meepraten in het verslag — vandaar stil, met de uitslag als returnwaarde.
+  if (stil) return problemen.length === 0;
   if (problemen.length) { console.log(`  FAIL ${naam}: ${problemen.join('; ')}`); fouten++; }
   else console.log(`  PASS ${naam} (${uit.length} tekens gerenderd)`);
+  return problemen.length === 0;
 }
 
 (async () => {
@@ -260,6 +295,55 @@ for (const [naam, data, extra] of GEVALLEN) await keur(naam, data, extra);
   if (blijft.length) { console.log(`  FAIL laadfout: ${blijft.join(', ')} bleef op oude data staan`); fouten++; }
   else console.log('  PASS laadfout wist tellers en voetnoot');
 }
+// Ronde 10, Codex: de stylesheet is de enige verbergroute die niet door de gerenderde
+// uitvoer loopt. Codex' mutant met een klasse die display:none zet bleef daardoor groen.
+// Bestaat er geen enkele verbergregel, dan bestaat de klasse om mee te verbergen niet.
+{
+  const verbergregels = STIJLBLOK.split('\n')
+    .map((r, i) => [i + 1, r])
+    .filter(([, r]) => /display\s*:\s*none|visibility\s*:\s*hidden|opacity\s*:\s*0(?![.\d])|font-size\s*:\s*0(?![.\d])|text-indent\s*:\s*-/i.test(r));
+  if (verbergregels.length) {
+    console.log(`  FAIL stylesheet: ${verbergregels.length} verbergregel(s), o.a. regel ${verbergregels[0][0]}: ${verbergregels[0][1].trim()}`);
+    console.log('        Op dit bord hoort niets onzichtbaar te zijn. Is dit bewust, dan moet de');
+    console.log('        proef eerst leren de CSS door te rekenen — anders dekt hij het niet meer.');
+    fouten++;
+  } else console.log('  PASS stylesheet bevat geen enkele verbergregel');
+}
+
+// NEGATIEVE CONTROLE (ronde 10, Codex punt d).
+// Codex verving alle zichtbaarheidseisen door `false` en de proef bleef groen op 17
+// gevallen — óók met de verbergmutant erin. De eisen wérkten dus wel, maar niets
+// bewaakte hun bestaan: wie ze weghaalt merkt niets. Dat is precies de fout die hier
+// zes rondes lang terugkwam, nu toegepast op de reparatie zelf.
+//
+// Daarom toetst de proef zichzelf: hij verminkt het sjabloon in het geheugen op elke
+// manier waarop je een regel onzichtbaar kunt maken, en eist dat hij dat afkeurt. Wie de
+// bewaking sloopt, ziet deze controle rood worden.
+{
+  const RUW = '${schoon(r.ruwe_regel)}';
+  const VERBERGVORMEN = [
+    ['hidden-attribuut',        `<span hidden>${RUW}</span>`],
+    ['hidden="hidden"',         `<span hidden="hidden">${RUW}</span>`],
+    ['geneste lege span',       `<span hidden><span></span>${RUW}</span>`],
+    ['visibility:hidden',       `<span style="visibility:hidden">${RUW}</span>`],
+    ['display:none inline',     `<span style="display:none">${RUW}</span>`],
+    ['display : none met spaties', `<span style="display : none">${RUW}</span>`],
+    ['opacity:0',               `<span style="opacity:0">${RUW}</span>`],
+  ];
+  const geval = GEVALLEN.find(g => g[0] === 'onleesbare beslisregel als enige inhoud');
+  const gemist = [];
+  for (const [vorm, vervanging] of VERBERGVORMEN) {
+    if (!script.includes(RUW)) { gemist.push(`${vorm} (ankertekst niet gevonden)`); continue; }
+    const verminkt = script.replace(RUW, vervanging);
+    const goedgekeurd = await keur(vorm, geval[1], geval[2], verminkt, true);
+    if (goedgekeurd) gemist.push(vorm);
+  }
+  if (gemist.length) {
+    console.log(`  FAIL negatieve controle: verborgen tekst werd goedgekeurd bij ${gemist.join(', ')}`);
+    fouten++;
+  } else console.log(`  PASS negatieve controle: alle ${VERBERGVORMEN.length} verbergvormen worden afgekeurd`);
+}
+
 console.log(fouten ? `\nVIJANDIGE PROEF: FAIL (${fouten})` : '\nVIJANDIGE PROEF: PASS');
 process.exit(fouten ? 1 : 0);
 })();
