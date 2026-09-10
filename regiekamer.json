@@ -1,15 +1,15 @@
 {
   "schema": "REGIEKAMER_REALTIME_V1",
-  "gegenereerd_op": "2026-09-10T15:57:46Z",
+  "gegenereerd_op": "2026-09-10T16:03:03Z",
   "stack_root": "STACK_ROOT",
   "accounts": [
     {
       "actor": "claude1",
-      "status": "BEZIG",
-      "taak_id": "WEBSITE_WEBLOG_AUDIT_DOCUMENTS_REVIEW_CLAUDE1_V3",
-      "sinds": "2026-09-10T15:57:05Z",
-      "sinds_minuten": 0.6,
-      "bron": "ps:pid=96592",
+      "status": "ONBEKEND",
+      "taak_id": "WEBSITE_WEBLOG_AUDIT_DOCUMENTS_REVIEW_CLAUDE1_V4",
+      "sinds": "2026-09-10T16:01:02Z",
+      "sinds_minuten": 1.9,
+      "bron": "outbox:receipt:WEBSITE_WEBLOG_AUDIT_DOCUMENTS_REVIEW_CLAUDE1_V4_RECEIPT.md",
       "rol": "uitvoerend"
     },
     {
@@ -17,7 +17,7 @@
       "status": "VRIJ",
       "taak_id": null,
       "sinds": "2026-09-10T14:50:39Z",
-      "sinds_minuten": 67.0,
+      "sinds_minuten": 72.3,
       "bron": "outbox:order_afgerond:WEBSITE_WEBLOG_EXTERNAL_AUDIT_BUILDER_V1.md",
       "rol": "uitvoerend"
     },
@@ -26,7 +26,7 @@
       "status": "VRIJ",
       "taak_id": "DIRECTOR_STAP5_ACCEPTATIESUITE_EN_RACEPROEF_20260910_CLAUDE3_V1_TRANSPORT",
       "sinds": "2026-09-10T15:34:18Z",
-      "sinds_minuten": 23.3,
+      "sinds_minuten": 28.6,
       "bron": "outbox:receipt:DIRECTOR_STAP5_ACCEPTATIESUITE_EN_RACEPROEF_20260910_CLAUDE3_V1_TRANSPORT_RECEIPT.md",
       "rol": "uitvoerend"
     },
@@ -34,8 +34,8 @@
       "actor": "claude4",
       "status": "STALE",
       "taak_id": "DIRECTOR_STAP4_WEIGERSTUB_ALIAS_EN_SCHRIJFFOUT_20260910_CLAUDE4_V3",
-      "sinds": "2026-09-10T15:43:27Z",
-      "sinds_minuten": 14.2,
+      "sinds": "2026-09-10T15:43:26Z",
+      "sinds_minuten": 19.5,
       "bron": "ps:pid=62307",
       "rol": "uitvoerend"
     },
@@ -43,18 +43,18 @@
       "actor": "codex1",
       "status": "STALE",
       "taak_id": "DIRECTOR_CODEXTRANSPORT_REVIEW_AE44779E_20260910_CODEX1_V1",
-      "sinds": "2026-09-10T15:40:23Z",
-      "sinds_minuten": 17.3,
+      "sinds": "2026-09-10T15:40:22Z",
+      "sinds_minuten": 22.6,
       "bron": "ps:pid=53952",
       "rol": "uitvoerend"
     },
     {
       "actor": "codex2",
-      "status": "STALE",
-      "taak_id": "DIRECTOR_GHOSTQUEUE_REVIEW_93762B21_20260910_CODEX2_V1",
-      "sinds": "2026-09-10T15:42:36Z",
-      "sinds_minuten": 15.1,
-      "bron": "ps:pid=61058",
+      "status": "GEBLOKKEERD",
+      "taak_id": "AUTOCODING_METER_LIVE_COMMIT_CODEX2_V2_TRANSPORT",
+      "sinds": "2026-09-10T16:01:50Z",
+      "sinds_minuten": 1.1,
+      "bron": "outbox:receipt:AUTOCODING_METER_LIVE_COMMIT_CODEX2_V2_TRANSPORT_RECEIPT.md",
       "rol": "uitvoerend"
     },
     {
@@ -62,7 +62,7 @@
       "status": "WACHT",
       "taak_id": "WEBSITE_WEBLOG_AUDIT_DOCUMENTS_REVIEW_GEMINI1_V2",
       "sinds": "2026-09-10T15:54:59Z",
-      "sinds_minuten": 2.7,
+      "sinds_minuten": 8.0,
       "bron": "outbox:order_open:WEBSITE_WEBLOG_AUDIT_DOCUMENTS_REVIEW_GEMINI1_V2.md",
       "rol": "uitvoerend"
     },
@@ -80,7 +80,7 @@
       "status": "WACHT",
       "taak_id": "PROJECTTOEZICHT_TABEL_DIRECTIE_LAATSTE",
       "sinds": "2026-09-10T15:56:57Z",
-      "sinds_minuten": 0.7,
+      "sinds_minuten": 6.0,
       "bron": "outbox:order_open:PROJECTTOEZICHT_TABEL_DIRECTIE_LAATSTE.md",
       "rol": "regie"
     }
@@ -15573,6 +15573,78 @@
       "schatting_min": null
     },
     {
+      "bron_bestand": "outbox/DIRECTOR_SAMENVATTING_20260910_1802.md",
+      "bron_type": "order",
+      "status": "BEZIG",
+      "taak": "Stap 6 — argvbinding/promptparser: V2 gelint en gequeued bij claude1, wacht op oppak",
+      "schatting_categorie": "GESCHAT",
+      "schatting_min": 90
+    },
+    {
+      "bron_bestand": "outbox/DIRECTOR_SAMENVATTING_20260910_1802.md",
+      "bron_type": "order",
+      "status": "OPEN",
+      "taak": "Stap 5 — order-check als fase + `bin/generate-review-order`; revieworder CE793053 bij codex1; nieuw hierin: de 5s-bewijspoort repareren",
+      "schatting_categorie": "GESCHAT",
+      "schatting_min": 120
+    },
+    {
+      "bron_bestand": "outbox/DIRECTOR_SAMENVATTING_20260910_1802.md",
+      "bron_type": "order",
+      "status": "OPEN",
+      "taak": "Stap 1 — spookwachtrij sluiten (revieworder GHOSTQUEUE 93762B21 bij codex2)",
+      "schatting_categorie": "GESCHAT",
+      "schatting_min": 60
+    },
+    {
+      "bron_bestand": "outbox/DIRECTOR_SAMENVATTING_20260910_1802.md",
+      "bron_type": "order",
+      "status": "OPEN",
+      "taak": "Stap 3 — statusrecord (V3-order bij claude4)",
+      "schatting_categorie": "GESCHAT",
+      "schatting_min": 90
+    },
+    {
+      "bron_bestand": "outbox/DIRECTOR_SAMENVATTING_20260910_1802.md",
+      "bron_type": "order",
+      "status": "OPEN",
+      "taak": "Stap 4 — toelatingsautomaat (weigerstub-order bij claude4)",
+      "schatting_categorie": "GESCHAT",
+      "schatting_min": 90
+    },
+    {
+      "bron_bestand": "outbox/DIRECTOR_SAMENVATTING_20260910_1802.md",
+      "bron_type": "order",
+      "status": "OPEN",
+      "taak": "Stap 2 — headbinding en modeldoorgifte",
+      "schatting_categorie": "GESCHAT",
+      "schatting_min": 90
+    },
+    {
+      "bron_bestand": "outbox/DIRECTOR_SAMENVATTING_20260910_1802.md",
+      "bron_type": "order",
+      "status": "OPEN",
+      "taak": "Stap 8 — legacy-parser weg, tweetraps",
+      "schatting_categorie": "GESCHAT",
+      "schatting_min": 120
+    },
+    {
+      "bron_bestand": "outbox/DIRECTOR_SAMENVATTING_20260910_1802.md",
+      "bron_type": "order",
+      "status": "GEBLOKKEERD",
+      "taak": "Stap 7 — runtime-cutover: wacht op stap 6 en op een import-smoke op de doelhead. Wél af: de smoke op de huidige pin slaagt",
+      "schatting_categorie": "GEEN_SCHATTING",
+      "schatting_min": null
+    },
+    {
+      "bron_bestand": "outbox/DIRECTOR_SAMENVATTING_20260910_1802.md",
+      "bron_type": "order",
+      "status": "KLAAR",
+      "taak": "Stap 0 — reparatiestop, `state/run/` in .gitignore, controller.out geroteerd (bewijs: ledger 2026-09-10, tik 57)",
+      "schatting_categorie": "GEEN_SCHATTING",
+      "schatting_min": null
+    },
+    {
       "bron_bestand": "outbox/DIRECTOR_STACKSTATUS_ACHTERSTANDBEVESTIGING_97966B28_20260910_CLAUDE1_V1_RECEIPT.md",
       "bron_type": "receipt",
       "status": "KLAAR",
@@ -28182,8 +28254,8 @@
     }
   ],
   "taken_meta": {
-    "taken_totaal": 3510,
-    "taken_zonder_schatting": 2766,
+    "taken_totaal": 3519,
+    "taken_zonder_schatting": 2768,
     "bron_glob": "outbox/*.md (TAKENLIJST-blokken)",
     "classificatie": "regex op TAKENLIJST-tabelrijen (Status/Taak/Tijd) en kale lijstvorm; een cel zonder herkenbaar '~X min'-patroon telt als GEEN_SCHATTING, nooit stilzwijgend overgeslagen"
   },
@@ -28193,15 +28265,15 @@
     "cmd": "bin/lane-capaciteit --json",
     "data": {
       "stack_root": "STACK_ROOT",
-      "generated_at": "2026-09-10T15:57:46Z",
+      "generated_at": "2026-09-10T16:03:02Z",
       "meta": {
-        "receipt_bestanden_totaal": 1609,
-        "receipt_onparseerbaar": 357,
+        "receipt_bestanden_totaal": 1616,
+        "receipt_onparseerbaar": 360,
         "jsonl": {
-          "total_lines": 783,
+          "total_lines": 784,
           "actor_lines": 0,
           "onparseerbaar": 0,
-          "zonder_actor": 783,
+          "zonder_actor": 784,
           "aanwezig": true
         },
         "verdict_classificatie": "heuristiek: prefix-match op verdict= (hoofdletterongevoelig); GESLAAGD={GO,PASS,DELIVERED}, GEBLOKKEERD={NO_GO,BLOCKED,REJECTED,FAILED}, onbekend/overig telt niet stilzwijgend mee als geslaagd of geblokkeerd"
@@ -28224,9 +28296,9 @@
         },
         {
           "actor": "claude1",
-          "orders": 152,
-          "orders_met_duur": 144,
-          "p50_duration_ms": 325000,
+          "orders": 154,
+          "orders_met_duur": 146,
+          "p50_duration_ms": 319500,
           "max_duration_ms": 7541000,
           "orders_met_verdict": 44,
           "geslaagd_pct": 22.7,
@@ -28245,7 +28317,7 @@
             "NO_GO (herbevestigd, attempt 3, ongewijzigde oorzaak)": 1,
             "OPGELEVERD|BLOCKED_EVIDENCE": 1
           },
-          "laatste_activiteit": "2026-09-10T15:12:48Z"
+          "laatste_activiteit": "2026-09-10T16:00:56Z"
         },
         {
           "actor": "claude1(supervisor)",
@@ -28426,16 +28498,16 @@
         },
         {
           "actor": "codex2",
-          "orders": 200,
-          "orders_met_duur": 193,
+          "orders": 202,
+          "orders_met_duur": 195,
           "p50_duration_ms": 203000,
           "max_duration_ms": 3264000,
-          "orders_met_verdict": 105,
-          "geslaagd_pct": 22.9,
-          "geblokkeerd_pct": 64.8,
-          "overig_pct": 12.4,
+          "orders_met_verdict": 106,
+          "geslaagd_pct": 22.6,
+          "geblokkeerd_pct": 65.1,
+          "overig_pct": 12.3,
           "verdict_distribution_raw": {
-            "BLOCKED_EVIDENCE": 38,
+            "BLOCKED_EVIDENCE": 39,
             "DONE_BUILD_AWAITING_REVIEW": 11,
             "GO": 1,
             "GO_MET_CORRECTIES": 1,
@@ -28448,7 +28520,7 @@
             "NO_GO_MET_BEVINDINGEN": 1,
             "REVIEW_PENDING": 2
           },
-          "laatste_activiteit": "2026-09-10T14:16:39Z"
+          "laatste_activiteit": "2026-09-10T16:01:50Z"
         },
         {
           "actor": "director",
@@ -28553,7 +28625,7 @@
         },
         {
           "actor": "ONPARSEERBAAR",
-          "orders": 357,
+          "orders": 360,
           "orders_met_duur": 0,
           "p50_duration_ms": null,
           "max_duration_ms": null,
@@ -28596,6 +28668,8 @@
             "AUTOCODING_LANE_UTILIZATION_METER_EXACT_HEAD_REVIEW_CODEX1_V2_CONFIRM_RECEIPT.md",
             "AUTOCODING_METER_EXACT_HEAD_REVIEW_CODEX1_V1_RECEIPT.md",
             "AUTOCODING_METER_F1_REVIEW_CODEX1_V2_RECEIPT.md",
+            "AUTOCODING_METER_LIVE_COMMIT_CODEX2_V2_RECEIPT.md",
+            "AUTOCODING_METER_LIVE_INTEGRATION_CODEX2_V1_RECEIPT.md",
             "AUTOCODING_METER_PAGE_COMMIT_CODEX2_V5_RECEIPT.md",
             "AUTOCODING_METER_PAGE_CONTRACT_CODEX2_V3_RECEIPT.md",
             "AUTOCODING_METER_PAGE_CONTRACT_CODEX2_V4_RECEIPT.md",
@@ -28676,6 +28750,7 @@
             "DIRECTOR_GHOSTQUEUE_PROEFHERSTEL_20260910_CLAUDE1_V2_RECEIPT.md",
             "DIRECTOR_GHOSTQUEUE_PROEFHERSTEL_20260910_CLAUDE4_V3_RECEIPT.md",
             "DIRECTOR_GHOSTQUEUE_REVIEW_5808378F_20260910_CODEX2_V1_RECEIPT.md",
+            "DIRECTOR_GHOSTQUEUE_REVIEW_93762B21_20260910_CODEX2_V1_RECEIPT.md",
             "DIRECTOR_GHOSTQUEUE_REVIEW_E5BA7631_20260910_CODEX2_V1_RECEIPT.md",
             "DIRECTOR_IDLE_LANE_ENFORCEMENT_V2_GITHUB_RECEIPT.md",
             "DIRECTOR_ITEM1_REVIEW_6CF190A4_20260910_CODEX1_V1_RECEIPT.md",
@@ -28925,7 +29000,7 @@
         },
         {
           "actor": "ZONDER_ACTOR",
-          "orders": 783,
+          "orders": 784,
           "orders_met_duur": 0,
           "p50_duration_ms": null,
           "max_duration_ms": null,
@@ -29718,7 +29793,8 @@
             780,
             781,
             782,
-            783
+            783,
+            784
           ]
         }
       ]
@@ -29765,6 +29841,45 @@
   },
   "beslisrij_onparseerbaar_count": 0,
   "ticker_events": [
+    {
+      "event_id": 2468,
+      "tijd": "2026-09-10T16:01:50Z",
+      "taak_id": "AUTOCODING_SUPERVISOR",
+      "project": "STACK_DIRECTOR",
+      "kanaal": "AUTOCODING",
+      "account": "SUPERVISOR",
+      "overgang": "HEARTBEAT",
+      "bewijsref": "state/autocoding-supervisor/status.json",
+      "resultaat": "ISSUES_CONTROLLER_STALE_DISPATCH_SUBPROCESS_FAILED_ORDER_LINT_REJECTED_RESPONDER_STALE_TRANSPORT",
+      "integriteit": null,
+      "betekenisvol": false
+    },
+    {
+      "event_id": 2467,
+      "tijd": "2026-09-10T16:00:11Z",
+      "taak_id": "AUTOCODING_SUPERVISOR",
+      "project": "STACK_DIRECTOR",
+      "kanaal": "AUTOCODING",
+      "account": "SUPERVISOR",
+      "overgang": "HEARTBEAT",
+      "bewijsref": "state/autocoding-supervisor/status.json",
+      "resultaat": "ISSUES_CONTROLLER_STALE_DISPATCH_SUBPROCESS_FAILED_ORDER_LINT_REJECTED_RESPONDER_STALE_TRANSPORT",
+      "integriteit": null,
+      "betekenisvol": true
+    },
+    {
+      "event_id": 2466,
+      "tijd": "2026-09-10T15:58:27Z",
+      "taak_id": "AUTOCODING_SUPERVISOR",
+      "project": "STACK_DIRECTOR",
+      "kanaal": "AUTOCODING",
+      "account": "SUPERVISOR",
+      "overgang": "HEARTBEAT",
+      "bewijsref": "state/autocoding-supervisor/status.json",
+      "resultaat": "ISSUES_CONTROLLER_STALE_DISPATCH_SUBPROCESS_FAILED_ORDER_LINT_REJECTED_TRANSPORT_FAILED",
+      "integriteit": null,
+      "betekenisvol": false
+    },
     {
       "event_id": 2465,
       "tijd": "2026-09-10T15:56:19Z",
@@ -61813,66 +61928,23 @@
   ],
   "ticker_meta": {
     "bron_pad": "state/stack-ticker-events.jsonl",
-    "last_event_at": "2026-09-10T15:56:19Z",
+    "last_event_at": "2026-09-10T16:01:50Z",
     "publicatieleeftijd": "NO_DATA_ZONDER_GEAUTORISEERDE_PUBLICATIE",
     "client_refresh_max_seconds": 5,
-    "event_count": 2465,
-    "betekenisvol_count": 166,
+    "event_count": 2468,
+    "betekenisvol_count": 167,
     "classificatie": "append-only JSONL; niet-monotone of incomplete events blijven NO_DATA. betekenisvol=false markeert een HEARTBEAT die hetzelfde resultaat meldt als de vorige regel — een levensteken, geen gebeurtenis"
   },
   "route": {
     "status": "OK",
     "bron_pad": "state/run/director-heartbeat.json",
-    "tik": 60,
-    "tijd": "2026-09-10T15:50:00Z",
-    "tijd_status": "OK",
-    "leeftijd_seconden": 466,
+    "tik": 61,
+    "tijd": "NO_DATA",
+    "tijd_status": "NO_DATA_ONTBREEKT",
+    "leeftijd_seconden": null,
     "huidige_stap": 6,
-    "bezig": "Vier lanes tegelijk aan het werk in ronde 835: stap 4 bij claude4, stap 6 bij claude1, twee reviews bij codex1 en codex2. Lint-vertraging voor het eerst met cijfers gemeten: 4,25 s zelfstandig tegen >6 min binnen dispatch-actor op hetzelfde bestand, bij dezelfde belasting.",
-    "nu_op_de_rol": [
-      {
-        "stap": 0,
-        "status": "KLAAR"
-      },
-      {
-        "stap": 1,
-        "status": "OPEN",
-        "waar": "revieworder 93762b21 wordt uitgereikt aan codex2"
-      },
-      {
-        "stap": 2,
-        "status": "OPEN"
-      },
-      {
-        "stap": 3,
-        "status": "KLAAR"
-      },
-      {
-        "stap": 4,
-        "status": "OPEN",
-        "waar": "V3 draait op claude4 sinds 15:43Z"
-      },
-      {
-        "stap": 5,
-        "status": "OPEN",
-        "waar": "revieworder ce793053 wacht op uitreiking aan codex1"
-      },
-      {
-        "stap": 6,
-        "status": "BEZIG",
-        "waar": "argvbinding draait op claude1; lint-vertraging gemeten, toets belegd"
-      },
-      {
-        "stap": 7,
-        "status": "OPEN",
-        "voorwaarde": "import-smoke in de runtime-checkout"
-      },
-      {
-        "stap": 8,
-        "status": "OPEN",
-        "vorm": "tweetraps"
-      }
-    ],
+    "bezig": "Stap 6 opnieuw uitgegeven als V2 nadat de bewijspoort V1 terminaal weigerde; de weigering zelf gemeten en belegd bij stap 5.",
+    "nu_op_de_rol": [],
     "unjustified_idle": null,
     "merge_deze_tik": null,
     "stappen": [
@@ -61948,20 +62020,20 @@
       },
       {
         "stap": "STAP6",
-        "taken_totaal": 22,
+        "taken_totaal": 23,
         "met_receipt": 17,
-        "zonder_receipt": 5,
-        "geblokkeerd": 11,
-        "werk_mislukt": 5,
+        "zonder_receipt": 6,
+        "geblokkeerd": 10,
+        "werk_mislukt": 4,
         "administratie_mislukt": 6,
-        "gesloten_historie": 1,
+        "gesloten_historie": 2,
         "legacy_v_familie": true,
         "mislukt_in_v_familie": 1,
-        "laatste_activiteit": "2026-09-10T15:57:33Z",
+        "laatste_activiteit": "2026-09-10T15:58:30Z",
         "status": "OPEN"
       }
     ],
-    "werk_mislukt_totaal": 44,
+    "werk_mislukt_totaal": 43,
     "administratie_mislukt_totaal": 36,
     "stappen_status": "OK",
     "stappen_bron_pad": "outbox/*STAP<n>*.md",
@@ -62011,7 +62083,7 @@
           "spoor": "Infra (Mac mini + backup)"
         }
       ],
-      "leeftijd_seconden": 904148,
+      "leeftijd_seconden": 904465,
       "verouderd": true,
       "classificatie": "handgeschreven document, geen heartbeat: de sporen zijn de '## <n>. <titel>'-koppen uit het overzicht. verouderd=true zodra het bestand ouder is dan twee dagen — dan is dit geschiedenis en geen stand, en moet het overzicht worden bijgewerkt"
     }
@@ -62019,9 +62091,9 @@
   "problemen": {
     "status": "OK",
     "bron_pad": "state/run/supervisor-heartbeat.json",
-    "tik": 595,
-    "tijd": "2026-09-10T15:54:40Z",
-    "leeftijd_seconden": 186,
+    "tik": 596,
+    "tijd": "2026-09-10T15:59:40Z",
+    "leeftijd_seconden": 203,
     "open": [
       {
         "id": "SUPERVISOR_75180C23_CODEX1_NO_GO_20260909_2011Z",
@@ -62262,7 +62334,7 @@
         "taak": "eigen run van governance/test_dispatch_hardening.sh op head 55aabeda in isolated worktree (scratchpad), ter verificatie van de GO/BLOCKED_EVIDENCE-tegenspraak (sinds-tijdstip gecorrigeerd tick504: pid 29377 bevestigd via ps aux, werkelijke processtart ~07:35Z, niet 00:19Z zoals hier 7,5u lang onterecht bleef staan)",
         "status": "BEZIG",
         "sinds": "2026-09-10T07:35:00Z",
-        "loopt_seconden": 30166,
+        "loopt_seconden": 30483,
         "verwacht_min": 12,
         "bewijs": "NO_DATA"
       }
@@ -62272,7 +62344,7 @@
         "taak": "Verdwenen FABLE_V2.md-hoofdbestand volgen (terugkeer of definitieve afwezigheid)",
         "status": "OPEN",
         "sinds": "2026-09-09T08:40:00Z",
-        "loopt_seconden": 112666,
+        "loopt_seconden": 112983,
         "verwacht_min": 10,
         "bewijs": "hoofdbestand blijft afwezig; niet dit tik herverifieerd"
       },
@@ -62280,7 +62352,7 @@
         "taak": "Astra-identificatie vs. director's ledger reconciliëren",
         "status": "OPEN",
         "sinds": "2026-09-09T08:24:10Z",
-        "loopt_seconden": 113616,
+        "loopt_seconden": 113933,
         "verwacht_min": 10,
         "bewijs": "niet dit tik opnieuw gemeten"
       },
@@ -62288,7 +62360,7 @@
         "taak": "Watchdog-episode volgen (vierde episode mogelijk niet meer oudste dispatch)",
         "status": "OPEN",
         "sinds": "2026-09-09T08:03:29Z",
-        "loopt_seconden": 114857,
+        "loopt_seconden": 115174,
         "verwacht_min": 15,
         "bewijs": "age-discontinuiteit gemeten: 6258s->2547s->2608s, nieuwe oudste dispatch, oorzaak (afronding vierde episode vs. nieuwe stale dispatch) nog niet vastgesteld"
       },
@@ -62296,7 +62368,7 @@
         "taak": "status.json ESCALATION_REQUIRED-status blijven volgen -- ORDER_LINT_REJECTED stil verdwenen, DISPATCH_SUBPROCESS_FAILED + RECEIPT_NONTERMINAL escaleren, DOODALARM-order volgen tot landing",
         "status": "OPEN",
         "sinds": "2026-09-09T08:04:31Z",
-        "loopt_seconden": 114795,
+        "loopt_seconden": 115112,
         "verwacht_min": 10,
         "bewijs": "streak 175->179; RECEIPT_NONTERMINAL streak 30->34; DOODALARM-order status niet dit tik herverifieerd"
       },
@@ -62304,7 +62376,7 @@
         "taak": "STAP7_BEZETTE_LANE: wachten op échte dispatch zodra lane:claude3 vrij is",
         "status": "OPEN",
         "sinds": "2026-09-09T06:59:30Z",
-        "loopt_seconden": 118696,
+        "loopt_seconden": 119013,
         "verwacht_min": 20,
         "bewijs": "STAP7-receipt gelezen: claim_gate=REFUSED_LANE_CLAIM_HELD"
       },
@@ -62312,7 +62384,7 @@
         "taak": "Arbitrage-item RECEIPTROUTE_TWEEDE_NOGO V2 volgen tot FABLE-oordeel of termijn",
         "status": "OPEN",
         "sinds": "2026-09-09T06:59:30Z",
-        "loopt_seconden": 118696,
+        "loopt_seconden": 119013,
         "verwacht_min": 135,
         "bewijs": "hoofdbestand verdwenen, termijn 10:55Z"
       },
@@ -62320,7 +62392,7 @@
         "taak": "ADDENDUM2 A5 / ghost-queue-test / evidence-poort teller / pid 92415",
         "status": "OPEN",
         "sinds": "2026-09-09T03:19:13Z",
-        "loopt_seconden": 131913,
+        "loopt_seconden": 132230,
         "verwacht_min": 30,
         "bewijs": "niet dit tik herverifieerd"
       }
@@ -62330,7 +62402,7 @@
         "taak": "§A-verificatie STAP5-V2 en STAP6 zodra receipts stabiel leesbaar zijn",
         "status": "KLAAR",
         "sinds": "2026-09-09T08:04:31Z",
-        "loopt_seconden": 114795,
+        "loopt_seconden": 115112,
         "verwacht_min": 20,
         "bewijs": "nog steeds niet opnieuw geprobeerd op déze receipts"
       },
@@ -62338,7 +62410,7 @@
         "taak": "HEAD-detached-status volgen",
         "status": "KLAAR",
         "sinds": "2026-09-09T08:41:00Z",
-        "loopt_seconden": 112606,
+        "loopt_seconden": 112923,
         "verwacht_min": 0,
         "bewijs": "OPGELOST: HEAD blijft stabiel op een echte branch (director/tik-record-20260909-b) door tik206-209 heen, laatste twee commits a1444158->adff3771, allen director's eigen commits, niet-anomaal"
       },
@@ -62346,7 +62418,7 @@
         "taak": "QUEUED-telling via scan_candidate_orders herstellen (outbox_dir-argument, resultaatobjecttype)",
         "status": "KLAAR",
         "sinds": "2026-09-09T09:16:00Z",
-        "loopt_seconden": 110506,
+        "loopt_seconden": 110823,
         "verwacht_min": 0,
         "bewijs": "OPGELOST: functiedefinitie gegrept (bin/autocoder-controller:632), correcte aanroep mod.scan_candidate_orders('outbox') + filter op o[2].get('queue_state') (tuples, geen objecten) -- total scanned=78 queued=78, consistent met laatst bekende 77, geen echte afwijking t.o.v. director-heartbeat queued{} (ander metric)"
       }
@@ -62357,16 +62429,17 @@
   },
   "analyse": {
     "status": "OK",
-    "opgesteld_op": "2026-09-10T15:57:46Z",
+    "opgesteld_op": "2026-09-10T16:03:03Z",
     "oordeel": "SLECHT",
-    "kop": "De keten komt niet vooruit: 3 bronnen tegelijk fout (autocoder-controller, autocoding-supervisor, route).",
+    "kop": "De keten komt niet vooruit: 4 bronnen tegelijk fout (autocoder-controller, autocoding-supervisor, lanes, route).",
     "hoofdoorzaken": {
-      "autocoding_issues": 4,
-      "bouwstappen_werk_mislukt": 44,
+      "autocoding_issues": 5,
+      "bouwstappen_werk_mislukt": 43,
       "bouwstappen_administratie_mislukt": 36,
       "bronnen_slecht": [
         "autocoder-controller",
         "autocoding-supervisor",
+        "lanes",
         "route"
       ],
       "bronnen_let_op": []
@@ -62386,25 +62459,31 @@
       },
       {
         "punt": "escalatiereeks",
-        "waarde": "4 openstaande oorzaken · al 1579 cycli onopgelost (drempel 5) · oudste: niet meetbaar (geen bron voor eerste-detectietijd per oorzaak)",
+        "waarde": "5 openstaande oorzaken · al 1582 cycli onopgelost (drempel 5) · oudste: niet meetbaar (geen bron voor eerste-detectietijd per oorzaak)",
         "richting": "SLECHT",
         "bron": "autocoding-supervisor"
       },
       {
         "punt": "escalerende categorieën",
-        "waarde": "CONTROLLER_STALE, DISPATCH_SUBPROCESS_FAILED, ORDER_LINT_REJECTED, TRANSPORT_FAILED · waarvan 3 doorgeschoven sinds 06:51Z",
+        "waarde": "CONTROLLER_STALE, DISPATCH_SUBPROCESS_FAILED, ORDER_LINT_REJECTED, RESPONDER_STALE, TRANSPORT_FAILED · waarvan 3 doorgeschoven sinds 06:51Z",
         "richting": "SLECHT",
         "bron": "autocoding-supervisor"
       },
       {
         "punt": "lanes bezet",
-        "waarde": "1 van 7",
-        "richting": "GOED",
+        "waarde": "0 van 7",
+        "richting": "LET_OP",
+        "bron": "lanes"
+      },
+      {
+        "punt": "lanes geblokkeerd",
+        "waarde": "1",
+        "richting": "SLECHT",
         "bron": "lanes"
       },
       {
         "punt": "bouwstappen mislukt (werk)",
-        "waarde": "44",
+        "waarde": "43",
         "richting": "SLECHT",
         "bron": "route"
       },
@@ -62416,27 +62495,21 @@
       },
       {
         "punt": "beeld onveranderd sinds",
-        "waarde": "10 min",
+        "waarde": "4 min",
         "richting": "GOED",
         "bron": "ticker"
       },
       {
         "punt": "wisselingen in het laatste uur",
-        "waarde": "7",
+        "waarde": "8",
         "richting": "GOED",
         "bron": "ticker"
       },
       {
         "punt": "activiteit laatste uur",
-        "waarde": "6 orders uitgezet · 4 receipts binnen · 4 verdicts binnen · PR's geopend: niet gemeten",
+        "waarde": "7 orders uitgezet · 4 receipts binnen · 4 verdicts binnen · PR's geopend: niet gemeten",
         "richting": "GOED",
         "bron": "route"
-      },
-      {
-        "punt": "director-hartslag",
-        "waarde": "7 min oud",
-        "richting": "GOED",
-        "bron": "director"
       },
       {
         "punt": "vastzittende taken",
@@ -62446,9 +62519,9 @@
       }
     ],
     "beweging": {
-      "laatste_wisseling": "2026-09-10T15:47:16Z",
-      "stilstand_seconden": 630,
-      "wisselingen_laatste_uur": 7
+      "laatste_wisseling": "2026-09-10T15:58:27Z",
+      "stilstand_seconden": 276,
+      "wisselingen_laatste_uur": 8
     },
     "bronnen": [
       {
@@ -62470,11 +62543,66 @@
     "status": "OK",
     "bron_pad": "outbox/*_RECEIPT*.md",
     "classificatie": "Jongste receipt per taak, op bestandstijd. verdict= is de laatste regel die exact 'verdict=WAARDE' luidt; GOED/SLECHT volgens de gesloten verdictlijsten, SLECHT wint bij overlap. Zonder verdict maar met actor_dispatched=false is de uitkomst NIET_UITGEVOERD en draagt 'reden' de failure_category uit het receipt. Een receipt dat niet te lezen was heet ONLEESBAAR, niet GEEN_VERDICT. ketenuitkomst herclassificeert verdict voor de keten-brede telling: BLOCKED_EVIDENCE wordt ADMINISTRATIE_MISLUKT in plaats van WERK_MISLUKT (het werk leverde een uitkomst op, alleen het bewijs kwam niet aan) — uitkomst zelf blijft ongewijzigd.",
-    "receipts_totaal": 1861,
+    "receipts_totaal": 1868,
     "items": [
       {
+        "tijd": "2026-09-10T16:01:50Z",
+        "leeftijd_seconden": 72,
+        "actor": "codex2",
+        "stap": null,
+        "taak": "AUTOCODING_METER_LIVE_COMMIT_CODEX2_V2",
+        "verdict": "BLOCKED_EVIDENCE",
+        "uitkomst": "SLECHT",
+        "ketenuitkomst": "ADMINISTRATIE_MISLUKT",
+        "reden": null
+      },
+      {
+        "tijd": "2026-09-10T16:01:47Z",
+        "leeftijd_seconden": 75,
+        "actor": "codex2",
+        "stap": null,
+        "taak": "DIRECTOR_GHOSTQUEUE_REVIEW_93762B21_20260910_CODEX2_V1",
+        "verdict": "BLOCKED_ORDER_LINT",
+        "uitkomst": "SLECHT",
+        "ketenuitkomst": "WERK_MISLUKT",
+        "reden": null
+      },
+      {
+        "tijd": "2026-09-10T16:01:02Z",
+        "leeftijd_seconden": 120,
+        "actor": "claude1",
+        "stap": null,
+        "taak": "WEBSITE_WEBLOG_AUDIT_DOCUMENTS_REVIEW_CLAUDE1_V4",
+        "verdict": null,
+        "uitkomst": "GEEN_VERDICT",
+        "ketenuitkomst": null,
+        "reden": "WITHHELD_BODY_AFTER_RECEIPT_INVALID"
+      },
+      {
+        "tijd": "2026-09-10T15:58:27Z",
+        "leeftijd_seconden": 275,
+        "actor": "codex2",
+        "stap": null,
+        "taak": "AUTOCODING_METER_LIVE_INTEGRATION_CODEX2_V1",
+        "verdict": null,
+        "uitkomst": "GEEN_VERDICT",
+        "ketenuitkomst": null,
+        "reden": null
+      },
+      {
+        "tijd": "2026-09-10T15:58:11Z",
+        "leeftijd_seconden": 291,
+        "actor": "claude1",
+        "stap": null,
+        "taak": "WEBSITE_WEBLOG_AUDIT_DOCUMENTS_REVIEW_CLAUDE1_V3",
+        "verdict": null,
+        "uitkomst": "GEEN_VERDICT",
+        "ketenuitkomst": null,
+        "reden": null
+      },
+      {
         "tijd": "2026-09-10T15:54:01Z",
-        "leeftijd_seconden": 225,
+        "leeftijd_seconden": 541,
         "actor": "codex1",
         "stap": null,
         "taak": "WEBSITE_WEBLOG_AUDIT_DOCUMENTS_REVIEW_CODEX1_V1",
@@ -62485,7 +62613,7 @@
       },
       {
         "tijd": "2026-09-10T15:47:35Z",
-        "leeftijd_seconden": 610,
+        "leeftijd_seconden": 927,
         "actor": "claude1",
         "stap": "STAP6",
         "taak": "DIRECTOR_STAP6_ARGVBINDING_PROMPTPARSER_20260910_CLAUDE1_V1",
@@ -62496,7 +62624,7 @@
       },
       {
         "tijd": "2026-09-10T15:34:18Z",
-        "leeftijd_seconden": 1408,
+        "leeftijd_seconden": 1724,
         "actor": "claude3",
         "stap": "STAP5",
         "taak": "DIRECTOR_STAP5_ACCEPTATIESUITE_EN_RACEPROEF_20260910_CLAUDE3_V1",
@@ -62507,7 +62635,7 @@
       },
       {
         "tijd": "2026-09-10T15:33:23Z",
-        "leeftijd_seconden": 1463,
+        "leeftijd_seconden": 1779,
         "actor": "claude4",
         "stap": "STAP3",
         "taak": "DIRECTOR_STAP3_RECORDIMPORT_VERDICTBINDING_20260910_CLAUDE4_V3",
@@ -62518,7 +62646,7 @@
       },
       {
         "tijd": "2026-09-10T15:18:21Z",
-        "leeftijd_seconden": 2365,
+        "leeftijd_seconden": 2681,
         "actor": "ONBEKEND",
         "stap": null,
         "taak": "KEYNOTE_V3_BINDING_ADBF33F_ASTRA_INDEPENDENT_REVIEW",
@@ -62529,7 +62657,7 @@
       },
       {
         "tijd": "2026-09-10T15:15:38Z",
-        "leeftijd_seconden": 2528,
+        "leeftijd_seconden": 2844,
         "actor": "gemini1",
         "stap": null,
         "taak": "KEYNOTE_V3_BINDING_ADBF33F_GEMINI1_EXACT_HEAD_REVIEW_V1",
@@ -62540,7 +62668,7 @@
       },
       {
         "tijd": "2026-09-10T15:14:21Z",
-        "leeftijd_seconden": 2605,
+        "leeftijd_seconden": 2921,
         "actor": "claude4",
         "stap": null,
         "taak": "KEYNOTE_V3_BINDING_ADBF33F_CLAUDE4_EXACT_HEAD_REVIEW_V1",
@@ -62551,7 +62679,7 @@
       },
       {
         "tijd": "2026-09-10T15:12:53Z",
-        "leeftijd_seconden": 2693,
+        "leeftijd_seconden": 3009,
         "actor": "claude1",
         "stap": null,
         "taak": "KEYNOTE_V3_BINDING_ADBF33F_CLAUDE1_EXACT_HEAD_REVIEW_V1",
@@ -62562,7 +62690,7 @@
       },
       {
         "tijd": "2026-09-10T15:02:15Z",
-        "leeftijd_seconden": 3330,
+        "leeftijd_seconden": 3647,
         "actor": "ONBEKEND",
         "stap": null,
         "taak": "PROJECTTOEZICHT_TRUE_FIVE_MINUTE_LIVE",
@@ -62573,65 +62701,10 @@
       },
       {
         "tijd": "2026-09-10T14:55:10Z",
-        "leeftijd_seconden": 3755,
+        "leeftijd_seconden": 4072,
         "actor": "claude4",
         "stap": null,
         "taak": "KEYNOTE_V3_NATIVE_CLEANUP_199AE5B_CLAUDE4_EXACT_HEAD_REVIEW_V1",
-        "verdict": null,
-        "uitkomst": "GEEN_VERDICT",
-        "ketenuitkomst": null,
-        "reden": null
-      },
-      {
-        "tijd": "2026-09-10T14:26:07Z",
-        "leeftijd_seconden": 5498,
-        "actor": "ONBEKEND",
-        "stap": null,
-        "taak": "PROJECTTOEZICHT_FIVE_MINUTE_LIVE",
-        "verdict": null,
-        "uitkomst": "GEEN_VERDICT",
-        "ketenuitkomst": null,
-        "reden": null
-      },
-      {
-        "tijd": "2026-09-10T14:18:48Z",
-        "leeftijd_seconden": 5938,
-        "actor": "codex1",
-        "stap": null,
-        "taak": "KEYNOTE_15M_STATUS_DELIVERY_REPAIR_CODEX1_V1",
-        "verdict": null,
-        "uitkomst": "GEEN_VERDICT",
-        "ketenuitkomst": null,
-        "reden": null
-      },
-      {
-        "tijd": "2026-09-10T14:18:37Z",
-        "leeftijd_seconden": 5948,
-        "actor": "claude1",
-        "stap": null,
-        "taak": "DIRECTOR_ITEM5_PUBLICATIEROUTE_20260910_CLAUDE1_V4",
-        "verdict": null,
-        "uitkomst": "GEEN_VERDICT",
-        "ketenuitkomst": null,
-        "reden": null
-      },
-      {
-        "tijd": "2026-09-10T14:16:44Z",
-        "leeftijd_seconden": 6061,
-        "actor": "ONBEKEND",
-        "stap": null,
-        "taak": "KEYNOTE_V3_RUNNER_NATIVE_DOCUMENT_CLEANUP_TERRA_V1",
-        "verdict": null,
-        "uitkomst": "GEEN_VERDICT",
-        "ketenuitkomst": null,
-        "reden": null
-      },
-      {
-        "tijd": "2026-09-10T14:13:31Z",
-        "leeftijd_seconden": 6254,
-        "actor": "codex1",
-        "stap": null,
-        "taak": "WEBSITE_WEBLOG_EXTERNAL_AUDIT_FAILCLOSED_REVIEW_CODEX1_V1",
         "verdict": null,
         "uitkomst": "GEEN_VERDICT",
         "ketenuitkomst": null,
