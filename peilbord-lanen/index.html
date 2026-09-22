@@ -1,0 +1,274 @@
+<title>Stack-Director Peilbord</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Sans+Condensed:wght@600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+<style>
+:root{--ground:#F5F7F8;--panel:#FFFFFF;--panel-2:#EEF2F3;--ink:#171C21;--ink-2:#3E4A53;
+--ink-3:#6B7A85;--line:#D7DEE1;--line-2:#C2CCD1;--accent:#0E6E7A;--accent-soft:#D6EAEC;
+--ok:#1C6E46;--ok-soft:#D8EBE0;--warn:#9C5B00;--warn-soft:#F6E7CF;--crit:#A8231C;
+--crit-soft:#F6DCDA;--idle:#6B7A85;--idle-soft:#E4E9EB;}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--ground:#0F1316;
+--panel:#171D21;--panel-2:#1E262B;--ink:#E7ECEF;--ink-2:#B3C0C7;--ink-3:#8496A0;
+--line:#2A343A;--line-2:#3A464D;--accent:#55C2CC;--accent-soft:#12343A;--ok:#62C08C;
+--ok-soft:#12301F;--warn:#E0A44A;--warn-soft:#34260F;--crit:#F08A83;--crit-soft:#371715;
+--idle:#8496A0;--idle-soft:#212B30;}}
+:root[data-theme="dark"]{--ground:#0F1316;--panel:#171D21;--panel-2:#1E262B;--ink:#E7ECEF;
+--ink-2:#B3C0C7;--ink-3:#8496A0;--line:#2A343A;--line-2:#3A464D;--accent:#55C2CC;
+--accent-soft:#12343A;--ok:#62C08C;--ok-soft:#12301F;--warn:#E0A44A;--warn-soft:#34260F;
+--crit:#F08A83;--crit-soft:#371715;--idle:#8496A0;--idle-soft:#212B30;}
+*{box-sizing:border-box}
+body{background:var(--ground);color:var(--ink);font-family:"IBM Plex Sans",-apple-system,
+BlinkMacSystemFont,"Segoe UI",sans-serif;font-size:15px;line-height:1.5;margin:0;
+padding-inline:20px;padding-block:28px 64px;}
+.wrap{max-width:1160px;margin:0 auto;display:flex;flex-direction:column;gap:30px}
+h1{font-family:"IBM Plex Sans Condensed","IBM Plex Sans",sans-serif;font-weight:700;
+font-size:clamp(28px,5vw,40px);line-height:1.05;letter-spacing:-.015em;margin:0;text-wrap:balance}
+.sub{color:var(--ink-2);margin:6px 0 0;font-size:14.5px;max-width:70ch}
+.stamp{font-family:"IBM Plex Mono",ui-monospace,monospace;font-size:12px;color:var(--ink-3);
+margin-top:10px;font-variant-numeric:tabular-nums}
+h2{font-family:"IBM Plex Sans Condensed","IBM Plex Sans",sans-serif;font-weight:700;
+font-size:12.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);
+margin:0 0 12px;padding-bottom:7px;border-bottom:2px solid var(--accent-soft)}
+h3{font-size:14px;font-weight:600;margin:0 0 8px;color:var(--ink)}
+p{margin:0 0 10px}p:last-child{margin-bottom:0}
+.strip{display:grid;grid-template-columns:repeat(auto-fit,minmax(152px,1fr));gap:1px;
+background:var(--line);border:1px solid var(--line);border-radius:3px;overflow:hidden}
+.cel{background:var(--panel);padding:13px 15px}
+.cel .lab{font-size:10.5px;letter-spacing:.11em;text-transform:uppercase;color:var(--ink-3);
+font-weight:600}
+.cel .val{font-family:"IBM Plex Mono",monospace;font-size:21px;font-weight:600;
+font-variant-numeric:tabular-nums;margin-top:3px;letter-spacing:-.02em}
+.cel .note{font-size:11.5px;color:var(--ink-3);margin-top:2px}
+.val.ok{color:var(--ok)}.val.warn{color:var(--warn)}.val.crit{color:var(--crit)}
+.scroll{overflow-x:auto;border:1px solid var(--line);border-radius:3px;background:var(--panel)}
+table{width:100%;border-collapse:collapse;font-size:13.5px;min-width:1000px}
+th{font-family:"IBM Plex Sans Condensed","IBM Plex Sans",sans-serif;text-align:left;
+font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-3);
+font-weight:700;padding:11px 12px;border-bottom:1.5px solid var(--line-2);
+background:var(--panel-2);white-space:nowrap}
+td{padding:12px;border-bottom:1px solid var(--line);vertical-align:top}
+tr:last-child td{border-bottom:none}
+.lane{font-weight:700;font-size:14px;white-space:nowrap}
+.prof{font-family:"IBM Plex Mono",monospace;font-size:12px;color:var(--ink-2);display:block;
+margin-top:2px;font-weight:400}
+.mail{font-family:"IBM Plex Mono",monospace;font-size:10.5px;color:var(--ink-3);display:block;
+margin-top:3px;font-weight:400;word-break:break-all;max-width:170px;line-height:1.3}
+.num{font-family:"IBM Plex Mono",monospace;font-variant-numeric:tabular-nums;
+white-space:nowrap;font-size:12.5px}
+.werk{font-size:12.5px;color:var(--ink-2);min-width:240px;max-width:330px}
+.q{min-width:112px}
+.qtop{display:flex;align-items:baseline;gap:6px}
+.qpct{font-family:"IBM Plex Mono",monospace;font-size:16px;font-weight:600;
+font-variant-numeric:tabular-nums}
+.qbar{height:5px;background:var(--idle-soft);border-radius:3px;margin-top:5px;overflow:hidden}
+.qfill{height:100%;border-radius:3px}
+.qsrc{font-size:10.5px;color:var(--ink-3);margin-top:4px;display:block;line-height:1.35}
+.q.ok .qpct{color:var(--ok)}.q.warn .qpct{color:var(--warn)}.q.crit .qpct{color:var(--crit)}
+.q.ok .qfill{background:var(--ok)}.q.warn .qfill{background:var(--warn)}
+.q.crit .qfill{background:var(--crit)}
+.t-ok{color:var(--ok)}.t-warn{color:var(--warn)}.t-crit{color:var(--crit)}
+.dubbel{display:block;margin-top:6px;padding-top:5px;border-top:1px dashed var(--line-2)}
+.conflict{color:var(--crit);font-weight:600}
+.hand{color:var(--warn);font-weight:600}
+.b{display:inline-block;font-family:"IBM Plex Sans Condensed","IBM Plex Sans",sans-serif;
+font-size:10.5px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;padding:3px 7px;
+border-radius:2px;white-space:nowrap}
+.b-ok{background:var(--ok-soft);color:var(--ok)}
+.b-warn{background:var(--warn-soft);color:var(--warn)}
+.b-crit{background:var(--crit-soft);color:var(--crit)}
+.b-idle{background:var(--idle-soft);color:var(--idle)}
+.b-acc{background:var(--accent-soft);color:var(--accent)}
+.panel{background:var(--panel);border:1px solid var(--line);border-radius:3px;padding:16px 18px}
+.grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:14px}
+ul.lijst{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:9px}
+ul.lijst li{display:flex;gap:10px;font-size:13.5px;line-height:1.45}
+ul.lijst li .mark{flex:0 0 auto;margin-top:2px}
+.stripe{border-left:3px solid var(--line-2);padding-left:12px}
+.stripe.crit{border-left-color:var(--crit)}.stripe.warn{border-left-color:var(--warn)}
+.stripe.ok{border-left-color:var(--ok)}
+.klok{display:flex;justify-content:space-between;align-items:baseline;gap:12px;padding:9px 0;
+border-bottom:1px solid var(--line);font-size:13.5px}
+.klok:last-child{border-bottom:none}
+.klok .wat{color:var(--ink-2)}
+.klok .wanneer{font-family:"IBM Plex Mono",monospace;font-variant-numeric:tabular-nums;
+font-size:12.5px;text-align:right;white-space:nowrap}
+.fasekop{display:flex;align-items:baseline;gap:10px;margin:18px 0 8px;flex-wrap:wrap}
+.fasekop .naam{font-family:"IBM Plex Sans Condensed","IBM Plex Sans",sans-serif;font-weight:700;
+font-size:15px;letter-spacing:.02em}
+.fasekop .som{font-family:"IBM Plex Mono",monospace;font-size:12px;color:var(--ink-3);
+font-variant-numeric:tabular-nums}
+table.taken{min-width:660px;font-size:13px}
+table.taken td{padding:9px 12px}
+.tijd{font-family:"IBM Plex Mono",monospace;font-variant-numeric:tabular-nums;color:var(--ink-2);
+white-space:nowrap;text-align:right}
+.ketting{font-family:"IBM Plex Mono",monospace;font-size:12px;line-height:1.8;color:var(--ink-2);
+overflow-x:auto;white-space:nowrap;padding-bottom:4px}
+footer{color:var(--ink-3);font-size:12px;border-top:1px solid var(--line);padding-top:14px;
+line-height:1.6}
+code{font-family:"IBM Plex Mono",monospace;font-size:.92em;background:var(--panel-2);
+padding:1px 4px;border-radius:2px}
+@media (max-width:560px){body{padding-inline:16px}.cel .val{font-size:18px}}
+</style>
+<div class="wrap">
+<header>
+  <h1>Stack-Director Peilbord</h1>
+  <p class="sub">Lanen, accounts met hun mailadres, quota, vervalvensters en het werk dat nog
+  moet gebeuren. Elk getal draagt zijn bron: <strong>gemeten</strong> of <strong>jouw
+  aflezing</strong>. Waar die twee verschillen staat het conflict erbij — er wordt er niet
+  stilletjes één gekozen.</p>
+  <p class="stamp">Opgebouwd 2026-09-22 15:03:37 uit de
+  gemeten bronnen door <code>state/DIRECTOR/peilbord-bouw.py</code> · ververst elke 15 min</p>
+</header>
+<section class="strip"><div class="cel"><div class="lab">Stemmen 5815e1bc</div><div class="val ok">2 GO</div><div class="note">0 lopend · twee groene nodig</div></div><div class="cel"><div class="lab">Open taken</div><div class="val ">31</div><div class="note">116 afgerond</div></div><div class="cel"><div class="lab">Director</div><div class="val ok">leeft</div><div class="note">heartbeat 302 s · grens 1200 s</div></div><div class="cel"><div class="lab">Waakvlam</div><div class="val ok">op</div><div class="note">pid 23126 · vervalt 23 sep 09:22</div></div><div class="cel"><div class="lab">/tmp-lock</div><div class="val ">CLAUDE4</div><div class="note">in gebruik</div></div><div class="cel"><div class="lab">Burn-in</div><div class="val crit">nee</div><div class="note">startpoort rood</div></div></section>
+<section><h2>Lanen en accounts</h2><div class="scroll"><table><thead><tr><th>Laan · account</th><th>Quota verbruikt</th><th>Venster vervalt</th><th>Liveness</th><th>Werk nu</th></tr></thead><tbody><tr><td><span class="lane">DIR/CPT2</span><span class="prof">.codex2 · codex</span></td><td class="q warn"><div class="qtop"><span class="qpct">·</span></div><div class="qbar"><div class="qfill" style="width:100%"></div></div><span class="qsrc">cijfers weggelaten op de openbare pagina</span></td><td class="num"><span class="qsrc">niet openbaar</span></td><td><span class="b b-ok">headless</span><span class="qsrc">geen proces tussen beurten</span></td><td class="werk">director headless. Bouworder uitgegeven na eigen herverificatie van de ontwerpstem (verifier PASS). Oogst de bevroren bouwhead en zet daarna CPT3+CLAUDE4 als twee onafhankelijke codestemmen uit</td></tr>
+<tr><td><span class="lane">CPT3</span><span class="prof">.codex3 · codex</span></td><td class="q ok"><div class="qtop"><span class="qpct">·</span></div><div class="qbar"><div class="qfill" style="width:100%"></div></div><span class="qsrc">cijfers weggelaten op de openbare pagina</span></td><td class="num"><span class="qsrc">niet openbaar</span></td><td><span class="b b-ok">werkt</span><span class="qsrc">pid 10273, 24:53 (+3 meer)</span></td><td class="werk">STEM 1 LOOPT pid 10273 (16 min, 2 suitekinderen). Lockhouder. Director meet: image 48 en lifecycle A19 + B5 gedaan, C nog open. 15 rawlogs - weinig maar groot, want de gepinde suites leveren enkele omvangrijke logs</td></tr>
+<tr><td><span class="lane">CPT1</span><span class="prof">.codex/.codex1 · codex</span></td><td class="q crit"><div class="qtop"><span class="qpct">·</span></div><div class="qbar"><div class="qfill" style="width:100%"></div></div><span class="qsrc">cijfers weggelaten op de openbare pagina</span></td><td class="num"><span class="qsrc">niet openbaar</span></td><td><span class="b b-ok">werkt</span><span class="qsrc">pid 58140, 16:41:20</span></td><td class="werk">RUST. EEN account op twee profielen (.codex/.codex1, zelfde account-hash, gedeelde capaciteit): 100% OP, NO_NEW_WORK tot 25 sep 22:54. Wel 4 processen van 13-15u oud op dat uitgeputte account</td></tr>
+<tr><td><span class="lane">CLAUDE1</span><span class="prof">.claude · claude</span></td><td class="q ok"><div class="qtop"><span class="qpct">·</span></div><div class="qbar"><div class="qfill" style="width:100%"></div></div><span class="qsrc">cijfers weggelaten op de openbare pagina</span></td><td class="num"><span class="qsrc">niet openbaar</span></td><td><span class="b b-ok">werkt</span><span class="qsrc">pid 78997, 01-05:21:43 (+1 meer)</span></td><td class="werk">CONTINUATION AFGEROND. Finale head 71b3046d, porcelain leeg, twee commits. 30/30 mutanten assertief rood met nul errors, 30/30 byte-exact herstel, 30/30 positieve controle, zeven suites groen (107/46/28/48/19+5+4). Beide directorcontroles gesloten met dodende mutanten. Committeerde CLAUDE3's oorspronkelijke bytes onder before/claude3-bytes/ zodat de dubbele herkomst per pad te diffen is. UITGESLOTEN als stemgever</td></tr>
+<tr><td><span class="lane">CLAUDE2</span><span class="prof">.claude-second · claude</span></td><td class="q ok"><div class="qtop"><span class="qpct">·</span></div><div class="qbar"><div class="qfill" style="width:100%"></div></div><span class="qsrc">cijfers weggelaten op de openbare pagina</span></td><td class="num"><span class="qsrc">niet openbaar</span></td><td><span class="b b-ok">werkt</span><span class="qsrc">pid 80634, 01-05:17:46</span></td><td class="werk">supervisie/issuer: providerbronmeting afgerond en geoogst door de director; ontwerpstem gedispatcht na rol- en capaciteitsmeting met vier vastgelegde uitsluitingen</td></tr>
+<tr><td><span class="lane">CLAUDE3</span><span class="prof">.claude3 · claude</span></td><td class="q crit"><div class="qtop"><span class="qpct">·</span></div><div class="qbar"><div class="qfill" style="width:100%"></div></div><span class="qsrc">cijfers weggelaten op de openbare pagina</span></td><td class="num"><span class="qsrc">niet openbaar</span></td><td><span class="b b-idle">rust</span></td><td class="werk">TERUGGETROKKEN DOOR DE OWNER tot de reset (do 15:00). Bouw gestopt om 13:32 na 28 min; 10 bestanden staan ONGECOMMIT in de kloon en zijn met hashes vastgelegd in behouden-bytes/. Geen leverbare head. Quota was 96% verbruikt</td></tr>
+<tr><td><span class="lane">CLAUDE4</span><span class="prof">.claude4 · claude</span></td><td class="q warn"><div class="qtop"><span class="qpct">·</span></div><div class="qbar"><div class="qfill" style="width:100%"></div></div><span class="qsrc">cijfers weggelaten op de openbare pagina</span></td><td class="num"><span class="qsrc">niet openbaar</span></td><td><span class="b b-ok">werkt</span><span class="qsrc">pid 10274, 24:53 (+2 meer)</span></td><td class="werk">STEM 2 LOOPT pid 10274 (16 min, CPU 14.4s). 195 rawlogs: hij draait de mutantclassificatie, die test_admission.py gebruikt en dus GEEN gedeelde /tmp nodig heeft. Werkt daarom echt parallel zonder lockconflict, zoals de opzet bedoelde. Wacht op de lock voor image en lifecycle</td></tr>
+<tr><td><span class="lane">GEMINI</span><span class="prof">.gemini1-home · gemini</span></td><td class="q "><span class="qsrc" style="margin:0">geen quotabron</span></td><td class="num">—</td><td><span class="b b-idle">op afroep</span></td><td class="werk">ontwerpstem op afroep, geen openstaande vraag. Een ontwerpstem is GEEN accountstem</td></tr></tbody></table></div><p class="stamp" style="margin-top:10px">Codexquota zijn gemeten via de officiële app-server; Claude-quota bestaan alleen als jouw aflezing — er is geen scriptbare bron, geen CLI-vlag, en het token lezen is verboden.</p></section>
+<section><h2>Stand van de poort</h2><div class="panel">
+  <p><strong>Head <code>5815e1bc</code></strong> — 2 × GO, 0 lopend.
+  Twee groene accountstemmen zijn nodig; stemmen worden niet gemiddeld en integratie vóór die
+  tijd is uitgesloten.</p>
+  <p class="stamp">Director meldt: REVIEWS_71B3046D_LIVE_ON_EXACT_CLEAN_CLONES; CPT3_ALL_SHARED_SUITES_COMPLETE_AND_LOCK_RELEASED; CLAUDE4_MUTANTS_COMPLETE_AND_TMP_LOCK_HELD_SECOND; VERDICTS_PENDING</p>
+</div></section>
+<section><h2>Waarom burn-in nog niet loopt</h2><div class="panel">
+  <p><strong>Toestemming is er sinds 21 september 00:07</strong> — <em>"je mag zonder mijn
+  toestemming met de burn-in beginnen"</em>, en die autorisatie vervalt niet bij sessiewissel of
+  crash. Wat hem tegenhoudt zijn drie poorten die de operatie zichzelf oplegt: reviewstemmen
+  moeten groen zijn, R7 eist een verse meting vlak vóór uitvoering, en ontbrekende
+  cloudcredentials blijven BLOCKED_EVIDENCE.</p>
+  <ul class="lijst" style="margin-top:12px">
+    <li><span class="mark b b-warn">1 · loopt</span><span><strong>Reviewpoort op de
+      discovery-head.</strong> Derde correctieronde. eacc3a67 kreeg twee GO_WITH_FINDINGS;
+      806cb167 liep vast op F2 en is niet geïntegreerd; 5815e1bc is de correctie en staat nu op
+      2 × GO met 0 lopend. Twee groene stemmen zijn
+      nodig en stemmen worden niet gemiddeld.</span></li>
+    <li><span class="mark b b-crit">2 · geen ontwerp</span><span><strong>Binding-admission.</strong>
+      Niet-circulair toelatingsmechanisme met een onafhankelijk pogings-anker. Grootste open post,
+      eigen ontwerp van de director, nog zonder tijdschatting. Dit is de poort die het meest
+      kost.</span></li>
+    <li><span class="mark b b-crit">3 · rood</span><span><strong>Startpoort en Railway-deploy.</strong>
+      De Railway-deploy ís de Linux-meting. Geen cloudplaatsing vóór poort 1 groen is.</span></li>
+    <li><span class="mark b b-idle">4 · wacht</span><span><strong>Eén echte ketenrun</strong> met
+      workflow-ID, SHA en receipt. Hieruit rollen de drie burn-in-bewijzen: ownerweigering via
+      echte activity met 0 credentials, build/review-aansluiting, lifecycle-aansluiting.</span></li>
+    <li><span class="mark b b-idle">5 · dan</span><span><strong>Burn-in, 24 uur bewaking</strong> op
+      fouten, retries en drift.</span></li>
+  </ul>
+  <p style="margin-top:14px;padding-top:12px;border-top:1px solid var(--line)"><strong>Over "er
+  komen taken bij".</strong> De burn-in-regels zijn geen nieuw werk: het zijn bewijzen die uit de
+  ketenrun rollen, plus de bewaking zelf. De regels onder "na burn-in" blokkeren niets. Wat er wél
+  bijkwam is telkens één correctieronde, omdat elke review een échte overclaim vond die vernauwd
+  moest worden — en elke vernauwing vraagt twee vérse onafhankelijke stemmen. Dat is de lus die de
+  tijd kost, niet de takenlijst.</p>
+</div></section><section><h2>Waar de gereïntegreerde keten staat</h2>
+<div class="panel stripe ok">
+  <p><strong>5815e1bc is geïntegreerd</strong> na twee groene stemmen, met verse R7, schoon
+  fastforward van eacc3a67. Zelf nagemeten in
+  <code>.local-runtime/recovery-b5-candidate</code>: dat is een <strong>eigen
+  Git-repository</strong> met tak <code>recovery/b5-assertive-20260921</code>, HEAD
+  <code>5815e1bc…b350</code>, tree <code>d2314515…ceaf</code>, eacc3a67 is voorouder, werkboom
+  schoon.</p>
+  <p><strong>Correctie op mijn eigen eerdere bevinding.</strong> Ik meldde vanmorgen dat
+  <code>recovery-b5-candidate</code> nergens bestond. Dat was fout: ik zocht het als <em>tak</em>
+  in de hoofdrepository, terwijl het een <em>aparte repository</em> is met zijn eigen
+  objectdatabase. Een <code>cat-file</code> in de hoofdrepo kan deze integratie dus niet aantonen
+  én niet weerleggen. Wat wél klopte is dat de commits niet in de hoofdrepository staan — de
+  director bevestigde dat.</p>
+  <p><strong>Het opruimrisico dat ik meldde is afgedekt.</strong> Er staat nu een volledige
+  zelfstandige bundle buiten <code>.local-runtime</code>:
+  <code>evidence/git-preservation-20260922/5815e1bc/candidate.bundle</code>, 24.670.077 bytes,
+  SHA256 <code>d70e7819…f2f0024</code> — door mij nagemeten, met <code>r7.json</code> en
+  <code>receipt.json</code> ernaast. Import in een lege repo gaf dezelfde head en tree en
+  <code>fsck --full --strict</code> exit 0.</p>
+  <p>Dit is lokale bewaring, <strong>nog geen externe publicatie</strong> en geen bescherming
+  tegen verlies van deze machine. Geen cleanup van de klonen of bewijsmappen uitvoeren.</p>
+</div></section><section><h2>Hoe hard deze getallen zijn</h2><div class="grid2">
+  <div class="panel stripe ok"><h3>Gemeten — de codexprofielen</h3>
+    <p>Officiële <code>account/rateLimits/read</code> van de app-server, elke 300 s door de
+    accountmonitor. Versheidsgrens 600 s. Drempels zijn lokale planningsreserves, geen
+    providerlimieten: waarschuwen bij 80 %, geen nieuw werk bij 90 %.</p></div>
+  <div class="panel stripe warn"><h3>Alleen via jouw aflezing — de Claude-accounts</h3>
+    <p>Nagezocht in plaats van aangenomen: <code>bin/lane-utilization-meter</code> zet zelf
+    <code>usage_pct: null</code> met bron <em>"UNMEASURED: geen scriptbare lokale usage-bron"</em>.
+    Geen usage-vlag op de CLI, geen rate-limit-velden in de sessielogs, geen usage-cache. De enige
+    echte bron zou het OAuth-token zijn, en credentials lezen is onverkort verboden (§3.2).</p>
+    <p>Daarom is <code>/usage</code> per account met de hand de enige route. Dat is geen
+    tussenoplossing maar de grens van wat hier meetbaar is — en het corrigeerde meteen een
+    onwaarheid: CLAUDE3 stond als "opgebruikt" terwijl hij 92 % was en vanmorgen nog een volledige
+    bouw leverde.</p></div>
+  <div class="panel stripe crit"><h3>Niet gemeten — het 5-uursvenster</h3>
+    <p>alle 4 codexprofiel meldt een gemeten 5-uursvenster; ze staan allemaal op
+    <code>five_hour: UNKNOWN</code>. Alleen het weekvenster is hard. Een account kan dus ruim in
+    zijn weekmarge zitten en toch op een kort venster vastlopen — dat zien we niet aankomen.</p></div>
+  <div class="panel stripe warn"><h3>Eén account dat als twee telt</h3>
+    <p><code>.codex</code> en <code>.codex1</code> dragen dezelfde
+    <code>account_hint_sha256</code> en staan in elkaars <code>shared_capacity_profiles</code>.
+    Wie ze als twee lanen plant, plant dubbel op één uitgeput account.</p></div>
+</div></section><section><h2>Wat de voortgang tegenhoudt</h2><div class="panel"><ul class="lijst"><li><span class="mark b b-crit">blokkade</span><span>Bouwdelta heeft DUBBELE BOUWHERKOMST: CLAUDE3 (tien paden) + CLAUDE1 (vervolg). Beiden uitgesloten als reviewer; alleen CPT3 en CLAUDE4 kunnen nog stemmen, en dat zijn er precies twee - geen reserve meer op deze poort</span></li><li><span class="mark b b-crit">blokkade</span><span>TWEE CODESTEMMEN LOPEN op 71b3046d. GEEN RESERVE: CPT3 en CLAUDE4 zijn de enige twee die mogen stemmen (CLAUDE3 en CLAUDE1 zijn medebouwer, CPT2 issuer, ik promptissuer). Valt een van beide uit, dan staat de poort stil tot een reset</span></li><li><span class="mark b b-crit">blokkade</span><span>HERKOMST GESLOTEN 14:12: CLAUDE3's oorspronkelijke bytes zijn byte-exact reconstrueerbaar uit basis + gewijzigd.diff (bewezen met git apply, hash 30810224cb38783b). Was een open reviewerfinding, is nu een feit voor de BOUW.md. Zowel de director als ik hadden aangenomen dat ze verloren waren</span></li><li><span class="mark b b-crit">blokkade</span><span>TWEE OOGSTPUNTEN van de director, zelf nagemeten en terecht: admission.py:72 laat 31 februari passeren (day &lt;= 31 is geen kalendervalidatie), en CREATE TABLE IF NOT EXISTS is een no-op bij een bestaande tabel met verkeerd schema - bestaanssucces is geen schemabewijs</span></li><li><span class="mark b b-crit">blokkade</span><span>WAAKVLAM IS DRAGEND, NIET BEWAKEND: pid 23126 heeft de headless director 126 keer hervat. 'director weg, heartbeat Xs oud' in tick.log is zijn HANDELINGSMELDING, geen alarm - hij weigert correct bij een jonge heartbeat (gemeten: 127s -&gt; 'director leeft, geen tik') en wekt bij ~300s. CLAUDE2 noemde die meldingen eerder ruis; dat was FOUT. Dezelfde log bevat drie echte stilstanden: heartbeat 17797s, 3109s en 2929s, alle ruim boven de 1200s-tolerantie. VERVALT 2026-09-23 09:22 - zonder verlenging stopt de director met beurten nemen</span></li><li><span class="mark b b-crit">blokkade</span><span>imageDigest bestaat NIET op Deployment (gepind schema en live, traceId 8629019119276248494) terwijl de geintegreerde STATUS_QUERY het opvraagt - moet uit het admissionvoorstel</span></li><li><span class="mark b b-crit">blokkade</span><span>Locatorprobleem: deployment(id:) neemt de id van de aanroeper, dus status['id']==expected['deployment_id'] vergelijkt de echo van de locator met de locator. Bewijst bestaan en scope, niet toelating</span></li><li><span class="mark b b-crit">blokkade</span><span>Replaybestendigheid UNKNOWN: geen gestructureerd providerveld voor een callernonce (DeploymentMeta is opaque SCALAR)</span></li><li><span class="mark b b-crit">blokkade</span><span>NEEDS_APPROVAL bestaat als DeploymentStatus-waarde maar is NIET gemeten als admissionpoort - niet aannemen</span></li><li><span class="mark b b-crit">blokkade</span><span>Startpoort ROOD; geen cloudplaatsing zonder gesloten admission</span></li><li><span class="mark b b-crit">blokkade</span><span>lane-dispatcher BEWUST stil (director-STOP) - niet herstarten</span></li><li><span class="mark b b-crit">blokkade</span><span>Peilbordverversing draait machinaal sinds 12:33 (launchd com.richard.peilbord-ververs, elke 900s, exit 0). De GEGEVENS zijn vers zonder sessie; de Artifact-URL publiceren blijft CLAUDE2 nodig. Openbare publicatie is nog een open ownerbesluit (repo is PUBLIC, publieke variant laat mailadressen weg)</span></li><li><span class="mark b b-crit">blokkade</span><span>BUITEN HET BEWIJS, bewust: gecompromitteerde buildketen en gecompromitteerd owneraccount. CLAUDE4 noemde beide als resterend tegenvoorbeeld; geen enkele controle in dit ontwerp is onafhankelijk van wat al op de containerschijf staat</span></li><li><span class="mark b b-crit">blokkade</span><span>Lokale doubles zijn GEEN bewijs voor live DB-atomiciteit, schema-/rolplaatsing, owner-ID, release-ID of Linux-/deploymentbinding - aparte poorten</span></li><li><span class="mark b b-crit">blokkade</span><span>METHODOLOGISCH PUNT van de director, in beide prompts opgenomen: een AssertionError alleen is ONVOLDOENDE bewijs voor een mutantkill - de testhelpers verpakken onverwachte excepties ook als AssertionError. Per kill moet de echte oorzaak geclassificeerd en schijnbewijs afgewezen worden</span></li></ul></div></section><section><h2>Bewakers en houdbaarheid</h2><div class="grid2">
+  <div class="panel"><h3>Wat er waakt</h3>
+    <div class="klok"><span class="wat">Waakvlam pid 23126 — TTL 24 u</span>
+      <span class="wanneer t-ok">op<br>vervalt 23 sep 09:22</span></div>
+    <div class="klok"><span class="wat">Accountmonitor</span><span class="wanneer">meet elke 300 s
+      <br>hangt aan de CLAUDE2-sessie</span></div>
+    <div class="klok"><span class="wat">Gedeelde /tmp-lock</span><span class="wanneer">CLAUDE4</span></div>
+  </div>
+  <div class="panel"><h3>Wat er niet waakt</h3>
+    <div class="klok"><span class="wat"><code>tick-status.json</code></span>
+      <span class="wanneer t-crit">ontbreekt</span></div>
+    <div class="klok"><span class="wat">launchd regiekamer-generator</span>
+      <span class="wanneer t-crit">niet geladen</span></div>
+    <div class="klok"><span class="wat">lane-dispatcher</span>
+      <span class="wanneer t-idle">bewust STOP</span></div>
+    <div class="klok"><span class="wat">Dagelijkse backup van deze Mac</span>
+      <span class="wanneer t-crit">draait niet</span></div>
+  </div>
+</div></section>
+<section><h2>Wat nog moet gebeuren</h2><div class="fasekop"><span class="naam">Vóór burn-in</span><span class="som">10 open · 3 u 40 m · 2 ongeschat</span></div><div class="scroll"><table class="taken"><tbody><tr><td><span class="b b-ok">loopt</span></td><td>CPT3</td><td>Codestem 1 op 71b3046d: zeven suites, 30 mutanten met ECHTE-versus-SCHIJN classificatie, vijf eigen tegenvoorbeelden, claim_attempt_id en het cloud-meetpakket</td><td class="tijd">45 m</td></tr>
+<tr><td><span class="b b-ok">loopt</span></td><td>CLAUDE4</td><td>Codestem 2 op 71b3046d: idem, plus zelfstandig beoordelen of de code zijn eigen goedgekeurde ontwerp werkelijk volgt</td><td class="tijd">50 m</td></tr>
+<tr><td><span class="b b-acc">nu</span></td><td>CLAUDE2</td><td>WAAKVLAM VERLENGEN voor 2026-09-23 09:22. Pid 23126 heeft de director 126x hervat; zonder hem neemt de headless director geen beurten meer. Dit is de kritieke klok, niet een agendapunt</td><td class="tijd">10 m</td></tr>
+<tr><td><span class="b b-idle">open</span></td><td>DIRECTOR</td><td>BINDING-admission — grootste open poort: niet-circulair toelatingsmechanisme met onafhankelijk attempt-anker.</td><td class="tijd">—</td></tr>
+<tr><td><span class="b b-idle">open</span></td><td>DIRECTOR</td><td>Railway-deploy van de gereviewde discovery-image (Railway-deploy IS de Linux-meting). Pas na reviewpoort groen EN binding opgelost.</td><td class="tijd">30 m</td></tr>
+<tr><td><span class="b b-idle">open</span></td><td>CLAUDE2</td><td>Verse binding/R7 + nul-pollercontrole (workflow ÉN activity) vlak vóór de workerstart.</td><td class="tijd">10 m</td></tr>
+<tr><td><span class="b b-idle">open</span></td><td>DIRECTOR</td><td>Één echte ketenrun met workflow-ID + SHA + receipt.</td><td class="tijd">30 m</td></tr>
+<tr><td><span class="b b-idle">open</span></td><td>CLAUDE2</td><td>Op afroep: meten of DeploymentStatus NEEDS_APPROVAL als providerzijdige admissionpoort bruikbaar is. NIET gemeten, niet aannemen</td><td class="tijd">25 m</td></tr>
+<tr><td><span class="b b-idle">open</span></td><td>CLAUDE3</td><td>BOUW admission V2 GESTOPT op ownerbesluit na 28 min (quota 96%). Tien bestanden ongecommit bewaard met hashes; geen leverbare head. Hervatten na reset do 15:00 OF rolwissel naar CLAUDE1</td><td class="tijd">—</td></tr>
+<tr><td><span class="b b-idle">open</span></td><td>CLAUDE2</td><td>Bouwhead oogsten en R3-verifieren zodra CLAUDE3 klaar is; dan twee codestemmen dispatchen (CPT3 + CLAUDE4) op de exacte bytes</td><td class="tijd">20 m</td></tr></tbody></table></div><div class="fasekop"><span class="naam">Burn-in</span><span class="som">4 open · 24 u · 3 ongeschat</span></div><div class="scroll"><table class="taken"><tbody><tr><td><span class="b b-warn">wacht</span></td><td>DIRECTOR</td><td>Bewijs uit ketenrun (8/9): Ownerweigering via echte activity, 0 creds</td><td class="tijd">—</td></tr>
+<tr><td><span class="b b-warn">wacht</span></td><td>DIRECTOR</td><td>Bewijs uit ketenrun (8/9): Build/review aansluiting</td><td class="tijd">—</td></tr>
+<tr><td><span class="b b-warn">wacht</span></td><td>DIRECTOR</td><td>Bewijs uit ketenrun (8/9): Lifecycle aansluiting</td><td class="tijd">—</td></tr>
+<tr><td><span class="b b-idle">open</span></td><td>CLAUDE2</td><td>Bewaking tijdens burn-in (9/9): fouten, retries, drift</td><td class="tijd">24 u</td></tr></tbody></table></div><div class="fasekop"><span class="naam">Na burn-in</span><span class="som">17 open · 15 u 5 m</span></div><div class="scroll"><table class="taken"><tbody><tr><td><span class="b b-idle">open</span></td><td>DIRECTOR</td><td>Receipts verifiëren en vastleggen</td><td class="tijd">20 m</td></tr>
+<tr><td><span class="b b-idle">open</span></td><td>DIRECTOR</td><td>Tweede ketenuitvoering, herhaalbaarheid</td><td class="tijd">45 m</td></tr>
+<tr><td><span class="b b-idle">open</span></td><td>CPT3</td><td>Rollbackproef: bewijs dat stoppen werkt</td><td class="tijd">30 m</td></tr>
+<tr><td><span class="b b-idle">open</span></td><td>CLAUDE4</td><td>bin/-wrapperlaag repareren</td><td class="tijd">30 m</td></tr>
+<tr><td><span class="b b-idle">open</span></td><td>CLAUDE4</td><td>Accountkaart + dashboard blok 5B</td><td class="tijd">1 u</td></tr>
+<tr><td><span class="b b-idle">open</span></td><td>CLAUDE2</td><td>Alarmering op de echte keten</td><td class="tijd">45 m</td></tr>
+<tr><td><span class="b b-idle">open</span></td><td>DIRECTOR</td><td>Besluitregister en documentatie bijwerken</td><td class="tijd">30 m</td></tr>
+<tr><td><span class="b b-idle">open</span></td><td>CLAUDE4</td><td>Gelabelde set van ~100 orders aanleggen (acceptatieproef)</td><td class="tijd">1 u 30 m</td></tr>
+<tr><td><span class="b b-idle">open</span></td><td>DIRECTOR</td><td>Automatische taakbeoordeling bouwen en meten tegen die set</td><td class="tijd">2 u</td></tr>
+<tr><td><span class="b b-idle">open</span></td><td>CLAUDE2</td><td>Supervisiegereedschap opruimen zodra Temporal orkestreert</td><td class="tijd">45 m</td></tr>
+<tr><td><span class="b b-idle">open</span></td><td>CLAUDE2</td><td>Accountmonitor losmaken van de supervisorsessie (stierf met CLAUDE2-pid 89188)</td><td class="tijd">20 m</td></tr>
+<tr><td><span class="b b-idle">open</span></td><td>DIRECTOR</td><td>Toezichtlanes van MacBook naar clouduitvoering (ownerbesluit); na burn-in</td><td class="tijd">4 u</td></tr>
+<tr><td><span class="b b-warn">owner</span></td><td>owner</td><td>Issuer key placement in Railway</td><td class="tijd">45 m</td></tr>
+<tr><td><span class="b b-warn">owner</span></td><td>owner</td><td>LaunchAgents herstellen: er draait GEEN dagelijkse backup meer op deze Mac</td><td class="tijd">30 m</td></tr>
+<tr><td><span class="b b-warn">owner</span></td><td>owner</td><td>taskos.db terugvinden in APFS-snapshots of op KINGSTON/Elements</td><td class="tijd">30 m</td></tr>
+<tr><td><span class="b b-warn">owner</span></td><td>owner</td><td>Mini als backupdoel weer bereikbaar maken (192.168.0.22:22 dicht)</td><td class="tijd">15 m</td></tr>
+<tr><td><span class="b b-warn">owner</span></td><td>owner</td><td>Nieuw Hetzner read-token (OPS_HETZNER_READ_TOKEN is ongeldig)</td><td class="tijd">10 m</td></tr></tbody></table></div>
+  <details style="margin-top:22px">
+    <summary style="cursor:pointer;font-family:'IBM Plex Sans Condensed',sans-serif;
+      font-weight:700;font-size:13px;letter-spacing:.06em;text-transform:uppercase;
+      color:var(--ink-3);padding:10px 0">
+      Afgerond — 116 taken (klik om te openen)
+    </summary>
+    <div class="scroll" style="margin-top:8px"><table class="taken"><tbody><tr><td>CPT2</td><td>LIFECYCLE-POORT GROEN: eacc3a67 geïntegreerd in recovery-b5-candidate na twee GO_WITH_FINDINGS (CPT3, CLAUDE4).</td></tr><tr><td>CLAUDE3</td><td>Docscope-tekstcorrectie geleverd op 806cb167 (AST byte-gelijk, manifest 35/35, overclaim-mutant rood via eigen guard).</td></tr><tr><td>CPT3</td><td>Stem 1 op 806cb167 = NO_GO. Formeel BLOCKED_EVIDENCE door MIJN promptgrens (/tmp-scratch van de gepinde suites), maar F2 blokkeert inhoudelijk: de ~4s is budget voor killpg + begrensde direct-child-wait, GEEN universele group-reaped garantie. F3: een tegenstrijdige docstring passeert alle 7 guard-tests. F4: tip voegt ook tools/mutant.py toe.</td></tr><tr><td>CLAUDE4</td><td>Stem 2 op 806cb167 GELEVERD: GO_WITH_FINDINGS, mat 48+28 zelf, killpg-marge ~4s gequantificeerd via tools/probe_scope.py</td></tr><tr><td>DIRECTOR</td><td>F2 OVERGENOMEN: 806cb167 wordt NIET geïntegreerd. F3 bevestigt dat de guard inhoudsreview niet vervangt. F4 wordt hersteld. Mijn /tmp-uitzondering wordt STAAND beleid voor volgende reviewprompts.</td></tr><tr><td>CLAUDE3</td><td>Reapingclaim-correctie GELEVERD: head 5815e1bc (run.log tot 11:06, geen proces meer, schone werkboom). Guard 7-&gt;12 controles, F4-inventaris uit git, AST identiek</td></tr><tr><td>CLAUDE2</td><td>Beide docscope-stemmen geoogst en gemeld (CPT3 NO_GO, CLAUDE4 GO_WITH_FINDINGS; niet gemiddeld, F2 blokkeert). Reapingclaim-vervolgdelta gedispatcht.</td></tr><tr><td>CLAUDE2</td><td>Twee stemmen op 5815e1bc gedispatcht en geoogst: CLAUDE4 GO; CPT3 NO_GO/BLOCKED_EVIDENCE (alleen bewijsgrond, F2 inhoudelijk gesloten). Smalle CPT3-suiteaanvulling loopt pid 74997 met eigen TMPDIR</td></tr><tr><td>CPT3</td><td>Suiteaanvulling 5815e1bc GELEVERD: image 48 + lifecycle 28 volledig groen, exit 0, pins identiek voor en na, lock vrijgegeven. CPT3-stem staat nu op GO</td></tr><tr><td>CLAUDE2</td><td>Landingsplek opgehelderd: .local-runtime/recovery-b5-candidate is een EIGEN repo (tak recovery/b5-assertive-20260921); mijn 'bestaat nergens' was fout. Bundle buiten .local-runtime nagemeten</td></tr><tr><td>DIRECTOR</td><td>Admissionontwerp V2 GESCHREVEN (sha256 84dd2640...): imageDigest eruit na mijn meting, locator-only, ownerbinding creator-ID, create-only claim met verloren-ackpad, tien negatieve controles</td></tr><tr><td>CLAUDE4</td><td>Ontwerpstem admission V2 GELEVERD: GO_WITH_FINDINGS met vier bouwspecificatiebevindingen en twee resterende tegenvoorbeelden. Scherpste vondst: de 'bestaande' claimopslag bestaat niet</td></tr><tr><td>CLAUDE4</td><td>Smalle herstem admission V2 GELEVERD: vier punten GESLOTEN met bronregels, gecombineerde stem GO, verifier negatief getest en door mij herhaald (exit 1 zonder eindstatus, exit 0 na herstel)</td></tr><tr><td>DIRECTOR</td><td>Bouworder admission V2 UITGEGEVEN, lint en continuation-gate PASS, met eigen herverificatie van de ontwerpstem</td></tr><tr><td>DIRECTOR</td><td>Rolbesluit genomen: bouwrol naar CLAUDE1, doorbouwen op CLAUDE3's tien paden in dezelfde kloon toegestaan, dubbele herkomst expliciet</td></tr><tr><td>CLAUDE1</td><td>CONTINUATION admission V2 AFGEROND: head 71b3046d, porcelain leeg, 30/30 mutanten assertief rood, zeven suites groen, beide directorcontroles gesloten, CLAUDE3's bytes gecommit voor diff per pad</td></tr><tr><td>CLAUDE2</td><td>Twee codestemmen GEDISPATCHT op 71b3046d na verse rol-, capaciteits- en schrijfgrensmeting: CPT3 pid 10273 en CLAUDE4 pid 10274, gesérialiseerd op de /tmp-lock</td></tr><tr><td>CLAUDE3</td><td>CLAUDE3 R2 parentgrens-reparatie SCHOON geleverd: head f4b6621f (code ec9c245a, één absolute deadline); werkboom schoon, eerlijke grenzen-notitie</td></tr><tr><td>CLAUDE1</td><td>CLAUDE1 ontwerpstem R2-deadline: NO_GO_MINIMALE_AANPASSING — 2 gaten (geen gemeenschappelijke absolute deadline; thread-spawn ongedekt); klein te dichten</td></tr><tr><td>CLAUDE2</td><td>Lifecycle-herreview f36ef60d: CPT3 stem 1 = NO_GO (parent-staart onbegrensd, parent na 96s gedood); CLAUDE4 kon niet afronden (turnbudget). Head niet lifecycle-veilig.</td></tr><tr><td>CLAUDE3</td><td>Lifecycle-reparatie GELEVERD: head f36ef60d (code 86568bbf), schoon, 35/35 manifestpaden, 3 mutanten schoon, 129 testruns OK</td></tr><tr><td>CLAUDE1</td><td>CLAUDE1 binding-ontwerpstem: GEEN_VAN_BEIDE — A vereist onbekend niet-instelbaar attempt-kenmerk, B mist signer/replay-anker; director werkt mechanisme uit</td></tr><tr><td>CPT3</td><td>Worker-lifecycle-toets CPT3: REPARATIE_NODIG — geen watchdog gekoppeld, geen afgedwongen terminatie, shutdown-transport verlopen na t0+20</td></tr><tr><td>DIRECTOR</td><td>PAD-&gt;BURN-IN 6/9: Linux-preflight GESLAAGD op Railway - 29/0/0/0, binary libpq (180006), Linux x86_64/CPython 3.12.14, PREFLIGHT_ONLY_COMPLETE_NO_WORKER, exit 0</td></tr><tr><td>CPT3</td><td>CPT3 identity-erratum: ERRATUM_VERVANGT_FORMULE — oude identity.form blijft niet-normatief, geen in-tree correctie</td></tr><tr><td>DIRECTOR</td><td>PAD→BURN-IN 5/9: main GEPUBLICEERD op 65e45376 (fast-forward, readback bevestigd)</td></tr><tr><td>CPT3</td><td>PAD→BURN-IN 4/9: reviewpoort head C DICHT — CPT3 + CLAUDE4 GO_WITH_FINDINGS; alle 6 mutantcategorieen schoon (CLAUDE4-aanvulling door CLAUDE2 nagemeten)</td></tr><tr><td>DIRECTOR</td><td>PAD→BURN-IN 3/9: director integreerde A+B → head C 65e45376 (66/0/0 + 48/0/0) — KLAAR</td></tr><tr><td>CLAUDE3</td><td>PAD→BURN-IN 2/9: image head B fa68da9a (48/0/0/0, interface rev 3, geen lokale build) — KLAAR</td></tr><tr><td>DIRECTOR</td><td>Manifestbesluit director: 14-bestandenmanifest + README pinned op 130344b8 blijven; director verzorgt aparte integratie-README/compositiemanifest</td></tr><tr><td>CLAUDE1</td><td>PAD→BURN-IN 1/9: adapter head A 2b7027e9 (66/0/0/0, 3 delta's, interface rev3) — KLAAR</td></tr><tr><td>CPT3</td><td>CPT3 stem 1 + CLAUDE4 stem 2 op de samengestelde adapter/image-head (directororder); CLAUDE3 uitgesloten als bouwer</td></tr><tr><td>CLAUDE3</td><td>CLAUDE3 bouwt Railway-image + entrypoint met preflight (owner 19:53); eerste deploy = Linux-meting</td></tr><tr><td>CLAUDE1</td><td>CLAUDE1 bouwt launch/lifecycle-adapter + startidentiteit (owner 19:53); director beoordeelt — LANGE PAAL</td></tr><tr><td>DIRECTOR</td><td>BURN-IN: 24 uur doorlopen zonder ingrijpen</td></tr><tr><td>DIRECTOR</td><td>BURN-IN starten: echte keten, workflow-ID+SHA+receipt</td></tr><tr><td>CLAUDE3</td><td>CLAUDE3 eerste beurt: Dockerfile/entrypoint/preflight als bron (ef81c0e2), geen lokale build (conform owner); basisdigest overgeërfd van 17 sept — reviewpunt</td></tr><tr><td>CLAUDE1</td><td>CLAUDE1 eerste beurt: adapter + binding, 45/0/0/0, 4 mutanten, I6 rood (head 8cbe862e) — director vond 118&gt;100-tekenbug bij echte UUIDs → delta 2</td></tr><tr><td>CLAUDE2</td><td>Delta 1 afgeleverd (CLAUDE1 20:09, CLAUDE3 20:11); delta 2 (UUID-bevinding + koppelpunten) klaar, gaat bij beurteinde — delta 1 klaar CLAUDE1 20:19; delta 2 loopt (pid 39434); CLAUDE3 delta 1 loopt (36199)</td></tr><tr><td>owner</td><td>Director headless: TUI gesloten 20:03, waakvlam-resume 20:10 bewezen (order 20:13 uit headless beurt); Temporal-orkestratie blijft doel na burn-in</td></tr><tr><td>CLAUDE2</td><td>Wekker 30-min ronde CLAUDE2 gezet (cron 44ce0cdb, :11/:41)</td></tr><tr><td>DIRECTOR</td><td>Wekker 8b8178ed: BEVROREN, niet geactiveerd (directorbesluit 19:57); cloudtoezicht na burn-in</td></tr><tr><td>CLAUDE2</td><td>Augustus-order host-review-publisher expliciet afgewezen (outbox 19:25)</td></tr><tr><td>CLAUDE2</td><td>lane-state: interactieve tty-sessies niet als MOGELIJK_VAST tellen (vals alarm 19:22) — gefixt 19:50, T9 groen</td></tr><tr><td>CLAUDE2</td><td>Eigen V1-uitvoeringsreceipt naast v1-supervisor-rerun-snapshot + mutant-hashafwijking verzoenen</td></tr><tr><td>CLAUDE2</td><td>Read-only inventaris Railway canary + Temporal runs/worker-versies (order 18:58) — receipt aan director</td></tr><tr><td>owner</td><td>Ownerbesluit 19:35: alles in de cloud — Railway-deploy is de Linux-meting; Colima-order en GH-Actions-voorcontrole afgewezen</td></tr><tr><td>CLAUDE4</td><td>CLAUDE4: zes ontbrekende acceptatieproeven op 130344b8 (M7-exact, PG-insert, retry, 3× task_queue) — 6/6 gemeten door CLAUDE2: exit 1, 1 AssertionError, 0 errors, kloon byte-exact</td></tr><tr><td>CLAUDE2</td><td>Providerclosure discovery: 12 wheels met byte- en hashbewijs</td></tr><tr><td>CLAUDE2</td><td>Werkmapvertrouwen gezet voor alle vier de Claude-profielen</td></tr><tr><td>CLAUDE3</td><td>Stem op gitcommit 0bf04256 van de wekker — GO_WITH_FINDINGS 18:36; wekker bevroren</td></tr><tr><td>CLAUDE4</td><td>Stem 2 op discovery-HERSTEL 130344b8 — codepoort 130344b8 gesloten 19:57</td></tr><tr><td>CPT3</td><td>Stem 1 op discovery-HERSTEL 130344b8 — codepoort 130344b8 gesloten 19:57</td></tr><tr><td>CLAUDE1</td><td>Wekker in git zetten volgens ownerbesluit B (code wel, uitvoer niet)</td></tr><tr><td>CLAUDE3</td><td>Cloudproef CLAUDE3 + onafhankelijke githerkomstmeting</td></tr><tr><td>CLAUDE1</td><td>Wekker G7: twee dekkingsgaten dichten</td></tr><tr><td>CLAUDE4</td><td>Stem 2 op discovery-IMPLEMENTATIE f319f0be</td></tr><tr><td>CPT3</td><td>Stem 1 op discovery-IMPLEMENTATIE f319f0be</td></tr><tr><td>DIRECTOR</td><td>Discovery-ontwerp: twee begrensde tekstdelta s doorvoeren</td></tr><tr><td>CPT3</td><td>G7-stem 2: referentie gecorrigeerd naar CLAUDE4s vastlegging</td></tr><tr><td>owner</td><td>CLAUDE3-lane opnieuw inrichten (login) voor de achtste cloudproef</td></tr><tr><td>CLAUDE2</td><td>Cloudproef alle accounts: 7 van 8 bewezen of bevestigd</td></tr><tr><td>CLAUDE1</td><td>Derde stem: beslecht de onenigheid over N1 en N2</td></tr><tr><td>CPT3</td><td>G7-stem: is de wekker nu volledig afgedwongen?</td></tr><tr><td>CLAUDE4</td><td>V1-behoud aantoonbaar afgedwongen? (stem 1)</td></tr><tr><td>CLAUDE1</td><td>Wekker G7: deploypaden en statische launchd-controle</td></tr><tr><td>CLAUDE4</td><td>Stem 2 op discovery-ontwerp v2 (frisse blik)</td></tr><tr><td>CPT3</td><td>Stem 1 op discovery-ontwerp v2</td></tr><tr><td>owner</td><td>Ownerbesluit: POLICY_UPDATE_V3 als protocolkeuze vastleggen</td></tr><tr><td>DIRECTOR</td><td>AUTHORITY-RELEASE: twee stemmen binnen, integratie kan door</td></tr><tr><td>CLAUDE4</td><td>Derde-accountstem op wekkerreparatie ronde 2</td></tr><tr><td>CLAUDE1</td><td>Stem 2 op authorityhead 5366753d</td></tr><tr><td>CPT3</td><td>Stem 1 op authorityhead 5366753d</td></tr><tr><td>CPT3</td><td>Ontwerpbeoordeling discovery workflow (D1-D7)</td></tr><tr><td>DIRECTOR</td><td>Authoritypatch: bindende test toevoegen en nieuwe head leveren</td></tr><tr><td>DIRECTOR</td><td>Signerreceipt onafhankelijk geverifieerd door de director</td></tr><tr><td>CPT3</td><td>Accountstem op authority-releasepatch 2a327de0</td></tr>
+    </tbody></table></div>
+  </details>
+</section>
+<footer>
+  <p><strong>Dit bord bouwt zichzelf.</strong> Elke controleronde wordt het opnieuw gegenereerd
+  uit de bronnen hierboven, in plaats van met de hand bijgewerkt. Dat was de oorzaak dat het
+  eerder achterliep.</p>
+  <p><strong>Publieke versie.</strong> Mailadressen EN quotacijfers met resetmomenten zijn hier weggelaten omdat deze pagina openbaar is. De kleurband blijft, zodat zichtbaar is welke lane krap zit zonder te verklappen hoeveel capaciteit er is of wanneer een account leeg is. De volledige cijfers staan in het prive-peilbord.</p>
+  <p><strong>Wat niet gemeten is:</strong> het 5-uursvenster van alle codexprofielen
+  (<code>five_hour: UNKNOWN</code>) en elke Claude-quota. Die laatste komen uit jouw aflezing.</p>
+</footer></div>
