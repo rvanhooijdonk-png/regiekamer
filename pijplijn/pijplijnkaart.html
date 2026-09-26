@@ -1,0 +1,536 @@
+<title>Pijplijnkaart</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Source+Sans+3:wght@400;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+<style>
+  :root{
+    --bg:#EDEFEA; --surface:#FFFFFF; --surface-2:#E4E7DF;
+    --ink:#171A18; --ink-soft:#3C4038; --muted:#6B7168; --border:#D6D9CF;
+    --accent:#1F5F6B; --accent-ink:#0E3A42; --accent-soft:rgba(31,95,107,.12);
+    --ok:#2E6B4A; --ok-soft:rgba(46,107,74,.13);
+    --part:#8C6B1F; --part-soft:rgba(140,107,31,.15);
+    --spec:#57626C; --spec-soft:rgba(87,98,108,.13);
+    --miss:#8B4A3E; --miss-soft:rgba(139,74,62,.13);
+    --shadow:rgba(23,26,24,.14);
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --bg:#141715; --surface:#1C201D; --surface-2:#242822;
+      --ink:#ECEFE9; --ink-soft:#C7CBC2; --muted:#8B9188; --border:#343830;
+      --accent:#5FB8C2; --accent-ink:#BFE9EC; --accent-soft:rgba(95,184,194,.16);
+      --ok:#74C293; --ok-soft:rgba(116,194,147,.16);
+      --part:#DCB753; --part-soft:rgba(220,183,83,.16);
+      --spec:#9DA9B1; --spec-soft:rgba(157,169,177,.16);
+      --miss:#DD9484; --miss-soft:rgba(221,148,132,.16);
+      --shadow:rgba(0,0,0,.5);
+    }
+  }
+  :root[data-theme="dark"]{
+    --bg:#141715; --surface:#1C201D; --surface-2:#242822;
+    --ink:#ECEFE9; --ink-soft:#C7CBC2; --muted:#8B9188; --border:#343830;
+    --accent:#5FB8C2; --accent-ink:#BFE9EC; --accent-soft:rgba(95,184,194,.16);
+    --ok:#74C293; --ok-soft:rgba(116,194,147,.16);
+    --part:#DCB753; --part-soft:rgba(220,183,83,.16);
+    --spec:#9DA9B1; --spec-soft:rgba(157,169,177,.16);
+    --miss:#DD9484; --miss-soft:rgba(221,148,132,.16);
+    --shadow:rgba(0,0,0,.5);
+  }
+  *{box-sizing:border-box}
+  body{background:var(--bg);color:var(--ink);font-family:"Source Sans 3",ui-sans-serif,system-ui,sans-serif;margin:0;padding-block:24px 48px;padding-inline:16px;line-height:1.45}
+  .mono{font-family:"IBM Plex Mono",ui-monospace,monospace}
+  h1,h2,h3{margin:0;text-wrap:balance}
+  h1{font-family:"Fraunces",Georgia,serif;font-weight:600;font-size:1.9rem;line-height:1.1}
+  h2{font-family:"Fraunces",Georgia,serif;font-weight:600;font-size:1.25rem;margin-bottom:10px}
+  h3{font-size:.95rem;font-weight:700}
+  a{color:var(--accent-ink)}
+  .wrap{max-width:1180px;margin:0 auto;display:flex;flex-direction:column;gap:28px}
+  .lede{color:var(--ink-soft);max-width:68ch;margin-top:8px;font-size:1.02rem}
+  .meta{font-family:"IBM Plex Mono",monospace;font-size:.72rem;color:var(--muted);margin-top:6px}
+
+  .legend{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}
+  .stamp{font-family:"IBM Plex Mono",monospace;font-size:.66rem;font-weight:600;letter-spacing:.05em;text-transform:uppercase;padding:3px 8px;border-radius:5px;border:1.5px solid;white-space:nowrap}
+  .stamp.ok{color:var(--ok);border-color:var(--ok);background:var(--ok-soft)}
+  .stamp.part{color:var(--part);border-color:var(--part);background:var(--part-soft)}
+  .stamp.spec{color:var(--spec);border-color:var(--spec);background:var(--spec-soft)}
+  .stamp.miss{color:var(--miss);border-color:var(--miss);background:var(--miss-soft)}
+
+  /* map */
+  .map{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:10px}
+  @media (max-width:1000px){.map{grid-template-columns:repeat(3,minmax(0,1fr))}}
+  @media (max-width:620px){.map{grid-template-columns:1fr}}
+  .col{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:14px 12px 12px;display:flex;flex-direction:column;gap:8px;box-shadow:0 8px 20px var(--shadow)}
+  .col-head{display:flex;flex-direction:column;gap:3px;padding-bottom:8px;border-bottom:1px solid var(--border)}
+  .col-num{font-family:"IBM Plex Mono",monospace;font-size:.66rem;color:var(--accent);letter-spacing:.08em}
+  .col-name{font-family:"Fraunces",Georgia,serif;font-weight:600;font-size:1.05rem;line-height:1.15}
+  .col-want{font-size:.78rem;color:var(--muted);line-height:1.35}
+  .tile{border-radius:9px;padding:7px 9px;display:flex;flex-direction:column;gap:3px;border-left:3px solid}
+  .tile.ok{background:var(--ok-soft);border-color:var(--ok)}
+  .tile.part{background:var(--part-soft);border-color:var(--part)}
+  .tile.spec{background:var(--spec-soft);border-color:var(--spec)}
+  .tile.miss{background:var(--miss-soft);border-color:var(--miss)}
+  .tile b{font-size:.86rem;line-height:1.25}
+  .tile .where{font-family:"IBM Plex Mono",monospace;font-size:.62rem;color:var(--muted)}
+  .tile .note{font-size:.76rem;color:var(--ink-soft);line-height:1.3}
+
+  /* bands */
+  .bands{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+  @media (max-width:760px){.bands{grid-template-columns:1fr}}
+  .band{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:16px 18px}
+  .band p{margin:0 0 8px;font-size:.92rem;color:var(--ink-soft)}
+  .band p:last-child{margin-bottom:0}
+
+  /* details */
+  .details{display:flex;flex-direction:column;gap:8px}
+  details{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:12px 16px}
+  summary{cursor:pointer;list-style:none;display:flex;align-items:center;gap:10px;font-weight:700;font-size:.98rem}
+  summary::-webkit-details-marker{display:none}
+  summary::after{content:"▾";color:var(--muted);margin-left:auto;font-size:.8rem}
+  details[open] summary::after{content:"▴"}
+  summary .col-num{min-width:38px}
+  details ul{margin:10px 0 0;padding-left:18px;font-size:.9rem;color:var(--ink-soft)}
+  details li{margin-bottom:5px}
+  details li b{color:var(--ink)}
+  .path{font-family:"IBM Plex Mono",monospace;font-size:.74rem;color:var(--muted)}
+
+  /* decision & plan */
+  .decision{background:var(--surface);border:1px solid var(--accent);border-radius:14px;padding:18px 20px;box-shadow:0 8px 20px var(--shadow)}
+  .decision p{font-size:.95rem;color:var(--ink-soft);margin:0 0 10px;max-width:78ch}
+  .tradeoffs{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin-top:12px}
+  @media (max-width:760px){.tradeoffs{grid-template-columns:1fr}}
+  .to{background:var(--surface-2);border-radius:10px;padding:10px 12px;font-size:.84rem;color:var(--ink-soft)}
+  .to b{display:block;color:var(--ink);margin-bottom:3px}
+  .ask{margin-top:12px;padding:10px 12px;border-radius:10px;background:var(--part-soft);border-left:3px solid var(--part);font-size:.88rem}
+
+  .plan{counter-reset:s;display:flex;flex-direction:column;gap:8px}
+  .slice{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:12px 16px 12px 52px;position:relative}
+  .slice::before{counter-increment:s;content:counter(s);position:absolute;left:14px;top:12px;width:26px;height:26px;border-radius:50%;background:var(--accent);color:#fff;font-family:"IBM Plex Mono",monospace;font-weight:600;font-size:.8rem;display:flex;align-items:center;justify-content:center}
+  .slice b{display:block;font-size:.98rem}
+  .slice p{margin:4px 0 0;font-size:.88rem;color:var(--ink-soft)}
+  .slice .gain{font-family:"IBM Plex Mono",monospace;font-size:.68rem;color:var(--accent);margin-top:5px;display:block}
+
+  .board{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:18px 20px;box-shadow:0 10px 24px var(--shadow)}
+  .board-head{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;margin-bottom:14px}
+  .board-stamp{font-size:.7rem;color:var(--muted)}
+  .board-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px}
+  @media (max-width:1000px){.board-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+  @media (max-width:620px){.board-grid{grid-template-columns:1fr}}
+  .board-title{font-family:"IBM Plex Mono",monospace;font-size:.68rem;letter-spacing:.07em;text-transform:uppercase;font-weight:600;padding-bottom:6px;margin-bottom:8px;border-bottom:2px solid}
+  .board-title.ok{color:var(--ok);border-color:var(--ok)}
+  .board-title.part{color:var(--part);border-color:var(--part)}
+  .board-title.spec{color:var(--spec);border-color:var(--spec)}
+  .board-title.miss{color:var(--miss);border-color:var(--miss)}
+  .board-col ul{margin:0;padding-left:16px;font-size:.84rem;color:var(--ink-soft);line-height:1.4}
+  .board-col li{margin-bottom:6px}
+  .tick{font-family:"IBM Plex Mono",monospace;font-size:.7rem;color:var(--ok)}
+  .run{font-family:"IBM Plex Mono",monospace;font-size:.7rem;color:var(--part)}
+  .tracks{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+  @media (max-width:900px){.tracks{grid-template-columns:1fr}}
+  .track{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:16px 18px;box-shadow:0 8px 20px var(--shadow)}
+  .track-head{display:flex;flex-direction:column;gap:3px;padding-bottom:10px;margin-bottom:10px;border-bottom:1px solid var(--border)}
+  .track p{margin:0 0 9px;font-size:.88rem;color:var(--ink-soft);line-height:1.45}
+  .track p:last-child{margin-bottom:0}
+  .miss-list{margin:0;padding-left:22px;font-size:.9rem;color:var(--ink-soft);line-height:1.45}
+  .miss-list li{margin-bottom:7px}
+  .miss-list b{color:var(--ink)}
+  .table{width:100%;border-collapse:collapse;font-size:.88rem}
+  .table th,.table td{text-align:left;padding:7px 8px;border-bottom:1px solid var(--border);vertical-align:top}
+  .table th{font-family:"IBM Plex Mono",monospace;font-size:.66rem;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);font-weight:600}
+  .scroll{overflow-x:auto}
+  .foot{font-size:.8rem;color:var(--muted);line-height:1.5}
+</style>
+
+<div class="wrap">
+
+  <header>
+    <h1>Pijplijnkaart</h1>
+    <p class="lede">Jouw contentketen in zes stappen, tegen wat er op 25 september 2026 werkelijk ligt in <span class="mono">stack-director</span>, <span class="mono">trend-pipeline</span>, <span class="mono">keynote-creator</span> en de Vault. Elke tegel is een meting, geen plan.</p>
+    <div class="meta">gemeten 2026-09-25 · zeven inventarisaties + eigen metingen · uitgebreid met weekdienst, source-intelligence, dossiers en plan</div>
+    <div class="legend">
+      <span class="stamp ok">werkt</span>
+      <span class="stamp part">deels</span>
+      <span class="stamp spec">alleen op papier</span>
+      <span class="stamp miss">ontbreekt</span>
+    </div>
+  </header>
+
+  <section class="board">
+    <div class="board-head">
+      <h2>Stand van zaken</h2>
+      <span class="board-stamp mono">vrijdag 25 september · 17:10</span>
+    </div>
+    <div class="board-grid">
+      <div class="board-col">
+        <div class="board-title ok">Klaar vandaag</div>
+        <ul>
+          <li>Scanregister: 22 → 15 zaterdaglijnen + 2 op afroep</li>
+          <li>Profiel v1 + 1.944 blogslugs als "al geschreven"-geheugen</li>
+          <li>Weekstapel-merge, op echte data geijkt · 16 tests</li>
+          <li>Bronnen 233 → 285, met koppenlaag betaalde pers</li>
+          <li>Dossiers wekelijks + "nieuw sinds vorige week" · 19 tests</li>
+          <li>Kaartenbak v6: leerverslag · WAIT+datum · meer-zoals-dit · dossier-delta · leerlogboek</li>
+          <li>Runner: 4 ronden Astra, CI groen (1.263 tests) — <b>GO</b></li>
+          <li>Acht accountwrappers hersteld · ModelDeck uitleesbaar</li>
+          <li><b>Vijf connectoren</b>: nieuwsbrief · keynote · long-read · social (4 vormen) · short-read — met de auditor op álle output</li>
+          <li><b>Routeren + wachtrij</b> in Kaartenbak v7: zeven bestemmingen, instructieveld, batch per bestemming</li>
+          <li><b>Leerlus</b>: afwijsredenen afgeleid met vertrouwen en remmen; profiel v2 + leerverslag</li>
+          <li><b>Koppenlaag</b> betaalde pers → V7-reconstructie, kop-only afgedwongen</li>
+          <li><b>Alle 15 zoeklijnen</b>: 183 items → 30 kaarten (staat klaar, ongebruikt)</li>
+          <li>Short-read-format ontworpen uit je eigen blog (600–900 w)</li>
+          <li><b>PR #131 gemergd</b> — runner met bronlink, ontdubbeling en digestvalidatie zit in main</li>
+          <li><b>Kaartenbak v8</b>: de kaart liep buiten zijn eigen rand (vaste maat, geen overflow-regel). Hoogte volgt nu het scherm, tekst scrollt binnen de kaart, Hét feit blijft staan</li>
+          <li><b>Platformkoers beslist</b>: doorbouwen in <span class="mono">pijplijn/</span>. Het bestaande content-intelligence levert nul tests via de bedoelde route; handmatig opgezet 162 gestart, 140 groen, 22 rood — en PR #28 brak daar tien van dertien e2e-tests met één regel, want de poort die dat tegenhoudt bestaat er niet</li>
+          <li><b>Proefrun dossiers in een kopie</b>: 153 kaarten → 136 rijen over 9 dossiers in 3,7 s, idempotent, en een onderbreking in het gevaarlijke venster herstelde byte-identiek. Het leidingwerk klopt</li>
+        </ul>
+      </div>
+      <div class="board-col">
+        <div class="board-title part">Nu bezig</div>
+        <ul>
+          <li><b>Dossierbranch #132 — Astra: GO na zeven ronden.</b> Hij verifieerde 131 stemvarianten en draaide elke nieuwe test eerst tegen de oude commit. Wacht alleen nog op jouw mergeknop.</li>
+          <li><b>Bronnenbranch #133 — ronde 8.</b> De aanpak is onderweg omgekeerd: niet meer "bewijs van welke bron deze tekst is en begrens dan", maar "onze eigen uitvoer draagt nooit artikellengte proza, van welke bron dan ook". Astra brak de oude aanpak vijf keer; de nieuwe houdt zijn vier reproducties tegen. Open: structuurvelden die op hun náám worden overgeslagen, en de deepdive-route waar lengte het verkeerde instrument is.</li>
+          <li><b>Presentatie van de dossierrun</b> — aparte branch, zodat #132 zijn GO houdt. Bronlinks terugzetten, inzicht leesbaar maken, en de 17 niet-geclassificeerde kaarten niet stil verloren laten gaan.</li>
+          <li>Controle-order autocoding: klaar, wacht op vrijgave</li>
+        </ul>
+      </div>
+      <div class="board-col">
+        <div class="board-title spec">Volgt</div>
+        <ul>
+          <li>Bronnenbranch afmaken en mergen — <span class="mono">repareren, niet doordrukken</span>, zoals je zelf vastlegde</li>
+          <li>De echte dossierrun, pas als het dossier te lézen is. De proefrun leverde rijen zonder bronlink, alles in cluster "Overig", en cellen van duizend tekens. Dat had je na één blik weggegooid</li>
+          <li>Uitzoeken of de opruimstap terecht 33 bestaande rijen wil verwijderen — eerst meten tegen je echte Vault, alleen-lezen</li>
+          <li>Daarna: conceptpreview (vierde trap van jouw keten), ebook-format</li>
+          <li>Jij swipet wanneer jij wilt; de stapel loopt niet weg</li>
+        </ul>
+      </div>
+      <div class="board-col">
+        <div class="board-title miss">Bij jou</div>
+        <ul>
+          <li><b>Mergeknop PR #132</b> — via de browser, want je token mist de <span class="mono">workflow</span>-scope en deze PR raakt <span class="mono">ci.yml</span>. GitHub weigert dat via de CLI, niet de classifier</li>
+          <li>Vrijgave controle-order autocoding</li>
+          <li>Lanepoort-monitor: drempel verhogen of mijn stromen meetellen?</li>
+          <li>Drie kleintjes: hoeveel weekblokken per dossier (nu 8), vrijdagtijdstip dossierrun, en <span class="mono">AANGEVRAAGD</span> als nieuwe V7-status</li>
+          <li>Drie kapotte YouTube-bronnen: <span class="mono">@UndecidedMF</span> en <span class="mono">@vprotegenlicht</span> bestaan niet meer, <span class="mono">@bright</span> wijst naar een ander kanaal</li>
+          <li>Nog open nummers: V-16 t/m V-19, V-21, V-26, V-34, V-35, V-37, V-39 t/m V-43, V-48, V-50 t/m V-52</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="map">
+
+      <div class="col">
+        <div class="col-head"><span class="col-num">STAP 1</span><span class="col-name">Input</span><span class="col-want">Bronnen, scans, verzoeken; ME-TOO-scan op blog + desk + Vault</span></div>
+        <div class="tile ok"><b>Content Desk Now</b><span class="where">stack-director/content/content-desk-now</span><span class="note">260 records, 32 podiumklaar (V12), 445 samenvattingen — handmatig gedraaid</span></div>
+        <div class="tile ok"><b>Vault 1-CONTENT</b><span class="where">iCloud Drive/Vault</span><span class="note">521 notities, 9 themadossiers (18 bestanden); iCloud traag (&gt;120 s per bestand)</span></div>
+        <div class="tile part"><b>Trend-content radar</b><span class="where">trend-pipeline</span><span class="note">22 scanprompts; digest-output zonder bronlink en zonder ontdubbeling; draait nergens aantoonbaar (niet hier, niet op de mini)</span></div>
+        <div class="tile part"><b>Source-Intelligence</b><span class="where">bronnen.yaml · SOURCE_INTELLIGENCE_V1</span><span class="note">233 in register; 166 bronnen uit de desk, 91 door jou gedeeld, 157 nog niet in register; X: 0</span></div>
+        <div class="tile part"><b>Blog-corpus</b><span class="where">blog.richardvanhooijdonk.com</span><span class="note">bereikbaar sinds vandaag; ±1.000–1.800 artikelen, 17 trendthema's; nog niet geïmporteerd</span></div>
+        <div class="tile part"><b>Betaalde pers → reconstructie</b><span class="where">content-desk-now V7</span><span class="note">17 sets, handmatig via Codex; geen krantenscanner</span></div>
+        <div class="tile miss"><b>Nieuwe bronnen</b><span class="where">NYT · NRC · Medium · LinkedIn · Matt Wolfe</span><span class="note">0 in bronnen.yaml</span></div>
+      </div>
+
+      <div class="col">
+        <div class="col-head"><span class="col-num">STAP 2</span><span class="col-name">Swipe-oordeel</span><span class="col-want">Eén beslissing per scherm: STAR · WAIT · REMOVE</span></div>
+        <div class="tile part"><b>Kaartenbak v3</b><span class="where">claude.ai artifact</span><span class="note">werkt als prototype; keuzes alleen in de browser, nergens opgeslagen</span></div>
+        <div class="tile spec"><b>STAR / WAIT / REMOVE</b><span class="where">FORMAT_SCANBARE_SAMENVATTING_V2</span><span class="note">gedefinieerd, geen code voert ze uit</span></div>
+        <div class="tile spec"><b>approvals/ append-only</b><span class="where">keynote-content-desk/README</span><span class="note">mappen bestaan niet</span></div>
+        <div class="tile part"><b>Leerlus</b><span class="where">trend-pipeline/learn_preferences.py</span><span class="note">leert alleen van positieve deepdive-keuzes, alleen in digest-modus; geen afwijsredenen, profiel sinds mei niet ververst</span></div>
+      </div>
+
+      <div class="col">
+        <div class="col-head"><span class="col-num">STAP 3</span><span class="col-name">Verrijken</span><span class="col-want">Rijkere kaart: VERDIEP, VERRIJK, AANVULLEN</span></div>
+        <div class="tile part"><b>Research Intelligence</b><span class="where">apart repo, niet lokaal</span><span class="note">briefing-contract + dossierstore; zoeken, bewijs en API niet gebouwd</span></div>
+        <div class="tile ok"><b>Long-read research</b><span class="where">trend-pipeline Studio</span><span class="note">OpenAlex/Crossref/GDELT + OpenAI web — één provider, niet "meerdere modellen"</span></div>
+        <div class="tile spec"><b>VERDIEP / VERRIJK / AANVULLEN</b><span class="where">FORMAT_MEDIA_UITGEBREID_V1</span><span class="note">formats klaar, geen uitvoerder</span></div>
+        <div class="tile part"><b>Dossiers</b><span class="where">Vault 1-CONTENT/_dossiers · dossier_runner.py</span><span class="note">9 themadossiers (30–133 KB); runner met maandag-weeksynthese, gestopt 24 aug; geen versies, geen "nieuw sinds"</span></div>
+        <div class="tile spec"><b>Claims, relaties, houdbaarheid</b><span class="where">bouwlijst M6a</span><span class="note">nodig voor de zes auditpunten op de kaart</span></div>
+      </div>
+
+      <div class="col">
+        <div class="col-head"><span class="col-num">STAP 4</span><span class="col-name">Bestemming kiezen</span><span class="col-want">Archief · later · keynote · long-read · short-read · social · video · ebook + instructie</span></div>
+        <div class="tile spec"><b>Acht sporen</b><span class="where">CONTENT_DESK_PRODUCT_CONTRACT_V1_1</span><span class="note">geschiktheid per spoor beschreven in prompt 16</span></div>
+        <div class="tile spec"><b>product_brief / handoff-manifest</b><span class="where">bouwlijst M0</span><span class="note">alleen in ontwerpdocumenten</span></div>
+        <div class="tile miss"><b>Routeerscherm</b><span class="where">—</span><span class="note">niets leest vandaag een gesterde kaart</span></div>
+        <div class="tile miss"><b>Instructie voor volgende stap</b><span class="where">—</span><span class="note">"opmerkingen" staat in M0, niet gebouwd</span></div>
+      </div>
+
+      <div class="col">
+        <div class="col-head"><span class="col-num">STAP 5</span><span class="col-name">Productiewachtrij</span><span class="col-want">Opsparen, dan in batches produceren</span></div>
+        <div class="tile part"><b>productie_daemon.py</b><span class="where">trend-pipeline</span><span class="note">Mac-daemons uitgezet; Railway-deploy "wacht op Richard"</span></div>
+        <div class="tile spec"><b>Duurzame queue</b><span class="where">bouwlijst M2</span><span class="note">jobs, leases, retries — ontwerp klaar</span></div>
+        <div class="tile ok"><b>Writer → editor → writer</b><span class="where">trend-pipeline</span><span class="note">writer_daemon + editor.md (9 controles, max 2 pogingen) → staging; alleen voor artikelen</span></div>
+        <div class="tile ok"><b>Wachtrijen</b><span class="where">Supabase articles · productie_queue · keynote deck_queue</span><span class="note">bestaan al, batches van 3; niets vult ze vanuit een kaart</span></div>
+        <div class="tile miss"><b>Editor-pass voor social/nieuwsbrief/video</b><span class="where">productie_daemon.py</span><span class="note">single-shot, geen vangnet</span></div>
+      </div>
+
+      <div class="col">
+        <div class="col-head"><span class="col-num">STAP 6</span><span class="col-name">Renderen &amp; concept</span><span class="col-want">Concept op scherm, in de Kaartenbak-stijl</span></div>
+        <div class="tile ok"><b>Keynote Creator</b><span class="where">keynote-creator</span><span class="note">8 fasen, native .key, 5 echte runs — topic.json met de hand gevuld</span></div>
+        <div class="tile ok"><b>Long-read Studio</b><span class="where">trend-pipeline</span><span class="note">31 tests; geen bewezen afgeronde long-read op main</span></div>
+        <div class="tile part"><b>Social</b><span class="where">trend-pipeline/social_draft.py</span><span class="note">3 kanaalvormen + tekstcarrousel; alleen tekst</span></div>
+        <div class="tile part"><b>Faceless video</b><span class="where">GitHub faceless-video</span><span class="note">code bestaat, niet lokaal; Remotion-render wacht</span></div>
+        <div class="tile spec"><b>Short-read / blog</b><span class="where">"acht sporen"</span><span class="note">geen format, geen code</span></div>
+        <div class="tile miss"><b>Ebook · conceptpreview keynote/social</b><span class="where">—</span><span class="note">alleen Long-read Studio toont een concept</span></div>
+      </div>
+
+    </div>
+  </section>
+
+  <section class="bands">
+    <div class="band">
+      <h2>Dwarsverband 1 — de leerlus</h2>
+      <p><b>Wat je wilt:</b> REMOVE tijdens het swipen wordt een leersignaal voor de volgende scans.</p>
+      <p><b>Wat er ligt:</b> <span class="path">trend-pipeline/learn_preferences.py</span> vergelijkt Supabase <span class="path">deepdive_requests</span> met <span class="path">scan_digests</span> en schrijft <span class="path">output/preferences.json</span> (laatst 2026-05-06). Er is een tabel <span class="path">signal_feedback</span>. De lus leert dus alleen van positieve signalen.</p>
+      <p><b>Wat ontbreekt:</b> de negatieve kant. Elke REMOVE moet als <span class="path">signal_feedback(-1)</span> landen met bron, scan en thema, zodat de scanprompts hun voorkeurenprofiel per run meekrijgen. Dat is één tabel en één veld in de scan-aanroep — klein, maar alleen zinvol als de keuzes uit stap 2 ergens worden opgeslagen.</p>
+    </div>
+    <div class="band">
+      <h2>Dwarsverband 2 — de vormtaal</h2>
+      <p><b>Wat je wilt:</b> de Kaartenbak-stijl doortrekken over de hele keten, zonder alles te swipen.</p>
+      <p><b>Waar swipen past:</b> stap 2 (drie keuzes) en per eenheid in stap 6 — per social-variant of per slide "houden/weg" is dezelfde beweging.</p>
+      <p><b>Waar iets anders beter is:</b> stap 4 is tikken op bestemmingen over een kleine gesterde set, plus één instructieveld; stap 5 is een lijst die je herschikt; stap 3 en de conceptreview zijn de <em>achterkant</em> van de kaart: lezen en aantekenen. Eén kaartobject, drie gezichten — voorkant oordeelt, achterkant onderbouwt, derde vlak toont het concept.</p>
+    </div>
+  </section>
+
+  <section>
+    <h2>Drie sporen die nu starten — zonder op het platform te wachten</h2>
+    <div class="tracks">
+
+      <div class="track">
+        <div class="track-head"><span class="col-num">SPOOR A</span><span class="col-name">Weekdienst</span><span class="col-want">Jij monitort niets meer; je krijgt één stapel per week met alleen wat echt interessant is</span></div>
+        <p><b>Ritme.</b> Elke <b>zaterdag 08:00 (Amsterdam)</b> één stapel van maximaal 30 kaarten in Kaartenbak; de run draait vrijdagnacht. <b>15 zoeklijnen</b> wekelijks (na samenvoeging van 22, zie SCANREGISTER) plus 2 op afroep; snelle lijnen mogen midweek draaien maar landen in dezelfde stapel. Daarnaast op afroep ("nu de stats-scan, focus arbeid") en een vrije opdracht ("zoek deze week naar …").</p>
+        <p><b>Samenvoegen en indikken.</b> Na de runs één merge-stap over álle zoeklijnen: clusteren op entiteit en kerninzicht, dubbelen samenvoegen tot één kaart met meerdere bronnen, rangschikken op profiel-fit × nieuwheid × bewijskracht. "Al geschreven"-check tegen de blog (1.000+ posts) en de keynote-runs: een me-too-item moet een nieuwe hoek bewijzen. 10–15 % van de stapel is bewust buiten profiel, gelabeld "verrassing".</p>
+        <p><b>De kaart.</b> Voorkant: titel, één zin, hét feit, "waarom voor jou". Achterkant: bronnen met verplichte link + meetdatum, claimstatus, dossier-tag, verwante eerdere items — de zes auditpunten van 23 september vanaf week 1.</p>
+        <p><b>Leerlus.</b> Swipen blijft één beweging; een reden wordt niet gevraagd. De reden wordt <em>afgeleid</em> uit de kaart (leeftijd, bewijsstatus, thema-afstand, overlap met al geschreven werk) en apart opgeslagen als <em>hypothese</em>, nooit als feit (V-49); "al bekend" weegt op nieuwheid, niet op bronkwaliteit. Een opmerking kan met één toets (C). STAR/WAIT/REMOVE + hypothesen + opmerkingen worden elke week samengevat tot profiel v(n+1) en in vijf regels aan Richard voorgelegd. Vandaag leert het systeem alleen van positieve deepdive-keuzes en alleen in digest-modus.</p>
+        <p><b>Wie draait het.</b> Week 0–2: ik, handmatig in sessie, met opslag van je keuzes in Kaartenbak zelf zodat de lus sluit zonder repo. Vanaf week 3 een geplande cloudroutine — pas "automatisch" genoemd als planning, credentials, herstart, foutmelding en herstel zijn aangetoond.</p>
+      </div>
+
+      <div class="track">
+        <div class="track-head"><span class="col-num">SPOOR B</span><span class="col-name">Source-Intelligence</span><span class="col-want">Doorlopend project; het register verandert elke week</span></div>
+        <p><b>Twee soorten bronnen.</b> <em>Directe bronscans</em> — feeds, kanalen, handles, krantenkoppen: deterministisch, goedkoop, hard ontdubbelbaar op URL. <em>Web/AI-search</em> — de 22 prompts met web_search: exploratief, duurder, ontdubbeling op inzicht. Beide leveren items aan dezelfde merge-stap; directe bronnen altijd mét harde link.</p>
+        <p><b>Wat er ligt.</b> <span class="path">bronnen.yaml</span> 233 bronnen met tier/status/hits-lifecycle (werkt), <span class="path">feeds.yaml</span> 7 feeds met <span class="path">inbox_drop</span>, kandidatenlijst ±40 (Karpathy, AI Explained, Dwarkesh, r/ClaudeAI, @simonw…), V7-reconstructie voor betaalde pers (17 sets, handmatig), <span class="path">{{BRONNEN}}</span>-markers in twee prompts.</p>
+        <p><b>Jouw eigen bronnen, met terugwerkende kracht</b> (na opschoning volgens Astra; <span class="path">SOURCE_INTELLIGENCE_V1.md/.json</span>, script <span class="path">extract_sources.py</span>): 220 desk-records met bron, 140 met een door jou gedeelde bron; <b>166 bronnen — 91 door jou gedeeld, 75 alleen door de desk als verificatiebron gebruikt; 9 in het register, 157 niet</b>. Rol wordt per voorkomen bewaard (gedeeld / onderzoek). YouTube op kanaal: Matt Wolfe 4 records, WorldofAI 3. Betaalde pers die jij zelf aandroeg: NYT, HBR, MIT TR, Volkskrant, WIRED, NRC; Economist, Bloomberg, Le Monde, The Atlantic en The Information kwamen alleen via desk-onderzoek binnen. Van de 233 registerbronnen zijn er 222 "niet herkend in deze extractie" — geen degradatiesignaal. X: nul links via de desk.</p>
+        <p><b>Wat erbij komt.</b> Matt Wolfe en jouw eigen YouTube/X-stapel (Klöpping staat als kandidaat met 0 hits — activeren); X via een privé-lijst; YouTube via uploads-feeds + transcript; Medium, Reddit, LinkedIn-publicaties; een koppenlaag voor betaalde pers (NYT, NRC, Economist, FT, Guardian, Le Monde, FAZ, El País…) die alleen kop + intro leest en de V7-reconstructie automatisch voedt.</p>
+        <p><b>Regels.</b> Elke bron heeft tier, status en hits. Kandidaat wordt actief na 3 hits in 60 dagen; 0 hits in 90 dagen is slapend. Jouw afwijsreden telt tegen de bron. Betaalde pers: nooit meer dan kop + intro; reconstructie via V7. Het register is een levend document, geen eenmalige lijst.</p>
+      </div>
+
+      <div class="track">
+        <div class="track-head"><span class="col-num">SPOOR C</span><span class="col-name">Dossiers</span><span class="col-want">Elke week toevoegingen en gebeurtenissen per thema gebundeld</span></div>
+        <p><b>Wat er ligt.</b> Negen themadossiers in <span class="path">Vault/1-CONTENT/_dossiers/</span> (ai-agents, ai-en-werk, ai-ethiek, ai-modellen, organisatie-van-de-toekomst, cybercrime, leiderschap, economie-geopolitiek, energie). <span class="path">trend-pipeline/dossier_runner.py</span> classificeerde dagelijks nieuwe Vault-notities en schreef elke maandag een weeksynthese — 8.899 notities verwerkt, laatste run 24 augustus. Contracten <span class="path">studio_dossier.v2</span> en <span class="path">longread_dossier.v1</span> beschrijven al een versievast dossier.</p>
+        <p><b>Wat erbij komt.</b> De runner wekelijks terug (vrijdagnacht, vóór de zaterdagstapel); bovenaan elk dossier een blok "nieuw sinds vorige week"; per week een snapshot in plaats van overschrijven; dossiers voor de blogthema's waar volume is (robotics, zorg, mobiliteit, duurzaamheid…). Elke weekkaart krijgt een dossier-tag; een STAR voegt het item aan zijn dossier toe. Later, in het platform: classificatie NIEUW / UITBREIDING / UPDATE / TEGENSPRAAK per item (<span class="path">SYSTEM_V2 §5</span>) en dossierfamilies.</p>
+      </div>
+
+    </div>
+  </section>
+
+  <section>
+    <h2>Planning — wat af is, wat dit weekend gebeurt, wat daarna komt</h2>
+    <div class="plan">
+      <div class="slice"><b>Vrijdag 25 sep — gedaan, alles op GitHub</b><p>Scanregister (22 → 15 zaterdaglijnen + 2 op afroep, 4 spookscans geschrapt, 3 samenvoegingen goedgekeurd). Profiel v1 plus 1.944 blogslugs als "al geschreven"-geheugen. Weekstapel-merge gebouwd en op echte data geijkt (16 tests). Bronnenregister 233 → 285 met koppenlaag van 15 betaalde titels. Dossiers wekelijks met "nieuw sinds vorige week" en snapshots (19 tests) — en een echte bug gevonden: de maandagsynthese wiste die blokken. Kaartenbak v6: leerverslag, WAIT-met-datum, meer-zoals-dit, dossier-deltakaarten, leerlogboek. Runner gerepareerd in vier ronden onder Astra's kritiek: bronlink en meetdatum verplicht, ontdubbeling aan, geen lege overschrijving, IDN/punycode sluitend, CI groen (1.263 tests). Accountwrappers gerepareerd — acht accounts weer startbaar — en ModelDeck uitleesbaar gemaakt.</p><span class="gain">geleverd: de hele machinerie achter de zaterdagstapel</span></div>
+      <div class="slice"><b>Vrijdagavond 25 sep — de eerste stapel wordt gemaakt</b><p>Vijf zoeklijnen draaien nu met profiel v1 (stats, cases, weekradar, verhalen, gevolgen); de merge-stap dikt in tot maximaal 30 kaarten met verrassingsquotum en dossiertag. Daarna volgt de tweede golf zoeklijnen als de eerste is beoordeeld.</p><span class="gain">levert: stapel week 39 in Kaartenbak, zaterdagochtend klaar</span></div>
+      <div class="slice"><b>Zaterdag 26 sep — jij swipet, het systeem leert</b><p>Jij oordeelt; ik lees je keuzes en opmerkingen terug, leid de afwijsredenen af en maak profiel v2 plus het eerste leerverslag. Acceptatieproef van de week: swipe → opslag → uitlezen → profielupdate, aantoonbaar per kaart-ID. Codex1 (vanaf 22:54 vannacht) en codex2 (10:24) geven een tweede reviewstem; claude2 komt om 17:59 vrij voor conceptpreview.</p><span class="gain">levert: profiel v2 + leerverslag + tweede reviewstem</span></div>
+      <div class="slice"><b>Zondag 27 sep — alle acht accounts vol, drie stromen erbij</b><p>claude1 (10:59) en codex3 (07:20) komen vrij; vanaf dat moment bouwen vier Claude-accounts parallel. Dan starten: het platformrepo <span class="mono">content-intelligence</span> op claude3, de koppenlaag betaalde pers met V7-reconstructie op claude1, en de conceptpreview op claude2 — terwijl ik op claude4 de tweede stapel en de routering bouw.</p><span class="gain">levert: routeerscherm + wachtrij begonnen, bronnen breder</span></div>
+      <div class="slice"><b>Week 40 — van handwerk naar routine</b><p>Tweede zaterdagstapel met profiel v2 en de bredere bronnen. De vrijdagnachtrun wordt een geplande cloudroutine in plaats van mijn handwerk. Eerste connector: een gesterde kaart met bestemming keynote schrijft <span class="mono">topic.json</span> voor Keynote Creator — stil bouwen overdag, video 's nachts.</p><span class="gain">levert: automatische weekrun + eerste kaart-tot-keynote</span></div>
+      <div class="slice"><b>Daarna — doorlopend</b><p>Elke zaterdag: stapel, leerverslag, profielupdate, bronnenmutaties, dossierdelta. Het platform groeit ondertussen door: keuzes die blijven, routeren en wachtrij, connectoren naar de bestaande generators, conceptpreview in dezelfde vormtaal. De ontbrekende formats (short-read, ebook) sluiten de rij.</p><span class="gain">levert: het systeem dat jou bedient in plaats van andersom</span></div>
+    </div>
+  </section>
+
+  <section class="band">
+    <h2>Wat je over het hoofd ziet — of wat niemand je vertelde</h2>
+    <ol class="miss-list">
+      <li><b>Geen bronlink in de digest-output.</b> De runner stript citaties en het schema heeft geen URL-veld. Zonder link geen "volgens NRC", geen reconstructie, geen audit. Eerst repareren.</li>
+      <li><b>Ontdubbeling staat uit voor de dagelijkse scans.</b> De dedup-module gaat alleen mee in legacy-modus; de 8 digest-scans draaien zonder.</li>
+      <li><b>Geen kosten- of tijdplafond per run</b> — alleen max 15 zoekopdrachten. Bij 22 scans per week hoort een budget en een noodstop.</li>
+      <li><b>Zonder verrassingsquotum versmalt het profiel elke week.</b> 10–15 % bewust buiten profiel, gelabeld, houdt het zoeken open.</li>
+      <li><b>Commentaar alleen is niet optelbaar.</b> Vaste afwijsredenen naast je commentaar, anders leert het systeem van anekdotes.</li>
+      <li><b>"Al geschreven" is je grootste me-too-filter</b>: 1.000+ blogposts en 5 keynote-runs als geheugen; een bekend onderwerp moet een nieuwe hoek bewijzen.</li>
+      <li><b>Meetdatum ≠ publicatiedatum.</b> De stats-scan eist het, de andere 21 niet. Voor houdbaarheid op de kaart moet elke zoeklijn het leveren.</li>
+      <li><b>Cadans klopt nu nergens:</b> 3 afroep-prompts staan wekelijks gepland, 3 prompts staan nergens, 4 geplande namen hebben geen prompt.</li>
+      <li><b>Niemand kan aantonen waar de scans draaien.</b> Niet op deze Mac, niet op de mini; venv-paden verwijzen naar een map die niet bestaat; Railway onbevestigd. Automatiseren kan pas na dat besluit.</li>
+      <li><b>Twee losse feedbackkanalen</b> (<span class="path">deepdive_requests</span>, <span class="path">signal_feedback</span>) waarvan de leerlus er één leest — en die sinds mei niet is ververst.</li>
+      <li><b>Volume verzuipt je zonder indikken:</b> 22 scans × 20–80 items = 500 tot 1.500 per week. De stapel is 30; de rest gaat stil naar dossiers, doorzoekbaar, niet naar jou.</li>
+      <li><b>Afgewezen mag terugkomen</b> bij nieuw bewijs (dossier verandert) — gemarkeerd "terug op tafel", anders verlies je keerpunten.</li>
+      <li><b>De zes auditpunten van 23 september</b> (uitgever, oneliner-regel, verwant, houdbaarheid, feit/prognose, misvatting) horen in het merge-format vanaf week 1, niet pas in het platform.</li>
+      <li><b>Nog open buiten dit plan:</b> 19 screenshot-only records en Opdracht V12; de trend-pipeline-frontend (Vercel) leest geen enkele digest — jij leest Vault-markdown.</li>
+    </ol>
+  </section>
+
+  <section class="decision">
+    <h2>Review Astra — 25 september (onafhankelijk, Codex-profiel 4)</h2>
+    <p><b>Oordeel:</b> bruikbare richting, nog geen consistent uitvoeringsplan. De tegenstrijdigheden die Astra vond (maandag/zaterdag, verplichte/afgeleide reden, 22/15 lijnen, 18/9 dossiers, artifact-db versus API-client) zijn hierboven gecorrigeerd. <b>Runner-branch: NO-GO</b> — vier mergeblokkades (kapotte URL laat de hele scan crashen; validatie laat lege teaser/tags door; dedup-instructie botst met het JSON-contract; alles-afgekeurd overschrijft een bestaande digest met leegte) worden nu gerepareerd. <b>Bronnenregister:</b> vervuild (sjabloonrecords, dubbele id's, verkeerde platformlabels, video-URL's i.p.v. kanalen) — wordt opgeschoond; "224 nooit gedeeld" is teruggenomen tot "niet herkend". <b>Statussen:</b> "gedaan" wordt gesplitst in document · code · getest · operationeel bewezen. Volledige tekst: <span class="mono">pijplijn/ASTRA_REVIEW_V1.md</span>.</p>
+    <div class="tradeoffs">
+      <div class="to"><b>Blijvende kritiek die het plan verandert</b>Zonder proef "swipe → opslag → uitlezen → profielupdate" is week 1 niet af; zonder bewijs voor planning, credentials, herstart en herstel is niets "automatisch"; native Keynote-rendering blijft een Mac-stap tenzij anders besloten.</div>
+      <div class="to"><b>Wat Astra terecht relativeert</b>Overlappercentages in het scanregister zijn schattingen; het profiel is een hypothese met selectiebias (AI-zwaar); 1.944 blogslugs zijn geen 1.944 onderwerpen; "al bekend" zegt niets over bronkwaliteit.</div>
+      <div class="to"><b>Wat Astra toevoegt (V-43 t/m V-53)</b>Bronherkomst opschonen · één uitvoerbaar weekcontract · cloud-rendergrens · swipe zonder dubbel effect · digest-afkeurregister · dedup op claim én bronversie · afwijsreden als hypothese · samenvoegproef voor scans · bewijsafhankelijkhedenkaart · correcties door de hele keten · historische redactiesimulator.</div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Bouwcapaciteit — acht accounts, en wanneer ze vrijkomen</h2>
+    <div class="tracks">
+      <div class="track">
+        <div class="track-head"><span class="col-num">NU</span><span class="col-name">Vijf bruikbaar</span><span class="col-want">stand uit ModelDeck, 25 sep</span></div>
+        <p><b>claude3 — 98%</b> · de grootste vrije ruimte, reset pas do 1 okt. Zwaarste stromen.<br>
+        <b>claude4 — 88%</b> · deze regiesessie én bouwstromen; deelt met autocoding (CLAUDE4 bouwt er <span class="mono">bin/lane</span>). Reset wo 30 sep.<br>
+        <b>claude1 — 52%</b> · tweede bouwstroom. Reset zo 27 sep 10:59.<br>
+        <b>codex4 "astra" — 72%</b> · alle reviews. Reset wo 30 sep.<br>
+        <b>codex1 — 0% week, maar 68% gpt-reserve</b> · reserve inzetbaar; weekquotum terug vanavond 22:54.</p>
+        <p><b>Sparen:</b> claude2 (16%, reset za 17:59) en codex3 (16%) / codex2 (12% week, 100% gpt-reserve).</p>
+      </div>
+      <div class="track">
+        <div class="track-head"><span class="col-num">WEEKEND</span><span class="col-name">Alle acht vol</span><span class="col-want">resets op volgorde</span></div>
+        <p><b>Vanavond 22:54</b> — codex1 weekquotum terug.<br>
+        <b>Zaterdag 10:24</b> — codex2. <b>Zaterdag 17:59</b> — claude2 (Max 20×).<br>
+        <b>Zondag 07:20</b> — codex3. <b>Zondag 10:59</b> — claude1 (Max 20×).<br>
+        <b>Woensdag 30 sep</b> — claude4 en codex4. <b>Donderdag 1 okt</b> — claude3.</p>
+        <p>Vanaf zondagochtend staan dus <b>vier Claude-bouwaccounts en vier Codex-reviewaccounts</b> volledig open — precies wanneer de eerste zaterdagstapel is beoordeeld en de tweede golf begint.</p>
+      </div>
+      <div class="track">
+        <div class="track-head"><span class="col-num">VERDELING</span><span class="col-name">Wie bouwt wat</span><span class="col-want">stromen over accounts</span></div>
+        <p><b>claude4 (ik):</b> regie, weekstapel-merge, Kaartenbak, de zaterdagrun zelf.<br>
+        <b>claude3:</b> platformrepo <span class="mono">content-intelligence</span> — het zwaarste stuk.<br>
+        <b>claude1:</b> koppenlaag betaalde pers + V7-reconstructie.<br>
+        <b>claude2</b> (vanaf zaterdagavond): conceptpreview, short-read- en ebookformat.<br>
+        <b>codex4:</b> reviews, één tegelijk, serieel.<br>
+        <b>codex1/2/3</b> (vanaf het weekend): tweede reviewstem en lokale acceptatietests.</p>
+        <p>De stand is uitleesbaar geworden: <span class="mono">pijplijn/accountstand.sh</span> leest ModelDecks SQLite rechtstreeks, dus de verdeling gaat voortaan op gemeten cijfers in plaats van op een schermafdruk.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="details">
+    <h2>Voorstellen — genummerd, antwoord per nummer</h2>
+    <details><summary><span class="col-num">V-01–14</span> Al op de kaart (status: ✓ code aanwezig · ● besloten · ○ open)</summary><ul>
+      <li>V-01 ✓ Bronlink + uitgever in digest (code in branch, niet gemerged) · V-02 ✓ Ontdubbeling in digest-modus (code, effect onbewezen) · V-03 ○ Kosten-/tijdplafond · V-04 ● Verrassing 10–15 % · V-05 ● Reden afleiden + leerverslag · V-06 ✓ Al-geschreven-lijst (nog niet aangesloten) · V-07 ○ Meetdatum op kaart · V-08 ✓ Scanregister (document; planners nog niet omgezet) · V-09 ● Alles in de cloud · V-10 ○ Eén feedbackkanaal · V-11 ● Max 30 kaarten · V-12 ○ Terug op tafel · V-13 ○ Zes auditpunten in kaartformat · V-14 ○ Restpunten</li></ul></details>
+    <details><summary><span class="col-num">V-15–23</span> Over het hoofd gezien</summary><ul>
+      <li>V-15 Eigen woorden als bron · V-16 Agenda-sturing · V-17 Pre-keynote verversing · V-18 Publieksrespons als leersignaal · V-19 Taalveld NL/EN · V-20 Beeldlaag (Canva) · V-21 Rechtenregister per bron · V-22 Export/back-up-ritme · V-23 Onderzoeksverzoek via Telegram/COA</li></ul></details>
+    <details><summary><span class="col-num">V-24–33</span> Features op de huidige configuratie</summary><ul>
+      <li>V-24 Leerverslag-kaart · V-25 "Waarom voor jou" · V-26 "N bronnen zeggen dit" · V-27 WAIT met datum · V-28 "Meer zoals dit" / VERDIEP via deepdive · V-29 Dossier-deltakaarten · V-30 Editor-pass op social/nieuwsbrief · V-31 Keynote-intake uit STAR + dossier · V-32 Bronrangorde · V-33 Telegram-link zaterdagochtend</li></ul></details>
+    <details><summary><span class="col-num">V-34–42</span> Nieuwe toepassingen</summary><ul>
+      <li>V-34 Claim-kluis met houdbaarheidsalarm · V-35 "Al gezegd"-geheugen · V-36 Sectorlenzen · V-37 Q&amp;A-voorbereider · V-38 Nieuwsbrief-samensteller · V-39 Slide-archief-zoeker · V-40 Witte-vlekken-radar · V-41 Transcriptlaag YouTube/podcast · V-42 Ebook-assembler</li></ul></details>
+    <details open><summary><span class="col-num">GEKOZEN</span> Richards besluiten van 25 september</summary><ul>
+      <li><b>Uitwerken:</b> V-01 t/m V-14. <b>Ja:</b> V-15 · V-20 (binnen bestaande afspraken) · V-22 · V-23 · V-24 (leerverslag: "ik wil weten wat je geleerd hebt van mijn swipes naar de rode kant") · V-27 · V-28 · V-29 · <b>V-30 auditor op ÁLLE output</b> · V-31 (ja, maar opsparen en niet het scherm kapen) · V-33 · <b>V-38 nieuwsbrief-knop (gebouwd: toets N)</b> · <b>V-54 leerlogboek</b>. <b>Nee:</b> V-25. <b>Later:</b> V-32, V-36. <b>Geparkeerd:</b> V-53 tot de leerlus draait.</li>
+      <li><b>V-31 uitgezocht:</b> alleen video-inbedding kaapt het scherm (klembord + cmd+V, omdat <span class="mono">make new movie</span> vastloopt in Keynote 15.3.1); slides en tekst gaan via het objectmodel en kunnen stil op de achtergrond. Splitsing: <b>stille slag</b> (slides/tekst, in batch uit de wachtrij) + <b>mediaslag</b> (video) 's nachts, bij voorkeur op de Mac mini via de bestaande <span class="mono">KEYNOTE_CREATOR_HOST</span>-route. Cloud-PPTX afgeraden: verliest native thema en de bewezen .key-poort.</li>
+    </ul></details>
+    <details><summary><span class="col-num">V-54</span> Leerlogboek (Richards toevoeging)</summary><ul>
+      <li>Per week terug te lezen wat het systeem leerde: dominante afwijshypothesen, profieldiff (welke regels erbij/eraf), thema's die stegen of zakten, bronnen die promoveerden of in slaap vielen, en wat de volgende stapel daardoor anders maakte. V-24 is de kaart van deze week; V-54 is de geschiedenis. V-53 is de test die voorkomt dat het profiel ongemerkt vernauwt.</li></ul></details>
+    <details><summary><span class="col-num">V-43–53</span> Astra</summary><ul>
+      <li>V-43 Bronherkomst opschonen (1·B·M, beide V-32) · V-44 Eén uitvoerbaar weekcontract (1·A·S, beide V-08) · V-45 Cloud-rendergrens Keynote (1·P·S, beide V-09) · V-46 Swipe zonder dubbel effect: stabiele ID's, undo, readback (1·K·M, beide V-22) · V-47 Digest-afkeurregister (2·A·M, beide V-01) · V-48 Dedup op claim én bronversie (2·A·M, beide V-02) · V-49 Afwijsreden als hypothese (2·K·M, beide V-05) · V-50 Samenvoegproef voor scans op fixtures (2·A·M, beide V-08) · V-51 Bewijsafhankelijkhedenkaart: vijf links, één onderzoek (3·B·L, beide V-26) · V-52 Correcties door de hele keten (3·C·L, beide V-34) · V-53 Historische redactiesimulator: een week herrangschikken met twee profielen (3·A·L)</li></ul></details>
+  </section>
+
+  <section class="details">
+    <h2>Per stap: wat precies, waar, en het gat</h2>
+
+    <details>
+      <summary><span class="col-num">STAP 1</span> Input — bronnen en scans</summary>
+      <ul>
+        <li><b>Content Desk Now</b> <span class="path">stack-director/content/content-desk-now/</span> — 260 records (226 volledig, 32 gedeeltelijk → podiumklaar in V12, 2 ontoegankelijk, 19 wachten op iPhone-screenshots). 44 losse <span class="path">scripts/content_desk_*.py</span>, geen runner, geen tests. Gat: geen import naar een systeem.</li>
+        <li><b>Vault</b> <span class="path">~/Library/Mobile Documents/com~apple~CloudDocs/Vault/</span> — <span class="path">1-CONTENT</span> 521 notities, verder <span class="path">_scans</span>, <span class="path">_inbox</span>, <span class="path">_keynote</span>, <span class="path">_faceless-video</span>, <span class="path">_verwijderd</span>. Meting 30 aug: ±29.300 bestanden totaal. De Obsidian-map is leeg (2 notities). Gat: iCloud-latentie maakt live lezen onwerkbaar → één keer importeren.</li>
+        <li><b>Trend-content radar</b> <span class="path">~/Developer/trend-pipeline/</span> — <span class="path">prompts/</span> 22 scanprompts (14 thema, 2 radar, 4 in-the-wild, 2 overig). Planners: <span class="path">daily_scans.sh</span> 8, <span class="path">weekly_scans.sh</span> 13 (4 zonder promptbestand), <span class="path">in-the-wild-scans.sh</span> 1, <span class="path">trendscan.py</span> eigen pad. Draait niet vanaf deze Mac (geen plists) maar de Vault krijgt verse output (19 sep) → elders (Mac mini of Railway). Gat: reconciliatie KEEP/REPAIR/RETIRE (bouwlijst M3b) nooit gedaan.</li>
+        <li><b>Jouw eisen van vandaag voor de scans</b> — (1) alle scans <b>wekelijks</b> in plaats van de huidige dag/week-splitsing, plus <b>op afroep</b> ("nu scan X") en een <b>handmatige scan</b> met eigen opdracht; (2) alle 22 prompts opnieuw toetsen: dubbele content eruit, gevonden items <b>samenvoegen</b> zodat voorstellen rijker worden in plaats van talrijker. Beide passen in de M3b-reconciliatie (zie slice 4).</li>
+        <li><b>Bronnenregister</b> <span class="path">trend-pipeline/bronnen.yaml</span> — 233 bronnen, 8 sporen (AI 70 %): YouTube 27, X 40, Reddit 20; NRC/NYT/Economist/Medium/LinkedIn 0, Matt Wolfe niet. Kandidatenlijst: <span class="path">BRONNEN-KANDIDATEN-2026-07.md</span>.</li>
+        <li><b>Blog</b> — sitemap-index met 10 post-sitemaps (nr. 1: 395 posts feb–jun 2026; nr. 10: 165 posts 2011–2021), NL+EN dubbel, 1 long-read, 17 trendthema's als taxonomie. RSS levert 4 items met volledige tekst. <span class="path">trend-pipeline/cluster_blogs.py</span> verwacht een export die ontbreekt.</li>
+        <li><b>Prompts 15/16</b> <span class="path">stack-director/prompts/product_chats/15_content_intelligence.md</span>, <span class="path">16_content_desk_now.md</span> — werkende chatcontracten; de Vault-spiegel uit prompt 16 is nooit gevuld.</li>
+        <li><b>Stack-trechter</b> <span class="path">~/Developer/stack-trechter/</span> — géén contentscanner: de wens-/besluittrechter (3.400 items, 31 topics, IS-stack-matching). Hoort niet in deze keten.</li>
+      </ul>
+    </details>
+
+    <details>
+      <summary><span class="col-num">STAP 2</span> Swipe-oordeel</summary>
+      <ul>
+        <li><b>Kaartenbak v3</b> — voorkant oordeel, achterkant claimladder + bronnen, ←→↓ = REMOVE/STAR/WAIT, ↑/tik = omdraaien, U = terug, 3× WAIT-stempel, rondje-klaar-scherm. Keuzes in <span class="path">localStorage</span>. Gat: niets buiten de browser weet wat je koos.</li>
+        <li><b>Commando's</b> STAR/WAIT/REMOVE/VERDIEP/VERRIJK/AANVULLEN/CHECK UPDATES — gedefinieerd in <span class="path">FORMAT_SCANBARE_SAMENVATTING_V2.md</span>; in code alleen als voettekst in <span class="path">scripts/content_desk_build_first_summaries.py:177</span>.</li>
+        <li><b>Bouwlijst M1</b> vraagt: GO/HOLD/REJECT, besloten items uit de lijst maar auditbaar, ≥60 items per uur, undo. Kaartenbak dekt het gedrag, niet de opslag.</li>
+      </ul>
+    </details>
+
+    <details>
+      <summary><span class="col-num">STAP 3</span> Verrijken</summary>
+      <ul>
+        <li><b>Research Intelligence</b> — apart repo, niet lokaal (checkout <span class="path">dc4ea5a</span>, per <span class="path">handoff/CONTENT_DESK_ARTIKELVERDIEPING_20260909_V1.md</span>): briefing-contract v1, dossierstore, jobs, blobstore bestaan; geen scheduler/worker; echte zoekfunctie (F3), bewijs (F4) en consumer-API (F6) niet gebouwd. Content Desk valt terug op <span class="path">CODEX_DIRECT_FALLBACK</span>.</li>
+        <li><b>Long-read Studio research</b> <span class="path">trend-pipeline/studiobron.py</span> + Studio-contract — werkt, één provider.</li>
+        <li><b>Formats</b> <span class="path">FORMAT_ARTIKELVERDIEPING_V1.md</span>, <span class="path">FORMAT_MEDIA_UITGEBREID_V1.md</span> — klaar. De zes auditpunten (uitgever, oneliner-regel, Verwant, houdbaarheid, feit/prognose, misvatting) hebben stap 3 nodig: ze staan nog niet in de V12-kaarten.</li>
+      </ul>
+    </details>
+
+    <details>
+      <summary><span class="col-num">STAP 4</span> Bestemming kiezen</summary>
+      <ul>
+        <li><b>Acht sporen</b> in <span class="path">content-desk-now/handoff/CONTENT_DESK_PRODUCT_CONTRACT_V1_1.md</span> (regel 431); prompt 16 beschrijft geschiktheid KEYNOTE / LONG_READ / SHORT_READ / SOCIAL / FACELESS_VIDEO.</li>
+        <li><b>Contracten</b> <span class="path">product_brief</span> en <span class="path">keynote_handoff_manifest</span> komen alleen voor in <span class="path">docs/architecture/CONTENT_PROCESSING_*.md</span>. Geen code.</li>
+        <li><b>Gat:</b> geen enkel onderdeel leest vandaag een goedgekeurde kaart. Keynote Creator's <span class="path">topic.json</span> wordt met de hand gevuld; Long-read Studio krijgt zijn brief uit de eigen frontend.</li>
+      </ul>
+    </details>
+
+    <details>
+      <summary><span class="col-num">STAP 5</span> Productiewachtrij</summary>
+      <ul>
+        <li><b>productie_daemon.py</b> en <span class="path">newsletter_draft.py</span>/<span class="path">social_draft.py</span> in trend-pipeline — Mac-daemons uitgezet (<span class="path">STATUS.md</span> 2026-06-07), Railway-deploy wacht op jou. Alle scripts wijzen naar <span class="path">/Users/richardvanhooijdonk/trend-pipeline/venv</span>, dat pad bestaat niet meer.</li>
+        <li><b>Writer → editor-lus (jouw WRITER/AUDITER)</b> — Studio zet een <span class="path">articles</span>-rij op <span class="path">status='schrijven'</span>; <span class="path">writer_daemon.py</span> (Mac, claude CLI) of <span class="path">cloud_writer.py</span> (Railway) pakt max. 3 per poll; input = bron + jouw feedback + recente titels (<span class="path">content_pipeline.py:263</span>); writer via <span class="path">prompts/generic-writer-test.md</span> (web_search ≤6); editor via <span class="path">prompts/editor.md</span> — "strenge eindredacteur", negen controles (hallucinatierisico, taboezinnen, ≥2 voorbeelden/≥3 cijfers/≥3 bronnen, doelgroep, structuur, slot, consistentie artikel↔social↔meta), JSON <span class="path">passed / feedback_for_writer</span>; automatisch max. 2 pogingen (<span class="path">MAX_POGINGEN</span>), daarna altijd naar <span class="path">staging</span> voor jou. Versies in <span class="path">article_versions</span>. Werkt op de Mac; Railway-variant onbevestigd.</li>
+        <li><b>Tweede, modelvrije keten (RVHB)</b> — <span class="path">article_dossier.py → article_draft.py → article_pipeline.py</span> (factcheck v2) <span class="path">→ owner_review.py</span> (jouw poort) <span class="path">→ content_derivatives.py + social_draft.py / newsletter_draft.py</span> (goedkeurbon met SHA-256). Getest, fail-closed.</li>
+        <li><b>Wachtrijen die al bestaan</b> — Supabase <span class="path">articles</span> (briefing→schrijven→staging→needs_review→herschreven→complete) en <span class="path">productie_queue</span> (social | nieuwsbrief | keynote | video; wachtend→bezig→klaar), gevuld vanuit de Studio-frontend, FIFO, 3 per poll. In keynote-creator: <span class="path">tools/deck_queue.py</span> bouwt meerdere decks in één run. Gat: geen editor-pass op social/nieuwsbrief/video, en niets vult een wachtrij vanuit een kaart.</li>
+        <li><b>Bouwlijst M2</b> — durable queue, leases, retries, dead letter: ontwerp klaar, niets gebouwd.</li>
+      </ul>
+    </details>
+
+    <details>
+      <summary><span class="col-num">STAP 6</span> Renderen en concept</summary>
+      <ul>
+        <li><b>Keynote Creator</b> <span class="path">~/Developer/keynote-creator/</span> — <span class="path">runs/&lt;topic&gt;/topic.json → research.json → selection.json (jouw poort) → storyline.md/slides.json → .key → feedback → final</span>; <span class="path">tools/release_gate.py</span>; 5 echte runs. Gat: geen intake vanuit een kaart.</li>
+        <li><b>Long-read</b> — (a) één bron: <span class="path">article_pipeline.py</span>, <span class="path">article_draft.py</span>, <span class="path">dossier_runner.py</span>; (b) breed onderzoek: Long-read Studio (<span class="path">frontend/</span>, 31 tests, contract <span class="path">docs/LONGREAD_STUDIO_PRODUCT_CONTRACT.md</span>). Gat: geen bewezen afgeronde 2.000–3.500 woorden op main.</li>
+        <li><b>Social</b> <span class="path">social_draft.py</span> — 3 kanaalvormen + tekstcarrousel uit één artikel, goedkeurbon via <span class="path">content_derivatives.py</span>, niets publiceert. Gat: beeld/carrousel-visueel, koppeling met kaarten.</li>
+        <li><b>Faceless video</b> — repo <span class="path">rvanhooijdonk-png/faceless-video</span> (storyboard → footage → ElevenLabs → captions → FFmpeg/Remotion); niet lokaal, opnieuw clonen. Prompt <span class="path">trend-pipeline/prompts/video.md</span>.</li>
+        <li><b>Short-read, ebook</b> — niets. <b>Conceptpreview</b> — alleen Long-read Studio (5 stappen) en Kaartenbak; geen keynote- of socialpreview.</li>
+      </ul>
+    </details>
+
+    <details>
+      <summary><span class="col-num">KADER</span> Wat al besloten is en hoe hier gebouwd wordt</summary>
+      <ul>
+        <li><b>Architectuurbesluit 30 aug 2026</b> (<span class="path">docs/architecture/CONTENT_INTELLIGENCE_PLATFORM_V1.md</span>, status GO met verplichte wijzigingen): een apart product <span class="path">content-intelligence</span> met eigen repo en PostgreSQL; Content Desk als generieke frontend; losse outputconnectoren; Keynote Creator, Long-read Studio en Faceless Video blijven bestaande generators.</li>
+        <li><b>Masterbouwlijst</b> (<span class="path">CONTENT_PROCESSING_MASTER_BUILD_LIST_V1.md</span>) — M0 t/m M10 dekt jouw stappen 1–6, behalve social en ebook. M0 begint met "nieuw zelfstandig repository": niet gestart. <span class="path">~/content-intelligence</span> bestaat nergens; <span class="path">config/product_repos.env</span> wijst naar 20 repo's onder <span class="path">~/</span> die naar <span class="path">~/Developer/</span> verhuisd of verdwenen zijn.</li>
+        <li><b>Bouwregels</b> — order → receipt → PR → R7-meting → merge; bouwen op Claude, reviewen op Codex; geen push zonder jou; <span class="path">~/Stack-Director</span> niet aanraken; <span class="path">bin/</span> van stack-director is aan die oude clone gebonden.</li>
+      </ul>
+    </details>
+  </section>
+
+  <section class="decision">
+    <h2>Waar bouwen: hier verder of een nieuwe laan?</h2>
+    <p><b>Aanbeveling: een nieuw repo <span class="mono">~/Developer/content-intelligence</span>, precies zoals op 30 augustus besloten — maar smaller dan de bouwlijst.</b> Het nieuwe repo bezit alleen wat vandaag nergens bestaat: import (desk + Vault + blog + scandigests), de opgeslagen swipe-keuzes, de leerlus-signalen, routeren, de wachtrij en de connectoren. Het bouwt <em>geen</em> tweede scanner, writer of keynotegenerator: trend-pipeline en keynote-creator blijven de generators en worden via connectoren aangesproken. stack-director blijft de bouwstraat (orders, receipts, R7); <span class="mono">content/content-desk-now</span> wordt bevroren importfixture (M0: guard-test dat het nieuwe repo daar nooit schrijft).</p>
+    <div class="tradeoffs">
+      <div class="to"><b>Als je hier verder gaat</b>elke stap erft de order/receipt/R7-overhead; het repo is 9.035 bestanden waarvan 33 % contentdata; <span class="mono">bin/</span> hangt aan een verlopen clone. Winst: de 44 scripts en 3.033 databestanden blijven op hun plek.</div>
+      <div class="to"><b>Als je een nieuw repo start</b>je moet <span class="mono">content_desk_*.py</span>-logica en data één keer importeren; het repo staat buiten de ledger/R7-poort tot je die koppelt. Winst: schoon, klein, matcht het architectuurbesluit, en de bestaande generators blijven ongemoeid.</div>
+      <div class="to"><b>Wat in beide gevallen geldt</b>de generators (trend-pipeline, keynote-creator) worden niet herbouwd; de eerste échte winst is dat een STAR ergens landt en iets in beweging zet. Dat is een connector, geen platform.</div>
+    </div>
+    <div class="ask"><b>Eén afwijking om te benoemen:</b> de bouwlijst eist PostgreSQL als operationele waarheid vanaf M0. Voor de eerste drie slices volstaat één lokaal SQLite-bestand achter dezelfde API; PostgreSQL komt bij de async workers (M2). Dat is sneller te tonen en later verwisselbaar — maar het wijkt af van een eerdere afspraak, dus dit is jouw besluit.</div>
+  </section>
+
+  <section>
+    <h2>Spoor platform — vijf slices, parallel aan de weekdienst</h2>
+    <div class="plan">
+      <div class="slice"><b>Keuzes die blijven</b><p>Repo-skelet + import van de 260 desk-records, de 521 Vault-notities en de scandigests; Kaartenbak wordt vanuit de API geserveerd en elke STAR/WAIT/REMOVE landt append-only in de database — en als <span class="mono">signal_feedback</span> voor de leerlus.</p><span class="gain">winst: swipen wordt echt; REMOVE gaat leren</span></div>
+      <div class="slice"><b>Bestemming + wachtrij</b><p>Na de triage een routeerscherm over de gesterde set: bestemmingen tikken (keynote, long-read, short-read, social, video, ebook, archief) plus één instructieveld; de keuzes vormen een wachtrij die je herschikt en per batch vrijgeeft.</p><span class="gain">winst: opsparen en in batches produceren</span></div>
+      <div class="slice"><b>Eerste connector: STAR → Keynote Creator</b><p>Een gesterde kaart met bestemming keynote schrijft <span class="mono">runs/&lt;topic&gt;/topic.json</span> in keynote-creator, in het formaat dat de vijf bestaande runs al bewijzen. Daarna dezelfde beweging naar Long-read Studio (brief) en <span class="mono">social_draft.py</span>.</p><span class="gain">winst: eerste kaart-tot-keynote zonder handwerk</span></div>
+      <div class="slice"><b>Input breder en betrouwbaar</b><p>Eén scanregister met alle 22 prompts op <b>wekelijks + op afroep + handmatig</b> (de vier planners verdwijnen); prompts opnieuw toetsen, dubbelen schrappen en overlappende vondsten samenvoegen tot één rijker voorstel; blog-corpus importeren via de sitemaps; krantenscanner op kop + intro die de V7-reconstructie voedt; nieuwe bronnen (NYT, NRC, Medium, LinkedIn, Matt Wolfe) in <span class="mono">bronnen.yaml</span>.</p><span class="gain">winst: de ME-TOO-scan draait op alle drie de bronnen</span></div>
+      <div class="slice"><b>Concept op scherm</b><p>Derde kaartvlak in de Kaartenbak-stijl: keynote-storyline per slide, social per variant, long-read per sectie — met houden/weg per eenheid en aantekening. Daarna de ontbrekende formats: short-read en ebook.</p><span class="gain">winst: alles wat je produceert zie je in één vormtaal</span></div>
+    </div>
+  </section>
+
+  <section class="decision">
+    <h2>Besluiten — genomen op 25 september</h2>
+    <div class="tradeoffs">
+      <div class="to"><b>1 · Weekritme — Richard</b>Elke <b>zaterdag</b> één stapel van maximaal 30 kaarten; de run draait vrijdagnacht. Snelle lijnen midweek in dezelfde stapel.</div>
+      <div class="to"><b>2 · Afwijsredenen — Richard</b>Geen verplichte reden per kaart: swipen blijft één beweging. De reden wordt <em>afgeleid</em> uit de kaart zelf (leeftijd, bewijsstatus, thema, overlap met al geschreven werk) en wekelijks in vijf regels aan Richard voorgelegd; een opmerking blijft mogelijk met één toets (C).</div>
+      <div class="to"><b>3 · Verrassingsquotum — Richard</b>10–15 % van elke stapel bewust buiten profiel, gelabeld "verrassing".</div>
+      <div class="to"><b>4 · Prompts samenvoegen — Richard</b>Goedkeuring gedelegeerd aan Claude; elk samenvoegbesluit staat met reden in <span class="mono">SCANREGISTER_V1.md</span>.</div>
+      <div class="to"><b>5 · Waar het draait — Richard: alles in de cloud</b>Geen Mac in de keten. Opslag: <b>Supabase</b> (bestaat al, houdt nu scans, artikelen en wachtrijen). Rekenwerk: <b>Railway</b> (bestaat al voor trend-pipeline) voor scans, merge en dossier-runner. Regie: een <b>Claude-cloudroutine</b> elke vrijdagnacht die de run start, de stapel in Kaartenbak zet en zaterdag klaarmeldt. Week 0–2 doe ik de run nog zelf. <b>Uitzondering (Astra):</b> native .key-rendering in Keynote Creator draait via osascript op een Mac — keuze vastleggen: storyline/briefing als cloud-uitvoer, ander renderformaat, of een aparte Mac-renderstap (V-45).</div>
+      <div class="to"><b>6 · Platform — Claude, herzien</b>Nieuw repo <span class="mono">content-intelligence</span>, gedeployed op Railway, met <b>PostgreSQL op Supabase</b> als opslag — dus géén SQLite meer: de bouwlijst van 30 aug wordt gevolgd én "alles in de cloud" klopt, zonder nieuwe infrastructuur. <b>PostgreSQL is leidend</b> (conform de architectuur van 30 aug); de artifact-database van Kaartenbak is een tijdelijke invoerlaag met stabiele kaart- en event-ID's, undo en readback, zodat dubbele of conflicterende swipes aantoonbaar goed landen (V-46).</div>
+    </div>
+  </section>
+
+  <section class="band">
+    <h2>Open metingen</h2>
+    <p>• Vault geteld: 23.775 markdown-notities in de iCloud-Vault (30 aug: ±29.300 bestanden incl. niet-markdown — consistent).<br>• Blog: exacte posttelling volgt bij de sitemap-import (slice 4).<br>• Waar de scans nu écht draaien (Mac mini of Railway) is niet geverifieerd.</p>
+  </section>
+
+  <p class="foot">Bronnen: vier inventarisaties op 2026-09-25 over <span class="mono">~/Developer/stack-director</span>, <span class="mono">trend-pipeline</span>, <span class="mono">keynote-creator</span>, <span class="mono">stack-trechter</span>, <span class="mono">keynote-archief</span>, de iCloud-Vault en <span class="mono">blog.richardvanhooijdonk.com</span>; architectuur- en bouwlijstdocumenten van 2026-08-30; overdracht podiumkaarten-UI 2026-09-23.</p>
+
+</div>

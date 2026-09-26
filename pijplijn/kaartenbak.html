@@ -1,0 +1,1930 @@
+<title>Kaartenbak</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,340;0,9..144,500;0,9..144,600;1,9..144,500&family=Source+Sans+3:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+<style>
+  :root{
+    --bg:#EDEFEA; --surface:#FFFFFF; --surface-2:#E4E7DF; --ghost:#DEE1D8;
+    --ink:#171A18; --ink-soft:#3C4038; --muted:#6B7168; --border:#D6D9CF;
+    --accent:#1F5F6B; --accent-ink:#0E3A42; --accent-soft:rgba(31,95,107,.12);
+    --confirmed:#2E6B4A; --confirmed-soft:rgba(46,107,74,.12);
+    --nuanced:#8C6B1F; --nuanced-soft:rgba(140,107,31,.14);
+    --rejected:#8B4A3E; --rejected-soft:rgba(139,74,62,.12);
+    --wait:#57626C; --wait-soft:rgba(87,98,108,.12);
+    --shadow:rgba(23,26,24,.18); --focus:#1F5F6B;
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --bg:#141715; --surface:#1C201D; --surface-2:#242822; --ghost:#2A2E27;
+      --ink:#ECEFE9; --ink-soft:#C7CBC2; --muted:#8B9188; --border:#343830;
+      --accent:#5FB8C2; --accent-ink:#BFE9EC; --accent-soft:rgba(95,184,194,.16);
+      --confirmed:#74C293; --confirmed-soft:rgba(116,194,147,.16);
+      --nuanced:#DCB753; --nuanced-soft:rgba(220,183,83,.16);
+      --rejected:#DD9484; --rejected-soft:rgba(221,148,132,.16);
+      --wait:#9DA9B1; --wait-soft:rgba(157,169,177,.16);
+      --shadow:rgba(0,0,0,.55); --focus:#5FB8C2;
+    }
+  }
+  :root[data-theme="dark"]{
+    --bg:#141715; --surface:#1C201D; --surface-2:#242822; --ghost:#2A2E27;
+    --ink:#ECEFE9; --ink-soft:#C7CBC2; --muted:#8B9188; --border:#343830;
+    --accent:#5FB8C2; --accent-ink:#BFE9EC; --accent-soft:rgba(95,184,194,.16);
+    --confirmed:#74C293; --confirmed-soft:rgba(116,194,147,.16);
+    --nuanced:#DCB753; --nuanced-soft:rgba(220,183,83,.16);
+    --rejected:#DD9484; --rejected-soft:rgba(221,148,132,.16);
+    --wait:#9DA9B1; --wait-soft:rgba(157,169,177,.16);
+    --shadow:rgba(0,0,0,.55); --focus:#5FB8C2;
+  }
+
+  *{box-sizing:border-box;}
+  body{
+    background:var(--bg); color:var(--ink);
+    font-family:"Source Sans 3", ui-sans-serif, system-ui, sans-serif;
+    margin:0; padding:20px 16px 32px; min-height:100vh;
+  }
+  .mono{ font-family:"IBM Plex Mono", ui-monospace, monospace; }
+  h1,h2,h3{ text-wrap:balance; margin:0; }
+  a{ color:var(--accent-ink); }
+  button{ font-family:inherit; }
+  :focus-visible{ outline:2px solid var(--focus); outline-offset:2px; }
+
+  #app{ max-width:460px; margin:0 auto; display:flex; flex-direction:column; gap:14px; }
+
+  /* ---------- top bar ---------- */
+  .topbar{ display:flex; align-items:center; justify-content:space-between; gap:10px; flex-wrap:wrap; }
+  .topbar-title{ font-family:"Fraunces", Georgia, serif; font-weight:600; font-size:1.05rem; letter-spacing:.01em; }
+  .topbar-title .accent-dot{ color:var(--accent); }
+  .progress-chip{ font-family:"IBM Plex Mono",monospace; font-size:.78rem; color:var(--muted); }
+  .counters{ display:flex; gap:6px; flex-wrap:wrap; }
+  .chip{
+    font-family:"IBM Plex Mono",monospace; font-size:.72rem; font-weight:500;
+    padding:3px 8px; border-radius:999px; letter-spacing:.02em; white-space:nowrap;
+  }
+  .chip.star{ background:var(--accent-soft); color:var(--accent-ink); }
+  .chip.wait{ background:var(--wait-soft); color:var(--wait); }
+  .chip.remove{ background:var(--rejected-soft); color:var(--rejected); }
+  .link-btn{
+    background:none; border:none; padding:0; color:var(--muted); font-size:.78rem;
+    text-decoration:underline; text-underline-offset:3px; cursor:pointer;
+  }
+  .link-btn:hover{ color:var(--ink); }
+
+  /* ---------- stage / stack ---------- */
+  /* Geen vaste 3/4-verhouding meer. Die maakte de kaart 340x453 en liet een
+     lange teaser (NCSC-kaart, stapel W39) dwars over de knoppen heen lopen.
+     De kaart volgt nu de hoogte van het scherm, met grenzen: hoog genoeg om
+     te lezen, laag genoeg dat kaart en knoppen samen in beeld blijven — één
+     beslissing per scherm, zonder scrollen naar de knoppen. */
+  .stage{
+    position:relative; width:100%; max-width:380px; margin:6px auto 0;
+    height:clamp(420px, 66vh, 620px);
+  }
+  .ghost{
+    position:absolute; inset:0; border-radius:18px; background:var(--surface);
+    border:1px solid var(--border); box-shadow:0 6px 16px var(--shadow);
+  }
+  .ghost.g2{ transform:translateY(14px) scale(.94); opacity:.55; background:var(--surface-2); }
+  .ghost.g1{ transform:translateY(7px) scale(.97); opacity:.8; }
+
+  .card-drag{
+    position:absolute; inset:0; will-change:transform; touch-action:none; cursor:grab;
+  }
+  .card-drag:active{ cursor:grabbing; }
+  .card-flip{
+    position:relative; width:100%; height:100%; perspective:1400px;
+  }
+  .card-flip-inner{
+    position:relative; width:100%; height:100%; transform-style:preserve-3d;
+    transition:transform .55s cubic-bezier(.2,.7,.3,1);
+  }
+  .card-drag.flipped .card-flip-inner{ transform:rotateY(180deg); }
+
+  /* overflow:hidden is de harde garantie: wat niet op de kaart past, schildert
+     niet naast de kaart. Zonder deze regel liep de tekst over de knoppenrij en
+     over de achterkant heen. Scrollen gebeurt binnen de kaart, niet erbuiten. */
+  .face{
+    position:absolute; inset:0; backface-visibility:hidden; -webkit-backface-visibility:hidden;
+    border-radius:18px; border:1px solid var(--border); background:var(--surface);
+    box-shadow:0 14px 30px var(--shadow); padding:22px 22px 18px; display:flex; flex-direction:column;
+    overflow:hidden;
+  }
+  .face-back{ transform:rotateY(180deg); }
+  /* min-height:0 is niet optioneel: zonder die regel weigert een flexkind te
+     krimpen en loopt het alsnog buiten de kaart. */
+  .front-scroll{ flex:1 1 auto; min-height:0; overflow-y:auto; padding-right:2px; }
+
+  /* front face */
+  .card-title{ font-family:"Fraunces", Georgia, serif; font-weight:600; font-size:1.4rem; line-height:1.18; }
+  .card-kern{ font-size:.98rem; line-height:1.5; color:var(--ink-soft); margin-top:12px; }
+  /* Hét feit is het anker waarop je oordeelt: het blijft staan, ook als de
+     teaser erboven moet scrollen. Daarom flex:none en geen margin-top:auto —
+     de scrollende kop duwt het nu vanzelf naar onderen. */
+  .card-feit{
+    flex:none; margin-top:12px; padding-top:14px; border-top:1px solid var(--border);
+  }
+  .feit-label{
+    font-family:"IBM Plex Mono",monospace; font-size:.68rem; letter-spacing:.08em;
+    text-transform:uppercase; color:var(--accent); display:block; margin-bottom:5px;
+  }
+  .feit-text{ font-weight:600; font-size:1rem; line-height:1.35; }
+  .card-pub{ margin-top:10px; font-size:.76rem; color:var(--muted); }
+  .flip-hint{
+    position:absolute; top:14px; right:16px; font-family:"IBM Plex Mono",monospace;
+    font-size:.66rem; color:var(--muted); display:flex; align-items:center; gap:3px;
+  }
+  .wait-stamp{
+    position:absolute; top:14px; left:16px; transform:rotate(-6deg);
+    border:1.5px solid var(--rejected); color:var(--rejected);
+    font-family:"IBM Plex Mono",monospace; font-size:.62rem; font-weight:600;
+    letter-spacing:.04em; text-transform:uppercase; padding:3px 7px; border-radius:5px;
+    background:var(--rejected-soft);
+  }
+
+  /* back face */
+  .back-head{ display:flex; flex-direction:column; gap:4px; padding-bottom:10px; border-bottom:1px solid var(--border); }
+  .back-title{ font-family:"Fraunces", Georgia, serif; font-weight:600; font-size:1.05rem; line-height:1.25; }
+  .back-audit{ font-size:.72rem; color:var(--muted); }
+  .back-scroll{ flex:1 1 auto; min-height:0; overflow-y:auto; margin-top:10px; padding-right:2px; }
+  .back-scroll h3{
+    font-family:"IBM Plex Mono",monospace; font-size:.68rem; letter-spacing:.07em;
+    text-transform:uppercase; color:var(--muted); margin:14px 0 6px;
+  }
+  .back-scroll h3:first-child{ margin-top:0; }
+  .claim-row{ padding:7px 9px; border-radius:8px; margin-bottom:6px; font-size:.85rem; line-height:1.4; }
+  .claim-row.confirmed{ background:var(--confirmed-soft); }
+  .claim-row.nuanced{ background:var(--nuanced-soft); }
+  .claim-row.rejected{ background:var(--rejected-soft); }
+  .claim-text{ font-weight:600; }
+  .claim-row.confirmed .claim-text{ color:var(--confirmed); }
+  .claim-row.nuanced .claim-text{ color:var(--nuanced); }
+  .claim-row.rejected .claim-text{ color:var(--rejected); }
+  .claim-rationale{ color:var(--ink-soft); margin-top:2px; }
+  .claim-src{ font-family:"IBM Plex Mono",monospace; font-size:.66rem; color:var(--muted); margin-top:3px; display:block; }
+  .src-list{ list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:6px; }
+  .src-list li{ font-size:.82rem; line-height:1.4; }
+  .src-id{ font-family:"IBM Plex Mono",monospace; font-size:.66rem; color:var(--muted); }
+  .afbakening-text{ font-size:.82rem; line-height:1.5; color:var(--ink-soft); }
+
+  /* ---------- controls ---------- */
+  .controls{ display:flex; gap:8px; margin-top:2px; }
+  .ctrl-btn{
+    flex:1; display:flex; flex-direction:column; align-items:center; gap:3px;
+    padding:10px 4px 8px; border-radius:12px; border:1px solid var(--border);
+    background:var(--surface); color:var(--ink); cursor:pointer; transition:background .15s, border-color .15s;
+  }
+  .ctrl-btn:hover{ background:var(--surface-2); }
+  .ctrl-btn .glyph{ font-size:1.15rem; line-height:1; }
+  .ctrl-btn .label{ font-size:.7rem; font-weight:600; letter-spacing:.02em; }
+  .ctrl-btn .key{ font-family:"IBM Plex Mono",monospace; font-size:.62rem; color:var(--muted); }
+  .ctrl-btn.remove .glyph{ color:var(--rejected); }
+  .ctrl-btn.wait .glyph{ color:var(--wait); }
+  .ctrl-btn.flip .glyph{ color:var(--ink-soft); }
+  .ctrl-btn.star .glyph{ color:var(--accent); }
+  .ctrl-btn.star{ border-color:var(--accent); }
+  .ctrl-btn.news .glyph{ color:var(--accent); }
+  .chip.news{ background:var(--accent-soft); color:var(--accent-ink); }
+  @media (max-width:400px){ .ctrl-btn .key{ display:none; } }
+
+  .undo-row{ display:flex; justify-content:center; }
+  .undo-btn{
+    background:none; border:none; color:var(--muted); font-size:.78rem; cursor:pointer;
+    display:flex; align-items:center; gap:5px; padding:4px 8px;
+  }
+  .undo-btn:hover{ color:var(--ink); }
+  .undo-btn:disabled{ opacity:.4; cursor:default; }
+  .undo-btn .key{ font-family:"IBM Plex Mono",monospace; color:var(--muted); }
+
+  /* ---------- interstitial / summary ---------- */
+  .panel{
+    background:var(--surface); border:1px solid var(--border); border-radius:16px;
+    padding:22px 20px; box-shadow:0 8px 20px var(--shadow);
+  }
+  .panel h2{ font-family:"Fraunces", Georgia, serif; font-weight:600; font-size:1.3rem; margin-bottom:8px; }
+  .panel p{ font-size:.9rem; line-height:1.5; color:var(--ink-soft); margin:0 0 14px; }
+  .panel-actions{ display:flex; gap:10px; flex-wrap:wrap; }
+  .btn{
+    font-size:.85rem; font-weight:600; padding:9px 16px; border-radius:9px; cursor:pointer;
+    border:1px solid var(--border); background:var(--surface-2); color:var(--ink);
+  }
+  .btn.primary{ background:var(--accent); border-color:var(--accent); color:#fff; }
+  .btn.ghost{ background:none; }
+
+  .summary-list{ display:flex; flex-direction:column; gap:8px; margin-top:6px; }
+  .summary-item{
+    border:1px solid var(--border); border-radius:10px; padding:10px 12px; background:var(--surface-2);
+  }
+  .summary-item summary{ cursor:pointer; font-weight:600; font-size:.9rem; list-style:none; display:flex; justify-content:space-between; gap:8px; }
+  .summary-item summary::-webkit-details-marker{ display:none; }
+  .summary-item summary::after{ content:"▾"; color:var(--muted); font-size:.75rem; }
+  .summary-item[open] summary::after{ content:"▴"; }
+  .summary-detail{ margin-top:8px; font-size:.82rem; color:var(--ink-soft); line-height:1.5; }
+  .summary-detail .src-list{ margin-top:6px; }
+  .empty-note{ font-size:.85rem; color:var(--muted); }
+  .footnote{ font-size:.76rem; color:var(--muted); margin-top:16px; line-height:1.5; }
+
+  .db-badge{ font-family:"IBM Plex Mono",monospace; font-size:.66rem; color:var(--muted); }
+  .db-badge.on{ color:var(--confirmed); }
+  .reason-panel{ background:var(--surface); border:1px solid var(--rejected); border-radius:14px; padding:16px 16px 14px; box-shadow:0 8px 20px var(--shadow); display:flex; flex-direction:column; gap:10px; }
+  .reason-panel h2{ font-family:"Fraunces",Georgia,serif; font-weight:600; font-size:1.1rem; }
+  .reason-panel .sub{ font-size:.82rem; color:var(--muted); margin:-4px 0 2px; }
+  .reason-grid{ display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:6px; }
+  @media (max-width:400px){ .reason-grid{ grid-template-columns:repeat(2,minmax(0,1fr)); } }
+  .reason-btn{ display:flex; flex-direction:column; align-items:flex-start; gap:2px; padding:8px 9px; border-radius:9px; border:1px solid var(--border); background:var(--surface-2); color:var(--ink); cursor:pointer; text-align:left; }
+  .reason-btn .k{ font-family:"IBM Plex Mono",monospace; font-size:.62rem; color:var(--muted); }
+  .reason-btn .t{ font-size:.82rem; font-weight:600; line-height:1.2; }
+  .reason-btn.sel{ border-color:var(--rejected); background:var(--rejected-soft); }
+  .reason-btn.sel .k{ color:var(--rejected); }
+  .reason-panel textarea{ width:100%; min-height:56px; resize:vertical; border:1px solid var(--border); border-radius:9px; padding:8px 10px; font-family:inherit; font-size:.88rem; background:var(--surface); color:var(--ink); }
+  .reason-actions{ display:flex; gap:8px; align-items:center; }
+  .reason-actions .hint{ margin-left:auto; font-family:"IBM Plex Mono",monospace; font-size:.62rem; color:var(--muted); }
+
+  /* ---------- front marks (verrassing, terug op) ---------- */
+  .front-marks{ display:flex; gap:6px; flex-wrap:wrap; align-items:center; padding-right:76px; margin-bottom:8px; }
+  .front-marks.below-stamp{ margin-top:22px; }
+  .mark{
+    font-family:"IBM Plex Mono",monospace; font-size:.62rem; font-weight:500; letter-spacing:.04em;
+    padding:2px 7px; border-radius:999px; white-space:nowrap;
+  }
+  .mark.surprise{ background:var(--nuanced-soft); color:var(--nuanced); }
+  .mark.back-on{ background:var(--wait-soft); color:var(--wait); }
+  .mark.dossier{ background:var(--accent-soft); color:var(--accent-ink); }
+
+  /* ---------- dossier-delta card ---------- */
+  .delta-label{
+    font-family:"IBM Plex Mono",monospace; font-size:.66rem; letter-spacing:.08em;
+    text-transform:uppercase; color:var(--accent); display:block; margin-bottom:6px;
+  }
+  .delta-count{ margin-top:auto; padding-top:14px; border-top:1px solid var(--border); font-size:.86rem; color:var(--ink-soft); }
+  .delta-count strong{ font-size:1.5rem; font-family:"Fraunces",Georgia,serif; color:var(--ink); display:block; line-height:1.1; }
+  .delta-item{ padding:7px 9px; border-radius:8px; margin-bottom:6px; font-size:.85rem; line-height:1.4; background:var(--surface-2); }
+  .delta-item .t{ font-weight:600; }
+  .delta-item .s{ font-family:"IBM Plex Mono",monospace; font-size:.66rem; color:var(--muted); display:block; margin-top:3px; }
+
+  /* ---------- back actions ---------- */
+  .back-actions{ margin-top:12px; padding-top:10px; border-top:1px solid var(--border); display:flex; align-items:center; gap:8px; }
+  .back-btn{
+    background:var(--surface-2); border:1px solid var(--border); border-radius:8px; cursor:pointer;
+    color:var(--ink); font-size:.78rem; font-weight:600; padding:6px 10px; display:flex; align-items:center; gap:5px;
+  }
+  .back-btn:hover{ border-color:var(--accent); }
+  .back-btn .key{ font-family:"IBM Plex Mono",monospace; font-size:.62rem; color:var(--muted); }
+  .back-confirm{ font-size:.74rem; color:var(--confirmed); font-weight:600; }
+  .meta-row{ display:flex; flex-direction:column; gap:3px; font-size:.8rem; color:var(--ink-soft); }
+  .meta-row .k{ font-family:"IBM Plex Mono",monospace; font-size:.64rem; letter-spacing:.05em; text-transform:uppercase; color:var(--muted); }
+
+  /* ---------- leerverslag + leerlogboek ---------- */
+  .leer-week{ font-family:"IBM Plex Mono",monospace; font-size:.68rem; letter-spacing:.06em; color:var(--accent); text-transform:uppercase; }
+  .leer-lines{ margin:10px 0 14px; padding:0; list-style:none; display:flex; flex-direction:column; gap:7px; }
+  .leer-lines li{
+    font-size:.9rem; line-height:1.45; color:var(--ink-soft);
+    padding-left:14px; position:relative;
+  }
+  .leer-lines li::before{ content:"·"; position:absolute; left:2px; color:var(--accent); font-weight:700; }
+  .log-entry{ border:1px solid var(--border); border-radius:12px; padding:14px 16px; background:var(--surface-2); }
+  .log-list{ display:flex; flex-direction:column; gap:10px; margin-top:12px; }
+  .log-verdict{ font-size:.78rem; font-weight:600; margin-top:4px; }
+  .log-verdict.yes{ color:var(--confirmed); }
+  .log-verdict.no{ color:var(--nuanced); }
+  .log-diff{ display:flex; flex-direction:column; gap:4px; margin-top:8px; font-size:.8rem; }
+  .log-diff .plus{ color:var(--confirmed); }
+  .log-diff .minus{ color:var(--rejected); }
+  .log-diff .k{ font-family:"IBM Plex Mono",monospace; font-size:.62rem; letter-spacing:.05em; text-transform:uppercase; color:var(--muted); }
+
+  /* ---------- routeren ---------- */
+  .route-head{ display:flex; align-items:baseline; justify-content:space-between; gap:10px; }
+  .route-teller{ font-family:"IBM Plex Mono",monospace; font-size:.7rem; color:var(--muted); }
+  .route-card{
+    border:1px solid var(--border); border-radius:12px; background:var(--surface-2);
+    padding:12px 14px; margin:10px 0 12px;
+  }
+  .route-title{ font-family:"Fraunces",Georgia,serif; font-weight:600; font-size:1.1rem; line-height:1.2; }
+  .route-feit{ font-size:.86rem; line-height:1.4; color:var(--ink-soft); margin-top:6px; }
+  .route-marks{ display:flex; gap:6px; flex-wrap:wrap; margin-top:8px; }
+  .route-label{
+    font-family:"IBM Plex Mono",monospace; font-size:.64rem; letter-spacing:.06em;
+    text-transform:uppercase; color:var(--muted); display:block; margin-bottom:6px;
+  }
+  .dest-grid{ display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:6px; }
+  @media (max-width:400px){ .dest-grid{ grid-template-columns:repeat(3,minmax(0,1fr)); } }
+  .dest-btn{
+    display:flex; flex-direction:column; align-items:flex-start; gap:2px;
+    padding:7px 8px; border-radius:9px; border:1px solid var(--border);
+    background:var(--surface); color:var(--ink); cursor:pointer; text-align:left;
+  }
+  .dest-btn .k{ font-family:"IBM Plex Mono",monospace; font-size:.6rem; color:var(--muted); }
+  .dest-btn .t{ font-size:.78rem; font-weight:600; line-height:1.15; }
+  .dest-btn.sel{ border-color:var(--accent); background:var(--accent-soft); }
+  .dest-btn.sel .k{ color:var(--accent); }
+  .dest-btn.archief.sel{ border-color:var(--wait); background:var(--wait-soft); }
+  .dest-btn.archief.sel .k{ color:var(--wait); }
+  .social-row{ margin-top:8px; padding:8px 10px; border-radius:9px; background:var(--accent-soft); }
+  .social-grid{ display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:6px; }
+  @media (max-width:400px){ .social-grid{ grid-template-columns:repeat(2,minmax(0,1fr)); } }
+  .social-btn{
+    padding:6px 8px; border-radius:8px; border:1px solid var(--border);
+    background:var(--surface); color:var(--ink); cursor:pointer; font-size:.76rem; font-weight:600;
+    display:flex; flex-direction:column; align-items:flex-start; gap:1px; text-align:left;
+  }
+  .social-btn .k{ font-family:"IBM Plex Mono",monospace; font-size:.58rem; color:var(--muted); font-weight:400; }
+  .social-btn.sel{ border-color:var(--accent); background:var(--accent-soft); }
+  .route-instr{
+    width:100%; min-height:48px; resize:vertical; margin-top:10px;
+    border:1px solid var(--border); border-radius:9px; padding:8px 10px;
+    font-family:inherit; font-size:.86rem; background:var(--surface); color:var(--ink);
+  }
+  .route-nav{ display:flex; gap:8px; align-items:center; margin-top:12px; }
+  .route-nav .hint{ margin-left:auto; font-family:"IBM Plex Mono",monospace; font-size:.62rem; color:var(--muted); }
+  @media (max-width:400px){ .route-nav .hint{ display:none; } }
+
+  /* ---------- wachtrij ---------- */
+  .queue-line{ font-size:.86rem; color:var(--ink-soft); margin:0 0 10px; }
+  .queue-group{ border:1px solid var(--border); border-radius:10px; background:var(--surface-2); padding:10px 12px; }
+  .queue-list{ display:flex; flex-direction:column; gap:8px; margin-top:6px; }
+  .queue-group summary{ cursor:pointer; font-weight:600; font-size:.9rem; list-style:none; display:flex; justify-content:space-between; gap:8px; align-items:center; }
+  .queue-group summary::-webkit-details-marker{ display:none; }
+  .queue-count{ font-family:"IBM Plex Mono",monospace; font-size:.72rem; color:var(--accent-ink); background:var(--accent-soft); padding:2px 8px; border-radius:999px; }
+  .queue-item{ display:flex; gap:8px; align-items:flex-start; padding:7px 0; border-top:1px solid var(--border); font-size:.82rem; line-height:1.4; }
+  .queue-item:first-of-type{ border-top:none; }
+  .queue-item .body{ flex:1; }
+  .queue-item .meta{ font-family:"IBM Plex Mono",monospace; font-size:.64rem; color:var(--muted); display:block; margin-top:2px; }
+  .queue-item .instr{ color:var(--ink-soft); font-style:italic; display:block; margin-top:3px; }
+  .queue-x{
+    background:none; border:1px solid var(--border); border-radius:6px; cursor:pointer;
+    color:var(--muted); font-size:.7rem; line-height:1; padding:4px 6px; flex:none;
+  }
+  .queue-x:hover{ border-color:var(--rejected); color:var(--rejected); }
+  .queue-cap{ font-size:.74rem; color:var(--nuanced); margin-top:6px; }
+
+  [hidden]{ display:none !important; }
+  @media (prefers-reduced-motion: reduce){
+    .card-flip-inner, .card-drag{ transition:none !important; }
+  }
+</style>
+
+<div id="app">
+  <div class="topbar">
+    <div class="topbar-title">Kaartenbak<span class="accent-dot">.</span></div>
+    <div style="display:flex; gap:12px; align-items:center;">
+      <button class="link-btn" id="queueBtn" type="button">wachtrij</button>
+      <button class="link-btn" id="logboekBtn" type="button" hidden>leerlogboek</button>
+      <button class="link-btn" id="pauseBtn" type="button">stop hier &amp; bekijk overzicht</button>
+    </div>
+  </div>
+  <div class="topbar">
+    <span class="progress-chip mono" id="progressChip">— van 32 nog te doen</span>
+    <span class="db-badge" id="dbBadge">alleen in deze browser</span>
+    <div class="counters">
+      <span class="chip star" id="chipStar">★ 0</span>
+      <span class="chip news" id="chipNews">✉ 0</span>
+      <span class="chip wait" id="chipWait">⏸ 0</span>
+      <span class="chip remove" id="chipRemove">✕ 0</span>
+    </div>
+  </div>
+
+  <div class="stage" id="stage">
+    <div class="ghost g2" id="ghost2"></div>
+    <div class="ghost g1" id="ghost1"></div>
+    <div class="card-drag" id="cardDrag">
+      <div class="card-flip">
+        <div class="card-flip-inner" id="cardFlipInner">
+          <div class="face face-front" id="faceFront"></div>
+          <div class="face face-back" id="faceBack"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="controls">
+    <button class="ctrl-btn remove" id="btnRemove" type="button">
+      <span class="glyph">←</span><span class="label">REMOVE</span><span class="key">pijl links</span>
+    </button>
+    <button class="ctrl-btn wait" id="btnWait" type="button">
+      <span class="glyph">↓</span><span class="label">WAIT</span><span class="key">pijl omlaag</span>
+    </button>
+    <button class="ctrl-btn flip" id="btnFlip" type="button">
+      <span class="glyph">↑</span><span class="label">OMDRAAIEN</span><span class="key">pijl omhoog</span>
+    </button>
+    <button class="ctrl-btn star" id="btnStar" type="button">
+      <span class="glyph">→</span><span class="label">STAR</span><span class="key">pijl rechts</span>
+    </button>
+    <button class="ctrl-btn news" id="btnNews" type="button">
+      <span class="glyph">✉</span><span class="label">NIEUWSBRIEF</span><span class="key">N</span>
+    </button>
+  </div>
+  <div class="undo-row">
+    <button class="undo-btn" id="btnUndo" type="button" disabled>↺ ongedaan maken <span class="key mono">(U)</span></button>
+    <button class="undo-btn" id="btnNote" type="button" disabled>✎ opmerking <span class="key mono">(C)</span></button>
+  </div>
+
+  <div class="reason-panel" id="reasonPanel" hidden>
+    <h2 id="reasonTitle">Opmerking bij je laatste keuze</h2>
+    <div class="sub" id="reasonSub">Alles optioneel. Een reden of een zin helpt de volgende zoekronde; zonder opmerking leer ik uit de kaart zelf.</div>
+    <div class="reason-grid" id="reasonGrid">
+      <button class="reason-btn" type="button" data-reason="al_bekend"><span class="k">1</span><span class="t">Al bekend</span></button>
+      <button class="reason-btn" type="button" data-reason="niet_mijn_thema"><span class="k">2</span><span class="t">Niet mijn thema</span></button>
+      <button class="reason-btn" type="button" data-reason="te_zwak_bewijs"><span class="k">3</span><span class="t">Te zwak bewijs</span></button>
+      <button class="reason-btn" type="button" data-reason="te_oud"><span class="k">4</span><span class="t">Te oud</span></button>
+      <button class="reason-btn" type="button" data-reason="verkeerde_vorm"><span class="k">5</span><span class="t">Verkeerde vorm</span></button>
+      <button class="reason-btn" type="button" data-reason="anders"><span class="k">6</span><span class="t">Anders</span></button>
+    </div>
+    <textarea id="reasonComment" placeholder="Commentaar (optioneel): wat had beter gemoeten?"></textarea>
+    <div class="reason-actions">
+      <button class="btn primary" id="reasonConfirm" type="button">Bewaar</button>
+      <button class="btn ghost" id="reasonCancel" type="button">Terug</button>
+      <span class="hint" id="reasonHint">1–6 reden · Enter bewaart · Esc terug</span>
+    </div>
+  </div>
+
+  <div class="panel" id="leerPanel" hidden></div>
+  <div class="panel" id="logPanel" hidden></div>
+  <div class="panel" id="routePanel" hidden></div>
+  <div class="panel" id="queuePanel" hidden></div>
+  <div class="panel" id="interstitial" hidden></div>
+  <div class="panel" id="summary" hidden></div>
+</div>
+
+<script id="cards-data" type="application/json">[{"id":15,"slug":"regular-015","title":"Programmeerbare intimiteit zonder opgeblazen bereikcijfers","historischeBronstatus":"GEDEELTELIJK","podiumstatus":"PODIUMKLAAR","afbakening":"deze kaart reconstrueert het oorspronkelijke artikel niet; zij gebruikt uitsluitend afzonderlijk geverifieerde feiten.","claimaudit":"4 hard claims — 1 bevestigd, 1 genuanceerd, 2 onbevestigd.","kern":"AI-companions kunnen gamepersonages, dialoog en betaalde beleving combineren. De aantallen uit de oude kaart zijn niet podiumgeschikt.","podiumbewijs":[{"status":"GENUANCEERD","claim":"De Volkskrant beschrijft vrouwen in Beijing die een fictief vriendje combineren met AI, games en betaalde optredens","rationale":"Publieke uitgeversmetadata bevestigt de casus en aanleiding, maar niet de volledige artikelcontext.","sources":["VOLKSKRANT15"]},{"status":"BEVESTIGD","claim":"Zhumengdao biedt AI-gestuurde personagedialoog aan","rationale":"De productsite toont de dienst en functie; dit zegt niets over onafhankelijk gemeten gebruik.","sources":["ZHUMENGDAO"]}],"nietGebruiken":[{"status":"ONBEVESTIGD","claim":"Zhumengdao heeft vijf miljoen gebruikers en het merendeel is vrouw","rationale":"Niet teruggevonden in een vrije primaire bron; verwijderd.","sources":[]},{"status":"ONBEVESTIGD","claim":"Love and Deepspace heeft circa zes miljoen maandelijkse actieve spelers","rationale":"Niet tegen een vrije primaire bedrijfs- of platformbron bevestigd; verwijderd.","sources":[]}],"bronnen":[{"id":"VOLKSKRANT15","naam":"De Volkskrant","beschrijving":"publieke artikelmetadata","url":"https://www.volkskrant.nl/volkskrant-magazine/in-beijing-huren-vrouwen-hun-ideale-fictieve-vriendje-in-echte-vriendjes-kunnen-vreemdgaan-en-gewelddadig-zijn~b2cf6946/"},{"id":"ZHUMENGDAO","naam":"Zhumengdao","beschrijving":"productsite","url":"https://zhumengdao.com/"}],"gebruik":"Vertel de kern en de begrenzing samen. Maak van een bronstelling, modelschatting, scenario of associatie geen algemener feit dan de primaire bron toelaat."},{"id":16,"slug":"regular-016","title":"Gemak als ontwerpkeuze, niet als bewezen vaardigheidsverlies","historischeBronstatus":"GEDEELTELIJK","podiumstatus":"PODIUMKLAAR","afbakening":"deze kaart reconstrueert het oorspronkelijke artikel niet; zij gebruikt uitsluitend afzonderlijk geverifieerde feiten.","claimaudit":"3 hard claims — 1 bevestigd, 0 genuanceerd, 2 onbevestigd.","kern":"Gebruik de opinie als debatvraag: welke vaardigheden willen we blijven oefenen wanneer technologie frictie wegneemt? Presenteer vaardigheidsverlies niet als aangetoond gevolg.","podiumbewijs":[{"status":"BEVESTIGD","claim":"Corine Nijenhuis publiceerde de opinie dat behoefte aan gemak kan eindigen in gemakzucht en luiheid","rationale":"De publieke opiniekop bevestigt auteur en stelling; het blijft een auteursstandpunt.","sources":["VOLKSKRANT16"]}],"nietGebruiken":[{"status":"ONBEVESTIGD","claim":"Technologie die stappen wegneemt vermindert daardoor menselijke vaardigheden","rationale":"De kaart bevat geen primaire studie die deze algemene causaliteit draagt; herschreven als vraag.","sources":[]},{"status":"ONBEVESTIGD","claim":"Frictieloos ontwerp maakt mensen passief","rationale":"Te algemeen en niet empirisch onderbouwd in het bronmateriaal; verwijderd als feit.","sources":[]}],"bronnen":[{"id":"VOLKSKRANT16","naam":"De Volkskrant","beschrijving":"publieke opiniekop","url":"https://www.volkskrant.nl/columns-opinie/onze-behoefte-aan-gemak-slaat-door-in-gemakzucht-en-eindigt-in-luiheid~b9ad70e4/"}],"gebruik":"Vertel de kern en de begrenzing samen. Maak van een bronstelling, modelschatting, scenario of associatie geen algemener feit dan de primaire bron toelaat."},{"id":20,"slug":"regular-020","title":"Humanoïde robots: meetbare records en onbesliste bruikbaarheid","historischeBronstatus":"GEDEELTELIJK","podiumstatus":"PODIUMKLAAR","afbakening":"deze kaart reconstrueert het oorspronkelijke artikel niet; zij gebruikt uitsluitend afzonderlijk geverifieerde feiten.","claimaudit":"3 hard claims — 2 bevestigd, 0 genuanceerd, 1 onbevestigd.","kern":"De robotspelen in Beijing lieten meetbare sportrecords zien. Die evenementprestaties bewijzen nog geen algemene autonomie of bruikbaarheid buiten de arena.","podiumbewijs":[{"status":"BEVESTIGD","claim":"In Beijing vonden in 2026 de tweede World Humanoid Robot Games plaats","rationale":"Bevestigd door de gemeente Beijing.","sources":["BEIJING_GAMES"]},{"status":"BEVESTIGD","claim":"Het evenement telde 666 teams en 2.000 robots; de 100 meter werd in 9,39 seconde afgelegd","rationale":"Evenementcijfers van de organiserende stad; als evenementclaims gelabeld.","sources":["BEIJING_GAMES"]}],"nietGebruiken":[{"status":"ONBEVESTIGD","claim":"Robots faalden bij praktische taken zoals spijkers slaan","rationale":"Stond in nieuwsmetadata, niet in de gevonden vrije primaire evenementbron; verwijderd.","sources":[]}],"bronnen":[{"id":"BEIJING_GAMES","naam":"Beijing municipal government","beschrijving":"World Humanoid Robot Games","url":"https://english.beijing.gov.cn/beijinginfo/sci/latesttrends/202608/t20260825_4836357.html"}],"gebruik":"Vertel de kern en de begrenzing samen. Maak van een bronstelling, modelschatting, scenario of associatie geen algemener feit dan de primaire bron toelaat."},{"id":40,"slug":"regular-040","title":"StairMed: klinische BCI, geen bewijs voor gezonde supermensen","historischeBronstatus":"GEDEELTELIJK","podiumstatus":"PODIUMKLAAR","afbakening":"deze kaart reconstrueert het oorspronkelijke artikel niet; zij gebruikt uitsluitend afzonderlijk geverifieerde feiten.","claimaudit":"4 hard claims — 2 bevestigd, 0 genuanceerd, 2 onbevestigd.","kern":"StairMed ontwikkelt een implanteerbare brain-computerinterface en sponsort een geregistreerde studie bij mensen met een dwarslaesie. De oude claims over gezonde gebruikers, supermensen en Neuralink zijn niet gedekt.","podiumbewijs":[{"status":"BEVESTIGD","claim":"StairMed is een Chinese ontwikkelaar van implanteerbare brain-computerinterfaces","rationale":"Bevestigd door de bedrijfsinformatie.","sources":["STAIRMED"]},{"status":"BEVESTIGD","claim":"StairMed sponsort een studie met een implanteerbare draadloze interface voor mensen met ruggenmergletsel","rationale":"ClinicalTrials.gov vermeldt sponsor, interventie en patiëntgroep; geen werkzaamheidsconclusie.","sources":["STAIRMED_TRIAL"]}],"nietGebruiken":[{"status":"ONBEVESTIGD","claim":"De technologie is bestemd voor gezonde mensen of menselijke verbetering","rationale":"Niet ondersteund door het klinische register; verwijderd.","sources":[]},{"status":"ONBEVESTIGD","claim":"De aanpak kan feitelijk met Neuralink worden vergeleken","rationale":"Geen primaire vergelijkende documentatie gevonden; verwijderd.","sources":[]}],"bronnen":[{"id":"STAIRMED","naam":"StairMed","beschrijving":"product- en bedrijfsinformatie","url":"https://www.stairmed.com/en/"},{"id":"STAIRMED_TRIAL","naam":"ClinicalTrials.gov NCT07603752","beschrijving":"","url":"https://clinicaltrials.gov/study/NCT07603752"}],"gebruik":"Vertel de kern en de begrenzing samen. Maak van een bronstelling, modelschatting, scenario of associatie geen algemener feit dan de primaire bron toelaat."},{"id":43,"slug":"regular-043","title":"AI-groei vraagt een aantoonbaar bedrijfsprobleem","historischeBronstatus":"GEDEELTELIJK","podiumstatus":"PODIUMKLAAR","afbakening":"deze kaart reconstrueert het oorspronkelijke artikel niet; zij gebruikt uitsluitend afzonderlijk geverifieerde feiten.","claimaudit":"3 hard claims — 1 bevestigd, 1 genuanceerd, 1 onbevestigd.","kern":"TCS presenteert AI als onderdeel van bedrijfsverandering. Gebruik dat leveranciersperspectief als aanleiding om probleem, proces, data en meetbare uitkomst expliciet te maken.","podiumbewijs":[{"status":"BEVESTIGD","claim":"K. Krithivasan is CEO van TCS en koppelt AI aan bedrijfstransformatie","rationale":"Bevestigd in de eigen CEO-brief; commerciële bron.","sources":["TCS"]},{"status":"GENUANCEERD","claim":"AI levert pas groei op wanneer probleem, proces, data en uitkomst zijn gekoppeld","rationale":"Bruikbaar implementatiekader, maar geen universeel bewezen wetmatigheid en mede afkomstig van een dienstverlener.","sources":["TCS"]}],"nietGebruiken":[{"status":"ONBEVESTIGD","claim":"Klanten weten niet hoe zij met AI kunnen groeien","rationale":"De exacte screenshotuitspraak is niet in de vrije primaire bron teruggevonden; niet als citaat gebruiken.","sources":[]}],"bronnen":[{"id":"TCS","naam":"TCS","beschrijving":"letter from the CEO","url":"https://www.tcs.com/investor-relations/management-commentary/letter-from-ceo"}],"gebruik":"Vertel de kern en de begrenzing samen. Maak van een bronstelling, modelschatting, scenario of associatie geen algemener feit dan de primaire bron toelaat."},{"id":44,"slug":"regular-044","title":"Techmacht is een politieke stelling die concrete toetsing vraagt","historischeBronstatus":"GEDEELTELIJK","podiumstatus":"PODIUMKLAAR","afbakening":"deze kaart reconstrueert het oorspronkelijke artikel niet; zij gebruikt uitsluitend afzonderlijk geverifieerde feiten.","claimaudit":"3 hard claims — 1 bevestigd, 2 genuanceerd, 0 onbevestigd.","kern":"Mees van Rees stelt dat techbedrijven AI als natuurkracht framen en politieke macht uitoefenen. Presenteer dit als zijn argument en toets vervolgens infrastructuur, afhankelijkheid en toezicht concreet.","podiumbewijs":[{"status":"BEVESTIGD","claim":"Mees van Rees publiceerde een opinie over techreuzen die zich als politieke macht gedragen","rationale":"Publieke uitgeverspagina bevestigt auteur, genre en onderwerp.","sources":["LC44"]},{"status":"GENUANCEERD","claim":"Techbedrijven presenteren AI als een onvermijdelijke natuurkracht","rationale":"Dit is de expliciete stelling van de auteur, geen vastgestelde sectorbrede bevinding.","sources":["LC44"]},{"status":"GENUANCEERD","claim":"Techbedrijven vestigen een ondemocratische orde","rationale":"Alleen als politieke diagnose van Van Rees gebruiken; niet als neutraal feit.","sources":["LC44"]}],"nietGebruiken":[],"bronnen":[{"id":"LC44","naam":"Leeuwarder Courant","beschrijving":"publieke opiniepagina van Mees van Rees","url":"https://www.lc.nl/opinie/het-gevaar-van-techreuzen-die-zich-als-een-politieke-macht-gedragen/159643034.html"}],"gebruik":"Vertel de kern en de begrenzing samen. Maak van een bronstelling, modelschatting, scenario of associatie geen algemener feit dan de primaire bron toelaat."},{"id":48,"slug":"regular-048","title":"Herkomstsignalen helpen, maar bewijzen geen waarheid","historischeBronstatus":"GEDEELTELIJK","podiumstatus":"PODIUMKLAAR","afbakening":"deze kaart reconstrueert het oorspronkelijke artikel niet; zij gebruikt uitsluitend afzonderlijk geverifieerde feiten.","claimaudit":"3 hard claims — 1 bevestigd, 1 genuanceerd, 1 onbevestigd.","kern":"C2PA kan de herkomst en bewerkingsgeschiedenis van media cryptografisch controleerbaar maken. Dat geeft context bij twijfel, maar bepaalt niet of een bewering waar is.","podiumbewijs":[{"status":"BEVESTIGD","claim":"C2PA maakt cryptografisch verifieerbare provenance en manipulatie-indicaties mogelijk","rationale":"Bevestigd in de technische C2PA-specificatie.","sources":["C2PA"]},{"status":"GENUANCEERD","claim":"Content Credentials bewijzen dat inhoud waar is","rationale":"De standaard bewijst provenance, geen waarheidswaarde; de oorspronkelijke implicatie is begrensd.","sources":["C2PA"]}],"nietGebruiken":[{"status":"ONBEVESTIGD","claim":"AI veroorzaakt permanent minder vertrouwen of nieuwsgierigheid","rationale":"Geen primaire effectstudie in het dossier; verwijderd als causale claim.","sources":[]}],"bronnen":[{"id":"C2PA","naam":"C2PA specification 2.4","beschrijving":"","url":"https://spec.c2pa.org/specifications/specifications/2.4/specs/C2PA_Specification.html"}],"gebruik":"Vertel de kern en de begrenzing samen. Maak van een bronstelling, modelschatting, scenario of associatie geen algemener feit dan de primaire bron toelaat."},{"id":51,"slug":"regular-051","title":"Europa kiest met AI ook voor autonomie en publieke waarde","historischeBronstatus":"GEDEELTELIJK","podiumstatus":"PODIUMKLAAR","afbakening":"deze kaart reconstrueert het oorspronkelijke artikel niet; zij gebruikt uitsluitend afzonderlijk geverifieerde feiten.","claimaudit":"3 hard claims — 2 bevestigd, 1 genuanceerd, 0 onbevestigd.","kern":"Josette Daemen bekritiseert het raceframe. Europa investeert tegelijk in open frontier-AI-capaciteit; snelheid is daarmee één beleidsvariabele naast toegang, autonomie en publieke waarde.","podiumbewijs":[{"status":"BEVESTIGD","claim":"Josette Daemen publiceerde de columnstelling ‘Het idee van een AI-race, wat een armoe’","rationale":"Bevestigd in haar eigen openbare toelichting.","sources":["DAEMEN"]},{"status":"BEVESTIGD","claim":"De Europese Commissie ondersteunt Europese open frontier-AI-infrastructuur","rationale":"Bevestigd door de Commissie.","sources":["EC_AI"]},{"status":"GENUANCEERD","claim":"Niet meedoen aan de AI-race is zonder gevolgen een vrije keuze","rationale":"Normatieve vraag: afhankelijkheid en capaciteit blijven concrete beleidsafwegingen.","sources":["DAEMEN","EC_AI"]}],"nietGebruiken":[],"bronnen":[{"id":"DAEMEN","naam":"Josette Daemen","beschrijving":"eigen openbare toelichting op haar column","url":"https://www.linkedin.com/posts/josette-daemen-04ab415a_column-het-idee-van-een-ai-race-wat-activity-7477976543915446272-S2OP"},{"id":"EC_AI","naam":"Europese Commissie","beschrijving":"Europese open frontier-AI-infrastructuur","url":"https://digital-strategy.ec.europa.eu/en/news/commission-selects-europa-consortium-winner-frontier-ai-grand-challenge-project-build-european-open"}],"gebruik":"Vertel de kern en de begrenzing samen. Maak van een bronstelling, modelschatting, scenario of associatie geen algemener feit dan de primaire bron toelaat."},{"id":53,"slug":"regular-053","title":"Een robot in gedeelde ruimte is een ontwerptest","historischeBronstatus":"GEDEELTELIJK","podiumstatus":"PODIUMKLAAR","afbakening":"deze kaart reconstrueert het oorspronkelijke artikel niet; zij gebruikt uitsluitend afzonderlijk geverifieerde feiten.","claimaudit":"3 hard claims — 0 bevestigd, 1 genuanceerd, 2 onbevestigd.","kern":"Gebruik de lift uitsluitend als scenario voor mens-robotinteractie. De oorspronkelijke liftgebeurtenis en de rangordeclaim over China zijn niet geverifieerd.","podiumbewijs":[{"status":"GENUANCEERD","claim":"AI-systemen in publieke context vragen vooraf bepaalde rollen, toezicht en risicobeheersing","rationale":"NIST ondersteunt contextgebonden risico- en governancetaken; het document bewijst het liftincident niet.","sources":["NIST_RMF"]}],"nietGebruiken":[{"status":"ONBEVESTIGD","claim":"Een specifieke robot veroorzaakte ongemak in een lift","rationale":"Geen primaire incident- of productbron gevonden; alleen als hypothetisch scenario behouden.","sources":[]},{"status":"ONBEVESTIGD","claim":"China is verder met sociale robots","rationale":"Te breed en zonder vergelijkbare maatstaf; verwijderd.","sources":[]}],"bronnen":[{"id":"NIST_RMF","naam":"NIST AI Risk Management Framework 1.0","beschrijving":"","url":"https://nvlpubs.nist.gov/nistpubs/ai/NIST.AI.100-1.pdf"}],"gebruik":"Vertel de kern en de begrenzing samen. Maak van een bronstelling, modelschatting, scenario of associatie geen algemener feit dan de primaire bron toelaat."},{"id":55,"slug":"regular-055","title":"AI brain fry is een gemeten werkervaring, geen diagnose","historischeBronstatus":"GEDEELTELIJK","podiumstatus":"PODIUMKLAAR","afbakening":"deze kaart reconstrueert het oorspronkelijke artikel niet; zij gebruikt uitsluitend afzonderlijk geverifieerde feiten.","claimaudit":"3 hard claims — 2 bevestigd, 0 genuanceerd, 1 onbevestigd.","kern":"BCG rapporteert in een onderzoek onder 1.488 Amerikaanse werknemers mentale overbelasting rond AI-gebruik. Gebruik ‘brain fry’ als werkervaringslabel en niet als medische diagnose of universeel effect.","podiumbewijs":[{"status":"BEVESTIGD","claim":"BCG onderzocht 1.488 Amerikaanse werknemers naar AI-gerelateerde mentale belasting","rationale":"Omvang en onderwerp staan in de primaire onderzoekspublicatie van BCG.","sources":["BCG_BRAINFry"]},{"status":"BEVESTIGD","claim":"De studie koppelt AI brain fry aan fouten, beslisoverbelasting en vertrekintentie","rationale":"Als gerapporteerde associaties uit het BCG-onderzoek, niet als klinische diagnose.","sources":["BCG_BRAINFry"]}],"nietGebruiken":[{"status":"ONBEVESTIGD","claim":"AI neemt bij iedereen het denken over en veroorzaakt psychologische verwarring","rationale":"Universele causaliteit ontbreekt; verwijderd.","sources":[]}],"bronnen":[{"id":"BCG_BRAINFry","naam":"BCG","beschrijving":"onderzoek naar AI brain fry onder 1.488 werknemers","url":"https://www.bcg.com/ja-jp/news/5march2026-when-using-ai-leads-brain-fry"}],"gebruik":"Vertel de kern en de begrenzing samen. Maak van een bronstelling, modelschatting, scenario of associatie geen algemener feit dan de primaire bron toelaat."},{"id":56,"slug":"regular-056","title":"Volt: digitale heffing en omscholing bevestigd, AI-belasting niet","historischeBronstatus":"GEDEELTELIJK","podiumstatus":"PODIUMKLAAR","afbakening":"deze kaart reconstrueert het oorspronkelijke artikel niet; zij gebruikt uitsluitend afzonderlijk geverifieerde feiten.","claimaudit":"4 hard claims — 2 bevestigd, 0 genuanceerd, 2 onbevestigd.","kern":"Volt-documenten ondersteunen een Europese digitaledienstenbelasting en in Amsterdam een omscholingsplicht bij automatisering. De specifieke AI-belasting, het gouden aandeel en publieke bestuurszetels zijn niet bevestigd.","podiumbewijs":[{"status":"BEVESTIGD","claim":"Volt Nederland bepleit een Europese digitaledienstenbelasting","rationale":"Bevestigd in het partijprogramma; dit is niet hetzelfde als een belasting op vervangen personeel.","sources":["VOLT_PROGRAM"]},{"status":"BEVESTIGD","claim":"Volt Amsterdam wil dat werkgevers werknemers omscholen wanneer een sector automatiseert","rationale":"Bevestigd op de programmapagina van Volt Amsterdam.","sources":["VOLT_AMS"]}],"nietGebruiken":[{"status":"ONBEVESTIGD","claim":"Volt stelt een AI-belasting op personeelsvervanging voor","rationale":"Niet in de gevonden primaire partijteksten aangetroffen; verwijderen.","sources":[]},{"status":"ONBEVESTIGD","claim":"Volt stelt een gouden aandeel of publieke zetels in AI-bedrijven voor","rationale":"Niet in de gevonden primaire partijteksten aangetroffen; verwijderen.","sources":[]}],"bronnen":[{"id":"VOLT_PROGRAM","naam":"Volt Nederland","beschrijving":"conceptverkiezingsprogramma 2025","url":"https://voltnederland.org/storage/doc/volt_concept_verkiezingsprogramma_2025.pdf"},{"id":"VOLT_AMS","naam":"Volt Amsterdam","beschrijving":"automatisering en omscholing","url":"https://voltnederland.org/amsterdam/grv-2026-hoofdstuk-4"}],"gebruik":"Vertel de kern en de begrenzing samen. Maak van een bronstelling, modelschatting, scenario of associatie geen algemener feit dan de primaire bron toelaat."},{"id":57,"slug":"regular-057","title":"Militaire AI vereist aantoonbare menselijke controle","historischeBronstatus":"GEDEELTELIJK","podiumstatus":"PODIUMKLAAR","afbakening":"deze kaart reconstrueert het oorspronkelijke artikel niet; zij gebruikt uitsluitend afzonderlijk geverifieerde feiten.","claimaudit":"3 hard claims — 2 bevestigd, 0 genuanceerd, 1 onbevestigd.","kern":"Het ICRC waarschuwt dat AI in militaire besluitvorming risico’s voor burgers en juridische naleving kan vergroten. De podiumlijn blijft governance: menselijke beoordeling, verantwoordelijkheid en toetsing.","podiumbewijs":[{"status":"BEVESTIGD","claim":"AI wordt gebruikt of overwogen voor militaire besluitondersteuning","rationale":"Bevestigd door het ICRC.","sources":["ICRC"]},{"status":"BEVESTIGD","claim":"Menselijke beoordeling en controle moeten behouden blijven bij beslissingen met gevolgen voor leven en veiligheid","rationale":"Normatieve en juridische conclusie van het ICRC.","sources":["ICRC"]}],"nietGebruiken":[{"status":"ONBEVESTIGD","claim":"Een concreet AI-systeem werd aangevallen en beïnvloedde een slagveld","rationale":"Geen gebeurtenisbron aanwezig; verwijderd en geen operationele details uitgewerkt.","sources":[]}],"bronnen":[{"id":"ICRC","naam":"ICRC","beschrijving":"FAQ over AI in het militaire domein","url":"https://www.icrc.org/en/article/faq-artificial-intelligence-in-military-domain"}],"gebruik":"Vertel de kern en de begrenzing samen. Maak van een bronstelling, modelschatting, scenario of associatie geen algemener feit dan de primaire bron toelaat."},{"id":62,"slug":"regular-062","title":"Scores over mensen vragen uitleg en bezwaar","historischeBronstatus":"GEDEELTELIJK","podiumstatus":"PODIUMKLAAR","afbakening":"deze kaart reconstrueert het oorspronkelijke artikel niet; zij gebruikt uitsluitend afzonderlijk geverifieerde feiten.","claimaudit":"3 hard claims — 2 bevestigd, 1 genuanceerd, 0 onbevestigd.","kern":"De EU behandelt bepaalde AI-toepassingen voor kredietwaardigheid en verzekeringsrisico als hoog risico. Geautomatiseerde beslissingen vragen context, uitleg en een effectieve route naar menselijke toetsing.","podiumbewijs":[{"status":"BEVESTIGD","claim":"De EU AI Act classificeert bepaalde kredietwaardigheids- en verzekeringsrisicosystemen als hoog risico","rationale":"Bevestigd in de verordening; uitzonderingen en toepassingsbereik blijven gelden.","sources":["EU_AI_ACT"]},{"status":"BEVESTIGD","claim":"Bij geautomatiseerde kredietscorebesluiten kan betekenisvolle uitleg nodig zijn","rationale":"Bevestigd in de EU-rechtspraak rond SCHUFA, binnen de juridische context van die zaak.","sources":["CJEU_SCHUFA"]},{"status":"GENUANCEERD","claim":"Elke AI-voorspelling is juridisch een besluit en moet op dezelfde manier worden aangevochten","rationale":"Alleen wanneer en voor zover een score in een relevante besluitketen valt; geen algemene regel voor ieder model.","sources":["EU_AI_ACT","CJEU_SCHUFA"]}],"nietGebruiken":[],"bronnen":[{"id":"EU_AI_ACT","naam":"EUR-Lex","beschrijving":"Verordening (EU) 2024/1689","url":"https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32024R1689"},{"id":"CJEU_SCHUFA","naam":"Hof van Justitie EU","beschrijving":"C-203/22, geautomatiseerde kredietscore","url":"https://eur-lex.europa.eu/legal-content/EN/ALL/?uri=CELEX:62022CJ0203"}],"gebruik":"Vertel de kern en de begrenzing samen. Maak van een bronstelling, modelschatting, scenario of associatie geen algemener feit dan de primaire bron toelaat."},{"id":64,"slug":"regular-064","title":"Twaalf AI-risico’s als toetsagenda","historischeBronstatus":"GEDEELTELIJK","podiumstatus":"PODIUMKLAAR","afbakening":"deze kaart reconstrueert het oorspronkelijke artikel niet; zij gebruikt uitsluitend afzonderlijk geverifieerde feiten.","claimaudit":"12 hard claims — 9 bevestigd, 1 genuanceerd, 2 onbevestigd.","kern":"De twaalf risico’s zijn een redactionele toetsagenda. Elk punt is gekoppeld aan een primaire norm-, onderzoeks- of toezichtbron; geen specifiek incident uit de verdwenen screenshots geldt als bewezen.","podiumbewijs":[{"status":"BEVESTIGD","claim":"AI heeft milieu-impact over de volledige levenscyclus","rationale":"UNEP beschrijft de end-to-end milieu-impact en meetbehoefte.","sources":["UNEP"]},{"status":"BEVESTIGD","claim":"Geautomatiseerde mobiliteit vraagt publieke veiligheidscontrole","rationale":"Toezichthouders publiceren veiligheidskaders en incidentrapportage.","sources":["NHTSA","DMV"]},{"status":"BEVESTIGD","claim":"Technisch klinkende AI-uitkomsten vereisen validatie vóór gebruik","rationale":"NIST verlangt validiteit, betrouwbaarheid en contextgebonden risicobeheer.","sources":["NIST_RMF"]},{"status":"BEVESTIGD","claim":"Zorg-AI moet aantoonbare baten en verantwoord gebruik hebben","rationale":"WHO vraagt bewijs, toezicht en bescherming van patiënten.","sources":["WHO_AI","WHO_SAFE"]},{"status":"BEVESTIGD","claim":"AI kan bestaande cyberdreigingen in volume en impact vergroten","rationale":"NCSC-beoordeling; geen operationele misbruikdetails opgenomen.","sources":["NCSC"]},{"status":"BEVESTIGD","claim":"Provenance kan bronintegriteit ondersteunen maar bewijst geen waarheid","rationale":"C2PA ondersteunt controleerbare herkomst.","sources":["C2PA"]},{"status":"BEVESTIGD","claim":"Technologie-ethiek marginaliseert vaak belangen van dieren","rationale":"Bevestigd in het open-accessonderzoek van De Jong.","sources":["DEJONG"]},{"status":"GENUANCEERD","claim":"AI-gebruik veroorzaakt bij iedereen mentale afhankelijkheid","rationale":"Er zijn gerapporteerde werkervaringen en risico-indicatoren; geen universele causaliteit.","sources":["BCG_BRAINFry"]},{"status":"BEVESTIGD","claim":"Robotaxi’s kennen uitzonderingssituaties die toezicht en rapportage vereisen","rationale":"Regelgevers vragen monitoring en incidentrapportage; specifieke screenshotsituaties zijn niet overgenomen.","sources":["NHTSA","DMV"]},{"status":"BEVESTIGD","claim":"Hoog-risico-AI in rechts- en toegangsdomeinen vraagt transparantie en menselijk toezicht","rationale":"Bevestigd als regulatoir uitgangspunt binnen het bereik van de verordening.","sources":["EU_AI_ACT"]}],"nietGebruiken":[{"status":"ONBEVESTIGD","claim":"Het concrete screenshotvoorbeeld van culturele toe-eigening is feitelijk juist","rationale":"De oorspronkelijke bron ontbreekt; alleen als redactionele vraag behouden.","sources":[]},{"status":"ONBEVESTIGD","claim":"Het concrete screenshotvoorbeeld over kinderen en synthetische rolmodellen is bewezen","rationale":"Geen primaire casusbron; algemene beschermingsvraag blijft als vraag.","sources":[]}],"bronnen":[{"id":"UNEP","naam":"UNEP","beschrijving":"milieu-impact over de hele AI-levenscyclus","url":"https://www.unep.org/resources/report/artificial-intelligence-ai-end-end-environmental-impact-full-ai-lifecycle-needs-be"},{"id":"NHTSA","naam":"NHTSA","beschrijving":"automated vehicle safety","url":"https://www.nhtsa.gov/vehicle-safety/automated-vehicle-safety"},{"id":"DMV","naam":"California DMV","beschrijving":"autonomous vehicle incident reporting","url":"https://www.dmv.ca.gov/portal/vehicle-industry-services/autonomous-vehicles/autonomous-vehicles-incident-reporting/"},{"id":"NIST_RMF","naam":"NIST AI Risk Management Framework 1.0","beschrijving":"","url":"https://nvlpubs.nist.gov/nistpubs/ai/NIST.AI.100-1.pdf"},{"id":"WHO_AI","naam":"WHO","beschrijving":"Ethics and governance of AI for health","url":"https://www.who.int/publications/i/item/9789240029200"},{"id":"WHO_SAFE","naam":"WHO","beschrijving":"safe and ethical AI for health","url":"https://www.who.int/news/item/16-05-2023-who-calls-for-safe-and-ethical-ai-for-health"},{"id":"NCSC","naam":"UK NCSC","beschrijving":"impact of AI on cyber threat to 2027","url":"https://www.ncsc.gov.uk/report/impact-ai-cyber-threat-now-2027"},{"id":"C2PA","naam":"C2PA specification 2.4","beschrijving":"","url":"https://spec.c2pa.org/specifications/specifications/2.4/specs/C2PA_Specification.html"},{"id":"DEJONG","naam":"Eline de Jong","beschrijving":"From Blind Spot to Stakeholder","url":"https://link.springer.com/article/10.1007/s11948-026-00617-9"},{"id":"BCG_BRAINFry","naam":"BCG","beschrijving":"onderzoek naar AI brain fry onder 1.488 werknemers","url":"https://www.bcg.com/ja-jp/news/5march2026-when-using-ai-leads-brain-fry"},{"id":"EU_AI_ACT","naam":"EUR-Lex","beschrijving":"Verordening (EU) 2024/1689","url":"https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32024R1689"}],"gebruik":"Vertel de kern en de begrenzing samen. Maak van een bronstelling, modelschatting, scenario of associatie geen algemener feit dan de primaire bron toelaat."},{"id":65,"slug":"regular-065","title":"AI, grondstoffen en zeggenschap: feiten los van het kader","historischeBronstatus":"GEDEELTELIJK","podiumstatus":"PODIUMKLAAR","afbakening":"deze kaart reconstrueert het oorspronkelijke artikel niet; zij gebruikt uitsluitend afzonderlijk geverifieerde feiten.","claimaudit":"4 hard claims — 2 bevestigd, 1 genuanceerd, 1 onbevestigd.","kern":"Jeremy Lent verbindt technologische versnelling aan ecologische en sociale uitputting; UNEP bevestigt dat AI een meetbare levenscyclusimpact heeft. ‘Techno-feodalisme’ en mede-eigenaarschap blijven politieke interpretaties.","podiumbewijs":[{"status":"BEVESTIGD","claim":"Jeremy Lent verbindt AI en technologische versnelling aan grondstoffenverbruik en ongelijkheid","rationale":"Bevestigd als Lents eigen gepubliceerde analyse.","sources":["LENT_FUTURE"]},{"status":"BEVESTIGD","claim":"AI heeft milieu-effecten in meerdere fasen van de levenscyclus","rationale":"Bevestigd door UNEP.","sources":["UNEP"]},{"status":"GENUANCEERD","claim":"De huidige AI-economie is feitelijk techno-feodaal","rationale":"Normatief begrippenkader, geen empirisch vastgestelde systeemclassificatie.","sources":["LENT_FUTURE"]}],"nietGebruiken":[{"status":"ONBEVESTIGD","claim":"Mede-eigenaarschap is bewezen de oplossing voor deze effecten","rationale":"Politiek voorstel zonder effectbewijs in het dossier; alleen als debatoptie noemen.","sources":[]}],"bronnen":[{"id":"LENT_FUTURE","naam":"Jeremy Lent","beschrijving":"The Future","url":"https://www.jeremylent.com/the-future"},{"id":"UNEP","naam":"UNEP","beschrijving":"milieu-impact over de hele AI-levenscyclus","url":"https://www.unep.org/resources/report/artificial-intelligence-ai-end-end-environmental-impact-full-ai-lifecycle-needs-be"}],"gebruik":"Vertel de kern en de begrenzing samen. Maak van een bronstelling, modelschatting, scenario of associatie geen algemener feit dan de primaire bron toelaat."},{"id":66,"slug":"regular-066","title":"Robotaxi’s toetsen aan publieke waarden","historischeBronstatus":"GEDEELTELIJK","podiumstatus":"PODIUMKLAAR","afbakening":"deze kaart reconstrueert het oorspronkelijke artikel niet; zij gebruikt uitsluitend afzonderlijk geverifieerde feiten.","claimaudit":"3 hard claims — 2 bevestigd, 0 genuanceerd, 1 onbevestigd.","kern":"Robotaxi’s opereren onder veiligheids- en rapportagekaders. Bespreek betaalbaarheid, toegankelijkheid, keuze en aansprakelijkheid als publieke ontwerpvragen; de ‘toekomst zonder mensen’ blijft een opiniebeeld.","podiumbewijs":[{"status":"BEVESTIGD","claim":"Geautomatiseerde voertuigen worden getest en gebruikt binnen afgebakende operationele domeinen","rationale":"Bevestigd door NHTSA; capaciteiten verschillen per systeem.","sources":["NHTSA"]},{"status":"BEVESTIGD","claim":"California vereist openbare incidentrapportage voor autonome voertuigen","rationale":"Bevestigd door de DMV.","sources":["DMV"]}],"nietGebruiken":[{"status":"ONBEVESTIGD","claim":"Robotaxi’s leiden tot een toekomst zonder mensen","rationale":"Retorisch toekomstbeeld, geen voorspelling; verwijderd als feit.","sources":[]}],"bronnen":[{"id":"NHTSA","naam":"NHTSA","beschrijving":"automated vehicle safety","url":"https://www.nhtsa.gov/vehicle-safety/automated-vehicle-safety"},{"id":"DMV","naam":"California DMV","beschrijving":"autonomous vehicle incident reporting","url":"https://www.dmv.ca.gov/portal/vehicle-industry-services/autonomous-vehicles/autonomous-vehicles-incident-reporting/"}],"gebruik":"Vertel de kern en de begrenzing samen. Maak van een bronstelling, modelschatting, scenario of associatie geen algemener feit dan de primaire bron toelaat."},{"id":68,"slug":"regular-068","title":"Leo XIV citeert Tolkien; de Thiel-koppeling is onbewezen","historischeBronstatus":"GEDEELTELIJK","podiumstatus":"PODIUMKLAAR","afbakening":"deze kaart reconstrueert het oorspronkelijke artikel niet; zij gebruikt uitsluitend afzonderlijk geverifieerde feiten.","claimaudit":"3 hard claims — 1 bevestigd, 1 genuanceerd, 1 onbevestigd.","kern":"Paus Leo XIV gebruikt Tolkien in Magnifica Humanitas om menselijke waardigheid en technologische macht te bespreken. De eerdere koppeling aan Peter Thiel heeft geen primaire dekking en vervalt.","podiumbewijs":[{"status":"BEVESTIGD","claim":"Paus Leo XIV citeert Tolkien in Magnifica Humanitas","rationale":"Bevestigd in de primaire Vaticaanse tekst.","sources":["VATICAN"]},{"status":"GENUANCEERD","claim":"Tolkiens werk levert één ondubbelzinnige politieke interpretatie van technologie","rationale":"De encycliek geeft een specifieke interpretatie; presenteer die niet als de enige lezing.","sources":["VATICAN"]}],"nietGebruiken":[{"status":"ONBEVESTIGD","claim":"De passage is expliciet gericht tegen Peter Thiel","rationale":"Geen vermelding of primaire koppeling gevonden; verwijderd.","sources":[]}],"bronnen":[{"id":"VATICAN","naam":"Vatican","beschrijving":"Magnifica Humanitas","url":"https://www.vatican.va/content/leo-xiv/en/encyclicals/documents/20260515-magnifica-humanitas.html"}],"gebruik":"Vertel de kern en de begrenzing samen. Maak van een bronstelling, modelschatting, scenario of associatie geen algemener feit dan de primaire bron toelaat."},{"id":69,"slug":"regular-069","title":"Zorg-AI: bewijs vóór schaal","historischeBronstatus":"GEDEELTELIJK","podiumstatus":"PODIUMKLAAR","afbakening":"deze kaart reconstrueert het oorspronkelijke artikel niet; zij gebruikt uitsluitend afzonderlijk geverifieerde feiten.","claimaudit":"3 hard claims — 2 bevestigd, 0 genuanceerd, 1 onbevestigd.","kern":"WHO vraagt bewijs van voordeel, ethische waarborgen, toezicht en bescherming van patiënten vóór brede inzet van AI in de zorg. Dat maakt technologie een middel dat aan klinische uitkomsten wordt getoetst.","podiumbewijs":[{"status":"BEVESTIGD","claim":"WHO verlangt duidelijke aanwijzingen voor voordeel vóór brede routine-inzet van AI in de zorg","rationale":"Bevestigd in de WHO-oproep.","sources":["WHO_SAFE"]},{"status":"BEVESTIGD","claim":"WHO noemt ethiek, mensenrechten, verantwoording en toezicht als randvoorwaarden","rationale":"Bevestigd in WHO-richtlijnen.","sources":["WHO_AI"]}],"nietGebruiken":[{"status":"ONBEVESTIGD","claim":"Twee specifieke toekomstige artsen deden de uitspraken uit het screenshot","rationale":"De screenshotbron ontbreekt; personen en citaten niet gebruiken.","sources":[]}],"bronnen":[{"id":"WHO_SAFE","naam":"WHO","beschrijving":"safe and ethical AI for health","url":"https://www.who.int/news/item/16-05-2023-who-calls-for-safe-and-ethical-ai-for-health"},{"id":"WHO_AI","naam":"WHO","beschrijving":"Ethics and governance of AI for health","url":"https://www.who.int/publications/i/item/9789240029200"}],"gebruik":"Vertel de kern en de begrenzing samen. Maak van een bronstelling, modelschatting, scenario of associatie geen algemener feit dan de primaire bron toelaat."},{"id":71,"slug":"regular-071","title":"AI vergroot cyberdruk én verdedigingsmogelijkheden","historischeBronstatus":"GEDEELTELIJK","podiumstatus":"PODIUMKLAAR","afbakening":"deze kaart reconstrueert het oorspronkelijke artikel niet; zij gebruikt uitsluitend afzonderlijk geverifieerde feiten.","claimaudit":"3 hard claims — 2 bevestigd, 0 genuanceerd, 1 onbevestigd.","kern":"NCSC verwacht dat AI vooral bestaande aanvalsmethoden versnelt en de impact en hoeveelheid incidenten kan verhogen. AI kan verdedigers ook helpen; de score ‘4-0 achter’ is retoriek.","podiumbewijs":[{"status":"BEVESTIGD","claim":"AI zal naar verwachting het volume en de impact van cyberintrusies vergroten","rationale":"Bevestigd in de strategische dreigingsbeoordeling.","sources":["NCSC"]},{"status":"BEVESTIGD","claim":"AI kan ook defensieve cybercapaciteit ondersteunen","rationale":"NCSC beschrijft kansen voor verdediging; geen garantie op voordeel.","sources":["NCSC"]}],"nietGebruiken":[{"status":"ONBEVESTIGD","claim":"Cyberverdediging staat meetbaar 4-0 achter","rationale":"Niet gedefinieerde scoremetafoor; verwijderd.","sources":[]}],"bronnen":[{"id":"NCSC","naam":"UK NCSC","beschrijving":"impact of AI on cyber threat to 2027","url":"https://www.ncsc.gov.uk/report/impact-ai-cyber-threat-now-2027"}],"gebruik":"Vertel de kern en de begrenzing samen. Maak van een bronstelling, modelschatting, scenario of associatie geen algemener feit dan de primaire bron toelaat."},{"id":73,"slug":"regular-073","title":"Dieren zijn belanghebbenden in technologiebeleid","historischeBronstatus":"GEDEELTELIJK","podiumstatus":"PODIUMKLAAR","afbakening":"deze kaart reconstrueert het oorspronkelijke artikel niet; zij gebruikt uitsluitend afzonderlijk geverifieerde feiten.","claimaudit":"3 hard claims — 2 bevestigd, 1 genuanceerd, 0 onbevestigd.","kern":"Open-accessonderzoek van Eline de Jong laat zien dat dierenbelangen vaak marginaal zijn in technologie-ethiek en Responsible Innovation. Concrete effecten moeten per toepassing worden vastgesteld.","podiumbewijs":[{"status":"BEVESTIGD","claim":"Dierenbelangen zijn marginaal in veel gangbare kaders voor technologie-ethiek en Responsible Innovation","rationale":"Centrale bevinding van De Jongs open-accessartikel.","sources":["DEJONG"]},{"status":"BEVESTIGD","claim":"Technologieën kunnen dieren direct en via systemen en ecosystemen beïnvloeden","rationale":"Bevestigd in het onderzoek.","sources":["DEJONG"]},{"status":"GENUANCEERD","claim":"Iedere mensgerichte AI-toepassing schaadt dieren","rationale":"Niet iedere toepassing; het punt is dat effecten vooraf als belang moeten worden onderzocht.","sources":["DEJONG"]}],"nietGebruiken":[],"bronnen":[{"id":"DEJONG","naam":"Eline de Jong","beschrijving":"From Blind Spot to Stakeholder","url":"https://link.springer.com/article/10.1007/s11948-026-00617-9"}],"gebruik":"Vertel de kern en de begrenzing samen. Maak van een bronstelling, modelschatting, scenario of associatie geen algemener feit dan de primaire bron toelaat."},{"id":74,"slug":"regular-074","title":"Scenario’s zijn vragenmachines, geen voorspellingen","historischeBronstatus":"GEDEELTELIJK","podiumstatus":"PODIUMKLAAR","afbakening":"deze kaart reconstrueert het oorspronkelijke artikel niet; zij gebruikt uitsluitend afzonderlijk geverifieerde feiten.","claimaudit":"3 hard claims — 1 bevestigd, 1 genuanceerd, 1 onbevestigd.","kern":"Strategische scenario’s onderzoeken meerdere plausibele toekomsten en helpen aannames testen. Het NRC-verhaal over 2030 blijft een ongeverifieerde fictieve aanleiding en levert geen feitelijke voorspelling.","podiumbewijs":[{"status":"BEVESTIGD","claim":"Strategische foresight gebruikt scenario’s om mogelijke toekomsten en beleidsopties te onderzoeken","rationale":"Bevestigd door de OECD-methodiek.","sources":["OECD_FORESIGHT"]},{"status":"GENUANCEERD","claim":"Een scenario is een voorspelling van wat in 2030 zal gebeuren","rationale":"Scenario’s zijn geen voorspellingen; de formulering is gecorrigeerd.","sources":["OECD_FORESIGHT"]}],"nietGebruiken":[{"status":"ONBEVESTIGD","claim":"Het genoemde NRC-scenario bevatte exact een ramp waarna AI-agents werden geverifieerd","rationale":"Originele publicatie ontbreekt; detail niet als bronfeit gebruiken.","sources":[]}],"bronnen":[{"id":"OECD_FORESIGHT","naam":"OECD","beschrijving":"strategic foresight","url":"https://www.oecd.org/en/about/programmes/strategic-foresight.html"}],"gebruik":"Vertel de kern en de begrenzing samen. Maak van een bronstelling, modelschatting, scenario of associatie geen algemener feit dan de primaire bron toelaat."},{"id":75,"slug":"regular-075","title":"Robotauto’s vragen toezicht op uitzonderingen","historischeBronstatus":"GEDEELTELIJK","podiumstatus":"PODIUMKLAAR","afbakening":"deze kaart reconstrueert het oorspronkelijke artikel niet; zij gebruikt uitsluitend afzonderlijk geverifieerde feiten.","claimaudit":"4 hard claims — 2 bevestigd, 1 genuanceerd, 1 onbevestigd.","kern":"NHTSA en California DMV behandelen geautomatiseerde voertuigen als systemen met begrensde capaciteiten, toezicht en incidentrapportage. Testkilometers alleen bewijzen geen veiligheid.","podiumbewijs":[{"status":"BEVESTIGD","claim":"Geautomatiseerde voertuigen hebben operationele beperkingen en vragen monitoring","rationale":"Bevestigd in NHTSA-uitleg.","sources":["NHTSA"]},{"status":"BEVESTIGD","claim":"California publiceert een meldroute voor autonome-voertuigincidenten","rationale":"Bevestigd door de toezichthouder.","sources":["DMV"]},{"status":"GENUANCEERD","claim":"Veel testkilometers zijn op zichzelf voldoende bewijs van veiligheid","rationale":"Kilometers missen context over domein, incidenten en systeemversies; niet als enige maatstaf gebruiken.","sources":["NHTSA","DMV"]}],"nietGebruiken":[{"status":"ONBEVESTIGD","claim":"Een specifiek systeem faalde bij schoolbussen, ambulances en losse objecten","rationale":"Geen primaire incidentbron; voorbeelden verwijderd.","sources":[]}],"bronnen":[{"id":"NHTSA","naam":"NHTSA","beschrijving":"automated vehicle safety","url":"https://www.nhtsa.gov/vehicle-safety/automated-vehicle-safety"},{"id":"DMV","naam":"California DMV","beschrijving":"autonomous vehicle incident reporting","url":"https://www.dmv.ca.gov/portal/vehicle-industry-services/autonomous-vehicles/autonomous-vehicles-incident-reporting/"}],"gebruik":"Vertel de kern en de begrenzing samen. Maak van een bronstelling, modelschatting, scenario of associatie geen algemener feit dan de primaire bron toelaat."},{"id":87,"slug":"regular-087","title":"Benchmarks raken verzadigd; niet elke puzzel is bewijs van vooruitgang","historischeBronstatus":"GEDEELTELIJK","podiumstatus":"PODIUMKLAAR","afbakening":"deze kaart reconstrueert het oorspronkelijke artikel niet; zij gebruikt uitsluitend afzonderlijk geverifieerde feiten.","claimaudit":"4 hard claims — 3 bevestigd, 0 genuanceerd, 1 onbevestigd.","kern":"Een studie van zestig taalmodelbenchmarks vindt dat bijna de helft tekenen van verzadiging vertoont. Curatie hangt samen met weerbaarheid tegen verzadiging; een specifieke ‘taalpuzzel in maanden’-casus is niet aangetoond.","podiumbewijs":[{"status":"BEVESTIGD","claim":"De studie analyseert 60 taalmodelbenchmarks aan de hand van 14 verzadigingseigenschappen","rationale":"Bevestigd in abstract en papermetadata.","sources":["ARXIV87"]},{"status":"BEVESTIGD","claim":"Bijna de helft van de onderzochte benchmarks vertoont verzadiging","rationale":"Bevestigd als resultaat binnen deze steekproef.","sources":["ARXIV87"]},{"status":"BEVESTIGD","claim":"Expertcuratie hangt samen met meer weerstand tegen verzadiging","rationale":"Bevestigd in de studie; associatie, geen universele causaliteit.","sources":["ARXIV87"]}],"nietGebruiken":[{"status":"ONBEVESTIGD","claim":"Eén specifieke taalpuzzel ging in enkele maanden van struikelblok naar verzadiging","rationale":"Niet gedragen door de gevonden primaire publicatie; verwijderd.","sources":[]}],"bronnen":[{"id":"ARXIV87","naam":"arXiv 2602.16763","beschrijving":"benchmark saturation","url":"https://arxiv.org/abs/2602.16763"}],"gebruik":"Vertel de kern en de begrenzing samen. Maak van een bronstelling, modelschatting, scenario of associatie geen algemener feit dan de primaire bron toelaat."},{"id":91,"slug":"regular-091","title":"AI-ontwikkelkosten meten vraagt gecorrigeerde aannames","historischeBronstatus":"GEDEELTELIJK","podiumstatus":"PODIUMKLAAR","afbakening":"deze kaart reconstrueert het oorspronkelijke artikel niet; zij gebruikt uitsluitend afzonderlijk geverifieerde feiten.","claimaudit":"4 hard claims — 3 bevestigd, 0 genuanceerd, 1 onbevestigd.","kern":"Een studententeam documenteert een AI-ondersteund softwareproject en een kostenmodel. Hun eerste verhouding van 19,4× daalde na correcties naar circa 9,9×; dat is een casus, geen algemene migratiebelofte.","podiumbewijs":[{"status":"BEVESTIGD","claim":"Een team van zes studenten bouwde in één academische termijn een conversationele onboardingassistent met intensief AI-gebruik","rationale":"Bevestigd in de primaire paper.","sources":["ARXIV91"]},{"status":"BEVESTIGD","claim":"De paper gebruikt een kostenmodel met drie lagen","rationale":"Bevestigd in de paper.","sources":["ARXIV91"]},{"status":"BEVESTIGD","claim":"De eerste kostenverhouding van 19,4× werd na correcties ongeveer 9,9×","rationale":"Bevestigd; de correctie laat gevoeligheid voor aannames zien.","sources":["ARXIV91"]}],"nietGebruiken":[{"status":"ONBEVESTIGD","claim":"AI maakt grote softwaremigraties in het algemeen uitvoerbaar","rationale":"Extrapolatie buiten één projectcasus; verwijderd.","sources":[]}],"bronnen":[{"id":"ARXIV91","naam":"arXiv 2608.13730","beschrijving":"AI-assisted development cost","url":"https://arxiv.org/abs/2608.13730"}],"gebruik":"Vertel de kern en de begrenzing samen. Maak van een bronstelling, modelschatting, scenario of associatie geen algemener feit dan de primaire bron toelaat."},{"id":111,"slug":"regular-111","title":"AI-meting loopt achter op de systemen die zij moet beoordelen","historischeBronstatus":"GEDEELTELIJK","podiumstatus":"PODIUMKLAAR","afbakening":"deze kaart reconstrueert het oorspronkelijke artikel niet; zij gebruikt uitsluitend afzonderlijk geverifieerde feiten.","claimaudit":"3 hard claims — 1 bevestigd, 1 genuanceerd, 1 onbevestigd.","kern":"De AI Index 2026 beschrijft druk op evaluatie-, governance- en data-infrastructuur. De oude claim over een synthetische AI-stack en goedkope verificatie staat niet in deze bron en vervalt.","podiumbewijs":[{"status":"BEVESTIGD","claim":"De AI Index 2026 meldt dat governance- en evaluatie-infrastructuur moeite heeft het ontwikkelingstempo bij te houden","rationale":"Bevestigd in de primaire rapportpublicatie.","sources":["ARXIV111"]},{"status":"GENUANCEERD","claim":"Bestaande meetwaarden worden moeilijker betrouwbaar te interpreteren naarmate systemen veranderen","rationale":"Ondersteund als rapporttrend; geldt niet voor iedere metriek in elke context.","sources":["ARXIV111"]}],"nietGebruiken":[{"status":"ONBEVESTIGD","claim":"De synthetische AI-stack groeit precies waar verificatie goedkoop wordt","rationale":"Niet door de AI Index gedragen en originele herkomst ontbreekt; verwijderd.","sources":[]}],"bronnen":[{"id":"ARXIV111","naam":"arXiv 2606.15708","beschrijving":"AI Index Report 2026","url":"https://arxiv.org/abs/2606.15708"}],"gebruik":"Vertel de kern en de begrenzing samen. Maak van een bronstelling, modelschatting, scenario of associatie geen algemener feit dan de primaire bron toelaat."},{"id":136,"slug":"regular-136","title":"Evaluatie-incident bevestigd; trainingslek en beloonde misleiding niet","historischeBronstatus":"GEDEELTELIJK","podiumstatus":"PODIUMKLAAR","afbakening":"deze kaart reconstrueert het oorspronkelijke artikel niet; zij gebruikt uitsluitend afzonderlijk geverifieerde feiten.","claimaudit":"4 hard claims — 2 bevestigd, 0 genuanceerd, 2 onbevestigd.","kern":"OpenAI en Hugging Face maakten een beveiligingsincident tijdens modelevaluatie openbaar en onderzochten het samen. De oude claims over gelekte beoordelingsinformatie en beloonde misleiding hebben geen dekking in die primaire publicatie.","podiumbewijs":[{"status":"BEVESTIGD","claim":"OpenAI en Hugging Face onderzochten samen een beveiligingsincident tijdens modelevaluatie","rationale":"Bevestigd door de gezamenlijke incidentpublicatie.","sources":["OPENAI136"]},{"status":"BEVESTIGD","claim":"Het incident leidde tot samenwerking met externe beveiligings- en evaluatiepartijen","rationale":"Bevestigd op hoofdlijnen; geen reproduceerbare aanvalsinformatie opgenomen.","sources":["OPENAI136"]}],"nietGebruiken":[{"status":"ONBEVESTIGD","claim":"Trainingsdata lekte beoordelingsinformatie","rationale":"Niet ondersteund door de gevonden primaire incidentbron; verwijderd.","sources":[]},{"status":"ONBEVESTIGD","claim":"De training beloonde misleiding","rationale":"Niet ondersteund door de gevonden primaire incidentbron; verwijderd.","sources":[]}],"bronnen":[{"id":"OPENAI136","naam":"OpenAI","beschrijving":"security incident during model evaluation","url":"https://openai.com/index/hugging-face-model-evaluation-security-incident/"}],"gebruik":"Vertel de kern en de begrenzing samen. Maak van een bronstelling, modelschatting, scenario of associatie geen algemener feit dan de primaire bron toelaat."},{"id":144,"slug":"regular-144","title":"SAFE stelt concrete incidenttermijnen voor","historischeBronstatus":"GEDEELTELIJK","podiumstatus":"PODIUMKLAAR","afbakening":"deze kaart reconstrueert het oorspronkelijke artikel niet; zij gebruikt uitsluitend afzonderlijk geverifieerde feiten.","claimaudit":"3 hard claims — 2 bevestigd, 1 genuanceerd, 0 onbevestigd.","kern":"De SAFE-RFC is een voorstel voor vertrouwelijke incidentmelding en gedeelde lessen. Hij noemt termijnen van direct, 72 uur, vier werkdagen, 14, 30 en 90 dagen; dit is een RFC en geen geldend recht.","podiumbewijs":[{"status":"BEVESTIGD","claim":"SAFE staat voor Shared AI Findings Exchange en is een voorstel van de Open Secure AI Alliance","rationale":"Bevestigd in de primaire RFC.","sources":["SAFE"]},{"status":"BEVESTIGD","claim":"De RFC noemt vaste mijlpalen: direct, 72 uur, vier werkdagen, 14, 30 en 90 dagen","rationale":"Bevestigd in de tabel Notification Timelines.","sources":["SAFE"]},{"status":"GENUANCEERD","claim":"Deze termijnen zijn bindende wettelijke meldplichten","rationale":"Het is een vrijwillig voorstel; bestaande contractuele en wettelijke verplichtingen blijven apart gelden.","sources":["SAFE"]}],"nietGebruiken":[],"bronnen":[{"id":"SAFE","naam":"Open Secure AI Alliance","beschrijving":"SAFE RFC","url":"https://github.com/OpenSecureAIAlliance/RFCs/blob/main/rfc-safe-proposal.md"}],"gebruik":"Vertel de kern en de begrenzing samen. Maak van een bronstelling, modelschatting, scenario of associatie geen algemener feit dan de primaire bron toelaat."},{"id":153,"slug":"regular-153","title":"Publieke onderzoekers hebben toegang tot AI-middelen nodig","historischeBronstatus":"GEDEELTELIJK","podiumstatus":"PODIUMKLAAR","afbakening":"deze kaart reconstrueert het oorspronkelijke artikel niet; zij gebruikt uitsluitend afzonderlijk geverifieerde feiten.","claimaudit":"3 hard claims — 1 bevestigd, 0 genuanceerd, 2 onbevestigd.","kern":"De NSF-NAIRR-pilot maakt rekenkracht, data, modellen, software en ondersteuning beschikbaar aan de Amerikaanse onderzoeks- en onderwijsgemeenschap. Dat bevestigt het toegangsprobleem als beleidsvraag, niet de oude universele claim over alle universiteiten.","podiumbewijs":[{"status":"BEVESTIGD","claim":"De NAIRR-pilot biedt onderzoekers toegang tot compute, data, software, modellen en ondersteuning","rationale":"Bevestigd door NSF.","sources":["NSF_NAIRR"]}],"nietGebruiken":[{"status":"ONBEVESTIGD","claim":"Universiteiten kunnen frontier-AI niet meer bestuderen omdat zij nergens toegang toe hebben","rationale":"Te absoluut; NSF toont juist een publiek toegangsprogramma. Verwijderd.","sources":[]},{"status":"ONBEVESTIGD","claim":"AI-bedrijven hebben op grote schaal computerwetenschapsprofessoren weggehaald","rationale":"Het oorspronkelijke journalistieke onderzoek is niet vervangen door losse voorbeelden; claim niet behouden.","sources":[]}],"bronnen":[{"id":"NSF_NAIRR","naam":"NSF","beschrijving":"National AI Research Resource pilot","url":"https://www.nsf.gov/geo/updates/national-artificial-intelligence-research-resource-nairr"}],"gebruik":"Vertel de kern en de begrenzing samen. Maak van een bronstelling, modelschatting, scenario of associatie geen algemener feit dan de primaire bron toelaat."},{"id":165,"slug":"regular-165","title":"Menselijke trainingsdata kunnen veel duurder zijn dan modeltraining","historischeBronstatus":"GEDEELTELIJK","podiumstatus":"PODIUMKLAAR","afbakening":"deze kaart reconstrueert het oorspronkelijke artikel niet; zij gebruikt uitsluitend afzonderlijk geverifieerde feiten.","claimaudit":"3 hard claims — 2 bevestigd, 0 genuanceerd, 1 onbevestigd.","kern":"Een analyse van 64 taalmodellen schat dat de menselijke productiekosten van trainingsdata in de steekproef tien tot duizend keer de trainingskosten kunnen bedragen. Dat is een modelschatting met grenzen, geen prijswet voor elk topmodel.","podiumbewijs":[{"status":"BEVESTIGD","claim":"De studie onderzoekt een steekproef van 64 taalmodellen","rationale":"Bevestigd in de primaire paper.","sources":["ARXIV165"]},{"status":"BEVESTIGD","claim":"De geschatte menselijke productiekosten van data liggen in die steekproef 10–1000× boven trainingskosten","rationale":"Bevestigd als modelschatting binnen de gemaakte aannames.","sources":["ARXIV165"]}],"nietGebruiken":[{"status":"ONBEVESTIGD","claim":"Alle topmodellen botsen nu aantoonbaar op dezelfde dataprijs","rationale":"Te brede extrapolatie buiten steekproef en kostenmodel; verwijderd.","sources":[]}],"bronnen":[{"id":"ARXIV165","naam":"arXiv 2504.12427","beschrijving":"costs of human-produced training data","url":"https://arxiv.org/abs/2504.12427"}],"gebruik":"Vertel de kern en de begrenzing samen. Maak van een bronstelling, modelschatting, scenario of associatie geen algemener feit dan de primaire bron toelaat."},{"id":192,"slug":"regular-192","title":"Galaxy-incident: gedeelde infrastructuur als controlegrens","historischeBronstatus":"GEDEELTELIJK","podiumstatus":"PODIUMKLAAR","afbakening":"deze kaart reconstrueert het oorspronkelijke artikel niet; zij gebruikt uitsluitend afzonderlijk geverifieerde feiten.","claimaudit":"3 hard claims — 2 bevestigd, 1 genuanceerd, 0 onbevestigd.","kern":"Check Point Research beschrijft een verborgen kanaal tussen Gmail-accounts in gedeelde infrastructuur. Gebruik het incident voor lessen over isolatie, monitoring en eigenaarschap; operationele aanvalsstappen blijven uitgesloten.","podiumbewijs":[{"status":"BEVESTIGD","claim":"Check Point Research documenteerde een cross-account kanaal in een Gmail-gerelateerde omgeving","rationale":"Bevestigd door de primaire onderzoeker; alleen journalistieke hoofdlijn opgenomen.","sources":["CHECKPOINT"]},{"status":"BEVESTIGD","claim":"Gedeelde infrastructuur en onvoldoende scheiding hielden de risicoketen in stand","rationale":"Bevestigd als analyse van de primaire onderzoekers.","sources":["CHECKPOINT"]},{"status":"GENUANCEERD","claim":"De casus levert reproduceerbare aanvalsstappen voor algemeen misbruik","rationale":"Technische details zijn bewust niet overgenomen; alleen governance- en verdedigingslessen blijven staan.","sources":["CHECKPOINT"]}],"nietGebruiken":[],"bronnen":[{"id":"CHECKPOINT","naam":"Check Point Research","beschrijving":"hidden cross-account channel","url":"https://blog.checkpoint.com/research/chatgpt-let-attackers-read-victims-gmail-through-a-hidden-channel-between-accounts/"}],"gebruik":"Vertel de kern en de begrenzing samen. Maak van een bronstelling, modelschatting, scenario of associatie geen algemener feit dan de primaire bron toelaat."},{"id":203,"slug":"regular-203","title":"Onzekerheid kan aandacht openen; zekerheid helpt handelen","historischeBronstatus":"GEDEELTELIJK","podiumstatus":"PODIUMKLAAR","afbakening":"deze kaart reconstrueert het oorspronkelijke artikel niet; zij gebruikt uitsluitend afzonderlijk geverifieerde feiten.","claimaudit":"3 hard claims — 2 bevestigd, 1 genuanceerd, 0 onbevestigd.","kern":"Onderzoek van Zakary Tormala onderscheidt twee effecten: onzekerheid kan informatiezoekend denken stimuleren, terwijl zekerheid bestaande attitudes eerder in actie omzet. Het effect hangt af van bron, context en argumentkwaliteit.","podiumbewijs":[{"status":"BEVESTIGD","claim":"Onzekerheid kan mensen aanzetten tot meer informatieverwerking en nieuwsgierigheid","rationale":"Bevestigd in Tormala's onderzoek en Stanford-interview.","sources":["STANFORD_PERSUASION"]},{"status":"BEVESTIGD","claim":"Zekerheid kan de stap van een bestaande attitude naar handelen versterken","rationale":"Bevestigd door Stanford GSB.","sources":["STANFORD_PERSUASION"]},{"status":"GENUANCEERD","claim":"Specifieke onzekerheid maakt iedere boodschap overtuigender","rationale":"Effect hangt onder meer af van expertise, verrassing en sterke argumenten; geen universele formule.","sources":["STANFORD_PERSUASION"]}],"nietGebruiken":[],"bronnen":[{"id":"STANFORD_PERSUASION","naam":"Stanford GSB","beschrijving":"science of influence","url":"https://www.gsb.stanford.edu/insights/science-influence-how-persuade-others-hold-their-attention"}],"gebruik":"Vertel de kern en de begrenzing samen. Maak van een bronstelling, modelschatting, scenario of associatie geen algemener feit dan de primaire bron toelaat."},{"id":205,"slug":"regular-205","title":"AI-arbeidseffecten zijn ongelijk en nog niet causaal beslist","historischeBronstatus":"GEDEELTELIJK","podiumstatus":"PODIUMKLAAR","afbakening":"deze kaart reconstrueert het oorspronkelijke artikel niet; zij gebruikt uitsluitend afzonderlijk geverifieerde feiten.","claimaudit":"4 hard claims — 2 bevestigd, 1 genuanceerd, 1 onbevestigd.","kern":"Stanford vindt geen brede economiebrede baanverdringing, maar wel een achterstand van 19% voor 22- tot 25-jarigen in AI-blootgestelde beroepen ten opzichte van minder blootgestelde leeftijdsgenoten. De studie waarschuwt dat andere economische veranderingen kunnen meespelen.","podiumbewijs":[{"status":"BEVESTIGD","claim":"De Stanford-studie vindt geen bewijs voor brede economiebrede baanverdringing door AI","rationale":"Bevestigd in de herziene studie van augustus 2026.","sources":["STANFORD_WORK"]},{"status":"BEVESTIGD","claim":"Werkgelegenheid voor 22- tot 25-jarigen in AI-blootgestelde beroepen ligt 19% onder het pad van minder blootgestelde leeftijdsgenoten","rationale":"Bevestigd voor de onderzochte ADP-data en vergelijking.","sources":["STANFORD_WORK"]},{"status":"GENUANCEERD","claim":"AI is bewezen de enige oorzaak van dit verschil","rationale":"De auteurs waarschuwen voor andere economische veranderingen; geen zuivere causale conclusie.","sources":["STANFORD_WORK"]}],"nietGebruiken":[{"status":"ONBEVESTIGD","claim":"Sommige bedrijven nemen door AI aantoonbaar meer mensen aan","rationale":"Niet ondersteund door de gebruikte primaire studie; verwijderd.","sources":[]}],"bronnen":[{"id":"STANFORD_WORK","naam":"Stanford Digital Economy Lab","beschrijving":"Canaries in the Coal Mine","url":"https://digitaleconomy.stanford.edu/publication/canaries-in-the-coal-mine-six-facts-about-the-recent-employment-effects-of-artificial-intelligence/"}],"gebruik":"Vertel de kern en de begrenzing samen. Maak van een bronstelling, modelschatting, scenario of associatie geen algemener feit dan de primaire bron toelaat."}]</script>
+<script>
+(function(){
+  "use strict";
+  var CARDS = JSON.parse(document.getElementById('cards-data').textContent);
+  var byId = {};
+  var ALL_IDS = [];
+  function rebuildIndex(){
+    byId = {};
+    CARDS.forEach(function(c){ byId[c.id] = c; });
+    ALL_IDS = CARDS.map(function(c){ return c.id; }).sort(function(a,b){ return a-b; });
+  }
+  rebuildIndex();
+
+  var DECK = 'v12-2026-09-22';
+  var db = null;
+  var pendingWrites = {};
+  var STORE_KEY = 'kaartenbak:decisions:v1';
+  var VERZOEK_KEY = 'kaartenbak:verzoeken:v1';
+  var ROUTE_KEY = 'kaartenbak:routering:v1';
+  var WACHTRIJ_KEY = 'kaartenbak:wachtrij:v1';
+  var WAIT_DAGEN = 14;
+  var MAX_WACHTRIJ = 200;
+
+  var BESTEMMINGEN = [
+    { id:'keynote',    label:'keynote',    toets:'1' },
+    { id:'long-read',  label:'long-read',  toets:'2' },
+    { id:'short-read', label:'short-read', toets:'3' },
+    { id:'social',     label:'social',     toets:'4' },
+    { id:'video',      label:'video',      toets:'5' },
+    { id:'ebook',      label:'ebook',      toets:'6' },
+    { id:'archief',    label:'archief',    toets:'7' }
+  ];
+  var SOCIAL_VORMEN = [
+    { id:'tekst',       label:'tekst',       toets:'t' },
+    { id:'tekst+beeld', label:'tekst + beeld', toets:'b' },
+    { id:'carrousel',   label:'carrousel',   toets:'c' },
+    { id:'video',       label:'video',       toets:'v' }
+  ];
+
+  var REASON_LABELS = {
+    al_bekend:'al bekend', niet_mijn_thema:'niet mijn thema', te_zwak_bewijs:'te zwak bewijs',
+    te_oud:'te oud', verkeerde_vorm:'verkeerde vorm', anders:'anders'
+  };
+
+  var MAANDEN = ['jan','feb','mrt','apr','mei','jun','jul','aug','sep','okt','nov','dec'];
+
+  function isoDate(d){
+    var m = d.getMonth() + 1, day = d.getDate();
+    return d.getFullYear() + '-' + (m < 10 ? '0' : '') + m + '-' + (day < 10 ? '0' : '') + day;
+  }
+  function vandaag(){ return isoDate(new Date()); }
+  function overDagen(n){
+    var d = new Date();
+    d.setDate(d.getDate() + n);
+    return isoDate(d);
+  }
+  function nlDatum(iso){
+    if(!iso || iso.length < 10) return '';
+    var m = Number(iso.slice(5,7));
+    return Number(iso.slice(8,10)) + ' ' + (MAANDEN[m-1] || '');
+  }
+  function slaapt(d){ return !!(d && d.status === 'WAIT' && d.terugOp && d.terugOp > vandaag()); }
+
+  function loadDecisions(){
+    try{
+      var raw = localStorage.getItem(STORE_KEY);
+      return raw ? JSON.parse(raw) : {};
+    }catch(e){ return {}; }
+  }
+  function saveDecisions(d){
+    try{ localStorage.setItem(STORE_KEY, JSON.stringify(d)); }catch(e){}
+  }
+
+  var decisions = loadDecisions(); // { id: { status: 'STAR'|'WAIT'|'REMOVE', waitCount: n } }
+
+  function loadJson(key, leeg){
+    try{
+      var raw = localStorage.getItem(key);
+      return raw ? JSON.parse(raw) : leeg;
+    }catch(e){ return leeg; }
+  }
+  function saveJson(key, waarde){
+    try{ localStorage.setItem(key, JSON.stringify(waarde)); }catch(e){}
+  }
+
+  var routering = loadJson(ROUTE_KEY, {});   // { cardId: { bestemmingen:[], socialVorm, instructie, week } }
+  var wachtrijen = loadJson(WACHTRIJ_KEY, {}); // { bestemming: { bestemming, items:[], afgekapt, bijgewerkt } }
+  var pendingRoute = {};
+  var pendingQueue = {};
+
+  function saveRoutering(){ saveJson(ROUTE_KEY, routering); }
+  function saveWachtrijen(){ saveJson(WACHTRIJ_KEY, wachtrijen); }
+  function routeVan(id){
+    if(!routering[id]) routering[id] = { bestemmingen: [], socialVorm: null, instructie: '', week: isoWeek() };
+    if(!Array.isArray(routering[id].bestemmingen)) routering[id].bestemmingen = [];
+    return routering[id];
+  }
+  function queueItems(dest){
+    var q = wachtrijen[dest];
+    return (q && Array.isArray(q.items)) ? q.items : [];
+  }
+
+  function buildInitialStack(){
+    var waited = [];
+    var fresh = [];
+    ALL_IDS.forEach(function(id){
+      var d = decisions[id];
+      if(d && (d.status === 'STAR' || d.status === 'REMOVE')) return;
+      if(slaapt(d)) return;
+      if(d && d.status === 'WAIT'){ waited.push(id); }
+      else { fresh.push(id); }
+    });
+    waited.sort(function(a,b){
+      var wa = (decisions[a] && decisions[a].waitCount) || 0;
+      var wb = (decisions[b] && decisions[b].waitCount) || 0;
+      if(wb !== wa) return wb - wa;
+      return a - b;
+    });
+    return waited.concat(fresh);
+  }
+
+  var state = {
+    stack: buildInitialStack(),
+    flipped: false,
+    lapSeen: {},
+    history: [],
+    mode: 'stack', // 'stack' | 'reason' | 'leerverslag' | 'logboek' | 'routeren' | 'wachtrij' | 'interstitial' | 'summary'
+    leerverslag: null, // { week, regels[], ... } when one is waiting for an answer
+    routeLijst: [],
+    routeIdx: 0,
+    vorigeModus: 'stack'
+  };
+
+  var totalToTriage = state.stack.length;
+
+  // ---------- DOM refs ----------
+  var el = {
+    progressChip: document.getElementById('progressChip'),
+    chipStar: document.getElementById('chipStar'),
+    chipNews: document.getElementById('chipNews'),
+    btnNews: document.getElementById('btnNews'),
+    chipWait: document.getElementById('chipWait'),
+    chipRemove: document.getElementById('chipRemove'),
+    stage: document.getElementById('stage'),
+    ghost1: document.getElementById('ghost1'),
+    ghost2: document.getElementById('ghost2'),
+    cardDrag: document.getElementById('cardDrag'),
+    cardFlipInner: document.getElementById('cardFlipInner'),
+    faceFront: document.getElementById('faceFront'),
+    faceBack: document.getElementById('faceBack'),
+    btnRemove: document.getElementById('btnRemove'),
+    btnWait: document.getElementById('btnWait'),
+    btnFlip: document.getElementById('btnFlip'),
+    btnStar: document.getElementById('btnStar'),
+    btnUndo: document.getElementById('btnUndo'),
+    pauseBtn: document.getElementById('pauseBtn'),
+    logboekBtn: document.getElementById('logboekBtn'),
+    queueBtn: document.getElementById('queueBtn'),
+    leerPanel: document.getElementById('leerPanel'),
+    logPanel: document.getElementById('logPanel'),
+    routePanel: document.getElementById('routePanel'),
+    queuePanel: document.getElementById('queuePanel'),
+    interstitial: document.getElementById('interstitial'),
+    summary: document.getElementById('summary'),
+    dbBadge: document.getElementById('dbBadge'),
+    reasonPanel: document.getElementById('reasonPanel'),
+    reasonTitle: document.getElementById('reasonTitle'),
+    btnNote: document.getElementById('btnNote'),
+    reasonGrid: document.getElementById('reasonGrid'),
+    reasonSub: document.getElementById('reasonSub'),
+    reasonHint: document.getElementById('reasonHint'),
+    reasonComment: document.getElementById('reasonComment'),
+    reasonConfirm: document.getElementById('reasonConfirm'),
+    reasonCancel: document.getElementById('reasonCancel')
+  };
+
+  function setDbBadge(on, text){
+    el.dbBadge.textContent = text || (on ? 'keuzes worden opgeslagen' : 'alleen in deze browser');
+    el.dbBadge.classList.toggle('on', !!on);
+  }
+
+  function isoWeek(d){
+    d = d || new Date();
+    var t = new Date(Date.UTC(d.getFullYear(), d.getMonth(), d.getDate()));
+    var day = t.getUTCDay() || 7;
+    t.setUTCDate(t.getUTCDate() + 4 - day);
+    var y = t.getUTCFullYear();
+    var w = Math.ceil((((t - Date.UTC(y, 0, 1)) / 86400000) + 1) / 7);
+    return y + '-W' + (w < 10 ? '0' + w : w);
+  }
+
+  function persist(id, entry, action){
+    if(!db) return;
+    var ref = db.doc('decisions/' + DECK + '~' + id);
+    var card = byId[id];
+    var body = entry ? {
+      deck: DECK, cardId: id, title: card ? card.title : '',
+      status: entry.status, waitCount: entry.waitCount || 0,
+      terugOp: entry.terugOp || null,
+      reason: entry.reason || null, comment: entry.comment || null,
+      nieuwsbrief: entry.nieuwsbrief ? (entry.week || isoWeek()) : null,
+      ts: new Date().toISOString()
+    } : null;
+    var run = function(){ return body ? ref.set(body) : ref.delete(); };
+    var newsRef = db.doc('nieuwsbrief/' + (entry && entry.week ? entry.week : isoWeek()) + '~' + id);
+    pendingWrites[id] = (pendingWrites[id] || Promise.resolve()).then(run, run).then(function(){
+      if(entry && entry.nieuwsbrief){
+        return newsRef.set({ deck: DECK, cardId: id, title: card ? card.title : '', week: entry.week || isoWeek(), ts: new Date().toISOString() });
+      }
+      if(action === 'UNDO'){ return newsRef.delete(); }
+    }).then(function(){
+      return db.collection('log').add({
+        deck: DECK, cardId: id, action: action,
+        reason: entry ? (entry.reason || null) : null,
+        comment: entry ? (entry.comment || null) : null,
+        ts: new Date().toISOString()
+      });
+    }).catch(function(){ setDbBadge(false, 'opslaan mislukt — keuzes staan lokaal'); });
+  }
+
+  function initDb(){
+    if(!window.claude || typeof window.claude.use !== 'function') return;
+    window.claude.use('db').then(function(ns){
+      if(!ns) return;
+      db = ns;
+      return db.doc('meta/active').get().then(function(m){
+        if(m.exists && m.data().deck) DECK = m.data().deck;
+        return db.collection('cards').where('deck', '==', DECK).get();
+      }).then(function(qs){
+        if(qs && !qs.empty){
+          CARDS = qs.docs.map(function(d){ return d.data(); });
+          rebuildIndex();
+        }
+        return db.collection('decisions').where('deck', '==', DECK).get();
+      }).then(function(qs){
+        var remote = {};
+        qs.docs.forEach(function(d){
+          var x = d.data();
+          remote[x.cardId] = {
+            status: x.status, waitCount: x.waitCount || 0, terugOp: x.terugOp || null,
+            reason: x.reason || null, comment: x.comment || null,
+            nieuwsbrief: !!x.nieuwsbrief, week: x.nieuwsbrief || null
+          };
+        });
+        decisions = remote;
+        saveDecisions(decisions);
+        state.stack = buildInitialStack();
+        state.history = [];
+        state.lapSeen = {};
+        state.flipped = false;
+        state.mode = 'stack';
+        setDbBadge(true);
+        el.logboekBtn.hidden = false;
+        render();
+        return laadRoutering();
+      }).then(function(){
+        return laadWachtrijen();
+      }).then(function(){
+        return laadLeerverslag();
+      });
+    }).catch(function(){ setDbBadge(false); });
+  }
+
+  function laadRoutering(){
+    if(!db) return;
+    return db.collection('routering').get().then(function(qs){
+      qs.docs.forEach(function(d){
+        var x = d.data() || {};
+        if(x.cardId == null) return;
+        routering[x.cardId] = {
+          bestemmingen: Array.isArray(x.bestemmingen) ? x.bestemmingen : [],
+          socialVorm: x.socialVorm || null,
+          instructie: x.instructie || '',
+          week: x.week || isoWeek()
+        };
+      });
+      saveRoutering();
+    }).catch(function(){});
+  }
+
+  function laadWachtrijen(){
+    if(!db) return;
+    return db.collection('wachtrij').get().then(function(qs){
+      qs.docs.forEach(function(d){
+        var x = d.data() || {};
+        var naam = x.bestemming || d.id;
+        wachtrijen[naam] = {
+          bestemming: naam,
+          items: Array.isArray(x.items) ? x.items : [],
+          afgekapt: !!x.afgekapt,
+          bijgewerkt: x.bijgewerkt || null
+        };
+      });
+      saveWachtrijen();
+    }).catch(function(){});
+  }
+
+  function laadLeerverslag(){
+    if(!db) return;
+    var week = isoWeek();
+    return db.doc('leerverslag/' + week).get().then(function(snap){
+      if(!snap.exists) return;
+      var data = snap.data() || {};
+      if(data.bevestigd === true || data.bevestigd === false) return;
+      state.leerverslag = Object.assign({}, data, { week: week });
+      if(state.mode === 'stack') showLeerverslag();
+    }).catch(function(){});
+  }
+
+  function escapeHtml(s){
+    return String(s == null ? '' : s).replace(/[&<>"']/g, function(c){
+      return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c];
+    });
+  }
+
+  function bewijs(card){ return (card && card.podiumbewijs) || []; }
+  function bronnenVan(card){ return (card && card.bronnen) || []; }
+  function isDelta(card){ return !!(card && card.soort === 'dossier-delta'); }
+
+  function heteFeit(card){
+    var lijst = bewijs(card);
+    var pick = null;
+    for(var i=0;i<lijst.length;i++){
+      if(lijst[i].status === 'BEVESTIGD'){ pick = lijst[i]; break; }
+    }
+    if(!pick){
+      for(var j=0;j<lijst.length;j++){
+        if(lijst[j].status === 'GENUANCEERD'){ pick = lijst[j]; break; }
+      }
+    }
+    if(!pick) pick = lijst[0];
+    return pick || null;
+  }
+
+  function publisherNames(card, claim){
+    var bronnen = bronnenVan(card);
+    var names = [];
+    var ids = (claim && claim.sources) || [];
+    ids.forEach(function(sid){
+      var bron = bronnen.filter(function(b){ return b.id === sid; })[0];
+      if(bron && bron.naam && names.indexOf(bron.naam) === -1) names.push(bron.naam);
+    });
+    if(!names.length){
+      bronnen.forEach(function(b){
+        if(b.naam && names.indexOf(b.naam) === -1) names.push(b.naam);
+      });
+    }
+    return names.slice(0,3).join(' / ');
+  }
+
+  function claimRowHtml(claim, kind){
+    var cls = kind === 'confirmed' ? 'confirmed' : kind === 'nuanced' ? 'nuanced' : 'rejected';
+    return '<div class="claim-row ' + cls + '">' +
+      '<div class="claim-text">' + escapeHtml(claim.claim) + '.</div>' +
+      (claim.rationale ? '<div class="claim-rationale">' + escapeHtml(claim.rationale) + '</div>' : '') +
+      (claim.sources.length ? '<span class="claim-src mono">bron: ' + escapeHtml(claim.sources.join(', ')) + '</span>' : '') +
+      '</div>';
+  }
+
+  function marksHtml(card, d, heeftStamp){
+    var marks = [];
+    if(card && card.verrassing) marks.push('<span class="mark surprise">verrassing</span>');
+    if(d && d.terugOp) marks.push('<span class="mark back-on">terug op ' + escapeHtml(nlDatum(d.terugOp)) + '</span>');
+    if(card && card.dossier && !isDelta(card)) marks.push('<span class="mark dossier">' + escapeHtml(card.dossier) + '</span>');
+    if(!marks.length) return '';
+    return '<div class="front-marks' + (heeftStamp ? ' below-stamp' : '') + '">' + marks.join('') + '</div>';
+  }
+
+  function deltaItems(card){
+    var items = (card && (card.items || card.nieuw)) || [];
+    return Array.isArray(items) ? items : [];
+  }
+
+  function renderFront(card, waitCount){
+    var d = decisions[card.id];
+    var heeftStamp = waitCount >= 3;
+    var html = '';
+    html += '<div class="flip-hint">omdraaien ↑</div>';
+    if(heeftStamp){
+      html += '<div class="wait-stamp">' + waitCount + '&times; overgeslagen</div>';
+    }
+    html += marksHtml(card, d, heeftStamp);
+
+    if(isDelta(card)){
+      var items = deltaItems(card);
+      var aantal = typeof card.aantal === 'number' ? card.aantal : items.length;
+      html += '<span class="delta-label">Dossier · ' + escapeHtml(card.week || isoWeek()) + '</span>';
+      html += '<div class="front-scroll">';
+      html += '<h1 class="card-title">' + escapeHtml(card.dossier || card.title || 'Dossier') + '</h1>';
+      html += '<p class="card-kern">' + escapeHtml(card.kern || card.samenvatting || 'Wat kwam er deze week bij in dit dossier.') + '</p>';
+      html += '</div>';
+      html += '<div class="delta-count"><strong>' + aantal + '</strong>' +
+        (aantal === 1 ? 'nieuw item deze week' : 'nieuwe items deze week') + '</div>';
+      el.faceFront.innerHTML = html;
+      return;
+    }
+
+    var feit = heteFeit(card);
+    var pubs = publisherNames(card, feit);
+    html += '<div class="front-scroll">';
+    html += '<h1 class="card-title">' + escapeHtml(card.title) + '</h1>';
+    html += '<p class="card-kern">' + escapeHtml(card.kern || '') + '</p>';
+    html += '</div>';
+    if(feit){
+      html += '<div class="card-feit">' +
+        '<span class="feit-label">Hét feit</span>' +
+        '<p class="feit-text">' + escapeHtml(feit.claim) + '.</p>' +
+        (pubs ? '<div class="card-pub">volgens ' + escapeHtml(pubs) + '</div>' : '') +
+        '</div>';
+    } else if(pubs){
+      html += '<div class="card-feit"><div class="card-pub">volgens ' + escapeHtml(pubs) + '</div></div>';
+    }
+    el.faceFront.innerHTML = html;
+  }
+
+  function bronRegelHtml(b){
+    var label = escapeHtml(b.naam || b.id || b.url || 'bron');
+    var kop = b.url
+      ? '<a href="' + escapeHtml(b.url) + '" target="_blank" rel="noopener">' + label + '</a>'
+      : label;
+    var staart = '';
+    if(b.id && b.naam) staart += ' <span class="src-id">' + escapeHtml(b.id) + '</span>';
+    if(b.meetdatum) staart += ' <span class="src-id">gemeten ' + escapeHtml(b.meetdatum) + '</span>';
+    if(b.beschrijving) staart += ' — ' + escapeHtml(b.beschrijving);
+    return '<li>' + kop + staart + '</li>';
+  }
+
+  function backActiesHtml(){
+    return '<div class="back-actions">' +
+      '<button class="back-btn" id="btnMeer" type="button">↗ Meer zoals dit <span class="key">M</span></button>' +
+      '<span class="back-confirm" id="meerConfirm" hidden>gevraagd</span>' +
+      '</div>';
+  }
+
+  function renderBack(card){
+    var html = '';
+    html += '<div class="back-head">' +
+      '<div class="back-title">' + escapeHtml(isDelta(card) ? (card.dossier || card.title || 'Dossier') : card.title) + '</div>' +
+      '<div class="back-audit mono">' + escapeHtml(card.claimaudit || (isDelta(card) ? (card.week || '') : '')) + '</div>' +
+      '</div>';
+    html += '<div class="back-scroll">';
+
+    if(isDelta(card)){
+      var items = deltaItems(card);
+      html += '<h3>Nieuw deze week</h3>';
+      if(items.length){
+        items.forEach(function(it){
+          var bron = it.bron || {};
+          var naam = bron.naam || it.bronnaam || '';
+          var url = bron.url || it.url || '';
+          html += '<div class="delta-item">' +
+            '<div class="t">' + escapeHtml(it.titel || it.title || '') + '</div>' +
+            (it.kern ? '<div>' + escapeHtml(it.kern) + '</div>' : '') +
+            (naam || url
+              ? '<span class="s">' + (url
+                  ? '<a href="' + escapeHtml(url) + '" target="_blank" rel="noopener">' + escapeHtml(naam || url) + '</a>'
+                  : escapeHtml(naam)) +
+                (it.meetdatum ? ' · gemeten ' + escapeHtml(it.meetdatum) : '') + '</span>'
+              : '') +
+            '</div>';
+        });
+      } else {
+        html += '<p class="afbakening-text">Geen losse items meegegeven bij deze deltakaart.</p>';
+      }
+      html += backActiesHtml();
+      html += '</div>';
+      el.faceBack.innerHTML = html;
+      return;
+    }
+
+    var lijst = bewijs(card);
+    var confirmed = lijst.filter(function(c){ return c.status === 'BEVESTIGD'; });
+    var nuanced = lijst.filter(function(c){ return c.status === 'GENUANCEERD'; });
+    var rejected = card.nietGebruiken || [];
+
+    if(confirmed.length){
+      html += '<h3>Bevestigd</h3>';
+      confirmed.forEach(function(c){ html += claimRowHtml(c, 'confirmed'); });
+    }
+    if(nuanced.length){
+      html += '<h3>Genuanceerd</h3>';
+      nuanced.forEach(function(c){ html += claimRowHtml(c, 'nuanced'); });
+    }
+    if(rejected.length){
+      html += '<h3>Niet gebruiken</h3>';
+      rejected.forEach(function(c){ html += claimRowHtml(c, 'rejected'); });
+    }
+
+    var bronnen = bronnenVan(card);
+    if(bronnen.length){
+      html += '<h3>Bronnen</h3><ul class="src-list">';
+      bronnen.forEach(function(b){ html += bronRegelHtml(b); });
+      html += '</ul>';
+    }
+
+    if(card.houdbaarheid || card.feit_of_prognose || card.dossier){
+      html += '<h3>Houdbaarheid</h3><div class="meta-row">';
+      if(card.houdbaarheid) html += '<div><span class="k">veroudert</span> ' + escapeHtml(card.houdbaarheid) + '</div>';
+      if(card.feit_of_prognose) html += '<div><span class="k">aard</span> ' + escapeHtml(card.feit_of_prognose) + '</div>';
+      if(card.dossier) html += '<div><span class="k">dossier</span> ' + escapeHtml(card.dossier) + '</div>';
+      html += '</div>';
+    }
+
+    if(card.afbakening){
+      html += '<h3>Begrenzing</h3><p class="afbakening-text">' + escapeHtml(card.afbakening) + '</p>';
+    }
+    html += backActiesHtml();
+    html += '</div>';
+    el.faceBack.innerHTML = html;
+  }
+
+  function currentId(){ return state.stack[0]; }
+
+  function updateCounters(){
+    var star=0, wait=0, remove=0, news=0;
+    Object.keys(decisions).forEach(function(k){
+      var s = decisions[k].status;
+      if(s==='STAR') star++; else if(s==='WAIT') wait++; else if(s==='REMOVE') remove++;
+      if(decisions[k].nieuwsbrief) news++;
+    });
+    el.chipStar.textContent = '★ ' + star;
+    el.chipNews.textContent = '✉ ' + news;
+    el.chipWait.textContent = '⏸ ' + wait;
+    el.chipRemove.textContent = '✕ ' + remove;
+    var done = star + remove;
+    el.progressChip.textContent = done + ' besloten · ' + state.stack.length + ' in de stapel · ' + ALL_IDS.length + ' totaal';
+  }
+
+  function renderGhosts(){
+    el.ghost1.style.visibility = state.stack.length > 1 ? 'visible' : 'hidden';
+    el.ghost2.style.visibility = state.stack.length > 2 ? 'visible' : 'hidden';
+  }
+
+  var controlsEl = document.querySelector('.controls');
+  var undoRowEl = document.querySelector('.undo-row');
+
+  function render(){
+    var inStack = state.mode === 'stack';
+    var inReason = state.mode === 'reason';
+    el.stage.hidden = !(inStack || inReason);
+    controlsEl.hidden = !inStack;
+    undoRowEl.hidden = !inStack;
+    el.reasonPanel.hidden = !inReason;
+    el.leerPanel.hidden = state.mode !== 'leerverslag';
+    el.logPanel.hidden = state.mode !== 'logboek';
+    el.routePanel.hidden = state.mode !== 'routeren';
+    el.queuePanel.hidden = state.mode !== 'wachtrij';
+    if(!inStack && !inReason){
+      updateCounters();
+      return;
+    }
+    el.interstitial.hidden = true;
+    el.summary.hidden = true;
+    if(inReason){
+      updateCounters();
+      return;
+    }
+
+    if(state.stack.length === 0){
+      showSummary(false);
+      return;
+    }
+    var id = currentId();
+    var card = byId[id];
+    var d = decisions[id];
+    var waitCount = d ? (d.waitCount || 0) : 0;
+    renderFront(card, waitCount);
+    renderBack(card);
+    el.cardDrag.classList.toggle('flipped', state.flipped);
+    el.cardDrag.style.transform = '';
+    renderGhosts();
+    updateCounters();
+    el.btnUndo.disabled = state.history.length === 0;
+    el.btnNote.disabled = state.history.length === 0;
+  }
+
+  // ---------- decisions ----------
+  function pushHistory(entry){
+    state.history.push(entry);
+    el.btnUndo.disabled = false;
+  }
+
+  function decide(action, extra){
+    if(state.mode !== 'stack' || state.stack.length === 0) return;
+    var id = state.stack[0];
+    var prevDecision = decisions[id] ? Object.assign({}, decisions[id]) : null;
+    var prevStack = state.stack.slice();
+    var prevLapSeen = Object.assign({}, state.lapSeen);
+    var prevFlipped = state.flipped;
+
+    if(action === 'STAR'){
+      decisions[id] = {
+        status:'STAR', waitCount: prevDecision ? prevDecision.waitCount||0 : 0,
+        nieuwsbrief: !!(extra && extra.nieuwsbrief),
+        week: extra && extra.nieuwsbrief ? isoWeek() : null
+      };
+      state.stack.shift();
+      state.flipped = false;
+    } else if(action === 'REMOVE'){
+      decisions[id] = {
+        status:'REMOVE', waitCount: prevDecision ? prevDecision.waitCount||0 : 0,
+        reason: extra && extra.reason ? extra.reason : null,
+        comment: extra && extra.comment ? extra.comment : null
+      };
+      state.stack.shift();
+      state.flipped = false;
+    } else if(action === 'WAIT'){
+      var wc = (prevDecision && prevDecision.waitCount ? prevDecision.waitCount : 0) + 1;
+      decisions[id] = { status:'WAIT', waitCount: wc, terugOp: overDagen(WAIT_DAGEN) };
+      state.lapSeen[id] = true;
+      var lapComplete = state.stack.every(function(sid){ return state.lapSeen[sid]; });
+      state.stack.shift();
+      state.flipped = false;
+      if(lapComplete && state.stack.length > 0){
+        pushHistory({ id:id, action:action, prevDecision:prevDecision, prevStack:prevStack, prevLapSeen:prevLapSeen, prevFlipped:prevFlipped, wentToInterstitial:true });
+        saveDecisions(decisions);
+        persist(id, decisions[id], action);
+        state.lapSeen = {};
+        showInterstitial();
+        return;
+      }
+    }
+    pushHistory({ id:id, action:action, prevDecision:prevDecision, prevStack:prevStack, prevLapSeen:prevLapSeen, prevFlipped:prevFlipped, wentToInterstitial:false });
+    saveDecisions(decisions);
+    persist(id, decisions[id], action);
+    render();
+  }
+
+  // ---------- optional note on the last decision ----------
+  var reasonPick = null;
+  var noteTarget = null;
+  var noteContext = 'decision';
+
+  function openNote(){
+    if(state.mode !== 'stack' || !state.history.length) return;
+    var last = state.history[state.history.length - 1];
+    noteContext = 'decision';
+    noteTarget = last.id;
+    var d = decisions[noteTarget] || {};
+    reasonPick = d.reason || null;
+    el.reasonGrid.hidden = false;
+    el.reasonSub.textContent = 'Alles optioneel. Een reden of een zin helpt de volgende zoekronde; zonder opmerking leer ik uit de kaart zelf.';
+    el.reasonHint.textContent = '1–6 reden · Enter bewaart · Esc terug';
+    el.reasonComment.placeholder = 'Commentaar (optioneel): wat had beter gemoeten?';
+    el.reasonComment.value = d.comment || '';
+    el.reasonTitle.textContent = (d.status || 'keuze') + ' — ' + (byId[noteTarget] ? byId[noteTarget].title : '');
+    Array.prototype.forEach.call(el.reasonGrid.querySelectorAll('.reason-btn'), function(b){
+      b.classList.toggle('sel', b.getAttribute('data-reason') === reasonPick);
+    });
+    state.mode = 'reason';
+    render();
+    el.reasonComment.focus();
+  }
+
+  function openLeerNote(){
+    if(!state.leerverslag) return;
+    noteContext = 'leerverslag';
+    noteTarget = null;
+    reasonPick = null;
+    el.reasonGrid.hidden = true;
+    el.reasonTitle.textContent = 'Wat klopt er niet?';
+    el.reasonSub.textContent = 'Eén zin is genoeg — die stuurt de volgende zoekronde.';
+    el.reasonHint.textContent = 'Enter bewaart · Esc terug';
+    el.reasonComment.placeholder = 'Bijvoorbeeld: niet te oud, ik kende het al.';
+    el.reasonComment.value = state.leerverslag.opmerking || '';
+    state.mode = 'reason';
+    render();
+    el.reasonComment.focus();
+  }
+  function pickReason(code){
+    reasonPick = reasonPick === code ? null : code;
+    Array.prototype.forEach.call(el.reasonGrid.querySelectorAll('.reason-btn'), function(b){
+      b.classList.toggle('sel', b.getAttribute('data-reason') === reasonPick);
+    });
+  }
+  function saveNote(){
+    if(state.mode !== 'reason') return;
+    if(noteContext === 'leerverslag'){
+      antwoordLeerverslag(false, el.reasonComment.value.trim() || null);
+      return;
+    }
+    if(noteTarget == null) return;
+    var d = decisions[noteTarget];
+    if(d){
+      d.reason = reasonPick || null;
+      d.comment = el.reasonComment.value.trim() || null;
+      saveDecisions(decisions);
+      persist(noteTarget, d, 'NOTE');
+    }
+    state.mode = 'stack';
+    render();
+  }
+  function cancelNote(){
+    if(state.mode !== 'reason') return;
+    if(noteContext === 'leerverslag' && state.leerverslag){
+      showLeerverslag();
+      return;
+    }
+    state.mode = 'stack';
+    render();
+  }
+
+  function undo(){
+    if(!state.history.length) return;
+    var entry = state.history.pop();
+    if(entry.prevDecision){ decisions[entry.id] = entry.prevDecision; }
+    else { delete decisions[entry.id]; }
+    persist(entry.id, entry.prevDecision || null, 'UNDO');
+    state.stack = entry.prevStack;
+    state.lapSeen = entry.prevLapSeen;
+    state.flipped = entry.prevFlipped;
+    saveDecisions(decisions);
+    state.mode = 'stack';
+    el.btnUndo.disabled = state.history.length === 0;
+    render();
+  }
+
+  function flip(){
+    if(state.mode !== 'stack' || state.stack.length === 0) return;
+    state.flipped = !state.flipped;
+    el.cardDrag.classList.toggle('flipped', state.flipped);
+  }
+
+  // ---------- V-24 leerverslag ----------
+  function leerRegels(data){
+    var regels = data.regels || data.lines || data.punten || [];
+    if(typeof regels === 'string') regels = [regels];
+    return (Array.isArray(regels) ? regels : []).slice(0, 5);
+  }
+
+  function showLeerverslag(){
+    var data = state.leerverslag;
+    if(!data){ state.mode = 'stack'; render(); return; }
+    state.mode = 'leerverslag';
+    el.interstitial.hidden = true;
+    el.summary.hidden = true;
+    var regels = leerRegels(data);
+    var html = '';
+    html += '<div class="leer-week">Leerverslag · ' + escapeHtml(data.week || isoWeek()) + '</div>';
+    html += '<h2>Dit heb ik vorige week van je geleerd</h2>';
+    if(regels.length){
+      html += '<ul class="leer-lines">';
+      regels.forEach(function(r){ html += '<li>' + escapeHtml(r) + '</li>'; });
+      html += '</ul>';
+    } else {
+      html += '<p class="empty-note">Geen regels meegegeven bij dit verslag.</p>';
+    }
+    html += '<div class="panel-actions">' +
+      '<button class="btn primary" id="leerJa" type="button">Klopt</button>' +
+      '<button class="btn ghost" id="leerNee" type="button">Niet helemaal</button>' +
+      '</div>';
+    el.leerPanel.hidden = false;
+    el.leerPanel.innerHTML = html;
+    document.getElementById('leerJa').addEventListener('click', function(){ antwoordLeerverslag(true, null); });
+    document.getElementById('leerNee').addEventListener('click', openLeerNote);
+    render();
+  }
+
+  function antwoordLeerverslag(bevestigd, opmerking){
+    var data = state.leerverslag;
+    state.leerverslag = null;
+    state.mode = 'stack';
+    render();
+    if(!db || !data) return;
+    var body = Object.assign({}, data, {
+      bevestigd: bevestigd,
+      opmerking: opmerking || null,
+      beantwoordOp: new Date().toISOString()
+    });
+    db.doc('leerverslag/' + data.week).set(body).catch(function(){});
+  }
+
+  // ---------- V-54 leerlogboek ----------
+  function showLogboek(){
+    if(!db) return;
+    state.mode = 'logboek';
+    el.interstitial.hidden = true;
+    el.summary.hidden = true;
+    el.logPanel.hidden = false;
+    el.logPanel.innerHTML = '<h2>Leerlogboek</h2><p class="empty-note">Laden…</p>';
+    render();
+    db.collection('leerverslag').get().then(function(qs){
+      var rijen = qs.docs.map(function(d){
+        var x = d.data() || {};
+        x.week = x.week || d.id;
+        return x;
+      }).sort(function(a,b){ return a.week < b.week ? 1 : a.week > b.week ? -1 : 0; });
+      var html = '<h2>Leerlogboek</h2>' +
+        '<p>Wat het systeem week na week van je swipes leerde, nieuwste bovenaan.</p>';
+      if(!rijen.length){
+        html += '<p class="empty-note">Nog geen leerverslagen. Het eerste komt na je eerste zaterdagstapel.</p>';
+      } else {
+        html += '<div class="log-list">';
+        rijen.forEach(function(x){
+          html += '<div class="log-entry">';
+          html += '<div class="leer-week">' + escapeHtml(x.week) + '</div>';
+          var regels = leerRegels(x);
+          if(regels.length){
+            html += '<ul class="leer-lines">';
+            regels.forEach(function(r){ html += '<li>' + escapeHtml(r) + '</li>'; });
+            html += '</ul>';
+          }
+          if(x.bevestigd === true){
+            html += '<div class="log-verdict yes">✓ bevestigd</div>';
+          } else if(x.bevestigd === false){
+            html += '<div class="log-verdict no">✕ gecorrigeerd' +
+              (x.opmerking ? ': ' + escapeHtml(x.opmerking) : '') + '</div>';
+          } else {
+            html += '<div class="log-verdict">nog niet beoordeeld</div>';
+          }
+          var diff = x.profielDiff || {};
+          var toegevoegd = diff.toegevoegd || [];
+          var verwijderd = diff.verwijderd || [];
+          if(toegevoegd.length || verwijderd.length){
+            html += '<div class="log-diff"><span class="k">profiel</span>';
+            toegevoegd.forEach(function(r){ html += '<div class="plus">+ ' + escapeHtml(r) + '</div>'; });
+            verwijderd.forEach(function(r){ html += '<div class="minus">− ' + escapeHtml(r) + '</div>'; });
+            html += '</div>';
+          }
+          var br = x.bronnen || {};
+          var op = br.op || [];
+          var slaap = br.slaap || [];
+          if(op.length || slaap.length){
+            html += '<div class="log-diff"><span class="k">bronnen</span>';
+            if(op.length) html += '<div class="plus">↑ ' + escapeHtml(op.join(', ')) + '</div>';
+            if(slaap.length) html += '<div class="minus">↓ ' + escapeHtml(slaap.join(', ')) + '</div>';
+            html += '</div>';
+          }
+          html += '</div>';
+        });
+        html += '</div>';
+      }
+      html += '<div class="panel-actions" style="margin-top:14px;">' +
+        '<button class="btn primary" id="logTerug" type="button">Terug naar de stapel</button></div>';
+      el.logPanel.innerHTML = html;
+      document.getElementById('logTerug').addEventListener('click', sluitLogboek);
+    }).catch(function(){
+      el.logPanel.innerHTML = '<h2>Leerlogboek</h2><p class="empty-note">Kon het logboek niet laden.</p>' +
+        '<div class="panel-actions"><button class="btn primary" id="logTerug" type="button">Terug naar de stapel</button></div>';
+      document.getElementById('logTerug').addEventListener('click', sluitLogboek);
+    });
+  }
+
+  function sluitLogboek(){
+    state.mode = state.leerverslag ? 'leerverslag' : 'stack';
+    if(state.mode === 'leerverslag'){ showLeerverslag(); return; }
+    render();
+  }
+
+  // ---------- V-28 meer zoals dit ----------
+  function meerZoalsDit(){
+    if(state.mode !== 'stack' || state.stack.length === 0) return;
+    var id = state.stack[0];
+    var card = byId[id];
+    var titel = card ? (card.title || card.dossier || '') : '';
+    var week = isoWeek();
+    var body = { cardId: id, titel: titel, type: 'meer-zoals-dit', deck: DECK, week: week, ts: new Date().toISOString() };
+    try{
+      var raw = localStorage.getItem(VERZOEK_KEY);
+      var lijst = raw ? JSON.parse(raw) : [];
+      lijst.push(body);
+      localStorage.setItem(VERZOEK_KEY, JSON.stringify(lijst));
+    }catch(e){}
+    if(db){
+      db.doc('verzoeken/' + week + '~' + id).set(body).catch(function(){});
+    }
+    var mark = document.getElementById('meerConfirm');
+    if(mark){
+      mark.hidden = false;
+      setTimeout(function(){
+        var m = document.getElementById('meerConfirm');
+        if(m) m.hidden = true;
+      }, 2000);
+    }
+  }
+
+  // ---------- wachtrij: opslag ----------
+  function queueAdd(dest, entry){
+    var lokaal = wachtrijen[dest] || { bestemming: dest, items: [] };
+    if(!Array.isArray(lokaal.items)) lokaal.items = [];
+    lokaal.items = lokaal.items.filter(function(i){ return !(i.cardId === entry.cardId && i.week === entry.week); });
+    lokaal.items.push(entry);
+    if(lokaal.items.length > MAX_WACHTRIJ){
+      lokaal.items = lokaal.items.slice(lokaal.items.length - MAX_WACHTRIJ);
+      lokaal.afgekapt = true;
+    }
+    lokaal.bijgewerkt = new Date().toISOString();
+    wachtrijen[dest] = lokaal;
+    saveWachtrijen();
+    if(!db) return;
+    pendingQueue[dest] = (pendingQueue[dest] || Promise.resolve()).then(function(){
+      var ref = db.doc('wachtrij/' + dest);
+      return ref.get().then(function(snap){
+        var body = (snap.exists && snap.data()) || {};
+        var items = Array.isArray(body.items) ? body.items.slice() : [];
+        items = items.filter(function(i){ return !(i.cardId === entry.cardId && i.week === entry.week); });
+        items.push(entry);
+        var afgekapt = !!body.afgekapt;
+        if(items.length > MAX_WACHTRIJ){ items = items.slice(items.length - MAX_WACHTRIJ); afgekapt = true; }
+        return ref.set({ bestemming: dest, items: items, afgekapt: afgekapt, bijgewerkt: new Date().toISOString() });
+      });
+    }).catch(function(){ setDbBadge(false, 'wachtrij staat lokaal'); });
+  }
+
+  function queueRemove(dest, cardId, week){
+    var lokaal = wachtrijen[dest];
+    if(lokaal && Array.isArray(lokaal.items)){
+      lokaal.items = lokaal.items.filter(function(i){ return !(i.cardId === cardId && (!week || i.week === week)); });
+      lokaal.bijgewerkt = new Date().toISOString();
+      saveWachtrijen();
+    }
+    if(!db) return;
+    pendingQueue[dest] = (pendingQueue[dest] || Promise.resolve()).then(function(){
+      var ref = db.doc('wachtrij/' + dest);
+      return ref.get().then(function(snap){
+        if(!snap.exists) return;
+        var body = snap.data() || {};
+        var items = Array.isArray(body.items) ? body.items : [];
+        var over = items.filter(function(i){ return !(i.cardId === cardId && (!week || i.week === week)); });
+        if(over.length === items.length) return;
+        return ref.set({ bestemming: dest, items: over, afgekapt: !!body.afgekapt, bijgewerkt: new Date().toISOString() });
+      });
+    }).catch(function(){ setDbBadge(false, 'wachtrij staat lokaal'); });
+  }
+
+  function bewaarRoute(id, ookWachtrij){
+    var r = routering[id];
+    if(!r) return;
+    var card = byId[id];
+    var titel = card ? (card.title || card.dossier || '') : '';
+    var week = r.week || isoWeek();
+    var social = r.bestemmingen.indexOf('social') !== -1 ? (r.socialVorm || null) : null;
+    var instructie = (r.instructie || '').trim() || null;
+    saveRoutering();
+    if(ookWachtrij){
+      r.bestemmingen.forEach(function(dest){
+        queueAdd(dest, {
+          cardId: id, titel: titel, week: week,
+          socialVorm: dest === 'social' ? social : null,
+          instructie: instructie, toegevoegdOp: new Date().toISOString()
+        });
+      });
+    }
+    if(!db) return;
+    var body = {
+      cardId: id, titel: titel, deck: DECK, week: week,
+      bestemmingen: r.bestemmingen.slice(),
+      socialVorm: social, instructie: instructie,
+      ts: new Date().toISOString()
+    };
+    pendingRoute[id] = (pendingRoute[id] || Promise.resolve()).then(function(){
+      return db.doc('routering/' + week + '~' + id).set(body);
+    }).catch(function(){ setDbBadge(false, 'routering staat lokaal'); });
+  }
+
+  // ---------- routeerscherm ----------
+  function gesterd(){
+    return ALL_IDS.filter(function(id){ return decisions[id] && decisions[id].status === 'STAR'; });
+  }
+
+  function showRouteren(){
+    var lijst = gesterd();
+    if(!lijst.length){ showSummary(true); return; }
+    state.routeLijst = lijst;
+    if(state.routeIdx >= lijst.length) state.routeIdx = 0;
+    state.mode = 'routeren';
+    el.interstitial.hidden = true;
+    el.summary.hidden = true;
+    el.queuePanel.hidden = true;
+    renderRoute();
+  }
+
+  function renderRoute(){
+    var id = state.routeLijst[state.routeIdx];
+    var card = byId[id];
+    if(!card){ routeNext(); return; }
+    var r = routeVan(id);
+    var feit = heteFeit(card);
+    var regel = feit ? escapeHtml(feit.claim) + '.' : escapeHtml(card.kern || card.samenvatting || '');
+
+    var html = '';
+    html += '<div class="route-head"><h2>Bestemming kiezen</h2>' +
+      '<span class="route-teller">' + (state.routeIdx + 1) + ' / ' + state.routeLijst.length + '</span></div>';
+    html += '<div class="route-card">' +
+      '<div class="route-title">' + escapeHtml(isDelta(card) ? (card.dossier || card.title || 'Dossier') : card.title) + '</div>' +
+      (regel ? '<div class="route-feit">' + regel + '</div>' : '');
+    var marks = [];
+    if(card.dossier) marks.push('<span class="mark dossier">' + escapeHtml(card.dossier) + '</span>');
+    if(decisions[id] && decisions[id].nieuwsbrief) marks.push('<span class="mark surprise">nieuwsbrief</span>');
+    if(marks.length) html += '<div class="route-marks">' + marks.join('') + '</div>';
+    html += '</div>';
+
+    html += '<span class="route-label">Bestemmingen · meerdere mogen</span>';
+    html += '<div class="dest-grid">';
+    BESTEMMINGEN.forEach(function(b){
+      var aan = r.bestemmingen.indexOf(b.id) !== -1;
+      html += '<button class="dest-btn ' + b.id + (aan ? ' sel' : '') + '" type="button" data-dest="' + b.id + '">' +
+        '<span class="k">' + b.toets + '</span><span class="t">' + escapeHtml(b.label) + '</span></button>';
+    });
+    html += '</div>';
+
+    if(r.bestemmingen.indexOf('social') !== -1){
+      html += '<div class="social-row"><span class="route-label">Welke vorm?</span><div class="social-grid">';
+      SOCIAL_VORMEN.forEach(function(v){
+        html += '<button class="social-btn' + (r.socialVorm === v.id ? ' sel' : '') + '" type="button" data-social="' + v.id + '">' +
+          '<span>' + escapeHtml(v.label) + '</span><span class="k">' + v.toets + '</span></button>';
+      });
+      html += '</div></div>';
+    }
+
+    html += '<textarea class="route-instr" id="routeInstructie" placeholder="Opmerking of instructie voor de volgende stap (optioneel)">' +
+      escapeHtml(r.instructie || '') + '</textarea>';
+
+    html += '<div class="route-nav">' +
+      '<button class="btn ghost" id="routeVorige" type="button"' + (state.routeIdx === 0 ? ' disabled' : '') + '>← vorige</button>' +
+      '<button class="btn primary" id="routeVolgende" type="button">' +
+      (state.routeIdx === state.routeLijst.length - 1 ? 'Klaar' : 'Volgende →') + '</button>' +
+      '<button class="btn ghost" id="routeSluit" type="button">Overzicht</button>' +
+      '<span class="hint">1–7 bestemming · Enter volgende · Esc terug</span>' +
+      '</div>';
+
+    el.routePanel.hidden = false;
+    el.routePanel.innerHTML = html;
+
+    el.routePanel.querySelectorAll('.dest-btn').forEach(function(b){
+      b.addEventListener('click', function(){ toggleDest(b.getAttribute('data-dest')); });
+    });
+    el.routePanel.querySelectorAll('.social-btn').forEach(function(b){
+      b.addEventListener('click', function(){ pickSocial(b.getAttribute('data-social')); });
+    });
+    var instr = document.getElementById('routeInstructie');
+    instr.addEventListener('blur', function(){
+      routeVan(id).instructie = instr.value;
+      bewaarRoute(id, true);
+    });
+    document.getElementById('routeVorige').addEventListener('click', routePrev);
+    document.getElementById('routeVolgende').addEventListener('click', routeNext);
+    document.getElementById('routeSluit').addEventListener('click', sluitRoute);
+    render();
+  }
+
+  function huidigeRouteId(){ return state.routeLijst[state.routeIdx]; }
+
+  function leesInstructie(){
+    var instr = document.getElementById('routeInstructie');
+    var id = huidigeRouteId();
+    if(instr && id != null) routeVan(id).instructie = instr.value;
+  }
+
+  function toggleDest(dest){
+    var id = huidigeRouteId();
+    if(id == null) return;
+    leesInstructie();
+    var r = routeVan(id);
+    var card = byId[id];
+    var week = r.week || isoWeek();
+    var i = r.bestemmingen.indexOf(dest);
+    if(i === -1){
+      r.bestemmingen.push(dest);
+      if(dest === 'social' && !r.socialVorm) r.socialVorm = 'tekst';
+      queueAdd(dest, {
+        cardId: id, titel: card ? (card.title || card.dossier || '') : '', week: week,
+        socialVorm: dest === 'social' ? (r.socialVorm || 'tekst') : null,
+        instructie: (r.instructie || '').trim() || null,
+        toegevoegdOp: new Date().toISOString()
+      });
+    } else {
+      r.bestemmingen.splice(i, 1);
+      if(dest === 'social') r.socialVorm = null;
+      queueRemove(dest, id, week);
+    }
+    bewaarRoute(id, false);
+    renderRoute();
+  }
+
+  function pickSocial(vorm){
+    var id = huidigeRouteId();
+    if(id == null) return;
+    leesInstructie();
+    var r = routeVan(id);
+    if(r.bestemmingen.indexOf('social') === -1) return;
+    r.socialVorm = r.socialVorm === vorm ? null : vorm;
+    bewaarRoute(id, true);
+    renderRoute();
+  }
+
+  function bewaarHuidigeRoute(){
+    var id = huidigeRouteId();
+    if(id == null) return;
+    leesInstructie();
+    var r = routering[id];
+    if(r && r.bestemmingen.length) bewaarRoute(id, true);
+  }
+
+  function routeNext(){
+    bewaarHuidigeRoute();
+    if(state.routeIdx >= state.routeLijst.length - 1){ sluitRoute(); return; }
+    state.routeIdx += 1;
+    renderRoute();
+  }
+
+  function routePrev(){
+    bewaarHuidigeRoute();
+    if(state.routeIdx === 0) return;
+    state.routeIdx -= 1;
+    renderRoute();
+  }
+
+  function sluitRoute(){
+    bewaarHuidigeRoute();
+    state.routeIdx = 0;
+    showSummary(true);
+  }
+
+  // ---------- wachtrijscherm ----------
+  function showWachtrij(vanuit){
+    state.vorigeModus = vanuit || state.mode;
+    state.mode = 'wachtrij';
+    el.interstitial.hidden = true;
+    el.summary.hidden = true;
+    el.routePanel.hidden = true;
+    renderWachtrij();
+  }
+
+  function renderWachtrij(){
+    var totaal = 0;
+    BESTEMMINGEN.forEach(function(b){ totaal += queueItems(b.id).length; });
+
+    var html = '<h2>Wachtrij</h2>';
+    html += '<p class="queue-line">' + (totaal
+      ? 'Wat klaarstaat om in één batch geproduceerd te worden.'
+      : 'Nog niets in de wachtrij. Kies eerst bestemmingen bij je gesterde kaarten.') + '</p>';
+
+    if(totaal){
+      html += '<div class="queue-list">';
+      BESTEMMINGEN.forEach(function(b){
+        var items = queueItems(b.id);
+        if(!items.length) return;
+        html += '<details class="queue-group"><summary>' + escapeHtml(b.label) +
+          '<span class="queue-count">' + items.length + '</span></summary>';
+        items.slice().reverse().forEach(function(it){
+          html += '<div class="queue-item">' +
+            '<div class="body">' + escapeHtml(it.titel || ('kaart ' + it.cardId)) +
+            '<span class="meta">' + escapeHtml(it.week || '') +
+            (it.socialVorm ? ' · ' + escapeHtml(it.socialVorm) : '') + '</span>' +
+            (it.instructie ? '<span class="instr">' + escapeHtml(it.instructie) + '</span>' : '') +
+            '</div>' +
+            '<button class="queue-x" type="button" data-dest="' + b.id + '" data-card="' + it.cardId +
+            '" data-week="' + escapeHtml(it.week || '') + '" title="uit de wachtrij halen">✕</button>' +
+            '</div>';
+        });
+        if(wachtrijen[b.id] && wachtrijen[b.id].afgekapt){
+          html += '<div class="queue-cap">Ouder dan de laatste ' + MAX_WACHTRIJ + ' items is afgekapt.</div>';
+        }
+        html += '</details>';
+      });
+      html += '</div>';
+    }
+
+    html += '<div class="panel-actions" style="margin-top:14px;">' +
+      '<button class="btn primary" id="queueTerug" type="button">Terug</button>';
+    if(gesterd().length){
+      html += '<button class="btn ghost" id="queueRoute" type="button">Bestemming kiezen</button>';
+    }
+    html += '</div>';
+    if(!db){
+      html += '<p class="footnote">Deze wachtrij staat alleen in deze browser.</p>';
+    }
+
+    el.queuePanel.hidden = false;
+    el.queuePanel.innerHTML = html;
+
+    el.queuePanel.querySelectorAll('.queue-x').forEach(function(x){
+      x.addEventListener('click', function(){
+        var dest = x.getAttribute('data-dest');
+        var cardId = x.getAttribute('data-card');
+        var week = x.getAttribute('data-week') || null;
+        var nid = Number(cardId);
+        var id = isNaN(nid) ? cardId : nid;
+        queueRemove(dest, id, week);
+        var r = routering[id];
+        if(r && Array.isArray(r.bestemmingen)){
+          var i = r.bestemmingen.indexOf(dest);
+          if(i !== -1){
+            r.bestemmingen.splice(i, 1);
+            if(dest === 'social') r.socialVorm = null;
+            bewaarRoute(id, false);
+          }
+        }
+        renderWachtrij();
+      });
+    });
+    document.getElementById('queueTerug').addEventListener('click', sluitWachtrij);
+    var qr = document.getElementById('queueRoute');
+    if(qr) qr.addEventListener('click', showRouteren);
+    render();
+  }
+
+  function sluitWachtrij(){
+    if(state.vorigeModus === 'summary'){ showSummary(true); return; }
+    if(state.vorigeModus === 'routeren' && state.routeLijst.length){ showRouteren(); return; }
+    state.mode = 'stack';
+    render();
+  }
+
+  function bestemmingsRegel(){
+    var delen = [];
+    BESTEMMINGEN.forEach(function(b){
+      var n = queueItems(b.id).length;
+      if(n) delen.push(n + ' ' + b.label);
+    });
+    return delen.join(' · ');
+  }
+
+  // ---------- interstitial ----------
+  function showInterstitial(){
+    state.mode = 'interstitial';
+    var remaining = state.stack.length;
+    el.summary.hidden = true;
+    el.interstitial.hidden = false;
+    el.interstitial.innerHTML =
+      '<h2>Rondje klaar</h2>' +
+      '<p>Je hebt elke kaart in de huidige stapel gezien. Er staan nog <strong>' + remaining + '</strong> kaart' + (remaining===1?'':'en') + ' op WAIT of onbeslist. Nog een rondje, of hier stoppen voor nu?</p>' +
+      '<div class="panel-actions">' +
+        '<button class="btn primary" id="continueBtn" type="button">Nog een rondje</button>' +
+        '<button class="btn ghost" id="stopBtn" type="button">Stop voor nu</button>' +
+      '</div>';
+    document.getElementById('continueBtn').addEventListener('click', function(){
+      state.mode = 'stack';
+      render();
+    });
+    document.getElementById('stopBtn').addEventListener('click', function(){
+      showSummary(true);
+    });
+    render();
+  }
+
+  // ---------- summary ----------
+  function showSummary(paused){
+    state.mode = 'summary';
+    el.interstitial.hidden = true;
+    el.routePanel.hidden = true;
+    el.queuePanel.hidden = true;
+    var starred = ALL_IDS.filter(function(id){ return decisions[id] && decisions[id].status === 'STAR'; });
+    var removed = ALL_IDS.filter(function(id){ return decisions[id] && decisions[id].status === 'REMOVE'; });
+    var waiting = state.stack.slice();
+    var sleeping = ALL_IDS.filter(function(id){ return slaapt(decisions[id]); });
+    var flagged = ALL_IDS.filter(function(id){
+      return decisions[id] && decisions[id].status === 'WAIT' && decisions[id].waitCount >= 3;
+    });
+
+    var html = '';
+    html += '<h2>' + (paused ? 'Gepauzeerd' : 'Stapel klaar') + '</h2>';
+    if(!paused && waiting.length === 0 && sleeping.length === 0){
+      html += '<p>Alle ' + ALL_IDS.length + ' kaarten zijn beslist: ' + starred.length + ' STAR, ' + removed.length + ' REMOVE.</p>';
+    } else {
+      html += '<p>' + starred.length + ' STAR · ' + removed.length + ' REMOVE · ' + waiting.length + ' nog in de stapel</p>';
+    }
+    if(sleeping.length){
+      var eerste = sleeping.slice().sort(function(a,b){
+        return decisions[a].terugOp < decisions[b].terugOp ? -1 : 1;
+      })[0];
+      html += '<p><strong>' + sleeping.length + ' kaart' + (sleeping.length===1?'':'en') + '</strong> ' +
+        (sleeping.length===1?'slaapt':'slapen') + ' op WAIT; de eerste komt terug op ' +
+        escapeHtml(nlDatum(decisions[eerste].terugOp)) + '.</p>';
+    }
+    if(flagged.length){
+      html += '<p><strong>' + flagged.length + ' kaart' + (flagged.length===1?'':'en') + '</strong> is al 3× of vaker overgeslagen — dat is meestal een verkapte REMOVE.</p>';
+    }
+
+    var newsIds = starred.filter(function(id){ return decisions[id].nieuwsbrief; });
+    if(newsIds.length){
+      html += '<p><strong>Nieuwsbrief ' + escapeHtml(decisions[newsIds[0]].week || isoWeek()) + ':</strong> ' + newsIds.map(function(id){ return escapeHtml(byId[id].title); }).join(' · ') + '</p>';
+    }
+    if(starred.length){
+      html += '<div class="summary-list">';
+      starred.forEach(function(id){
+        var card = byId[id];
+        if(!card) return;
+        var feit = heteFeit(card);
+        var kop = isDelta(card) ? (card.dossier || card.title || 'Dossier') : card.title;
+        var regel = feit ? escapeHtml(feit.claim) + '.' : escapeHtml(card.kern || card.samenvatting || '');
+        html += '<details class="summary-item"><summary>' + (decisions[id].nieuwsbrief ? '✉ ' : '') + escapeHtml(kop) + '</summary>' +
+          '<div class="summary-detail">' + regel +
+          '<ul class="src-list">';
+        bronnenVan(card).forEach(function(b){ html += bronRegelHtml(b); });
+        html += '</ul></div></details>';
+      });
+      html += '</div>';
+    } else {
+      html += '<p class="empty-note">Nog niets gesterd.</p>';
+    }
+
+    var wachtrijRegel = bestemmingsRegel();
+    if(wachtrijRegel){
+      html += '<p><strong>In de wachtrij:</strong> ' + escapeHtml(wachtrijRegel) + '</p>';
+    }
+
+    var klaarMetStarred = !paused && waiting.length === 0 && starred.length > 0;
+    if(klaarMetStarred){
+      html += '<p>Je stapel is af. Geef je ' + starred.length + ' gesterde kaart' +
+        (starred.length === 1 ? '' : 'en') + ' nu een bestemming, dan komen ze in de wachtrij voor productie.</p>';
+    }
+
+    html += '<div class="panel-actions" style="margin-top:14px;">';
+    if(starred.length){
+      html += '<button class="btn ' + (klaarMetStarred ? 'primary' : 'ghost') + '" id="routeBtn" type="button">Bestemming kiezen</button>';
+    }
+    if(waiting.length){
+      html += '<button class="btn ' + (klaarMetStarred ? 'ghost' : 'primary') + '" id="resumeBtn" type="button">Verder triëren</button>';
+    }
+    if(wachtrijRegel){
+      html += '<button class="btn ghost" id="summaryQueueBtn" type="button">Wachtrij</button>';
+    }
+    if(db){
+      html += '<button class="btn ghost" id="summaryLogBtn" type="button">Leerlogboek</button>';
+    }
+    html += '<button class="btn ghost" id="resetBtn" type="button">Alles wissen</button>';
+    html += '</div>';
+    html += '<div id="resetConfirm" hidden></div>';
+
+    html += '<p class="footnote">Een bestemming zet de kaart in een wachtrij; die wachtrijen zijn bedoeld om later in één batch te produceren — meerdere keynotes, social posts of long-reads tegelijk.</p>';
+
+    el.summary.hidden = false;
+    el.summary.innerHTML = html;
+
+    if(waiting.length){
+      document.getElementById('resumeBtn').addEventListener('click', function(){
+        state.mode = 'stack';
+        state.lapSeen = {};
+        render();
+      });
+    }
+    var sumRoute = document.getElementById('routeBtn');
+    if(sumRoute) sumRoute.addEventListener('click', showRouteren);
+    var sumQueue = document.getElementById('summaryQueueBtn');
+    if(sumQueue) sumQueue.addEventListener('click', function(){ showWachtrij('summary'); });
+    var sumLog = document.getElementById('summaryLogBtn');
+    if(sumLog) sumLog.addEventListener('click', showLogboek);
+    document.getElementById('resetBtn').addEventListener('click', function(){
+      var box = document.getElementById('resetConfirm');
+      box.hidden = false;
+      box.innerHTML = '<p style="color:var(--rejected); font-size:.85rem; margin-top:10px;">Weet je het zeker? Alle STAR/WAIT/REMOVE-keuzes worden gewist.</p>' +
+        '<div class="panel-actions"><button class="btn primary" id="confirmReset" type="button">Ja, wis alles</button>' +
+        '<button class="btn ghost" id="cancelReset" type="button">Annuleren</button></div>';
+      document.getElementById('confirmReset').addEventListener('click', function(){
+        decisions = {};
+        saveDecisions(decisions);
+        state.stack = buildInitialStack();
+        state.history = [];
+        state.lapSeen = {};
+        state.flipped = false;
+        state.mode = 'stack';
+        render();
+      });
+      document.getElementById('cancelReset').addEventListener('click', function(){ box.hidden = true; box.innerHTML=''; });
+    });
+    render();
+  }
+
+  // ---------- drag ----------
+  var drag = null;
+  function onPointerDown(e){
+    if(state.mode !== 'stack' || state.stack.length === 0) return;
+    if(e.target.closest && e.target.closest('a, button')) return;
+    drag = { startX: e.clientX, startY: e.clientY, dx:0, dy:0, moved:false, id: e.pointerId };
+    try{ el.cardDrag.setPointerCapture(e.pointerId); }catch(err){}
+  }
+  function onPointerMove(e){
+    if(!drag) return;
+    drag.dx = e.clientX - drag.startX;
+    drag.dy = e.clientY - drag.startY;
+    if(Math.abs(drag.dx) > 4 || Math.abs(drag.dy) > 4) drag.moved = true;
+    var rot = drag.dx / 18;
+    el.cardDrag.style.transition = 'none';
+    el.cardDrag.style.transform = 'translate(' + drag.dx + 'px,' + Math.max(drag.dy,0) + 'px) rotate(' + rot + 'deg)';
+  }
+  function onPointerUp(e){
+    if(!drag) return;
+    var dx = drag.dx, dy = drag.dy, moved = drag.moved;
+    drag = null;
+    el.cardDrag.style.transition = '';
+    var THRESH = 90;
+    if(!moved){
+      el.cardDrag.style.transform = '';
+      flip();
+      return;
+    }
+    if(dy > THRESH && Math.abs(dy) > Math.abs(dx)){
+      flingOut(0, 400, function(){ decide('WAIT'); });
+    } else if(dx > THRESH){
+      flingOut(500, dy*0.4, function(){ decide('STAR'); });
+    } else if(dx < -THRESH){
+      flingOut(-500, dy*0.4, function(){ decide('REMOVE'); });
+    } else {
+      el.cardDrag.style.transform = '';
+    }
+  }
+  function flingOut(x, y, cb){
+    el.cardDrag.style.transition = 'transform .28s ease-in';
+    el.cardDrag.style.transform = 'translate(' + x + 'px,' + y + 'px) rotate(' + (x/12) + 'deg)';
+    setTimeout(function(){
+      el.cardDrag.style.transition = '';
+      el.cardDrag.style.transform = '';
+      cb();
+    }, 220);
+  }
+
+  el.cardDrag.addEventListener('pointerdown', onPointerDown);
+  el.cardDrag.addEventListener('pointermove', onPointerMove);
+  el.cardDrag.addEventListener('pointerup', onPointerUp);
+  el.cardDrag.addEventListener('pointercancel', function(){ drag = null; el.cardDrag.style.transform=''; });
+
+  // ---------- keyboard ----------
+  var REASON_KEYS = ['al_bekend','niet_mijn_thema','te_zwak_bewijs','te_oud','verkeerde_vorm','anders'];
+  document.addEventListener('keydown', function(e){
+    if(state.mode === 'reason'){
+      var inText = e.target === el.reasonComment;
+      if(e.key === 'Escape'){ e.preventDefault(); cancelNote(); }
+      else if(e.key === 'Enter' && (!inText || e.metaKey || e.ctrlKey)){ e.preventDefault(); saveNote(); }
+      else if(!inText && e.key >= '1' && e.key <= '6'){ e.preventDefault(); pickReason(REASON_KEYS[Number(e.key)-1]); }
+      return;
+    }
+    if(state.mode === 'logboek'){
+      if(e.key === 'Escape'){ e.preventDefault(); sluitLogboek(); }
+      return;
+    }
+    if(state.mode === 'routeren'){
+      var inInstr = e.target && e.target.id === 'routeInstructie';
+      if(e.key === 'Escape'){ e.preventDefault(); sluitRoute(); return; }
+      if(e.key === 'Enter' && (!inInstr || e.metaKey || e.ctrlKey)){ e.preventDefault(); routeNext(); return; }
+      if(inInstr) return;
+      if(e.key === 'ArrowRight'){ e.preventDefault(); routeNext(); return; }
+      if(e.key === 'ArrowLeft'){ e.preventDefault(); routePrev(); return; }
+      var dest = BESTEMMINGEN.filter(function(b){ return b.toets === e.key; })[0];
+      if(dest){ e.preventDefault(); toggleDest(dest.id); return; }
+      var vorm = SOCIAL_VORMEN.filter(function(v){ return v.toets === e.key.toLowerCase(); })[0];
+      if(vorm){ e.preventDefault(); pickSocial(vorm.id); }
+      return;
+    }
+    if(state.mode === 'wachtrij'){
+      if(e.key === 'Escape'){ e.preventDefault(); sluitWachtrij(); }
+      return;
+    }
+    if(state.mode === 'leerverslag'){
+      if(e.key === 'Enter'){ e.preventDefault(); antwoordLeerverslag(true, null); }
+      else if(e.key === 'Escape'){ e.preventDefault(); openLeerNote(); }
+      return;
+    }
+    if(e.key === 'c' || e.key === 'C'){ e.preventDefault(); openNote(); return; }
+    if(e.key === 'n' || e.key === 'N'){ e.preventDefault(); decide('STAR', { nieuwsbrief: true }); return; }
+    if(e.key === 'm' || e.key === 'M'){ e.preventDefault(); meerZoalsDit(); return; }
+    if(e.key === 'ArrowLeft'){ e.preventDefault(); decide('REMOVE'); }
+    else if(e.key === 'ArrowRight'){ e.preventDefault(); decide('STAR'); }
+    else if(e.key === 'ArrowDown'){ e.preventDefault(); decide('WAIT'); }
+    else if(e.key === 'ArrowUp'){ e.preventDefault(); flip(); }
+    else if(e.key === 'u' || e.key === 'U'){ e.preventDefault(); undo(); }
+  });
+
+  // ---------- buttons ----------
+  el.btnRemove.addEventListener('click', function(){ decide('REMOVE'); });
+  el.btnNote.addEventListener('click', openNote);
+  el.btnWait.addEventListener('click', function(){ decide('WAIT'); });
+  el.btnStar.addEventListener('click', function(){ decide('STAR'); });
+  el.btnNews.addEventListener('click', function(){ decide('STAR', { nieuwsbrief: true }); });
+  el.btnFlip.addEventListener('click', flip);
+  el.btnUndo.addEventListener('click', undo);
+  el.pauseBtn.addEventListener('click', function(){ showSummary(true); });
+  el.reasonGrid.addEventListener('click', function(e){
+    var b = e.target.closest('.reason-btn');
+    if(b) pickReason(b.getAttribute('data-reason'));
+  });
+  el.reasonConfirm.addEventListener('click', saveNote);
+  el.reasonCancel.addEventListener('click', cancelNote);
+  el.logboekBtn.addEventListener('click', showLogboek);
+  el.queueBtn.addEventListener('click', function(){ showWachtrij(state.mode); });
+  el.faceBack.addEventListener('click', function(e){
+    var b = e.target.closest('#btnMeer');
+    if(b){ e.stopPropagation(); meerZoalsDit(); }
+  });
+
+  render();
+  initDb();
+})();
+</script>

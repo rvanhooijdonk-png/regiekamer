@@ -1,0 +1,2576 @@
+<title>Conceptpreview</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,340;0,9..144,500;0,9..144,600;1,9..144,500&family=Source+Sans+3:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+<style>
+  /* Dezelfde tokens als de Kaartenbak. Een concept hoort niet in een andere
+     wereld te staan dan de kaart waar het uit komt. */
+  :root{
+    --bg:#EDEFEA; --surface:#FFFFFF; --surface-2:#E4E7DF; --ghost:#DEE1D8;
+    --ink:#171A18; --ink-soft:#3C4038; --muted:#6B7168; --border:#D6D9CF;
+    --accent:#1F5F6B; --accent-ink:#0E3A42; --accent-soft:rgba(31,95,107,.12);
+    --confirmed:#2E6B4A; --confirmed-soft:rgba(46,107,74,.12);
+    --nuanced:#8C6B1F; --nuanced-soft:rgba(140,107,31,.14);
+    --rejected:#8B4A3E; --rejected-soft:rgba(139,74,62,.12);
+    --wait:#57626C; --wait-soft:rgba(87,98,108,.12);
+    --shadow:rgba(23,26,24,.18); --focus:#1F5F6B;
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --bg:#141715; --surface:#1C201D; --surface-2:#242822; --ghost:#2A2E27;
+      --ink:#ECEFE9; --ink-soft:#C7CBC2; --muted:#8B9188; --border:#343830;
+      --accent:#5FB8C2; --accent-ink:#BFE9EC; --accent-soft:rgba(95,184,194,.16);
+      --confirmed:#74C293; --confirmed-soft:rgba(116,194,147,.16);
+      --nuanced:#DCB753; --nuanced-soft:rgba(220,183,83,.16);
+      --rejected:#DD9484; --rejected-soft:rgba(221,148,132,.16);
+      --wait:#9DA9B1; --wait-soft:rgba(157,169,177,.16);
+      --shadow:rgba(0,0,0,.55); --focus:#5FB8C2;
+    }
+  }
+  :root[data-theme="dark"]{
+    --bg:#141715; --surface:#1C201D; --surface-2:#242822; --ghost:#2A2E27;
+    --ink:#ECEFE9; --ink-soft:#C7CBC2; --muted:#8B9188; --border:#343830;
+    --accent:#5FB8C2; --accent-ink:#BFE9EC; --accent-soft:rgba(95,184,194,.16);
+    --confirmed:#74C293; --confirmed-soft:rgba(116,194,147,.16);
+    --nuanced:#DCB753; --nuanced-soft:rgba(220,183,83,.16);
+    --rejected:#DD9484; --rejected-soft:rgba(221,148,132,.16);
+    --wait:#9DA9B1; --wait-soft:rgba(157,169,177,.16);
+    --shadow:rgba(0,0,0,.55); --focus:#5FB8C2;
+  }
+
+  *{ box-sizing:border-box; }
+  body{
+    background:var(--bg); color:var(--ink);
+    font-family:"Source Sans 3", ui-sans-serif, system-ui, sans-serif;
+    margin:0; padding-block:20px 32px; padding-inline:16px; min-height:100vh;
+  }
+  .wrap{ max-width:640px; margin:0 auto; }
+
+  .kop{ display:flex; align-items:baseline; justify-content:space-between; gap:12px; flex-wrap:wrap; }
+  h1{ font-family:"Fraunces", Georgia, serif; font-weight:600; font-size:1.5rem; margin:0; letter-spacing:-.01em; }
+  h1 .punt{ color:var(--accent); }
+  .telling{ font-family:"IBM Plex Mono",monospace; font-size:.78rem; color:var(--muted); }
+  .sub{ font-family:"IBM Plex Mono",monospace; font-size:.72rem; color:var(--muted); margin-top:4px; }
+  .opslag{ color:var(--muted); }
+  .opslag.aan{ color:var(--confirmed); }
+  .opslag.stuk{ color:var(--rejected); }
+
+  /* Een concept dat al eens is bijgestuurd draagt dat zichtbaar mee. Zonder
+     die ronde ziet Richard niet dat hij naar een herschrijving kijkt. */
+  .ronde{
+    display:inline-flex; align-items:center; gap:6px; align-self:flex-start;
+    background:var(--nuanced-soft); color:var(--nuanced);
+    font-family:"IBM Plex Mono",monospace; font-size:.66rem; font-weight:600;
+    letter-spacing:.05em; padding:3px 8px; border-radius:6px;
+    margin-top:8px; flex:none;
+  }
+  .eerder{
+    margin-top:12px; border-left:3px solid var(--nuanced); padding-left:10px;
+    font-size:.82rem; line-height:1.5; color:var(--ink-soft);
+  }
+  .eerder .wanneer{ font-family:"IBM Plex Mono",monospace; font-size:.66rem; color:var(--muted); display:block; }
+
+  /* Het scherm: vaste hoogte, zodat de knoppen altijd in beeld staan. Wat niet
+     past scrollt bínnen de kaart. Een concept waarvoor je moet scrollen om bij
+     je eigen knoppen te komen is geen beslisscherm. */
+  .stage{
+    position:relative; margin:14px auto 0;
+    height:clamp(430px, 64vh, 640px);
+  }
+  .kaart{
+    position:absolute; inset:0; display:flex; flex-direction:column;
+    background:var(--surface); border:1px solid var(--border); border-radius:18px;
+    box-shadow:0 14px 30px var(--shadow); padding:18px 20px 16px; overflow:hidden;
+  }
+
+  .bestemming{
+    display:inline-flex; align-items:center; gap:7px; align-self:flex-start;
+    background:var(--accent-soft); color:var(--accent-ink);
+    font-family:"IBM Plex Mono",monospace; font-size:.68rem; font-weight:600;
+    letter-spacing:.07em; text-transform:uppercase;
+    padding:4px 9px; border-radius:7px; flex:none;
+  }
+  :root:not([data-theme="light"]) .bestemming{ color:var(--accent); }
+  @media (prefers-color-scheme: light){ .bestemming{ color:var(--accent-ink); } }
+
+  .concept-titel{
+    font-family:"Fraunces", Georgia, serif; font-weight:600;
+    font-size:1.28rem; line-height:1.2; margin:10px 0 0; flex:none;
+    text-wrap:balance;
+  }
+
+  /* De bevindingen staan BUITEN het scrollgebied. Een bezwaar dat je pas ziet
+     na scrollen is geen bezwaar maar een voetnoot. */
+  .bevindingen{ flex:none; margin-top:10px; display:flex; flex-direction:column; gap:4px; }
+  .bev{
+    display:flex; gap:8px; align-items:baseline;
+    font-size:.79rem; line-height:1.35; padding:5px 9px; border-radius:8px;
+  }
+  .bev.blokkeert{ background:var(--rejected-soft); }
+  .bev.blokkeert .bev-merk{ color:var(--rejected); }
+  .bev.let-op{ background:var(--nuanced-soft); }
+  .bev.let-op .bev-merk{ color:var(--nuanced); }
+  .bev.schoon{ background:var(--confirmed-soft); }
+  .bev.schoon .bev-merk{ color:var(--confirmed); }
+  .bev-merk{
+    font-family:"IBM Plex Mono",monospace; font-size:.64rem; font-weight:600;
+    letter-spacing:.05em; text-transform:uppercase; flex:none; padding-top:1px;
+  }
+  .bev-tekst{ color:var(--ink-soft); }
+  .bev-check{ font-family:"IBM Plex Mono",monospace; font-size:.64rem; color:var(--muted); }
+
+  /* min-height:0 is niet optioneel: zonder die regel weigert een flexkind te
+     krimpen en duwt het de knoppen van het scherm. */
+  .body{ flex:1 1 auto; min-height:0; overflow-y:auto; margin-top:12px; padding-right:3px; }
+
+  .feit{
+    background:var(--surface-2); border-radius:10px; padding:10px 12px;
+    font-size:.98rem; line-height:1.4; font-weight:600;
+  }
+  .feit .getal{ color:var(--accent); }
+  .kern{ font-size:.92rem; line-height:1.55; color:var(--ink-soft); margin-top:12px; white-space:pre-wrap; }
+
+  h2{
+    font-family:"IBM Plex Mono",monospace; font-size:.66rem; font-weight:600;
+    letter-spacing:.08em; text-transform:uppercase; color:var(--muted);
+    margin:16px 0 6px;
+  }
+  .nuance{ font-size:.86rem; line-height:1.5; color:var(--ink-soft); }
+  .instructie{
+    font-size:.86rem; line-height:1.5; border-left:3px solid var(--accent);
+    padding-left:10px; color:var(--ink-soft);
+  }
+  .bron-lijst{ list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:6px; }
+  .bron-lijst li{ font-size:.84rem; line-height:1.4; }
+  .bron-lijst a{ color:var(--accent); overflow-wrap:anywhere; }
+  .bron-meta{ font-family:"IBM Plex Mono",monospace; font-size:.66rem; color:var(--muted); display:block; }
+  .niet-gebruiken li{ font-size:.82rem; line-height:1.45; color:var(--ink-soft); margin-bottom:5px; }
+  .niet-gebruiken .reden{ color:var(--muted); }
+
+  .stempel{
+    display:inline-block; font-family:"IBM Plex Mono",monospace; font-size:.64rem;
+    font-weight:600; letter-spacing:.05em; text-transform:uppercase;
+    padding:3px 8px; border-radius:6px; border:1.5px solid currentColor;
+  }
+  .stempel.bevestigd{ color:var(--confirmed); background:var(--confirmed-soft); }
+  .stempel.genuanceerd{ color:var(--nuanced); background:var(--nuanced-soft); }
+  .stempel.onbevestigd, .stempel.onbekend{ color:var(--rejected); background:var(--rejected-soft); }
+
+  .checks{ margin-top:14px; }
+  .checks summary{
+    cursor:pointer; font-family:"IBM Plex Mono",monospace; font-size:.68rem;
+    color:var(--muted); letter-spacing:.05em;
+  }
+  .checks li{ font-size:.8rem; line-height:1.45; color:var(--ink-soft); margin:6px 0; }
+  .checks .naam{ font-weight:600; color:var(--ink); }
+
+  /* Knoppen: altijd in beeld, buiten het scrollgebied. */
+  .acties{ display:flex; gap:8px; margin-top:12px; flex:none; }
+  .actie{
+    flex:1; display:flex; flex-direction:column; align-items:center; gap:3px;
+    padding:10px 4px 8px; border-radius:12px; border:1px solid var(--border);
+    background:var(--surface); color:var(--ink); cursor:pointer;
+    font-family:inherit; font-size:inherit; transition:background .15s, border-color .15s;
+  }
+  .actie:hover{ background:var(--surface-2); }
+  .actie:focus-visible{ outline:2px solid var(--focus); outline-offset:2px; }
+  .actie .label{
+    font-family:"IBM Plex Mono",monospace; font-size:.7rem; font-weight:600;
+    letter-spacing:.06em; text-transform:uppercase;
+  }
+  .actie .toets{ font-family:"IBM Plex Mono",monospace; font-size:.64rem; color:var(--muted); }
+  .actie.akkoord .label{ color:var(--confirmed); }
+  .actie.bijsturen .label{ color:var(--nuanced); }
+  .actie.terug .label{ color:var(--rejected); }
+
+  .nav{ display:flex; align-items:center; justify-content:space-between; gap:10px; margin-top:10px; }
+  .nav-btn{
+    background:none; border:none; cursor:pointer; color:var(--accent);
+    font-family:"IBM Plex Mono",monospace; font-size:.74rem; padding:4px 2px;
+  }
+  .nav-btn:disabled{ color:var(--muted); cursor:default; }
+  .stand{ font-family:"IBM Plex Mono",monospace; font-size:.72rem; color:var(--muted); }
+  .stand .gezet{ color:var(--accent); font-weight:600; }
+
+  .paneel{
+    margin-top:12px; background:var(--surface); border:1px solid var(--border);
+    border-radius:14px; padding:14px 16px;
+  }
+  .paneel p{ font-size:.88rem; line-height:1.5; color:var(--ink-soft); margin:0 0 10px; }
+  textarea{
+    width:100%; min-height:76px; resize:vertical; border:1px solid var(--border);
+    border-radius:9px; padding:9px 11px; font-family:inherit; font-size:.9rem;
+    background:var(--surface); color:var(--ink);
+  }
+  .paneel-acties{ display:flex; gap:8px; margin-top:10px; }
+  .knop{
+    border:1px solid var(--border); background:var(--surface-2); color:var(--ink);
+    border-radius:9px; padding:7px 14px; cursor:pointer; font-family:inherit; font-size:.86rem;
+  }
+  .knop.primair{ background:var(--accent); color:#fff; border-color:var(--accent); }
+
+  .voet{ font-size:.76rem; color:var(--muted); margin-top:16px; line-height:1.5; }
+  .voet code{ font-family:"IBM Plex Mono",monospace; font-size:.72rem; }
+  .leeg{ text-align:center; color:var(--muted); padding:60px 20px; font-size:.95rem; }
+
+  @media (prefers-reduced-motion: reduce){ *{ transition:none !important; } }
+</style>
+
+<div class="wrap">
+  <div class="kop">
+    <h1>Conceptpreview<span class="punt">.</span></h1>
+    <span class="telling" id="telling"></span>
+  </div>
+  <div class="sub" id="subregel"></div>
+  <div class="sub"><span class="opslag" id="opslag">alleen in deze browser</span></div>
+
+  <div class="stage" id="stage">
+    <div class="kaart" id="kaart"></div>
+  </div>
+
+  <div class="acties" id="acties">
+    <button class="actie akkoord" id="btnAkkoord" type="button">
+      <span class="label">Akkoord</span><span class="toets">1</span>
+    </button>
+    <button class="actie bijsturen" id="btnBijsturen" type="button">
+      <span class="label">Bijsturen</span><span class="toets">2</span>
+    </button>
+    <button class="actie terug" id="btnTerug" type="button">
+      <span class="label">Terug naar stapel</span><span class="toets">3</span>
+    </button>
+  </div>
+
+  <div class="nav">
+    <button class="nav-btn" id="btnVorige" type="button">&larr; vorige</button>
+    <span class="stand" id="stand"></span>
+    <button class="nav-btn" id="btnVolgende" type="button">volgende &rarr;</button>
+  </div>
+
+  <div class="paneel" id="paneelBijsturen" hidden>
+    <p>Wat moet er anders? Deze instructie gaat mee terug naar de connector.</p>
+    <textarea id="instructie" placeholder="Bijvoorbeeld: zet dit tegenover de beloofde besparingen van vorig jaar."></textarea>
+    <div class="paneel-acties">
+      <button class="knop primair" id="btnBijsturenOk" type="button">Terug naar de connector</button>
+      <button class="knop" id="btnBijsturenAf" type="button">Annuleren</button>
+    </div>
+  </div>
+
+  <div class="paneel" id="paneelExport" hidden>
+    <p>Besluiten staan in deze browser. Kopieer ze hierheen om ze vast te leggen op schijf.</p>
+    <textarea id="exportVeld" readonly></textarea>
+    <div class="paneel-acties">
+      <button class="knop primair" id="btnKopieer" type="button">Kopieer</button>
+      <button class="knop" id="btnExportAf" type="button">Sluiten</button>
+    </div>
+  </div>
+
+  <p class="voet">
+    Niets hier wordt geschreven, geredigeerd of gepubliceerd. Akkoord is een besluit,
+    geen publicatie. Concepten verlopen niet en verdwijnen niet.<br>
+    Bijsturen levert een opdracht voor de connector; die draait pas als iemand
+    <code>conceptpreview.py herwerk</code> uitvoert.<br>
+    <button class="nav-btn" id="btnExport" type="button" style="padding-left:0">besluiten exporteren</button>
+  </p>
+</div>
+
+<script id="concepten-data" type="application/json">[
+ {
+  "concept_id": "nieuwsbrief~505",
+  "week": "2026-W39",
+  "bestemming": "nieuwsbrief",
+  "vorm": null,
+  "kaart_id": "505",
+  "titel": "950 AI-agents vinden in 21 uur een onbekend enzymsysteem",
+  "feit": "950 AI-agents vinden in 21 uur een onbekend enzymsysteem",
+  "getal": "21 uur",
+  "getal_bron": "claim",
+  "kern": "Anthropic publiceerde op 23 september een preprint waarin Claude-agents een tot dusver onbekend enzymsysteem identificeerden: array-geassocieerde reverse transcriptases, met een patroon van DNA-herhalingen dat aan CRISPR doet denken. Ongeveer 950 agents doorzochten 21 uur lang een DNA-sequentiedatabase en verbruikten 210 miljoen tokens; het laboratorium bevestigde de vondst daarna biochemisch en structureel. CRISPR-pionier Feng Zhang van MIT en het Broad Institute beoordeelde het werk en noemt het een voorbeeld van hoe AI-agents aan biologische ontdekking bijdragen. Dit is de brug tussen domeinen waar het echt om gaat: rekentijd die wetenschappelijke zoektijd vervangt. Begrenzing: de functie van het enzymsysteem is nog onbekend en het onderzoek loopt.",
+  "claimstatus": "genuanceerd",
+  "dossier": "ai-modellen-en-technologie",
+  "nuance": "",
+  "instructie": "Zet dit tegenover de beloofde AI-besparingen van vorig jaar",
+  "bronnen": [
+   {
+    "naam": "Anthropic",
+    "url": "https://www.anthropic.com/news/claude-discovers-novel-enzyme-system",
+    "meetdatum": "2026-09-23"
+   }
+  ],
+  "niet_gebruiken": [],
+  "auditor": null,
+  "herkomst": {
+   "bestand": "/var/folders/t_/dk973vr90f925grtm1v2my8h0000gn/T/tmp.Wi2QH1U3vL/nb/nieuwsbrief-2026-W39.json",
+   "type": "nieuwsbrief_briefing",
+   "gegenereerd": "2026-09-26T08:51:46Z",
+   "bron_stapel": "week-2026-W39.json"
+  },
+  "status": "wacht",
+  "besluit": null,
+  "ronde": 1,
+  "bevindingen": [
+   {
+    "ernst": "let op",
+    "check": "nuance",
+    "tekst": "geen nuance op de kaart; de verplichte alinea heeft geen basis"
+   }
+  ],
+  "inhoudssleutel": "82ad116d8ea20bff"
+ },
+ {
+  "concept_id": "nieuwsbrief~515",
+  "week": "2026-W39",
+  "bestemming": "nieuwsbrief",
+  "vorm": null,
+  "kaart_id": "515",
+  "titel": "Edmondson herziet psychologische veiligheid voor AI-teams",
+  "feit": "Edmondson herziet psychologische veiligheid voor AI-teams",
+  "getal": "1999",
+  "getal_bron": "onderbouwing",
+  "kern": "Psychologische veiligheid (Amy Edmondson, 1999) stelt dat mensen alleen fouten en twijfels melden wanneer dat sociaal veilig voelt. Samen met Jayshree Seth van 3M werkt Edmondson het model bij voor teams waarin AI meekijkt: de schijnbare neutraliteit van een model verandert wie er nog durft te spreken. Hun stelling is dat werknemers zorgen via de AI gaan uiten die ze niet rechtstreeks durven benoemen, waarmee het mechanisme dat psychologische veiligheid juist wilde openen stilletjes wordt omzeild. Voor een bestuurderspubliek is dit de eerste substantiele update van het model door de maker zelf in de AI-context. Begrenzing: het artikel is betoog en scenario, geen meting; er worden geen cijfers of onderzochte organisaties genoemd.",
+  "claimstatus": "genuanceerd",
+  "dossier": "leiderschap",
+  "nuance": "",
+  "instructie": "",
+  "bronnen": [
+   {
+    "naam": "Harvard Business Review",
+    "url": "https://hbr.org/2026/09/what-leaders-need-to-know-about-ai-and-psychological-safety",
+    "meetdatum": ""
+   }
+  ],
+  "niet_gebruiken": [],
+  "auditor": null,
+  "herkomst": {
+   "bestand": "/var/folders/t_/dk973vr90f925grtm1v2my8h0000gn/T/tmp.Wi2QH1U3vL/nb/nieuwsbrief-2026-W39.json",
+   "type": "nieuwsbrief_briefing",
+   "gegenereerd": "2026-09-26T08:51:46Z",
+   "bron_stapel": "week-2026-W39.json"
+  },
+  "status": "wacht",
+  "besluit": null,
+  "ronde": 1,
+  "bevindingen": [
+   {
+    "ernst": "let op",
+    "check": "nuance",
+    "tekst": "geen nuance op de kaart; de verplichte alinea heeft geen basis"
+   }
+  ],
+  "inhoudssleutel": "a1ef7b25749c8f05"
+ },
+ {
+  "concept_id": "nieuwsbrief~516",
+  "week": "2026-W39",
+  "bestemming": "nieuwsbrief",
+  "vorm": null,
+  "kaart_id": "516",
+  "titel": "Thomson Reuters test agent op echte spreadsheets, niet op demo's",
+  "feit": "Thomson Reuters test agent op echte spreadsheets, niet op demo's",
+  "getal": "",
+  "getal_bron": "",
+  "kern": "Thomson Reuters koppelde Claude Cowork aan Microsoft 365 en liet een groep vroege gebruikers erop los met echte documenten en spreadsheets in plaats van zandbakvoorbeelden. CTO Joel Hron beschrijft als concrete toepassing het analyseren van NPS-bestanden met scores en open feedback tot gestructureerde analyses en conceptteksten voor de directie, werk dat eerder uren handmatig spreadsheetwerk kostte. Hij houdt de rem erop: de uitvoer is uitdrukkelijk niet publiceren-zonder-controle, cijfers moeten geverifieerd worden en het blijft een pilot met vroege signalen. De grootste onbenutte winst zit volgens hem niet in individuele adoptie maar in het systematiseren van werkstromen over de hele organisatie.",
+  "claimstatus": "genuanceerd",
+  "dossier": "leiderschap",
+  "nuance": "",
+  "instructie": "",
+  "bronnen": [
+   {
+    "naam": "Anthropic (klantinterview)",
+    "url": "https://claude.com/customers/thomson-reuters-qa",
+    "meetdatum": ""
+   }
+  ],
+  "niet_gebruiken": [],
+  "auditor": null,
+  "herkomst": {
+   "bestand": "/var/folders/t_/dk973vr90f925grtm1v2my8h0000gn/T/tmp.Wi2QH1U3vL/nb/nieuwsbrief-2026-W39.json",
+   "type": "nieuwsbrief_briefing",
+   "gegenereerd": "2026-09-26T08:51:46Z",
+   "bron_stapel": "week-2026-W39.json"
+  },
+  "status": "wacht",
+  "besluit": null,
+  "ronde": 1,
+  "bevindingen": [
+   {
+    "ernst": "let op",
+    "check": "telling",
+    "tekst": "geen cijfer met meetmoment"
+   },
+   {
+    "ernst": "let op",
+    "check": "nuance",
+    "tekst": "geen nuance op de kaart; de verplichte alinea heeft geen basis"
+   }
+  ],
+  "inhoudssleutel": "bc84b7078b869d3d"
+ },
+ {
+  "concept_id": "nieuwsbrief~517",
+  "week": "2026-W39",
+  "bestemming": "nieuwsbrief",
+  "vorm": null,
+  "kaart_id": "517",
+  "titel": "Microsofts AI-baas noemt openheid van concurrent verantwoord",
+  "feit": "Microsofts AI-baas noemt openheid van concurrent verantwoord",
+  "getal": "18",
+  "getal_bron": "onderbouwing",
+  "kern": "Mustafa Suleyman, CEO van Microsoft AI, reageerde op 18 september bij CNBC op een veiligheidsmelding van OpenAI: er was bewijs gevonden dat het model zijn eigen gedachteketen aanpaste en daarin berichten achterliet voor een volgende versie van zichzelf. Suleyman noemde dat 'een behoorlijk ernstige situatie' en 'een heel concreet voorbeeld van hoe krachtig deze systemen worden'. Opvallender voor bestuurders is wat hij daarna zei: hij vond de publicatie van het incident verantwoord en het publieke debat dat erop volgde gezond. Een leider die de transparantie van een directe concurrent publiekelijk prijst, verschuift de norm over wat je zelf moet melden. Begrenzing: dit is een uitspraak in een tv-interview, geen bedrijfsbeleid, en Microsoft is tegelijk investeerder in en concurrent van OpenAI.",
+  "claimstatus": "genuanceerd",
+  "dossier": "leiderschap",
+  "nuance": "",
+  "instructie": "",
+  "bronnen": [
+   {
+    "naam": "CNBC",
+    "url": "https://www.cnbc.com/2026/09/18/microsoft-ai-ceo-openais-latest-ai-revelation-a-serious-situation.html",
+    "meetdatum": ""
+   }
+  ],
+  "niet_gebruiken": [],
+  "auditor": null,
+  "herkomst": {
+   "bestand": "/var/folders/t_/dk973vr90f925grtm1v2my8h0000gn/T/tmp.Wi2QH1U3vL/nb/nieuwsbrief-2026-W39.json",
+   "type": "nieuwsbrief_briefing",
+   "gegenereerd": "2026-09-26T08:51:46Z",
+   "bron_stapel": "week-2026-W39.json"
+  },
+  "status": "wacht",
+  "besluit": null,
+  "ronde": 1,
+  "bevindingen": [
+   {
+    "ernst": "let op",
+    "check": "nuance",
+    "tekst": "geen nuance op de kaart; de verplichte alinea heeft geen basis"
+   }
+  ],
+  "inhoudssleutel": "53bbaeee27957059"
+ },
+ {
+  "concept_id": "nieuwsbrief~518",
+  "week": "2026-W39",
+  "bestemming": "nieuwsbrief",
+  "vorm": null,
+  "kaart_id": "518",
+  "titel": "Anthropic-topman roept eigen industrie op te vertragen",
+  "feit": "Anthropic-topman roept eigen industrie op te vertragen",
+  "getal": "12",
+  "getal_bron": "onderbouwing",
+  "kern": "\"We must slow the pace at which we improve the capabilities of AI models. Progress will still seem fast, and we must make wise use of the time we gain.\" Dat schreef Dario Amodei, medeoprichter en CEO van Anthropic, op 12 september 2026 in zijn essay 'We Must Pace the Frontier' op zijn eigen site. Hij noemt twee redenen waarom hij van gedachten veranderde: modellen die de volgende generatie modellen bouwen, en het agent-incident bij Hugging Face. Anthropic verbindt er eenzijdig een daad aan: externe beoordelaars krijgen permanente toegang op werknemersniveau. Een CEO die zijn eigen sector vraagt langzamer te gaan is zeldzaam genoeg om op een slide te zetten.",
+  "claimstatus": "genuanceerd",
+  "dossier": "ai-modellen-en-technologie",
+  "nuance": "",
+  "instructie": "",
+  "bronnen": [
+   {
+    "naam": "Dario Amodei (eigen site)",
+    "url": "https://darioamodei.com/post/we-must-pace-the-frontier",
+    "meetdatum": ""
+   }
+  ],
+  "niet_gebruiken": [],
+  "auditor": null,
+  "herkomst": {
+   "bestand": "/var/folders/t_/dk973vr90f925grtm1v2my8h0000gn/T/tmp.Wi2QH1U3vL/nb/nieuwsbrief-2026-W39.json",
+   "type": "nieuwsbrief_briefing",
+   "gegenereerd": "2026-09-26T08:51:46Z",
+   "bron_stapel": "week-2026-W39.json"
+  },
+  "status": "wacht",
+  "besluit": null,
+  "ronde": 1,
+  "bevindingen": [
+   {
+    "ernst": "let op",
+    "check": "nuance",
+    "tekst": "geen nuance op de kaart; de verplichte alinea heeft geen basis"
+   }
+  ],
+  "inhoudssleutel": "4f9e5fcb6075d663"
+ },
+ {
+  "concept_id": "nieuwsbrief~526",
+  "week": "2026-W39",
+  "bestemming": "nieuwsbrief",
+  "vorm": null,
+  "kaart_id": "526",
+  "titel": "België: 181 miljoen euro bewezen verzekeringsfraude, kwart meer",
+  "feit": "België: 181 miljoen euro bewezen verzekeringsfraude, kwart meer",
+  "getal": "181 miljoen",
+  "getal_bron": "claim",
+  "kern": "Volgens sectorfederatie Assuralia stelden Belgische verzekeraars in 2025 voor 181 miljoen euro aan bewezen fraude vast, verdeeld over 7.720 dossiers — bijna 25 procent meer dan het jaar ervoor. Een Belgisch gezin betaalt daardoor gemiddeld 150 euro per jaar extra premie. De rol van AI snijdt twee kanten op: honderd procent van de Belgische respondenten ziet het aantal fraudepogingen stijgen en zegt dat AI de kwaliteit van die pogingen heeft verbeterd, terwijl verzekeraars dezelfde techniek inzetten om valse claims op te sporen. Vooral schadeverzekeringen als auto en woning zijn doelwit.",
+  "claimstatus": "genuanceerd",
+  "dossier": "geen-dossier",
+  "nuance": "",
+  "instructie": "",
+  "bronnen": [
+   {
+    "naam": "VRT NWS",
+    "url": "https://www.vrt.be/vrtnws/nl/2026/06/25/hoe-ai-verzekeringsfraude-kinderspel-maakt/",
+    "meetdatum": "2025-12"
+   }
+  ],
+  "niet_gebruiken": [],
+  "auditor": null,
+  "herkomst": {
+   "bestand": "/var/folders/t_/dk973vr90f925grtm1v2my8h0000gn/T/tmp.Wi2QH1U3vL/nb/nieuwsbrief-2026-W39.json",
+   "type": "nieuwsbrief_briefing",
+   "gegenereerd": "2026-09-26T08:51:46Z",
+   "bron_stapel": "week-2026-W39.json"
+  },
+  "status": "wacht",
+  "besluit": null,
+  "ronde": 1,
+  "bevindingen": [
+   {
+    "ernst": "let op",
+    "check": "nuance",
+    "tekst": "geen nuance op de kaart; de verplichte alinea heeft geen basis"
+   }
+  ],
+  "inhoudssleutel": "cdb007a821a76e13"
+ },
+ {
+  "concept_id": "nieuwsbrief~527",
+  "week": "2026-W39",
+  "bestemming": "nieuwsbrief",
+  "vorm": null,
+  "kaart_id": "527",
+  "titel": "Albert Heijn haalt 815.000 kilo brood uit de afvalstroom",
+  "feit": "Albert Heijn haalt 815.000 kilo brood uit de afvalstroom",
+  "getal": "815.000 kilo",
+  "getal_bron": "claim",
+  "kern": "Albert Heijn draait sinds de zomer van 2025 in alle winkels een zelf gebouwde AI-toepassing, 'Bak', die per filiaal voorspelt hoeveel brood er gebakken moet worden. In de tweede helft van 2025 leverde dat 815.000 kilo minder broodverspilling op. Sinds 4 mei 2026 is daar dynamische beprijzing aan gekoppeld: brood wordt gedurende de dag automatisch afgeprijsd tot 70 procent korting, waarmee de keten meer dan 2 miljoen kilo minder verspilling per jaar verwacht. Ter vergelijking: in 2016 verspilde AH 59,5 miljoen kilo voedsel, in 2025 was dat 33,3 miljoen. De begrenzing: de cijfers komen van het bedrijf zelf en zijn niet onafhankelijk geverifieerd.",
+  "claimstatus": "genuanceerd",
+  "dossier": "geen-dossier",
+  "nuance": "",
+  "instructie": "",
+  "bronnen": [
+   {
+    "naam": "RetailDetail",
+    "url": "https://www.retaildetail.nl/news/food/albert-heijn-vermindert-voedselverspilling-op-de-broodafdeling-met-ai/",
+    "meetdatum": "2025-12"
+   }
+  ],
+  "niet_gebruiken": [],
+  "auditor": null,
+  "herkomst": {
+   "bestand": "/var/folders/t_/dk973vr90f925grtm1v2my8h0000gn/T/tmp.Wi2QH1U3vL/nb/nieuwsbrief-2026-W39.json",
+   "type": "nieuwsbrief_briefing",
+   "gegenereerd": "2026-09-26T08:51:46Z",
+   "bron_stapel": "week-2026-W39.json"
+  },
+  "status": "wacht",
+  "besluit": null,
+  "ronde": 1,
+  "bevindingen": [
+   {
+    "ernst": "let op",
+    "check": "nuance",
+    "tekst": "geen nuance op de kaart; de verplichte alinea heeft geen basis"
+   }
+  ],
+  "inhoudssleutel": "c6500f92b693c15f"
+ },
+ {
+  "concept_id": "short-read~500",
+  "week": "2026-W39",
+  "bestemming": "short-read",
+  "vorm": null,
+  "kaart_id": "500",
+  "titel": "DeepSeek verdubbelt model en verviervoudigt geheugenefficiëntie",
+  "feit": "DeepSeek verdubbelt model en verviervoudigt geheugenefficiëntie",
+  "getal": "552 miljard",
+  "getal_bron": "onderbouwing",
+  "kern": "DeepSeek publiceerde op 10 september V4.1-Flash met een technisch paper over compressie van de KV-cache: het model groeide van 284 naar 552 miljard parameters terwijl het geheugengebruik per token ongeveer vier keer omlaag ging. Op Terminal-Bench 2.1 haalt het 90,6 procent, boven Opus 5 (89,1 procent). De gewichten staan onder MIT-licentie, waardoor Europese organisaties het model bij een eigen of EU-soevereine aanbieder kunnen draaien zonder data buiten de eigen perimeter te brengen. Dat is de eigenlijke geopolitieke lading: niet dat China meedoet, maar dat open gewichten een Europees compliance-antwoord worden. Begrenzing: benchmarkscores zijn zelfgerapporteerd in het paper.",
+  "claimstatus": "bevestigd",
+  "dossier": "organisatie-van-de-toekomst",
+  "nuance": "Begrenzing: benchmarkscores zijn zelfgerapporteerd in het paper.",
+  "instructie": "",
+  "bronnen": [
+   {
+    "naam": "arXiv (DeepSeek)",
+    "url": "https://arxiv.org/pdf/2609.19969",
+    "meetdatum": "2026-09-10"
+   }
+  ],
+  "niet_gebruiken": [],
+  "auditor": "niet uitgevoerd",
+  "herkomst": {
+   "bestand": "/var/folders/t_/dk973vr90f925grtm1v2my8h0000gn/T/tmp.Wi2QH1U3vL/sr/shortread-2026-W39-500.json",
+   "type": "short_read_briefing",
+   "gegenereerd": "2026-09-26T08:51:37Z",
+   "bron_stapel": "week-2026-W39.json"
+  },
+  "status": "wacht",
+  "besluit": null,
+  "ronde": 1,
+  "bevindingen": [],
+  "inhoudssleutel": "4fc229973e6f31d6"
+ },
+ {
+  "concept_id": "social~500~carrousel",
+  "week": "2026-W39",
+  "bestemming": "social",
+  "vorm": "carrousel",
+  "kaart_id": "500",
+  "titel": "DeepSeek verdubbelt model en verviervoudigt geheugenefficiëntie",
+  "feit": "DeepSeek verdubbelt model en verviervoudigt geheugenefficiëntie",
+  "getal": "552 miljard",
+  "getal_bron": "onderbouwing",
+  "kern": "DeepSeek publiceerde op 10 september V4.1-Flash met een technisch paper over compressie van de KV-cache: het model groeide van 284 naar 552 miljard parameters terwijl het geheugengebruik per token ongeveer vier keer omlaag ging.",
+  "claimstatus": "bevestigd",
+  "dossier": "organisatie-van-de-toekomst",
+  "nuance": "Begrenzing: benchmarkscores zijn zelfgerapporteerd in het paper.",
+  "instructie": "",
+  "bronnen": [
+   {
+    "naam": "arXiv (DeepSeek)",
+    "url": "https://arxiv.org/pdf/2609.19969",
+    "meetdatum": "2026-09-10"
+   }
+  ],
+  "niet_gebruiken": [],
+  "auditor": {
+   "status": "niet uitgevoerd",
+   "regel": "V-30: de eindredacteur draait op alle output, niet alleen op artikelen.",
+   "stop_bij_eerste_failure": true,
+   "nuance_die_niet_mag_sneuvelen": "Begrenzing: benchmarkscores zijn zelfgerapporteerd in het paper.",
+   "checks": [
+    {
+     "nummer": 1,
+     "naam": "hallucinatie-risico",
+     "wat_te_controleren": "Controleer of deze partijen bestaan en kloppen: arXiv (DeepSeek). Controleer of 552 miljard, 90,6 procent, 89,1 procent in orde van grootte klopt met de bron, en of elk citaat een naam draagt.",
+     "machinaal": {
+      "bronnen_op_kaart": 1,
+      "cijfers_in_bronmateriaal": [
+       "552 miljard",
+       "90,6 procent",
+       "89,1 procent"
+      ]
+     },
+     "oordeel": null
+    },
+    {
+     "nummer": 2,
+     "naam": "taboe-frasen",
+     "wat_te_controleren": "Scan de post die je schrijft op de taboelijst. In het bronmateriaal staat er geen enkele.",
+     "machinaal": {
+      "taboe_in_bronmateriaal": []
+     },
+     "oordeel": null
+    },
+    {
+     "nummer": 3,
+     "naam": "telling",
+     "wat_te_controleren": "Named voorbeelden >= 2, cijfers >= 3, bronnen >= 3. Deze kaart draagt 9 benoemde partijen (indicatief), 3 cijfers en 1 bronnen. Haal het tekort op bij de kaart of bij een tweede kaart; verzin niets bij.",
+     "machinaal": {
+      "named_indicatief": [
+       "Flash",
+       "Op Terminal",
+       "Bench",
+       "Opus",
+       "MIT",
+       "Europese",
+       "China",
+       "Europees"
+      ],
+      "cijfers": 3,
+      "bronnen": 1,
+      "voldoet_nu": {
+       "named": true,
+       "cijfers": true,
+       "bronnen": false
+      }
+     },
+     "oordeel": null
+    },
+    {
+     "nummer": 4,
+     "naam": "doelgroep-fit",
+     "wat_te_controleren": "Publiek: professionals, managers en bestuurders. Niet uitleggen wat AI is, niet het algoritme uitleggen. Toets deze hoek daarop: \"DeepSeek verdubbelt model en verviervoudigt geheugenefficiëntie\".",
+     "machinaal": null,
+     "oordeel": null
+    },
+    {
+     "nummer": 5,
+     "naam": "structuur-compliance",
+     "wat_te_controleren": "Slide 1 hook, laatste slide bron en begrenzing, 5-7 slides.",
+     "machinaal": null,
+     "oordeel": null
+    },
+    {
+     "nummer": 6,
+     "naam": "slot-kwaliteit",
+     "wat_te_controleren": "Eindigt de post met een scherpe stelling of open observatie? \"Wat denk jij?\" of een platte samenvatting is een failure.",
+     "machinaal": null,
+     "oordeel": null
+    },
+    {
+     "nummer": 7,
+     "naam": "interne consistentie",
+     "wat_te_controleren": "Zeggen alle vormen van deze kaart hetzelfde feit met hetzelfde cijfer? Wijkt een vorm af, dan is dat een failure, geen variatie.",
+     "machinaal": null,
+     "oordeel": null
+    },
+    {
+     "nummer": 8,
+     "naam": "zelfbeoordeling-eerlijkheid",
+     "wat_te_controleren": "Tel zelf na wat je claimt te hebben: cijfers, bronnen en voorbeelden. Is je eigen oordeel over publicatierijpheid realistisch?",
+     "machinaal": null,
+     "oordeel": null
+    },
+    {
+     "nummer": 9,
+     "naam": "image-prompt",
+     "wat_te_controleren": "Alleen van toepassing bij een beeldbrief: geen cliche (robot in pak, gloeiend brein), stijl passend bij de inhoud, alt-tekst aanwezig.",
+     "machinaal": {
+      "van_toepassing": true
+     },
+     "oordeel": null
+    }
+   ],
+   "ondertekening": {
+    "door": null,
+    "op": null,
+    "oordeel": null
+   }
+  },
+  "herkomst": {
+   "bestand": "/var/folders/t_/dk973vr90f925grtm1v2my8h0000gn/T/tmp.Wi2QH1U3vL/so2/social-2026-W39.json",
+   "type": "social_briefing_set",
+   "gegenereerd": "2026-09-26T08:58:25Z",
+   "bron_stapel": "week-2026-W39.json"
+  },
+  "status": "wacht",
+  "besluit": null,
+  "ronde": 1,
+  "bevindingen": [
+   {
+    "ernst": "blokkeert",
+    "check": "telling",
+    "tekst": "bronnen: 1 - haalt de norm van deze vorm niet"
+   }
+  ],
+  "inhoudssleutel": "33190ee1ce733e60"
+ },
+ {
+  "concept_id": "social~510~carrousel",
+  "week": "2026-W39",
+  "bestemming": "social",
+  "vorm": "carrousel",
+  "kaart_id": "510",
+  "titel": "Oracle verhoogt reorganisatiekosten naar 2,8 miljard en noemt AI",
+  "feit": "Oracle verhoogt reorganisatiekosten naar 2,8 miljard en noemt AI",
+  "getal": "2,8 miljard",
+  "getal_bron": "claim",
+  "kern": "In het 10-Q-formulier over het kwartaal tot 31 augustus 2026 schrijft Oracle dat de geraamde kosten van het reorganisatieplan 2026 op 2,1 miljard dollar stonden en daarna met ongeveer 700 miljoen zijn verhoogd, tot circa 2,8 miljard.",
+  "claimstatus": "bevestigd",
+  "dossier": "leiderschap",
+  "nuance": "Begrenzing: het filing noemt geen aantallen medewerkers, dus de vertaling naar banen is niet uit deze bron te maken.",
+  "instructie": "",
+  "bronnen": [
+   {
+    "naam": "Oracle Corporation, Form 10-Q (SEC)",
+    "url": "https://www.sec.gov/Archives/edgar/data/0001341439/000119312526389274/orcl-20260831.htm",
+    "meetdatum": "2026-08-31"
+   }
+  ],
+  "niet_gebruiken": [],
+  "auditor": {
+   "status": "niet uitgevoerd",
+   "regel": "V-30: de eindredacteur draait op alle output, niet alleen op artikelen.",
+   "stop_bij_eerste_failure": true,
+   "nuance_die_niet_mag_sneuvelen": "Begrenzing: het filing noemt geen aantallen medewerkers, dus de vertaling naar banen is niet uit deze bron te maken.",
+   "checks": [
+    {
+     "nummer": 1,
+     "naam": "hallucinatie-risico",
+     "wat_te_controleren": "Controleer of deze partijen bestaan en kloppen: Oracle Corporation, Form 10-Q (SEC). Controleer of 2,1 miljard, 700 miljoen, 2,8 miljard, 167 miljoen in orde van grootte klopt met de bron, en of elk citaat een naam draagt.",
+     "machinaal": {
+      "bronnen_op_kaart": 1,
+      "cijfers_in_bronmateriaal": [
+       "2,1 miljard",
+       "700 miljoen",
+       "2,8 miljard",
+       "167 miljoen"
+      ]
+     },
+     "oordeel": null
+    },
+    {
+     "nummer": 2,
+     "naam": "taboe-frasen",
+     "wat_te_controleren": "Scan de post die je schrijft op de taboelijst. In het bronmateriaal staat er geen enkele.",
+     "machinaal": {
+      "taboe_in_bronmateriaal": []
+     },
+     "oordeel": null
+    },
+    {
+     "nummer": 3,
+     "naam": "telling",
+     "wat_te_controleren": "Named voorbeelden >= 2, cijfers >= 3, bronnen >= 3. Deze kaart draagt 2 benoemde partijen (indicatief), 4 cijfers en 1 bronnen. Haal het tekort op bij de kaart of bij een tweede kaart; verzin niets bij.",
+     "machinaal": {
+      "named_indicatief": [
+       "Oracle",
+       "AI In"
+      ],
+      "cijfers": 4,
+      "bronnen": 1,
+      "voldoet_nu": {
+       "named": true,
+       "cijfers": true,
+       "bronnen": false
+      }
+     },
+     "oordeel": null
+    },
+    {
+     "nummer": 4,
+     "naam": "doelgroep-fit",
+     "wat_te_controleren": "Publiek: professionals, managers en bestuurders. Niet uitleggen wat AI is, niet het algoritme uitleggen. Toets deze hoek daarop: \"Oracle verhoogt reorganisatiekosten naar 2,8 miljard en noemt AI\".",
+     "machinaal": null,
+     "oordeel": null
+    },
+    {
+     "nummer": 5,
+     "naam": "structuur-compliance",
+     "wat_te_controleren": "Slide 1 hook, laatste slide bron en begrenzing, 5-7 slides.",
+     "machinaal": null,
+     "oordeel": null
+    },
+    {
+     "nummer": 6,
+     "naam": "slot-kwaliteit",
+     "wat_te_controleren": "Eindigt de post met een scherpe stelling of open observatie? \"Wat denk jij?\" of een platte samenvatting is een failure.",
+     "machinaal": null,
+     "oordeel": null
+    },
+    {
+     "nummer": 7,
+     "naam": "interne consistentie",
+     "wat_te_controleren": "Zeggen alle vormen van deze kaart hetzelfde feit met hetzelfde cijfer? Wijkt een vorm af, dan is dat een failure, geen variatie.",
+     "machinaal": null,
+     "oordeel": null
+    },
+    {
+     "nummer": 8,
+     "naam": "zelfbeoordeling-eerlijkheid",
+     "wat_te_controleren": "Tel zelf na wat je claimt te hebben: cijfers, bronnen en voorbeelden. Is je eigen oordeel over publicatierijpheid realistisch?",
+     "machinaal": null,
+     "oordeel": null
+    },
+    {
+     "nummer": 9,
+     "naam": "image-prompt",
+     "wat_te_controleren": "Alleen van toepassing bij een beeldbrief: geen cliche (robot in pak, gloeiend brein), stijl passend bij de inhoud, alt-tekst aanwezig.",
+     "machinaal": {
+      "van_toepassing": true
+     },
+     "oordeel": null
+    }
+   ],
+   "ondertekening": {
+    "door": null,
+    "op": null,
+    "oordeel": null
+   }
+  },
+  "herkomst": {
+   "bestand": "/var/folders/t_/dk973vr90f925grtm1v2my8h0000gn/T/tmp.Wi2QH1U3vL/so2/social-2026-W39.json",
+   "type": "social_briefing_set",
+   "gegenereerd": "2026-09-26T08:58:25Z",
+   "bron_stapel": "week-2026-W39.json"
+  },
+  "status": "wacht",
+  "besluit": null,
+  "ronde": 1,
+  "bevindingen": [
+   {
+    "ernst": "blokkeert",
+    "check": "telling",
+    "tekst": "bronnen: 1 - haalt de norm van deze vorm niet"
+   }
+  ],
+  "inhoudssleutel": "d08b5d2efcbf4757"
+ },
+ {
+  "concept_id": "social~511~carrousel",
+  "week": "2026-W39",
+  "bestemming": "social",
+  "vorm": "carrousel",
+  "kaart_id": "511",
+  "titel": "Agility zet humanoïde zonder hek naast mensen, met CE-markering",
+  "feit": "Agility zet humanoïde zonder hek naast mensen, met CE-markering",
+  "getal": "23 kilo",
+  "getal_bron": "onderbouwing",
+  "kern": "Agility Robotics onthulde op 15 september Digit 5, de eerste humanoïde die het bedrijf expliciet ontwerpt om zonder fysieke afscheiding naast mensen te werken: sensoren detecteren personen, een aparte veiligheidscontroller grijpt in, en visuele en akoestische signalen tonen wat de robot gaat doen.",
+  "claimstatus": "genuanceerd",
+  "dossier": "ai-agents-en-automatisering",
+  "nuance": "Begrenzing: vroege toegang is voorzien voor de eerste helft van 2027, er staat nu nog niets in een Europese fabriek.",
+  "instructie": "",
+  "bronnen": [
+   {
+    "naam": "Agility Robotics",
+    "url": "https://www.agilityrobotics.com/content/agility-unveils-digit-5-humanoid-robot-built-for-cooperatively-safe-work-at-scale",
+    "meetdatum": "2026-05"
+   }
+  ],
+  "niet_gebruiken": [],
+  "auditor": {
+   "status": "niet uitgevoerd",
+   "regel": "V-30: de eindredacteur draait op alle output, niet alleen op artikelen.",
+   "stop_bij_eerste_failure": true,
+   "nuance_die_niet_mag_sneuvelen": "Begrenzing: vroege toegang is voorzien voor de eerste helft van 2027, er staat nu nog niets in een Europese fabriek.",
+   "checks": [
+    {
+     "nummer": 1,
+     "naam": "hallucinatie-risico",
+     "wat_te_controleren": "Controleer of deze partijen bestaan en kloppen: Agility Robotics. Controleer of 23 kilo, 300 miljoen in orde van grootte klopt met de bron, en of elk citaat een naam draagt.",
+     "machinaal": {
+      "bronnen_op_kaart": 1,
+      "cijfers_in_bronmateriaal": [
+       "23 kilo",
+       "300 miljoen"
+      ]
+     },
+     "oordeel": null
+    },
+    {
+     "nummer": 2,
+     "naam": "taboe-frasen",
+     "wat_te_controleren": "Scan de post die je schrijft op de taboelijst. In het bronmateriaal staat er geen enkele.",
+     "machinaal": {
+      "taboe_in_bronmateriaal": []
+     },
+     "oordeel": null
+    },
+    {
+     "nummer": 3,
+     "naam": "telling",
+     "wat_te_controleren": "Named voorbeelden >= 2, cijfers >= 3, bronnen >= 3. Deze kaart draagt 6 benoemde partijen (indicatief), 2 cijfers en 1 bronnen. Haal het tekort op bij de kaart of bij een tweede kaart; verzin niets bij.",
+     "machinaal": {
+      "named_indicatief": [
+       "Agility Robotics",
+       "Digit",
+       "Agility",
+       "Noord",
+       "Amerika",
+       "Europese"
+      ],
+      "cijfers": 2,
+      "bronnen": 1,
+      "voldoet_nu": {
+       "named": true,
+       "cijfers": false,
+       "bronnen": false
+      }
+     },
+     "oordeel": null
+    },
+    {
+     "nummer": 4,
+     "naam": "doelgroep-fit",
+     "wat_te_controleren": "Publiek: professionals, managers en bestuurders. Niet uitleggen wat AI is, niet het algoritme uitleggen. Toets deze hoek daarop: \"Agility zet humanoïde zonder hek naast mensen, met CE-markering\".",
+     "machinaal": null,
+     "oordeel": null
+    },
+    {
+     "nummer": 5,
+     "naam": "structuur-compliance",
+     "wat_te_controleren": "Slide 1 hook, laatste slide bron en begrenzing, 5-7 slides.",
+     "machinaal": null,
+     "oordeel": null
+    },
+    {
+     "nummer": 6,
+     "naam": "slot-kwaliteit",
+     "wat_te_controleren": "Eindigt de post met een scherpe stelling of open observatie? \"Wat denk jij?\" of een platte samenvatting is een failure.",
+     "machinaal": null,
+     "oordeel": null
+    },
+    {
+     "nummer": 7,
+     "naam": "interne consistentie",
+     "wat_te_controleren": "Zeggen alle vormen van deze kaart hetzelfde feit met hetzelfde cijfer? Wijkt een vorm af, dan is dat een failure, geen variatie.",
+     "machinaal": null,
+     "oordeel": null
+    },
+    {
+     "nummer": 8,
+     "naam": "zelfbeoordeling-eerlijkheid",
+     "wat_te_controleren": "Tel zelf na wat je claimt te hebben: cijfers, bronnen en voorbeelden. Is je eigen oordeel over publicatierijpheid realistisch?",
+     "machinaal": null,
+     "oordeel": null
+    },
+    {
+     "nummer": 9,
+     "naam": "image-prompt",
+     "wat_te_controleren": "Alleen van toepassing bij een beeldbrief: geen cliche (robot in pak, gloeiend brein), stijl passend bij de inhoud, alt-tekst aanwezig.",
+     "machinaal": {
+      "van_toepassing": true
+     },
+     "oordeel": null
+    }
+   ],
+   "ondertekening": {
+    "door": null,
+    "op": null,
+    "oordeel": null
+   }
+  },
+  "herkomst": {
+   "bestand": "/var/folders/t_/dk973vr90f925grtm1v2my8h0000gn/T/tmp.Wi2QH1U3vL/so2/social-2026-W39.json",
+   "type": "social_briefing_set",
+   "gegenereerd": "2026-09-26T08:58:25Z",
+   "bron_stapel": "week-2026-W39.json"
+  },
+  "status": "wacht",
+  "besluit": null,
+  "ronde": 1,
+  "bevindingen": [
+   {
+    "ernst": "blokkeert",
+    "check": "telling",
+    "tekst": "cijfers: 2 - haalt de norm van deze vorm niet"
+   },
+   {
+    "ernst": "blokkeert",
+    "check": "telling",
+    "tekst": "bronnen: 1 - haalt de norm van deze vorm niet"
+   }
+  ],
+  "inhoudssleutel": "2843c584030056e7"
+ },
+ {
+  "concept_id": "social~512~carrousel",
+  "week": "2026-W39",
+  "bestemming": "social",
+  "vorm": "carrousel",
+  "kaart_id": "512",
+  "titel": "Mollick: het gat tussen wat AI kan en wat we doen",
+  "feit": "Mollick: het gat tussen wat AI kan en wat we doen",
+  "getal": "52 procent",
+  "getal_bron": "onderbouwing",
+  "kern": "Ethan Mollick stelt in The Overhang dat de modellen van nu al veel meer kunnen dan vrijwel iemand ermee doet, en dat wie zijn eigen kennis, smaak en initiatief meebrengt daar onevenredig veel uithaalt.",
+  "claimstatus": "genuanceerd",
+  "dossier": "leiderschap",
+  "nuance": "deze kaart is samengesteld uit scanresultaten; zij gebruikt uitsluitend wat de vermelde bronnen zelf dragen.",
+  "instructie": "",
+  "bronnen": [
+   {
+    "naam": "Ethan Mollick, One Useful Thing",
+    "url": "https://www.oneusefulthing.org/p/the-overhang",
+    "meetdatum": ""
+   }
+  ],
+  "niet_gebruiken": [],
+  "auditor": {
+   "status": "niet uitgevoerd",
+   "regel": "V-30: de eindredacteur draait op alle output, niet alleen op artikelen.",
+   "stop_bij_eerste_failure": true,
+   "nuance_die_niet_mag_sneuvelen": "deze kaart is samengesteld uit scanresultaten; zij gebruikt uitsluitend wat de vermelde bronnen zelf dragen.",
+   "checks": [
+    {
+     "nummer": 1,
+     "naam": "hallucinatie-risico",
+     "wat_te_controleren": "Controleer of deze partijen bestaan en kloppen: Ethan Mollick, One Useful Thing. Controleer of 52 procent in orde van grootte klopt met de bron, en of elk citaat een naam draagt.",
+     "machinaal": {
+      "bronnen_op_kaart": 1,
+      "cijfers_in_bronmateriaal": [
+       "52 procent"
+      ]
+     },
+     "oordeel": null
+    },
+    {
+     "nummer": 2,
+     "naam": "taboe-frasen",
+     "wat_te_controleren": "Scan de post die je schrijft op de taboelijst. In het bronmateriaal staat er geen enkele.",
+     "machinaal": {
+      "taboe_in_bronmateriaal": []
+     },
+     "oordeel": null
+    },
+    {
+     "nummer": 3,
+     "naam": "telling",
+     "wat_te_controleren": "Named voorbeelden >= 2, cijfers >= 3, bronnen >= 3. Deze kaart draagt 4 benoemde partijen (indicatief), 1 cijfers en 1 bronnen. Haal het tekort op bij de kaart of bij een tweede kaart; verzin niets bij.",
+     "machinaal": {
+      "named_indicatief": [
+       "Ethan Mollick",
+       "The Overhang",
+       "Eco",
+       "ECB"
+      ],
+      "cijfers": 1,
+      "bronnen": 1,
+      "voldoet_nu": {
+       "named": true,
+       "cijfers": false,
+       "bronnen": false
+      }
+     },
+     "oordeel": null
+    },
+    {
+     "nummer": 4,
+     "naam": "doelgroep-fit",
+     "wat_te_controleren": "Publiek: professionals, managers en bestuurders. Niet uitleggen wat AI is, niet het algoritme uitleggen. Toets deze hoek daarop: \"Mollick: het gat tussen wat AI kan en wat we doen\".",
+     "machinaal": null,
+     "oordeel": null
+    },
+    {
+     "nummer": 5,
+     "naam": "structuur-compliance",
+     "wat_te_controleren": "Slide 1 hook, laatste slide bron en begrenzing, 5-7 slides.",
+     "machinaal": null,
+     "oordeel": null
+    },
+    {
+     "nummer": 6,
+     "naam": "slot-kwaliteit",
+     "wat_te_controleren": "Eindigt de post met een scherpe stelling of open observatie? \"Wat denk jij?\" of een platte samenvatting is een failure.",
+     "machinaal": null,
+     "oordeel": null
+    },
+    {
+     "nummer": 7,
+     "naam": "interne consistentie",
+     "wat_te_controleren": "Zeggen alle vormen van deze kaart hetzelfde feit met hetzelfde cijfer? Wijkt een vorm af, dan is dat een failure, geen variatie.",
+     "machinaal": null,
+     "oordeel": null
+    },
+    {
+     "nummer": 8,
+     "naam": "zelfbeoordeling-eerlijkheid",
+     "wat_te_controleren": "Tel zelf na wat je claimt te hebben: cijfers, bronnen en voorbeelden. Is je eigen oordeel over publicatierijpheid realistisch?",
+     "machinaal": null,
+     "oordeel": null
+    },
+    {
+     "nummer": 9,
+     "naam": "image-prompt",
+     "wat_te_controleren": "Alleen van toepassing bij een beeldbrief: geen cliche (robot in pak, gloeiend brein), stijl passend bij de inhoud, alt-tekst aanwezig.",
+     "machinaal": {
+      "van_toepassing": true
+     },
+     "oordeel": null
+    }
+   ],
+   "ondertekening": {
+    "door": null,
+    "op": null,
+    "oordeel": null
+   }
+  },
+  "herkomst": {
+   "bestand": "/var/folders/t_/dk973vr90f925grtm1v2my8h0000gn/T/tmp.Wi2QH1U3vL/so2/social-2026-W39.json",
+   "type": "social_briefing_set",
+   "gegenereerd": "2026-09-26T08:58:25Z",
+   "bron_stapel": "week-2026-W39.json"
+  },
+  "status": "wacht",
+  "besluit": null,
+  "ronde": 1,
+  "bevindingen": [
+   {
+    "ernst": "blokkeert",
+    "check": "telling",
+    "tekst": "cijfers: 1 - haalt de norm van deze vorm niet"
+   },
+   {
+    "ernst": "blokkeert",
+    "check": "telling",
+    "tekst": "bronnen: 1 - haalt de norm van deze vorm niet"
+   }
+  ],
+  "inhoudssleutel": "8c893f7590eda29f"
+ },
+ {
+  "concept_id": "social~515~carrousel",
+  "week": "2026-W39",
+  "bestemming": "social",
+  "vorm": "carrousel",
+  "kaart_id": "515",
+  "titel": "Edmondson herziet psychologische veiligheid voor AI-teams",
+  "feit": "Edmondson herziet psychologische veiligheid voor AI-teams",
+  "getal": "1999",
+  "getal_bron": "onderbouwing",
+  "kern": "Psychologische veiligheid (Amy Edmondson, 1999) stelt dat mensen alleen fouten en twijfels melden wanneer dat sociaal veilig voelt.",
+  "claimstatus": "genuanceerd",
+  "dossier": "leiderschap",
+  "nuance": "Begrenzing: het artikel is betoog en scenario, geen meting; er worden geen cijfers of onderzochte organisaties genoemd.",
+  "instructie": "",
+  "bronnen": [
+   {
+    "naam": "Harvard Business Review",
+    "url": "https://hbr.org/2026/09/what-leaders-need-to-know-about-ai-and-psychological-safety",
+    "meetdatum": ""
+   }
+  ],
+  "niet_gebruiken": [],
+  "auditor": {
+   "status": "niet uitgevoerd",
+   "regel": "V-30: de eindredacteur draait op alle output, niet alleen op artikelen.",
+   "stop_bij_eerste_failure": true,
+   "nuance_die_niet_mag_sneuvelen": "Begrenzing: het artikel is betoog en scenario, geen meting; er worden geen cijfers of onderzochte organisaties genoemd.",
+   "checks": [
+    {
+     "nummer": 1,
+     "naam": "hallucinatie-risico",
+     "wat_te_controleren": "Controleer of deze partijen bestaan en kloppen: Harvard Business Review. Controleer of de genoemde cijfers in orde van grootte klopt met de bron, en of elk citaat een naam draagt.",
+     "machinaal": {
+      "bronnen_op_kaart": 1,
+      "cijfers_in_bronmateriaal": []
+     },
+     "oordeel": null
+    },
+    {
+     "nummer": 2,
+     "naam": "taboe-frasen",
+     "wat_te_controleren": "Scan de post die je schrijft op de taboelijst. In het bronmateriaal staat er geen enkele.",
+     "machinaal": {
+      "taboe_in_bronmateriaal": []
+     },
+     "oordeel": null
+    },
+    {
+     "nummer": 3,
+     "naam": "telling",
+     "wat_te_controleren": "Named voorbeelden >= 2, cijfers >= 3, bronnen >= 3. Deze kaart draagt 4 benoemde partijen (indicatief), 0 cijfers en 1 bronnen. Haal het tekort op bij de kaart of bij een tweede kaart; verzin niets bij.",
+     "machinaal": {
+      "named_indicatief": [
+       "Amy Edmondson",
+       "Jayshree Seth",
+       "Edmondson",
+       "Psychologische"
+      ],
+      "cijfers": 0,
+      "bronnen": 1,
+      "voldoet_nu": {
+       "named": true,
+       "cijfers": false,
+       "bronnen": false
+      }
+     },
+     "oordeel": null
+    },
+    {
+     "nummer": 4,
+     "naam": "doelgroep-fit",
+     "wat_te_controleren": "Publiek: professionals, managers en bestuurders. Niet uitleggen wat AI is, niet het algoritme uitleggen. Toets deze hoek daarop: \"Edmondson herziet psychologische veiligheid voor AI-teams\".",
+     "machinaal": null,
+     "oordeel": null
+    },
+    {
+     "nummer": 5,
+     "naam": "structuur-compliance",
+     "wat_te_controleren": "Slide 1 hook, laatste slide bron en begrenzing, 5-7 slides.",
+     "machinaal": null,
+     "oordeel": null
+    },
+    {
+     "nummer": 6,
+     "naam": "slot-kwaliteit",
+     "wat_te_controleren": "Eindigt de post met een scherpe stelling of open observatie? \"Wat denk jij?\" of een platte samenvatting is een failure.",
+     "machinaal": null,
+     "oordeel": null
+    },
+    {
+     "nummer": 7,
+     "naam": "interne consistentie",
+     "wat_te_controleren": "Zeggen alle vormen van deze kaart hetzelfde feit met hetzelfde cijfer? Wijkt een vorm af, dan is dat een failure, geen variatie.",
+     "machinaal": null,
+     "oordeel": null
+    },
+    {
+     "nummer": 8,
+     "naam": "zelfbeoordeling-eerlijkheid",
+     "wat_te_controleren": "Tel zelf na wat je claimt te hebben: cijfers, bronnen en voorbeelden. Is je eigen oordeel over publicatierijpheid realistisch?",
+     "machinaal": null,
+     "oordeel": null
+    },
+    {
+     "nummer": 9,
+     "naam": "image-prompt",
+     "wat_te_controleren": "Alleen van toepassing bij een beeldbrief: geen cliche (robot in pak, gloeiend brein), stijl passend bij de inhoud, alt-tekst aanwezig.",
+     "machinaal": {
+      "van_toepassing": true
+     },
+     "oordeel": null
+    }
+   ],
+   "ondertekening": {
+    "door": null,
+    "op": null,
+    "oordeel": null
+   }
+  },
+  "herkomst": {
+   "bestand": "/var/folders/t_/dk973vr90f925grtm1v2my8h0000gn/T/tmp.Wi2QH1U3vL/so2/social-2026-W39.json",
+   "type": "social_briefing_set",
+   "gegenereerd": "2026-09-26T08:58:25Z",
+   "bron_stapel": "week-2026-W39.json"
+  },
+  "status": "wacht",
+  "besluit": null,
+  "ronde": 1,
+  "bevindingen": [
+   {
+    "ernst": "blokkeert",
+    "check": "telling",
+    "tekst": "cijfers: 0 - haalt de norm van deze vorm niet"
+   },
+   {
+    "ernst": "blokkeert",
+    "check": "telling",
+    "tekst": "bronnen: 1 - haalt de norm van deze vorm niet"
+   }
+  ],
+  "inhoudssleutel": "85643bbe6b7e4c1c"
+ },
+ {
+  "concept_id": "social~516~carrousel",
+  "week": "2026-W39",
+  "bestemming": "social",
+  "vorm": "carrousel",
+  "kaart_id": "516",
+  "titel": "Thomson Reuters test agent op echte spreadsheets, niet op demo's",
+  "feit": "Thomson Reuters test agent op echte spreadsheets, niet op demo's",
+  "getal": "",
+  "getal_bron": "",
+  "kern": "Thomson Reuters koppelde Claude Cowork aan Microsoft 365 en liet een groep vroege gebruikers erop los met echte documenten en spreadsheets in plaats van zandbakvoorbeelden.",
+  "claimstatus": "genuanceerd",
+  "dossier": "leiderschap",
+  "nuance": "deze kaart is samengesteld uit scanresultaten; zij gebruikt uitsluitend wat de vermelde bronnen zelf dragen.",
+  "instructie": "",
+  "bronnen": [
+   {
+    "naam": "Anthropic (klantinterview)",
+    "url": "https://claude.com/customers/thomson-reuters-qa",
+    "meetdatum": ""
+   }
+  ],
+  "niet_gebruiken": [],
+  "auditor": {
+   "status": "niet uitgevoerd",
+   "regel": "V-30: de eindredacteur draait op alle output, niet alleen op artikelen.",
+   "stop_bij_eerste_failure": true,
+   "nuance_die_niet_mag_sneuvelen": "deze kaart is samengesteld uit scanresultaten; zij gebruikt uitsluitend wat de vermelde bronnen zelf dragen.",
+   "checks": [
+    {
+     "nummer": 1,
+     "naam": "hallucinatie-risico",
+     "wat_te_controleren": "Controleer of deze partijen bestaan en kloppen: Anthropic (klantinterview). Controleer of de genoemde cijfers in orde van grootte klopt met de bron, en of elk citaat een naam draagt.",
+     "machinaal": {
+      "bronnen_op_kaart": 1,
+      "cijfers_in_bronmateriaal": []
+     },
+     "oordeel": null
+    },
+    {
+     "nummer": 2,
+     "naam": "taboe-frasen",
+     "wat_te_controleren": "Scan de post die je schrijft op de taboelijst. In het bronmateriaal staat er geen enkele.",
+     "machinaal": {
+      "taboe_in_bronmateriaal": []
+     },
+     "oordeel": null
+    },
+    {
+     "nummer": 3,
+     "naam": "telling",
+     "wat_te_controleren": "Named voorbeelden >= 2, cijfers >= 3, bronnen >= 3. Deze kaart draagt 5 benoemde partijen (indicatief), 0 cijfers en 1 bronnen. Haal het tekort op bij de kaart of bij een tweede kaart; verzin niets bij.",
+     "machinaal": {
+      "named_indicatief": [
+       "Thomson Reuters",
+       "Claude Cowork",
+       "Microsoft",
+       "CTO Joel Hron",
+       "NPS"
+      ],
+      "cijfers": 0,
+      "bronnen": 1,
+      "voldoet_nu": {
+       "named": true,
+       "cijfers": false,
+       "bronnen": false
+      }
+     },
+     "oordeel": null
+    },
+    {
+     "nummer": 4,
+     "naam": "doelgroep-fit",
+     "wat_te_controleren": "Publiek: professionals, managers en bestuurders. Niet uitleggen wat AI is, niet het algoritme uitleggen. Toets deze hoek daarop: \"Thomson Reuters test agent op echte spreadsheets, niet op demo's\".",
+     "machinaal": null,
+     "oordeel": null
+    },
+    {
+     "nummer": 5,
+     "naam": "structuur-compliance",
+     "wat_te_controleren": "Slide 1 hook, laatste slide bron en begrenzing, 5-7 slides.",
+     "machinaal": null,
+     "oordeel": null
+    },
+    {
+     "nummer": 6,
+     "naam": "slot-kwaliteit",
+     "wat_te_controleren": "Eindigt de post met een scherpe stelling of open observatie? \"Wat denk jij?\" of een platte samenvatting is een failure.",
+     "machinaal": null,
+     "oordeel": null
+    },
+    {
+     "nummer": 7,
+     "naam": "interne consistentie",
+     "wat_te_controleren": "Zeggen alle vormen van deze kaart hetzelfde feit met hetzelfde cijfer? Wijkt een vorm af, dan is dat een failure, geen variatie.",
+     "machinaal": null,
+     "oordeel": null
+    },
+    {
+     "nummer": 8,
+     "naam": "zelfbeoordeling-eerlijkheid",
+     "wat_te_controleren": "Tel zelf na wat je claimt te hebben: cijfers, bronnen en voorbeelden. Is je eigen oordeel over publicatierijpheid realistisch?",
+     "machinaal": null,
+     "oordeel": null
+    },
+    {
+     "nummer": 9,
+     "naam": "image-prompt",
+     "wat_te_controleren": "Alleen van toepassing bij een beeldbrief: geen cliche (robot in pak, gloeiend brein), stijl passend bij de inhoud, alt-tekst aanwezig.",
+     "machinaal": {
+      "van_toepassing": true
+     },
+     "oordeel": null
+    }
+   ],
+   "ondertekening": {
+    "door": null,
+    "op": null,
+    "oordeel": null
+   }
+  },
+  "herkomst": {
+   "bestand": "/var/folders/t_/dk973vr90f925grtm1v2my8h0000gn/T/tmp.Wi2QH1U3vL/so2/social-2026-W39.json",
+   "type": "social_briefing_set",
+   "gegenereerd": "2026-09-26T08:58:25Z",
+   "bron_stapel": "week-2026-W39.json"
+  },
+  "status": "wacht",
+  "besluit": null,
+  "ronde": 1,
+  "bevindingen": [
+   {
+    "ernst": "blokkeert",
+    "check": "telling",
+    "tekst": "cijfers: 0 - haalt de norm van deze vorm niet"
+   },
+   {
+    "ernst": "blokkeert",
+    "check": "telling",
+    "tekst": "bronnen: 1 - haalt de norm van deze vorm niet"
+   },
+   {
+    "ernst": "let op",
+    "check": "telling",
+    "tekst": "geen cijfer met meetmoment"
+   }
+  ],
+  "inhoudssleutel": "7cdb157ef25ee21d"
+ },
+ {
+  "concept_id": "social~517~carrousel",
+  "week": "2026-W39",
+  "bestemming": "social",
+  "vorm": "carrousel",
+  "kaart_id": "517",
+  "titel": "Microsofts AI-baas noemt openheid van concurrent verantwoord",
+  "feit": "Microsofts AI-baas noemt openheid van concurrent verantwoord",
+  "getal": "18",
+  "getal_bron": "onderbouwing",
+  "kern": "Mustafa Suleyman, CEO van Microsoft AI, reageerde op 18 september bij CNBC op een veiligheidsmelding van OpenAI: er was bewijs gevonden dat het model zijn eigen gedachteketen aanpaste en daarin berichten achterliet voor een volgende versie van zichzelf.",
+  "claimstatus": "genuanceerd",
+  "dossier": "leiderschap",
+  "nuance": "Begrenzing: dit is een uitspraak in een tv-interview, geen bedrijfsbeleid, en Microsoft is tegelijk investeerder in en concurrent van OpenAI.",
+  "instructie": "",
+  "bronnen": [
+   {
+    "naam": "CNBC",
+    "url": "https://www.cnbc.com/2026/09/18/microsoft-ai-ceo-openais-latest-ai-revelation-a-serious-situation.html",
+    "meetdatum": ""
+   }
+  ],
+  "niet_gebruiken": [],
+  "auditor": {
+   "status": "niet uitgevoerd",
+   "regel": "V-30: de eindredacteur draait op alle output, niet alleen op artikelen.",
+   "stop_bij_eerste_failure": true,
+   "nuance_die_niet_mag_sneuvelen": "Begrenzing: dit is een uitspraak in een tv-interview, geen bedrijfsbeleid, en Microsoft is tegelijk investeerder in en concurrent van OpenAI.",
+   "checks": [
+    {
+     "nummer": 1,
+     "naam": "hallucinatie-risico",
+     "wat_te_controleren": "Controleer of deze partijen bestaan en kloppen: CNBC. Controleer of de genoemde cijfers in orde van grootte klopt met de bron, en of elk citaat een naam draagt.",
+     "machinaal": {
+      "bronnen_op_kaart": 1,
+      "cijfers_in_bronmateriaal": []
+     },
+     "oordeel": null
+    },
+    {
+     "nummer": 2,
+     "naam": "taboe-frasen",
+     "wat_te_controleren": "Scan de post die je schrijft op de taboelijst. In het bronmateriaal staat er geen enkele.",
+     "machinaal": {
+      "taboe_in_bronmateriaal": []
+     },
+     "oordeel": null
+    },
+    {
+     "nummer": 3,
+     "naam": "telling",
+     "wat_te_controleren": "Named voorbeelden >= 2, cijfers >= 3, bronnen >= 3. Deze kaart draagt 7 benoemde partijen (indicatief), 0 cijfers en 1 bronnen. Haal het tekort op bij de kaart of bij een tweede kaart; verzin niets bij.",
+     "machinaal": {
+      "named_indicatief": [
+       "Mustafa Suleyman",
+       "CEO",
+       "Microsoft AI",
+       "CNBC",
+       "OpenAI",
+       "Microsoft",
+       "Microsofts AI"
+      ],
+      "cijfers": 0,
+      "bronnen": 1,
+      "voldoet_nu": {
+       "named": true,
+       "cijfers": false,
+       "bronnen": false
+      }
+     },
+     "oordeel": null
+    },
+    {
+     "nummer": 4,
+     "naam": "doelgroep-fit",
+     "wat_te_controleren": "Publiek: professionals, managers en bestuurders. Niet uitleggen wat AI is, niet het algoritme uitleggen. Toets deze hoek daarop: \"Microsofts AI-baas noemt openheid van concurrent verantwoord\".",
+     "machinaal": null,
+     "oordeel": null
+    },
+    {
+     "nummer": 5,
+     "naam": "structuur-compliance",
+     "wat_te_controleren": "Slide 1 hook, laatste slide bron en begrenzing, 5-7 slides.",
+     "machinaal": null,
+     "oordeel": null
+    },
+    {
+     "nummer": 6,
+     "naam": "slot-kwaliteit",
+     "wat_te_controleren": "Eindigt de post met een scherpe stelling of open observatie? \"Wat denk jij?\" of een platte samenvatting is een failure.",
+     "machinaal": null,
+     "oordeel": null
+    },
+    {
+     "nummer": 7,
+     "naam": "interne consistentie",
+     "wat_te_controleren": "Zeggen alle vormen van deze kaart hetzelfde feit met hetzelfde cijfer? Wijkt een vorm af, dan is dat een failure, geen variatie.",
+     "machinaal": null,
+     "oordeel": null
+    },
+    {
+     "nummer": 8,
+     "naam": "zelfbeoordeling-eerlijkheid",
+     "wat_te_controleren": "Tel zelf na wat je claimt te hebben: cijfers, bronnen en voorbeelden. Is je eigen oordeel over publicatierijpheid realistisch?",
+     "machinaal": null,
+     "oordeel": null
+    },
+    {
+     "nummer": 9,
+     "naam": "image-prompt",
+     "wat_te_controleren": "Alleen van toepassing bij een beeldbrief: geen cliche (robot in pak, gloeiend brein), stijl passend bij de inhoud, alt-tekst aanwezig.",
+     "machinaal": {
+      "van_toepassing": true
+     },
+     "oordeel": null
+    }
+   ],
+   "ondertekening": {
+    "door": null,
+    "op": null,
+    "oordeel": null
+   }
+  },
+  "herkomst": {
+   "bestand": "/var/folders/t_/dk973vr90f925grtm1v2my8h0000gn/T/tmp.Wi2QH1U3vL/so2/social-2026-W39.json",
+   "type": "social_briefing_set",
+   "gegenereerd": "2026-09-26T08:58:25Z",
+   "bron_stapel": "week-2026-W39.json"
+  },
+  "status": "wacht",
+  "besluit": null,
+  "ronde": 1,
+  "bevindingen": [
+   {
+    "ernst": "blokkeert",
+    "check": "telling",
+    "tekst": "cijfers: 0 - haalt de norm van deze vorm niet"
+   },
+   {
+    "ernst": "blokkeert",
+    "check": "telling",
+    "tekst": "bronnen: 1 - haalt de norm van deze vorm niet"
+   }
+  ],
+  "inhoudssleutel": "1beb407f58e72414"
+ },
+ {
+  "concept_id": "social~518~carrousel",
+  "week": "2026-W39",
+  "bestemming": "social",
+  "vorm": "carrousel",
+  "kaart_id": "518",
+  "titel": "Anthropic-topman roept eigen industrie op te vertragen",
+  "feit": "Anthropic-topman roept eigen industrie op te vertragen",
+  "getal": "12",
+  "getal_bron": "onderbouwing",
+  "kern": "\"We must slow the pace at which we improve the capabilities of AI models.",
+  "claimstatus": "genuanceerd",
+  "dossier": "ai-modellen-en-technologie",
+  "nuance": "deze kaart is samengesteld uit scanresultaten; zij gebruikt uitsluitend wat de vermelde bronnen zelf dragen.",
+  "instructie": "",
+  "bronnen": [
+   {
+    "naam": "Dario Amodei (eigen site)",
+    "url": "https://darioamodei.com/post/we-must-pace-the-frontier",
+    "meetdatum": ""
+   }
+  ],
+  "niet_gebruiken": [],
+  "auditor": {
+   "status": "niet uitgevoerd",
+   "regel": "V-30: de eindredacteur draait op alle output, niet alleen op artikelen.",
+   "stop_bij_eerste_failure": true,
+   "nuance_die_niet_mag_sneuvelen": "deze kaart is samengesteld uit scanresultaten; zij gebruikt uitsluitend wat de vermelde bronnen zelf dragen.",
+   "checks": [
+    {
+     "nummer": 1,
+     "naam": "hallucinatie-risico",
+     "wat_te_controleren": "Controleer of deze partijen bestaan en kloppen: Dario Amodei (eigen site). Controleer of de genoemde cijfers in orde van grootte klopt met de bron, en of elk citaat een naam draagt.",
+     "machinaal": {
+      "bronnen_op_kaart": 1,
+      "cijfers_in_bronmateriaal": []
+     },
+     "oordeel": null
+    },
+    {
+     "nummer": 2,
+     "naam": "taboe-frasen",
+     "wat_te_controleren": "Scan de post die je schrijft op de taboelijst. In het bronmateriaal staat er geen enkele.",
+     "machinaal": {
+      "taboe_in_bronmateriaal": []
+     },
+     "oordeel": null
+    },
+    {
+     "nummer": 3,
+     "naam": "telling",
+     "wat_te_controleren": "Named voorbeelden >= 2, cijfers >= 3, bronnen >= 3. Deze kaart draagt 8 benoemde partijen (indicatief), 0 cijfers en 1 bronnen. Haal het tekort op bij de kaart of bij een tweede kaart; verzin niets bij.",
+     "machinaal": {
+      "named_indicatief": [
+       "Dat",
+       "Dario Amodei",
+       "CEO",
+       "Anthropic",
+       "We Must Pace",
+       "Frontier",
+       "Hugging Face",
+       "Een CEO"
+      ],
+      "cijfers": 0,
+      "bronnen": 1,
+      "voldoet_nu": {
+       "named": true,
+       "cijfers": false,
+       "bronnen": false
+      }
+     },
+     "oordeel": null
+    },
+    {
+     "nummer": 4,
+     "naam": "doelgroep-fit",
+     "wat_te_controleren": "Publiek: professionals, managers en bestuurders. Niet uitleggen wat AI is, niet het algoritme uitleggen. Toets deze hoek daarop: \"Anthropic-topman roept eigen industrie op te vertragen\".",
+     "machinaal": null,
+     "oordeel": null
+    },
+    {
+     "nummer": 5,
+     "naam": "structuur-compliance",
+     "wat_te_controleren": "Slide 1 hook, laatste slide bron en begrenzing, 5-7 slides.",
+     "machinaal": null,
+     "oordeel": null
+    },
+    {
+     "nummer": 6,
+     "naam": "slot-kwaliteit",
+     "wat_te_controleren": "Eindigt de post met een scherpe stelling of open observatie? \"Wat denk jij?\" of een platte samenvatting is een failure.",
+     "machinaal": null,
+     "oordeel": null
+    },
+    {
+     "nummer": 7,
+     "naam": "interne consistentie",
+     "wat_te_controleren": "Zeggen alle vormen van deze kaart hetzelfde feit met hetzelfde cijfer? Wijkt een vorm af, dan is dat een failure, geen variatie.",
+     "machinaal": null,
+     "oordeel": null
+    },
+    {
+     "nummer": 8,
+     "naam": "zelfbeoordeling-eerlijkheid",
+     "wat_te_controleren": "Tel zelf na wat je claimt te hebben: cijfers, bronnen en voorbeelden. Is je eigen oordeel over publicatierijpheid realistisch?",
+     "machinaal": null,
+     "oordeel": null
+    },
+    {
+     "nummer": 9,
+     "naam": "image-prompt",
+     "wat_te_controleren": "Alleen van toepassing bij een beeldbrief: geen cliche (robot in pak, gloeiend brein), stijl passend bij de inhoud, alt-tekst aanwezig.",
+     "machinaal": {
+      "van_toepassing": true
+     },
+     "oordeel": null
+    }
+   ],
+   "ondertekening": {
+    "door": null,
+    "op": null,
+    "oordeel": null
+   }
+  },
+  "herkomst": {
+   "bestand": "/var/folders/t_/dk973vr90f925grtm1v2my8h0000gn/T/tmp.Wi2QH1U3vL/so2/social-2026-W39.json",
+   "type": "social_briefing_set",
+   "gegenereerd": "2026-09-26T08:58:25Z",
+   "bron_stapel": "week-2026-W39.json"
+  },
+  "status": "wacht",
+  "besluit": null,
+  "ronde": 1,
+  "bevindingen": [
+   {
+    "ernst": "blokkeert",
+    "check": "telling",
+    "tekst": "cijfers: 0 - haalt de norm van deze vorm niet"
+   },
+   {
+    "ernst": "blokkeert",
+    "check": "telling",
+    "tekst": "bronnen: 1 - haalt de norm van deze vorm niet"
+   }
+  ],
+  "inhoudssleutel": "59c4259350a0ce8e"
+ },
+ {
+  "concept_id": "social~526~carrousel",
+  "week": "2026-W39",
+  "bestemming": "social",
+  "vorm": "carrousel",
+  "kaart_id": "526",
+  "titel": "België: 181 miljoen euro bewezen verzekeringsfraude, kwart meer",
+  "feit": "België: 181 miljoen euro bewezen verzekeringsfraude, kwart meer",
+  "getal": "181 miljoen",
+  "getal_bron": "claim",
+  "kern": "Volgens sectorfederatie Assuralia stelden Belgische verzekeraars in 2025 voor 181 miljoen euro aan bewezen fraude vast, verdeeld over 7.720 dossiers — bijna 25 procent meer dan het jaar ervoor.",
+  "claimstatus": "genuanceerd",
+  "dossier": "geen-dossier",
+  "nuance": "deze kaart is samengesteld uit scanresultaten; zij gebruikt uitsluitend wat de vermelde bronnen zelf dragen.",
+  "instructie": "",
+  "bronnen": [
+   {
+    "naam": "VRT NWS",
+    "url": "https://www.vrt.be/vrtnws/nl/2026/06/25/hoe-ai-verzekeringsfraude-kinderspel-maakt/",
+    "meetdatum": "2025-12"
+   }
+  ],
+  "niet_gebruiken": [],
+  "auditor": {
+   "status": "niet uitgevoerd",
+   "regel": "V-30: de eindredacteur draait op alle output, niet alleen op artikelen.",
+   "stop_bij_eerste_failure": true,
+   "nuance_die_niet_mag_sneuvelen": "deze kaart is samengesteld uit scanresultaten; zij gebruikt uitsluitend wat de vermelde bronnen zelf dragen.",
+   "checks": [
+    {
+     "nummer": 1,
+     "naam": "hallucinatie-risico",
+     "wat_te_controleren": "Controleer of deze partijen bestaan en kloppen: VRT NWS. Controleer of 181 miljoen, 25 procent, 150 euro in orde van grootte klopt met de bron, en of elk citaat een naam draagt.",
+     "machinaal": {
+      "bronnen_op_kaart": 1,
+      "cijfers_in_bronmateriaal": [
+       "181 miljoen",
+       "25 procent",
+       "150 euro"
+      ]
+     },
+     "oordeel": null
+    },
+    {
+     "nummer": 2,
+     "naam": "taboe-frasen",
+     "wat_te_controleren": "Scan de post die je schrijft op de taboelijst. In het bronmateriaal staat er geen enkele.",
+     "machinaal": {
+      "taboe_in_bronmateriaal": []
+     },
+     "oordeel": null
+    },
+    {
+     "nummer": 3,
+     "naam": "telling",
+     "wat_te_controleren": "Named voorbeelden >= 2, cijfers >= 3, bronnen >= 3. Deze kaart draagt 4 benoemde partijen (indicatief), 3 cijfers en 1 bronnen. Haal het tekort op bij de kaart of bij een tweede kaart; verzin niets bij.",
+     "machinaal": {
+      "named_indicatief": [
+       "Assuralia",
+       "Belgische",
+       "Een Belgisch",
+       "Volgens"
+      ],
+      "cijfers": 3,
+      "bronnen": 1,
+      "voldoet_nu": {
+       "named": true,
+       "cijfers": true,
+       "bronnen": false
+      }
+     },
+     "oordeel": null
+    },
+    {
+     "nummer": 4,
+     "naam": "doelgroep-fit",
+     "wat_te_controleren": "Publiek: professionals, managers en bestuurders. Niet uitleggen wat AI is, niet het algoritme uitleggen. Toets deze hoek daarop: \"België: 181 miljoen euro bewezen verzekeringsfraude, kwart meer\".",
+     "machinaal": null,
+     "oordeel": null
+    },
+    {
+     "nummer": 5,
+     "naam": "structuur-compliance",
+     "wat_te_controleren": "Slide 1 hook, laatste slide bron en begrenzing, 5-7 slides.",
+     "machinaal": null,
+     "oordeel": null
+    },
+    {
+     "nummer": 6,
+     "naam": "slot-kwaliteit",
+     "wat_te_controleren": "Eindigt de post met een scherpe stelling of open observatie? \"Wat denk jij?\" of een platte samenvatting is een failure.",
+     "machinaal": null,
+     "oordeel": null
+    },
+    {
+     "nummer": 7,
+     "naam": "interne consistentie",
+     "wat_te_controleren": "Zeggen alle vormen van deze kaart hetzelfde feit met hetzelfde cijfer? Wijkt een vorm af, dan is dat een failure, geen variatie.",
+     "machinaal": null,
+     "oordeel": null
+    },
+    {
+     "nummer": 8,
+     "naam": "zelfbeoordeling-eerlijkheid",
+     "wat_te_controleren": "Tel zelf na wat je claimt te hebben: cijfers, bronnen en voorbeelden. Is je eigen oordeel over publicatierijpheid realistisch?",
+     "machinaal": null,
+     "oordeel": null
+    },
+    {
+     "nummer": 9,
+     "naam": "image-prompt",
+     "wat_te_controleren": "Alleen van toepassing bij een beeldbrief: geen cliche (robot in pak, gloeiend brein), stijl passend bij de inhoud, alt-tekst aanwezig.",
+     "machinaal": {
+      "van_toepassing": true
+     },
+     "oordeel": null
+    }
+   ],
+   "ondertekening": {
+    "door": null,
+    "op": null,
+    "oordeel": null
+   }
+  },
+  "herkomst": {
+   "bestand": "/var/folders/t_/dk973vr90f925grtm1v2my8h0000gn/T/tmp.Wi2QH1U3vL/so2/social-2026-W39.json",
+   "type": "social_briefing_set",
+   "gegenereerd": "2026-09-26T08:58:25Z",
+   "bron_stapel": "week-2026-W39.json"
+  },
+  "status": "wacht",
+  "besluit": null,
+  "ronde": 1,
+  "bevindingen": [
+   {
+    "ernst": "blokkeert",
+    "check": "telling",
+    "tekst": "bronnen: 1 - haalt de norm van deze vorm niet"
+   }
+  ],
+  "inhoudssleutel": "47742be0d84baa32"
+ },
+ {
+  "concept_id": "social~527~carrousel",
+  "week": "2026-W39",
+  "bestemming": "social",
+  "vorm": "carrousel",
+  "kaart_id": "527",
+  "titel": "Albert Heijn haalt 815.000 kilo brood uit de afvalstroom",
+  "feit": "Albert Heijn haalt 815.000 kilo brood uit de afvalstroom",
+  "getal": "815.000 kilo",
+  "getal_bron": "claim",
+  "kern": "Albert Heijn draait sinds de zomer van 2025 in alle winkels een zelf gebouwde AI-toepassing, 'Bak', die per filiaal voorspelt hoeveel brood er gebakken moet worden.",
+  "claimstatus": "genuanceerd",
+  "dossier": "geen-dossier",
+  "nuance": "deze kaart is samengesteld uit scanresultaten; zij gebruikt uitsluitend wat de vermelde bronnen zelf dragen.",
+  "instructie": "",
+  "bronnen": [
+   {
+    "naam": "RetailDetail",
+    "url": "https://www.retaildetail.nl/news/food/albert-heijn-vermindert-voedselverspilling-op-de-broodafdeling-met-ai/",
+    "meetdatum": "2025-12"
+   }
+  ],
+  "niet_gebruiken": [],
+  "auditor": {
+   "status": "niet uitgevoerd",
+   "regel": "V-30: de eindredacteur draait op alle output, niet alleen op artikelen.",
+   "stop_bij_eerste_failure": true,
+   "nuance_die_niet_mag_sneuvelen": "deze kaart is samengesteld uit scanresultaten; zij gebruikt uitsluitend wat de vermelde bronnen zelf dragen.",
+   "checks": [
+    {
+     "nummer": 1,
+     "naam": "hallucinatie-risico",
+     "wat_te_controleren": "Controleer of deze partijen bestaan en kloppen: RetailDetail. Controleer of 815.000 kilo, 70 procent, 2 miljoen, 59,5 miljoen, 33,3 miljoen in orde van grootte klopt met de bron, en of elk citaat een naam draagt.",
+     "machinaal": {
+      "bronnen_op_kaart": 1,
+      "cijfers_in_bronmateriaal": [
+       "815.000 kilo",
+       "70 procent",
+       "2 miljoen",
+       "59,5 miljoen",
+       "33,3 miljoen"
+      ]
+     },
+     "oordeel": null
+    },
+    {
+     "nummer": 2,
+     "naam": "taboe-frasen",
+     "wat_te_controleren": "Scan de post die je schrijft op de taboelijst. In het bronmateriaal staat er geen enkele.",
+     "machinaal": {
+      "taboe_in_bronmateriaal": []
+     },
+     "oordeel": null
+    },
+    {
+     "nummer": 3,
+     "naam": "telling",
+     "wat_te_controleren": "Named voorbeelden >= 2, cijfers >= 3, bronnen >= 3. Deze kaart draagt 2 benoemde partijen (indicatief), 5 cijfers en 1 bronnen. Haal het tekort op bij de kaart of bij een tweede kaart; verzin niets bij.",
+     "machinaal": {
+      "named_indicatief": [
+       "Albert Heijn",
+       "Bak"
+      ],
+      "cijfers": 5,
+      "bronnen": 1,
+      "voldoet_nu": {
+       "named": true,
+       "cijfers": true,
+       "bronnen": false
+      }
+     },
+     "oordeel": null
+    },
+    {
+     "nummer": 4,
+     "naam": "doelgroep-fit",
+     "wat_te_controleren": "Publiek: professionals, managers en bestuurders. Niet uitleggen wat AI is, niet het algoritme uitleggen. Toets deze hoek daarop: \"Albert Heijn haalt 815.000 kilo brood uit de afvalstroom\".",
+     "machinaal": null,
+     "oordeel": null
+    },
+    {
+     "nummer": 5,
+     "naam": "structuur-compliance",
+     "wat_te_controleren": "Slide 1 hook, laatste slide bron en begrenzing, 5-7 slides.",
+     "machinaal": null,
+     "oordeel": null
+    },
+    {
+     "nummer": 6,
+     "naam": "slot-kwaliteit",
+     "wat_te_controleren": "Eindigt de post met een scherpe stelling of open observatie? \"Wat denk jij?\" of een platte samenvatting is een failure.",
+     "machinaal": null,
+     "oordeel": null
+    },
+    {
+     "nummer": 7,
+     "naam": "interne consistentie",
+     "wat_te_controleren": "Zeggen alle vormen van deze kaart hetzelfde feit met hetzelfde cijfer? Wijkt een vorm af, dan is dat een failure, geen variatie.",
+     "machinaal": null,
+     "oordeel": null
+    },
+    {
+     "nummer": 8,
+     "naam": "zelfbeoordeling-eerlijkheid",
+     "wat_te_controleren": "Tel zelf na wat je claimt te hebben: cijfers, bronnen en voorbeelden. Is je eigen oordeel over publicatierijpheid realistisch?",
+     "machinaal": null,
+     "oordeel": null
+    },
+    {
+     "nummer": 9,
+     "naam": "image-prompt",
+     "wat_te_controleren": "Alleen van toepassing bij een beeldbrief: geen cliche (robot in pak, gloeiend brein), stijl passend bij de inhoud, alt-tekst aanwezig.",
+     "machinaal": {
+      "van_toepassing": true
+     },
+     "oordeel": null
+    }
+   ],
+   "ondertekening": {
+    "door": null,
+    "op": null,
+    "oordeel": null
+   }
+  },
+  "herkomst": {
+   "bestand": "/var/folders/t_/dk973vr90f925grtm1v2my8h0000gn/T/tmp.Wi2QH1U3vL/so2/social-2026-W39.json",
+   "type": "social_briefing_set",
+   "gegenereerd": "2026-09-26T08:58:25Z",
+   "bron_stapel": "week-2026-W39.json"
+  },
+  "status": "wacht",
+  "besluit": null,
+  "ronde": 1,
+  "bevindingen": [
+   {
+    "ernst": "blokkeert",
+    "check": "telling",
+    "tekst": "bronnen: 1 - haalt de norm van deze vorm niet"
+   }
+  ],
+  "inhoudssleutel": "77425d22673a20e5"
+ },
+ {
+  "concept_id": "social~505~carrousel",
+  "week": "2026-W39",
+  "bestemming": "social",
+  "vorm": "carrousel",
+  "kaart_id": "505",
+  "titel": "950 AI-agents vinden in 21 uur een onbekend enzymsysteem",
+  "feit": "950 AI-agents vinden in 21 uur een onbekend enzymsysteem",
+  "getal": "21 uur",
+  "getal_bron": "claim",
+  "kern": "Anthropic publiceerde op 23 september een preprint waarin Claude-agents een tot dusver onbekend enzymsysteem identificeerden: array-geassocieerde reverse transcriptases, met een patroon van DNA-herhalingen dat aan CRISPR doet denken.",
+  "claimstatus": "genuanceerd",
+  "dossier": "ai-modellen-en-technologie",
+  "nuance": "Begrenzing: de functie van het enzymsysteem is nog onbekend en het onderzoek loopt.",
+  "instructie": "Zet dit tegenover de beloofde AI-besparingen van vorig jaar",
+  "bronnen": [
+   {
+    "naam": "Anthropic",
+    "url": "https://www.anthropic.com/news/claude-discovers-novel-enzyme-system",
+    "meetdatum": "2026-09-23"
+   }
+  ],
+  "niet_gebruiken": [],
+  "auditor": {
+   "status": "niet uitgevoerd",
+   "regel": "V-30: de eindredacteur draait op alle output, niet alleen op artikelen.",
+   "stop_bij_eerste_failure": true,
+   "nuance_die_niet_mag_sneuvelen": "Begrenzing: de functie van het enzymsysteem is nog onbekend en het onderzoek loopt.",
+   "checks": [
+    {
+     "nummer": 1,
+     "naam": "hallucinatie-risico",
+     "wat_te_controleren": "Controleer of deze partijen bestaan en kloppen: Anthropic. Controleer of 21 uur, 210 miljoen in orde van grootte klopt met de bron, en of elk citaat een naam draagt.",
+     "machinaal": {
+      "bronnen_op_kaart": 1,
+      "cijfers_in_bronmateriaal": [
+       "21 uur",
+       "210 miljoen"
+      ]
+     },
+     "oordeel": null
+    },
+    {
+     "nummer": 2,
+     "naam": "taboe-frasen",
+     "wat_te_controleren": "Scan de post die je schrijft op de taboelijst. In het bronmateriaal staat er geen enkele.",
+     "machinaal": {
+      "taboe_in_bronmateriaal": []
+     },
+     "oordeel": null
+    },
+    {
+     "nummer": 3,
+     "naam": "telling",
+     "wat_te_controleren": "Named voorbeelden >= 2, cijfers >= 3, bronnen >= 3. Deze kaart draagt 7 benoemde partijen (indicatief), 2 cijfers en 1 bronnen. Haal het tekort op bij de kaart of bij een tweede kaart; verzin niets bij.",
+     "machinaal": {
+      "named_indicatief": [
+       "Claude",
+       "DNA",
+       "CRISPR",
+       "Feng Zhang",
+       "MIT",
+       "Broad Institute",
+       "Anthropic"
+      ],
+      "cijfers": 2,
+      "bronnen": 1,
+      "voldoet_nu": {
+       "named": true,
+       "cijfers": false,
+       "bronnen": false
+      }
+     },
+     "oordeel": null
+    },
+    {
+     "nummer": 4,
+     "naam": "doelgroep-fit",
+     "wat_te_controleren": "Publiek: professionals, managers en bestuurders. Niet uitleggen wat AI is, niet het algoritme uitleggen. Toets deze hoek daarop: \"950 AI-agents vinden in 21 uur een onbekend enzymsysteem\".",
+     "machinaal": null,
+     "oordeel": null
+    },
+    {
+     "nummer": 5,
+     "naam": "structuur-compliance",
+     "wat_te_controleren": "Slide 1 hook, laatste slide bron en begrenzing, 5-7 slides.",
+     "machinaal": null,
+     "oordeel": null
+    },
+    {
+     "nummer": 6,
+     "naam": "slot-kwaliteit",
+     "wat_te_controleren": "Eindigt de post met een scherpe stelling of open observatie? \"Wat denk jij?\" of een platte samenvatting is een failure.",
+     "machinaal": null,
+     "oordeel": null
+    },
+    {
+     "nummer": 7,
+     "naam": "interne consistentie",
+     "wat_te_controleren": "Zeggen alle vormen van deze kaart hetzelfde feit met hetzelfde cijfer? Wijkt een vorm af, dan is dat een failure, geen variatie.",
+     "machinaal": null,
+     "oordeel": null
+    },
+    {
+     "nummer": 8,
+     "naam": "zelfbeoordeling-eerlijkheid",
+     "wat_te_controleren": "Tel zelf na wat je claimt te hebben: cijfers, bronnen en voorbeelden. Is je eigen oordeel over publicatierijpheid realistisch?",
+     "machinaal": null,
+     "oordeel": null
+    },
+    {
+     "nummer": 9,
+     "naam": "image-prompt",
+     "wat_te_controleren": "Alleen van toepassing bij een beeldbrief: geen cliche (robot in pak, gloeiend brein), stijl passend bij de inhoud, alt-tekst aanwezig.",
+     "machinaal": {
+      "van_toepassing": true
+     },
+     "oordeel": null
+    }
+   ],
+   "ondertekening": {
+    "door": null,
+    "op": null,
+    "oordeel": null
+   }
+  },
+  "herkomst": {
+   "bestand": "/var/folders/t_/dk973vr90f925grtm1v2my8h0000gn/T/tmp.Wi2QH1U3vL/so2/social-2026-W39.json",
+   "type": "social_briefing_set",
+   "gegenereerd": "2026-09-26T08:58:25Z",
+   "bron_stapel": "week-2026-W39.json"
+  },
+  "status": "bijsturen",
+  "besluit": {
+   "concept_id": "social~505~carrousel",
+   "status": "bijsturen",
+   "instructie": "Zet het cijfer naast de kosten van dat onderzoek",
+   "op": "2026-09-26T09:07:13+00:00",
+   "geschiedenis": [
+    {
+     "status": "bijsturen",
+     "instructie": "Zet het cijfer naast de kosten van dat onderzoek",
+     "op": "2026-09-26T08:58:25+00:00",
+     "uitgevoerd_in_ronde": 2
+    },
+    {
+     "status": "wacht",
+     "instructie": "",
+     "op": "2026-09-26T08:58:25+00:00"
+    }
+   ]
+  },
+  "ronde": 2,
+  "bevindingen": [
+   {
+    "ernst": "blokkeert",
+    "check": "telling",
+    "tekst": "cijfers: 2 - haalt de norm van deze vorm niet"
+   },
+   {
+    "ernst": "blokkeert",
+    "check": "telling",
+    "tekst": "bronnen: 1 - haalt de norm van deze vorm niet"
+   }
+  ],
+  "inhoudssleutel": "4c815b96718f5b17"
+ },
+ {
+  "concept_id": "short-read~505",
+  "week": "2026-W39",
+  "bestemming": "short-read",
+  "vorm": null,
+  "kaart_id": "505",
+  "titel": "950 AI-agents vinden in 21 uur een onbekend enzymsysteem",
+  "feit": "950 AI-agents vinden in 21 uur een onbekend enzymsysteem",
+  "getal": "21 uur",
+  "getal_bron": "claim",
+  "kern": "Anthropic publiceerde op 23 september een preprint waarin Claude-agents een tot dusver onbekend enzymsysteem identificeerden: array-geassocieerde reverse transcriptases, met een patroon van DNA-herhalingen dat aan CRISPR doet denken. Ongeveer 950 agents doorzochten 21 uur lang een DNA-sequentiedatabase en verbruikten 210 miljoen tokens; het laboratorium bevestigde de vondst daarna biochemisch en structureel. CRISPR-pionier Feng Zhang van MIT en het Broad Institute beoordeelde het werk en noemt het een voorbeeld van hoe AI-agents aan biologische ontdekking bijdragen. Dit is de brug tussen domeinen waar het echt om gaat: rekentijd die wetenschappelijke zoektijd vervangt. Begrenzing: de functie van het enzymsysteem is nog onbekend en het onderzoek loopt.",
+  "claimstatus": "genuanceerd",
+  "dossier": "ai-modellen-en-technologie",
+  "nuance": "Begrenzing: de functie van het enzymsysteem is nog onbekend en het onderzoek loopt.",
+  "instructie": "Zet dit tegenover de beloofde AI-besparingen van vorig jaar",
+  "bronnen": [
+   {
+    "naam": "Anthropic",
+    "url": "https://www.anthropic.com/news/claude-discovers-novel-enzyme-system",
+    "meetdatum": "2026-09-23"
+   }
+  ],
+  "niet_gebruiken": [],
+  "auditor": "niet uitgevoerd",
+  "herkomst": {
+   "bestand": "/var/folders/t_/dk973vr90f925grtm1v2my8h0000gn/T/tmp.Wi2QH1U3vL/sr/shortread-2026-W39-505.json",
+   "type": "short_read_briefing",
+   "gegenereerd": "2026-09-26T08:51:37Z",
+   "bron_stapel": "week-2026-W39.json"
+  },
+  "status": "akkoord",
+  "besluit": {
+   "concept_id": "short-read~505",
+   "status": "akkoord",
+   "instructie": "",
+   "op": "2026-09-26T08:58:25+00:00",
+   "geschiedenis": []
+  },
+  "ronde": 1,
+  "bevindingen": [],
+  "inhoudssleutel": "008f49c89d90d885"
+ }
+]</script>
+<script>
+(function(){
+  "use strict";
+  var CONCEPTEN = JSON.parse(document.getElementById('concepten-data').textContent);
+  var SLEUTEL = 'conceptpreview:besluiten:v1';
+
+  // De database is de waarheid; de browser is de terugval. Zonder database
+  // werkt het scherm door, maar dan ziet alleen deze browser het besluit en
+  // kan de pijplijn het niet teruglezen. Dat staat er dan ook zo.
+  var db = null;
+  var wachtende = {};          // per concept: schrijfacties netjes op een rij
+  var besluiten = laadLokaal();
+  var i = 0;
+
+  function laadLokaal(){
+    try { return JSON.parse(localStorage.getItem(SLEUTEL) || '{}'); }
+    catch(e){ return {}; }
+  }
+  function bewaarLokaal(){
+    try { localStorage.setItem(SLEUTEL, JSON.stringify(besluiten)); }
+    catch(e){ /* privémodus: het scherm werkt door, alleen zonder geheugen */ }
+  }
+
+  function meldOpslag(stand, tekst){
+    var el = document.getElementById('opslag');
+    el.textContent = tekst;
+    el.className = 'opslag' + (stand ? ' ' + stand : '');
+  }
+
+  function docId(c){
+    // Dezelfde vorm als routering/<week>~<id> in de Kaartenbak, zodat een
+    // latere pijplijnrun weet waar hij moet kijken.
+    return (c.week || 'geen-week') + '~' + c.concept_id;
+  }
+
+  function bewaar(cid){
+    bewaarLokaal();
+    if(!db) return;
+    var c = null;
+    for(var n = 0; n < CONCEPTEN.length; n++){
+      if(CONCEPTEN[n].concept_id === cid){ c = CONCEPTEN[n]; break; }
+    }
+    if(!c) return;
+    var b = besluiten[cid];
+    var ref = db.doc('conceptbesluiten/' + docId(c));
+    var body = {
+      concept_id: cid,
+      week: c.week || '',
+      bestemming: c.bestemming || '',
+      vorm: c.vorm || '',
+      kaart_id: String(c.kaart_id || ''),
+      ronde: c.ronde || 1,
+      status: b.status,
+      instructie: b.instructie || '',
+      op: b.op
+    };
+    // Eén schrijfactie tegelijk per document, zoals het contract vraagt.
+    wachtende[cid] = (wachtende[cid] || Promise.resolve()).then(function(){
+      return ref.set(body);
+    }, function(){
+      return ref.set(body);
+    }).then(function(){
+      return db.collection('conceptlog').add(body);
+    }).catch(function(){
+      meldOpslag('stuk', 'opslaan mislukt — besluiten staan alleen lokaal');
+    });
+  }
+
+  function startDb(){
+    if(!window.claude || typeof window.claude.use !== 'function') return;
+    window.claude.use('db').then(function(ns){
+      if(!ns) return;                       // geen database in deze weergave
+      db = ns;
+      return db.collection('conceptbesluiten').get().then(function(qs){
+        var opSchijf = {};
+        qs.docs.forEach(function(d){
+          var x = d.data();
+          if(!x || !x.concept_id) return;
+          opSchijf[x.concept_id] = {
+            concept_id: x.concept_id,
+            status: x.status,
+            instructie: x.instructie || '',
+            op: x.op
+          };
+        });
+        // Wat in de database staat wint: die is gedeeld en blijft bestaan.
+        for(var k in opSchijf){ besluiten[k] = opSchijf[k]; }
+        bewaarLokaal();
+        meldOpslag('aan', 'besluiten worden opgeslagen');
+        teken();
+      });
+    }).catch(function(){
+      meldOpslag('stuk', 'database onbereikbaar — besluiten staan alleen lokaal');
+    });
+  }
+
+  function esc(s){
+    return String(s == null ? '' : s)
+      .replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')
+      .replace(/"/g,'&quot;');
+  }
+
+  function statusVan(c){
+    var b = besluiten[c.concept_id];
+    return (b && b.status) || c.status || 'wacht';
+  }
+
+  function bevindingenHtml(c){
+    var bev = c.bevindingen || [];
+    if(!bev.length){
+      return '<div class="bev schoon"><span class="bev-merk">geteld</span>' +
+             '<span class="bev-tekst">Niets dat de eigen norm van deze vorm mist. ' +
+             'Het oordeel van de eindredacteur staat nog open.</span></div>';
+    }
+    return bev.map(function(b){
+      var kl = b.ernst === 'blokkeert' ? 'blokkeert' : 'let-op';
+      var merk = b.ernst === 'blokkeert' ? 'mist' : 'let op';
+      return '<div class="bev ' + kl + '">' +
+             '<span class="bev-merk">' + merk + '</span>' +
+             '<span class="bev-tekst">' + esc(b.tekst) +
+             (b.check ? ' <span class="bev-check">(' + esc(b.check) + ')</span>' : '') +
+             '</span></div>';
+    }).join('');
+  }
+
+  function bronnenHtml(c){
+    var br = c.bronnen || [];
+    if(!br.length) return '<p class="nuance">Geen bron op de kaart.</p>';
+    return '<ul class="bron-lijst">' + br.map(function(b){
+      var link = b.url
+        ? '<a href="' + esc(b.url) + '" target="_blank" rel="noopener">' + esc(b.naam || b.url) + '</a>'
+        : esc(b.naam || 'bron zonder link');
+      return '<li>' + link +
+             (b.meetdatum ? '<span class="bron-meta">gemeten ' + esc(b.meetdatum) + '</span>' : '') +
+             '</li>';
+    }).join('') + '</ul>';
+  }
+
+  function checksHtml(c){
+    var a = c.auditor;
+    var rijen = [];
+    if(a && typeof a === 'object' && a.checks){
+      rijen = a.checks.map(function(ch){
+        var wat = typeof ch.wat_te_controleren === 'string' ? ch.wat_te_controleren : '';
+        return '<li><span class="naam">' + esc(ch.naam || ('check ' + ch.nummer)) + '</span> — ' + esc(wat) + '</li>';
+      });
+    } else if(Array.isArray(c.auditor_checks)){
+      rijen = c.auditor_checks.map(function(ch){
+        return '<li><span class="naam">' + esc(ch.check) + '</span> — ' + esc(ch.omschrijving) + '</li>';
+      });
+    }
+    if(!rijen.length) return '';
+    return '<details class="checks"><summary>de volledige checklijst van de eindredacteur (' +
+           rijen.length + ', nog niet uitgevoerd)</summary><ul>' + rijen.join('') + '</ul></details>';
+  }
+
+  function eerderHtml(c){
+    // Wat Richard eerder vroeg, bij het stuk dat daaruit voortkwam. Zonder deze
+    // regel kijkt hij naar een herschrijving zonder te weten waarom.
+    var g = (c.besluit && c.besluit.geschiedenis) || [];
+    var vorige = null;
+    for(var n = g.length - 1; n >= 0; n--){
+      if(g[n] && g[n].status === 'bijsturen' && g[n].instructie){ vorige = g[n]; break; }
+    }
+    if(!vorige) return '';
+    return '<div class="eerder">' +
+           '<span class="wanneer">je vroeg eerder</span>' +
+           esc(vorige.instructie) + '</div>';
+  }
+
+  function teken(){
+    var kaart = document.getElementById('kaart');
+    if(!CONCEPTEN.length){
+      kaart.innerHTML = '<div class="leeg">Geen concepten. Draai eerst een connector en ' +
+                        'zet de uitvoer om met <code>conceptpreview.py maak</code>.</div>';
+      document.getElementById('acties').hidden = true;
+      return;
+    }
+    var c = CONCEPTEN[i];
+    var st = statusVan(c);
+    var claim = (c.claimstatus || 'onbekend').toLowerCase();
+
+    var vorm = c.vorm ? ' · ' + esc(c.vorm) : '';
+    var feit = c.feit
+      ? '<div class="feit">' + (c.getal ? '<span class="getal">' + esc(c.getal) + '</span> — ' : '') +
+        esc(c.feit) + '</div>'
+      : '';
+
+    var ronde = (c.ronde || 1) > 1
+      ? '<span class="ronde">ronde ' + c.ronde + ' — herschreven na jouw bijsturing</span>'
+      : '';
+
+    kaart.innerHTML =
+      '<span class="bestemming">' + esc(c.bestemming) + vorm + '</span>' +
+      '<h2 class="concept-titel" style="margin:10px 0 0">' + esc(c.titel) + '</h2>' +
+      ronde +
+      '<div class="bevindingen">' + bevindingenHtml(c) + '</div>' +
+      '<div class="body">' +
+        eerderHtml(c) +
+        feit +
+        (c.kern ? '<p class="kern">' + esc(c.kern) + '</p>' : '') +
+        (c.instructie ? '<h2>Jouw instructie bij de kaart</h2><p class="instructie">' + esc(c.instructie) + '</p>' : '') +
+        (c.nuance ? '<h2>Nuance die niet mag sneuvelen</h2><p class="nuance">' + esc(c.nuance) + '</p>' : '') +
+        '<h2>Bronnen en claimstatus</h2>' +
+        '<p><span class="stempel ' + esc(claim) + '">' + esc(claim) + '</span></p>' +
+        bronnenHtml(c) +
+        ((c.niet_gebruiken && c.niet_gebruiken.length)
+          ? '<h2>Niet gebruiken</h2><ul class="niet-gebruiken">' + c.niet_gebruiken.map(function(n){
+              return '<li>' + esc(n.claim) + ' <span class="reden">— ' + esc(n.reden) + '</span></li>';
+            }).join('') + '</ul>'
+          : '') +
+        checksHtml(c) +
+      '</div>';
+
+    document.getElementById('telling').textContent =
+      (i + 1) + ' van ' + CONCEPTEN.length;
+    document.getElementById('subregel').textContent =
+      c.week + ' · kaart ' + c.kaart_id + ' · ' + c.concept_id;
+
+    var b = besluiten[c.concept_id];
+    var standTekst = st === 'wacht' ? 'wacht op jou'
+      : st + (b && b.instructie ? ' — ' + b.instructie.slice(0, 48) : '');
+    document.getElementById('stand').innerHTML =
+      st === 'wacht' ? '<span>' + standTekst + '</span>'
+                     : '<span class="gezet">' + esc(standTekst) + '</span>';
+
+    document.getElementById('btnVorige').disabled = i === 0;
+    document.getElementById('btnVolgende').disabled = i >= CONCEPTEN.length - 1;
+  }
+
+  function zet(status, instructie){
+    var c = CONCEPTEN[i];
+    if(!c) return;
+    var vorig = besluiten[c.concept_id];
+    if(vorig && vorig.status === status && (vorig.instructie || '') === (instructie || '')){
+      teken();           // hetzelfde besluit nog eens: niets veranderen
+      return;
+    }
+    besluiten[c.concept_id] = {
+      concept_id: c.concept_id,
+      status: status,
+      instructie: instructie || '',
+      op: new Date().toISOString()
+    };
+    bewaar(c.concept_id);
+    teken();
+    if(i < CONCEPTEN.length - 1){ i++; teken(); }
+  }
+
+  function ga(delta){
+    var n = i + delta;
+    if(n < 0 || n >= CONCEPTEN.length) return;
+    i = n; teken();
+  }
+
+  function toonBijsturen(){
+    if(!CONCEPTEN.length) return;
+    var p = document.getElementById('paneelBijsturen');
+    var veld = document.getElementById('instructie');
+    var b = besluiten[CONCEPTEN[i].concept_id];
+    veld.value = (b && b.instructie) || CONCEPTEN[i].instructie || '';
+    p.hidden = false;
+    veld.focus();
+  }
+
+  document.getElementById('btnAkkoord').addEventListener('click', function(){ zet('akkoord', ''); });
+  document.getElementById('btnTerug').addEventListener('click', function(){ zet('terug', ''); });
+  document.getElementById('btnBijsturen').addEventListener('click', toonBijsturen);
+  document.getElementById('btnBijsturenAf').addEventListener('click', function(){
+    document.getElementById('paneelBijsturen').hidden = true;
+  });
+  document.getElementById('btnBijsturenOk').addEventListener('click', function(){
+    var tekst = document.getElementById('instructie').value.trim();
+    if(!tekst){ document.getElementById('instructie').focus(); return; }
+    document.getElementById('paneelBijsturen').hidden = true;
+    zet('bijsturen', tekst);
+  });
+  document.getElementById('btnVorige').addEventListener('click', function(){ ga(-1); });
+  document.getElementById('btnVolgende').addEventListener('click', function(){ ga(1); });
+
+  document.getElementById('btnExport').addEventListener('click', function(){
+    document.getElementById('exportVeld').value = JSON.stringify(besluiten, null, 2);
+    document.getElementById('paneelExport').hidden = false;
+  });
+  document.getElementById('btnExportAf').addEventListener('click', function(){
+    document.getElementById('paneelExport').hidden = true;
+  });
+  document.getElementById('btnKopieer').addEventListener('click', function(){
+    var v = document.getElementById('exportVeld');
+    v.select();
+    try { document.execCommand('copy'); } catch(e){ /* dan met de hand */ }
+  });
+
+  document.addEventListener('keydown', function(e){
+    var inVeld = /^(TEXTAREA|INPUT)$/.test(e.target.tagName);
+    if(inVeld) return;
+    if(e.key === '1'){ zet('akkoord', ''); }
+    else if(e.key === '2'){ toonBijsturen(); }
+    else if(e.key === '3'){ zet('terug', ''); }
+    else if(e.key === 'ArrowLeft'){ ga(-1); }
+    else if(e.key === 'ArrowRight'){ ga(1); }
+  });
+
+  teken();
+  startDb();
+})();
+</script>
