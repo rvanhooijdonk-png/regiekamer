@@ -20,16 +20,12 @@ const TABS=[
  ["pijplijnkaart","Pijplijnkaart","pijplijn/pijplijnkaart.html"],
  ["kaartenbak","Kaartenbak","pijplijn/kaartenbak.html"],
  ["conceptpreview","Conceptpreview","pijplijn/conceptpreview.html"],
- ["peilbord","Peilbord lanen","peilbord-lanen/index.html"],
- ["projecttoezicht","Projecttoezicht","projecttoezicht/index.html"],
- ["ticker","Stack-ticker","stack-ticker/index.html"],
- ["studio","Studio-stapel","studio-stapel.html"],
- ["oud","Regiekamer (oud)","archief/index-oud.html"]];
+ ["peilbord","Peilbord","peilbord-lanen/index.html"]];
 const nav=document.getElementById("tabs"),frame=document.getElementById("frame"),meta=document.getElementById("meta");
 for(const [id,label,href] of TABS){const a=document.createElement("a");a.href="#"+id;a.textContent=label;a.dataset.id=id;nav.appendChild(a);}
 function show(){const id=(location.hash||"#pijplijnkaart").slice(1);const t=TABS.find(x=>x[0]===id)||TABS[0];
  for(const a of nav.children){if(a.dataset.id===t[0])a.setAttribute("aria-current","page");else a.removeAttribute("aria-current");}
  frame.src=t[2]+"?"+Date.now();document.title=t[1]+" · Regiebord";
- meta.textContent="tab laadt de bronpagina; verversing per bron (BOARD_02 voegt de waarheidscontrole toe)";}
+ meta.textContent="overige borden: archief/ · verversing per bron; waarheidscontrole volgt (BOARD_02)";}
 addEventListener("hashchange",show);show();
 </script></body></html>
