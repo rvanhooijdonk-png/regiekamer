@@ -1,16 +1,17 @@
 {
  "schema": "FEATURELOG_V1",
- "gegenereerd_op": "2026-09-27T07:43:18+02:00",
+ "gegenereerd_op": "2026-09-27T08:10:22+02:00",
  "bron": {
   "besluiten": 495,
   "kaarten": 417,
-  "bord": 196,
-  "rest": 53,
-  "machine": 168,
+  "bord": 191,
+  "rest": 57,
+  "machine": 169,
   "weggelaten_privacy": 0
  },
  "status_labels": {
   "GEBOUWD_EN_WERKEND": "Gebouwd en werkend",
+  "UITGEVOERD": "Uitgevoerd (eenmalig)",
   "IN_BOUW": "In bouw / in toets",
   "PENDING": "Pending",
   "WACHT_OP_RICHARD": "Wacht op Richard",
@@ -32,62 +33,66 @@
   "Overig"
  ],
  "per_status": {
-  "GELDEND": 116,
-  "GEBOUWD_EN_WERKEND": 30,
-  "PENDING": 12,
+  "GELDEND": 113,
+  "GEBOUWD_EN_WERKEND": 20,
+  "PENDING": 20,
   "VERVALLEN": 5,
-  "IN_BOUW": 22,
-  "ONBEKEND": 9,
-  "WACHT_OP_RICHARD": 2
+  "UITGEVOERD": 7,
+  "IN_BOUW": 23,
+  "ONBEKEND": 2,
+  "WACHT_OP_RICHARD": 1
  },
  "per_categorie": {
   "Accounts & toegang": {
-   "GELDEND": 20,
-   "totaal": 26,
-   "GEBOUWD_EN_WERKEND": 3,
+   "GELDEND": 15,
+   "totaal": 20,
+   "GEBOUWD_EN_WERKEND": 1,
    "features": 3,
    "IN_BOUW": 2,
+   "UITGEVOERD": 1,
    "PENDING": 1
   },
   "Burn-in & lanes": {
-   "GEBOUWD_EN_WERKEND": 4,
-   "totaal": 34,
+   "GEBOUWD_EN_WERKEND": 2,
+   "totaal": 31,
    "PENDING": 4,
    "features": 7,
-   "GELDEND": 22,
+   "GELDEND": 21,
    "IN_BOUW": 4
   },
   "Governance & rollen": {
-   "GELDEND": 16,
-   "totaal": 24,
-   "VERVALLEN": 1,
-   "WACHT_OP_RICHARD": 1,
-   "features": 5,
-   "GEBOUWD_EN_WERKEND": 2,
-   "IN_BOUW": 2,
-   "PENDING": 2
+   "GELDEND": 22,
+   "totaal": 31,
+   "VERVALLEN": 2,
+   "features": 7,
+   "PENDING": 4,
+   "UITGEVOERD": 2,
+   "IN_BOUW": 1
   },
   "Overig": {
    "GEBOUWD_EN_WERKEND": 1,
-   "totaal": 7,
-   "GELDEND": 6
+   "totaal": 6,
+   "GELDEND": 5
   },
   "Cloud & Temporal": {
-   "VERVALLEN": 2,
-   "totaal": 30,
-   "GEBOUWD_EN_WERKEND": 8,
-   "features": 8,
-   "GELDEND": 12,
-   "IN_BOUW": 6,
+   "VERVALLEN": 1,
+   "totaal": 29,
+   "UITGEVOERD": 3,
+   "features": 7,
+   "GELDEND": 11,
+   "IN_BOUW": 7,
+   "GEBOUWD_EN_WERKEND": 5,
    "PENDING": 2
   },
   "Boards & rapportage": {
    "VERVALLEN": 2,
    "totaal": 24,
-   "GELDEND": 10,
-   "GEBOUWD_EN_WERKEND": 9,
-   "features": 9,
-   "IN_BOUW": 3
+   "GELDEND": 9,
+   "GEBOUWD_EN_WERKEND": 8,
+   "features": 10,
+   "ONBEKEND": 1,
+   "IN_BOUW": 3,
+   "UITGEVOERD": 1
   },
   "Geheugen & ownerwoord": {
    "IN_BOUW": 1,
@@ -97,56 +102,35 @@
   },
   "Content-pijplijn": {
    "IN_BOUW": 1,
-   "totaal": 32,
-   "features": 11,
+   "totaal": 33,
+   "features": 10,
+   "PENDING": 7,
+   "ONBEKEND": 1,
+   "GELDEND": 22,
    "GEBOUWD_EN_WERKEND": 1,
-   "GELDEND": 21,
-   "ONBEKEND": 7,
-   "PENDING": 1,
    "WACHT_OP_RICHARD": 1
   },
   "Beveiliging & geheimen": {
    "GELDEND": 3,
-   "totaal": 6,
+   "totaal": 5,
    "GEBOUWD_EN_WERKEND": 2,
-   "features": 2,
-   "PENDING": 1
+   "features": 1
   },
   "Task OS": {
    "IN_BOUW": 2,
-   "totaal": 7,
+   "totaal": 6,
    "features": 3,
-   "GELDEND": 4,
-   "ONBEKEND": 1
+   "GELDEND": 3,
+   "PENDING": 1
   },
   "Mail & taken": {
    "GELDEND": 2,
    "totaal": 4,
-   "IN_BOUW": 1,
-   "features": 2,
-   "ONBEKEND": 1
+   "IN_BOUW": 2,
+   "features": 2
   }
  },
  "wacht_op_richard": [
-  {
-   "id": "OB-0200",
-   "ts": "2026-09-26T08:19:31",
-   "datum": "2026-09-26 08:19",
-   "strekking": "Implementeer automatische diagnose en reparatie van supervisor-storingen. Detecteer problemen, los ze structureel op, en rapporteer alleen voltooide fixes — niet wachten op handmatige verzoeken van Richard.",
-   "soort": "FEATURE",
-   "categorie": "Governance & rollen",
-   "status": "WACHT_OP_RICHARD",
-   "bewijs": "CLAUDE2 stil sinds 27-09 01:57; automatische diagnose/herstel niet gebouwd; Richard kijkt in het CLAUDE2-venster",
-   "sinds": "2026-09-27",
-   "bevestigd": true,
-   "geldt_voor": [
-    "*"
-   ],
-   "vervallen_reden": "",
-   "laatste24": true,
-   "herhaald": [],
-   "laatste_ts": "2026-09-26T08:19:31"
-  },
   {
    "id": "OB-0371",
    "ts": "2026-09-26T22:07:05",
@@ -156,6 +140,7 @@
    "categorie": "Content-pijplijn",
    "status": "WACHT_OP_RICHARD",
    "bewijs": "PR #136/#137 trend-pipeline: mergeable, CI groen, twee Codex-GO; merge via GitHub-knop of regel voor gh pr ready/merge",
+   "kort": "#136 en #137 klaar om te mergen; wacht op Richard",
    "sinds": "2026-09-26",
    "bevestigd": true,
    "geldt_voor": [
@@ -177,6 +162,7 @@
    "categorie": "Accounts & toegang",
    "status": "GELDEND",
    "bewijs": "accountoverzicht; niet opnieuw meten",
+   "kort": "",
    "sinds": "",
    "bevestigd": true,
    "geldt_voor": [
@@ -196,6 +182,7 @@
    "categorie": "Accounts & toegang",
    "status": "GELDEND",
    "bewijs": "cloudwerk naar codex4",
+   "kort": "",
    "sinds": "",
    "bevestigd": true,
    "geldt_voor": [
@@ -215,6 +202,7 @@
    "categorie": "Accounts & toegang",
    "status": "GELDEND",
    "bewijs": "",
+   "kort": "",
    "sinds": "",
    "bevestigd": true,
    "geldt_voor": [
@@ -233,7 +221,8 @@
    "soort": "REGEL",
    "categorie": "Burn-in & lanes",
    "status": "GEBOUWD_EN_WERKEND",
-   "bewijs": "lanepoort V3.1 + addenda live als proefopstelling deel 1 (core 64c07949, dispatcher com.rvh.lane-dispatcher)",
+   "bewijs": "lanepoort V3.1 + addenda live als proefopstelling deel 1 (core 64c07949); reparaties (poort, probemarge, verzoening) wachten op het inbouwvenster ±08:30",
+   "kort": "Lane-management: de poort die bepaalt welk account wanneer werk mag starten",
    "sinds": "2026-09-25",
    "bevestigd": true,
    "geldt_voor": [
@@ -254,6 +243,7 @@
    "categorie": "Governance & rollen",
    "status": "GELDEND",
    "bewijs": "",
+   "kort": "",
    "sinds": "",
    "bevestigd": true,
    "geldt_voor": [
@@ -273,6 +263,7 @@
    "categorie": "Burn-in & lanes",
    "status": "PENDING",
    "bewijs": "na burn-in en autocoding-recycle",
+   "kort": "Open-source-modellen later aan de vloot toevoegen (nu niet bouwen)",
    "sinds": "2026-09-24",
    "bevestigd": true,
    "geldt_voor": [
@@ -292,6 +283,7 @@
    "categorie": "Governance & rollen",
    "status": "GELDEND",
    "bewijs": "",
+   "kort": "",
    "sinds": "",
    "bevestigd": true,
    "geldt_voor": [
@@ -311,6 +303,7 @@
    "categorie": "Overig",
    "status": "GEBOUWD_EN_WERKEND",
    "bewijs": "disk-watch onder launchd, Telegram-alerts hersteld (memory disk-watch-en-backup-infra)",
+   "kort": "Nooit bepaalde systeemprocessen bevriezen; schijfbewaking en Spotlight-uitzondering",
    "sinds": "2026-09-26",
    "bevestigd": true,
    "geldt_voor": [
@@ -330,6 +323,7 @@
    "categorie": "Burn-in & lanes",
    "status": "GELDEND",
    "bewijs": "",
+   "kort": "",
    "sinds": "",
    "bevestigd": true,
    "geldt_voor": [
@@ -349,6 +343,7 @@
    "categorie": "Cloud & Temporal",
    "status": "VERVALLEN",
    "bewijs": "worker draait op Railway; bouwlanes nog op de Mac; cloudroute E7 onbewezen",
+   "kort": "Al het stack-director-werk in de cloud, niet op de Mac",
    "sinds": "2026-09-26",
    "bevestigd": true,
    "geldt_voor": [
@@ -370,6 +365,7 @@
    "categorie": "Governance & rollen",
    "status": "VERVALLEN",
    "bewijs": "state/DIRECTOR/heartbeat.json wordt elke ronde geschreven",
+   "kort": "Hartslag van de director altijd als JSON-bestand",
    "sinds": "2026-09-24",
    "bevestigd": true,
    "geldt_voor": [
@@ -389,6 +385,7 @@
    "categorie": "Boards & rapportage",
    "status": "VERVALLEN",
    "bewijs": "",
+   "kort": "Peilbord-basislijn nemen op wat zojuist gepubliceerd is",
    "sinds": "",
    "bevestigd": true,
    "geldt_voor": [
@@ -408,6 +405,7 @@
    "categorie": "Boards & rapportage",
    "status": "VERVALLEN",
    "bewijs": "",
+   "kort": "Nooit tijden, hashes of PID's met de hand typen; altijd meten",
    "sinds": "",
    "bevestigd": true,
    "geldt_voor": [
@@ -427,6 +425,7 @@
    "categorie": "Accounts & toegang",
    "status": "GELDEND",
    "bewijs": "",
+   "kort": "",
    "sinds": "",
    "bevestigd": true,
    "geldt_voor": [
@@ -446,6 +445,7 @@
    "categorie": "Accounts & toegang",
    "status": "GELDEND",
    "bewijs": "",
+   "kort": "",
    "sinds": "",
    "bevestigd": true,
    "geldt_voor": [
@@ -463,8 +463,9 @@
    "strekking": "Er wordt een cloud-omgeving aangemaakt op het Codex4-account ([e-mail]) voor rvanhooijdonk-png/stack-director. Besluit Richard 24-09 16:2x: niet wachten op de reset van Codex1. Aanmaken kan alleen in de ChatGPT-webinterface (de CLI heeft geen create-commando, 28 subcommando's nagelopen). Zodra dat staat: cloudtaken gaan naar codex4.",
    "soort": "FEATURE",
    "categorie": "Cloud & Temporal",
-   "status": "GEBOUWD_EN_WERKEND",
-   "bewijs": "OB-0022: codex cloud list --env exit 0 op codex4",
+   "status": "UITGEVOERD",
+   "bewijs": "codex cloud list --env exit 0 op codex4 (24-09 16:26)",
+   "kort": "Cloud-omgeving aanmaken op het Codex4-account",
    "sinds": "2026-09-24",
    "bevestigd": true,
    "geldt_voor": [
@@ -484,6 +485,7 @@
    "categorie": "Accounts & toegang",
    "status": "GEBOUWD_EN_WERKEND",
    "bewijs": "Claude in Chrome-tools beschikbaar in ADMIN-sessie",
+   "kort": "Claude krijgt de Chrome-extensie zodat browserwerk niet bij Richard belandt",
    "sinds": "2026-09-24",
    "bevestigd": true,
    "geldt_voor": [
@@ -503,6 +505,7 @@
    "categorie": "Accounts & toegang",
    "status": "GELDEND",
    "bewijs": "",
+   "kort": "",
    "sinds": "",
    "bevestigd": true,
    "geldt_voor": [
@@ -522,6 +525,7 @@
    "categorie": "Geheugen & ownerwoord",
    "status": "IN_BOUW",
    "bewijs": "besluiten-status.jsonl markeert loop-prompts VERVALLEN; TE_BEVESTIGEN-vlag; dit bord toont machinebron apart",
+   "kort": "Berichten herkennen als \"van Richard\" of \"van een machine\"; alleen Richards woorden worden regel",
    "sinds": "2026-09-24",
    "bevestigd": true,
    "geldt_voor": [
@@ -538,9 +542,10 @@
    "datum": "2026-09-24 17:03",
    "strekking": "Richard autoriseert specifieke acties: admin-push ja; stack-director push ja (met Richards per-keer akkoord); GitHub-mergeknop ja (als reviewstem groen); force-push nee; Railway-deploy nee (per keer); automaten-restart ja; Telegram ja; besluiten toevoegen ja; orders vrijgeven ja (met review groen).",
    "soort": "REGEL",
-   "categorie": "Accounts & toegang",
+   "categorie": "Governance & rollen",
    "status": "GELDEND",
    "bewijs": "",
+   "kort": "",
    "sinds": "",
    "bevestigd": false,
    "geldt_voor": [
@@ -560,6 +565,7 @@
    "categorie": "Boards & rapportage",
    "status": "GELDEND",
    "bewijs": "",
+   "kort": "",
    "sinds": "",
    "bevestigd": true,
    "geldt_voor": [
@@ -581,9 +587,10 @@
    "datum": "2026-09-24 23:53",
    "strekking": "Rechtenmatrix vastgesteld: admin-repo push altijd JA; stack-director push JA mits akkoord per keer; GitHub merge JA mits Codex groen; force-push/branch-delete/history-rewrite altijd NEE; Railway deploy altijd NEE; launchctl JA; Telegram JA voor alarmen; Ownerwoord register toevoegen JA; orders vrijgeven JA mits groen; browser JA voor navigatie.",
    "soort": "FEATURE",
-   "categorie": "Cloud & Temporal",
+   "categorie": "Governance & rollen",
    "status": "VERVALLEN",
    "bewijs": "",
+   "kort": "",
    "sinds": "",
    "bevestigd": false,
    "geldt_voor": [
@@ -603,6 +610,7 @@
    "categorie": "Accounts & toegang",
    "status": "GELDEND",
    "bewijs": "",
+   "kort": "",
    "sinds": "",
    "bevestigd": false,
    "geldt_voor": [
@@ -621,7 +629,8 @@
    "soort": "FEATURE",
    "categorie": "Boards & rapportage",
    "status": "GEBOUWD_EN_WERKEND",
-   "bewijs": "peilbord-ververs.sh + peilbord-publiceer.sh onder launchd, elke 5 min naar regiekamer/peilbord-lanen",
+   "bewijs": "peilbord-ververs.sh + peilbord-publiceer.sh onder launchd, elke 5 min gepubliceerd; INHOUD verouderd (handtekst van 26-09 18:05) — BOARD_05 in bouw",
+   "kort": "Peilbord wordt altijd automatisch opnieuw gebouwd, nooit met de hand",
    "sinds": "2026-09-26",
    "bevestigd": true,
    "geldt_voor": [
@@ -641,6 +650,7 @@
    "categorie": "Geheugen & ownerwoord",
    "status": "PENDING",
    "bewijs": "~/Stack-Director/bin/remember bestaat; koppeling aan ownerwoord-hooks niet aangetoond",
+   "kort": "\"Onthoud dit\" altijd meteen in het geheugen verwerken en bevestigen",
    "sinds": "2026-09-25",
    "bevestigd": true,
    "geldt_voor": [
@@ -660,6 +670,7 @@
    "categorie": "Cloud & Temporal",
    "status": "GELDEND",
    "bewijs": "",
+   "kort": "",
    "sinds": "",
    "bevestigd": true,
    "geldt_voor": [
@@ -679,6 +690,7 @@
    "categorie": "Cloud & Temporal",
    "status": "GELDEND",
    "bewijs": "",
+   "kort": "",
    "sinds": "",
    "bevestigd": true,
    "geldt_voor": [
@@ -698,6 +710,7 @@
    "categorie": "Governance & rollen",
    "status": "GELDEND",
    "bewijs": "",
+   "kort": "",
    "sinds": "",
    "bevestigd": true,
    "geldt_voor": [
@@ -717,6 +730,7 @@
    "categorie": "Overig",
    "status": "GELDEND",
    "bewijs": "",
+   "kort": "",
    "sinds": "",
    "bevestigd": false,
    "geldt_voor": [
@@ -736,6 +750,7 @@
    "categorie": "Burn-in & lanes",
    "status": "GELDEND",
    "bewijs": "",
+   "kort": "",
    "sinds": "",
    "bevestigd": true,
    "geldt_voor": [
@@ -756,6 +771,7 @@
    "categorie": "Content-pijplijn",
    "status": "IN_BOUW",
    "bewijs": "trend-pipeline PR #136/#137 groen en gestemd; merge wacht op Richard",
+   "kort": "Complete content-pijplijn in vier stappen bouwen (input, verwerking, keuze, publicatie)",
    "sinds": "2026-09-26",
    "bevestigd": true,
    "geldt_voor": [
@@ -773,8 +789,9 @@
    "strekking": "Add WebFetch permission for domain blog.vanhooijdonk.com to .claude/settings.json to enable blog scans in the source layer.",
    "soort": "FEATURE",
    "categorie": "Content-pijplijn",
-   "status": "GEBOUWD_EN_WERKEND",
-   "bewijs": "toets in register: grep blog-domein in settings.json",
+   "status": "PENDING",
+   "bewijs": "27-09 08:1x: geen WebFetch-regel met een blog-domein in trend-pipeline/.claude/settings.json gevonden",
+   "kort": "Blog-adres toestaan voor scans in de content-pijplijn",
    "sinds": "2026-09-25",
    "bevestigd": true,
    "geldt_voor": [
@@ -791,9 +808,10 @@
    "datum": "2026-09-25 11:12",
    "strekking": "Correct .claude/settings.json line 76: change blog domain from blog.vanhooijdonk.com to blog.richardvanhooijdonk.com; respond 'probeer opnieuw' if unable.",
    "soort": "REGEL",
-   "categorie": "Burn-in & lanes",
-   "status": "GEBOUWD_EN_WERKEND",
-   "bewijs": "toets in register: grep blog.richardvanhooijdonk.com",
+   "categorie": "Content-pijplijn",
+   "status": "PENDING",
+   "bewijs": "zie OB-0061: regel niet aangetroffen",
+   "kort": "Blog-adres in de instellingen corrigeren",
    "sinds": "2026-09-25",
    "bevestigd": true,
    "geldt_voor": [
@@ -809,10 +827,11 @@
    "ts": "2026-09-25T11:12:14",
    "datum": "2026-09-25 11:12",
    "strekking": "Apply media-desk-nu's SWIPE concept styling to scan processing and display; extend or refine the visual/interaction approach where possible.",
-   "soort": "REGEL",
+   "soort": "FEATURE",
    "categorie": "Content-pijplijn",
-   "status": "GELDEND",
+   "status": "ONBEKEND",
    "bewijs": "",
+   "kort": "Swipe-stijl van media-desk toepassen op de scanverwerking",
    "sinds": "",
    "bevestigd": true,
    "geldt_voor": [
@@ -832,6 +851,7 @@
    "categorie": "Content-pijplijn",
    "status": "GELDEND",
    "bewijs": "",
+   "kort": "",
    "sinds": "",
    "bevestigd": true,
    "geldt_voor": [
@@ -849,8 +869,9 @@
    "strekking": "Na content-selectie in swipe moet een batch-queue worden opgebouwd voor bulkproductie van keynotes, social media en long-reads.",
    "soort": "FEATURE",
    "categorie": "Content-pijplijn",
-   "status": "ONBEKEND",
-   "bewijs": "",
+   "status": "PENDING",
+   "bewijs": "content-desk: alleen opdrachtdocument admin/OPDRACHTEN-content-desk-2026-09-22.md gevonden; geen app-map (27-09)",
+   "kort": "Na het kiezen van content een wachtrij voor bulkproductie (keynotes, social, long-reads)",
    "sinds": "",
    "bevestigd": true,
    "geldt_voor": [
@@ -872,6 +893,7 @@
    "categorie": "Content-pijplijn",
    "status": "GELDEND",
    "bewijs": "",
+   "kort": "",
    "sinds": "",
    "bevestigd": true,
    "geldt_voor": [
@@ -891,6 +913,7 @@
    "categorie": "Content-pijplijn",
    "status": "GELDEND",
    "bewijs": "",
+   "kort": "",
    "sinds": "",
    "bevestigd": true,
    "geldt_voor": [
@@ -910,6 +933,7 @@
    "categorie": "Content-pijplijn",
    "status": "GELDEND",
    "bewijs": "",
+   "kort": "",
    "sinds": "",
    "bevestigd": true,
    "geldt_voor": [
@@ -929,6 +953,7 @@
    "categorie": "Content-pijplijn",
    "status": "PENDING",
    "bewijs": "geen project source-intelligence gevonden; op bouwlijst content-pijplijn",
+   "kort": "Apart project voor brononderzoek (YouTube, X, Medium, Reddit, LinkedIn, betaalde pers)",
    "sinds": "2026-09-25",
    "bevestigd": true,
    "geldt_voor": [
@@ -946,8 +971,9 @@
    "strekking": "Alle inhoud die in het content-desk-now kanaal wordt gemaakt, bedacht of samengesteld moet op GitHub worden opgeslagen.",
    "soort": "FEATURE",
    "categorie": "Content-pijplijn",
-   "status": "ONBEKEND",
-   "bewijs": "",
+   "status": "PENDING",
+   "bewijs": "content-desk: alleen opdrachtdocument admin/OPDRACHTEN-content-desk-2026-09-22.md gevonden; geen app-map (27-09)",
+   "kort": "Alles uit het content-desk-kanaal op GitHub bewaren",
    "sinds": "",
    "bevestigd": true,
    "geldt_voor": [
@@ -967,6 +993,7 @@
    "categorie": "Content-pijplijn",
    "status": "GELDEND",
    "bewijs": "",
+   "kort": "",
    "sinds": "",
    "bevestigd": true,
    "geldt_voor": [
@@ -986,6 +1013,7 @@
    "categorie": "Content-pijplijn",
    "status": "GELDEND",
    "bewijs": "",
+   "kort": "",
    "sinds": "",
    "bevestigd": true,
    "geldt_voor": [
@@ -1005,6 +1033,7 @@
    "categorie": "Governance & rollen",
    "status": "GELDEND",
    "bewijs": "",
+   "kort": "",
    "sinds": "",
    "bevestigd": true,
    "geldt_voor": [
@@ -1024,6 +1053,7 @@
    "categorie": "Content-pijplijn",
    "status": "GELDEND",
    "bewijs": "",
+   "kort": "",
    "sinds": "",
    "bevestigd": true,
    "geldt_voor": [
@@ -1043,6 +1073,7 @@
    "categorie": "Boards & rapportage",
    "status": "GELDEND",
    "bewijs": "",
+   "kort": "",
    "sinds": "",
    "bevestigd": true,
    "geldt_voor": [
@@ -1060,8 +1091,9 @@
    "strekking": "Voeg een 'nieuwsbrief' button/keuze toe zodat geselecteerde content-items onmiddellijk beschikbaar worden voor de nieuwsbrief van die week.",
    "soort": "FEATURE",
    "categorie": "Content-pijplijn",
-   "status": "ONBEKEND",
-   "bewijs": "",
+   "status": "PENDING",
+   "bewijs": "content-desk: alleen opdrachtdocument admin/OPDRACHTEN-content-desk-2026-09-22.md gevonden; geen app-map (27-09)",
+   "kort": "Knop om gekozen content direct in de nieuwsbrief van die week te zetten",
    "sinds": "",
    "bevestigd": true,
    "geldt_voor": [
@@ -1081,6 +1113,7 @@
    "categorie": "Governance & rollen",
    "status": "GELDEND",
    "bewijs": "",
+   "kort": "",
    "sinds": "",
    "bevestigd": true,
    "geldt_voor": [
@@ -1100,6 +1133,7 @@
    "categorie": "Burn-in & lanes",
    "status": "GELDEND",
    "bewijs": "",
+   "kort": "",
    "sinds": "",
    "bevestigd": true,
    "geldt_voor": [
@@ -1119,6 +1153,7 @@
    "categorie": "Accounts & toegang",
    "status": "GELDEND",
    "bewijs": "",
+   "kort": "",
    "sinds": "",
    "bevestigd": true,
    "geldt_voor": [
@@ -1134,10 +1169,11 @@
    "ts": "2026-09-25T12:52:58",
    "datum": "2026-09-25 12:52",
    "strekking": "Pipeline-card moet planning tonen voor alle 8 accounts (dit weekend weer volop actief; momenteel 5)",
-   "soort": "REGEL",
-   "categorie": "Accounts & toegang",
-   "status": "GELDEND",
+   "soort": "FEATURE",
+   "categorie": "Boards & rapportage",
+   "status": "ONBEKEND",
    "bewijs": "",
+   "kort": "Pijplijnkaart toont de planning van alle acht accounts",
    "sinds": "",
    "bevestigd": true,
    "geldt_voor": [
@@ -1157,6 +1193,7 @@
    "categorie": "Content-pijplijn",
    "status": "GELDEND",
    "bewijs": "",
+   "kort": "",
    "sinds": "",
    "bevestigd": true,
    "geldt_voor": [
@@ -1176,6 +1213,7 @@
    "categorie": "Content-pijplijn",
    "status": "GELDEND",
    "bewijs": "",
+   "kort": "",
    "sinds": "",
    "bevestigd": true,
    "geldt_voor": [
@@ -1195,6 +1233,7 @@
    "categorie": "Content-pijplijn",
    "status": "GELDEND",
    "bewijs": "",
+   "kort": "",
    "sinds": "",
    "bevestigd": true,
    "geldt_voor": [
@@ -1212,8 +1251,9 @@
    "strekking": "Bouw de content-desk-now applicatie nu; focus op praktische uitvoering, niet op planning.",
    "soort": "FEATURE",
    "categorie": "Content-pijplijn",
-   "status": "ONBEKEND",
-   "bewijs": "",
+   "status": "PENDING",
+   "bewijs": "content-desk: alleen opdrachtdocument admin/OPDRACHTEN-content-desk-2026-09-22.md gevonden; geen app-map (27-09)",
+   "kort": "De content-desk-applicatie nu bouwen",
    "sinds": "",
    "bevestigd": false,
    "geldt_voor": [
@@ -1233,6 +1273,7 @@
    "categorie": "Boards & rapportage",
    "status": "GEBOUWD_EN_WERKEND",
    "bewijs": "zie OB-0037",
+   "kort": "Peilbord altijd automatisch, nooit handmatig patchen",
    "sinds": "2026-09-26",
    "bevestigd": true,
    "geldt_voor": [
@@ -1252,6 +1293,7 @@
    "categorie": "Burn-in & lanes",
    "status": "IN_BOUW",
    "bewijs": "worker + workflows (Bezorging/Toezicht/Oogst/Doelen) in de cloud; lanepoort en bouwlanes nog niet",
+   "kort": "Alles wat structureel draait, draait op Temporal in de cloud, niet op de MacBook",
    "sinds": "2026-09-26",
    "bevestigd": true,
    "geldt_voor": [
@@ -1271,6 +1313,7 @@
    "categorie": "Burn-in & lanes",
    "status": "IN_BOUW",
    "bewijs": "deel 1 proefopstelling live; deel 2 preflight-image gebouwd 27-09 07:20, nog niet gedeployd",
+   "kort": "Burn-in: deel 1 proefopstelling op de Mac, deel 2 alles op Temporal",
    "sinds": "2026-09-26",
    "bevestigd": true,
    "geldt_voor": [
@@ -1282,25 +1325,6 @@
    "laatste_ts": "2026-09-25T14:59:58"
   },
   {
-   "id": "OB-0096",
-   "ts": "2026-09-25T15:04:00",
-   "datum": "2026-09-25 15:04",
-   "strekking": "De Temporal-pilot (evidence/temporal-stack-pilot-20260913/temporal_integration, ~120 modules, namespace quickstart-stack-director.qable) bevat AL de lanepoort-principes: durable_lane_gate (geen effect zonder exclusieve reservering), build_claim, account_selection, claude_quota_observation. Stilgevallen sinds 20-09. Elke order over lanes, reserveringen of quota moet eerst deze pilot raadplegen; ADMIN miste dit op 24-09 en specificeerde het opnieuw op de Mac.",
-   "soort": "REGEL",
-   "categorie": "Burn-in & lanes",
-   "status": "GEBOUWD_EN_WERKEND",
-   "bewijs": "temporal-worker deployment a7ed8ea4 draait >13 uur, hartslag [telefoon]:29)",
-   "sinds": "2026-09-26",
-   "bevestigd": true,
-   "geldt_voor": [
-    "*"
-   ],
-   "vervallen_reden": "",
-   "laatste24": false,
-   "herhaald": [],
-   "laatste_ts": "2026-09-25T15:04:00"
-  },
-  {
    "id": "OB-0097",
    "ts": "2026-09-25T15:14:37",
    "datum": "2026-09-25 15:14",
@@ -1309,6 +1333,7 @@
    "categorie": "Beveiliging & geheimen",
    "status": "GELDEND",
    "bewijs": "",
+   "kort": "",
    "sinds": "",
    "bevestigd": true,
    "geldt_voor": [
@@ -1328,6 +1353,7 @@
    "categorie": "Content-pijplijn",
    "status": "GELDEND",
    "bewijs": "",
+   "kort": "",
    "sinds": "",
    "bevestigd": true,
    "geldt_voor": [
@@ -1344,9 +1370,10 @@
    "datum": "2026-09-25 16:32",
    "strekking": "Bij testvalidatie mag AssertionError alleen niet volstaan; onverwachte runtime-excepties moeten geclassificeerd worden en schijnbewijs moet afgewezen.",
    "soort": "REGEL",
-   "categorie": "Overig",
+   "categorie": "Governance & rollen",
    "status": "GELDEND",
    "bewijs": "",
+   "kort": "",
    "sinds": "",
    "bevestigd": true,
    "geldt_voor": [
@@ -1366,6 +1393,7 @@
    "categorie": "Content-pijplijn",
    "status": "GELDEND",
    "bewijs": "",
+   "kort": "",
    "sinds": "",
    "bevestigd": true,
    "geldt_voor": [
@@ -1381,10 +1409,11 @@
    "ts": "2026-09-25T16:32:12",
    "datum": "2026-09-25 16:32",
    "strekking": "Venture-ideeën moeten een duurzaam competitief voordeel (moat) hebben en niet gemakkelijk door anderen repliceerbaar zijn.",
-   "soort": "FEATURE",
+   "soort": "REGEL",
    "categorie": "Content-pijplijn",
-   "status": "ONBEKEND",
-   "bewijs": "",
+   "status": "GELDEND",
+   "bewijs": "venture-radar: ~/Developer/venture-radar (plan, ontwerp, config)",
+   "kort": "Venture-ideeën moeten een moeilijk kopieerbaar voordeel hebben",
    "sinds": "",
    "bevestigd": true,
    "geldt_voor": [
@@ -1400,10 +1429,11 @@
    "ts": "2026-09-25T16:32:12",
    "datum": "2026-09-25 16:32",
    "strekking": "Venture-scan-bronnen moeten uitsluitend via officiële API's werken; dit is de structurele fix voor falende zoekopdrachten.",
-   "soort": "FEATURE",
+   "soort": "REGEL",
    "categorie": "Content-pijplijn",
-   "status": "ONBEKEND",
-   "bewijs": "",
+   "status": "GELDEND",
+   "bewijs": "zie OB-0101",
+   "kort": "Venture-scans alleen via officiële API's",
    "sinds": "",
    "bevestigd": true,
    "geldt_voor": [
@@ -1423,6 +1453,7 @@
    "categorie": "Accounts & toegang",
    "status": "GELDEND",
    "bewijs": "",
+   "kort": "",
    "sinds": "",
    "bevestigd": true,
    "geldt_voor": [
@@ -1442,6 +1473,7 @@
    "categorie": "Content-pijplijn",
    "status": "GELDEND",
    "bewijs": "",
+   "kort": "",
    "sinds": "",
    "bevestigd": false,
    "geldt_voor": [
@@ -1461,6 +1493,7 @@
    "categorie": "Content-pijplijn",
    "status": "GELDEND",
    "bewijs": "",
+   "kort": "",
    "sinds": "",
    "bevestigd": false,
    "geldt_voor": [
@@ -1478,9 +1511,10 @@
    "strekking": "Voor venture-radar: maak een uitgebreide handover-document van al jouw output, Richards klachten, input en het volledige proces.",
    "soort": "FEATURE",
    "categorie": "Content-pijplijn",
-   "status": "ONBEKEND",
-   "bewijs": "",
-   "sinds": "",
+   "status": "GEBOUWD_EN_WERKEND",
+   "bewijs": "~/Developer/venture-radar/HANDOVER-2026-09-25.md (12,8 kB, 25-09 14:02)",
+   "kort": "Handover-document venture-radar",
+   "sinds": "2026-09-25",
    "bevestigd": true,
    "geldt_voor": [
     "venture-radar"
@@ -1499,6 +1533,7 @@
    "categorie": "Governance & rollen",
    "status": "GELDEND",
    "bewijs": "",
+   "kort": "",
    "sinds": "",
    "bevestigd": true,
    "geldt_voor": [
@@ -1515,9 +1550,10 @@
    "datum": "2026-09-25 17:52",
    "strekking": "Controleronde loopt op 15-minuten ritme met instructie compact te werken en niet zelf te stoppen.",
    "soort": "REGEL",
-   "categorie": "Accounts & toegang",
+   "categorie": "Governance & rollen",
    "status": "GELDEND",
    "bewijs": "",
+   "kort": "",
    "sinds": "",
    "bevestigd": false,
    "geldt_voor": [
@@ -1537,6 +1573,7 @@
    "categorie": "Task OS",
    "status": "IN_BOUW",
    "bewijs": "Task OS in apart venster; ARCHITECTUUR-CONTRACT.md + tos-architectuurcheck",
+   "kort": "Claude4 werkt zelfstandig door aan Takenhub-verbeteringen",
    "sinds": "2026-09-26",
    "bevestigd": true,
    "geldt_voor": [
@@ -1554,8 +1591,9 @@
    "strekking": "Elke processtart vanuit een activity moet via bin/lane verlopen, ook in cloud-omgeving; workers mogen claude of codex niet rechtstreeks aanroepen.",
    "soort": "FEATURE",
    "categorie": "Cloud & Temporal",
-   "status": "GEBOUWD_EN_WERKEND",
-   "bewijs": "dispatcher is enige aanroeper van bin/lane (OB-0127)",
+   "status": "IN_BOUW",
+   "bewijs": "Mac: dispatcher is enige aanroeper van bin/lane; cloud: de worker start nog geen lanes (E7 onbewezen)",
+   "kort": "Elke start van Claude of Codex loopt via de lanepoort, ook in de cloud",
    "sinds": "2026-09-25",
    "bevestigd": true,
    "geldt_voor": [
@@ -1575,6 +1613,7 @@
    "categorie": "Overig",
    "status": "GELDEND",
    "bewijs": "",
+   "kort": "",
    "sinds": "",
    "bevestigd": true,
    "geldt_voor": [
@@ -1594,6 +1633,7 @@
    "categorie": "Boards & rapportage",
    "status": "GELDEND",
    "bewijs": "",
+   "kort": "",
    "sinds": "",
    "bevestigd": true,
    "geldt_voor": [
@@ -1613,6 +1653,7 @@
    "categorie": "Accounts & toegang",
    "status": "GELDEND",
    "bewijs": "",
+   "kort": "",
    "sinds": "",
    "bevestigd": false,
    "geldt_voor": [
@@ -1632,6 +1673,7 @@
    "categorie": "Content-pijplijn",
    "status": "GELDEND",
    "bewijs": "",
+   "kort": "",
    "sinds": "",
    "bevestigd": true,
    "geldt_voor": [
@@ -1651,6 +1693,7 @@
    "categorie": "Burn-in & lanes",
    "status": "GELDEND",
    "bewijs": "",
+   "kort": "",
    "sinds": "",
    "bevestigd": true,
    "geldt_voor": [
@@ -1670,6 +1713,7 @@
    "categorie": "Burn-in & lanes",
    "status": "GEBOUWD_EN_WERKEND",
    "bewijs": "com.rvh.lane-dispatcher geladen, elke 120 s, DISPATCH_MAX_REVIEWS=3 sinds 27-09 07:26",
+   "kort": "Alleen de dispatcher mag lanes starten; de director schrijft alleen wachtrijpakketten",
    "sinds": "2026-09-25",
    "bevestigd": true,
    "geldt_voor": [
@@ -1689,6 +1733,7 @@
    "categorie": "Mail & taken",
    "status": "GELDEND",
    "bewijs": "",
+   "kort": "",
    "sinds": "",
    "bevestigd": true,
    "geldt_voor": [
@@ -1708,6 +1753,7 @@
    "categorie": "Content-pijplijn",
    "status": "GELDEND",
    "bewijs": "",
+   "kort": "",
    "sinds": "",
    "bevestigd": true,
    "geldt_voor": [
@@ -1727,6 +1773,7 @@
    "categorie": "Content-pijplijn",
    "status": "GELDEND",
    "bewijs": "",
+   "kort": "",
    "sinds": "",
    "bevestigd": true,
    "geldt_voor": [
@@ -1746,6 +1793,7 @@
    "categorie": "Beveiliging & geheimen",
    "status": "GELDEND",
    "bewijs": "",
+   "kort": "",
    "sinds": "",
    "bevestigd": true,
    "geldt_voor": [
@@ -1765,6 +1813,7 @@
    "categorie": "Burn-in & lanes",
    "status": "PENDING",
    "bewijs": "Claude-lanes op de cloudworker nog niet bewezen (E7: routines/PR-webhook onbewezen, PR #156/#157 open)",
+   "kort": "Burn-in volledig in de cloud, inclusief bouwlanes en mailscan",
    "sinds": "2026-09-25",
    "bevestigd": true,
    "geldt_voor": [
@@ -1776,25 +1825,6 @@
    "laatste_ts": "2026-09-25T21:37:07"
   },
   {
-   "id": "OB-0134",
-   "ts": "2026-09-25T21:43:01",
-   "datum": "2026-09-25 21:43",
-   "strekking": "Acht accounts zijn door Richard online aangemeld voor cloudwerk: claude1, claude2, claude3, claude4 (Claude Code in de cloud van Anthropic), codex1, codex2, codex3 (Codex-cloud van ChatGPT) en Gemini. codex4 is NOG NIET online aangemeld. Er zijn GEEN setup-tokens op Railway, GitHub of de Mac; het cloudmechanisme is de eigen cloudsessie van elke aanbieder, niet een token op een eigen worker.",
-   "soort": "REGEL",
-   "categorie": "Accounts & toegang",
-   "status": "GELDEND",
-   "bewijs": "",
-   "sinds": "",
-   "bevestigd": true,
-   "geldt_voor": [
-    "*"
-   ],
-   "vervallen_reden": "",
-   "laatste24": false,
-   "herhaald": [],
-   "laatste_ts": "2026-09-25T21:43:01"
-  },
-  {
    "id": "OB-0137",
    "ts": "2026-09-25T22:11:33",
    "datum": "2026-09-25 22:11",
@@ -1803,6 +1833,7 @@
    "categorie": "Accounts & toegang",
    "status": "GELDEND",
    "bewijs": "",
+   "kort": "",
    "sinds": "",
    "bevestigd": true,
    "geldt_voor": [
@@ -1814,25 +1845,6 @@
    "laatste_ts": "2026-09-25T22:11:33"
   },
   {
-   "id": "OB-0138",
-   "ts": "2026-09-25T22:14:14",
-   "datum": "2026-09-25 22:14",
-   "strekking": "De ChatGPT Codex Connector op GitHub (rvanhooijdonk-png) heeft nu toegang tot stack-control EN stack-director (Richard, 25-09 23:5x, screenshot). Die installatie geldt voor alle Codex-accounts (codex1-4) tegelijk; codex1 en codex4 hebben al cloudtaken op stack-director gedraaid.",
-   "soort": "REGEL",
-   "categorie": "Accounts & toegang",
-   "status": "GELDEND",
-   "bewijs": "",
-   "sinds": "",
-   "bevestigd": true,
-   "geldt_voor": [
-    "*"
-   ],
-   "vervallen_reden": "",
-   "laatste24": false,
-   "herhaald": [],
-   "laatste_ts": "2026-09-25T22:14:14"
-  },
-  {
    "id": "OB-0140",
    "ts": "2026-09-25T22:32:39",
    "datum": "2026-09-25 22:32",
@@ -1841,6 +1853,7 @@
    "categorie": "Cloud & Temporal",
    "status": "IN_BOUW",
    "bewijs": "routine aangemaakt; alleen lane-claude3 bereikbaar; geen bewezen levering (E7)",
+   "kort": "Cloud-routine voor lane-claude1 ingericht",
    "sinds": "2026-09-25",
    "bevestigd": true,
    "geldt_voor": [
@@ -1860,6 +1873,7 @@
    "categorie": "Accounts & toegang",
    "status": "IN_BOUW",
    "bewijs": "zie OB-0140",
+   "kort": "Cloud-routines voor claude1, claude2 en claude4 aan",
    "sinds": "2026-09-25",
    "bevestigd": true,
    "geldt_voor": [
@@ -1879,6 +1893,7 @@
    "categorie": "Task OS",
    "status": "GELDEND",
    "bewijs": "",
+   "kort": "",
    "sinds": "",
    "bevestigd": true,
    "geldt_voor": [
@@ -1898,6 +1913,7 @@
    "categorie": "Content-pijplijn",
    "status": "GELDEND",
    "bewijs": "",
+   "kort": "",
    "sinds": "",
    "bevestigd": true,
    "geldt_voor": [
@@ -1917,6 +1933,7 @@
    "categorie": "Governance & rollen",
    "status": "GELDEND",
    "bewijs": "",
+   "kort": "",
    "sinds": "",
    "bevestigd": true,
    "geldt_voor": [
@@ -1934,8 +1951,9 @@
    "strekking": "Taakdatumvensters moeten een datumpicker bevatten, onder de datumveld gepositioneerd (bestaande plek); pop-up voorlopig uitgeschakeld.",
    "soort": "FEATURE",
    "categorie": "Task OS",
-   "status": "ONBEKEND",
-   "bewijs": "",
+   "status": "PENDING",
+   "bewijs": "niet aangetroffen in taskos/takenhub (zoekactie 27-09); Task OS bouwt in eigen venster",
+   "kort": "Datumkiezer onder het datumveld van een taak",
    "sinds": "",
    "bevestigd": true,
    "geldt_voor": [
@@ -1955,6 +1973,7 @@
    "categorie": "Overig",
    "status": "GELDEND",
    "bewijs": "",
+   "kort": "",
    "sinds": "",
    "bevestigd": true,
    "geldt_voor": [
@@ -1974,6 +1993,7 @@
    "categorie": "Content-pijplijn",
    "status": "GELDEND",
    "bewijs": "",
+   "kort": "",
    "sinds": "",
    "bevestigd": true,
    "geldt_voor": [
@@ -1993,6 +2013,7 @@
    "categorie": "Content-pijplijn",
    "status": "GELDEND",
    "bewijs": "",
+   "kort": "",
    "sinds": "",
    "bevestigd": true,
    "geldt_voor": [
@@ -2011,7 +2032,8 @@
    "soort": "FEATURE",
    "categorie": "Mail & taken",
    "status": "IN_BOUW",
-   "bewijs": "admin-commits 'mail→taken: splitsing intake (Takenhub) / kwartierbeurt'; headless claude -p ziet Gmail-connector; nog niet in bedrijf",
+   "bewijs": "admin-commits mail→taken (intake Takenhub / kwartierbeurt Stack-Director); geen mail-naar-taken-lane onder launchd gevonden 27-09",
+   "kort": "Elk kwartier Gmail omzetten in taken via een Claude-lane",
    "sinds": "2026-09-26",
    "bevestigd": true,
    "geldt_voor": [
@@ -2031,6 +2053,7 @@
    "categorie": "Burn-in & lanes",
    "status": "GELDEND",
    "bewijs": "",
+   "kort": "",
    "sinds": "",
    "bevestigd": false,
    "geldt_voor": [
@@ -2050,6 +2073,7 @@
    "categorie": "Mail & taken",
    "status": "GELDEND",
    "bewijs": "",
+   "kort": "",
    "sinds": "",
    "bevestigd": false,
    "geldt_voor": [
@@ -2067,8 +2091,9 @@
    "strekking": "Implementeer bin/mail-intake tool die JSON-regels van stdin leest en omzet naar sync_captures (taak/wacht/geen) volgens contract, idempotent op extern_id",
    "soort": "FEATURE",
    "categorie": "Mail & taken",
-   "status": "ONBEKEND",
-   "bewijs": "",
+   "status": "IN_BOUW",
+   "bewijs": "takenhub/bin/mail-intake bestaat; launchd nl.takenhub.chief-intake-werker geladen; effect (mails → taken) niet gemeten",
+   "kort": "Programma dat mailregels omzet in taken (Takenhub)",
    "sinds": "",
    "bevestigd": false,
    "geldt_voor": [
@@ -2087,7 +2112,8 @@
    "soort": "FEATURE",
    "categorie": "Burn-in & lanes",
    "status": "PENDING",
-   "bewijs": "sandbox-beperking interactieve starts niet opgeheven (OB-0126 oorzaak seatbelt)",
+   "bewijs": "27-09 07:4x: poort weigerde nog \"codex resume\" (UNSUPPORTED_INVOCATION); reparatie op de bouwlijst",
+   "kort": "Een interactieve Claude/Codex-start mag de poort nooit weigeren",
    "sinds": "2026-09-26",
    "bevestigd": true,
    "geldt_voor": [
@@ -2107,6 +2133,7 @@
    "categorie": "Governance & rollen",
    "status": "GELDEND",
    "bewijs": "",
+   "kort": "",
    "sinds": "",
    "bevestigd": true,
    "geldt_voor": [
@@ -2126,6 +2153,7 @@
    "categorie": "Beveiliging & geheimen",
    "status": "GELDEND",
    "bewijs": "",
+   "kort": "",
    "sinds": "",
    "bevestigd": true,
    "geldt_voor": [
@@ -2145,6 +2173,7 @@
    "categorie": "Boards & rapportage",
    "status": "GELDEND",
    "bewijs": "",
+   "kort": "",
    "sinds": "",
    "bevestigd": true,
    "geldt_voor": [
@@ -2164,6 +2193,7 @@
    "categorie": "Cloud & Temporal",
    "status": "IN_BOUW",
    "bewijs": "zie OB-0140",
+   "kort": "Cloud-routine lane-claude2 via het RemoteTrigger-gereedschap",
    "sinds": "2026-09-26",
    "bevestigd": true,
    "geldt_voor": [
@@ -2183,6 +2213,7 @@
    "categorie": "Cloud & Temporal",
    "status": "IN_BOUW",
    "bewijs": "zie OB-0140",
+   "kort": "Cloud-routine lane-claude4 via het RemoteTrigger-gereedschap",
    "sinds": "2026-09-26",
    "bevestigd": true,
    "geldt_voor": [
@@ -2202,6 +2233,7 @@
    "categorie": "Cloud & Temporal",
    "status": "IN_BOUW",
    "bewijs": "zie OB-0140",
+   "kort": "Cloud-routine lane-claude4 op een tweede omgeving",
    "sinds": "2026-09-26",
    "bevestigd": true,
    "geldt_voor": [
@@ -2221,6 +2253,7 @@
    "categorie": "Overig",
    "status": "GELDEND",
    "bewijs": "",
+   "kort": "",
    "sinds": "",
    "bevestigd": false,
    "geldt_voor": [
@@ -2234,25 +2267,6 @@
    "laatste_ts": "2026-09-26T07:17:28"
   },
   {
-   "id": "OB-0192",
-   "ts": "2026-09-26T07:18:08",
-   "datum": "2026-09-26 07:18",
-   "strekking": "Temporal is twee weken geleden (pilot 13-09) volledig geïnstalleerd en getest; op Railway bestaat in project stack-temporal-pilot (3b7ccd0a) een worker-service worker-canary (service 1e0ac341, omgeving cc0d1dfc) met TEMPORAL_API_KEY, TEMPORAL_ADDRESS en TEMPORAL_NAMESPACE al gezet (screenshot Richard 26-09 07:5x). De sleutel is NIET weg; alleen de Mac heeft hem niet, en dat hoort ook zo. De ADMIN-CLI ([e-mail]) ziet die omgeving niet; niet opnieuw zoeken, niet opnieuw om een sleutel vragen. BD2_05 spoor B loopt via deze bestaande worker.",
-   "soort": "REGEL",
-   "categorie": "Cloud & Temporal",
-   "status": "GELDEND",
-   "bewijs": "",
-   "sinds": "",
-   "bevestigd": true,
-   "geldt_voor": [
-    "*"
-   ],
-   "vervallen_reden": "",
-   "laatste24": false,
-   "herhaald": [],
-   "laatste_ts": "2026-09-26T07:18:08"
-  },
-  {
    "id": "OB-0193",
    "ts": "2026-09-26T07:21:39",
    "datum": "2026-09-26 07:21",
@@ -2261,6 +2275,7 @@
    "categorie": "Cloud & Temporal",
    "status": "GELDEND",
    "bewijs": "",
+   "kort": "",
    "sinds": "",
    "bevestigd": true,
    "geldt_voor": [
@@ -2278,8 +2293,9 @@
    "strekking": "Richard geeft eenmalig akkoord (26-09 08:3x) voor de Railway-deploy van de worker met de code van BD2_01-04 op service worker-canary in project stack-temporal-pilot (omgeving van zijn screenshot), via dezelfde CLI-route als de preflight van 25-09 20:0x. Alleen dit: geen variabelen wijzigen, geen sleutel lezen, geen andere service. Bewijs erna: nieuwe deploy-timestamp + logregel van ná de deploy + vier workflow-id's uit de cloudgeschiedenis van quickstart-stack-director.qable.",
    "soort": "REGEL",
    "categorie": "Cloud & Temporal",
-   "status": "GEBOUWD_EN_WERKEND",
-   "bewijs": "eerste deploy 26-09 09:4x (OB-0224), live sinds ba56d6b0/f61ac3cc",
+   "status": "UITGEVOERD",
+   "bewijs": "deploy uitgevoerd 26-09 09:4x; worker live sinds ba56d6b0",
+   "kort": "Eenmalig akkoord voor de Railway-deploy van de worker",
    "sinds": "2026-09-26",
    "bevestigd": true,
    "geldt_voor": [
@@ -2299,13 +2315,14 @@
    "categorie": "Cloud & Temporal",
    "status": "GEBOUWD_EN_WERKEND",
    "bewijs": "railway-regels in ~/.claude3 en ~/.claude4 settings (gemeten 27-09 07:22)",
+   "kort": "Bouwlanes mogen alleen met een smalle regel naar Railway deployen",
    "sinds": "2026-09-26",
    "bevestigd": true,
    "geldt_voor": [
     "*"
    ],
    "vervallen_reden": "",
-   "laatste24": true,
+   "laatste24": false,
    "herhaald": [],
    "laatste_ts": "2026-09-26T07:54:02"
   },
@@ -2316,8 +2333,9 @@
    "strekking": "Implementeer automatische diagnose en reparatie van supervisor-storingen. Detecteer problemen, los ze structureel op, en rapporteer alleen voltooide fixes — niet wachten op handmatige verzoeken van Richard.",
    "soort": "FEATURE",
    "categorie": "Governance & rollen",
-   "status": "WACHT_OP_RICHARD",
-   "bewijs": "CLAUDE2 stil sinds 27-09 01:57; automatische diagnose/herstel niet gebouwd; Richard kijkt in het CLAUDE2-venster",
+   "status": "PENDING",
+   "bewijs": "automatische diagnose/herstel niet gebouwd; nu handmatig: Richard kijkt in het CLAUDE2-venster (stil sinds 27-09 01:57)",
+   "kort": "Supervisor-storingen automatisch herkennen en herstellen",
    "sinds": "2026-09-27",
    "bevestigd": true,
    "geldt_voor": [
@@ -2337,6 +2355,7 @@
    "categorie": "Boards & rapportage",
    "status": "GELDEND",
    "bewijs": "",
+   "kort": "",
    "sinds": "",
    "bevestigd": true,
    "geldt_voor": [
@@ -2356,6 +2375,7 @@
    "categorie": "Overig",
    "status": "GELDEND",
    "bewijs": "",
+   "kort": "",
    "sinds": "",
    "bevestigd": true,
    "geldt_voor": [
@@ -2375,6 +2395,7 @@
    "categorie": "Cloud & Temporal",
    "status": "GELDEND",
    "bewijs": "",
+   "kort": "",
    "sinds": "",
    "bevestigd": false,
    "geldt_voor": [
@@ -2394,6 +2415,7 @@
    "categorie": "Governance & rollen",
    "status": "GELDEND",
    "bewijs": "",
+   "kort": "",
    "sinds": "",
    "bevestigd": true,
    "geldt_voor": [
@@ -2413,6 +2435,7 @@
    "categorie": "Cloud & Temporal",
    "status": "GELDEND",
    "bewijs": "",
+   "kort": "",
    "sinds": "",
    "bevestigd": true,
    "geldt_voor": [
@@ -2429,9 +2452,10 @@
    "datum": "2026-09-26 08:47",
    "strekking": "Releaseconfig temporal-worker (staging), issuerbesluit 26-09 08:5x: TOEZICHT_WORKFLOW_ID=toezicht-bord-staging-v1, TOEZICHT_SCOPE=stack-director-staging, TOEZICHT_METER_ROOT=/app/var/meter, TOEZICHT_RONDE_INTERVAL_S=300, TOEZICHT_POGINGEN=3, TOEZICHT_RONDES_PER_GENERATIE=12. Niet-geheime waarden; gezet door ADMIN, niet door een lane.",
    "soort": "REGEL",
-   "categorie": "Governance & rollen",
+   "categorie": "Cloud & Temporal",
    "status": "GEBOUWD_EN_WERKEND",
-   "bewijs": "releasewaarden op staging gezet; worker leest ze",
+   "bewijs": "worker draait met de staging-instellingen (logregel queue=cloud, hartslagschema); de waarden zelf kan ADMIN niet lezen (geen Railway-regel)",
+   "kort": "Instellingen van de cloud-worker voor de proefomgeving",
    "sinds": "2026-09-26",
    "bevestigd": true,
    "geldt_voor": [
@@ -2451,6 +2475,7 @@
    "categorie": "Cloud & Temporal",
    "status": "GELDEND",
    "bewijs": "",
+   "kort": "",
    "sinds": "",
    "bevestigd": false,
    "geldt_voor": [
@@ -2470,6 +2495,7 @@
    "categorie": "Governance & rollen",
    "status": "GELDEND",
    "bewijs": "",
+   "kort": "",
    "sinds": "",
    "bevestigd": false,
    "geldt_voor": [
@@ -2486,9 +2512,10 @@
    "datum": "2026-09-26 08:51",
    "strekking": "Do not provide terminal links in this channel; communicate exclusively through the outbox file system.",
    "soort": "REGEL",
-   "categorie": "Burn-in & lanes",
+   "categorie": "Governance & rollen",
    "status": "GELDEND",
    "bewijs": "",
+   "kort": "",
    "sinds": "",
    "bevestigd": true,
    "geldt_voor": [
@@ -2508,6 +2535,7 @@
    "categorie": "Accounts & toegang",
    "status": "IN_BOUW",
    "bewijs": "vier Claude-lanes werken via dispatcher op de Mac; cloudketen onbewezen",
+   "kort": "Een werkende keten over alle vier de Claude-accounts",
    "sinds": "2026-09-26",
    "bevestigd": false,
    "geldt_voor": [
@@ -2527,6 +2555,7 @@
    "categorie": "Governance & rollen",
    "status": "GELDEND",
    "bewijs": "",
+   "kort": "",
    "sinds": "",
    "bevestigd": false,
    "geldt_voor": [
@@ -2546,6 +2575,7 @@
    "categorie": "Burn-in & lanes",
    "status": "GELDEND",
    "bewijs": "",
+   "kort": "",
    "sinds": "",
    "bevestigd": true,
    "geldt_voor": [
@@ -2565,6 +2595,7 @@
    "categorie": "Cloud & Temporal",
    "status": "GEBOUWD_EN_WERKEND",
    "bewijs": "zie OB-0199",
+   "kort": "Bouwlanes mogen instellingsnamen lezen en de Temporal-CLI beperkt gebruiken",
    "sinds": "2026-09-26",
    "bevestigd": true,
    "geldt_voor": [
@@ -2584,6 +2615,7 @@
    "categorie": "Cloud & Temporal",
    "status": "GEBOUWD_EN_WERKEND",
    "bewijs": "zie OB-0199",
+   "kort": "Ook het upload-commando naar Railway is toegestaan voor bouwlanes",
    "sinds": "2026-09-26",
    "bevestigd": true,
    "geldt_voor": [
@@ -2603,6 +2635,7 @@
    "categorie": "Cloud & Temporal",
    "status": "GEBOUWD_EN_WERKEND",
    "bewijs": "railway down-regel in bouwlane-settings",
+   "kort": "Bij een crashende cloud-worker mag de lane hem stoppen",
    "sinds": "2026-09-26",
    "bevestigd": true,
    "geldt_voor": [
@@ -2619,9 +2652,10 @@
    "datum": "2026-09-26 09:43",
    "strekking": "Voer genoemde taken uit via terminal commando's in plaats van andere interfaces.",
    "soort": "REGEL",
-   "categorie": "Task OS",
+   "categorie": "Governance & rollen",
    "status": "GELDEND",
    "bewijs": "",
+   "kort": "",
    "sinds": "",
    "bevestigd": true,
    "geldt_voor": [
@@ -2638,9 +2672,10 @@
    "datum": "2026-09-26 10:18",
    "strekking": "CLAUDE3 stopt met bouwen, CLAUDE4 voert testing uit, CODEX1 en CODEX4 bepalen de finale stemmen als code reviewers",
    "soort": "REGEL",
-   "categorie": "Accounts & toegang",
+   "categorie": "Governance & rollen",
    "status": "GELDEND",
    "bewijs": "",
+   "kort": "",
    "sinds": "",
    "bevestigd": false,
    "geldt_voor": [
@@ -2660,6 +2695,7 @@
    "categorie": "Burn-in & lanes",
    "status": "GELDEND",
    "bewijs": "",
+   "kort": "",
    "sinds": "",
    "bevestigd": true,
    "geldt_voor": [
@@ -2679,6 +2715,7 @@
    "categorie": "Burn-in & lanes",
    "status": "GELDEND",
    "bewijs": "",
+   "kort": "",
    "sinds": "",
    "bevestigd": true,
    "geldt_voor": [
@@ -2698,6 +2735,7 @@
    "categorie": "Burn-in & lanes",
    "status": "GELDEND",
    "bewijs": "Gemini buiten burn-in en vloot",
+   "kort": "",
    "sinds": "2026-09-26",
    "bevestigd": true,
    "geldt_voor": [
@@ -2717,6 +2755,7 @@
    "categorie": "Cloud & Temporal",
    "status": "GELDEND",
    "bewijs": "",
+   "kort": "",
    "sinds": "",
    "bevestigd": true,
    "geldt_voor": [
@@ -2736,6 +2775,7 @@
    "categorie": "Boards & rapportage",
    "status": "GELDEND",
    "bewijs": "",
+   "kort": "",
    "sinds": "",
    "bevestigd": true,
    "geldt_voor": [
@@ -2755,6 +2795,7 @@
    "categorie": "Accounts & toegang",
    "status": "GELDEND",
    "bewijs": "",
+   "kort": "",
    "sinds": "",
    "bevestigd": true,
    "geldt_voor": [
@@ -2774,6 +2815,7 @@
    "categorie": "Burn-in & lanes",
    "status": "GELDEND",
    "bewijs": "",
+   "kort": "",
    "sinds": "",
    "bevestigd": false,
    "geldt_voor": [
@@ -2793,6 +2835,7 @@
    "categorie": "Burn-in & lanes",
    "status": "GELDEND",
    "bewijs": "",
+   "kort": "",
    "sinds": "",
    "bevestigd": false,
    "geldt_voor": [
@@ -2812,6 +2855,7 @@
    "categorie": "Governance & rollen",
    "status": "GELDEND",
    "bewijs": "",
+   "kort": "",
    "sinds": "",
    "bevestigd": true,
    "geldt_voor": [
@@ -2831,6 +2875,7 @@
    "categorie": "Task OS",
    "status": "GELDEND",
    "bewijs": "",
+   "kort": "",
    "sinds": "",
    "bevestigd": true,
    "geldt_voor": [
@@ -2850,6 +2895,7 @@
    "categorie": "Governance & rollen",
    "status": "GELDEND",
    "bewijs": "",
+   "kort": "",
    "sinds": "",
    "bevestigd": false,
    "geldt_voor": [
@@ -2869,6 +2915,7 @@
    "categorie": "Burn-in & lanes",
    "status": "IN_BOUW",
    "bewijs": "ontwerp 5b V6: hertoets GO, stemmen CPT1/CPT4 GO onder A-9/A-10; implementatie nog niet",
+   "kort": "Ontwerp 5b: Temporal bewaakt de capaciteit per cloud-account",
    "sinds": "2026-09-26",
    "bevestigd": true,
    "geldt_voor": [
@@ -2887,7 +2934,8 @@
    "soort": "FEATURE",
    "categorie": "Cloud & Temporal",
    "status": "IN_BOUW",
-   "bewijs": "providerproef ronde 3: toets claude4 GO_WITH_FINDINGS, stem CPT3 GO; zit in preflight-image, nog niet gedeployd",
+   "bewijs": "providerproef ronde 3 compleet: toets claude4 GO_WITH_FINDINGS, stem CPT3 GO (06:05); preflight-image gebouwd 07:20, niet gedeployd",
+   "kort": "Providerproef: een echte opdracht via de cloud bij een provider neerleggen en teruglezen",
    "sinds": "2026-09-26",
    "bevestigd": true,
    "geldt_voor": [
@@ -2907,6 +2955,7 @@
    "categorie": "Cloud & Temporal",
    "status": "GELDEND",
    "bewijs": "",
+   "kort": "",
    "sinds": "",
    "bevestigd": true,
    "geldt_voor": [
@@ -2926,6 +2975,7 @@
    "categorie": "Boards & rapportage",
    "status": "GELDEND",
    "bewijs": "",
+   "kort": "",
    "sinds": "",
    "bevestigd": false,
    "geldt_voor": [
@@ -2945,6 +2995,7 @@
    "categorie": "Boards & rapportage",
    "status": "GELDEND",
    "bewijs": "",
+   "kort": "",
    "sinds": "",
    "bevestigd": true,
    "geldt_voor": [
@@ -2964,6 +3015,7 @@
    "categorie": "Governance & rollen",
    "status": "GELDEND",
    "bewijs": "",
+   "kort": "",
    "sinds": "",
    "bevestigd": false,
    "geldt_voor": [
@@ -2983,6 +3035,7 @@
    "categorie": "Cloud & Temporal",
    "status": "IN_BOUW",
    "bewijs": "zie OB-0313",
+   "kort": "Strengere eisen aan de providerproef (twee processen, verbroken verbinding, herhaling)",
    "sinds": "2026-09-26",
    "bevestigd": true,
    "geldt_voor": [
@@ -3002,6 +3055,7 @@
    "categorie": "Burn-in & lanes",
    "status": "GELDEND",
    "bewijs": "",
+   "kort": "",
    "sinds": "",
    "bevestigd": true,
    "geldt_voor": [
@@ -3021,6 +3075,7 @@
    "categorie": "Burn-in & lanes",
    "status": "GELDEND",
    "bewijs": "",
+   "kort": "",
    "sinds": "",
    "bevestigd": true,
    "geldt_voor": [
@@ -3040,6 +3095,7 @@
    "categorie": "Burn-in & lanes",
    "status": "GELDEND",
    "bewijs": "",
+   "kort": "",
    "sinds": "",
    "bevestigd": true,
    "geldt_voor": [
@@ -3059,6 +3115,7 @@
    "categorie": "Burn-in & lanes",
    "status": "GELDEND",
    "bewijs": "",
+   "kort": "",
    "sinds": "",
    "bevestigd": true,
    "geldt_voor": [
@@ -3078,6 +3135,7 @@
    "categorie": "Accounts & toegang",
    "status": "GELDEND",
    "bewijs": "",
+   "kort": "",
    "sinds": "",
    "bevestigd": true,
    "geldt_voor": [
@@ -3097,6 +3155,7 @@
    "categorie": "Burn-in & lanes",
    "status": "GELDEND",
    "bewijs": "",
+   "kort": "",
    "sinds": "",
    "bevestigd": true,
    "geldt_voor": [
@@ -3116,6 +3175,7 @@
    "categorie": "Burn-in & lanes",
    "status": "GELDEND",
    "bewijs": "alle beschikbare lanes ingezet; dispatcher-grens verhoogd naar 3",
+   "kort": "",
    "sinds": "2026-09-26",
    "bevestigd": true,
    "geldt_voor": [
@@ -3135,6 +3195,7 @@
    "categorie": "Burn-in & lanes",
    "status": "GELDEND",
    "bewijs": "",
+   "kort": "",
    "sinds": "",
    "bevestigd": true,
    "geldt_voor": [
@@ -3154,6 +3215,7 @@
    "categorie": "Accounts & toegang",
    "status": "GELDEND",
    "bewijs": "",
+   "kort": "",
    "sinds": "",
    "bevestigd": true,
    "geldt_voor": [
@@ -3171,8 +3233,9 @@
    "strekking": "Richard 26-09 21:3x: 'nee, we moeten dit fixen' — accountscheiding claude1/claude4 wordt NU hersteld (vervangt het parkeren in OB-0344). Login draait via '! '-prefix in het chatvenster (buiten de ADMIN-sandbox, zodat de browser-callback aankomt), niet via ADMIN's Bash.",
    "soort": "FEATURE",
    "categorie": "Accounts & toegang",
-   "status": "GEBOUWD_EN_WERKEND",
-   "bewijs": "OB-0348: accountscheiding claude1/claude3/claude4 gemeten hersteld 26-09 21:4x",
+   "status": "UITGEVOERD",
+   "bewijs": "accountscheiding claude1/claude3/claude4 hersteld en gemeten (OB-0348, 26-09)",
+   "kort": "Accounts claude1 en claude4 weer gescheiden inloggen",
    "sinds": "2026-09-26",
    "bevestigd": true,
    "geldt_voor": [
@@ -3190,8 +3253,9 @@
    "strekking": "Richard 26-09 21:0x: ADMIN neemt ook de coördinatie van de content-pijplijn (trend-pipeline, handover CLAUDE4→CLAUDE2 V1) over; stap voor stap één project toevoegen. Vraag: zijn GitHub-automations nog nodig? — analyse door ADMIN.",
    "soort": "FEATURE",
    "categorie": "Governance & rollen",
-   "status": "GEBOUWD_EN_WERKEND",
+   "status": "UITGEVOERD",
    "bewijs": "CP_01 (conflicten opgelost, CI groen) en CP_02 (twee GO) afgerond",
+   "kort": "ADMIN neemt de coördinatie van de content-pijplijn over",
    "sinds": "2026-09-26",
    "bevestigd": true,
    "geldt_voor": [
@@ -3211,6 +3275,7 @@
    "categorie": "Governance & rollen",
    "status": "GELDEND",
    "bewijs": "",
+   "kort": "",
    "sinds": "",
    "bevestigd": true,
    "geldt_voor": [
@@ -3228,8 +3293,9 @@
    "strekking": "Richard 26-09 21:0x ('Graag via terminal'): 1) de twee oude stack-director-workflows (autocoder-controller macOS, autocoding-merge-readiness) uitgezet via gh workflow disable — Actions op stack-director niet meer nodig; trend-pipeline CI (Linux) blijft. 2) Supabase-schema #137: tweemaal A (fencingkolom + transactionele RPC), mits het schema van Richard is.",
    "soort": "FEATURE",
    "categorie": "Governance & rollen",
-   "status": "IN_BOUW",
-   "bewijs": "twee oude stack-director-workflows uitgeschakeld (gh workflow disable); Supabase-schema 'tweemaal A' nog open",
+   "status": "UITGEVOERD",
+   "bewijs": "twee oude stack-director-workflows uitgeschakeld (gh workflow disable, 26-09)",
+   "kort": "Oude GitHub-automaten van stack-director uitzetten",
    "sinds": "2026-09-26",
    "bevestigd": true,
    "geldt_voor": [
@@ -3249,6 +3315,7 @@
    "categorie": "Cloud & Temporal",
    "status": "PENDING",
    "bewijs": "bouwlijst blok E: één lijn Temporal, geen GitHub Actions (E0–E10)",
+   "kort": "Eén lijn: Temporal als motor voor alles, GitHub alleen voor opslag",
    "sinds": "2026-09-26",
    "bevestigd": true,
    "geldt_voor": [
@@ -3268,6 +3335,7 @@
    "categorie": "Burn-in & lanes",
    "status": "PENDING",
    "bewijs": "bouwlijst E8: model per rol",
+   "kort": "Modelkeuze per rol: ADMIN op Fable, bouw- en toetslanes op Opus",
    "sinds": "2026-09-26",
    "bevestigd": true,
    "geldt_voor": [
@@ -3286,7 +3354,8 @@
    "soort": "FEATURE",
    "categorie": "Boards & rapportage",
    "status": "GEBOUWD_EN_WERKEND",
-   "bewijs": "https://rvanhooijdonk-png.github.io/regiekamer/ live; 27-09 gesplitst in Regiekamer (cijfers) en Output",
+   "bewijs": "https://rvanhooijdonk-png.github.io/regiekamer/ live met vier tabs; featurelog als apart bord op /features/ (27-09 08:02)",
+   "kort": "Eén regiebord met tabs op GitHub Pages",
    "sinds": "2026-09-27",
    "bevestigd": true,
    "geldt_voor": [
@@ -3305,7 +3374,8 @@
    "soort": "FEATURE",
    "categorie": "Boards & rapportage",
    "status": "IN_BOUW",
-   "bewijs": "BOARD_02 bin/bord-waarheid gebouwd; herstel getoetst GO_WITH_FINDINGS (claude1 07:04); stem CPT4 loopt",
+   "bewijs": "BOARD_02 (bord-waarheid) gebouwd; herstel getoetst GO_WITH_FINDINGS (claude1), stem CPT4 GO 07:31; installatie, doelregel en publicatieronde nog te doen (ADMIN)",
+   "kort": "Een routine die controleert of de borden de waarheid tonen",
    "sinds": "2026-09-27",
    "bevestigd": true,
    "geldt_voor": [
@@ -3325,6 +3395,7 @@
    "categorie": "Beveiliging & geheimen",
    "status": "GEBOUWD_EN_WERKEND",
    "bewijs": "GitHub Pages openbaar",
+   "kort": "Regiebord blijft openbaar; geen e-mails, sleutels of klantnamen erop",
    "sinds": "2026-09-26",
    "bevestigd": true,
    "geldt_voor": [
@@ -3344,6 +3415,7 @@
    "categorie": "Governance & rollen",
    "status": "PENDING",
    "bewijs": "twee lagen: omschakeling T1–T5 gepland ochtend 27-09 (bouwlijst blok A-ochtend)",
+   "kort": "Twee lagen: directorlaag opheffen, supervisor wordt enige operator",
    "sinds": "2026-09-26",
    "bevestigd": true,
    "geldt_voor": [
@@ -3360,9 +3432,10 @@
    "datum": "2026-09-26 21:21",
    "strekking": "Richard 26-09 21:3x: Gemini later op de planning — na burn-in fase 1, als tiebreaker bij besluiten van eigenaarsniveau (alleen bij oneens Claude/Codex), via API-sleutel (geheimwissel), niet als lane of cloudsessie. Tot dan OB-0233 (doet niet mee). Niet vergeten.",
    "soort": "FEATURE",
-   "categorie": "Beveiliging & geheimen",
+   "categorie": "Governance & rollen",
    "status": "PENDING",
    "bewijs": "Gemini als tiebreaker na burn-in fase 1 (bouwlijst)",
+   "kort": "Gemini later inzetten als scheidsrechter bij grote besluiten (na burn-in fase 1)",
    "sinds": "2026-09-26",
    "bevestigd": true,
    "geldt_voor": [
@@ -3382,6 +3455,7 @@
    "categorie": "Governance & rollen",
    "status": "IN_BOUW",
    "bewijs": "~/taskos/ARCHITECTUUR-CONTRACT.md, bin/tos-architectuurcheck, outbox-koppeling; Richard laat contract nog lezen",
+   "kort": "Task OS in een apart venster; ADMIN stuurt bij via een contract en outbox",
    "sinds": "2026-09-26",
    "bevestigd": true,
    "geldt_voor": [
@@ -3400,7 +3474,8 @@
    "soort": "REGEL",
    "categorie": "Boards & rapportage",
    "status": "GEBOUWD_EN_WERKEND",
-   "bewijs": "vier tabs live 26-09; 27-09 herverdeeld over twee borden op Richards verzoek",
+   "bewijs": "vier tabs live sinds 26-09; 27-09 08:02 hersteld na foutieve splitsing door ADMIN",
+   "kort": "Regiebord heeft precies vier tabs: Pijplijnkaart, Kaartenbak, Conceptpreview, Peilbord",
    "sinds": "2026-09-26",
    "bevestigd": true,
    "geldt_voor": [
@@ -3419,7 +3494,8 @@
    "soort": "FEATURE",
    "categorie": "Boards & rapportage",
    "status": "IN_BOUW",
-   "bewijs": "BOARD_04 lanebron gebouwd (claude1) en getoetst JA; alleen-lezen-herstel gebouwd (claude4) en getoetst GO_WITH_FINDINGS (07:28); stem volgt",
+   "bewijs": "bouwinterval 5 min live; BOARD_04 (lanebron) getoetst JA, stem wacht op manifestcorrectie; BOARD_05 (Werk nu uit de wachtrij) in bouw op claude4 sinds 07:58",
+   "kort": "Peilbord klopt niet: verse en gemeten informatie in plaats van oude handtekst",
    "sinds": "2026-09-27",
    "bevestigd": true,
    "geldt_voor": [
@@ -3439,6 +3515,7 @@
    "categorie": "Content-pijplijn",
    "status": "WACHT_OP_RICHARD",
    "bewijs": "PR #136/#137 trend-pipeline: mergeable, CI groen, twee Codex-GO; merge via GitHub-knop of regel voor gh pr ready/merge",
+   "kort": "#136 en #137 klaar om te mergen; wacht op Richard",
    "sinds": "2026-09-26",
    "bevestigd": true,
    "geldt_voor": [
@@ -3456,8 +3533,9 @@
    "strekking": "Richard 26-09 22:5x: 'ik ga slapen. Ga jij door of verminder je het aantal checks?' — ADMIN gaat door (mandaat OB-0229/0230/0309); wachters (outbox, dispatcher, Task OS) blijven op 20-30 s; kwartierupdate in de chat vervangen door een uurlijkse nachtronde (07 min na het uur) die zelf vervolgacties neemt en naar NACHTLOG-2026-09-27.md schrijft; ochtendoverzicht om 07:32 in de chat + OVERZICHT-OCHTEND-2026-09-27.md; daarna kwartierupdates weer aan. 's Nachts geen merges, geen live integratie, geen loginverzoeken.",
    "soort": "FEATURE",
    "categorie": "Boards & rapportage",
-   "status": "GEBOUWD_EN_WERKEND",
-   "bewijs": "NACHTLOG-2026-09-27.md: uurrondes 23:xx–07:29 uitgevoerd",
+   "status": "UITGEVOERD",
+   "bewijs": "nachtrondes 23:xx–07:29 uitgevoerd (NACHTLOG-2026-09-27.md)",
+   "kort": "ADMIN werkt 's nachts door met uurrondes",
    "sinds": "2026-09-27",
    "bevestigd": true,
    "geldt_voor": [
@@ -3475,8 +3553,9 @@
    "strekking": "Richard 26-09 22:5x 'waarom pas burn-in morgenavond ipv morgenochtend': nachtprioriteit deel 2 vóór borden — punt3 (claude3 nu), providerproef als Mac-bouw + deploy + echte proef, bezorging met echte PR naar lane-claude3, toezicht-cloudronde; gezamenlijke proef bij Richards eerste Mac-sluiting zondag als dat vannacht lukt; ochtendoverzicht 07:32 zegt eerlijk of het haalbaar is.",
    "soort": "FEATURE",
    "categorie": "Cloud & Temporal",
-   "status": "GEBOUWD_EN_WERKEND",
-   "bewijs": "nachtprioriteit deel 2: providerproef, probemarge, verzoening, V6 en preflight-image compleet vóór 07:30",
+   "status": "UITGEVOERD",
+   "bewijs": "nachtprioriteit uitgevoerd: providerproef, probemarge, verzoening, V6 en preflight-image klaar (NACHTLOG)",
+   "kort": "Burn-in-werk gaat 's nachts vóór bordwerk",
    "sinds": "2026-09-27",
    "bevestigd": true,
    "geldt_voor": [
@@ -3496,6 +3575,7 @@
    "categorie": "Burn-in & lanes",
    "status": "GELDEND",
    "bewijs": "zie OB-0342",
+   "kort": "",
    "sinds": "2026-09-26",
    "bevestigd": true,
    "geldt_voor": [
@@ -3515,6 +3595,7 @@
    "categorie": "Cloud & Temporal",
    "status": "GELDEND",
    "bewijs": "",
+   "kort": "",
    "sinds": "",
    "bevestigd": true,
    "geldt_voor": [
@@ -3534,6 +3615,7 @@
    "categorie": "Cloud & Temporal",
    "status": "GELDEND",
    "bewijs": "",
+   "kort": "",
    "sinds": "",
    "bevestigd": true,
    "geldt_voor": [
@@ -3553,6 +3635,7 @@
    "categorie": "Accounts & toegang",
    "status": "PENDING",
    "bewijs": "accounts gescheiden (OB-0348) maar geen structurele oplossing tegen herhaald inloggen",
+   "kort": "Nooit meer telkens opnieuw inloggen op de CLI-accounts",
    "sinds": "2026-09-26",
    "bevestigd": true,
    "geldt_voor": [
@@ -3572,6 +3655,7 @@
    "categorie": "Cloud & Temporal",
    "status": "GELDEND",
    "bewijs": "",
+   "kort": "",
    "sinds": "",
    "bevestigd": false,
    "geldt_voor": [
@@ -3591,6 +3675,7 @@
    "categorie": "Boards & rapportage",
    "status": "GEBOUWD_EN_WERKEND",
    "bewijs": "regiekamer op GitHub Pages",
+   "kort": "Borden via GitHub Pages publiceren, niet via claude.ai",
    "sinds": "2026-09-26",
    "bevestigd": true,
    "geldt_voor": [
@@ -3609,7 +3694,8 @@
    "soort": "FEATURE",
    "categorie": "Boards & rapportage",
    "status": "GEBOUWD_EN_WERKEND",
-   "bewijs": "één bord met tabs 26-09; 27-09 twee borden (cijfers / output) op verzoek",
+   "bewijs": "één bord met vier tabs live; het featurelog is op Richards verzoek een apart bord (27-09 08:0x)",
+   "kort": "Alle borden samen in één dashboard met tabs",
    "sinds": "2026-09-26",
    "bevestigd": true,
    "geldt_voor": [
@@ -3628,7 +3714,8 @@
    "soort": "FEATURE",
    "categorie": "Boards & rapportage",
    "status": "IN_BOUW",
-   "bewijs": "zie OB-0357 (BOARD_02 waarheidscontrole)",
+   "bewijs": "zie OB-0357",
+   "kort": "Automatische controle dat de borden actueel en juist zijn",
    "sinds": "2026-09-27",
    "bevestigd": true,
    "geldt_voor": [
@@ -3648,6 +3735,7 @@
    "categorie": "Beveiliging & geheimen",
    "status": "GEBOUWD_EN_WERKEND",
    "bewijs": "openbaar",
+   "kort": "Borden zijn openbaar",
    "sinds": "2026-09-26",
    "bevestigd": true,
    "geldt_voor": [
@@ -3665,8 +3753,9 @@
    "strekking": "Claude is geautoriseerd om bepaalde permissie-configuraties in het systeem toe te voegen.",
    "soort": "REGEL",
    "categorie": "Accounts & toegang",
-   "status": "GEBOUWD_EN_WERKEND",
-   "bewijs": "permissieregel wachtrij-zet.py toegevoegd door Richard 26-09 21:23",
+   "status": "GELDEND",
+   "bewijs": "praktijk: Richard voegt permissieregels toe via het !-commando; ADMIN mag zijn eigen instellingen niet bewerken (classifier, 27-09)",
+   "kort": "Claude mag bepaalde toestemmingsregels laten toevoegen",
    "sinds": "2026-09-26",
    "bevestigd": true,
    "geldt_voor": [
@@ -3686,6 +3775,7 @@
    "categorie": "Governance & rollen",
    "status": "PENDING",
    "bewijs": "zie OB-0361",
+   "kort": "Gemini uitstellen, wel op de planning houden",
    "sinds": "2026-09-27",
    "bevestigd": true,
    "geldt_voor": [
@@ -3705,6 +3795,7 @@
    "categorie": "Task OS",
    "status": "IN_BOUW",
    "bewijs": "zie OB-0365",
+   "kort": "Task OS in een apart venster met live afstemming",
    "sinds": "2026-09-27",
    "bevestigd": true,
    "geldt_voor": [
@@ -3724,6 +3815,7 @@
    "categorie": "Boards & rapportage",
    "status": "GEBOUWD_EN_WERKEND",
    "bewijs": "zie OB-0398",
+   "kort": "Alle borden in één dashboard",
    "sinds": "2026-09-27",
    "bevestigd": true,
    "geldt_voor": [
@@ -3742,7 +3834,8 @@
    "soort": "REGEL",
    "categorie": "Boards & rapportage",
    "status": "GEBOUWD_EN_WERKEND",
-   "bewijs": "kwartierupdate-cron; format NU/KLAAR/VOLGENDE/BLOKKADE",
+   "bewijs": "kwartierupdate-cron actief (sessiegebonden: vervalt bij herstart van ADMIN)",
+   "kort": "Elk kwartier een statusupdate over alle projecten",
    "sinds": "2026-09-27",
    "bevestigd": true,
    "geldt_voor": [
@@ -3762,6 +3855,7 @@
    "categorie": "Task OS",
    "status": "GELDEND",
    "bewijs": "",
+   "kort": "",
    "sinds": "",
    "bevestigd": true,
    "geldt_voor": [
@@ -3781,6 +3875,7 @@
    "categorie": "Burn-in & lanes",
    "status": "IN_BOUW",
    "bewijs": "cmd_claim-herstel in gecombineerde kandidaat 6e22d9c3 (OB-0378)",
+   "kort": "Reparatie in de lanepoort: onvolledige claims niet publiceren",
    "sinds": "2026-09-27",
    "bevestigd": true,
    "geldt_voor": [
@@ -3800,6 +3895,7 @@
    "categorie": "Burn-in & lanes",
    "status": "GELDEND",
    "bewijs": "toegepast op elk pakket (bouwer ≠ toetser ≠ stem)",
+   "kort": "",
    "sinds": "2026-09-27",
    "bevestigd": false,
    "geldt_voor": [
@@ -3819,6 +3915,7 @@
    "categorie": "Cloud & Temporal",
    "status": "PENDING",
    "bewijs": "online geheugen pas als alles in de cloud draait",
+   "kort": "Zodra alles in de cloud draait: online geheugen in plaats van MacBook-geheugen",
    "sinds": "2026-09-27",
    "bevestigd": false,
    "geldt_voor": [
@@ -3838,6 +3935,7 @@
    "categorie": "Governance & rollen",
    "status": "GELDEND",
    "bewijs": "",
+   "kort": "",
    "sinds": "",
    "bevestigd": false,
    "geldt_voor": [
@@ -3857,6 +3955,7 @@
    "categorie": "Burn-in & lanes",
    "status": "GELDEND",
    "bewijs": "",
+   "kort": "",
    "sinds": "",
    "bevestigd": true,
    "geldt_voor": [
@@ -3876,6 +3975,7 @@
    "categorie": "Boards & rapportage",
    "status": "GELDEND",
    "bewijs": "",
+   "kort": "",
    "sinds": "",
    "bevestigd": false,
    "geldt_voor": [
@@ -3885,25 +3985,6 @@
    "laatste24": true,
    "herhaald": [],
    "laatste_ts": "2026-09-27T05:17:57"
-  },
-  {
-   "id": "OB-0495",
-   "ts": "2026-09-27T07:41:21",
-   "datum": "2026-09-27 07:41",
-   "strekking": "Nachtronde-protocol: meet queue/outbox/PR's/worker/director-status; zet timeout-pakketten terug op WACHTEND via wachtrij-zet.py; append statusupdate naar NACHTLOG-2026-09-27.md; chat output slechts drie regels; verbied login/merge/integratie/deploy zonder goedkeuring.",
-   "soort": "REGEL",
-   "categorie": "Boards & rapportage",
-   "status": "GELDEND",
-   "bewijs": "",
-   "sinds": "",
-   "bevestigd": false,
-   "geldt_voor": [
-    "*"
-   ],
-   "vervallen_reden": "",
-   "laatste24": true,
-   "herhaald": [],
-   "laatste_ts": "2026-09-27T07:41:21"
   }
  ],
  "rest": [
@@ -3916,6 +3997,7 @@
    "categorie": "Cloud & Temporal",
    "status": "ONBEKEND",
    "bewijs": "",
+   "kort": "",
    "sinds": "",
    "bevestigd": true,
    "geldt_voor": [
@@ -3927,6 +4009,26 @@
    "laatste_ts": "2026-09-24T16:27:01"
   },
   {
+   "id": "OB-0096",
+   "ts": "2026-09-25T15:04:00",
+   "datum": "2026-09-25 15:04",
+   "strekking": "De Temporal-pilot (evidence/temporal-stack-pilot-20260913/temporal_integration, ~120 modules, namespace quickstart-stack-director.qable) bevat AL de lanepoort-principes: durable_lane_gate (geen effect zonder exclusieve reservering), build_claim, account_selection, claude_quota_observation. Stilgevallen sinds 20-09. Elke order over lanes, reserveringen of quota moet eerst deze pilot raadplegen; ADMIN miste dit op 24-09 en specificeerde het opnieuw op de Mac.",
+   "soort": "FEIT",
+   "categorie": "Burn-in & lanes",
+   "status": "GEBOUWD_EN_WERKEND",
+   "bewijs": "temporal-worker draait (deployment a7ed8ea4, >13 uur, hartslag 809 om 07:29)",
+   "kort": "",
+   "sinds": "2026-09-26",
+   "bevestigd": true,
+   "geldt_voor": [
+    "*"
+   ],
+   "vervallen_reden": "",
+   "laatste24": false,
+   "herhaald": [],
+   "laatste_ts": "2026-09-25T15:04:00"
+  },
+  {
    "id": "OB-0126",
    "ts": "2026-09-25T20:20:06",
    "datum": "2026-09-25 20:20",
@@ -3935,6 +4037,7 @@
    "categorie": "Burn-in & lanes",
    "status": "ONBEKEND",
    "bewijs": "",
+   "kort": "",
    "sinds": "",
    "bevestigd": true,
    "geldt_voor": [
@@ -3946,6 +4049,46 @@
    "laatste_ts": "2026-09-25T20:20:06"
   },
   {
+   "id": "OB-0134",
+   "ts": "2026-09-25T21:43:01",
+   "datum": "2026-09-25 21:43",
+   "strekking": "Acht accounts zijn door Richard online aangemeld voor cloudwerk: claude1, claude2, claude3, claude4 (Claude Code in de cloud van Anthropic), codex1, codex2, codex3 (Codex-cloud van ChatGPT) en Gemini. codex4 is NOG NIET online aangemeld. Er zijn GEEN setup-tokens op Railway, GitHub of de Mac; het cloudmechanisme is de eigen cloudsessie van elke aanbieder, niet een token op een eigen worker.",
+   "soort": "FEIT",
+   "categorie": "Accounts & toegang",
+   "status": "ONBEKEND",
+   "bewijs": "",
+   "kort": "",
+   "sinds": "",
+   "bevestigd": true,
+   "geldt_voor": [
+    "*"
+   ],
+   "vervallen_reden": "",
+   "laatste24": false,
+   "herhaald": [],
+   "laatste_ts": "2026-09-25T21:43:01"
+  },
+  {
+   "id": "OB-0138",
+   "ts": "2026-09-25T22:14:14",
+   "datum": "2026-09-25 22:14",
+   "strekking": "De ChatGPT Codex Connector op GitHub (rvanhooijdonk-png) heeft nu toegang tot stack-control EN stack-director (Richard, 25-09 23:5x, screenshot). Die installatie geldt voor alle Codex-accounts (codex1-4) tegelijk; codex1 en codex4 hebben al cloudtaken op stack-director gedraaid.",
+   "soort": "FEIT",
+   "categorie": "Accounts & toegang",
+   "status": "ONBEKEND",
+   "bewijs": "",
+   "kort": "",
+   "sinds": "",
+   "bevestigd": true,
+   "geldt_voor": [
+    "*"
+   ],
+   "vervallen_reden": "",
+   "laatste24": false,
+   "herhaald": [],
+   "laatste_ts": "2026-09-25T22:14:14"
+  },
+  {
    "id": "OB-0145",
    "ts": "2026-09-25T22:47:38",
    "datum": "2026-09-25 22:47",
@@ -3954,6 +4097,7 @@
    "categorie": "Cloud & Temporal",
    "status": "IN_BOUW",
    "bewijs": "zie OB-0140",
+   "kort": "",
    "sinds": "2026-09-25",
    "bevestigd": true,
    "geldt_voor": [
@@ -3965,6 +4109,26 @@
    "laatste_ts": "2026-09-25T22:47:38"
   },
   {
+   "id": "OB-0192",
+   "ts": "2026-09-26T07:18:08",
+   "datum": "2026-09-26 07:18",
+   "strekking": "Temporal is twee weken geleden (pilot 13-09) volledig geïnstalleerd en getest; op Railway bestaat in project stack-temporal-pilot (3b7ccd0a) een worker-service worker-canary (service 1e0ac341, omgeving cc0d1dfc) met TEMPORAL_API_KEY, TEMPORAL_ADDRESS en TEMPORAL_NAMESPACE al gezet (screenshot Richard 26-09 07:5x). De sleutel is NIET weg; alleen de Mac heeft hem niet, en dat hoort ook zo. De ADMIN-CLI ([e-mail]) ziet die omgeving niet; niet opnieuw zoeken, niet opnieuw om een sleutel vragen. BD2_05 spoor B loopt via deze bestaande worker.",
+   "soort": "FEIT",
+   "categorie": "Cloud & Temporal",
+   "status": "ONBEKEND",
+   "bewijs": "",
+   "kort": "",
+   "sinds": "",
+   "bevestigd": true,
+   "geldt_voor": [
+    "*"
+   ],
+   "vervallen_reden": "",
+   "laatste24": false,
+   "herhaald": [],
+   "laatste_ts": "2026-09-26T07:18:08"
+  },
+  {
    "id": "OB-0198",
    "ts": "2026-09-26T07:52:23",
    "datum": "2026-09-26 07:52",
@@ -3973,13 +4137,14 @@
    "categorie": "Cloud & Temporal",
    "status": "ONBEKEND",
    "bewijs": "",
+   "kort": "",
    "sinds": "",
    "bevestigd": true,
    "geldt_voor": [
     "*"
    ],
    "vervallen_reden": "",
-   "laatste24": true,
+   "laatste24": false,
    "herhaald": [],
    "laatste_ts": "2026-09-26T07:52:23"
   },
@@ -3992,6 +4157,7 @@
    "categorie": "Burn-in & lanes",
    "status": "ONBEKEND",
    "bewijs": "",
+   "kort": "",
    "sinds": "",
    "bevestigd": true,
    "geldt_voor": [
@@ -4011,6 +4177,7 @@
    "categorie": "Cloud & Temporal",
    "status": "ONBEKEND",
    "bewijs": "",
+   "kort": "",
    "sinds": "",
    "bevestigd": true,
    "geldt_voor": [
@@ -4030,6 +4197,7 @@
    "categorie": "Accounts & toegang",
    "status": "ONBEKEND",
    "bewijs": "",
+   "kort": "",
    "sinds": "",
    "bevestigd": true,
    "geldt_voor": [
@@ -4049,6 +4217,7 @@
    "categorie": "Burn-in & lanes",
    "status": "PENDING",
    "bewijs": "burn-in fase 1 nog niet gestart (27-09 07:30); keten: preflight-toets → CPT4-gate → deploy → A9/A10 → proefbezorging",
+   "kort": "",
    "sinds": "2026-09-26",
    "bevestigd": true,
    "geldt_voor": [
@@ -4068,6 +4237,7 @@
    "categorie": "Cloud & Temporal",
    "status": "GEBOUWD_EN_WERKEND",
    "bewijs": "worker live, hartslag zichtbaar in railway logs",
+   "kort": "",
    "sinds": "2026-09-26",
    "bevestigd": true,
    "geldt_voor": [
@@ -4087,6 +4257,7 @@
    "categorie": "Burn-in & lanes",
    "status": "ONBEKEND",
    "bewijs": "",
+   "kort": "",
    "sinds": "",
    "bevestigd": true,
    "geldt_voor": [
@@ -4106,6 +4277,7 @@
    "categorie": "Cloud & Temporal",
    "status": "ONBEKEND",
    "bewijs": "",
+   "kort": "",
    "sinds": "",
    "bevestigd": true,
    "geldt_voor": [
@@ -4125,6 +4297,7 @@
    "categorie": "Cloud & Temporal",
    "status": "ONBEKEND",
    "bewijs": "",
+   "kort": "",
    "sinds": "",
    "bevestigd": true,
    "geldt_voor": [
@@ -4144,6 +4317,7 @@
    "categorie": "Cloud & Temporal",
    "status": "ONBEKEND",
    "bewijs": "",
+   "kort": "",
    "sinds": "",
    "bevestigd": true,
    "geldt_voor": [
@@ -4163,6 +4337,7 @@
    "categorie": "Cloud & Temporal",
    "status": "ONBEKEND",
    "bewijs": "",
+   "kort": "",
    "sinds": "",
    "bevestigd": true,
    "geldt_voor": [
@@ -4182,6 +4357,7 @@
    "categorie": "Burn-in & lanes",
    "status": "ONBEKEND",
    "bewijs": "",
+   "kort": "",
    "sinds": "",
    "bevestigd": true,
    "geldt_voor": [
@@ -4201,6 +4377,7 @@
    "categorie": "Cloud & Temporal",
    "status": "ONBEKEND",
    "bewijs": "",
+   "kort": "",
    "sinds": "",
    "bevestigd": true,
    "geldt_voor": [
@@ -4220,6 +4397,7 @@
    "categorie": "Burn-in & lanes",
    "status": "IN_BOUW",
    "bewijs": "gecombineerde poortreparatie 6e22d9c3 twee Codex-GO; inbouw in ochtendvenster OB-0479",
+   "kort": "",
    "sinds": "2026-09-26",
    "bevestigd": true,
    "geldt_voor": [
@@ -4239,6 +4417,7 @@
    "categorie": "Burn-in & lanes",
    "status": "ONBEKEND",
    "bewijs": "",
+   "kort": "",
    "sinds": "",
    "bevestigd": true,
    "geldt_voor": [
@@ -4257,7 +4436,8 @@
    "soort": "FEIT",
    "categorie": "Burn-in & lanes",
    "status": "GEBOUWD_EN_WERKEND",
-   "bewijs": "live poortcode hersteld naar 64c07949/c5de[telefoon]:1x)",
+   "bewijs": "live poortcode hersteld naar 64c07949/c5de2284 (26-09 17:1x)",
+   "kort": "",
    "sinds": "2026-09-26",
    "bevestigd": true,
    "geldt_voor": [
@@ -4277,6 +4457,7 @@
    "categorie": "Cloud & Temporal",
    "status": "ONBEKEND",
    "bewijs": "",
+   "kort": "",
    "sinds": "",
    "bevestigd": true,
    "geldt_voor": [
@@ -4296,6 +4477,7 @@
    "categorie": "Beveiliging & geheimen",
    "status": "ONBEKEND",
    "bewijs": "",
+   "kort": "",
    "sinds": "",
    "bevestigd": true,
    "geldt_voor": [
@@ -4315,6 +4497,7 @@
    "categorie": "Burn-in & lanes",
    "status": "ONBEKEND",
    "bewijs": "",
+   "kort": "",
    "sinds": "",
    "bevestigd": true,
    "geldt_voor": [
@@ -4334,6 +4517,7 @@
    "categorie": "Burn-in & lanes",
    "status": "ONBEKEND",
    "bewijs": "",
+   "kort": "",
    "sinds": "",
    "bevestigd": true,
    "geldt_voor": [
@@ -4353,6 +4537,7 @@
    "categorie": "Burn-in & lanes",
    "status": "ONBEKEND",
    "bewijs": "",
+   "kort": "",
    "sinds": "",
    "bevestigd": true,
    "geldt_voor": [
@@ -4372,6 +4557,7 @@
    "categorie": "Burn-in & lanes",
    "status": "ONBEKEND",
    "bewijs": "",
+   "kort": "",
    "sinds": "",
    "bevestigd": true,
    "geldt_voor": [
@@ -4391,6 +4577,7 @@
    "categorie": "Accounts & toegang",
    "status": "ONBEKEND",
    "bewijs": "",
+   "kort": "",
    "sinds": "",
    "bevestigd": true,
    "geldt_voor": [
@@ -4410,6 +4597,7 @@
    "categorie": "Burn-in & lanes",
    "status": "GEBOUWD_EN_WERKEND",
    "bewijs": "scripts/wachtrij-zet.py + permissieregel; log ownerwoord/wachtrij-zet.log",
+   "kort": "",
    "sinds": "2026-09-26",
    "bevestigd": true,
    "geldt_voor": [
@@ -4429,6 +4617,7 @@
    "categorie": "Burn-in & lanes",
    "status": "ONBEKEND",
    "bewijs": "",
+   "kort": "",
    "sinds": "",
    "bevestigd": true,
    "geldt_voor": [
@@ -4448,6 +4637,7 @@
    "categorie": "Burn-in & lanes",
    "status": "ONBEKEND",
    "bewijs": "",
+   "kort": "",
    "sinds": "",
    "bevestigd": true,
    "geldt_voor": [
@@ -4467,6 +4657,7 @@
    "categorie": "Boards & rapportage",
    "status": "GEBOUWD_EN_WERKEND",
    "bewijs": "kwartierupdate-cron in ADMIN-sessie; nachtregime 27-09 met uurronde",
+   "kort": "",
    "sinds": "2026-09-26",
    "bevestigd": true,
    "geldt_voor": [
@@ -4486,6 +4677,7 @@
    "categorie": "Burn-in & lanes",
    "status": "ONBEKEND",
    "bewijs": "",
+   "kort": "",
    "sinds": "",
    "bevestigd": true,
    "geldt_voor": [
@@ -4505,6 +4697,7 @@
    "categorie": "Burn-in & lanes",
    "status": "IN_BOUW",
    "bewijs": "gecombineerde kandidaat 6e22d9c3: Codex1 GO + tweede GO + exit-9-docs GO; venster OB-0479",
+   "kort": "",
    "sinds": "2026-09-26",
    "bevestigd": true,
    "geldt_voor": [
@@ -4524,6 +4717,7 @@
    "categorie": "Burn-in & lanes",
    "status": "IN_BOUW",
    "bewijs": "zie OB-0357",
+   "kort": "",
    "sinds": "2026-09-26",
    "bevestigd": true,
    "geldt_voor": [
@@ -4543,6 +4737,7 @@
    "categorie": "Burn-in & lanes",
    "status": "IN_BOUW",
    "bewijs": "verwerkt in ontwerp 5b V6 (beleid.json + ledgerregel issued_by OWNER_VIA_ADMIN); implementatie na workerproef",
+   "kort": "",
    "sinds": "2026-09-26",
    "bevestigd": true,
    "geldt_voor": [
@@ -4562,6 +4757,7 @@
    "categorie": "Burn-in & lanes",
    "status": "IN_BOUW",
    "bewijs": "zie OB-0372",
+   "kort": "",
    "sinds": "2026-09-26",
    "bevestigd": true,
    "geldt_voor": [
@@ -4581,6 +4777,7 @@
    "categorie": "Burn-in & lanes",
    "status": "IN_BOUW",
    "bewijs": "probemarge guard d1425e38: toets claude4 GO_WITH_FINDINGS, herstem CPT3 GO (07:07); inbouw in venster OB-0479",
+   "kort": "",
    "sinds": "2026-09-27",
    "bevestigd": true,
    "geldt_voor": [
@@ -4600,6 +4797,7 @@
    "categorie": "Burn-in & lanes",
    "status": "ONBEKEND",
    "bewijs": "",
+   "kort": "",
    "sinds": "",
    "bevestigd": true,
    "geldt_voor": [
@@ -4619,6 +4817,7 @@
    "categorie": "Burn-in & lanes",
    "status": "ONBEKEND",
    "bewijs": "",
+   "kort": "",
    "sinds": "",
    "bevestigd": true,
    "geldt_voor": [
@@ -4638,6 +4837,7 @@
    "categorie": "Burn-in & lanes",
    "status": "ONBEKEND",
    "bewijs": "",
+   "kort": "",
    "sinds": "",
    "bevestigd": true,
    "geldt_voor": [
@@ -4657,6 +4857,7 @@
    "categorie": "Burn-in & lanes",
    "status": "IN_BOUW",
    "bewijs": "verzoening ronde.py 7c42582d: toets claude1 GO_WITH_FINDINGS, stem CPT1 GO (07:14); inbouw in venster OB-0479",
+   "kort": "",
    "sinds": "2026-09-27",
    "bevestigd": true,
    "geldt_voor": [
@@ -4676,6 +4877,7 @@
    "categorie": "Burn-in & lanes",
    "status": "ONBEKEND",
    "bewijs": "",
+   "kort": "",
    "sinds": "",
    "bevestigd": true,
    "geldt_voor": [
@@ -4695,6 +4897,7 @@
    "categorie": "Burn-in & lanes",
    "status": "GEBOUWD_EN_WERKEND",
    "bewijs": "codex4-plafond 2→4 in registry; Astra stemt weer",
+   "kort": "",
    "sinds": "2026-09-27",
    "bevestigd": true,
    "geldt_voor": [
@@ -4714,6 +4917,7 @@
    "categorie": "Burn-in & lanes",
    "status": "ONBEKEND",
    "bewijs": "",
+   "kort": "",
    "sinds": "",
    "bevestigd": true,
    "geldt_voor": [
@@ -4733,6 +4937,7 @@
    "categorie": "Burn-in & lanes",
    "status": "ONBEKEND",
    "bewijs": "",
+   "kort": "",
    "sinds": "",
    "bevestigd": true,
    "geldt_voor": [
@@ -4752,6 +4957,7 @@
    "categorie": "Burn-in & lanes",
    "status": "ONBEKEND",
    "bewijs": "",
+   "kort": "",
    "sinds": "",
    "bevestigd": true,
    "geldt_voor": [
@@ -4771,6 +4977,7 @@
    "categorie": "Burn-in & lanes",
    "status": "ONBEKEND",
    "bewijs": "",
+   "kort": "",
    "sinds": "",
    "bevestigd": true,
    "geldt_voor": [
@@ -4790,6 +4997,7 @@
    "categorie": "Burn-in & lanes",
    "status": "GEBOUWD_EN_WERKEND",
    "bewijs": "pauzemethode launchctl unload/load gebruikt 01:56–02:45",
+   "kort": "",
    "sinds": "2026-09-27",
    "bevestigd": true,
    "geldt_voor": [
@@ -4809,6 +5017,7 @@
    "categorie": "Burn-in & lanes",
    "status": "ONBEKEND",
    "bewijs": "",
+   "kort": "",
    "sinds": "",
    "bevestigd": true,
    "geldt_voor": [
@@ -4828,6 +5037,7 @@
    "categorie": "Burn-in & lanes",
    "status": "ONBEKEND",
    "bewijs": "",
+   "kort": "",
    "sinds": "",
    "bevestigd": true,
    "geldt_voor": [
@@ -4847,6 +5057,7 @@
    "categorie": "Burn-in & lanes",
    "status": "ONBEKEND",
    "bewijs": "",
+   "kort": "",
    "sinds": "",
    "bevestigd": true,
    "geldt_voor": [
@@ -4866,6 +5077,7 @@
    "categorie": "Cloud & Temporal",
    "status": "IN_BOUW",
    "bewijs": "bezorging echte PR gebouwd/getoetst; Astra voorwaardelijk; preflight-image bevat de module; CPT4-uitvoeringsgate wacht",
+   "kort": "",
    "sinds": "2026-09-27",
    "bevestigd": true,
    "geldt_voor": [
@@ -4885,6 +5097,7 @@
    "categorie": "Burn-in & lanes",
    "status": "ONBEKEND",
    "bewijs": "",
+   "kort": "",
    "sinds": "",
    "bevestigd": true,
    "geldt_voor": [
@@ -4904,6 +5117,7 @@
    "categorie": "Burn-in & lanes",
    "status": "IN_BOUW",
    "bewijs": "zie OB-0292 (V6)",
+   "kort": "",
    "sinds": "2026-09-27",
    "bevestigd": true,
    "geldt_voor": [
@@ -4925,6 +5139,7 @@
    "categorie": "Governance & rollen",
    "status": "VERVALLEN",
    "bewijs": "",
+   "kort": "",
    "sinds": "",
    "bevestigd": true,
    "geldt_voor": [
@@ -4946,6 +5161,7 @@
    "categorie": "Governance & rollen",
    "status": "VERVALLEN",
    "bewijs": "",
+   "kort": "",
    "sinds": "",
    "bevestigd": true,
    "geldt_voor": [
@@ -4965,6 +5181,7 @@
    "categorie": "Overig",
    "status": "VERVALLEN",
    "bewijs": "",
+   "kort": "",
    "sinds": "",
    "bevestigd": true,
    "geldt_voor": [
@@ -4984,6 +5201,7 @@
    "categorie": "Overig",
    "status": "ONBEKEND",
    "bewijs": "",
+   "kort": "",
    "sinds": "",
    "bevestigd": true,
    "geldt_voor": [
@@ -5003,6 +5221,7 @@
    "categorie": "Accounts & toegang",
    "status": "ONBEKEND",
    "bewijs": "",
+   "kort": "",
    "sinds": "",
    "bevestigd": true,
    "geldt_voor": [
@@ -5024,6 +5243,7 @@
    "categorie": "Overig",
    "status": "ONBEKEND",
    "bewijs": "",
+   "kort": "",
    "sinds": "",
    "bevestigd": true,
    "geldt_voor": [
@@ -5043,6 +5263,7 @@
    "categorie": "Overig",
    "status": "ONBEKEND",
    "bewijs": "",
+   "kort": "",
    "sinds": "",
    "bevestigd": true,
    "geldt_voor": [
@@ -5066,6 +5287,7 @@
    "categorie": "Overig",
    "status": "ONBEKEND",
    "bewijs": "",
+   "kort": "",
    "sinds": "",
    "bevestigd": true,
    "geldt_voor": [
@@ -5085,6 +5307,7 @@
    "categorie": "Overig",
    "status": "ONBEKEND",
    "bewijs": "",
+   "kort": "",
    "sinds": "",
    "bevestigd": false,
    "geldt_voor": [
@@ -5104,6 +5327,7 @@
    "categorie": "Burn-in & lanes",
    "status": "ONBEKEND",
    "bewijs": "",
+   "kort": "",
    "sinds": "",
    "bevestigd": true,
    "geldt_voor": [
@@ -5123,6 +5347,7 @@
    "categorie": "Overig",
    "status": "ONBEKEND",
    "bewijs": "",
+   "kort": "",
    "sinds": "",
    "bevestigd": true,
    "geldt_voor": [
@@ -5142,6 +5367,7 @@
    "categorie": "Geheugen & ownerwoord",
    "status": "ONBEKEND",
    "bewijs": "",
+   "kort": "",
    "sinds": "",
    "bevestigd": true,
    "geldt_voor": [
@@ -5161,6 +5387,7 @@
    "categorie": "Governance & rollen",
    "status": "ONBEKEND",
    "bewijs": "",
+   "kort": "",
    "sinds": "",
    "bevestigd": false,
    "geldt_voor": [
@@ -5180,6 +5407,7 @@
    "categorie": "Geheugen & ownerwoord",
    "status": "ONBEKEND",
    "bewijs": "",
+   "kort": "",
    "sinds": "",
    "bevestigd": false,
    "geldt_voor": [
@@ -5201,6 +5429,7 @@
    "categorie": "Overig",
    "status": "ONBEKEND",
    "bewijs": "",
+   "kort": "",
    "sinds": "",
    "bevestigd": false,
    "geldt_voor": [
@@ -5222,6 +5451,7 @@
    "categorie": "Overig",
    "status": "ONBEKEND",
    "bewijs": "",
+   "kort": "",
    "sinds": "",
    "bevestigd": false,
    "geldt_voor": [
@@ -5241,6 +5471,7 @@
    "categorie": "Burn-in & lanes",
    "status": "ONBEKEND",
    "bewijs": "",
+   "kort": "",
    "sinds": "",
    "bevestigd": true,
    "geldt_voor": [
@@ -5260,6 +5491,7 @@
    "categorie": "Burn-in & lanes",
    "status": "ONBEKEND",
    "bewijs": "",
+   "kort": "",
    "sinds": "",
    "bevestigd": false,
    "geldt_voor": [
@@ -5279,6 +5511,7 @@
    "categorie": "Overig",
    "status": "ONBEKEND",
    "bewijs": "",
+   "kort": "",
    "sinds": "",
    "bevestigd": false,
    "geldt_voor": [
@@ -5298,6 +5531,7 @@
    "categorie": "Overig",
    "status": "ONBEKEND",
    "bewijs": "",
+   "kort": "",
    "sinds": "",
    "bevestigd": false,
    "geldt_voor": [
@@ -5317,6 +5551,7 @@
    "categorie": "Boards & rapportage",
    "status": "ONBEKEND",
    "bewijs": "",
+   "kort": "",
    "sinds": "",
    "bevestigd": true,
    "geldt_voor": [
@@ -5336,6 +5571,7 @@
    "categorie": "Governance & rollen",
    "status": "ONBEKEND",
    "bewijs": "",
+   "kort": "",
    "sinds": "",
    "bevestigd": false,
    "geldt_voor": [
@@ -5355,6 +5591,7 @@
    "categorie": "Accounts & toegang",
    "status": "ONBEKEND",
    "bewijs": "",
+   "kort": "",
    "sinds": "",
    "bevestigd": false,
    "geldt_voor": [
@@ -5374,6 +5611,7 @@
    "categorie": "Overig",
    "status": "ONBEKEND",
    "bewijs": "",
+   "kort": "",
    "sinds": "",
    "bevestigd": false,
    "geldt_voor": [
@@ -5393,6 +5631,7 @@
    "categorie": "Burn-in & lanes",
    "status": "ONBEKEND",
    "bewijs": "",
+   "kort": "",
    "sinds": "",
    "bevestigd": false,
    "geldt_voor": [
@@ -5412,6 +5651,7 @@
    "categorie": "Governance & rollen",
    "status": "ONBEKEND",
    "bewijs": "",
+   "kort": "",
    "sinds": "",
    "bevestigd": false,
    "geldt_voor": [
@@ -5431,6 +5671,7 @@
    "categorie": "Overig",
    "status": "ONBEKEND",
    "bewijs": "",
+   "kort": "",
    "sinds": "",
    "bevestigd": false,
    "geldt_voor": [
@@ -5450,6 +5691,7 @@
    "categorie": "Governance & rollen",
    "status": "ONBEKEND",
    "bewijs": "",
+   "kort": "",
    "sinds": "",
    "bevestigd": false,
    "geldt_voor": [
@@ -5471,6 +5713,7 @@
    "categorie": "Overig",
    "status": "ONBEKEND",
    "bewijs": "",
+   "kort": "",
    "sinds": "",
    "bevestigd": false,
    "geldt_voor": [
@@ -5490,6 +5733,7 @@
    "categorie": "Overig",
    "status": "ONBEKEND",
    "bewijs": "",
+   "kort": "",
    "sinds": "",
    "bevestigd": false,
    "geldt_voor": [
@@ -5509,6 +5753,7 @@
    "categorie": "Accounts & toegang",
    "status": "ONBEKEND",
    "bewijs": "",
+   "kort": "",
    "sinds": "",
    "bevestigd": false,
    "geldt_voor": [
@@ -5530,6 +5775,7 @@
    "categorie": "Governance & rollen",
    "status": "ONBEKEND",
    "bewijs": "",
+   "kort": "",
    "sinds": "",
    "bevestigd": false,
    "geldt_voor": [
@@ -5552,6 +5798,7 @@
    "categorie": "Overig",
    "status": "ONBEKEND",
    "bewijs": "",
+   "kort": "",
    "sinds": "",
    "bevestigd": false,
    "geldt_voor": [
@@ -5571,6 +5818,7 @@
    "categorie": "Accounts & toegang",
    "status": "ONBEKEND",
    "bewijs": "",
+   "kort": "",
    "sinds": "",
    "bevestigd": false,
    "geldt_voor": [
@@ -5590,6 +5838,7 @@
    "categorie": "Governance & rollen",
    "status": "ONBEKEND",
    "bewijs": "",
+   "kort": "",
    "sinds": "",
    "bevestigd": false,
    "geldt_voor": [
@@ -5609,6 +5858,7 @@
    "categorie": "Governance & rollen",
    "status": "ONBEKEND",
    "bewijs": "",
+   "kort": "",
    "sinds": "",
    "bevestigd": false,
    "geldt_voor": [
@@ -5628,6 +5878,7 @@
    "categorie": "Governance & rollen",
    "status": "ONBEKEND",
    "bewijs": "",
+   "kort": "",
    "sinds": "",
    "bevestigd": false,
    "geldt_voor": [
@@ -5649,6 +5900,7 @@
    "categorie": "Overig",
    "status": "ONBEKEND",
    "bewijs": "",
+   "kort": "",
    "sinds": "",
    "bevestigd": false,
    "geldt_voor": [
@@ -5670,6 +5922,7 @@
    "categorie": "Governance & rollen",
    "status": "ONBEKEND",
    "bewijs": "",
+   "kort": "",
    "sinds": "",
    "bevestigd": false,
    "geldt_voor": [
@@ -5691,6 +5944,7 @@
    "categorie": "Governance & rollen",
    "status": "ONBEKEND",
    "bewijs": "",
+   "kort": "",
    "sinds": "",
    "bevestigd": false,
    "geldt_voor": [
@@ -5710,6 +5964,7 @@
    "categorie": "Governance & rollen",
    "status": "ONBEKEND",
    "bewijs": "",
+   "kort": "",
    "sinds": "",
    "bevestigd": false,
    "geldt_voor": [
@@ -5731,6 +5986,7 @@
    "categorie": "Overig",
    "status": "ONBEKEND",
    "bewijs": "",
+   "kort": "",
    "sinds": "",
    "bevestigd": true,
    "geldt_voor": [
@@ -5752,6 +6008,7 @@
    "categorie": "Overig",
    "status": "ONBEKEND",
    "bewijs": "",
+   "kort": "",
    "sinds": "",
    "bevestigd": false,
    "geldt_voor": [
@@ -5774,6 +6031,7 @@
    "categorie": "Overig",
    "status": "ONBEKEND",
    "bewijs": "",
+   "kort": "",
    "sinds": "",
    "bevestigd": false,
    "geldt_voor": [
@@ -5793,6 +6051,7 @@
    "categorie": "Governance & rollen",
    "status": "ONBEKEND",
    "bewijs": "",
+   "kort": "",
    "sinds": "",
    "bevestigd": false,
    "geldt_voor": [
@@ -5815,6 +6074,7 @@
    "categorie": "Overig",
    "status": "ONBEKEND",
    "bewijs": "",
+   "kort": "",
    "sinds": "",
    "bevestigd": true,
    "geldt_voor": [
@@ -5834,6 +6094,7 @@
    "categorie": "Boards & rapportage",
    "status": "ONBEKEND",
    "bewijs": "",
+   "kort": "",
    "sinds": "",
    "bevestigd": false,
    "geldt_voor": [
@@ -5853,6 +6114,7 @@
    "categorie": "Overig",
    "status": "ONBEKEND",
    "bewijs": "",
+   "kort": "",
    "sinds": "",
    "bevestigd": false,
    "geldt_voor": [
@@ -5874,6 +6136,7 @@
    "categorie": "Boards & rapportage",
    "status": "ONBEKEND",
    "bewijs": "",
+   "kort": "",
    "sinds": "",
    "bevestigd": false,
    "geldt_voor": [
@@ -5895,6 +6158,7 @@
    "categorie": "Overig",
    "status": "ONBEKEND",
    "bewijs": "",
+   "kort": "",
    "sinds": "",
    "bevestigd": false,
    "geldt_voor": [
@@ -5916,6 +6180,7 @@
    "categorie": "Governance & rollen",
    "status": "ONBEKEND",
    "bewijs": "",
+   "kort": "",
    "sinds": "",
    "bevestigd": false,
    "geldt_voor": [
@@ -5937,6 +6202,7 @@
    "categorie": "Boards & rapportage",
    "status": "ONBEKEND",
    "bewijs": "",
+   "kort": "",
    "sinds": "",
    "bevestigd": false,
    "geldt_voor": [
@@ -5958,6 +6224,7 @@
    "categorie": "Boards & rapportage",
    "status": "ONBEKEND",
    "bewijs": "",
+   "kort": "",
    "sinds": "",
    "bevestigd": false,
    "geldt_voor": [
@@ -5977,6 +6244,7 @@
    "categorie": "Governance & rollen",
    "status": "ONBEKEND",
    "bewijs": "",
+   "kort": "",
    "sinds": "",
    "bevestigd": false,
    "geldt_voor": [
@@ -5998,6 +6266,7 @@
    "categorie": "Boards & rapportage",
    "status": "ONBEKEND",
    "bewijs": "",
+   "kort": "",
    "sinds": "",
    "bevestigd": false,
    "geldt_voor": [
@@ -6017,6 +6286,7 @@
    "categorie": "Governance & rollen",
    "status": "GEBOUWD_EN_WERKEND",
    "bewijs": "outbox/ + vrijgegeven.jsonl in gebruik door ADMIN, director, lanes",
+   "kort": "",
    "sinds": "2026-09-26",
    "bevestigd": true,
    "geldt_voor": [
@@ -6036,6 +6306,7 @@
    "categorie": "Governance & rollen",
    "status": "ONBEKEND",
    "bewijs": "",
+   "kort": "",
    "sinds": "",
    "bevestigd": true,
    "geldt_voor": [
@@ -6055,6 +6326,7 @@
    "categorie": "Content-pijplijn",
    "status": "ONBEKEND",
    "bewijs": "",
+   "kort": "",
    "sinds": "",
    "bevestigd": false,
    "geldt_voor": [
@@ -6074,6 +6346,7 @@
    "categorie": "Burn-in & lanes",
    "status": "ONBEKEND",
    "bewijs": "",
+   "kort": "",
    "sinds": "",
    "bevestigd": false,
    "geldt_voor": [
@@ -6093,6 +6366,7 @@
    "categorie": "Overig",
    "status": "ONBEKEND",
    "bewijs": "",
+   "kort": "",
    "sinds": "",
    "bevestigd": true,
    "geldt_voor": [
@@ -6112,6 +6386,7 @@
    "categorie": "Governance & rollen",
    "status": "ONBEKEND",
    "bewijs": "",
+   "kort": "",
    "sinds": "",
    "bevestigd": false,
    "geldt_voor": [
@@ -6131,6 +6406,7 @@
    "categorie": "Governance & rollen",
    "status": "ONBEKEND",
    "bewijs": "",
+   "kort": "",
    "sinds": "",
    "bevestigd": false,
    "geldt_voor": [
@@ -6152,6 +6428,7 @@
    "categorie": "Overig",
    "status": "ONBEKEND",
    "bewijs": "",
+   "kort": "",
    "sinds": "",
    "bevestigd": false,
    "geldt_voor": [
@@ -6171,6 +6448,7 @@
    "categorie": "Governance & rollen",
    "status": "ONBEKEND",
    "bewijs": "",
+   "kort": "",
    "sinds": "",
    "bevestigd": false,
    "geldt_voor": [
@@ -6190,6 +6468,7 @@
    "categorie": "Governance & rollen",
    "status": "ONBEKEND",
    "bewijs": "",
+   "kort": "",
    "sinds": "",
    "bevestigd": false,
    "geldt_voor": [
@@ -6212,6 +6491,7 @@
    "categorie": "Governance & rollen",
    "status": "ONBEKEND",
    "bewijs": "",
+   "kort": "",
    "sinds": "",
    "bevestigd": false,
    "geldt_voor": [
@@ -6231,6 +6511,7 @@
    "categorie": "Governance & rollen",
    "status": "ONBEKEND",
    "bewijs": "",
+   "kort": "",
    "sinds": "",
    "bevestigd": false,
    "geldt_voor": [
@@ -6250,6 +6531,7 @@
    "categorie": "Content-pijplijn",
    "status": "ONBEKEND",
    "bewijs": "",
+   "kort": "",
    "sinds": "",
    "bevestigd": true,
    "geldt_voor": [
@@ -6269,6 +6551,7 @@
    "categorie": "Governance & rollen",
    "status": "ONBEKEND",
    "bewijs": "",
+   "kort": "",
    "sinds": "",
    "bevestigd": false,
    "geldt_voor": [
@@ -6288,6 +6571,7 @@
    "categorie": "Governance & rollen",
    "status": "ONBEKEND",
    "bewijs": "",
+   "kort": "",
    "sinds": "",
    "bevestigd": false,
    "geldt_voor": [
@@ -6307,6 +6591,7 @@
    "categorie": "Content-pijplijn",
    "status": "ONBEKEND",
    "bewijs": "",
+   "kort": "",
    "sinds": "",
    "bevestigd": true,
    "geldt_voor": [
@@ -6337,6 +6622,7 @@
    "categorie": "Content-pijplijn",
    "status": "ONBEKEND",
    "bewijs": "",
+   "kort": "",
    "sinds": "",
    "bevestigd": false,
    "geldt_voor": [
@@ -6356,6 +6642,7 @@
    "categorie": "Accounts & toegang",
    "status": "ONBEKEND",
    "bewijs": "",
+   "kort": "",
    "sinds": "",
    "bevestigd": false,
    "geldt_voor": [
@@ -6375,6 +6662,7 @@
    "categorie": "Governance & rollen",
    "status": "ONBEKEND",
    "bewijs": "",
+   "kort": "",
    "sinds": "",
    "bevestigd": true,
    "geldt_voor": [
@@ -6394,6 +6682,7 @@
    "categorie": "Governance & rollen",
    "status": "ONBEKEND",
    "bewijs": "",
+   "kort": "",
    "sinds": "",
    "bevestigd": false,
    "geldt_voor": [
@@ -6413,6 +6702,7 @@
    "categorie": "Overig",
    "status": "ONBEKEND",
    "bewijs": "",
+   "kort": "",
    "sinds": "",
    "bevestigd": false,
    "geldt_voor": [
@@ -6432,6 +6722,7 @@
    "categorie": "Governance & rollen",
    "status": "ONBEKEND",
    "bewijs": "",
+   "kort": "",
    "sinds": "",
    "bevestigd": false,
    "geldt_voor": [
@@ -6451,6 +6742,7 @@
    "categorie": "Accounts & toegang",
    "status": "ONBEKEND",
    "bewijs": "",
+   "kort": "",
    "sinds": "",
    "bevestigd": false,
    "geldt_voor": [
@@ -6470,6 +6762,7 @@
    "categorie": "Governance & rollen",
    "status": "ONBEKEND",
    "bewijs": "",
+   "kort": "",
    "sinds": "",
    "bevestigd": false,
    "geldt_voor": [
@@ -6489,6 +6782,7 @@
    "categorie": "Governance & rollen",
    "status": "ONBEKEND",
    "bewijs": "",
+   "kort": "",
    "sinds": "",
    "bevestigd": false,
    "geldt_voor": [
@@ -6510,6 +6804,7 @@
    "categorie": "Accounts & toegang",
    "status": "ONBEKEND",
    "bewijs": "",
+   "kort": "",
    "sinds": "",
    "bevestigd": false,
    "geldt_voor": [
@@ -6529,6 +6824,7 @@
    "categorie": "Burn-in & lanes",
    "status": "ONBEKEND",
    "bewijs": "",
+   "kort": "",
    "sinds": "",
    "bevestigd": false,
    "geldt_voor": [
@@ -6550,6 +6846,7 @@
    "categorie": "Governance & rollen",
    "status": "ONBEKEND",
    "bewijs": "",
+   "kort": "",
    "sinds": "",
    "bevestigd": false,
    "geldt_voor": [
@@ -6573,6 +6870,7 @@
    "categorie": "Accounts & toegang",
    "status": "ONBEKEND",
    "bewijs": "",
+   "kort": "",
    "sinds": "",
    "bevestigd": false,
    "geldt_voor": [
@@ -6592,6 +6890,7 @@
    "categorie": "Overig",
    "status": "ONBEKEND",
    "bewijs": "",
+   "kort": "",
    "sinds": "",
    "bevestigd": false,
    "geldt_voor": [
@@ -6611,6 +6910,7 @@
    "categorie": "Governance & rollen",
    "status": "ONBEKEND",
    "bewijs": "",
+   "kort": "",
    "sinds": "",
    "bevestigd": false,
    "geldt_voor": [
@@ -6633,6 +6933,7 @@
    "categorie": "Burn-in & lanes",
    "status": "ONBEKEND",
    "bewijs": "",
+   "kort": "",
    "sinds": "",
    "bevestigd": false,
    "geldt_voor": [
@@ -6652,6 +6953,7 @@
    "categorie": "Governance & rollen",
    "status": "ONBEKEND",
    "bewijs": "",
+   "kort": "",
    "sinds": "",
    "bevestigd": false,
    "geldt_voor": [
@@ -6671,6 +6973,7 @@
    "categorie": "Overig",
    "status": "ONBEKEND",
    "bewijs": "",
+   "kort": "",
    "sinds": "",
    "bevestigd": false,
    "geldt_voor": [
@@ -6690,6 +6993,7 @@
    "categorie": "Governance & rollen",
    "status": "ONBEKEND",
    "bewijs": "",
+   "kort": "",
    "sinds": "",
    "bevestigd": false,
    "geldt_voor": [
@@ -6712,6 +7016,7 @@
    "categorie": "Overig",
    "status": "ONBEKEND",
    "bewijs": "",
+   "kort": "",
    "sinds": "",
    "bevestigd": false,
    "geldt_voor": [
@@ -6731,6 +7036,7 @@
    "categorie": "Governance & rollen",
    "status": "ONBEKEND",
    "bewijs": "",
+   "kort": "",
    "sinds": "",
    "bevestigd": false,
    "geldt_voor": [
@@ -6750,6 +7056,7 @@
    "categorie": "Governance & rollen",
    "status": "ONBEKEND",
    "bewijs": "",
+   "kort": "",
    "sinds": "",
    "bevestigd": false,
    "geldt_voor": [
@@ -6771,6 +7078,7 @@
    "categorie": "Governance & rollen",
    "status": "ONBEKEND",
    "bewijs": "",
+   "kort": "",
    "sinds": "",
    "bevestigd": false,
    "geldt_voor": [
@@ -6790,6 +7098,7 @@
    "categorie": "Governance & rollen",
    "status": "ONBEKEND",
    "bewijs": "",
+   "kort": "",
    "sinds": "",
    "bevestigd": false,
    "geldt_voor": [
@@ -6809,6 +7118,7 @@
    "categorie": "Overig",
    "status": "ONBEKEND",
    "bewijs": "",
+   "kort": "",
    "sinds": "",
    "bevestigd": false,
    "geldt_voor": [
@@ -6828,6 +7138,7 @@
    "categorie": "Accounts & toegang",
    "status": "ONBEKEND",
    "bewijs": "",
+   "kort": "",
    "sinds": "",
    "bevestigd": false,
    "geldt_voor": [
@@ -6847,6 +7158,7 @@
    "categorie": "Governance & rollen",
    "status": "ONBEKEND",
    "bewijs": "",
+   "kort": "",
    "sinds": "",
    "bevestigd": false,
    "geldt_voor": [
@@ -6868,6 +7180,7 @@
    "categorie": "Governance & rollen",
    "status": "ONBEKEND",
    "bewijs": "",
+   "kort": "",
    "sinds": "",
    "bevestigd": false,
    "geldt_voor": [
@@ -6887,6 +7200,7 @@
    "categorie": "Accounts & toegang",
    "status": "ONBEKEND",
    "bewijs": "",
+   "kort": "",
    "sinds": "",
    "bevestigd": false,
    "geldt_voor": [
@@ -6906,6 +7220,7 @@
    "categorie": "Governance & rollen",
    "status": "ONBEKEND",
    "bewijs": "",
+   "kort": "",
    "sinds": "",
    "bevestigd": false,
    "geldt_voor": [
@@ -6925,6 +7240,7 @@
    "categorie": "Accounts & toegang",
    "status": "ONBEKEND",
    "bewijs": "",
+   "kort": "",
    "sinds": "",
    "bevestigd": false,
    "geldt_voor": [
@@ -6944,6 +7260,7 @@
    "categorie": "Governance & rollen",
    "status": "ONBEKEND",
    "bewijs": "",
+   "kort": "",
    "sinds": "",
    "bevestigd": false,
    "geldt_voor": [
@@ -6963,6 +7280,7 @@
    "categorie": "Governance & rollen",
    "status": "ONBEKEND",
    "bewijs": "",
+   "kort": "",
    "sinds": "",
    "bevestigd": false,
    "geldt_voor": [
@@ -6982,6 +7300,7 @@
    "categorie": "Overig",
    "status": "ONBEKEND",
    "bewijs": "",
+   "kort": "",
    "sinds": "",
    "bevestigd": false,
    "geldt_voor": [
@@ -7001,6 +7320,7 @@
    "categorie": "Accounts & toegang",
    "status": "ONBEKEND",
    "bewijs": "",
+   "kort": "",
    "sinds": "",
    "bevestigd": false,
    "geldt_voor": [
@@ -7020,6 +7340,7 @@
    "categorie": "Governance & rollen",
    "status": "ONBEKEND",
    "bewijs": "",
+   "kort": "",
    "sinds": "",
    "bevestigd": false,
    "geldt_voor": [
@@ -7039,6 +7360,7 @@
    "categorie": "Governance & rollen",
    "status": "ONBEKEND",
    "bewijs": "",
+   "kort": "",
    "sinds": "",
    "bevestigd": false,
    "geldt_voor": [
@@ -7062,6 +7384,7 @@
    "categorie": "Governance & rollen",
    "status": "ONBEKEND",
    "bewijs": "",
+   "kort": "",
    "sinds": "",
    "bevestigd": false,
    "geldt_voor": [
@@ -7083,6 +7406,7 @@
    "categorie": "Governance & rollen",
    "status": "ONBEKEND",
    "bewijs": "",
+   "kort": "",
    "sinds": "",
    "bevestigd": false,
    "geldt_voor": [
@@ -7102,6 +7426,7 @@
    "categorie": "Governance & rollen",
    "status": "ONBEKEND",
    "bewijs": "",
+   "kort": "",
    "sinds": "",
    "bevestigd": false,
    "geldt_voor": [
@@ -7121,6 +7446,7 @@
    "categorie": "Governance & rollen",
    "status": "ONBEKEND",
    "bewijs": "",
+   "kort": "",
    "sinds": "",
    "bevestigd": false,
    "geldt_voor": [
@@ -7140,6 +7466,7 @@
    "categorie": "Overig",
    "status": "ONBEKEND",
    "bewijs": "",
+   "kort": "",
    "sinds": "",
    "bevestigd": false,
    "geldt_voor": [
@@ -7159,6 +7486,7 @@
    "categorie": "Overig",
    "status": "ONBEKEND",
    "bewijs": "",
+   "kort": "",
    "sinds": "",
    "bevestigd": false,
    "geldt_voor": [
@@ -7178,6 +7506,7 @@
    "categorie": "Governance & rollen",
    "status": "ONBEKEND",
    "bewijs": "",
+   "kort": "",
    "sinds": "",
    "bevestigd": false,
    "geldt_voor": [
@@ -7197,6 +7526,7 @@
    "categorie": "Governance & rollen",
    "status": "ONBEKEND",
    "bewijs": "",
+   "kort": "",
    "sinds": "",
    "bevestigd": false,
    "geldt_voor": [
@@ -7216,6 +7546,7 @@
    "categorie": "Burn-in & lanes",
    "status": "ONBEKEND",
    "bewijs": "",
+   "kort": "",
    "sinds": "",
    "bevestigd": false,
    "geldt_voor": [
@@ -7235,6 +7566,7 @@
    "categorie": "Governance & rollen",
    "status": "ONBEKEND",
    "bewijs": "",
+   "kort": "",
    "sinds": "",
    "bevestigd": false,
    "geldt_voor": [
@@ -7254,6 +7586,7 @@
    "categorie": "Governance & rollen",
    "status": "ONBEKEND",
    "bewijs": "",
+   "kort": "",
    "sinds": "",
    "bevestigd": false,
    "geldt_voor": [
@@ -7273,6 +7606,7 @@
    "categorie": "Overig",
    "status": "ONBEKEND",
    "bewijs": "",
+   "kort": "",
    "sinds": "",
    "bevestigd": false,
    "geldt_voor": [
@@ -7292,6 +7626,7 @@
    "categorie": "Governance & rollen",
    "status": "ONBEKEND",
    "bewijs": "",
+   "kort": "",
    "sinds": "",
    "bevestigd": false,
    "geldt_voor": [
@@ -7311,6 +7646,7 @@
    "categorie": "Governance & rollen",
    "status": "ONBEKEND",
    "bewijs": "",
+   "kort": "",
    "sinds": "",
    "bevestigd": false,
    "geldt_voor": [
@@ -7333,6 +7669,7 @@
    "categorie": "Accounts & toegang",
    "status": "ONBEKEND",
    "bewijs": "",
+   "kort": "",
    "sinds": "",
    "bevestigd": false,
    "geldt_voor": [
@@ -7352,6 +7689,7 @@
    "categorie": "Governance & rollen",
    "status": "ONBEKEND",
    "bewijs": "",
+   "kort": "",
    "sinds": "",
    "bevestigd": false,
    "geldt_voor": [
@@ -7373,6 +7711,7 @@
    "categorie": "Burn-in & lanes",
    "status": "ONBEKEND",
    "bewijs": "",
+   "kort": "",
    "sinds": "",
    "bevestigd": false,
    "geldt_voor": [
@@ -7392,6 +7731,7 @@
    "categorie": "Governance & rollen",
    "status": "ONBEKEND",
    "bewijs": "",
+   "kort": "",
    "sinds": "",
    "bevestigd": false,
    "geldt_voor": [
@@ -7413,6 +7753,7 @@
    "categorie": "Mail & taken",
    "status": "ONBEKEND",
    "bewijs": "",
+   "kort": "",
    "sinds": "",
    "bevestigd": false,
    "geldt_voor": [
@@ -7432,6 +7773,7 @@
    "categorie": "Governance & rollen",
    "status": "ONBEKEND",
    "bewijs": "",
+   "kort": "",
    "sinds": "",
    "bevestigd": false,
    "geldt_voor": [
@@ -7454,6 +7796,7 @@
    "categorie": "Mail & taken",
    "status": "ONBEKEND",
    "bewijs": "",
+   "kort": "",
    "sinds": "",
    "bevestigd": false,
    "geldt_voor": [
@@ -7473,6 +7816,7 @@
    "categorie": "Burn-in & lanes",
    "status": "ONBEKEND",
    "bewijs": "",
+   "kort": "",
    "sinds": "",
    "bevestigd": false,
    "geldt_voor": [
@@ -7492,6 +7836,7 @@
    "categorie": "Governance & rollen",
    "status": "ONBEKEND",
    "bewijs": "",
+   "kort": "",
    "sinds": "",
    "bevestigd": false,
    "geldt_voor": [
@@ -7511,6 +7856,7 @@
    "categorie": "Governance & rollen",
    "status": "ONBEKEND",
    "bewijs": "",
+   "kort": "",
    "sinds": "",
    "bevestigd": false,
    "geldt_voor": [
@@ -7532,6 +7878,7 @@
    "categorie": "Boards & rapportage",
    "status": "GEBOUWD_EN_WERKEND",
    "bewijs": "zie OB-0424",
+   "kort": "",
    "sinds": "2026-09-27",
    "bevestigd": true,
    "geldt_voor": [
@@ -7551,6 +7898,7 @@
    "categorie": "Governance & rollen",
    "status": "ONBEKEND",
    "bewijs": "",
+   "kort": "",
    "sinds": "",
    "bevestigd": false,
    "geldt_voor": [
@@ -7570,6 +7918,7 @@
    "categorie": "Boards & rapportage",
    "status": "ONBEKEND",
    "bewijs": "",
+   "kort": "",
    "sinds": "",
    "bevestigd": false,
    "geldt_voor": [
@@ -7589,6 +7938,7 @@
    "categorie": "Boards & rapportage",
    "status": "ONBEKEND",
    "bewijs": "",
+   "kort": "",
    "sinds": "",
    "bevestigd": true,
    "geldt_voor": [
@@ -7608,6 +7958,7 @@
    "categorie": "Governance & rollen",
    "status": "ONBEKEND",
    "bewijs": "",
+   "kort": "",
    "sinds": "",
    "bevestigd": false,
    "geldt_voor": [
@@ -7627,6 +7978,7 @@
    "categorie": "Governance & rollen",
    "status": "ONBEKEND",
    "bewijs": "",
+   "kort": "",
    "sinds": "",
    "bevestigd": false,
    "geldt_voor": [
@@ -7641,11 +7993,12 @@
    "id": "OB-0444",
    "ts": "2026-09-27T02:51:54",
    "datum": "2026-09-27 02:51",
-   "strekking": "Bouw board01-b1 met vier tabs (Pijplijnkaart, Kaartenbak, Conceptpreview, Peilbord) in eigen kloon /private/tmp, branch board01-b[telefoon], meet acceptatiecriteria.",
+   "strekking": "Bouw board01-b1 met vier tabs (Pijplijnkaart, Kaartenbak, Conceptpreview, Peilbord) in eigen kloon /private/tmp, branch board01-b1-20260926, meet acceptatiecriteria.",
    "soort": "MACHINE",
    "categorie": "Boards & rapportage",
    "status": "ONBEKEND",
    "bewijs": "",
+   "kort": "",
    "sinds": "",
    "bevestigd": false,
    "geldt_voor": [
@@ -7665,6 +8018,7 @@
    "categorie": "Governance & rollen",
    "status": "ONBEKEND",
    "bewijs": "",
+   "kort": "",
    "sinds": "",
    "bevestigd": false,
    "geldt_voor": [
@@ -7684,6 +8038,7 @@
    "categorie": "Burn-in & lanes",
    "status": "ONBEKEND",
    "bewijs": "",
+   "kort": "",
    "sinds": "",
    "bevestigd": true,
    "geldt_voor": [
@@ -7703,6 +8058,7 @@
    "categorie": "Governance & rollen",
    "status": "ONBEKEND",
    "bewijs": "",
+   "kort": "",
    "sinds": "",
    "bevestigd": false,
    "geldt_voor": [
@@ -7722,6 +8078,7 @@
    "categorie": "Burn-in & lanes",
    "status": "ONBEKEND",
    "bewijs": "",
+   "kort": "",
    "sinds": "",
    "bevestigd": false,
    "geldt_voor": [
@@ -7743,6 +8100,7 @@
    "categorie": "Governance & rollen",
    "status": "ONBEKEND",
    "bewijs": "",
+   "kort": "",
    "sinds": "",
    "bevestigd": false,
    "geldt_voor": [
@@ -7765,6 +8123,7 @@
    "categorie": "Governance & rollen",
    "status": "ONBEKEND",
    "bewijs": "",
+   "kort": "",
    "sinds": "",
    "bevestigd": false,
    "geldt_voor": [
@@ -7784,6 +8143,7 @@
    "categorie": "Burn-in & lanes",
    "status": "ONBEKEND",
    "bewijs": "",
+   "kort": "",
    "sinds": "",
    "bevestigd": false,
    "geldt_voor": [
@@ -7803,6 +8163,7 @@
    "categorie": "Governance & rollen",
    "status": "ONBEKEND",
    "bewijs": "",
+   "kort": "",
    "sinds": "",
    "bevestigd": false,
    "geldt_voor": [
@@ -7822,6 +8183,7 @@
    "categorie": "Governance & rollen",
    "status": "ONBEKEND",
    "bewijs": "",
+   "kort": "",
    "sinds": "",
    "bevestigd": false,
    "geldt_voor": [
@@ -7843,6 +8205,7 @@
    "categorie": "Burn-in & lanes",
    "status": "ONBEKEND",
    "bewijs": "",
+   "kort": "",
    "sinds": "",
    "bevestigd": true,
    "geldt_voor": [
@@ -7862,6 +8225,7 @@
    "categorie": "Governance & rollen",
    "status": "ONBEKEND",
    "bewijs": "",
+   "kort": "",
    "sinds": "",
    "bevestigd": false,
    "geldt_voor": [
@@ -7881,6 +8245,7 @@
    "categorie": "Governance & rollen",
    "status": "ONBEKEND",
    "bewijs": "",
+   "kort": "",
    "sinds": "",
    "bevestigd": false,
    "geldt_voor": [
@@ -7900,6 +8265,7 @@
    "categorie": "Burn-in & lanes",
    "status": "ONBEKEND",
    "bewijs": "",
+   "kort": "",
    "sinds": "",
    "bevestigd": true,
    "geldt_voor": [
@@ -7919,6 +8285,7 @@
    "categorie": "Burn-in & lanes",
    "status": "ONBEKEND",
    "bewijs": "",
+   "kort": "",
    "sinds": "",
    "bevestigd": true,
    "geldt_voor": [
@@ -7938,6 +8305,7 @@
    "categorie": "Governance & rollen",
    "status": "ONBEKEND",
    "bewijs": "",
+   "kort": "",
    "sinds": "",
    "bevestigd": false,
    "geldt_voor": [
@@ -7957,6 +8325,7 @@
    "categorie": "Burn-in & lanes",
    "status": "ONBEKEND",
    "bewijs": "",
+   "kort": "",
    "sinds": "",
    "bevestigd": false,
    "geldt_voor": [
@@ -7976,6 +8345,7 @@
    "categorie": "Governance & rollen",
    "status": "ONBEKEND",
    "bewijs": "",
+   "kort": "",
    "sinds": "",
    "bevestigd": false,
    "geldt_voor": [
@@ -7995,6 +8365,7 @@
    "categorie": "Governance & rollen",
    "status": "ONBEKEND",
    "bewijs": "",
+   "kort": "",
    "sinds": "",
    "bevestigd": false,
    "geldt_voor": [
@@ -8014,6 +8385,7 @@
    "categorie": "Governance & rollen",
    "status": "ONBEKEND",
    "bewijs": "",
+   "kort": "",
    "sinds": "",
    "bevestigd": false,
    "geldt_voor": [
@@ -8033,6 +8405,7 @@
    "categorie": "Governance & rollen",
    "status": "ONBEKEND",
    "bewijs": "",
+   "kort": "",
    "sinds": "",
    "bevestigd": false,
    "geldt_voor": [
@@ -8052,6 +8425,7 @@
    "categorie": "Accounts & toegang",
    "status": "ONBEKEND",
    "bewijs": "",
+   "kort": "",
    "sinds": "",
    "bevestigd": false,
    "geldt_voor": [
@@ -8071,6 +8445,7 @@
    "categorie": "Governance & rollen",
    "status": "ONBEKEND",
    "bewijs": "",
+   "kort": "",
    "sinds": "",
    "bevestigd": false,
    "geldt_voor": [
@@ -8097,6 +8472,7 @@
    "categorie": "Boards & rapportage",
    "status": "ONBEKEND",
    "bewijs": "",
+   "kort": "",
    "sinds": "",
    "bevestigd": true,
    "geldt_voor": [
@@ -8116,6 +8492,7 @@
    "categorie": "Accounts & toegang",
    "status": "ONBEKEND",
    "bewijs": "",
+   "kort": "",
    "sinds": "",
    "bevestigd": false,
    "geldt_voor": [
@@ -8135,6 +8512,7 @@
    "categorie": "Boards & rapportage",
    "status": "ONBEKEND",
    "bewijs": "",
+   "kort": "",
    "sinds": "",
    "bevestigd": false,
    "geldt_voor": [
@@ -8154,6 +8532,7 @@
    "categorie": "Governance & rollen",
    "status": "ONBEKEND",
    "bewijs": "",
+   "kort": "",
    "sinds": "",
    "bevestigd": false,
    "geldt_voor": [
@@ -8173,6 +8552,7 @@
    "categorie": "Boards & rapportage",
    "status": "ONBEKEND",
    "bewijs": "",
+   "kort": "",
    "sinds": "",
    "bevestigd": false,
    "geldt_voor": [
@@ -8192,6 +8572,7 @@
    "categorie": "Boards & rapportage",
    "status": "ONBEKEND",
    "bewijs": "",
+   "kort": "",
    "sinds": "",
    "bevestigd": false,
    "geldt_voor": [
@@ -8211,6 +8592,7 @@
    "categorie": "Boards & rapportage",
    "status": "ONBEKEND",
    "bewijs": "",
+   "kort": "",
    "sinds": "",
    "bevestigd": false,
    "geldt_voor": [
@@ -8220,6 +8602,26 @@
    "laatste24": true,
    "herhaald": [],
    "laatste_ts": "2026-09-27T07:10:22"
+  },
+  {
+   "id": "OB-0495",
+   "ts": "2026-09-27T07:41:21",
+   "datum": "2026-09-27 07:41",
+   "strekking": "Nachtronde-protocol: meet queue/outbox/PR's/worker/director-status; zet timeout-pakketten terug op WACHTEND via wachtrij-zet.py; append statusupdate naar NACHTLOG-2026-09-27.md; chat output slechts drie regels; verbied login/merge/integratie/deploy zonder goedkeuring.",
+   "soort": "MACHINE",
+   "categorie": "Boards & rapportage",
+   "status": "ONBEKEND",
+   "bewijs": "",
+   "kort": "",
+   "sinds": "",
+   "bevestigd": false,
+   "geldt_voor": [
+    "*"
+   ],
+   "vervallen_reden": "",
+   "laatste24": true,
+   "herhaald": [],
+   "laatste_ts": "2026-09-27T07:41:21"
   }
  ]
 }
