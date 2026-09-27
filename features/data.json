@@ -1,10 +1,10 @@
 {
  "schema": "FEATURELOG_V1",
- "gegenereerd_op": "2026-09-27T10:19:15+02:00",
+ "gegenereerd_op": "2026-09-27T10:24:17+02:00",
  "bron": {
-  "besluiten": 503,
-  "kaarten": 425,
-  "bord": 198,
+  "besluiten": 505,
+  "kaarten": 427,
+  "bord": 200,
   "rest": 57,
   "machine": 169,
   "weggelaten_privacy": 0
@@ -34,13 +34,12 @@
   "Overig"
  ],
  "per_status": {
-  "GELDEND": 114,
-  "GEBOUWD_EN_WERKEND": 23,
-  "PENDING": 19,
+  "GELDEND": 113,
+  "GEBOUWD_EN_WERKEND": 24,
+  "PENDING": 18,
   "VERVALLEN": 5,
-  "UITGEVOERD": 7,
-  "IN_BOUW": 27,
-  "ONBEKEND": 2,
+  "UITGEVOERD": 8,
+  "IN_BOUW": 31,
   "WACHT_OP_RICHARD": 1
  },
  "per_categorie": {
@@ -62,8 +61,8 @@
    "IN_BOUW": 7
   },
   "Governance & rollen": {
-   "GELDEND": 24,
-   "totaal": 33,
+   "GELDEND": 23,
+   "totaal": 32,
    "VERVALLEN": 2,
    "features": 7,
    "PENDING": 4,
@@ -87,11 +86,10 @@
   },
   "Boards & rapportage": {
    "VERVALLEN": 2,
-   "totaal": 29,
-   "GELDEND": 10,
-   "GEBOUWD_EN_WERKEND": 11,
+   "totaal": 31,
+   "GELDEND": 12,
+   "GEBOUWD_EN_WERKEND": 12,
    "features": 14,
-   "ONBEKEND": 1,
    "IN_BOUW": 4,
    "UITGEVOERD": 1
   },
@@ -102,13 +100,13 @@
    "features": 1
   },
   "Content-pijplijn": {
-   "IN_BOUW": 1,
-   "totaal": 33,
+   "IN_BOUW": 5,
+   "totaal": 34,
    "features": 10,
-   "PENDING": 7,
-   "ONBEKEND": 1,
-   "GELDEND": 22,
+   "PENDING": 6,
+   "GELDEND": 20,
    "GEBOUWD_EN_WERKEND": 1,
+   "UITGEVOERD": 1,
    "WACHT_OP_RICHARD": 1
   },
   "Beveiliging & geheimen": {
@@ -132,6 +130,44 @@
   }
  },
  "wacht_op_richard": [
+  {
+   "id": "OB-0130",
+   "ts": "2026-09-25T21:05:58",
+   "datum": "2026-09-25 21:05",
+   "strekking": "Voeg podcast- en YouTube-abonnementen als structurele contentbron toe met gedefinieerde workflow: downloaden > transcriptie & bekijken > vast format (onderwerpen + beschrijvingen) > online verdieping > terugvoeren als nieuwe items.",
+   "soort": "REGEL",
+   "categorie": "Content-pijplijn",
+   "status": "IN_BOUW",
+   "bewijs": "PR #137 abonnementen (draft, tests groen, Astra GO 26-09); 9/16 podcasts en YouTube nog op oude route",
+   "kort": "Podcast- en YouTube-abonnementen als bronsoort: PR #137 wacht op merge",
+   "wacht_op": "Richard",
+   "sinds": "2026-09-27",
+   "bevestigd": true,
+   "geldt_voor": [
+    "*"
+   ],
+   "vervallen_reden": "",
+   "laatste24": false,
+   "herhaald": [],
+   "laatste_ts": "2026-09-25T21:05:58",
+   "bron": "content-pijplijn",
+   "kanaal": "pijplijn",
+   "fase": "",
+   "tijdlijn": {
+    "gevraagd": "2026-09-25 21:05"
+   },
+   "doorlooptijd_u": "",
+   "blokkade": "Richard",
+   "rollen": {
+    "bouwer": "",
+    "toetser": "",
+    "stem": ""
+   },
+   "rolschending": [],
+   "bewijs_links": [],
+   "commits": [],
+   "teruggedraaid_door": ""
+  },
   {
    "id": "OB-0200",
    "ts": "2026-09-26T08:19:31",
@@ -388,7 +424,7 @@
  ],
  "bewijs_stats": {
   "met_bewijsspoor": 24,
-  "zonder": 401,
+  "zonder": 403,
   "rolschendingen": 0,
   "pakketten": 280
  },
@@ -1767,10 +1803,10 @@
    "soort": "FEATURE",
    "categorie": "Content-pijplijn",
    "status": "IN_BOUW",
-   "bewijs": "trend-pipeline PR #136/#137 groen en gestemd; merge wacht op Richard",
-   "kort": "Complete content-pijplijn in vier stappen bouwen (input, verwerking, keuze, publicatie)",
-   "wacht_op": "",
-   "sinds": "2026-09-26",
+   "bewijs": "bouwstenen bestaan (5 connectoren 201 tests, conceptpreview 46, weekstapel 24); nog geen kaart door alle vier fasen; zie CONTENT-PIJPLIJN-FASECHECKLIST-2026-09-27.md",
+   "kort": "Vier-fasen-pijplijn: gebouwd in delen, nog niet als keten bewezen",
+   "wacht_op": "venster",
+   "sinds": "2026-09-27",
    "bevestigd": true,
    "geldt_voor": [
     "*"
@@ -1788,7 +1824,7 @@
     "gebouwd": "2026-09-26 21:56"
    },
    "doorlooptijd_u": 34.7,
-   "blokkade": "geen",
+   "blokkade": "venster",
    "rollen": {
     "bouwer": "CLAUDE1",
     "toetser": "CPT1",
@@ -1901,11 +1937,11 @@
    "strekking": "Apply media-desk-nu's SWIPE concept styling to scan processing and display; extend or refine the visual/interaction approach where possible.",
    "soort": "FEATURE",
    "categorie": "Content-pijplijn",
-   "status": "ONBEKEND",
-   "bewijs": "",
-   "kort": "Swipe-stijl van media-desk toepassen op de scanverwerking",
+   "status": "IN_BOUW",
+   "bewijs": "Kaartenbak v8 (swipe) bestaat als pagina; besluiten alleen in de browser",
+   "kort": "Swipe-stijl Kaartenbak: gebouwd, keuzes nog niet opgeslagen",
    "wacht_op": "",
-   "sinds": "",
+   "sinds": "2026-09-27",
    "bevestigd": true,
    "geldt_voor": [
     "*"
@@ -1978,10 +2014,10 @@
    "soort": "FEATURE",
    "categorie": "Content-pijplijn",
    "status": "PENDING",
-   "bewijs": "content-desk: alleen opdrachtdocument admin/OPDRACHTEN-content-desk-2026-09-22.md gevonden; geen app-map (27-09)",
-   "kort": "Na het kiezen van content een wachtrij voor bulkproductie (keynotes, social, long-reads)",
+   "bewijs": "connectoren maken briefings per kaart; productiewachtrij alleen ontwerp (bouwlijst M2); niets vult een wachtrij vanuit een kaart",
+   "kort": "Batch-wachtrij na swipe: nog niet gebouwd",
    "wacht_op": "",
-   "sinds": "",
+   "sinds": "2026-09-27",
    "bevestigd": true,
    "geldt_voor": [
     "*"
@@ -2131,11 +2167,11 @@
    "strekking": "SOURCE-INTELLIGENCE opzetten als apart project met uitgebreide directe bronnen: YouTube-kanalen, Twitter-handles, Medium, Reddit, LinkedIn-publicaties, betaalde publicaties (NY Times e.a.), en grote Europese dagbladen.",
    "soort": "FEATURE",
    "categorie": "Content-pijplijn",
-   "status": "PENDING",
-   "bewijs": "geen project source-intelligence gevonden; op bouwlijst content-pijplijn",
-   "kort": "Apart project voor brononderzoek (YouTube, X, Medium, Reddit, LinkedIn, betaalde pers)",
+   "status": "IN_BOUW",
+   "bewijs": "bronnen.yaml 285 bronnen (x 38, reddit 17, youtube 27, podcast 16); Medium/LinkedIn 0 → CP_05",
+   "kort": "Source-intelligence: register groeit; Medium, LinkedIn en X-aanvullingen open",
    "wacht_op": "",
-   "sinds": "2026-09-25",
+   "sinds": "2026-09-27",
    "bevestigd": true,
    "geldt_voor": [
     "content-desk-now"
@@ -2549,11 +2585,11 @@
    "strekking": "Pipeline-card moet planning tonen voor alle 8 accounts (dit weekend weer volop actief; momenteel 5)",
    "soort": "FEATURE",
    "categorie": "Boards & rapportage",
-   "status": "ONBEKEND",
-   "bewijs": "",
-   "kort": "Pijplijnkaart toont de planning van alle acht accounts",
+   "status": "GEBOUWD_EN_WERKEND",
+   "bewijs": "regiekamer/pijplijn/pijplijnkaart.html toont planning en accountstand (gemeten 25-09; statisch)",
+   "kort": "Pijplijnkaart met planning voor de accounts staat op het bord",
    "wacht_op": "",
-   "sinds": "",
+   "sinds": "2026-09-27",
    "bevestigd": true,
    "geldt_voor": [
     "*"
@@ -2564,9 +2600,10 @@
    "laatste_ts": "2026-09-25T12:52:58",
    "bron": "content-pijplijn",
    "kanaal": "content-desk-now",
-   "fase": "",
+   "fase": "live",
    "tijdlijn": {
-    "gevraagd": "2026-09-25 12:52"
+    "gevraagd": "2026-09-25 12:52",
+    "live": "2026-09-27"
    },
    "doorlooptijd_u": "",
    "blokkade": "geen",
@@ -3836,11 +3873,11 @@
    "strekking": "Claude curatort vault-notities voor Richards keynotes, selecteert max 2 dossiers per notitie op basis van concrete, nieuwe inzichten relevant voor keynote-publiek.",
    "soort": "REGEL",
    "categorie": "Content-pijplijn",
-   "status": "GELDEND",
-   "bewijs": "",
-   "kort": "",
+   "status": "IN_BOUW",
+   "bewijs": "dossier_runner.py in main (#134 25-09), proefrun W39 in kopie; echte run op de Vault nog niet",
+   "kort": "Dossiers wekelijks bijwerken: proefrun gedaan, echte run open",
    "wacht_op": "",
-   "sinds": "",
+   "sinds": "2026-09-27",
    "bevestigd": true,
    "geldt_voor": [
     "*"
@@ -3874,11 +3911,11 @@
    "strekking": "Voeg podcast- en YouTube-abonnementen als structurele contentbron toe met gedefinieerde workflow: downloaden > transcriptie & bekijken > vast format (onderwerpen + beschrijvingen) > online verdieping > terugvoeren als nieuwe items.",
    "soort": "REGEL",
    "categorie": "Content-pijplijn",
-   "status": "GELDEND",
-   "bewijs": "",
-   "kort": "",
-   "wacht_op": "",
-   "sinds": "",
+   "status": "IN_BOUW",
+   "bewijs": "PR #137 abonnementen (draft, tests groen, Astra GO 26-09); 9/16 podcasts en YouTube nog op oude route",
+   "kort": "Podcast- en YouTube-abonnementen als bronsoort: PR #137 wacht op merge",
+   "wacht_op": "Richard",
+   "sinds": "2026-09-27",
    "bevestigd": true,
    "geldt_voor": [
     "*"
@@ -3894,7 +3931,7 @@
     "gevraagd": "2026-09-25 21:05"
    },
    "doorlooptijd_u": "",
-   "blokkade": "geen",
+   "blokkade": "Richard",
    "rollen": {
     "bouwer": "",
     "toetser": "",
@@ -5999,12 +6036,12 @@
    "datum": "2026-09-26 12:13",
    "strekking": "Claude voert taken uit in deze prioriteitsvolgorde: (1) modelaanroep afmaken, (2) conceptpreview, (3) abonnementen. Claude mag zelfstandig en onbeperkt doorwerken terwijl Richard afwezig is.",
    "soort": "REGEL",
-   "categorie": "Governance & rollen",
-   "status": "GELDEND",
-   "bewijs": "",
-   "kort": "",
+   "categorie": "Content-pijplijn",
+   "status": "UITGEVOERD",
+   "bewijs": "prioriteitsvolgorde 26-09 toegepast in het content-desk-kanaal (Astra GO abonnementen/reconstructie 26-09)",
+   "kort": "Werkvolgorde modelaanroep → conceptpreview → abonnementen: uitgevoerd op 26-09",
    "wacht_op": "",
-   "sinds": "",
+   "sinds": "2026-09-27",
    "bevestigd": true,
    "geldt_voor": [
     "*"
@@ -6015,9 +6052,10 @@
    "laatste_ts": "2026-09-26T12:13:32",
    "bron": "content-pijplijn",
    "kanaal": "pijplijn",
-   "fase": "",
+   "fase": "live",
    "tijdlijn": {
-    "gevraagd": "2026-09-26 12:13"
+    "gevraagd": "2026-09-26 12:13",
+    "live": "2026-09-27"
    },
    "doorlooptijd_u": "",
    "blokkade": "geen",
@@ -9398,6 +9436,82 @@
    "teruggedraaid_door": ""
   },
   {
+   "id": "OB-0499",
+   "ts": "2026-09-27T10:19:23",
+   "datum": "2026-09-27 10:19",
+   "strekking": "Alle getypte features en verbeteringen moeten gelogd en per categorie georganiseerd worden, onderverdeeld in 'gebouwd/werkend' en 'pending', en op aparte boards met tabs gepresenteerd.",
+   "soort": "REGEL",
+   "categorie": "Boards & rapportage",
+   "status": "GELDEND",
+   "bewijs": "",
+   "kort": "",
+   "wacht_op": "",
+   "sinds": "",
+   "bevestigd": true,
+   "geldt_voor": [
+    "*"
+   ],
+   "vervallen_reden": "",
+   "laatste24": true,
+   "herhaald": [],
+   "laatste_ts": "2026-09-27T10:19:23",
+   "bron": "admin",
+   "kanaal": "admin",
+   "fase": "",
+   "tijdlijn": {
+    "gevraagd": "2026-09-27 10:19"
+   },
+   "doorlooptijd_u": "",
+   "blokkade": "geen",
+   "rollen": {
+    "bouwer": "",
+    "toetser": "",
+    "stem": ""
+   },
+   "rolschending": [],
+   "bewijs_links": [],
+   "commits": [],
+   "teruggedraaid_door": ""
+  },
+  {
+   "id": "OB-0500",
+   "ts": "2026-09-27T10:19:23",
+   "datum": "2026-09-27 10:19",
+   "strekking": "Ochtendoverzichten moeten vijf onderdelen bevatten: (1) afgeronde deliverables per project, (2) lopende activiteiten, (3) mislukkingen met oorzaken, (4) genummerde besluiten/acties voor Richard, (5) planning voor de dag. Deze in gewone taal schrijven en naar ~/Developer/admin/OVERZICHT-OCHTEND-YYYY-MM-DD.md kopieën.",
+   "soort": "REGEL",
+   "categorie": "Boards & rapportage",
+   "status": "GELDEND",
+   "bewijs": "",
+   "kort": "",
+   "wacht_op": "",
+   "sinds": "",
+   "bevestigd": true,
+   "geldt_voor": [
+    "*"
+   ],
+   "vervallen_reden": "",
+   "laatste24": true,
+   "herhaald": [],
+   "laatste_ts": "2026-09-27T10:19:23",
+   "bron": "admin",
+   "kanaal": "admin",
+   "fase": "",
+   "tijdlijn": {
+    "gevraagd": "2026-09-27 10:19"
+   },
+   "doorlooptijd_u": "",
+   "blokkade": "geen",
+   "rollen": {
+    "bouwer": "",
+    "toetser": "",
+    "stem": ""
+   },
+   "rolschending": [],
+   "bewijs_links": [],
+   "commits": [],
+   "teruggedraaid_door": ""
+  },
+  {
    "id": "OW-02325",
    "ts": "2026-09-27T07:29:23",
    "datum": "2026-09-27 07:29",
@@ -9997,7 +10111,7 @@
     "*"
    ],
    "vervallen_reden": "",
-   "laatste24": true,
+   "laatste24": false,
    "herhaald": [],
    "laatste_ts": "2026-09-26T10:24:01",
    "bron": "overig",
@@ -13995,11 +14109,11 @@
    "strekking": "Maintain 9 knowledge dossiers (AI models & technology, AI agents & automation, AI ethics & governance, AI & work future, leadership, organizational design, cybercrime & security, energy & infrastructure, economics & geopolitics) as standing context for Richard's keynote and futurist work.",
    "soort": "MACHINE",
    "categorie": "Content-pijplijn",
-   "status": "ONBEKEND",
-   "bewijs": "",
-   "kort": "",
+   "status": "IN_BOUW",
+   "bewijs": "9 themadossiers in de Vault; wekelijkse runner gerepareerd 25-09; echte run open",
+   "kort": "Negen kennisdossiers: bestaan, weekritme nog niet live",
    "wacht_op": "",
-   "sinds": "",
+   "sinds": "2026-09-27",
    "bevestigd": false,
    "geldt_voor": [
     "*"
