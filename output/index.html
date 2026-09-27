@@ -1,4 +1,4 @@
-<!doctype html><html lang="nl"><head><meta charset="utf-8"><title>Regiekamer</title>
+<!doctype html><html lang="nl"><head><meta charset="utf-8"><title>Output</title>
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <style>
 :root{--bg:#f6f5f1;--ink:#1c1c1c;--muted:#6b675f;--line:#d9d6cf;--tab:#fff;--accent:#2f5d50}
@@ -16,18 +16,19 @@ nav a:focus-visible,.other:focus-visible{outline:2px solid var(--accent);outline
 .other{padding:7px 12px;border:1px dashed var(--line);border-radius:999px;color:var(--accent);text-decoration:none;font-size:13px;font-weight:600}
 iframe{flex:1;border:0;width:100%;background:#fff}
 </style></head><body>
-<header><h1>Regiekamer<small>cijfers en voortgang</small></h1><nav id="tabs"></nav>
-<span class="meta"><a class="other" href="output/">Output-bord →</a><span id="meta"></span></span></header>
+<header><h1>Output<small>uitwerking van applicaties</small></h1><nav id="tabs"></nav>
+<span class="meta"><a class="other" href="../">← Regiekamer</a><span id="meta"></span></span></header>
 <iframe id="frame" title="Bordinhoud"></iframe>
 <script>
 const TABS=[
- ["peilbord","Peilbord","peilbord-lanen/index.html"],
- ["features","Features","features/index.html"]];
+ ["pijplijnkaart","Pijplijnkaart","../pijplijn/pijplijnkaart.html"],
+ ["kaartenbak","Kaartenbak","../pijplijn/kaartenbak.html"],
+ ["conceptpreview","Conceptpreview","../pijplijn/conceptpreview.html"]];
 const nav=document.getElementById("tabs"),frame=document.getElementById("frame"),meta=document.getElementById("meta");
 for(const [id,label,href] of TABS){const a=document.createElement("a");a.href="#"+id;a.textContent=label;a.dataset.id=id;nav.appendChild(a);}
-function show(){const id=(location.hash||"#peilbord").slice(1);const t=TABS.find(x=>x[0]===id)||TABS[0];
+function show(){const id=(location.hash||"#pijplijnkaart").slice(1);const t=TABS.find(x=>x[0]===id)||TABS[0];
  for(const a of nav.children){if(a.dataset.id===t[0])a.setAttribute("aria-current","page");else a.removeAttribute("aria-current");}
- frame.src=t[2]+"?"+Date.now();document.title=t[1]+" · Regiekamer";
- meta.textContent="uitwerking van applicaties staat op het Output-bord · archief/";}
+ frame.src=t[2]+"?"+Date.now();document.title=t[1]+" · Output";
+ meta.textContent="content-pijplijn (trend-pipeline) · cijfers en voortgang staan op de Regiekamer";}
 addEventListener("hashchange",show);show();
 </script></body></html>
