@@ -1,10 +1,10 @@
 {
  "schema": "FEATURELOG_V1",
- "gegenereerd_op": "2026-09-27T13:16:20+02:00",
+ "gegenereerd_op": "2026-09-27T13:21:23+02:00",
  "bron": {
-  "besluiten": 523,
-  "kaarten": 443,
-  "bord": 210,
+  "besluiten": 527,
+  "kaarten": 446,
+  "bord": 213,
   "rest": 57,
   "machine": 175,
   "weggelaten_privacy": 0
@@ -34,23 +34,25 @@
   "Overig"
  ],
  "per_status": {
-  "GELDEND": 123,
+  "GELDEND": 124,
   "GEBOUWD_EN_WERKEND": 24,
   "PENDING": 18,
   "VERVALLEN": 5,
   "UITGEVOERD": 8,
   "IN_BOUW": 31,
-  "WACHT_OP_RICHARD": 1
+  "WACHT_OP_RICHARD": 1,
+  "ONBEKEND": 2
  },
  "per_categorie": {
   "Accounts & toegang": {
    "GELDEND": 15,
-   "totaal": 20,
+   "totaal": 21,
    "GEBOUWD_EN_WERKEND": 1,
-   "features": 3,
+   "features": 4,
    "IN_BOUW": 2,
    "UITGEVOERD": 1,
-   "PENDING": 1
+   "PENDING": 1,
+   "ONBEKEND": 1
   },
   "Burn-in & lanes": {
    "GEBOUWD_EN_WERKEND": 2,
@@ -61,8 +63,8 @@
    "IN_BOUW": 7
   },
   "Governance & rollen": {
-   "GELDEND": 27,
-   "totaal": 36,
+   "GELDEND": 28,
+   "totaal": 37,
    "VERVALLEN": 2,
    "features": 7,
    "PENDING": 4,
@@ -86,12 +88,13 @@
   },
   "Boards & rapportage": {
    "VERVALLEN": 2,
-   "totaal": 34,
+   "totaal": 35,
    "GELDEND": 15,
    "GEBOUWD_EN_WERKEND": 12,
-   "features": 14,
+   "features": 15,
    "IN_BOUW": 4,
-   "UITGEVOERD": 1
+   "UITGEVOERD": 1,
+   "ONBEKEND": 1
   },
   "Geheugen & ownerwoord": {
    "IN_BOUW": 1,
@@ -314,6 +317,8 @@
    "OB-0410",
    "OB-0428",
    "OB-0433",
+   "OB-0521",
+   "OB-0522",
    "OW-02325",
    "OW-02361",
    "OW-02362",
@@ -422,7 +427,7 @@
  ],
  "bewijs_stats": {
   "met_bewijsspoor": 24,
-  "zonder": 419,
+  "zonder": 422,
   "rolschendingen": 0,
   "pakketten": 303
  },
@@ -10017,6 +10022,122 @@
    "teruggedraaid_door": ""
   },
   {
+   "id": "OB-0519",
+   "ts": "2026-09-27T13:19:34",
+   "datum": "2026-09-27 13:19",
+   "strekking": "Voer controlerende TOEZICHT-ronde uit: lees ADMIN-bestanden in outbox als issuerberichten, ververs peilbord, voer ronde.py --verzoen uit, lees director-heartbeat en nieuwe orders/receipts in, rapporteer alleen bij verandering.",
+   "soort": "REGEL",
+   "categorie": "Governance & rollen",
+   "status": "GELDEND",
+   "bewijs": "",
+   "kort": "",
+   "wacht_op": "",
+   "sinds": "",
+   "bevestigd": false,
+   "geldt_voor": [
+    "*"
+   ],
+   "vervallen_reden": "",
+   "laatste24": true,
+   "herhaald": [
+    "OB-0520"
+   ],
+   "laatste_ts": "2026-09-27T13:19:34",
+   "bron": "overig",
+   "kanaal": "stack-director-recovery-048d59df",
+   "fase": "",
+   "tijdlijn": {
+    "gevraagd": "2026-09-27 13:19"
+   },
+   "doorlooptijd_u": "",
+   "blokkade": "geen",
+   "rollen": {
+    "bouwer": "",
+    "toetser": "",
+    "stem": ""
+   },
+   "rolschending": [],
+   "bewijs_links": [],
+   "commits": [],
+   "teruggedraaid_door": ""
+  },
+  {
+   "id": "OB-0521",
+   "ts": "2026-09-27T13:19:34",
+   "datum": "2026-09-27 13:19",
+   "strekking": "Voeg aan bronnen.yaml toe: 12 X-accounts, 3 publicaties (plus WIRED Security), 3 rss.app-feeds; behoud stijl, betaalde pers krijgt alleen kop/inhoud; draai tests, maak PR per bron.",
+   "soort": "FEATURE",
+   "categorie": "Accounts & toegang",
+   "status": "ONBEKEND",
+   "bewijs": "",
+   "kort": "",
+   "wacht_op": "",
+   "sinds": "",
+   "bevestigd": true,
+   "geldt_voor": [
+    "content-desk-now"
+   ],
+   "vervallen_reden": "",
+   "laatste24": true,
+   "herhaald": [],
+   "laatste_ts": "2026-09-27T13:19:34",
+   "bron": "content-pijplijn",
+   "kanaal": "content-desk-now",
+   "fase": "",
+   "tijdlijn": {
+    "gevraagd": "2026-09-27 13:19"
+   },
+   "doorlooptijd_u": "",
+   "blokkade": "geen",
+   "rollen": {
+    "bouwer": "",
+    "toetser": "",
+    "stem": ""
+   },
+   "rolschending": [],
+   "bewijs_links": [],
+   "commits": [],
+   "teruggedraaid_door": ""
+  },
+  {
+   "id": "OB-0522",
+   "ts": "2026-09-27T13:19:34",
+   "datum": "2026-09-27 13:19",
+   "strekking": "Voer kwartierupdate uit: meet queue/outbox/lanes/worker-status, onderneem eigen vervolgacties, rapporteer per project in gewone taal met NU/KLAAR/VOLGENDE/BLOKKADE; voeg cijfers toe; geen login-/merge-acties.",
+   "soort": "FEATURE",
+   "categorie": "Boards & rapportage",
+   "status": "ONBEKEND",
+   "bewijs": "",
+   "kort": "",
+   "wacht_op": "",
+   "sinds": "",
+   "bevestigd": false,
+   "geldt_voor": [
+    "*"
+   ],
+   "vervallen_reden": "",
+   "laatste24": true,
+   "herhaald": [],
+   "laatste_ts": "2026-09-27T13:19:34",
+   "bron": "admin",
+   "kanaal": "admin",
+   "fase": "",
+   "tijdlijn": {
+    "gevraagd": "2026-09-27 13:19"
+   },
+   "doorlooptijd_u": "",
+   "blokkade": "geen",
+   "rollen": {
+    "bouwer": "",
+    "toetser": "",
+    "stem": ""
+   },
+   "rolschending": [],
+   "bewijs_links": [],
+   "commits": [],
+   "teruggedraaid_door": ""
+  },
+  {
    "id": "OW-02325",
    "ts": "2026-09-27T07:29:23",
    "datum": "2026-09-27 07:29",
@@ -15286,7 +15407,7 @@
     "*"
    ],
    "vervallen_reden": "",
-   "laatste24": true,
+   "laatste24": false,
    "herhaald": [],
    "laatste_ts": "2026-09-26T13:19:04",
    "bron": "overig",
@@ -15324,7 +15445,7 @@
     "*"
    ],
    "vervallen_reden": "",
-   "laatste24": true,
+   "laatste24": false,
    "herhaald": [],
    "laatste_ts": "2026-09-26T13:19:04",
    "bron": "overig",
