@@ -1,12 +1,12 @@
 {
  "schema": "FEATURELOG_V1",
- "gegenereerd_op": "2026-09-28T07:57:57+02:00",
+ "gegenereerd_op": "2026-09-28T08:02:59+02:00",
  "bron": {
-  "besluiten": 574,
-  "kaarten": 475,
-  "bord": 232,
+  "besluiten": 578,
+  "kaarten": 478,
+  "bord": 234,
   "rest": 57,
-  "machine": 185,
+  "machine": 186,
   "weggelaten_privacy": 0
  },
  "status_labels": {
@@ -34,7 +34,7 @@
   "Overig"
  ],
  "per_status": {
-  "GELDEND": 141,
+  "GELDEND": 143,
   "GEBOUWD_EN_WERKEND": 24,
   "PENDING": 18,
   "VERVALLEN": 5,
@@ -64,8 +64,8 @@
    "ONBEKEND": 1
   },
   "Governance & rollen": {
-   "GELDEND": 31,
-   "totaal": 40,
+   "GELDEND": 32,
+   "totaal": 41,
    "VERVALLEN": 2,
    "features": 7,
    "PENDING": 4,
@@ -115,8 +115,8 @@
    "WACHT_OP_RICHARD": 1
   },
   "Beveiliging & geheimen": {
-   "GELDEND": 4,
-   "totaal": 6,
+   "GELDEND": 5,
+   "totaal": 7,
    "GEBOUWD_EN_WERKEND": 2,
    "features": 1
   },
@@ -392,7 +392,7 @@
  ],
  "bewijs_stats": {
   "met_bewijsspoor": 24,
-  "zonder": 451,
+  "zonder": 454,
   "rolschendingen": 0,
   "pakketten": 397
  },
@@ -10944,6 +10944,82 @@
    "teruggedraaid_door": ""
   },
   {
+   "id": "OB-0571",
+   "ts": "2026-09-28T08:01:27",
+   "datum": "2026-09-28 08:01",
+   "strekking": "CLAUDE voert elk kwartier metingen uit (queue, outbox, lanes, worker-hartslag, director-heartbeat, CLAUDE2) en rapporteert via chat met structuur per project (NU/KLAAR/VOLGENDE/BLOKKADE), gevolgd door VOOR RICHARD-section en CIJFERS. Vervolgacties zelfstandig ondernomen (KLAAR_VOOR_ADMIN_STATUSVRIJGAVE → WACHTEND). Geen login, merge, live integratie of deploy buiten regels.",
+   "soort": "REGEL",
+   "categorie": "Governance & rollen",
+   "status": "GELDEND",
+   "bewijs": "",
+   "kort": "",
+   "wacht_op": "",
+   "sinds": "",
+   "bevestigd": true,
+   "geldt_voor": [
+    "*"
+   ],
+   "vervallen_reden": "",
+   "laatste24": true,
+   "herhaald": [],
+   "laatste_ts": "2026-09-28T08:01:27",
+   "bron": "admin",
+   "kanaal": "admin",
+   "fase": "",
+   "tijdlijn": {
+    "gevraagd": "2026-09-28 08:01"
+   },
+   "doorlooptijd_u": "",
+   "blokkade": "geen",
+   "rollen": {
+    "bouwer": "",
+    "toetser": "",
+    "stem": ""
+   },
+   "rolschending": [],
+   "bewijs_links": [],
+   "commits": [],
+   "teruggedraaid_door": ""
+  },
+  {
+   "id": "OB-0573",
+   "ts": "2026-09-28T08:01:27",
+   "datum": "2026-09-28 08:01",
+   "strekking": "CLAUDE neemt zelfstandig besluiten over merges naar production, OpenAI-sleutel management, en alle systeemkoppelingen.",
+   "soort": "REGEL",
+   "categorie": "Beveiliging & geheimen",
+   "status": "GELDEND",
+   "bewijs": "",
+   "kort": "",
+   "wacht_op": "",
+   "sinds": "",
+   "bevestigd": false,
+   "geldt_voor": [
+    "*"
+   ],
+   "vervallen_reden": "",
+   "laatste24": true,
+   "herhaald": [],
+   "laatste_ts": "2026-09-28T08:01:27",
+   "bron": "admin",
+   "kanaal": "admin",
+   "fase": "",
+   "tijdlijn": {
+    "gevraagd": "2026-09-28 08:01"
+   },
+   "doorlooptijd_u": "",
+   "blokkade": "geen",
+   "rollen": {
+    "bouwer": "",
+    "toetser": "",
+    "stem": ""
+   },
+   "rolschending": [],
+   "bewijs_links": [],
+   "commits": [],
+   "teruggedraaid_door": ""
+  },
+  {
    "id": "OW-02325",
    "ts": "2026-09-27T07:29:23",
    "datum": "2026-09-27 07:29",
@@ -11002,7 +11078,7 @@
     "*"
    ],
    "vervallen_reden": "",
-   "laatste24": true,
+   "laatste24": false,
    "herhaald": [],
    "laatste_ts": "2026-09-27T08:00:28",
    "bron": "admin",
@@ -11040,7 +11116,7 @@
     "*"
    ],
    "vervallen_reden": "",
-   "laatste24": true,
+   "laatste24": false,
    "herhaald": [],
    "laatste_ts": "2026-09-27T08:02:02",
    "bron": "admin",
@@ -20468,6 +20544,46 @@
    "fase": "",
    "tijdlijn": {
     "gevraagd": "2026-09-28 07:45"
+   },
+   "doorlooptijd_u": "",
+   "blokkade": "geen",
+   "rollen": {
+    "bouwer": "",
+    "toetser": "",
+    "stem": ""
+   },
+   "rolschending": [],
+   "bewijs_links": [],
+   "commits": [],
+   "teruggedraaid_door": ""
+  },
+  {
+   "id": "OB-0570",
+   "ts": "2026-09-28T08:01:27",
+   "datum": "2026-09-28 08:01",
+   "strekking": "CLAUDE voert automatisch toezichtrondes uit: leest admin-bestanden uit outbox, verwerkt als issuerberichten, vernieuwt peilbord, reconcilieert via ronde.py, leest director-heartbeat en orders in, schrijft rapport alleen bij wijzigingen, kan niet zelf stoppen.",
+   "soort": "MACHINE",
+   "categorie": "Governance & rollen",
+   "status": "ONBEKEND",
+   "bewijs": "",
+   "kort": "",
+   "wacht_op": "",
+   "sinds": "",
+   "bevestigd": false,
+   "geldt_voor": [
+    "*"
+   ],
+   "vervallen_reden": "",
+   "laatste24": true,
+   "herhaald": [
+    "OB-0572"
+   ],
+   "laatste_ts": "2026-09-28T08:01:27",
+   "bron": "overig",
+   "kanaal": "stack-director-recovery-048d59df",
+   "fase": "",
+   "tijdlijn": {
+    "gevraagd": "2026-09-28 08:01"
    },
    "doorlooptijd_u": "",
    "blokkade": "geen",
