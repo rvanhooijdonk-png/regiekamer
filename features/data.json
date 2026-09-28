@@ -1,12 +1,12 @@
 {
  "schema": "FEATURELOG_V1",
- "gegenereerd_op": "2026-09-28T06:16:59+02:00",
+ "gegenereerd_op": "2026-09-28T06:22:02+02:00",
  "bron": {
-  "besluiten": 559,
-  "kaarten": 465,
-  "bord": 226,
+  "besluiten": 562,
+  "kaarten": 467,
+  "bord": 227,
   "rest": 57,
-  "machine": 181,
+  "machine": 182,
   "weggelaten_privacy": 0
  },
  "status_labels": {
@@ -41,7 +41,7 @@
   "UITGEVOERD": 8,
   "IN_BOUW": 31,
   "WACHT_OP_RICHARD": 1,
-  "ONBEKEND": 2
+  "ONBEKEND": 3
  },
  "per_categorie": {
   "Accounts & toegang": {
@@ -56,11 +56,12 @@
   },
   "Burn-in & lanes": {
    "GEBOUWD_EN_WERKEND": 2,
-   "totaal": 34,
+   "totaal": 35,
    "PENDING": 3,
-   "features": 8,
+   "features": 9,
    "GELDEND": 22,
-   "IN_BOUW": 7
+   "IN_BOUW": 7,
+   "ONBEKEND": 1
   },
   "Governance & rollen": {
    "GELDEND": 30,
@@ -309,7 +310,9 @@
  ],
  "vandaag": {
   "datum": "2026-09-28",
-  "gevraagd": [],
+  "gevraagd": [
+   "OB-0555"
+  ],
   "geleverd": [],
   "geblokkeerd": [
    "OB-0313"
@@ -387,9 +390,9 @@
  ],
  "bewijs_stats": {
   "met_bewijsspoor": 24,
-  "zonder": 441,
+  "zonder": 443,
   "rolschendingen": 0,
-  "pakketten": 390
+  "pakketten": 391
  },
  "bord": [
   {
@@ -10711,6 +10714,44 @@
    "teruggedraaid_door": ""
   },
   {
+   "id": "OB-0555",
+   "ts": "2026-09-28T06:20:39",
+   "datum": "2026-09-28 06:20",
+   "strekking": "Controleronde loopt elke 15 minuten als verplichte opdracht: regenereer peilbord via peilbord-bouw.py (nooit handmatig patchen), voer ronde.py --verzoen uit, controleer director-heartbeat, lees nieuwe orders. Timestamps nooit handmatig typen. Stop niet zelf tussen rondes.",
+   "soort": "FEATURE",
+   "categorie": "Burn-in & lanes",
+   "status": "ONBEKEND",
+   "bewijs": "",
+   "kort": "",
+   "wacht_op": "",
+   "sinds": "",
+   "bevestigd": false,
+   "geldt_voor": [
+    "*"
+   ],
+   "vervallen_reden": "",
+   "laatste24": true,
+   "herhaald": [],
+   "laatste_ts": "2026-09-28T06:20:39",
+   "bron": "overig",
+   "kanaal": "stack-director-recovery-048d59df",
+   "fase": "",
+   "tijdlijn": {
+    "gevraagd": "2026-09-28 06:20"
+   },
+   "doorlooptijd_u": "",
+   "blokkade": "geen",
+   "rollen": {
+    "bouwer": "",
+    "toetser": "",
+    "stem": ""
+   },
+   "rolschending": [],
+   "bewijs_links": [],
+   "commits": [],
+   "teruggedraaid_door": ""
+  },
+  {
    "id": "OW-02325",
    "ts": "2026-09-27T07:29:23",
    "datum": "2026-09-27 07:29",
@@ -20075,6 +20116,46 @@
    "fase": "",
    "tijdlijn": {
     "gevraagd": "2026-09-28 06:03"
+   },
+   "doorlooptijd_u": "",
+   "blokkade": "geen",
+   "rollen": {
+    "bouwer": "",
+    "toetser": "",
+    "stem": ""
+   },
+   "rolschending": [],
+   "bewijs_links": [],
+   "commits": [],
+   "teruggedraaid_door": ""
+  },
+  {
+   "id": "OB-0556",
+   "ts": "2026-09-28T06:20:39",
+   "datum": "2026-09-28 06:20",
+   "strekking": "TOEZICHT controleronde: lees ADMIN_*-bestanden uit outbox als issuerberichten, refresh peilbord, voer ronde.py --verzoen uit, controleer director-heartbeat, lees orders en receipts, schrijf rapport naar CLAUDE2_AAN_ADMIN_RONDE_<timestamp>.md alleen bij verandering. Stop niet zelf.",
+   "soort": "MACHINE",
+   "categorie": "Governance & rollen",
+   "status": "ONBEKEND",
+   "bewijs": "",
+   "kort": "",
+   "wacht_op": "",
+   "sinds": "",
+   "bevestigd": false,
+   "geldt_voor": [
+    "*"
+   ],
+   "vervallen_reden": "",
+   "laatste24": true,
+   "herhaald": [
+    "OB-0557"
+   ],
+   "laatste_ts": "2026-09-28T06:20:39",
+   "bron": "overig",
+   "kanaal": "stack-director-recovery-048d59df",
+   "fase": "",
+   "tijdlijn": {
+    "gevraagd": "2026-09-28 06:20"
    },
    "doorlooptijd_u": "",
    "blokkade": "geen",
