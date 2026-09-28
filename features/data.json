@@ -1,12 +1,12 @@
 {
  "schema": "FEATURELOG_V1",
- "gegenereerd_op": "2026-09-28T14:32:41+02:00",
+ "gegenereerd_op": "2026-09-28T14:37:45+02:00",
  "bron": {
-  "besluiten": 659,
-  "kaarten": 533,
-  "bord": 261,
+  "besluiten": 664,
+  "kaarten": 538,
+  "bord": 265,
   "rest": 57,
-  "machine": 214,
+  "machine": 215,
   "weggelaten_privacy": 0
  },
  "status_labels": {
@@ -34,7 +34,7 @@
   "Overig"
  ],
  "per_status": {
-  "GELDEND": 167,
+  "GELDEND": 171,
   "GEBOUWD_EN_WERKEND": 24,
   "PENDING": 18,
   "VERVALLEN": 5,
@@ -56,16 +56,16 @@
   },
   "Burn-in & lanes": {
    "GEBOUWD_EN_WERKEND": 2,
-   "totaal": 37,
+   "totaal": 40,
    "PENDING": 3,
    "features": 10,
-   "GELDEND": 23,
+   "GELDEND": 26,
    "IN_BOUW": 7,
    "ONBEKEND": 2
   },
   "Governance & rollen": {
-   "GELDEND": 35,
-   "totaal": 44,
+   "GELDEND": 36,
+   "totaal": 45,
    "VERVALLEN": 2,
    "features": 7,
    "PENDING": 4,
@@ -397,7 +397,7 @@
  ],
  "bewijs_stats": {
   "met_bewijsspoor": 24,
-  "zonder": 509,
+  "zonder": 514,
   "rolschendingen": 0,
   "pakketten": 408
  },
@@ -12051,6 +12051,158 @@
    "teruggedraaid_door": ""
   },
   {
+   "id": "OB-0656",
+   "ts": "2026-09-28T14:37:45",
+   "datum": "2026-09-28 14:37",
+   "strekking": "Oogst en verifieer codestemmen van CPT3 en CLAUDE4; controleer correcte exceptieclassificatie en rapporteer aan director voor lokale integratiebesluit (geen cloudvrijgave).",
+   "soort": "REGEL",
+   "categorie": "Burn-in & lanes",
+   "status": "GELDEND",
+   "bewijs": "",
+   "kort": "",
+   "wacht_op": "",
+   "sinds": "",
+   "bevestigd": false,
+   "geldt_voor": [
+    "*"
+   ],
+   "vervallen_reden": "",
+   "laatste24": true,
+   "herhaald": [],
+   "laatste_ts": "2026-09-28T14:37:45",
+   "bron": "overig",
+   "kanaal": "stack-director-recovery-048d59df",
+   "fase": "",
+   "tijdlijn": {
+    "gevraagd": "2026-09-28 14:37"
+   },
+   "doorlooptijd_u": "",
+   "blokkade": "geen",
+   "rollen": {
+    "bouwer": "",
+    "toetser": "",
+    "stem": ""
+   },
+   "rolschending": [],
+   "bewijs_links": [],
+   "commits": [],
+   "teruggedraaid_door": ""
+  },
+  {
+   "id": "OB-0657",
+   "ts": "2026-09-28T14:37:45",
+   "datum": "2026-09-28 14:37",
+   "strekking": "Stel LANE_PROBE_TIJDGRENS_S op 180 seconden en DISPATCH_MAX_REVIEWS op 12; hiermee zijn timeout-fouten onder belasting opgelost.",
+   "soort": "REGEL",
+   "categorie": "Burn-in & lanes",
+   "status": "GELDEND",
+   "bewijs": "",
+   "kort": "",
+   "wacht_op": "",
+   "sinds": "",
+   "bevestigd": true,
+   "geldt_voor": [
+    "*"
+   ],
+   "vervallen_reden": "",
+   "laatste24": true,
+   "herhaald": [],
+   "laatste_ts": "2026-09-28T14:37:45",
+   "bron": "admin",
+   "kanaal": "admin",
+   "fase": "",
+   "tijdlijn": {
+    "gevraagd": "2026-09-28 14:37"
+   },
+   "doorlooptijd_u": "",
+   "blokkade": "geen",
+   "rollen": {
+    "bouwer": "",
+    "toetser": "",
+    "stem": ""
+   },
+   "rolschending": [],
+   "bewijs_links": [],
+   "commits": [],
+   "teruggedraaid_door": ""
+  },
+  {
+   "id": "OB-0658",
+   "ts": "2026-09-28T14:37:45",
+   "datum": "2026-09-28 14:37",
+   "strekking": "Lanes verwerken multiple orders parallel per account (behalve Codex die één tegelijk werkt); pakketten wachten niet op elkaar tenzij ze hetzelfde bestand bewerken.",
+   "soort": "REGEL",
+   "categorie": "Burn-in & lanes",
+   "status": "GELDEND",
+   "bewijs": "",
+   "kort": "",
+   "wacht_op": "",
+   "sinds": "",
+   "bevestigd": false,
+   "geldt_voor": [
+    "*"
+   ],
+   "vervallen_reden": "",
+   "laatste24": true,
+   "herhaald": [],
+   "laatste_ts": "2026-09-28T14:37:45",
+   "bron": "admin",
+   "kanaal": "admin",
+   "fase": "",
+   "tijdlijn": {
+    "gevraagd": "2026-09-28 14:37"
+   },
+   "doorlooptijd_u": "",
+   "blokkade": "geen",
+   "rollen": {
+    "bouwer": "",
+    "toetser": "",
+    "stem": ""
+   },
+   "rolschending": [],
+   "bewijs_links": [],
+   "commits": [],
+   "teruggedraaid_door": ""
+  },
+  {
+   "id": "OB-0659",
+   "ts": "2026-09-28T14:37:45",
+   "datum": "2026-09-28 14:37",
+   "strekking": "Voer toezicht-controlegronden uit: verwerk ADMIN-berichten, ververs peilbord, verzoen pakketten, check director-heartbeat; rapporteer alleen bij veranderingen.",
+   "soort": "REGEL",
+   "categorie": "Governance & rollen",
+   "status": "GELDEND",
+   "bewijs": "",
+   "kort": "",
+   "wacht_op": "",
+   "sinds": "",
+   "bevestigd": false,
+   "geldt_voor": [
+    "*"
+   ],
+   "vervallen_reden": "",
+   "laatste24": true,
+   "herhaald": [],
+   "laatste_ts": "2026-09-28T14:37:45",
+   "bron": "overig",
+   "kanaal": "stack-director-recovery-048d59df",
+   "fase": "",
+   "tijdlijn": {
+    "gevraagd": "2026-09-28 14:37"
+   },
+   "doorlooptijd_u": "",
+   "blokkade": "geen",
+   "rollen": {
+    "bouwer": "",
+    "toetser": "",
+    "stem": ""
+   },
+   "rolschending": [],
+   "bewijs_links": [],
+   "commits": [],
+   "teruggedraaid_door": ""
+  },
+  {
    "id": "OW-02325",
    "ts": "2026-09-27T07:29:23",
    "datum": "2026-09-27 07:29",
@@ -22711,6 +22863,44 @@
    "fase": "",
    "tijdlijn": {
     "gevraagd": "2026-09-28 14:21"
+   },
+   "doorlooptijd_u": "",
+   "blokkade": "geen",
+   "rollen": {
+    "bouwer": "",
+    "toetser": "",
+    "stem": ""
+   },
+   "rolschending": [],
+   "bewijs_links": [],
+   "commits": [],
+   "teruggedraaid_door": ""
+  },
+  {
+   "id": "OB-0655",
+   "ts": "2026-09-28T14:37:45",
+   "datum": "2026-09-28 14:37",
+   "strekking": "Voer elke kwartier metingen uit op gespecificeerde componenten; onderneem vervolgacties zelf binnen bestaande autorisaties en rapporteer in chat met structuur per project.",
+   "soort": "MACHINE",
+   "categorie": "Boards & rapportage",
+   "status": "ONBEKEND",
+   "bewijs": "",
+   "kort": "",
+   "wacht_op": "",
+   "sinds": "",
+   "bevestigd": false,
+   "geldt_voor": [
+    "*"
+   ],
+   "vervallen_reden": "",
+   "laatste24": true,
+   "herhaald": [],
+   "laatste_ts": "2026-09-28T14:37:45",
+   "bron": "admin",
+   "kanaal": "admin",
+   "fase": "",
+   "tijdlijn": {
+    "gevraagd": "2026-09-28 14:37"
    },
    "doorlooptijd_u": "",
    "blokkade": "geen",
