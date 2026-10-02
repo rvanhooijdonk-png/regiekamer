@@ -1,10 +1,10 @@
 {
  "schema": "FEATURELOG_V1",
- "gegenereerd_op": "2026-10-02T21:16:17+02:00",
+ "gegenereerd_op": "2026-10-02T21:21:20+02:00",
  "bron": {
-  "besluiten": 721,
-  "kaarten": 591,
-  "bord": 301,
+  "besluiten": 723,
+  "kaarten": 593,
+  "bord": 303,
   "rest": 57,
   "machine": 232,
   "weggelaten_privacy": 0
@@ -41,7 +41,7 @@
   "UITGEVOERD": 8,
   "IN_BOUW": 31,
   "WACHT_OP_RICHARD": 1,
-  "ONBEKEND": 13
+  "ONBEKEND": 15
  },
  "per_categorie": {
   "Accounts & toegang": {
@@ -56,22 +56,22 @@
   },
   "Burn-in & lanes": {
    "GEBOUWD_EN_WERKEND": 2,
-   "totaal": 46,
+   "totaal": 47,
    "PENDING": 3,
-   "features": 12,
+   "features": 13,
    "GELDEND": 30,
    "IN_BOUW": 7,
-   "ONBEKEND": 4
+   "ONBEKEND": 5
   },
   "Governance & rollen": {
    "GELDEND": 45,
-   "totaal": 55,
+   "totaal": 56,
    "VERVALLEN": 2,
-   "features": 8,
+   "features": 9,
    "PENDING": 4,
    "UITGEVOERD": 2,
    "IN_BOUW": 1,
-   "ONBEKEND": 1
+   "ONBEKEND": 2
   },
   "Overig": {
    "GEBOUWD_EN_WERKEND": 1,
@@ -318,7 +318,9 @@
  "vandaag": {
   "datum": "2026-10-02",
   "gevraagd": [
-   "OB-0734"
+   "OB-0734",
+   "OB-0743",
+   "OB-0744"
   ],
   "geleverd": [],
   "geblokkeerd": [
@@ -397,9 +399,9 @@
  ],
  "bewijs_stats": {
   "met_bewijsspoor": 24,
-  "zonder": 567,
+  "zonder": 569,
   "rolschendingen": 0,
-  "pakketten": 601
+  "pakketten": 604
  },
  "bord": [
   {
@@ -13571,6 +13573,82 @@
    "fase": "",
    "tijdlijn": {
     "gevraagd": "2026-10-02 21:05"
+   },
+   "doorlooptijd_u": "",
+   "blokkade": "geen",
+   "rollen": {
+    "bouwer": "",
+    "toetser": "",
+    "stem": ""
+   },
+   "rolschending": [],
+   "bewijs_links": [],
+   "commits": [],
+   "teruggedraaid_door": ""
+  },
+  {
+   "id": "OB-0743",
+   "ts": "2026-10-02T21:18:05",
+   "datum": "2026-10-02 21:18",
+   "strekking": "Koerswijziging 02-10: het besturen (vrijgeven, uitzetten, wekken, oogsten, stoppen bij rood) gaat uit AI-sessies en in vaste code op Temporal; AI bouwt, toetst en beoordeelt, AI bestuurt niet. Dat gebeurt nu, niet na de burn-in. Eerst een dunne keten die zonder ingreep loopt; verharden daarna, als taken door de keten. Bevestigt en scherpt OB-0094/OB-0095/OB-0132 aan; de nul-ingrepeneis staat in OB-0742. Ontwerp: outbox/CLAUDE2_ONTWERP_DUNNE_KETEN_OP_TEMPORAL_20261002.md (v0, sha256 d8cda7ce, twee ontwerpstemmen uitgezet). BEREIK VAN RICHARDS EIGEN WOORDEN: hij vroeg om een structurele oplossing (OW-10012), koos optie 2 van het antwoord van TOEZICHT (OW-10015), stelde dat de burn-in al volledig online hoort te zijn inclusief Temporal (OW-10017) en zei 'Voer uit!' (OW-10020). De uitwerking in vier punten en het ontwerp zijn van TOEZICHT; de inhoud van 'optie 2' staat niet in Richards regels zelf. NIET door dit besluit beslist: paragraaf 7 van het ontwerp ('er komt geen nieuwe B5-head') is de uitwerking van TOEZICHT en geen citaat van Richard; en het besluit autoriseert geen Railway-deploy buiten OB-0199 (bevroren order met hash, tester ongelijk aan bouwer, bewijs erna).",
+   "soort": "FEATURE",
+   "categorie": "Burn-in & lanes",
+   "status": "ONBEKEND",
+   "bewijs": "",
+   "kort": "",
+   "wacht_op": "",
+   "sinds": "",
+   "bevestigd": true,
+   "geldt_voor": [
+    "*"
+   ],
+   "vervallen_reden": "",
+   "laatste24": true,
+   "herhaald": [],
+   "laatste_ts": "2026-10-02T21:18:05",
+   "bron": "overig",
+   "kanaal": "",
+   "fase": "",
+   "tijdlijn": {
+    "gevraagd": "2026-10-02 21:18"
+   },
+   "doorlooptijd_u": "",
+   "blokkade": "geen",
+   "rollen": {
+    "bouwer": "",
+    "toetser": "",
+    "stem": ""
+   },
+   "rolschending": [],
+   "bewijs_links": [],
+   "commits": [],
+   "teruggedraaid_door": ""
+  },
+  {
+   "id": "OB-0744",
+   "ts": "2026-10-02T21:21:10",
+   "datum": "2026-10-02 21:21",
+   "strekking": "Aanvulling op OB-0743 (koerswijziging 02-10): er komt geen nieuwe B5-head en geen nieuwe B5-reviewronde. Lopende stemmen (CLAUDE3 op c6174ae5, ledger 126) en de offline-bundelreview CODEX4 (ledger 128) mogen aflopen en worden beperkt geoogst; ze worden niet opnieuw uitgezet. De bundelreview (ledger 128) en het lokale herstelwerk van de director in .local-runtime/b5-hardening-20261002 (PRESERVED_WORK.json) zijn VERVANGEN_DOOR_KOERSWIJZIGING: bewaren, niet committen, niet pushen, niet verder uitzetten; ze zijn invoer voor verhardingstaken door de keten. HERKOMST EN WEGING: Richards eigen regels zijn OW-10017 en OW-10020 ('Voer uit!'), door ADMIN nagelezen in kanaal.jsonl. De zin 'De lopende stemmen op de launcher mogen aflopen; er komt geen nieuwe versie' is volgens TOEZICHT de slotalinea van zijn antwoord op OW-10017 waarop Richard direct 'Voer uit!' zei; ADMIN heeft dat antwoord NIET zelf kunnen nalezen (transcript sessie 56b295ed ligt buiten de leesbare mappen van de ADMIN-beurt; kanaal.jsonl bevat alleen Richards regels). De strekking is dus de opgave van TOEZICHT, door de director overgenomen (CPT2 21:18: 'Geen nieuwe B5-head gemaakt'). NIET door dit besluit beslist: een Railway-deploy van het E1-image voor B2. TOEZICHT leest 'Voer uit!' plus OW-10025 als per-keer-grond voor een deploy na de CPT4-stem; de ADMIN-beurtopdracht bindt elke Railway-deploy hard aan B2 en is niet gewijzigd; OB-0199 blijft doelgebonden (bevroren order met hash, tester ongelijk aan bouwer, bewijs erna).",
+   "soort": "FEATURE",
+   "categorie": "Governance & rollen",
+   "status": "ONBEKEND",
+   "bewijs": "",
+   "kort": "",
+   "wacht_op": "",
+   "sinds": "",
+   "bevestigd": true,
+   "geldt_voor": [
+    "*"
+   ],
+   "vervallen_reden": "",
+   "laatste24": true,
+   "herhaald": [],
+   "laatste_ts": "2026-10-02T21:21:10",
+   "bron": "overig",
+   "kanaal": "",
+   "fase": "",
+   "tijdlijn": {
+    "gevraagd": "2026-10-02 21:21"
    },
    "doorlooptijd_u": "",
    "blokkade": "geen",
