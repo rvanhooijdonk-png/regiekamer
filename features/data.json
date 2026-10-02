@@ -1,10 +1,10 @@
 {
  "schema": "FEATURELOG_V1",
- "gegenereerd_op": "2026-10-02T23:17:31+02:00",
+ "gegenereerd_op": "2026-10-02T23:22:34+02:00",
  "bron": {
-  "besluiten": 724,
-  "kaarten": 594,
-  "bord": 304,
+  "besluiten": 725,
+  "kaarten": 595,
+  "bord": 305,
   "rest": 57,
   "machine": 232,
   "weggelaten_privacy": 0
@@ -41,7 +41,7 @@
   "UITGEVOERD": 8,
   "IN_BOUW": 31,
   "WACHT_OP_RICHARD": 1,
-  "ONBEKEND": 15
+  "ONBEKEND": 16
  },
  "per_categorie": {
   "Accounts & toegang": {
@@ -65,13 +65,13 @@
   },
   "Governance & rollen": {
    "GELDEND": 45,
-   "totaal": 56,
+   "totaal": 57,
    "VERVALLEN": 2,
-   "features": 9,
+   "features": 10,
    "PENDING": 4,
    "UITGEVOERD": 2,
    "IN_BOUW": 1,
-   "ONBEKEND": 2
+   "ONBEKEND": 3
   },
   "Overig": {
    "GEBOUWD_EN_WERKEND": 1,
@@ -320,7 +320,8 @@
   "gevraagd": [
    "OB-0734",
    "OB-0743",
-   "OB-0744"
+   "OB-0744",
+   "OB-0746"
   ],
   "geleverd": [],
   "geblokkeerd": [
@@ -399,7 +400,7 @@
  ],
  "bewijs_stats": {
   "met_bewijsspoor": 24,
-  "zonder": 570,
+  "zonder": 571,
   "rolschendingen": 0,
   "pakketten": 613
  },
@@ -13687,6 +13688,44 @@
    "fase": "",
    "tijdlijn": {
     "gevraagd": "2026-10-02 23:00"
+   },
+   "doorlooptijd_u": "",
+   "blokkade": "geen",
+   "rollen": {
+    "bouwer": "",
+    "toetser": "",
+    "stem": ""
+   },
+   "rolschending": [],
+   "bewijs_links": [],
+   "commits": [],
+   "teruggedraaid_door": ""
+  },
+  {
+   "id": "OB-0746",
+   "ts": "2026-10-02T23:19:28",
+   "datum": "2026-10-02 23:19",
+   "strekking": "Correctie op OB-0745 (E1-mandaat), alleen op het punt container-exec/ssh. OB-0745 noemt onder NIET gedekt ook \"container-exec/ssh\"; dat was de formulering van ADMIN bij de registratie om 23:00, van voor de mandaatanalyse van TOEZICHT (23:02, commit db33d0b5) en geen woord van Richard. Geldende uitleg, opgave van TOEZICHT als beheerder van de ADMIN-beurtinstructie (state/DIRECTOR/admin-beurt-prompt.md r.93-98, sha256 7a15a9d3): onder het E1-mandaat valt railway ssh naar service temporal-worker voor precies drie dingen: (a) een onschuldig markercommando als voorproef, (b) de ene start en (c) de readback van die ene proefworkflow MODELBEURT_PROEF_V1 voor claude3. NIET gedekt blijft: elk ander gebruik van container-exec, env/printenv/variables of een bestand met geheimen tonen of ophalen, ssh-sleutels aanmaken of opslaan buiten wat de CLI zelf doet, een tweede marker, een tweede start of deploy, andere accounts, B2, B5. Uitvoer begrensd en gehasht in het receipt. De overige inhoud van OB-0745 (een deploy op bd656383, een start, voorwaarden, OB-0193-bewijs, niet opnieuw proberen) blijft ongewijzigd. STAND VERBRUIK: de ene marker (a) is op 2026-10-02 23:03 uitgevoerd en verbruikt (evidence/keten-v0/E1_MARKERPROEF_ADMIN_20261002/RECEIPT.json, sha256 b8632921); de deploy en de start zijn onverbruikt. BEREIK VAN RICHARDS EIGEN WOORDEN: hij typte alleen \"GO E1\" (OW-10153). Dat hem daarbij is voorgelegd dat de proef vanuit de cloud zelf gestart wordt zonder sleutels naar de Mac te halen, is de opgave van TOEZICHT; ADMIN heeft het voorgelegde bericht niet zelf kunnen nalezen (kanaal.jsonl bevat alleen Richards regels). Dit is dus een uitleg door de beheerder, geen nieuw ownerwoord en geen verruiming door ADMIN of de director.",
+   "soort": "FEATURE",
+   "categorie": "Governance & rollen",
+   "status": "ONBEKEND",
+   "bewijs": "",
+   "kort": "",
+   "wacht_op": "",
+   "sinds": "",
+   "bevestigd": true,
+   "geldt_voor": [
+    "*"
+   ],
+   "vervallen_reden": "",
+   "laatste24": true,
+   "herhaald": [],
+   "laatste_ts": "2026-10-02T23:19:28",
+   "bron": "overig",
+   "kanaal": "stack-director-recovery-048d59df",
+   "fase": "",
+   "tijdlijn": {
+    "gevraagd": "2026-10-02 23:19"
    },
    "doorlooptijd_u": "",
    "blokkade": "geen",
