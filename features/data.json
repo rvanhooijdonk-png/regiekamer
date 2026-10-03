@@ -1,10 +1,10 @@
 {
  "schema": "FEATURELOG_V1",
- "gegenereerd_op": "2026-10-03T06:16:37+02:00",
+ "gegenereerd_op": "2026-10-03T06:21:40+02:00",
  "bron": {
-  "besluiten": 729,
-  "kaarten": 599,
-  "bord": 308,
+  "besluiten": 730,
+  "kaarten": 600,
+  "bord": 309,
   "rest": 57,
   "machine": 233,
   "weggelaten_privacy": 0
@@ -41,7 +41,7 @@
   "UITGEVOERD": 8,
   "IN_BOUW": 31,
   "WACHT_OP_RICHARD": 1,
-  "ONBEKEND": 17
+  "ONBEKEND": 18
  },
  "per_categorie": {
   "Accounts & toegang": {
@@ -65,13 +65,13 @@
   },
   "Governance & rollen": {
    "GELDEND": 45,
-   "totaal": 57,
+   "totaal": 58,
    "VERVALLEN": 2,
-   "features": 10,
+   "features": 11,
    "PENDING": 4,
    "UITGEVOERD": 2,
    "IN_BOUW": 1,
-   "ONBEKEND": 3
+   "ONBEKEND": 4
   },
   "Overig": {
    "GEBOUWD_EN_WERKEND": 1,
@@ -318,7 +318,8 @@
  "vandaag": {
   "datum": "2026-10-03",
   "gevraagd": [
-   "OB-0750"
+   "OB-0750",
+   "OB-0751"
   ],
   "geleverd": [],
   "geblokkeerd": [
@@ -397,9 +398,9 @@
  ],
  "bewijs_stats": {
   "met_bewijsspoor": 24,
-  "zonder": 575,
+  "zonder": 576,
   "rolschendingen": 0,
-  "pakketten": 618
+  "pakketten": 622
  },
  "bord": [
   {
@@ -13831,6 +13832,42 @@
    "fase": "",
    "tijdlijn": {
     "gevraagd": "2026-10-03 06:15"
+   },
+   "doorlooptijd_u": "",
+   "blokkade": "geen",
+   "rollen": {
+    "bouwer": "",
+    "toetser": "",
+    "stem": ""
+   },
+   "rolschending": [],
+   "bewijs_links": [],
+   "commits": [],
+   "teruggedraaid_door": ""
+  },
+  {
+   "id": "OB-0751",
+   "ts": "2026-10-03T06:18:50",
+   "datum": "2026-10-03 06:18",
+   "strekking": "Regels tegen kennisverlies (Richard OW-10323, 03-10): (1) Eén register voor ownerbesluiten: ~/Developer/admin/ownerwoord/besluiten.jsonl; bin/remember, profielgeheugen en notities zijn geen register — wat daar staat moet ook hier staan. (2) Codex-sessies (director, CPT-lanes) lezen het register zelf aan het begin van elke beurt (AGENTS.md); zij krijgen geen haak. (3) Alles wat rollen elkaar laten weten (outbox, orders, receipts) staat dezelfde beurt in git op origin; ongetrackt telt als niet bestaand. (4) Niets dat moet blijven bestaan staat alleen in een sessie, een tijdelijke map of een wekker van één venster. (5) Een besluit geldt voor iedereen tenzij het zelf zegt voor wie niet; wie twijfelt over de reikwijdte past het toe. (6) Wie een besluit hoort, legt het vast; niet wachten op ADMIN. (7) Wekkerprompts en automaten zijn geen Richard: ze worden niet als ownerbesluit geoogst. (8) Zodra de keten in de cloud draait, leest hij hetzelfde register (kopie op origin), niet een eigen versie.",
+   "soort": "FEATURE",
+   "categorie": "Governance & rollen",
+   "status": "ONBEKEND",
+   "bewijs": "",
+   "kort": "",
+   "wacht_op": "",
+   "sinds": "",
+   "bevestigd": false,
+   "geldt_voor": "alle rollen, alle lanes, alle projecten",
+   "vervallen_reden": "",
+   "laatste24": true,
+   "herhaald": [],
+   "laatste_ts": "2026-10-03T06:18:50",
+   "bron": "overig",
+   "kanaal": "stack-director-recovery-048d59df",
+   "fase": "",
+   "tijdlijn": {
+    "gevraagd": "2026-10-03 06:18"
    },
    "doorlooptijd_u": "",
    "blokkade": "geen",
