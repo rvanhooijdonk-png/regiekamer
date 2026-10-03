@@ -1,10 +1,10 @@
 {
  "schema": "FEATURELOG_V1",
- "gegenereerd_op": "2026-10-04T00:31:10+02:00",
+ "gegenereerd_op": "2026-10-04T00:36:13+02:00",
  "bron": {
-  "besluiten": 757,
-  "kaarten": 627,
-  "bord": 331,
+  "besluiten": 758,
+  "kaarten": 628,
+  "bord": 332,
   "rest": 59,
   "machine": 236,
   "weggelaten_privacy": 0
@@ -41,7 +41,7 @@
   "UITGEVOERD": 8,
   "IN_BOUW": 31,
   "WACHT_OP_RICHARD": 1,
-  "ONBEKEND": 27
+  "ONBEKEND": 28
  },
  "per_categorie": {
   "Accounts & toegang": {
@@ -56,12 +56,12 @@
   },
   "Burn-in & lanes": {
    "GEBOUWD_EN_WERKEND": 2,
-   "totaal": 60,
+   "totaal": 61,
    "PENDING": 3,
-   "features": 19,
+   "features": 20,
    "GELDEND": 37,
    "IN_BOUW": 7,
-   "ONBEKEND": 11
+   "ONBEKEND": 12
   },
   "Governance & rollen": {
    "GELDEND": 46,
@@ -320,7 +320,8 @@
  "vandaag": {
   "datum": "2026-10-04",
   "gevraagd": [
-   "OB-0778"
+   "OB-0778",
+   "OB-0779"
   ],
   "geleverd": [],
   "geblokkeerd": [
@@ -399,9 +400,9 @@
  ],
  "bewijs_stats": {
   "met_bewijsspoor": 24,
-  "zonder": 603,
+  "zonder": 604,
   "rolschendingen": 0,
-  "pakketten": 808
+  "pakketten": 809
  },
  "bord": [
   {
@@ -14661,6 +14662,42 @@
    "fase": "",
    "tijdlijn": {
     "gevraagd": "2026-10-04 00:01"
+   },
+   "doorlooptijd_u": "",
+   "blokkade": "geen",
+   "rollen": {
+    "bouwer": "",
+    "toetser": "",
+    "stem": ""
+   },
+   "rolschending": [],
+   "bewijs_links": [],
+   "commits": [],
+   "teruggedraaid_door": ""
+  },
+  {
+   "id": "OB-0779",
+   "ts": "2026-10-04T00:31:21",
+   "datum": "2026-10-04 00:31",
+   "strekking": "Een test of stem zonder RECEIPT.json maar met een leesbaar eindoordeel in run.jsonl telt als dat oordeel en nooit als 'geen oordeel'. ADMIN bindt de letterlijke regel (pad, item, sha256) als vervangend receipt en verzoent het pakket. Zonder leesbaar oordeel volgt één heraanbieding. Toegepast op bc4c94ca: dat is een NO_GO. Verharding na de start van de burn-in: de lane-harnas schrijft bij de start een receipt-skelet, en de receiptstap komt in stemorders vóór de analyse.",
+   "soort": "FEATURE",
+   "categorie": "Burn-in & lanes",
+   "status": "ONBEKEND",
+   "bewijs": "",
+   "kort": "",
+   "wacht_op": "",
+   "sinds": "",
+   "bevestigd": false,
+   "geldt_voor": "alle rollen, alle lanes, alle projecten",
+   "vervallen_reden": "",
+   "laatste24": true,
+   "herhaald": [],
+   "laatste_ts": "2026-10-04T00:31:21",
+   "bron": "overig",
+   "kanaal": "stack-director-recovery-048d59df",
+   "fase": "",
+   "tijdlijn": {
+    "gevraagd": "2026-10-04 00:31"
    },
    "doorlooptijd_u": "",
    "blokkade": "geen",
