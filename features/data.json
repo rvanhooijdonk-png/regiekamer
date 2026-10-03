@@ -1,10 +1,10 @@
 {
  "schema": "FEATURELOG_V1",
- "gegenereerd_op": "2026-10-04T00:00:51+02:00",
+ "gegenereerd_op": "2026-10-04T00:05:54+02:00",
  "bron": {
-  "besluiten": 756,
-  "kaarten": 626,
-  "bord": 330,
+  "besluiten": 757,
+  "kaarten": 627,
+  "bord": 331,
   "rest": 59,
   "machine": 236,
   "weggelaten_privacy": 0
@@ -41,7 +41,7 @@
   "UITGEVOERD": 8,
   "IN_BOUW": 31,
   "WACHT_OP_RICHARD": 1,
-  "ONBEKEND": 26
+  "ONBEKEND": 27
  },
  "per_categorie": {
   "Accounts & toegang": {
@@ -56,12 +56,12 @@
   },
   "Burn-in & lanes": {
    "GEBOUWD_EN_WERKEND": 2,
-   "totaal": 59,
+   "totaal": 60,
    "PENDING": 3,
-   "features": 18,
+   "features": 19,
    "GELDEND": 37,
    "IN_BOUW": 7,
-   "ONBEKEND": 10
+   "ONBEKEND": 11
   },
   "Governance & rollen": {
    "GELDEND": 46,
@@ -319,7 +319,9 @@
  ],
  "vandaag": {
   "datum": "2026-10-04",
-  "gevraagd": [],
+  "gevraagd": [
+   "OB-0778"
+  ],
   "geleverd": [],
   "geblokkeerd": [
    "OB-0313"
@@ -397,9 +399,9 @@
  ],
  "bewijs_stats": {
   "met_bewijsspoor": 24,
-  "zonder": 602,
+  "zonder": 603,
   "rolschendingen": 0,
-  "pakketten": 800
+  "pakketten": 801
  },
  "bord": [
   {
@@ -14623,6 +14625,42 @@
    "fase": "",
    "tijdlijn": {
     "gevraagd": "2026-10-03 22:46"
+   },
+   "doorlooptijd_u": "",
+   "blokkade": "geen",
+   "rollen": {
+    "bouwer": "",
+    "toetser": "",
+    "stem": ""
+   },
+   "rolschending": [],
+   "bewijs_links": [],
+   "commits": [],
+   "teruggedraaid_door": ""
+  },
+  {
+   "id": "OB-0778",
+   "ts": "2026-10-04T00:01:36",
+   "datum": "2026-10-04 00:01",
+   "strekking": "Na negen G1-afkeuringen, waarvan twee op de gevallentabel zelf, is de burn-inpoort voor G1 vervangen door drie proeven op de finale head: (1) een tweede start van dezelfde order wordt door Temporal geweigerd (workflow-id keten-v1/<order_sha256>, REJECT_DUPLICATE, config.py r13-18); (2) alleen orders met een ADMIN-ledgerregel en een hash in de O1-O3-lijst starten; (3) elke onzekere STARTANTWOORD- of reserveringstoestand geeft nul starts en GEBLOKKEERD met een melding, zonder herstellogica. De rest van G1 (positieve route, B2, volledig antwoordmodel, externe readback) is verharding tijdens de burn-in. Er komt geen gevallentabel V4.",
+   "soort": "FEATURE",
+   "categorie": "Burn-in & lanes",
+   "status": "ONBEKEND",
+   "bewijs": "",
+   "kort": "",
+   "wacht_op": "",
+   "sinds": "",
+   "bevestigd": false,
+   "geldt_voor": "alle rollen, alle lanes, alle projecten",
+   "vervallen_reden": "",
+   "laatste24": true,
+   "herhaald": [],
+   "laatste_ts": "2026-10-04T00:01:36",
+   "bron": "overig",
+   "kanaal": "stack-director-recovery-048d59df",
+   "fase": "",
+   "tijdlijn": {
+    "gevraagd": "2026-10-04 00:01"
    },
    "doorlooptijd_u": "",
    "blokkade": "geen",
