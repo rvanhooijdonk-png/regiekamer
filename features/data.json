@@ -1,12 +1,12 @@
 {
  "schema": "FEATURELOG_V1",
- "gegenereerd_op": "2026-10-03T22:45:01+02:00",
+ "gegenereerd_op": "2026-10-03T22:50:04+02:00",
  "bron": {
-  "besluiten": 753,
-  "kaarten": 623,
-  "bord": 329,
+  "besluiten": 755,
+  "kaarten": 625,
+  "bord": 330,
   "rest": 58,
-  "machine": 235,
+  "machine": 236,
   "weggelaten_privacy": 0
  },
  "status_labels": {
@@ -41,7 +41,7 @@
   "UITGEVOERD": 8,
   "IN_BOUW": 31,
   "WACHT_OP_RICHARD": 1,
-  "ONBEKEND": 25
+  "ONBEKEND": 26
  },
  "per_categorie": {
   "Accounts & toegang": {
@@ -56,12 +56,12 @@
   },
   "Burn-in & lanes": {
    "GEBOUWD_EN_WERKEND": 2,
-   "totaal": 58,
+   "totaal": 59,
    "PENDING": 3,
-   "features": 17,
+   "features": 18,
    "GELDEND": 37,
    "IN_BOUW": 7,
-   "ONBEKEND": 9
+   "ONBEKEND": 10
   },
   "Governance & rollen": {
    "GELDEND": 46,
@@ -328,7 +328,8 @@
    "OB-0766",
    "OB-0768",
    "OB-0771",
-   "OB-0772"
+   "OB-0772",
+   "OB-0775"
   ],
   "geleverd": [],
   "geblokkeerd": [
@@ -407,9 +408,9 @@
  ],
  "bewijs_stats": {
   "met_bewijsspoor": 24,
-  "zonder": 599,
+  "zonder": 601,
   "rolschendingen": 0,
-  "pakketten": 783
+  "pakketten": 784
  },
  "bord": [
   {
@@ -14611,6 +14612,42 @@
    "teruggedraaid_door": ""
   },
   {
+   "id": "OB-0775",
+   "ts": "2026-10-03T22:46:20",
+   "datum": "2026-10-03 22:46",
+   "strekking": "Bouwen gebeurt alleen op Claude-lanes (OB-0009 blijft gelden). De lopende G1-herstelbouw op CODEX4 mag afmaken; daarna bouwt of reviewt een Claude-lane het na, en CPT4 is uitgesloten als tester en stem op die head. Er liggen 37 onvrijgegeven orderbestanden: de director levert een dispositielijst vóór zijn volgende nieuwe order, en elke nieuwe order noemt welke order hij vervangt. G1 is vijf keer afgekeurd: de volgende G1-bouw start pas nadat CPT1 of codex3 een gevallentabel (invoer, verwachte status) heeft goedgekeurd.",
+   "soort": "FEATURE",
+   "categorie": "Burn-in & lanes",
+   "status": "ONBEKEND",
+   "bewijs": "",
+   "kort": "",
+   "wacht_op": "",
+   "sinds": "",
+   "bevestigd": false,
+   "geldt_voor": "alle rollen, alle lanes, alle projecten",
+   "vervallen_reden": "",
+   "laatste24": true,
+   "herhaald": [],
+   "laatste_ts": "2026-10-03T22:46:20",
+   "bron": "overig",
+   "kanaal": "stack-director-recovery-048d59df",
+   "fase": "",
+   "tijdlijn": {
+    "gevraagd": "2026-10-03 22:46"
+   },
+   "doorlooptijd_u": "",
+   "blokkade": "geen",
+   "rollen": {
+    "bouwer": "",
+    "toetser": "",
+    "stem": ""
+   },
+   "rolschending": [],
+   "bewijs_links": [],
+   "commits": [],
+   "teruggedraaid_door": ""
+  },
+  {
    "id": "OW-02325",
    "ts": "2026-09-27T07:29:23",
    "datum": "2026-09-27 07:29",
@@ -26107,6 +26144,42 @@
    "fase": "",
    "tijdlijn": {
     "gevraagd": "2026-10-03 22:22"
+   },
+   "doorlooptijd_u": "",
+   "blokkade": "geen",
+   "rollen": {
+    "bouwer": "",
+    "toetser": "",
+    "stem": ""
+   },
+   "rolschending": [],
+   "bewijs_links": [],
+   "commits": [],
+   "teruggedraaid_door": ""
+  },
+  {
+   "id": "OB-0776",
+   "ts": "2026-10-03T22:48:41",
+   "datum": "2026-10-03 22:48",
+   "strekking": "TOEZICHT (CLAUDE2) en ADMIN mogen de burn-in zelf starten, ook als Richard slaapt. Voorwaarden: de keten draait gedeployd op een head met groene finale test en productstem (OB-0773); O1-O3 zijn met intake AAN uitgevoerd en hebben elk een echte uitkomst op keten/uitkomsten (OB-0766); de veiligheidsrem G1+H4 is groen (OB-0769). De starttijd wordt vastgelegd met bin/leg-vast en in de outbox, en de klok loopt vanaf dat moment: 24 uur aaneengesloten, 10 echte uitkomsten, 4 uur met de Mac uit, nul ingrepen (OB-0742). Richard krijgt de start als eerste regel van de volgende update te zien.",
+   "soort": "MACHINE",
+   "categorie": "Governance & rollen",
+   "status": "ONBEKEND",
+   "bewijs": "",
+   "kort": "",
+   "wacht_op": "",
+   "sinds": "",
+   "bevestigd": false,
+   "geldt_voor": "alle rollen, alle lanes, alle projecten",
+   "vervallen_reden": "",
+   "laatste24": true,
+   "herhaald": [],
+   "laatste_ts": "2026-10-03T22:48:41",
+   "bron": "overig",
+   "kanaal": "stack-director-recovery-048d59df",
+   "fase": "",
+   "tijdlijn": {
+    "gevraagd": "2026-10-03 22:48"
    },
    "doorlooptijd_u": "",
    "blokkade": "geen",
