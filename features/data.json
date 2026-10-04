@@ -1,10 +1,10 @@
 {
  "schema": "FEATURELOG_V1",
- "gegenereerd_op": "2026-10-04T13:45:13+02:00",
+ "gegenereerd_op": "2026-10-04T13:50:16+02:00",
  "bron": {
-  "besluiten": 788,
-  "kaarten": 658,
-  "bord": 357,
+  "besluiten": 789,
+  "kaarten": 659,
+  "bord": 358,
   "rest": 64,
   "machine": 236,
   "weggelaten_privacy": 0
@@ -41,7 +41,7 @@
   "UITGEVOERD": 8,
   "IN_BOUW": 31,
   "WACHT_OP_RICHARD": 1,
-  "ONBEKEND": 42
+  "ONBEKEND": 43
  },
  "per_categorie": {
   "Accounts & toegang": {
@@ -56,12 +56,12 @@
   },
   "Burn-in & lanes": {
    "GEBOUWD_EN_WERKEND": 2,
-   "totaal": 72,
+   "totaal": 73,
    "PENDING": 3,
-   "features": 24,
+   "features": 25,
    "GELDEND": 44,
    "IN_BOUW": 7,
-   "ONBEKEND": 16
+   "ONBEKEND": 17
   },
   "Governance & rollen": {
    "GELDEND": 47,
@@ -335,7 +335,8 @@
    "OB-0805",
    "OB-0807",
    "OB-0808",
-   "OB-0809"
+   "OB-0809",
+   "OB-0810"
   ],
   "geleverd": [],
   "geblokkeerd": [
@@ -414,7 +415,7 @@
  ],
  "bewijs_stats": {
   "met_bewijsspoor": 24,
-  "zonder": 634,
+  "zonder": 635,
   "rolschendingen": 0,
   "pakketten": 915
  },
@@ -14200,7 +14201,7 @@
    "bevestigd": false,
    "geldt_voor": "alle rollen, alle lanes, alle projecten",
    "vervallen_reden": "",
-   "laatste24": true,
+   "laatste24": false,
    "herhaald": [],
    "laatste_ts": "2026-10-03T13:46:33",
    "bron": "overig",
@@ -15612,6 +15613,42 @@
    "fase": "",
    "tijdlijn": {
     "gevraagd": "2026-10-04 13:16"
+   },
+   "doorlooptijd_u": "",
+   "blokkade": "geen",
+   "rollen": {
+    "bouwer": "",
+    "toetser": "",
+    "stem": ""
+   },
+   "rolschending": [],
+   "bewijs_links": [],
+   "commits": [],
+   "teruggedraaid_door": ""
+  },
+  {
+   "id": "OB-0810",
+   "ts": "2026-10-04T13:46:50",
+   "datum": "2026-10-04 13:46",
+   "strekking": "Uit de E2E-gatenlijst op 491a88d1 blijkt: 0 schakels AANGESLOTEN, 10 ONTBREEKT, 1 NIET_BEWEZEN. De componenten bestaan en zijn getest, maar het productentrypoint verbindt ze niet (poorten gevuld met None of stubs). Daarom komt er nu één aansluitbouw, KETEN_AANSLUITING_E01_E11, op de eerste vrije Claude-lane, die per rij het minimale herstel aansluit en M9-M12 opneemt. Acceptatie is één doorloopproef in het entrypoint (alleen externe diensten als double): O1 van intake AAN tot een uitkomst, O4 geeft 0, O3 is geblokkeerd, P1-P3 groen. Daarna volgen één test, stem en deploy, en live O1/O2. Les: elke ketenbouw vraagt vanaf nu een doorloopproef op het entrypoint.",
+   "soort": "FEATURE",
+   "categorie": "Burn-in & lanes",
+   "status": "ONBEKEND",
+   "bewijs": "",
+   "kort": "",
+   "wacht_op": "",
+   "sinds": "",
+   "bevestigd": false,
+   "geldt_voor": "alle rollen, alle lanes, alle projecten",
+   "vervallen_reden": "",
+   "laatste24": true,
+   "herhaald": [],
+   "laatste_ts": "2026-10-04T13:46:50",
+   "bron": "overig",
+   "kanaal": "stack-director-recovery-048d59df",
+   "fase": "",
+   "tijdlijn": {
+    "gevraagd": "2026-10-04 13:46"
    },
    "doorlooptijd_u": "",
    "blokkade": "geen",
