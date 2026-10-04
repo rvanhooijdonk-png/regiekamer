@@ -1,10 +1,10 @@
 {
  "schema": "FEATURELOG_V1",
- "gegenereerd_op": "2026-10-04T14:20:37+02:00",
+ "gegenereerd_op": "2026-10-04T14:25:40+02:00",
  "bron": {
-  "besluiten": 791,
-  "kaarten": 661,
-  "bord": 360,
+  "besluiten": 793,
+  "kaarten": 663,
+  "bord": 362,
   "rest": 64,
   "machine": 236,
   "weggelaten_privacy": 0
@@ -41,7 +41,7 @@
   "UITGEVOERD": 8,
   "IN_BOUW": 31,
   "WACHT_OP_RICHARD": 1,
-  "ONBEKEND": 43
+  "ONBEKEND": 45
  },
  "per_categorie": {
   "Accounts & toegang": {
@@ -65,13 +65,13 @@
   },
   "Governance & rollen": {
    "GELDEND": 49,
-   "totaal": 63,
+   "totaal": 65,
    "VERVALLEN": 2,
-   "features": 12,
+   "features": 14,
    "PENDING": 4,
    "UITGEVOERD": 2,
    "IN_BOUW": 1,
-   "ONBEKEND": 5
+   "ONBEKEND": 7
   },
   "Overig": {
    "GEBOUWD_EN_WERKEND": 1,
@@ -336,7 +336,9 @@
    "OB-0807",
    "OB-0808",
    "OB-0809",
-   "OB-0810"
+   "OB-0810",
+   "OB-0813",
+   "OB-0814"
   ],
   "geleverd": [],
   "geblokkeerd": [
@@ -415,9 +417,9 @@
  ],
  "bewijs_stats": {
   "met_bewijsspoor": 24,
-  "zonder": 637,
+  "zonder": 639,
   "rolschendingen": 0,
-  "pakketten": 923
+  "pakketten": 924
  },
  "bord": [
   {
@@ -15721,6 +15723,78 @@
    "fase": "",
    "tijdlijn": {
     "gevraagd": "2026-10-04 14:16"
+   },
+   "doorlooptijd_u": "",
+   "blokkade": "geen",
+   "rollen": {
+    "bouwer": "",
+    "toetser": "",
+    "stem": ""
+   },
+   "rolschending": [],
+   "bewijs_links": [],
+   "commits": [],
+   "teruggedraaid_door": ""
+  },
+  {
+   "id": "OB-0813",
+   "ts": "2026-10-04T14:23:00",
+   "datum": "2026-10-04 14:23",
+   "strekking": "ASTRA-opdracht herzien na afstemming met ASTRA zelf (outbox/ASTRA_AFSTEMMING_OPDRACHT_20261004.md). TOEZICHT schrijft elke verzonden kwartierupdate letterlijk naar outbox/CLAUDE2_KWARTIER_<tijd>.md en commit die. Elke burn-in-toezegging gaat append-only naar state/DIRECTOR/toezeggingen.jsonl. Voortgang is gedefinieerd als: een terminaal receipt dat een kritiek-padschakel sluit, een daling op dezelfde E2E-baseline, een deploy met geslaagde nacontrole, of een O1/O2-uitkomst. De zes vragen gelden voor TOEZICHT, DIRECTOR en ADMIN samen. ASTRA kiest zelf drie claims en labelt KLOPT/KLOPT_NIET/ONBEWEZEN. Telegram alleen bij een exact ROOD-veld en een geldig rapport, hooguit eens per 3 uur per oorzaak. Bovenaan elk rapport staan drie regels gewone taal.",
+   "soort": "FEATURE",
+   "categorie": "Governance & rollen",
+   "status": "ONBEKEND",
+   "bewijs": "",
+   "kort": "",
+   "wacht_op": "",
+   "sinds": "",
+   "bevestigd": false,
+   "geldt_voor": "alle rollen, alle lanes, alle projecten",
+   "vervallen_reden": "",
+   "laatste24": true,
+   "herhaald": [],
+   "laatste_ts": "2026-10-04T14:23:00",
+   "bron": "overig",
+   "kanaal": "stack-director-recovery-048d59df",
+   "fase": "",
+   "tijdlijn": {
+    "gevraagd": "2026-10-04 14:23"
+   },
+   "doorlooptijd_u": "",
+   "blokkade": "geen",
+   "rollen": {
+    "bouwer": "",
+    "toetser": "",
+    "stem": ""
+   },
+   "rolschending": [],
+   "bewijs_links": [],
+   "commits": [],
+   "teruggedraaid_door": ""
+  },
+  {
+   "id": "OB-0814",
+   "ts": "2026-10-04T14:23:27",
+   "datum": "2026-10-04 14:23",
+   "strekking": "Elke 15 minuten gaat alles wat een kanaal of rol maakt naar GitHub, en zo nodig een andere bron erbij. Voor TOEZICHT gebeurt dat mechanisch in state/DIRECTOR/toezicht-kwartiermeting.sh: eigen outbox-berichten, ASTRA-rapporten, toezeggingen en meetscripts worden gecommit en naar toezicht/gereedschap-20260929 gepusht. Het profielgeheugen wordt gekopieerd naar ~/Developer/admin/geheugen/claude2-toezicht en naar origin gepusht. Geldt voor alle kanalen; Richard vraagt het elk kanaal ook zelf.",
+   "soort": "FEATURE",
+   "categorie": "Governance & rollen",
+   "status": "ONBEKEND",
+   "bewijs": "",
+   "kort": "",
+   "wacht_op": "",
+   "sinds": "",
+   "bevestigd": false,
+   "geldt_voor": "alle rollen, alle lanes, alle projecten",
+   "vervallen_reden": "",
+   "laatste24": true,
+   "herhaald": [],
+   "laatste_ts": "2026-10-04T14:23:27",
+   "bron": "overig",
+   "kanaal": "stack-director-recovery-048d59df",
+   "fase": "",
+   "tijdlijn": {
+    "gevraagd": "2026-10-04 14:23"
    },
    "doorlooptijd_u": "",
    "blokkade": "geen",
