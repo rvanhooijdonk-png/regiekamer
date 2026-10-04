@@ -1,10 +1,10 @@
 {
  "schema": "FEATURELOG_V1",
- "gegenereerd_op": "2026-10-04T11:13:22+02:00",
+ "gegenereerd_op": "2026-10-04T11:18:28+02:00",
  "bron": {
-  "besluiten": 784,
-  "kaarten": 654,
-  "bord": 353,
+  "besluiten": 785,
+  "kaarten": 655,
+  "bord": 354,
   "rest": 64,
   "machine": 236,
   "weggelaten_privacy": 0
@@ -34,7 +34,7 @@
   "Overig"
  ],
  "per_status": {
-  "GELDEND": 227,
+  "GELDEND": 228,
   "GEBOUWD_EN_WERKEND": 24,
   "PENDING": 18,
   "VERVALLEN": 5,
@@ -56,10 +56,10 @@
   },
   "Burn-in & lanes": {
    "GEBOUWD_EN_WERKEND": 2,
-   "totaal": 70,
+   "totaal": 71,
    "PENDING": 3,
    "features": 23,
-   "GELDEND": 43,
+   "GELDEND": 44,
    "IN_BOUW": 7,
    "ONBEKEND": 15
   },
@@ -411,7 +411,7 @@
  ],
  "bewijs_stats": {
   "met_bewijsspoor": 24,
-  "zonder": 630,
+  "zonder": 631,
   "rolschendingen": 0,
   "pakketten": 900
  },
@@ -14089,7 +14089,7 @@
    "bevestigd": false,
    "geldt_voor": "alle rollen, alle lanes, alle projecten",
    "vervallen_reden": "",
-   "laatste24": true,
+   "laatste24": false,
    "herhaald": [],
    "laatste_ts": "2026-10-03T11:16:03",
    "bron": "overig",
@@ -15465,6 +15465,42 @@
    "fase": "",
    "tijdlijn": {
     "gevraagd": "2026-10-04 10:37"
+   },
+   "doorlooptijd_u": "",
+   "blokkade": "geen",
+   "rollen": {
+    "bouwer": "",
+    "toetser": "",
+    "stem": ""
+   },
+   "rolschending": [],
+   "bewijs_links": [],
+   "commits": [],
+   "teruggedraaid_door": ""
+  },
+  {
+   "id": "OB-0806",
+   "ts": "2026-10-04T11:16:37",
+   "datum": "2026-10-04 11:16",
+   "strekking": "Meting 04-10 11:16: load average 32/95/84, veroorzaakt door boombrede find over evidence/, outbox, state en .local-runtime (meerdere processen, elk 5-7 minuten op ongeveer 80% CPU, uit ronde-, ADMIN- en directorbeurten en lanepoort-monitor.sh) plus Spotlight-indexering. Daardoor lopen directorbeurten over 900 s. Regel: geen find over evidence/, .local-runtime/ of de hele repo in ronde- of directorbeurten. Zoek gericht op het exacte pad of via git ls-files en de queue-json. lanepoort-monitor.sh krijgt een begrensde zoekactie. Spotlight-uitsluiting van evidence/ en .local-runtime/ is een advies aan Richard (systeeminstelling).",
+   "soort": "REGEL",
+   "categorie": "Burn-in & lanes",
+   "status": "GELDEND",
+   "bewijs": "",
+   "kort": "",
+   "wacht_op": "",
+   "sinds": "",
+   "bevestigd": false,
+   "geldt_voor": "alle rollen, alle lanes, alle projecten",
+   "vervallen_reden": "",
+   "laatste24": true,
+   "herhaald": [],
+   "laatste_ts": "2026-10-04T11:16:37",
+   "bron": "overig",
+   "kanaal": "stack-director-recovery-048d59df",
+   "fase": "",
+   "tijdlijn": {
+    "gevraagd": "2026-10-04 11:16"
    },
    "doorlooptijd_u": "",
    "blokkade": "geen",
