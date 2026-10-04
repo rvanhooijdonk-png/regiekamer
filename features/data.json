@@ -1,10 +1,10 @@
 {
  "schema": "FEATURELOG_V1",
- "gegenereerd_op": "2026-10-04T14:15:34+02:00",
+ "gegenereerd_op": "2026-10-04T14:20:37+02:00",
  "bron": {
-  "besluiten": 790,
-  "kaarten": 660,
-  "bord": 359,
+  "besluiten": 791,
+  "kaarten": 661,
+  "bord": 360,
   "rest": 64,
   "machine": 236,
   "weggelaten_privacy": 0
@@ -34,7 +34,7 @@
   "Overig"
  ],
  "per_status": {
-  "GELDEND": 229,
+  "GELDEND": 230,
   "GEBOUWD_EN_WERKEND": 24,
   "PENDING": 18,
   "VERVALLEN": 5,
@@ -64,8 +64,8 @@
    "ONBEKEND": 17
   },
   "Governance & rollen": {
-   "GELDEND": 48,
-   "totaal": 62,
+   "GELDEND": 49,
+   "totaal": 63,
    "VERVALLEN": 2,
    "features": 12,
    "PENDING": 4,
@@ -415,7 +415,7 @@
  ],
  "bewijs_stats": {
   "met_bewijsspoor": 24,
-  "zonder": 636,
+  "zonder": 637,
   "rolschendingen": 0,
   "pakketten": 923
  },
@@ -15685,6 +15685,42 @@
    "fase": "",
    "tijdlijn": {
     "gevraagd": "2026-10-04 14:13"
+   },
+   "doorlooptijd_u": "",
+   "blokkade": "geen",
+   "rollen": {
+    "bouwer": "",
+    "toetser": "",
+    "stem": ""
+   },
+   "rolschending": [],
+   "bewijs_links": [],
+   "commits": [],
+   "teruggedraaid_door": ""
+  },
+  {
+   "id": "OB-0812",
+   "ts": "2026-10-04T14:16:14",
+   "datum": "2026-10-04 14:16",
+   "strekking": "ASTRA (codex4) is de onafhankelijke koerscontroleur. Elk uur maakt hij een alleen-lezende beurt via state/DIRECTOR/astra-koers.sh, met de prompt in state/DIRECTOR/astra-koers-prompt.md: zes vragen (doorloop, afstand tot de eerste uitkomst, verschoven beloften, ongemeten aannames, capaciteit, en de waarheid van drie beweringen van TOEZICHT), elk met bewijs. Hij schrijft outbox/ASTRA_KOERS_<tijd>.md met als eerste regel ASTRA-OORDEEL GROEN/ORANJE/ROOD. Het script commit het rapport. Bij ROOD stuurt het script zelf een Telegram naar Richard via ~/coa/notify_richard.py, buiten TOEZICHT om. TOEZICHT neemt de eerste regel letterlijk en bovenaan op in zijn kwartierupdate en antwoordt op ORANJE en ROOD. De bewakers houden de lus in leven; een STOP-bestand in evidence/astra-koers/ is een bewuste hold. Eerste beurt gestart op 04-10 14:2x.",
+   "soort": "REGEL",
+   "categorie": "Governance & rollen",
+   "status": "GELDEND",
+   "bewijs": "",
+   "kort": "",
+   "wacht_op": "",
+   "sinds": "",
+   "bevestigd": false,
+   "geldt_voor": "alle rollen, alle lanes, alle projecten",
+   "vervallen_reden": "",
+   "laatste24": true,
+   "herhaald": [],
+   "laatste_ts": "2026-10-04T14:16:14",
+   "bron": "overig",
+   "kanaal": "stack-director-recovery-048d59df",
+   "fase": "",
+   "tijdlijn": {
+    "gevraagd": "2026-10-04 14:16"
    },
    "doorlooptijd_u": "",
    "blokkade": "geen",
