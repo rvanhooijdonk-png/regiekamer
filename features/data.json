@@ -1,11 +1,11 @@
 {
  "schema": "FEATURELOG_V1",
- "gegenereerd_op": "2026-10-04T07:40:47+02:00",
+ "gegenereerd_op": "2026-10-04T07:45:50+02:00",
  "bron": {
-  "besluiten": 773,
-  "kaarten": 643,
-  "bord": 344,
-  "rest": 62,
+  "besluiten": 775,
+  "kaarten": 645,
+  "bord": 345,
+  "rest": 63,
   "machine": 236,
   "weggelaten_privacy": 0
  },
@@ -34,7 +34,7 @@
   "Overig"
  ],
  "per_status": {
-  "GELDEND": 224,
+  "GELDEND": 225,
   "GEBOUWD_EN_WERKEND": 24,
   "PENDING": 18,
   "VERVALLEN": 5,
@@ -45,8 +45,8 @@
  },
  "per_categorie": {
   "Accounts & toegang": {
-   "GELDEND": 24,
-   "totaal": 31,
+   "GELDEND": 25,
+   "totaal": 32,
    "GEBOUWD_EN_WERKEND": 1,
    "features": 5,
    "IN_BOUW": 2,
@@ -405,9 +405,9 @@
  ],
  "bewijs_stats": {
   "met_bewijsspoor": 24,
-  "zonder": 619,
+  "zonder": 621,
   "rolschendingen": 0,
-  "pakketten": 877
+  "pakketten": 878
  },
  "bord": [
   {
@@ -15149,6 +15149,42 @@
    "teruggedraaid_door": ""
   },
   {
+   "id": "OB-0796",
+   "ts": "2026-10-04T07:44:11",
+   "datum": "2026-10-04 07:44",
+   "strekking": "Vraag Richard nooit om in te loggen of een profiel opnieuw aan te melden (OB-0003/OB-0390 blijven gelden). Het veld oauthAccount.emailAddress in <profiel>/.claude.json is onbetrouwbaar als accountbewijs (vloot.py, OW-08804) en mag niet als meter dienen. Dat trekt de conclusies van OB-0789 voor claude1, claude2 en claude3 in. Accountidentiteit wordt alleen bewezen door de lane zelf (een echte statusvraag aan de aanbieder vanuit de lane) of in de cloud door de worker die zijn eigen account logt. Is iets niet bewezen, dan meldt TOEZICHT dat als bevinding en zoekt een route zonder Richard.",
+   "soort": "REGEL",
+   "categorie": "Accounts & toegang",
+   "status": "GELDEND",
+   "bewijs": "",
+   "kort": "",
+   "wacht_op": "",
+   "sinds": "",
+   "bevestigd": false,
+   "geldt_voor": "alle rollen, alle lanes, alle projecten",
+   "vervallen_reden": "",
+   "laatste24": true,
+   "herhaald": [],
+   "laatste_ts": "2026-10-04T07:44:11",
+   "bron": "overig",
+   "kanaal": "stack-director-recovery-048d59df",
+   "fase": "",
+   "tijdlijn": {
+    "gevraagd": "2026-10-04 07:44"
+   },
+   "doorlooptijd_u": "",
+   "blokkade": "geen",
+   "rollen": {
+    "bouwer": "",
+    "toetser": "",
+    "stem": ""
+   },
+   "rolschending": [],
+   "bewijs_links": [],
+   "commits": [],
+   "teruggedraaid_door": ""
+  },
+  {
    "id": "OW-02325",
    "ts": "2026-09-27T07:29:23",
    "datum": "2026-09-27 07:29",
@@ -17690,6 +17726,42 @@
    "fase": "",
    "tijdlijn": {
     "gevraagd": "2026-10-04 07:37"
+   },
+   "doorlooptijd_u": "",
+   "blokkade": "geen",
+   "rollen": {
+    "bouwer": "",
+    "toetser": "",
+    "stem": ""
+   },
+   "rolschending": [],
+   "bewijs_links": [],
+   "commits": [],
+   "teruggedraaid_door": ""
+  },
+  {
+   "id": "OB-0795",
+   "ts": "2026-10-04T07:42:34",
+   "datum": "2026-10-04 07:42",
+   "strekking": "Gemeten 04-10 07:4x met de eigen meter (oauthAccount.emailAddress): ~/.claude staat nu op [e-mail] Volgens bin/lib/vloot.py r231 is ~/.claude het profiel van de claude4-lane (sinds 28-09, OW-08250), dus de claude4-lane gebruikt nu het 2050-account met 100% weekquotum en gaat het zwaarste werk doen (OB-0790). ~/.claude4 is niet de claude4-lane. Nog verkeerd aangemeld: ~/.claude1 (claude1-lane, hoort r.vanhooijdonk, is richard.vanhooijdonk), ~/.claude3 (claude3-lane, hoort richard.vanhooijdonk, is r.vanhooijdonk) en ~/.claude-second (claude2-lane, hoort futurezone, is richard.vanhooijdonk). Die drie worden na de start van de burn-in opnieuw aangemeld, met een privévenster per account.",
+   "soort": "FEIT",
+   "categorie": "Accounts & toegang",
+   "status": "ONBEKEND",
+   "bewijs": "",
+   "kort": "",
+   "wacht_op": "",
+   "sinds": "",
+   "bevestigd": false,
+   "geldt_voor": "alle rollen, alle lanes, alle projecten",
+   "vervallen_reden": "",
+   "laatste24": true,
+   "herhaald": [],
+   "laatste_ts": "2026-10-04T07:42:34",
+   "bron": "overig",
+   "kanaal": "stack-director-recovery-048d59df",
+   "fase": "",
+   "tijdlijn": {
+    "gevraagd": "2026-10-04 07:42"
    },
    "doorlooptijd_u": "",
    "blokkade": "geen",
