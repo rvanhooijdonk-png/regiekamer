@@ -1,11 +1,11 @@
 {
  "schema": "FEATURELOG_V1",
- "gegenereerd_op": "2026-10-04T07:35:44+02:00",
+ "gegenereerd_op": "2026-10-04T07:40:47+02:00",
  "bron": {
-  "besluiten": 771,
-  "kaarten": 641,
-  "bord": 343,
-  "rest": 61,
+  "besluiten": 773,
+  "kaarten": 643,
+  "bord": 344,
+  "rest": 62,
   "machine": 236,
   "weggelaten_privacy": 0
  },
@@ -34,7 +34,7 @@
   "Overig"
  ],
  "per_status": {
-  "GELDEND": 223,
+  "GELDEND": 224,
   "GEBOUWD_EN_WERKEND": 24,
   "PENDING": 18,
   "VERVALLEN": 5,
@@ -45,8 +45,8 @@
  },
  "per_categorie": {
   "Accounts & toegang": {
-   "GELDEND": 23,
-   "totaal": 30,
+   "GELDEND": 24,
+   "totaal": 31,
    "GEBOUWD_EN_WERKEND": 1,
    "features": 5,
    "IN_BOUW": 2,
@@ -405,7 +405,7 @@
  ],
  "bewijs_stats": {
   "met_bewijsspoor": 24,
-  "zonder": 617,
+  "zonder": 619,
   "rolschendingen": 0,
   "pakketten": 877
  },
@@ -15113,6 +15113,42 @@
    "teruggedraaid_door": ""
   },
   {
+   "id": "OB-0793",
+   "ts": "2026-10-04T07:36:01",
+   "datum": "2026-10-04 07:36",
+   "strekking": "De director stapt nu over naar een verse thread op codex1, zonder te wachten tot codex2 op is. Reden: de huidige thread 01a0c09b heeft een sessielog van 358 MB, en elke resume stuurt die hele geschiedenis opnieuw mee. Uitvoering zoals in OB-0791: eerst de overdracht DIRECTOR_HANDOFF.md, dan een nieuwe thread via CODEX_HOME=~/.codex1 codex exec, het thread-id vastleggen en director-waakvlam herstarten met DIRECTOR_CODEX_HOME=~/.codex1. Daarna stemt CPT1 niet meer. Een duurder Codex-abonnement en het opzeggen van accounts worden pas na een dag meten besloten; er blijven minimaal drie Codex-accounts.",
+   "soort": "REGEL",
+   "categorie": "Accounts & toegang",
+   "status": "GELDEND",
+   "bewijs": "",
+   "kort": "",
+   "wacht_op": "",
+   "sinds": "",
+   "bevestigd": false,
+   "geldt_voor": "alle rollen, alle lanes, alle projecten",
+   "vervallen_reden": "",
+   "laatste24": true,
+   "herhaald": [],
+   "laatste_ts": "2026-10-04T07:36:01",
+   "bron": "overig",
+   "kanaal": "stack-director-recovery-048d59df",
+   "fase": "",
+   "tijdlijn": {
+    "gevraagd": "2026-10-04 07:36"
+   },
+   "doorlooptijd_u": "",
+   "blokkade": "geen",
+   "rollen": {
+    "bouwer": "",
+    "toetser": "",
+    "stem": ""
+   },
+   "rolschending": [],
+   "bewijs_links": [],
+   "commits": [],
+   "teruggedraaid_door": ""
+  },
+  {
    "id": "OW-02325",
    "ts": "2026-09-27T07:29:23",
    "datum": "2026-09-27 07:29",
@@ -17618,6 +17654,42 @@
    "fase": "",
    "tijdlijn": {
     "gevraagd": "2026-10-04 07:32"
+   },
+   "doorlooptijd_u": "",
+   "blokkade": "geen",
+   "rollen": {
+    "bouwer": "",
+    "toetser": "",
+    "stem": ""
+   },
+   "rolschending": [],
+   "bewijs_links": [],
+   "commits": [],
+   "teruggedraaid_door": ""
+  },
+  {
+   "id": "OB-0794",
+   "ts": "2026-10-04T07:37:00",
+   "datum": "2026-10-04 07:37",
+   "strekking": "De verbruiksmeting van een dag, die bepaalt welke abonnementen nodig zijn (OB-0793), omvat alle acht accounts: codex1-4 en claude1-4, met director, ADMIN en lanes apart. Gemeten met eigen meters, niet met ModelDeck (OB-0792): tokens en beurten per account uit de run-logs (run.jsonl/usage) en de directorsessie, toegewezen aan het werkelijke account via oauthAccount.emailAddress per profiel (Claude) en CODEX_HOME per lane (Codex), plus weigeringen met reset_at uit bin/lane. Na 24 uur maakt TOEZICHT een advies per account: houden, opschalen of opzeggen. Richard beslist, want het gaat om uitgaven.",
+   "soort": "FEIT",
+   "categorie": "Accounts & toegang",
+   "status": "ONBEKEND",
+   "bewijs": "",
+   "kort": "",
+   "wacht_op": "",
+   "sinds": "",
+   "bevestigd": false,
+   "geldt_voor": "alle rollen, alle lanes, alle projecten",
+   "vervallen_reden": "",
+   "laatste24": true,
+   "herhaald": [],
+   "laatste_ts": "2026-10-04T07:37:00",
+   "bron": "overig",
+   "kanaal": "stack-director-recovery-048d59df",
+   "fase": "",
+   "tijdlijn": {
+    "gevraagd": "2026-10-04 07:37"
    },
    "doorlooptijd_u": "",
    "blokkade": "geen",
