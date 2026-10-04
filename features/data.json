@@ -1,10 +1,10 @@
 {
  "schema": "FEATURELOG_V1",
- "gegenereerd_op": "2026-10-04T04:13:34+02:00",
+ "gegenereerd_op": "2026-10-04T04:18:37+02:00",
  "bron": {
-  "besluiten": 760,
-  "kaarten": 630,
-  "bord": 333,
+  "besluiten": 761,
+  "kaarten": 631,
+  "bord": 334,
   "rest": 60,
   "machine": 236,
   "weggelaten_privacy": 0
@@ -41,7 +41,7 @@
   "UITGEVOERD": 8,
   "IN_BOUW": 31,
   "WACHT_OP_RICHARD": 1,
-  "ONBEKEND": 28
+  "ONBEKEND": 29
  },
  "per_categorie": {
   "Accounts & toegang": {
@@ -65,13 +65,13 @@
   },
   "Governance & rollen": {
    "GELDEND": 46,
-   "totaal": 59,
+   "totaal": 60,
    "VERVALLEN": 2,
-   "features": 11,
+   "features": 12,
    "PENDING": 4,
    "UITGEVOERD": 2,
    "IN_BOUW": 1,
-   "ONBEKEND": 4
+   "ONBEKEND": 5
   },
   "Overig": {
    "GEBOUWD_EN_WERKEND": 1,
@@ -321,7 +321,8 @@
   "datum": "2026-10-04",
   "gevraagd": [
    "OB-0778",
-   "OB-0779"
+   "OB-0779",
+   "OB-0782"
   ],
   "geleverd": [],
   "geblokkeerd": [
@@ -400,9 +401,9 @@
  ],
  "bewijs_stats": {
   "met_bewijsspoor": 24,
-  "zonder": 606,
+  "zonder": 607,
   "rolschendingen": 0,
-  "pakketten": 850
+  "pakketten": 851
  },
  "bord": [
   {
@@ -14734,6 +14735,42 @@
    "fase": "",
    "tijdlijn": {
     "gevraagd": "2026-10-04 02:46"
+   },
+   "doorlooptijd_u": "",
+   "blokkade": "geen",
+   "rollen": {
+    "bouwer": "",
+    "toetser": "",
+    "stem": ""
+   },
+   "rolschending": [],
+   "bewijs_links": [],
+   "commits": [],
+   "teruggedraaid_door": ""
+  },
+  {
+   "id": "OB-0782",
+   "ts": "2026-10-04T04:16:43",
+   "datum": "2026-10-04 04:16",
+   "strekking": "Op de finale kandidaat bfb90570 staat PRODUCT nog op False (compositie.py r42), omdat de vrijgavebron ontbreekt (repo, beginprefix, admin_schrijvers, manifest). Er komt eerst één gerichte Claude-bouw die de vrijgavebron volgens OB-0761 vult: ledger op toezicht/gereedschap, alleen regels met issued_by=ADMIN, append-only prefixcontrole, manifest = precies de drie O1-O3-hashes. Die bouw zet PRODUCT=True, met intake UIT en PROCESGRENS_BEWEZEN False. Daarna volgen één finale test en stem op de nieuwe head, dan deploy, O1-O3 en burn-in. Zonder deze stap kan O1-O3 niets uitvoeren.",
+   "soort": "FEATURE",
+   "categorie": "Governance & rollen",
+   "status": "ONBEKEND",
+   "bewijs": "",
+   "kort": "",
+   "wacht_op": "",
+   "sinds": "",
+   "bevestigd": false,
+   "geldt_voor": "alle rollen, alle lanes, alle projecten",
+   "vervallen_reden": "",
+   "laatste24": true,
+   "herhaald": [],
+   "laatste_ts": "2026-10-04T04:16:43",
+   "bron": "overig",
+   "kanaal": "stack-director-recovery-048d59df",
+   "fase": "",
+   "tijdlijn": {
+    "gevraagd": "2026-10-04 04:16"
    },
    "doorlooptijd_u": "",
    "blokkade": "geen",
