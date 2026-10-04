@@ -1,10 +1,10 @@
 {
  "schema": "FEATURELOG_V1",
- "gegenereerd_op": "2026-10-04T08:46:33+02:00",
+ "gegenereerd_op": "2026-10-04T08:51:36+02:00",
  "bron": {
-  "besluiten": 777,
-  "kaarten": 647,
-  "bord": 346,
+  "besluiten": 778,
+  "kaarten": 648,
+  "bord": 347,
   "rest": 64,
   "machine": 236,
   "weggelaten_privacy": 0
@@ -41,7 +41,7 @@
   "UITGEVOERD": 8,
   "IN_BOUW": 31,
   "WACHT_OP_RICHARD": 1,
-  "ONBEKEND": 34
+  "ONBEKEND": 35
  },
  "per_categorie": {
   "Accounts & toegang": {
@@ -82,14 +82,14 @@
   },
   "Cloud & Temporal": {
    "VERVALLEN": 1,
-   "totaal": 44,
+   "totaal": 45,
    "UITGEVOERD": 3,
-   "features": 13,
+   "features": 14,
    "GELDEND": 20,
    "IN_BOUW": 7,
    "GEBOUWD_EN_WERKEND": 5,
    "PENDING": 2,
-   "ONBEKEND": 6
+   "ONBEKEND": 7
   },
   "Boards & rapportage": {
    "VERVALLEN": 2,
@@ -327,7 +327,8 @@
    "OB-0787",
    "OB-0788",
    "OB-0790",
-   "OB-0798"
+   "OB-0798",
+   "OB-0799"
   ],
   "geleverd": [],
   "geblokkeerd": [
@@ -406,7 +407,7 @@
  ],
  "bewijs_stats": {
   "met_bewijsspoor": 24,
-  "zonder": 623,
+  "zonder": 624,
   "rolschendingen": 0,
   "pakketten": 885
  },
@@ -15208,6 +15209,42 @@
    "fase": "",
    "tijdlijn": {
     "gevraagd": "2026-10-04 08:16"
+   },
+   "doorlooptijd_u": "",
+   "blokkade": "geen",
+   "rollen": {
+    "bouwer": "",
+    "toetser": "",
+    "stem": ""
+   },
+   "rolschending": [],
+   "bewijs_links": [],
+   "commits": [],
+   "teruggedraaid_door": ""
+  },
+  {
+   "id": "OB-0799",
+   "ts": "2026-10-04T08:46:37",
+   "datum": "2026-10-04 08:46",
+   "strekking": "Aanscherping van OB-0798. c13614c4 wordt NIET gedeployd, omdat de productstem F01 HIGH vond: een andere geldige Toelating via constructor, config of compositie laat O4 starten (12 tegenvoorbeelden), en config.py staat in die route. Eerst herstel op CLAUDE4: de canonieke O1-O3-binding mag niet verruimd kunnen worden, en F02 krijgt een getypeerde fetch-oorzaak. Daarna test (CPT4) en stem (codex3) op de herstelhead, en dan deploy. N1-X7 is geen poort meer vóór de deploy, omdat de Codex-cloudomgeving temporalio mist. N1-X7 wordt nu na de deploy read-only in de Railway-container gemeten, als onderdeel van de controle uit OB-0788. Faalt die, dan geen O1-O3 en terug naar bf6927ef.",
+   "soort": "FEATURE",
+   "categorie": "Cloud & Temporal",
+   "status": "ONBEKEND",
+   "bewijs": "",
+   "kort": "",
+   "wacht_op": "",
+   "sinds": "",
+   "bevestigd": false,
+   "geldt_voor": "alle rollen, alle lanes, alle projecten",
+   "vervallen_reden": "",
+   "laatste24": true,
+   "herhaald": [],
+   "laatste_ts": "2026-10-04T08:46:37",
+   "bron": "overig",
+   "kanaal": "stack-director-recovery-048d59df",
+   "fase": "",
+   "tijdlijn": {
+    "gevraagd": "2026-10-04 08:46"
    },
    "doorlooptijd_u": "",
    "blokkade": "geen",
