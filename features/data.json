@@ -1,11 +1,11 @@
 {
  "schema": "FEATURELOG_V1",
- "gegenereerd_op": "2026-10-04T07:30:41+02:00",
+ "gegenereerd_op": "2026-10-04T07:35:44+02:00",
  "bron": {
-  "besluiten": 767,
-  "kaarten": 637,
-  "bord": 340,
-  "rest": 60,
+  "besluiten": 771,
+  "kaarten": 641,
+  "bord": 343,
+  "rest": 61,
   "machine": 236,
   "weggelaten_privacy": 0
  },
@@ -34,38 +34,38 @@
   "Overig"
  ],
  "per_status": {
-  "GELDEND": 221,
+  "GELDEND": 223,
   "GEBOUWD_EN_WERKEND": 24,
   "PENDING": 18,
   "VERVALLEN": 5,
   "UITGEVOERD": 8,
   "IN_BOUW": 31,
   "WACHT_OP_RICHARD": 1,
-  "ONBEKEND": 32
+  "ONBEKEND": 33
  },
  "per_categorie": {
   "Accounts & toegang": {
    "GELDEND": 23,
-   "totaal": 29,
+   "totaal": 30,
    "GEBOUWD_EN_WERKEND": 1,
-   "features": 4,
+   "features": 5,
    "IN_BOUW": 2,
    "UITGEVOERD": 1,
    "PENDING": 1,
-   "ONBEKEND": 1
+   "ONBEKEND": 2
   },
   "Burn-in & lanes": {
    "GEBOUWD_EN_WERKEND": 2,
-   "totaal": 66,
+   "totaal": 67,
    "PENDING": 3,
    "features": 22,
-   "GELDEND": 40,
+   "GELDEND": 41,
    "IN_BOUW": 7,
    "ONBEKEND": 14
   },
   "Governance & rollen": {
-   "GELDEND": 46,
-   "totaal": 60,
+   "GELDEND": 47,
+   "totaal": 61,
    "VERVALLEN": 2,
    "features": 12,
    "PENDING": 4,
@@ -325,7 +325,8 @@
    "OB-0782",
    "OB-0786",
    "OB-0787",
-   "OB-0788"
+   "OB-0788",
+   "OB-0790"
   ],
   "geleverd": [],
   "geblokkeerd": [
@@ -404,9 +405,9 @@
  ],
  "bewijs_stats": {
   "met_bewijsspoor": 24,
-  "zonder": 613,
+  "zonder": 617,
   "rolschendingen": 0,
-  "pakketten": 876
+  "pakketten": 877
  },
  "bord": [
   {
@@ -15004,6 +15005,114 @@
    "teruggedraaid_door": ""
   },
   {
+   "id": "OB-0790",
+   "ts": "2026-10-04T07:33:44",
+   "datum": "2026-10-04 07:33",
+   "strekking": "Capaciteitsvolgorde voor zwaar Claude-werk: eerst het claude4-account ([e-mail], weekquotum 100%, reset woensdag), daarna claude2 ([e-mail], reset zaterdag), dan de rest. De director routeert de zwaarste bouw naar de CLAUDE4-lane. Meting 07:3x (OB-0789): geen enkel lokaal profiel is op dit moment aangemeld als 2050 of futurezone (~/.claude4 = r.vanhooijdonk, ~/.claude-second = richard.vanhooijdonk). Die accounts worden dus pas echt gebruikt als ~/.claude4 en het claude2-profiel opnieuw bij het juiste account zijn aangemeld.",
+   "soort": "FEATURE",
+   "categorie": "Accounts & toegang",
+   "status": "ONBEKEND",
+   "bewijs": "",
+   "kort": "",
+   "wacht_op": "",
+   "sinds": "",
+   "bevestigd": false,
+   "geldt_voor": "alle rollen, alle lanes, alle projecten",
+   "vervallen_reden": "",
+   "laatste24": true,
+   "herhaald": [],
+   "laatste_ts": "2026-10-04T07:33:44",
+   "bron": "overig",
+   "kanaal": "stack-director-recovery-048d59df",
+   "fase": "",
+   "tijdlijn": {
+    "gevraagd": "2026-10-04 07:33"
+   },
+   "doorlooptijd_u": "",
+   "blokkade": "geen",
+   "rollen": {
+    "bouwer": "",
+    "toetser": "",
+    "stem": ""
+   },
+   "rolschending": [],
+   "bewijs_links": [],
+   "commits": [],
+   "teruggedraaid_door": ""
+  },
+  {
+   "id": "OB-0791",
+   "ts": "2026-10-04T07:34:30",
+   "datum": "2026-10-04 07:34",
+   "strekking": "Het directoraccount codex2 is bijna op (reset vrijdag 23:16). De director schrijft nu een korte overdracht (state/DIRECTOR/DIRECTOR_HANDOFF.md) en houdt zijn beurten kort. Zodra codex2 op quotum weigert, start ADMIN één nieuwe directorthread op codex1 met TICK_TEXT, AGENTS.md, de overdracht en het register, legt het thread-id vast en herstart director-waakvlam met DIRECTOR_CODEX_HOME=~/.codex1. Zolang codex1 director is, stemt CPT1 niet; tests en stemmen gaan naar CPT3 en CPT4. Dit is een noodmaatregel voor het quotum, geen verhuizing zoals bedoeld in OB-0679.",
+   "soort": "REGEL",
+   "categorie": "Governance & rollen",
+   "status": "GELDEND",
+   "bewijs": "",
+   "kort": "",
+   "wacht_op": "",
+   "sinds": "",
+   "bevestigd": false,
+   "geldt_voor": "alle rollen, alle lanes, alle projecten",
+   "vervallen_reden": "",
+   "laatste24": true,
+   "herhaald": [],
+   "laatste_ts": "2026-10-04T07:34:30",
+   "bron": "overig",
+   "kanaal": "stack-director-recovery-048d59df",
+   "fase": "",
+   "tijdlijn": {
+    "gevraagd": "2026-10-04 07:34"
+   },
+   "doorlooptijd_u": "",
+   "blokkade": "geen",
+   "rollen": {
+    "bouwer": "",
+    "toetser": "",
+    "stem": ""
+   },
+   "rolschending": [],
+   "bewijs_links": [],
+   "commits": [],
+   "teruggedraaid_door": ""
+  },
+  {
+   "id": "OB-0792",
+   "ts": "2026-10-04T07:34:37",
+   "datum": "2026-10-04 07:34",
+   "strekking": "ModelDeck wordt niet meer gebruikt als bron voor metingen of beslissingen: niet voor quota, accountidentiteit, capaciteit of lanestatus. Gebruik de eigen meters: oauthAccount.emailAddress in <profiel>/.claude.json voor de identiteit, bin/lane-probes en lane-state voor capaciteit, en in de cloud de worker die zijn eigen account logt. Werkt iets alleen via ModelDeck, dan geldt het als ONBEWEZEN. Het geldt voor alle sessies en lanes, ook als de Mac uit staat.",
+   "soort": "REGEL",
+   "categorie": "Burn-in & lanes",
+   "status": "GELDEND",
+   "bewijs": "",
+   "kort": "",
+   "wacht_op": "",
+   "sinds": "",
+   "bevestigd": false,
+   "geldt_voor": "alle rollen, alle lanes, alle projecten",
+   "vervallen_reden": "",
+   "laatste24": true,
+   "herhaald": [],
+   "laatste_ts": "2026-10-04T07:34:37",
+   "bron": "overig",
+   "kanaal": "stack-director-recovery-048d59df",
+   "fase": "",
+   "tijdlijn": {
+    "gevraagd": "2026-10-04 07:34"
+   },
+   "doorlooptijd_u": "",
+   "blokkade": "geen",
+   "rollen": {
+    "bouwer": "",
+    "toetser": "",
+    "stem": ""
+   },
+   "rolschending": [],
+   "bewijs_links": [],
+   "commits": [],
+   "teruggedraaid_door": ""
+  },
+  {
    "id": "OW-02325",
    "ts": "2026-09-27T07:29:23",
    "datum": "2026-09-27 07:29",
@@ -17473,6 +17582,42 @@
    "fase": "",
    "tijdlijn": {
     "gevraagd": "2026-10-04 01:46"
+   },
+   "doorlooptijd_u": "",
+   "blokkade": "geen",
+   "rollen": {
+    "bouwer": "",
+    "toetser": "",
+    "stem": ""
+   },
+   "rolschending": [],
+   "bewijs_links": [],
+   "commits": [],
+   "teruggedraaid_door": ""
+  },
+  {
+   "id": "OB-0789",
+   "ts": "2026-10-04T07:32:06",
+   "datum": "2026-10-04 07:32",
+   "strekking": "Accountidentiteit wordt gemeten met eigen middelen, niet via ModelDeck: het veld oauthAccount.emailAddress in <profiel>/.claude.json, dat de Claude-CLI zelf ververst. Meting 04-10 07:3x: .claude1 en .claude-second (claude2) staan op [e-mail]; .claude3, .claude4 en .claude staan op [e-mail] Vier Claude-profielen draaien dus op twee accounts, terwijl er vier verwacht werden (claude1 r.vanhooijdonk, claude2 futurezone, claude3 richard.vanhooijdonk, claude4 2050). Voor de cloud moet de worker bij zijn start zelf de accountidentiteit van zijn sealed token loggen; dat is de meting die werkt als de Mac uit staat.",
+   "soort": "FEIT",
+   "categorie": "Accounts & toegang",
+   "status": "ONBEKEND",
+   "bewijs": "",
+   "kort": "",
+   "wacht_op": "",
+   "sinds": "",
+   "bevestigd": false,
+   "geldt_voor": "alle rollen, alle lanes, alle projecten",
+   "vervallen_reden": "",
+   "laatste24": true,
+   "herhaald": [],
+   "laatste_ts": "2026-10-04T07:32:06",
+   "bron": "overig",
+   "kanaal": "stack-director-recovery-048d59df",
+   "fase": "",
+   "tijdlijn": {
+    "gevraagd": "2026-10-04 07:32"
    },
    "doorlooptijd_u": "",
    "blokkade": "geen",
