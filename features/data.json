@@ -1,10 +1,10 @@
 {
  "schema": "FEATURELOG_V1",
- "gegenereerd_op": "2026-10-04T12:09:09+02:00",
+ "gegenereerd_op": "2026-10-04T12:14:12+02:00",
  "bron": {
-  "besluiten": 785,
-  "kaarten": 655,
-  "bord": 354,
+  "besluiten": 786,
+  "kaarten": 656,
+  "bord": 355,
   "rest": 64,
   "machine": 236,
   "weggelaten_privacy": 0
@@ -41,7 +41,7 @@
   "UITGEVOERD": 8,
   "IN_BOUW": 31,
   "WACHT_OP_RICHARD": 1,
-  "ONBEKEND": 39
+  "ONBEKEND": 40
  },
  "per_categorie": {
   "Accounts & toegang": {
@@ -82,14 +82,14 @@
   },
   "Cloud & Temporal": {
    "VERVALLEN": 1,
-   "totaal": 46,
+   "totaal": 47,
    "UITGEVOERD": 3,
-   "features": 15,
+   "features": 16,
    "GELDEND": 20,
    "IN_BOUW": 7,
    "GEBOUWD_EN_WERKEND": 5,
    "PENDING": 2,
-   "ONBEKEND": 8
+   "ONBEKEND": 9
   },
   "Boards & rapportage": {
    "VERVALLEN": 2,
@@ -332,7 +332,8 @@
    "OB-0802",
    "OB-0803",
    "OB-0804",
-   "OB-0805"
+   "OB-0805",
+   "OB-0807"
   ],
   "geleverd": [],
   "geblokkeerd": [
@@ -411,7 +412,7 @@
  ],
  "bewijs_stats": {
   "met_bewijsspoor": 24,
-  "zonder": 631,
+  "zonder": 632,
   "rolschendingen": 0,
   "pakketten": 906
  },
@@ -15501,6 +15502,42 @@
    "fase": "",
    "tijdlijn": {
     "gevraagd": "2026-10-04 11:16"
+   },
+   "doorlooptijd_u": "",
+   "blokkade": "geen",
+   "rollen": {
+    "bouwer": "",
+    "toetser": "",
+    "stem": ""
+   },
+   "rolschending": [],
+   "bewijs_links": [],
+   "commits": [],
+   "teruggedraaid_door": ""
+  },
+  {
+   "id": "OB-0807",
+   "ts": "2026-10-04T12:11:03",
+   "datum": "2026-10-04 12:11",
+   "strekking": "O3-cloudmandaat op keten-head 491a88d1 (tree eab19ef7): O3 (orderhash 78b8a4a3) is de bedoelde negatieve reserveerfoutorder van de G1-cloudproef en blijft duurzaam dicht: 0 startverzoeken en 0 Temporal-executies, nu en bij elke latere tick op dezelfde bewijsopslag. Een geblokkeerde O3 telt als geslaagde veiligheidseigenschap (GEBLOKKEERD_BEDOELD, OB-0778 (3)), niet als mislukte productorder; een O3-start is een veiligheidsincident. Geen deblokkeerroute, geen vierde canonieke hash (OB-0799). Dit besluit geeft geen GO, deploy-, start-, merge- of voer-uit-recht; CODEX4-test en CODEX3-productstem op exact 491a88d1 blijven beide vereist. MEDIUM-bevinding: cloudproef.py controleert bij C3 niet of O3 vooraf al geblokkeerd was of reserveerpogingen exact 1 waren; voor echte voer-uit moet vooraf STARTANTWOORD_BLOKKADE(O3) AFWEZIG en achteraf reserveerpogingen 1 in het bewijs staan. Alleen een HIGH-weging door de productstem opent een nieuwe bouwronde.",
+   "soort": "FEATURE",
+   "categorie": "Cloud & Temporal",
+   "status": "ONBEKEND",
+   "bewijs": "",
+   "kort": "",
+   "wacht_op": "",
+   "sinds": "",
+   "bevestigd": false,
+   "geldt_voor": "alle rollen, alle lanes, alle projecten",
+   "vervallen_reden": "",
+   "laatste24": true,
+   "herhaald": [],
+   "laatste_ts": "2026-10-04T12:11:03",
+   "bron": "overig",
+   "kanaal": "",
+   "fase": "",
+   "tijdlijn": {
+    "gevraagd": "2026-10-04 12:11"
    },
    "doorlooptijd_u": "",
    "blokkade": "geen",
