@@ -1,10 +1,10 @@
 {
  "schema": "FEATURELOG_V1",
- "gegenereerd_op": "2026-10-05T21:14:20+02:00",
+ "gegenereerd_op": "2026-10-05T21:19:23+02:00",
  "bron": {
-  "besluiten": 829,
-  "kaarten": 699,
-  "bord": 397,
+  "besluiten": 830,
+  "kaarten": 700,
+  "bord": 398,
   "rest": 65,
   "machine": 236,
   "weggelaten_privacy": 0
@@ -41,7 +41,7 @@
   "UITGEVOERD": 8,
   "IN_BOUW": 31,
   "WACHT_OP_RICHARD": 1,
-  "ONBEKEND": 55
+  "ONBEKEND": 56
  },
  "per_categorie": {
   "Accounts & toegang": {
@@ -82,14 +82,14 @@
   },
   "Cloud & Temporal": {
    "VERVALLEN": 1,
-   "totaal": 54,
+   "totaal": 55,
    "UITGEVOERD": 3,
-   "features": 19,
+   "features": 20,
    "GELDEND": 24,
    "IN_BOUW": 7,
    "GEBOUWD_EN_WERKEND": 5,
    "PENDING": 2,
-   "ONBEKEND": 12
+   "ONBEKEND": 13
   },
   "Boards & rapportage": {
    "VERVALLEN": 2,
@@ -327,7 +327,8 @@
    "OB-0843",
    "OB-0845",
    "OB-0846",
-   "OB-0849"
+   "OB-0849",
+   "OB-0851"
   ],
   "geleverd": [],
   "geblokkeerd": [
@@ -406,9 +407,9 @@
  ],
  "bewijs_stats": {
   "met_bewijsspoor": 24,
-  "zonder": 675,
+  "zonder": 676,
   "rolschendingen": 0,
-  "pakketten": 1082
+  "pakketten": 1085
  },
  "bord": [
   {
@@ -17048,6 +17049,42 @@
    "fase": "",
    "tijdlijn": {
     "gevraagd": "2026-10-05 20:46"
+   },
+   "doorlooptijd_u": "",
+   "blokkade": "geen",
+   "rollen": {
+    "bouwer": "",
+    "toetser": "",
+    "stem": ""
+   },
+   "rolschending": [],
+   "bewijs_links": [],
+   "commits": [],
+   "teruggedraaid_door": ""
+  },
+  {
+   "id": "OB-0851",
+   "ts": "2026-10-05T21:17:09",
+   "datum": "2026-10-05 21:17",
+   "strekking": "Fase B is afgesloten na poging 2/2: de enige tick gaf RESERVERINGSSTAND_ONLEESBAAR (lees_stand van de productreserveringsopslag faalde in de cloud), dus nul starts. De melding op O3 is by design: _stand_onleesbaar hangt aan de jongste vrijgave, en de selectielus loopt O1→O3, dus er is geen volgordeherstel nodig. Nooit poging 3. De drift-rollback naar f41c8f86 is toegestaan (herstel, geen activering). Read-only diagnose in de container van lees_stand (exceptieklasse, opslagtype, alleen de credentialnaam), daarna één gerichte herstelbouw met een test op deze leesfout. De vlag wisselt voortaan met een redeploy van de bestaande deployment, die de digest behoudt. Fase C (één poging) wordt pas besloten na een groene herstelbouw en een groene read-only lees_stand-proef.",
+   "soort": "FEATURE",
+   "categorie": "Cloud & Temporal",
+   "status": "ONBEKEND",
+   "bewijs": "",
+   "kort": "",
+   "wacht_op": "",
+   "sinds": "",
+   "bevestigd": false,
+   "geldt_voor": "alle rollen, alle lanes, alle projecten",
+   "vervallen_reden": "",
+   "laatste24": true,
+   "herhaald": [],
+   "laatste_ts": "2026-10-05T21:17:09",
+   "bron": "overig",
+   "kanaal": "",
+   "fase": "",
+   "tijdlijn": {
+    "gevraagd": "2026-10-05 21:17"
    },
    "doorlooptijd_u": "",
    "blokkade": "geen",
