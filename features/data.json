@@ -1,10 +1,10 @@
 {
  "schema": "FEATURELOG_V1",
- "gegenereerd_op": "2026-10-05T12:46:39+02:00",
+ "gegenereerd_op": "2026-10-05T12:51:43+02:00",
  "bron": {
-  "besluiten": 821,
-  "kaarten": 691,
-  "bord": 389,
+  "besluiten": 822,
+  "kaarten": 692,
+  "bord": 390,
   "rest": 65,
   "machine": 236,
   "weggelaten_privacy": 0
@@ -41,7 +41,7 @@
   "UITGEVOERD": 8,
   "IN_BOUW": 31,
   "WACHT_OP_RICHARD": 1,
-  "ONBEKEND": 51
+  "ONBEKEND": 52
  },
  "per_categorie": {
   "Accounts & toegang": {
@@ -82,14 +82,14 @@
   },
   "Cloud & Temporal": {
    "VERVALLEN": 1,
-   "totaal": 50,
+   "totaal": 51,
    "UITGEVOERD": 3,
-   "features": 18,
+   "features": 19,
    "GELDEND": 21,
    "IN_BOUW": 7,
    "GEBOUWD_EN_WERKEND": 5,
    "PENDING": 2,
-   "ONBEKEND": 11
+   "ONBEKEND": 12
   },
   "Boards & rapportage": {
    "VERVALLEN": 2,
@@ -323,7 +323,8 @@
    "OB-0829",
    "OB-0837",
    "OB-0840",
-   "OB-0842"
+   "OB-0842",
+   "OB-0843"
   ],
   "geleverd": [],
   "geblokkeerd": [
@@ -402,9 +403,9 @@
  ],
  "bewijs_stats": {
   "met_bewijsspoor": 24,
-  "zonder": 667,
+  "zonder": 668,
   "rolschendingen": 0,
-  "pakketten": 1067
+  "pakketten": 1068
  },
  "bord": [
   {
@@ -15556,7 +15557,7 @@
    "bevestigd": false,
    "geldt_voor": "alle rollen, alle lanes, alle projecten",
    "vervallen_reden": "",
-   "laatste24": true,
+   "laatste24": false,
    "herhaald": [],
    "laatste_ts": "2026-10-04T12:46:44",
    "bron": "overig",
@@ -16756,6 +16757,42 @@
    "fase": "",
    "tijdlijn": {
     "gevraagd": "2026-10-05 12:35"
+   },
+   "doorlooptijd_u": "",
+   "blokkade": "geen",
+   "rollen": {
+    "bouwer": "",
+    "toetser": "",
+    "stem": ""
+   },
+   "rolschending": [],
+   "bewijs_links": [],
+   "commits": [],
+   "teruggedraaid_door": ""
+  },
+  {
+   "id": "OB-0843",
+   "ts": "2026-10-05T12:46:49",
+   "datum": "2026-10-05 12:46",
+   "strekking": "Deploymandaat voor ADMIN: één deploy van temporal-worker voor de exacte head met openssh-client, bin/ledger-leessleutel-plaatsen en de binding KETEN_LEDGER_DEPLOYKEY, na een groene test en een stem van een ander Claude-account dan de bouwer. De vlag blijft UIT en de Schedule gepauzeerd. Nacontrole: vijf productwaarden, config_ontbreekt leeg, fallback gebonden, ssh aanwezig; rood betekent terug naar 10169e17. Fase B krijgt maximaal één nieuwe poging, alleen na een groene read-only voorproef via de leessleutel. De Schedule keten-v1-aanvoer wordt hergebruikt, niet opnieuw aangemaakt. Rollbackdoel voor poging 2 is de ssh-deploy met de vlag UIT als zijn nacontrole groen is, anders 10169e17; 5ce20bef nooit. Het GITHUB_TOKEN-herstel vervalt (OB-0842). De fetch-stderr wordt gereduceerd tot categorie plus sha.",
+   "soort": "FEATURE",
+   "categorie": "Cloud & Temporal",
+   "status": "ONBEKEND",
+   "bewijs": "",
+   "kort": "",
+   "wacht_op": "",
+   "sinds": "",
+   "bevestigd": false,
+   "geldt_voor": "alle rollen, alle lanes, alle projecten",
+   "vervallen_reden": "",
+   "laatste24": true,
+   "herhaald": [],
+   "laatste_ts": "2026-10-05T12:46:49",
+   "bron": "overig",
+   "kanaal": "",
+   "fase": "",
+   "tijdlijn": {
+    "gevraagd": "2026-10-05 12:46"
    },
    "doorlooptijd_u": "",
    "blokkade": "geen",
