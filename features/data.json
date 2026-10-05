@@ -1,10 +1,10 @@
 {
  "schema": "FEATURELOG_V1",
- "gegenereerd_op": "2026-10-05T22:14:59+02:00",
+ "gegenereerd_op": "2026-10-05T22:20:02+02:00",
  "bron": {
-  "besluiten": 832,
-  "kaarten": 702,
-  "bord": 400,
+  "besluiten": 833,
+  "kaarten": 703,
+  "bord": 401,
   "rest": 65,
   "machine": 236,
   "weggelaten_privacy": 0
@@ -41,7 +41,7 @@
   "UITGEVOERD": 8,
   "IN_BOUW": 31,
   "WACHT_OP_RICHARD": 1,
-  "ONBEKEND": 56
+  "ONBEKEND": 57
  },
  "per_categorie": {
   "Accounts & toegang": {
@@ -82,14 +82,14 @@
   },
   "Cloud & Temporal": {
    "VERVALLEN": 1,
-   "totaal": 55,
+   "totaal": 56,
    "UITGEVOERD": 3,
-   "features": 20,
+   "features": 21,
    "GELDEND": 24,
    "IN_BOUW": 7,
    "GEBOUWD_EN_WERKEND": 5,
    "PENDING": 2,
-   "ONBEKEND": 13
+   "ONBEKEND": 14
   },
   "Boards & rapportage": {
    "VERVALLEN": 2,
@@ -328,7 +328,8 @@
    "OB-0845",
    "OB-0846",
    "OB-0849",
-   "OB-0851"
+   "OB-0851",
+   "OB-0854"
   ],
   "geleverd": [],
   "geblokkeerd": [
@@ -407,9 +408,9 @@
  ],
  "bewijs_stats": {
   "met_bewijsspoor": 24,
-  "zonder": 678,
+  "zonder": 679,
   "rolschendingen": 0,
-  "pakketten": 1088
+  "pakketten": 1089
  },
  "bord": [
   {
@@ -17157,6 +17158,42 @@
    "fase": "",
    "tijdlijn": {
     "gevraagd": "2026-10-05 21:50"
+   },
+   "doorlooptijd_u": "",
+   "blokkade": "geen",
+   "rollen": {
+    "bouwer": "",
+    "toetser": "",
+    "stem": ""
+   },
+   "rolschending": [],
+   "bewijs_links": [],
+   "commits": [],
+   "teruggedraaid_door": ""
+  },
+  {
+   "id": "OB-0854",
+   "ts": "2026-10-05T22:16:39",
+   "datum": "2026-10-05 22:16",
+   "strekking": "Herziening van OB-0853 punt 2. De eis dat de digest voor en na elke transitie 41b8aeb0 is, is niet uitvoerbaar: een vlagwijziging vraagt een nieuwe deployment, Railway bouwt niet deterministisch (poging 2: AAN 41b8, UIT 580b), en een rollback zet ook de variabelen terug. Nieuwe eis voor elke fase-C-deployment: cliMessage en context gelijk aan ca8d7261/61ac1034, plus de volledige nacontrole (config, ssh, sleutelnaam, geen residu, temporalio 1.33.0, hartslag en poller, lees_stand leesbaar) op dat nieuwe image; de digest wordt vastgelegd. AAN: pas na een groene nacontrole de Schedule hervatten; rood betekent Schedule dicht, vlag UIT en rollback naar a5029458. UIT in elke uitkomst; afwijkende digest bij UIT is geen rood. Eén poging, geen derde transitie. De bouw van een deterministische image-route (CLAUDE3) is verharding, geen voorwaarde. DIRECTOR past de order aan, onafhankelijke GO, ADMIN voert uit.",
+   "soort": "FEATURE",
+   "categorie": "Cloud & Temporal",
+   "status": "ONBEKEND",
+   "bewijs": "",
+   "kort": "",
+   "wacht_op": "",
+   "sinds": "",
+   "bevestigd": false,
+   "geldt_voor": "alle rollen, alle lanes, alle projecten",
+   "vervallen_reden": "",
+   "laatste24": true,
+   "herhaald": [],
+   "laatste_ts": "2026-10-05T22:16:39",
+   "bron": "overig",
+   "kanaal": "",
+   "fase": "",
+   "tijdlijn": {
+    "gevraagd": "2026-10-05 22:16"
    },
    "doorlooptijd_u": "",
    "blokkade": "geen",
