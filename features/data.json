@@ -1,10 +1,10 @@
 {
  "schema": "FEATURELOG_V1",
- "gegenereerd_op": "2026-10-05T20:44:00+02:00",
+ "gegenereerd_op": "2026-10-05T20:49:03+02:00",
  "bron": {
-  "besluiten": 828,
-  "kaarten": 698,
-  "bord": 396,
+  "besluiten": 829,
+  "kaarten": 699,
+  "bord": 397,
   "rest": 65,
   "machine": 236,
   "weggelaten_privacy": 0
@@ -34,7 +34,7 @@
   "Overig"
  ],
  "per_status": {
-  "GELDEND": 254,
+  "GELDEND": 255,
   "GEBOUWD_EN_WERKEND": 24,
   "PENDING": 18,
   "VERVALLEN": 5,
@@ -82,10 +82,10 @@
   },
   "Cloud & Temporal": {
    "VERVALLEN": 1,
-   "totaal": 53,
+   "totaal": 54,
    "UITGEVOERD": 3,
    "features": 19,
-   "GELDEND": 23,
+   "GELDEND": 24,
    "IN_BOUW": 7,
    "GEBOUWD_EN_WERKEND": 5,
    "PENDING": 2,
@@ -406,7 +406,7 @@
  ],
  "bewijs_stats": {
   "met_bewijsspoor": 24,
-  "zonder": 674,
+  "zonder": 675,
   "rolschendingen": 0,
   "pakketten": 1082
  },
@@ -17012,6 +17012,42 @@
    "fase": "",
    "tijdlijn": {
     "gevraagd": "2026-10-05 20:32"
+   },
+   "doorlooptijd_u": "",
+   "blokkade": "geen",
+   "rollen": {
+    "bouwer": "",
+    "toetser": "",
+    "stem": ""
+   },
+   "rolschending": [],
+   "bewijs_links": [],
+   "commits": [],
+   "teruggedraaid_door": ""
+  },
+  {
+   "id": "OB-0850",
+   "ts": "2026-10-05T20:46:38",
+   "datum": "2026-10-05 20:46",
+   "strekking": "Aanvulling op OB-0843 voor fase B poging 2. Precies twee config-only deploymenttransities op exact ca8d7261 en image sha256:41b8aeb0…d171ef. Eerst AAN: alleen KETEN_V1_AANVOER, met --skip-deploys en één redeploy van hetzelfde image; nacontrole digest, config, ssh, sleutelnaam en hartslag; pas daarna de Schedule hervatten. Daarna UIT in elke uitkomst: eerst de Schedule pauzeren, dan de vlag UIT met een redeploy van hetzelfde image; nacontrole vlag UIT en nul lopende orderworkflows. Elke drift betekent ROOD en terug naar f41c8f86 met de vlag UIT. Geen nieuwe Schedule, geen derde transitie, geen poging 3. De gecorrigeerde order 620a3631 (O3 STARTANTWOORD_BLOKKADE) eerst onafhankelijk GO en geborgd. De drie ledgerregels met het keten_v1-blok zijn door TOEZICHT gelijk aan PRODUCT_ORDERBINDINGEN gemeten.",
+   "soort": "REGEL",
+   "categorie": "Cloud & Temporal",
+   "status": "GELDEND",
+   "bewijs": "",
+   "kort": "",
+   "wacht_op": "",
+   "sinds": "",
+   "bevestigd": false,
+   "geldt_voor": "alle rollen, alle lanes, alle projecten",
+   "vervallen_reden": "",
+   "laatste24": true,
+   "herhaald": [],
+   "laatste_ts": "2026-10-05T20:46:38",
+   "bron": "overig",
+   "kanaal": "",
+   "fase": "",
+   "tijdlijn": {
+    "gevraagd": "2026-10-05 20:46"
    },
    "doorlooptijd_u": "",
    "blokkade": "geen",
