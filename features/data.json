@@ -1,10 +1,10 @@
 {
  "schema": "FEATURELOG_V1",
- "gegenereerd_op": "2026-10-05T12:31:29+02:00",
+ "gegenereerd_op": "2026-10-05T12:36:32+02:00",
  "bron": {
-  "besluiten": 819,
-  "kaarten": 689,
-  "bord": 387,
+  "besluiten": 821,
+  "kaarten": 691,
+  "bord": 389,
   "rest": 65,
   "machine": 236,
   "weggelaten_privacy": 0
@@ -34,14 +34,14 @@
   "Overig"
  ],
  "per_status": {
-  "GELDEND": 250,
+  "GELDEND": 251,
   "GEBOUWD_EN_WERKEND": 24,
   "PENDING": 18,
   "VERVALLEN": 5,
   "UITGEVOERD": 8,
   "IN_BOUW": 31,
   "WACHT_OP_RICHARD": 1,
-  "ONBEKEND": 50
+  "ONBEKEND": 51
  },
  "per_categorie": {
   "Accounts & toegang": {
@@ -64,8 +64,8 @@
    "ONBEKEND": 18
   },
   "Governance & rollen": {
-   "GELDEND": 54,
-   "totaal": 72,
+   "GELDEND": 55,
+   "totaal": 73,
    "VERVALLEN": 2,
    "features": 16,
    "PENDING": 4,
@@ -82,14 +82,14 @@
   },
   "Cloud & Temporal": {
    "VERVALLEN": 1,
-   "totaal": 49,
+   "totaal": 50,
    "UITGEVOERD": 3,
-   "features": 17,
+   "features": 18,
    "GELDEND": 21,
    "IN_BOUW": 7,
    "GEBOUWD_EN_WERKEND": 5,
    "PENDING": 2,
-   "ONBEKEND": 10
+   "ONBEKEND": 11
   },
   "Boards & rapportage": {
    "VERVALLEN": 2,
@@ -322,7 +322,8 @@
   "gevraagd": [
    "OB-0829",
    "OB-0837",
-   "OB-0840"
+   "OB-0840",
+   "OB-0842"
   ],
   "geleverd": [],
   "geblokkeerd": [
@@ -401,7 +402,7 @@
  ],
  "bewijs_stats": {
   "met_bewijsspoor": 24,
-  "zonder": 665,
+  "zonder": 667,
   "rolschendingen": 0,
   "pakketten": 1067
  },
@@ -16683,6 +16684,78 @@
    "fase": "",
    "tijdlijn": {
     "gevraagd": "2026-10-05 12:22"
+   },
+   "doorlooptijd_u": "",
+   "blokkade": "geen",
+   "rollen": {
+    "bouwer": "",
+    "toetser": "",
+    "stem": ""
+   },
+   "rolschending": [],
+   "bewijs_links": [],
+   "commits": [],
+   "teruggedraaid_door": ""
+  },
+  {
+   "id": "OB-0841",
+   "ts": "2026-10-05T12:31:45",
+   "datum": "2026-10-05 12:31",
+   "strekking": "Fase B poging 1 gaf de eerste echte KETEN_V1-tick op Temporal (COMPLETED), rood op LEDGER_NIET_OPGEHAALD (git fetch exit 128). Teruggezet naar vlag UIT (10169e17). Route: eerst een read-only voorproef in de container (fetch, credential-koppeling, alleen namen en exit-codes). Dan: (a) het bestaande token koppelen als het er is, of (b) een nieuw leestoken voor de repo, door Richard te plaatsen. Poging 2 alleen na een groene voorproef, met dezelfde nacontrole (OB-0838). Bron: outbox/CLAUDE2_AAN_DIRECTOR_ADMIN_FASE_B_LEDGERFETCH_BESLUIT_1235.md",
+   "soort": "REGEL",
+   "categorie": "Governance & rollen",
+   "status": "GELDEND",
+   "bewijs": "",
+   "kort": "",
+   "wacht_op": "",
+   "sinds": "",
+   "bevestigd": false,
+   "geldt_voor": "alle rollen, alle lanes, alle projecten",
+   "vervallen_reden": "",
+   "laatste24": true,
+   "herhaald": [],
+   "laatste_ts": "2026-10-05T12:31:45",
+   "bron": "overig",
+   "kanaal": "",
+   "fase": "",
+   "tijdlijn": {
+    "gevraagd": "2026-10-05 12:31"
+   },
+   "doorlooptijd_u": "",
+   "blokkade": "geen",
+   "rollen": {
+    "bouwer": "",
+    "toetser": "",
+    "stem": ""
+   },
+   "rolschending": [],
+   "bewijs_links": [],
+   "commits": [],
+   "teruggedraaid_door": ""
+  },
+  {
+   "id": "OB-0842",
+   "ts": "2026-10-05T12:35:17",
+   "datum": "2026-10-05 12:35",
+   "strekking": "Ledgerfetch in de container (403 met GITHUB_TOKEN): route A als read-only deploy key op alleen rvanhooijdonk-png/Stack-Director, variabele KETEN_LEDGER_DEPLOYKEY. Het gereedschap bin/ledger-leessleutel-plaatsen (gh repo deploy-key add zonder --allow-write, railway variable set --stdin) draait Richard; geen plakken, geen webinterface. De fetchcode gebruikt ssh met vastgepinde known_hosts en blijft fail-closed zonder de variabele. GITHUB_TOKEN blijft ongewijzigd (geen schrijfrecht van de worker op de toezichtsrepo). Route B (ledgersnapshot in het image) valt af: elke vrijgave zou een redeploy vragen, en dat strijdt met P3 en de burn-in. Terugval A-PAT alleen als ssh niet in het image kan.",
+   "soort": "FEATURE",
+   "categorie": "Cloud & Temporal",
+   "status": "ONBEKEND",
+   "bewijs": "",
+   "kort": "",
+   "wacht_op": "",
+   "sinds": "",
+   "bevestigd": false,
+   "geldt_voor": "alle rollen, alle lanes, alle projecten",
+   "vervallen_reden": "",
+   "laatste24": true,
+   "herhaald": [],
+   "laatste_ts": "2026-10-05T12:35:17",
+   "bron": "overig",
+   "kanaal": "",
+   "fase": "",
+   "tijdlijn": {
+    "gevraagd": "2026-10-05 12:35"
    },
    "doorlooptijd_u": "",
    "blokkade": "geen",
