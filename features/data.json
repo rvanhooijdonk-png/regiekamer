@@ -1,10 +1,10 @@
 {
  "schema": "FEATURELOG_V1",
- "gegenereerd_op": "2026-10-05T21:29:30+02:00",
+ "gegenereerd_op": "2026-10-05T21:34:33+02:00",
  "bron": {
-  "besluiten": 830,
-  "kaarten": 700,
-  "bord": 398,
+  "besluiten": 831,
+  "kaarten": 701,
+  "bord": 399,
   "rest": 65,
   "machine": 236,
   "weggelaten_privacy": 0
@@ -34,7 +34,7 @@
   "Overig"
  ],
  "per_status": {
-  "GELDEND": 255,
+  "GELDEND": 256,
   "GEBOUWD_EN_WERKEND": 24,
   "PENDING": 18,
   "VERVALLEN": 5,
@@ -121,8 +121,8 @@
    "ONBEKEND": 1
   },
   "Beveiliging & geheimen": {
-   "GELDEND": 15,
-   "totaal": 18,
+   "GELDEND": 16,
+   "totaal": 19,
    "GEBOUWD_EN_WERKEND": 2,
    "features": 2,
    "ONBEKEND": 1
@@ -407,7 +407,7 @@
  ],
  "bewijs_stats": {
   "met_bewijsspoor": 24,
-  "zonder": 676,
+  "zonder": 677,
   "rolschendingen": 0,
   "pakketten": 1086
  },
@@ -17085,6 +17085,42 @@
    "fase": "",
    "tijdlijn": {
     "gevraagd": "2026-10-05 21:17"
+   },
+   "doorlooptijd_u": "",
+   "blokkade": "geen",
+   "rollen": {
+    "bouwer": "",
+    "toetser": "",
+    "stem": ""
+   },
+   "rolschending": [],
+   "bewijs_links": [],
+   "commits": [],
+   "teruggedraaid_door": ""
+  },
+  {
+   "id": "OB-0852",
+   "ts": "2026-10-05T21:32:21",
+   "datum": "2026-10-05 21:32",
+   "strekking": "De productremote van de keten is rvanhooijdonk-png/stack-director (reserveringen, uitkomsten, PR's via GITHUB_TOKEN). Het token geeft daar 403/AUTH. Route 1: Richard laat het bestaande fine-grained token (de waarde in Railway GITHUB_TOKEN) deze repo dekken met Contents RW, Pull requests RW en Metadata R, zonder waardewijziging. Lukt dat niet, dan een nieuw fine-grained token met precies die rechten op alleen deze repo, met vervaldatum, via railway --stdin plus één redeploy van hetzelfde image. Route 2 valt af (GitHub kent geen credential per ref; PR's vragen toch een API-token). Dit herziet OB-0842 deels: de ledger wordt nog steeds gelezen via de read-only deploy key. Daarna een read-only lees_stand-proef; fase C volgt pas samen met een groene codebouw (OB-0851). Verhardingsadvies: een ruleset op main en toezicht/* (geen force push, geen delete), op termijn een GitHub App.",
+   "soort": "REGEL",
+   "categorie": "Beveiliging & geheimen",
+   "status": "GELDEND",
+   "bewijs": "",
+   "kort": "",
+   "wacht_op": "",
+   "sinds": "",
+   "bevestigd": false,
+   "geldt_voor": "alle rollen, alle lanes, alle projecten",
+   "vervallen_reden": "",
+   "laatste24": true,
+   "herhaald": [],
+   "laatste_ts": "2026-10-05T21:32:21",
+   "bron": "overig",
+   "kanaal": "",
+   "fase": "",
+   "tijdlijn": {
+    "gevraagd": "2026-10-05 21:32"
    },
    "doorlooptijd_u": "",
    "blokkade": "geen",
