@@ -1,10 +1,10 @@
 {
  "schema": "FEATURELOG_V1",
- "gegenereerd_op": "2026-10-05T20:28:49+02:00",
+ "gegenereerd_op": "2026-10-05T20:33:53+02:00",
  "bron": {
-  "besluiten": 827,
-  "kaarten": 697,
-  "bord": 395,
+  "besluiten": 828,
+  "kaarten": 698,
+  "bord": 396,
   "rest": 65,
   "machine": 236,
   "weggelaten_privacy": 0
@@ -41,7 +41,7 @@
   "UITGEVOERD": 8,
   "IN_BOUW": 31,
   "WACHT_OP_RICHARD": 1,
-  "ONBEKEND": 54
+  "ONBEKEND": 55
  },
  "per_categorie": {
   "Accounts & toegang": {
@@ -56,12 +56,12 @@
   },
   "Burn-in & lanes": {
    "GEBOUWD_EN_WERKEND": 2,
-   "totaal": 81,
+   "totaal": 82,
    "PENDING": 3,
-   "features": 27,
+   "features": 28,
    "GELDEND": 50,
    "IN_BOUW": 7,
-   "ONBEKEND": 19
+   "ONBEKEND": 20
   },
   "Governance & rollen": {
    "GELDEND": 55,
@@ -326,7 +326,8 @@
    "OB-0842",
    "OB-0843",
    "OB-0845",
-   "OB-0846"
+   "OB-0846",
+   "OB-0849"
   ],
   "geleverd": [],
   "geblokkeerd": [
@@ -405,7 +406,7 @@
  ],
  "bewijs_stats": {
   "met_bewijsspoor": 24,
-  "zonder": 673,
+  "zonder": 674,
   "rolschendingen": 0,
   "pakketten": 1081
  },
@@ -16975,6 +16976,42 @@
    "fase": "",
    "tijdlijn": {
     "gevraagd": "2026-10-05 20:01"
+   },
+   "doorlooptijd_u": "",
+   "blokkade": "geen",
+   "rollen": {
+    "bouwer": "",
+    "toetser": "",
+    "stem": ""
+   },
+   "rolschending": [],
+   "bewijs_links": [],
+   "commits": [],
+   "teruggedraaid_door": ""
+  },
+  {
+   "id": "OB-0849",
+   "ts": "2026-10-05T20:32:26",
+   "datum": "2026-10-05 20:32",
+   "strekking": "Poging 2 stopte terecht in pre-gate 4: lees_vrijgaven (aanvoer.py ca8d7261) slaat ADMIN-regels zonder top-level keten_v1 over, en regels 586-588 hebben dat blok niet. De ssh-fetch zelf werkt (oid 34b97d42). ADMIN voegt append-only drie regels O1→O2→O3 toe met keten_v1 = exact PRODUCT_ORDERBINDINGEN (order_pad, order_sha256, bron_commit 7fc3c3aa, profiel keten-v1-zelftoets), pusht onder OB-0840 en toetst lokaal met lees_vrijgaven plus PRODUCT_TOELATING op de origin-bytes. DIRECTOR wijst vóór de activering het mechanisme aan dat O3 op nul starts houdt; anders geen O3-blok in de ledger. Poging 2 blijft 2/2 tot pre-gate 4 groen is. De vrijgavepoort en de lint gaan ketenvrijgaven zonder geldig blok weigeren (kleine bouw na poging 2).",
+   "soort": "FEATURE",
+   "categorie": "Burn-in & lanes",
+   "status": "ONBEKEND",
+   "bewijs": "",
+   "kort": "",
+   "wacht_op": "",
+   "sinds": "",
+   "bevestigd": false,
+   "geldt_voor": "alle rollen, alle lanes, alle projecten",
+   "vervallen_reden": "",
+   "laatste24": true,
+   "herhaald": [],
+   "laatste_ts": "2026-10-05T20:32:26",
+   "bron": "overig",
+   "kanaal": "",
+   "fase": "",
+   "tijdlijn": {
+    "gevraagd": "2026-10-05 20:32"
    },
    "doorlooptijd_u": "",
    "blokkade": "geen",
