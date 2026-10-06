@@ -1,10 +1,10 @@
 {
  "schema": "FEATURELOG_V1",
- "gegenereerd_op": "2026-10-06T05:30:05+02:00",
+ "gegenereerd_op": "2026-10-06T05:35:08+02:00",
  "bron": {
-  "besluiten": 840,
-  "kaarten": 710,
-  "bord": 408,
+  "besluiten": 841,
+  "kaarten": 711,
+  "bord": 409,
   "rest": 65,
   "machine": 236,
   "weggelaten_privacy": 0
@@ -34,7 +34,7 @@
   "Overig"
  ],
  "per_status": {
-  "GELDEND": 262,
+  "GELDEND": 263,
   "GEBOUWD_EN_WERKEND": 24,
   "PENDING": 18,
   "VERVALLEN": 5,
@@ -56,10 +56,10 @@
   },
   "Burn-in & lanes": {
    "GEBOUWD_EN_WERKEND": 2,
-   "totaal": 84,
+   "totaal": 85,
    "PENDING": 3,
    "features": 28,
-   "GELDEND": 52,
+   "GELDEND": 53,
    "IN_BOUW": 7,
    "ONBEKEND": 20
   },
@@ -399,7 +399,7 @@
  ],
  "bewijs_stats": {
   "met_bewijsspoor": 24,
-  "zonder": 686,
+  "zonder": 687,
   "rolschendingen": 0,
   "pakketten": 1100
  },
@@ -17437,6 +17437,42 @@
    "fase": "",
    "tijdlijn": {
     "gevraagd": "2026-10-06 04:31"
+   },
+   "doorlooptijd_u": "",
+   "blokkade": "geen",
+   "rollen": {
+    "bouwer": "",
+    "toetser": "",
+    "stem": ""
+   },
+   "rolschending": [],
+   "bewijs_links": [],
+   "commits": [],
+   "teruggedraaid_door": ""
+  },
+  {
+   "id": "OB-0862",
+   "ts": "2026-10-06T05:31:46",
+   "datum": "2026-10-06 05:31",
+   "strekking": "Een bouwer of reviewer bindt de queue alleen via de canonieke kern: de queue zonder de dispatcher-runtimevelden (status, dispatch_door, dispatch_grond, pid, gestart_at, geweigerd_at, werkmap_reden, status_reden, vrijgave_*). Order, prompt, package-audit, source-order, review, ledgerregel en worktree blijven byte-exact. Kan de kern niet herberekend worden, dan is de queue geen bindingspoort. De H03-stop (alleen de raw queue-hash week af door de pickup-mutatie van de dispatcher; alle andere bindingen PASS) is een toegestane dispatchmutatie: ADMIN legt dat vast, zet de queue terug naar startbaar en geeft één nieuwe CLAUDE3-pickup, zonder nieuwe audit. DIRECTOR neemt 'queue: kernbinding' op in alle volgende orders.",
+   "soort": "REGEL",
+   "categorie": "Burn-in & lanes",
+   "status": "GELDEND",
+   "bewijs": "",
+   "kort": "",
+   "wacht_op": "",
+   "sinds": "",
+   "bevestigd": false,
+   "geldt_voor": "alle rollen, alle lanes, alle projecten",
+   "vervallen_reden": "",
+   "laatste24": true,
+   "herhaald": [],
+   "laatste_ts": "2026-10-06T05:31:46",
+   "bron": "overig",
+   "kanaal": "",
+   "fase": "",
+   "tijdlijn": {
+    "gevraagd": "2026-10-06 05:31"
    },
    "doorlooptijd_u": "",
    "blokkade": "geen",
