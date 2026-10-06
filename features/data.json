@@ -1,10 +1,10 @@
 {
  "schema": "FEATURELOG_V1",
- "gegenereerd_op": "2026-10-06T06:45:55+02:00",
+ "gegenereerd_op": "2026-10-06T06:50:59+02:00",
  "bron": {
-  "besluiten": 842,
-  "kaarten": 712,
-  "bord": 410,
+  "besluiten": 843,
+  "kaarten": 713,
+  "bord": 411,
   "rest": 65,
   "machine": 236,
   "weggelaten_privacy": 0
@@ -34,7 +34,7 @@
   "Overig"
  ],
  "per_status": {
-  "GELDEND": 264,
+  "GELDEND": 265,
   "GEBOUWD_EN_WERKEND": 24,
   "PENDING": 18,
   "VERVALLEN": 5,
@@ -56,10 +56,10 @@
   },
   "Burn-in & lanes": {
    "GEBOUWD_EN_WERKEND": 2,
-   "totaal": 86,
+   "totaal": 87,
    "PENDING": 3,
    "features": 28,
-   "GELDEND": 54,
+   "GELDEND": 55,
    "IN_BOUW": 7,
    "ONBEKEND": 20
   },
@@ -399,7 +399,7 @@
  ],
  "bewijs_stats": {
   "met_bewijsspoor": 24,
-  "zonder": 688,
+  "zonder": 689,
   "rolschendingen": 0,
   "pakketten": 1102
  },
@@ -17509,6 +17509,42 @@
    "fase": "",
    "tijdlijn": {
     "gevraagd": "2026-10-06 06:01"
+   },
+   "doorlooptijd_u": "",
+   "blokkade": "geen",
+   "rollen": {
+    "bouwer": "",
+    "toetser": "",
+    "stem": ""
+   },
+   "rolschending": [],
+   "bewijs_links": [],
+   "commits": [],
+   "teruggedraaid_door": ""
+  },
+  {
+   "id": "OB-0864",
+   "ts": "2026-10-06T06:46:33",
+   "datum": "2026-10-06 06:46",
+   "strekking": "Uitleg van OB-0862. Een queueveld is een runtimeveld als het na de package-audit door de dispatcher, bin/lane of de lane-wrapper wordt geschreven, in elk geval status*, *_reden, *_at, pid, pickup_count, dispatch_*, vrijgave_* en afsluitmarkeringen zoals geen_bouwreceipt_at. De kern bestaat uit de velden die de orderuitgever schrijft (task_id, lane, order- en promptpad met hashes, werkmap, head en tree, rol, uitgesloten). Eén bron: de B597-dispatcherbundel legt de runtimeveldlijst vast als één constante in de intakecode, die audit en bouwers lezen. De CODEX4-pickup op ledger 617 is gestart; geen tweede pickup.",
+   "soort": "REGEL",
+   "categorie": "Burn-in & lanes",
+   "status": "GELDEND",
+   "bewijs": "",
+   "kort": "",
+   "wacht_op": "",
+   "sinds": "",
+   "bevestigd": false,
+   "geldt_voor": "alle rollen, alle lanes, alle projecten",
+   "vervallen_reden": "",
+   "laatste24": true,
+   "herhaald": [],
+   "laatste_ts": "2026-10-06T06:46:33",
+   "bron": "overig",
+   "kanaal": "",
+   "fase": "",
+   "tijdlijn": {
+    "gevraagd": "2026-10-06 06:46"
    },
    "doorlooptijd_u": "",
    "blokkade": "geen",
