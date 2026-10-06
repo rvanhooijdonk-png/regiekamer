@@ -1,10 +1,10 @@
 {
  "schema": "FEATURELOG_V1",
- "gegenereerd_op": "2026-10-06T22:40:15+02:00",
+ "gegenereerd_op": "2026-10-06T22:45:18+02:00",
  "bron": {
-  "besluiten": 870,
-  "kaarten": 740,
-  "bord": 436,
+  "besluiten": 872,
+  "kaarten": 742,
+  "bord": 438,
   "rest": 66,
   "machine": 237,
   "weggelaten_privacy": 0
@@ -34,25 +34,25 @@
   "Overig"
  ],
  "per_status": {
-  "GELDEND": 280,
+  "GELDEND": 281,
   "GEBOUWD_EN_WERKEND": 24,
   "PENDING": 18,
   "VERVALLEN": 5,
   "UITGEVOERD": 8,
   "IN_BOUW": 31,
   "WACHT_OP_RICHARD": 1,
-  "ONBEKEND": 69
+  "ONBEKEND": 70
  },
  "per_categorie": {
   "Accounts & toegang": {
-   "GELDEND": 35,
-   "totaal": 50,
+   "GELDEND": 36,
+   "totaal": 52,
    "GEBOUWD_EN_WERKEND": 1,
-   "features": 13,
+   "features": 14,
    "IN_BOUW": 2,
    "UITGEVOERD": 1,
    "PENDING": 1,
-   "ONBEKEND": 10
+   "ONBEKEND": 11
   },
   "Burn-in & lanes": {
    "GEBOUWD_EN_WERKEND": 2,
@@ -330,7 +330,8 @@
    "OB-0883",
    "OB-0887",
    "OB-0889",
-   "OB-0890"
+   "OB-0890",
+   "OB-0893"
   ],
   "geleverd": [],
   "geblokkeerd": [
@@ -409,7 +410,7 @@
  ],
  "bewijs_stats": {
   "met_bewijsspoor": 24,
-  "zonder": 716,
+  "zonder": 718,
   "rolschendingen": 0,
   "pakketten": 1147
  },
@@ -18455,6 +18456,78 @@
    "fase": "",
    "tijdlijn": {
     "gevraagd": "2026-10-06 22:33"
+   },
+   "doorlooptijd_u": "",
+   "blokkade": "geen",
+   "rollen": {
+    "bouwer": "",
+    "toetser": "",
+    "stem": ""
+   },
+   "rolschending": [],
+   "bewijs_links": [],
+   "commits": [],
+   "teruggedraaid_door": ""
+  },
+  {
+   "id": "OB-0892",
+   "ts": "2026-10-06T22:40:35",
+   "datum": "2026-10-06 22:40",
+   "strekking": "Nooit meer vragen om een account opnieuw aan te melden of te controleren (bevestigt OB-0796). Plan met de accounts zoals ze gemeten zijn: drie Claude-accounts (a840 = claude4, en ook claude1-lane plus TOEZICHT/ADMIN; 97dd = claude3; 6735 = claude2), plus codex4 als enige Codex met ruimte. Rolbezetting: claude2 bouwt, claude3 en codex4-cloud stemmen, codex1 issuer, a840 ADMIN en TOEZICHT. De claude1-lane telt als het a840-account in capaciteit en onafhankelijkheid.",
+   "soort": "REGEL",
+   "categorie": "Accounts & toegang",
+   "status": "GELDEND",
+   "bewijs": "",
+   "kort": "",
+   "wacht_op": "",
+   "sinds": "",
+   "bevestigd": false,
+   "geldt_voor": "alle rollen, alle lanes, alle projecten",
+   "vervallen_reden": "",
+   "laatste24": true,
+   "herhaald": [],
+   "laatste_ts": "2026-10-06T22:40:35",
+   "bron": "overig",
+   "kanaal": "",
+   "fase": "",
+   "tijdlijn": {
+    "gevraagd": "2026-10-06 22:40"
+   },
+   "doorlooptijd_u": "",
+   "blokkade": "geen",
+   "rollen": {
+    "bouwer": "",
+    "toetser": "",
+    "stem": ""
+   },
+   "rolschending": [],
+   "bewijs_links": [],
+   "commits": [],
+   "teruggedraaid_door": ""
+  },
+  {
+   "id": "OB-0893",
+   "ts": "2026-10-06T22:43:06",
+   "datum": "2026-10-06 22:43",
+   "strekking": "CLAUDE1 en CLAUDE4 zijn één account (gemeten, alleen booleans). Ze tellen nooit als twee onafhankelijke stemmen, en ook niet als stem op ADMIN-werk. CLAUDE1 mag bouw- of meetwerk doen als extra claude4-capaciteit, maar ADMIN gaat vóór (geen CLAUDE1-dispatch onder 20% per week). Registercorrectie in vloot.py via een kleine bouworder met test. Bouwer claude2, stemmen claude3 en codex4-cloud, issuer codex1.",
+   "soort": "FEATURE",
+   "categorie": "Accounts & toegang",
+   "status": "ONBEKEND",
+   "bewijs": "",
+   "kort": "",
+   "wacht_op": "",
+   "sinds": "",
+   "bevestigd": false,
+   "geldt_voor": "alle rollen, alle lanes, alle projecten",
+   "vervallen_reden": "",
+   "laatste24": true,
+   "herhaald": [],
+   "laatste_ts": "2026-10-06T22:43:06",
+   "bron": "overig",
+   "kanaal": "",
+   "fase": "",
+   "tijdlijn": {
+    "gevraagd": "2026-10-06 22:43"
    },
    "doorlooptijd_u": "",
    "blokkade": "geen",
