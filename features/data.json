@@ -1,10 +1,10 @@
 {
  "schema": "FEATURELOG_V1",
- "gegenereerd_op": "2026-10-06T02:12:54+02:00",
+ "gegenereerd_op": "2026-10-06T02:17:57+02:00",
  "bron": {
-  "besluiten": 835,
-  "kaarten": 705,
-  "bord": 403,
+  "besluiten": 836,
+  "kaarten": 706,
+  "bord": 404,
   "rest": 65,
   "machine": 236,
   "weggelaten_privacy": 0
@@ -34,7 +34,7 @@
   "Overig"
  ],
  "per_status": {
-  "GELDEND": 258,
+  "GELDEND": 259,
   "GEBOUWD_EN_WERKEND": 24,
   "PENDING": 18,
   "VERVALLEN": 5,
@@ -111,10 +111,10 @@
   },
   "Content-pijplijn": {
    "IN_BOUW": 5,
-   "totaal": 58,
+   "totaal": 59,
    "features": 11,
    "PENDING": 6,
-   "GELDEND": 43,
+   "GELDEND": 44,
    "GEBOUWD_EN_WERKEND": 1,
    "UITGEVOERD": 1,
    "WACHT_OP_RICHARD": 1,
@@ -397,7 +397,7 @@
  ],
  "bewijs_stats": {
   "met_bewijsspoor": 24,
-  "zonder": 681,
+  "zonder": 682,
   "rolschendingen": 0,
   "pakketten": 1092
  },
@@ -17255,6 +17255,42 @@
    "fase": "",
    "tijdlijn": {
     "gevraagd": "2026-10-05 22:46"
+   },
+   "doorlooptijd_u": "",
+   "blokkade": "geen",
+   "rollen": {
+    "bouwer": "",
+    "toetser": "",
+    "stem": ""
+   },
+   "rolschending": [],
+   "bewijs_links": [],
+   "commits": [],
+   "teruggedraaid_door": ""
+  },
+  {
+   "id": "OB-0857",
+   "ts": "2026-10-06T02:16:36",
+   "datum": "2026-10-06 02:16",
+   "strekking": "Vaste regel: de promptbytes die een lane uitvoert zijn fail-closed en cryptografisch gebonden aan reviewed_order, queue en package-audit (dezelfde klasse als ORDER_GEWIJZIGD_NA_VRIJGAVE). De intake legt prompt_sha256 vast in de reservering. Bij de runnerstart leest de dispatcher de prompt één keer in een bestand dat hij zelf beheert, toetst de sha256 en geeft exact die bytes door, zonder het pad opnieuw te lezen (TOCTOU). Bij een afwijking PROMPT_GEWIJZIGD_NA_INTAKE, nul starts en GEWEIGERD. Verplichte proeven: een prompt-substitutiemutant na de intake, een symlinkwissel en een lege prompt. Op kandidaat b597d8ce is dit een reviewbevinding naast de vijf bekende gaps; ontbreekt de binding, dan NO_GO en een gerichte herstelbouw; de intake gaat niet live zonder promptbinding.",
+   "soort": "REGEL",
+   "categorie": "Content-pijplijn",
+   "status": "GELDEND",
+   "bewijs": "",
+   "kort": "",
+   "wacht_op": "",
+   "sinds": "",
+   "bevestigd": false,
+   "geldt_voor": "alle rollen, alle lanes, alle projecten",
+   "vervallen_reden": "",
+   "laatste24": true,
+   "herhaald": [],
+   "laatste_ts": "2026-10-06T02:16:36",
+   "bron": "overig",
+   "kanaal": "",
+   "fase": "",
+   "tijdlijn": {
+    "gevraagd": "2026-10-06 02:16"
    },
    "doorlooptijd_u": "",
    "blokkade": "geen",
