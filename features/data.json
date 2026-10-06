@@ -1,10 +1,10 @@
 {
  "schema": "FEATURELOG_V1",
- "gegenereerd_op": "2026-10-06T20:43:58+02:00",
+ "gegenereerd_op": "2026-10-06T20:49:01+02:00",
  "bron": {
-  "besluiten": 861,
-  "kaarten": 731,
-  "bord": 427,
+  "besluiten": 862,
+  "kaarten": 732,
+  "bord": 428,
   "rest": 66,
   "machine": 237,
   "weggelaten_privacy": 0
@@ -41,7 +41,7 @@
   "UITGEVOERD": 8,
   "IN_BOUW": 31,
   "WACHT_OP_RICHARD": 1,
-  "ONBEKEND": 65
+  "ONBEKEND": 66
  },
  "per_categorie": {
   "Accounts & toegang": {
@@ -56,12 +56,12 @@
   },
   "Burn-in & lanes": {
    "GEBOUWD_EN_WERKEND": 2,
-   "totaal": 92,
+   "totaal": 93,
    "PENDING": 3,
-   "features": 30,
+   "features": 31,
    "GELDEND": 58,
    "IN_BOUW": 7,
-   "ONBEKEND": 22
+   "ONBEKEND": 23
   },
   "Governance & rollen": {
    "GELDEND": 59,
@@ -326,7 +326,8 @@
    "OB-0873",
    "OB-0875",
    "OB-0876",
-   "OB-0880"
+   "OB-0880",
+   "OB-0883"
   ],
   "geleverd": [],
   "geblokkeerd": [
@@ -405,7 +406,7 @@
  ],
  "bewijs_stats": {
   "met_bewijsspoor": 24,
-  "zonder": 707,
+  "zonder": 708,
   "rolschendingen": 0,
   "pakketten": 1142
  },
@@ -17039,7 +17040,7 @@
    "bevestigd": false,
    "geldt_voor": "alle rollen, alle lanes, alle projecten",
    "vervallen_reden": "",
-   "laatste24": true,
+   "laatste24": false,
    "herhaald": [],
    "laatste_ts": "2026-10-05T20:46:38",
    "bron": "overig",
@@ -18127,6 +18128,42 @@
    "fase": "",
    "tijdlijn": {
     "gevraagd": "2026-10-06 20:33"
+   },
+   "doorlooptijd_u": "",
+   "blokkade": "geen",
+   "rollen": {
+    "bouwer": "",
+    "toetser": "",
+    "stem": ""
+   },
+   "rolschending": [],
+   "bewijs_links": [],
+   "commits": [],
+   "teruggedraaid_door": ""
+  },
+  {
+   "id": "OB-0883",
+   "ts": "2026-10-06T20:47:24",
+   "datum": "2026-10-06 20:47",
+   "strekking": "De actorlockpoort voor een headless bouw toetst alleen niet-INTERACTIEF-locks (een andere headless bouw of review van dezelfde task of werkmap). INTERACTIEF-locks worden gemeld maar houden de poort niet dicht. Een headless bouw in een eigen werkmap mag naast interactieve sessies op hetzelfde account draaien. Geen lock verwijderen, geen proces stoppen. Tweede punt: DIRECTOR pint alleen bytes die al op origin staan (eerst pad-push, dan de sha in de handoff); ADMIN toetst pins tegen de blob op origin, niet tegen de werkmap; na het pinnen niet meer bewerken.",
+   "soort": "FEATURE",
+   "categorie": "Burn-in & lanes",
+   "status": "ONBEKEND",
+   "bewijs": "",
+   "kort": "",
+   "wacht_op": "",
+   "sinds": "",
+   "bevestigd": false,
+   "geldt_voor": "alle rollen, alle lanes, alle projecten",
+   "vervallen_reden": "",
+   "laatste24": true,
+   "herhaald": [],
+   "laatste_ts": "2026-10-06T20:47:24",
+   "bron": "overig",
+   "kanaal": "",
+   "fase": "",
+   "tijdlijn": {
+    "gevraagd": "2026-10-06 20:47"
    },
    "doorlooptijd_u": "",
    "blokkade": "geen",
