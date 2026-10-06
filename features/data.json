@@ -1,10 +1,10 @@
 {
  "schema": "FEATURELOG_V1",
- "gegenereerd_op": "2026-10-06T03:43:54+02:00",
+ "gegenereerd_op": "2026-10-06T03:48:57+02:00",
  "bron": {
-  "besluiten": 837,
-  "kaarten": 707,
-  "bord": 405,
+  "besluiten": 838,
+  "kaarten": 708,
+  "bord": 406,
   "rest": 65,
   "machine": 236,
   "weggelaten_privacy": 0
@@ -34,7 +34,7 @@
   "Overig"
  ],
  "per_status": {
-  "GELDEND": 260,
+  "GELDEND": 261,
   "GEBOUWD_EN_WERKEND": 24,
   "PENDING": 18,
   "VERVALLEN": 5,
@@ -56,10 +56,10 @@
   },
   "Burn-in & lanes": {
    "GEBOUWD_EN_WERKEND": 2,
-   "totaal": 82,
+   "totaal": 83,
    "PENDING": 3,
    "features": 28,
-   "GELDEND": 50,
+   "GELDEND": 51,
    "IN_BOUW": 7,
    "ONBEKEND": 20
   },
@@ -397,7 +397,7 @@
  ],
  "bewijs_stats": {
   "met_bewijsspoor": 24,
-  "zonder": 683,
+  "zonder": 684,
   "rolschendingen": 0,
   "pakketten": 1096
  },
@@ -17327,6 +17327,42 @@
    "fase": "",
    "tijdlijn": {
     "gevraagd": "2026-10-06 03:01"
+   },
+   "doorlooptijd_u": "",
+   "blokkade": "geen",
+   "rollen": {
+    "bouwer": "",
+    "toetser": "",
+    "stem": ""
+   },
+   "rolschending": [],
+   "bewijs_links": [],
+   "commits": [],
+   "teruggedraaid_door": ""
+  },
+  {
+   "id": "OB-0859",
+   "ts": "2026-10-06T03:46:49",
+   "datum": "2026-10-06 03:46",
+   "strekking": "Deadlock losgemaakt. OB-0857 (promptbinding) is een acceptatie-eis die de reviews op de nieuwe intake b597d8ce toetsen, geen voorwaarde om met de huidige dispatcher te dispatchen; dat was een kip-en-eiprobleem. Dispatchen gebeurt met de bestaande controles: prompt_sha256 byte-exact in queue en ledger, de vrijgavepoort ORDER_GEWIJZIGD_NA_VRIJGAVE, en een hash-readback vóór de POSTBODE-regel. De eis van een exclusieve lock met writer-stop vervalt (die route bestaat niet); append-only plus origin-readback volstaat. De package-audit door een ander account dan bouwer en ADMIN (codex1 mag, zuinig). Volgorde: CLAUDE1-stem b597, CLAUDE3-test b597 en de OB-0858-werkmappoort elk audit, ledger en pickup, parallel. Geen nieuwe verhardingsorders tot de reviews lopen.",
+   "soort": "REGEL",
+   "categorie": "Burn-in & lanes",
+   "status": "GELDEND",
+   "bewijs": "",
+   "kort": "",
+   "wacht_op": "",
+   "sinds": "",
+   "bevestigd": false,
+   "geldt_voor": "alle rollen, alle lanes, alle projecten",
+   "vervallen_reden": "",
+   "laatste24": true,
+   "herhaald": [],
+   "laatste_ts": "2026-10-06T03:46:49",
+   "bron": "overig",
+   "kanaal": "",
+   "fase": "",
+   "tijdlijn": {
+    "gevraagd": "2026-10-06 03:46"
    },
    "doorlooptijd_u": "",
    "blokkade": "geen",
