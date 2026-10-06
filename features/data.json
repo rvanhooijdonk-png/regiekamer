@@ -1,10 +1,10 @@
 {
  "schema": "FEATURELOG_V1",
- "gegenereerd_op": "2026-10-06T08:42:20+02:00",
+ "gegenereerd_op": "2026-10-06T08:47:23+02:00",
  "bron": {
-  "besluiten": 850,
-  "kaarten": 720,
-  "bord": 417,
+  "besluiten": 851,
+  "kaarten": 721,
+  "bord": 418,
   "rest": 65,
   "machine": 237,
   "weggelaten_privacy": 0
@@ -41,7 +41,7 @@
   "UITGEVOERD": 8,
   "IN_BOUW": 31,
   "WACHT_OP_RICHARD": 1,
-  "ONBEKEND": 60
+  "ONBEKEND": 61
  },
  "per_categorie": {
   "Accounts & toegang": {
@@ -122,10 +122,10 @@
   },
   "Beveiliging & geheimen": {
    "GELDEND": 16,
-   "totaal": 19,
+   "totaal": 20,
    "GEBOUWD_EN_WERKEND": 2,
-   "features": 2,
-   "ONBEKEND": 1
+   "features": 3,
+   "ONBEKEND": 2
   },
   "Task OS": {
    "IN_BOUW": 2,
@@ -321,7 +321,8 @@
   "datum": "2026-10-06",
   "gevraagd": [
    "OB-0861",
-   "OB-0865"
+   "OB-0865",
+   "OB-0872"
   ],
   "geleverd": [],
   "geblokkeerd": [
@@ -400,7 +401,7 @@
  ],
  "bewijs_stats": {
   "met_bewijsspoor": 24,
-  "zonder": 696,
+  "zonder": 697,
   "rolschendingen": 0,
   "pakketten": 1112
  },
@@ -17762,6 +17763,42 @@
    "fase": "",
    "tijdlijn": {
     "gevraagd": "2026-10-06 08:16"
+   },
+   "doorlooptijd_u": "",
+   "blokkade": "geen",
+   "rollen": {
+    "bouwer": "",
+    "toetser": "",
+    "stem": ""
+   },
+   "rolschending": [],
+   "bewijs_links": [],
+   "commits": [],
+   "teruggedraaid_door": ""
+  },
+  {
+   "id": "OB-0872",
+   "ts": "2026-10-06T08:46:49",
+   "datum": "2026-10-06 08:46",
+   "strekking": "De R3-diagnose toont logged_in=true maar geen e-mail en geen abonnement in de readback bij een login met CLAUDE_CODE_OAUTH_TOKEN; de H03-e-mailvergelijking kan daardoor nooit groen worden. Dat is een ontwerpfout, geen configfout, en Richard hoeft niets te corrigeren. H03-v2: sleutel-naar-worker zet naast het token sha256(token) als niet-geheime variabele KETEN_TOKEN_SHA256_<PROFIEL> en legt de herkomst vast (de door Richard bevestigde profielmap); identiteit() vergelijkt in de container sha256 van de env-token met die waarde plus loggedIn, en geeft bij gelijkheid ATTEST_TOKEN_HERKOMST; het e-mailpad blijft voor interactieve logins. Gerichte bouw op e5ecdf82 met tests en mutanten; bouwer CLAUDE3 (het echte profiel -3, na de vloot-fix) of anders CLAUDE2 na P4; stemmen een ander bewezen account plus CODEX4. Daarna draait Richard sleutel-naar-worker één keer opnieuw, dan deploy, nacontrole en fase D (O2).",
+   "soort": "FEATURE",
+   "categorie": "Beveiliging & geheimen",
+   "status": "ONBEKEND",
+   "bewijs": "",
+   "kort": "",
+   "wacht_op": "",
+   "sinds": "",
+   "bevestigd": false,
+   "geldt_voor": "alle rollen, alle lanes, alle projecten",
+   "vervallen_reden": "",
+   "laatste24": true,
+   "herhaald": [],
+   "laatste_ts": "2026-10-06T08:46:49",
+   "bron": "overig",
+   "kanaal": "",
+   "fase": "",
+   "tijdlijn": {
+    "gevraagd": "2026-10-06 08:46"
    },
    "doorlooptijd_u": "",
    "blokkade": "geen",
