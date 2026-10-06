@@ -1,10 +1,10 @@
 {
  "schema": "FEATURELOG_V1",
- "gegenereerd_op": "2026-10-06T21:49:40+02:00",
+ "gegenereerd_op": "2026-10-06T21:54:44+02:00",
  "bron": {
-  "besluiten": 865,
-  "kaarten": 735,
-  "bord": 431,
+  "besluiten": 866,
+  "kaarten": 736,
+  "bord": 432,
   "rest": 66,
   "machine": 237,
   "weggelaten_privacy": 0
@@ -41,7 +41,7 @@
   "UITGEVOERD": 8,
   "IN_BOUW": 31,
   "WACHT_OP_RICHARD": 1,
-  "ONBEKEND": 66
+  "ONBEKEND": 67
  },
  "per_categorie": {
   "Accounts & toegang": {
@@ -82,14 +82,14 @@
   },
   "Cloud & Temporal": {
    "VERVALLEN": 1,
-   "totaal": 59,
+   "totaal": 60,
    "UITGEVOERD": 3,
-   "features": 23,
+   "features": 24,
    "GELDEND": 25,
    "IN_BOUW": 7,
    "GEBOUWD_EN_WERKEND": 5,
    "PENDING": 2,
-   "ONBEKEND": 16
+   "ONBEKEND": 17
   },
   "Boards & rapportage": {
    "VERVALLEN": 2,
@@ -327,7 +327,8 @@
    "OB-0875",
    "OB-0876",
    "OB-0880",
-   "OB-0883"
+   "OB-0883",
+   "OB-0887"
   ],
   "geleverd": [],
   "geblokkeerd": [
@@ -406,9 +407,9 @@
  ],
  "bewijs_stats": {
   "met_bewijsspoor": 24,
-  "zonder": 711,
+  "zonder": 712,
   "rolschendingen": 0,
-  "pakketten": 1144
+  "pakketten": 1145
  },
  "bord": [
   {
@@ -17148,7 +17149,7 @@
    "bevestigd": false,
    "geldt_voor": "alle rollen, alle lanes, alle projecten",
    "vervallen_reden": "",
-   "laatste24": true,
+   "laatste24": false,
    "herhaald": [],
    "laatste_ts": "2026-10-05T21:50:43",
    "bron": "overig",
@@ -18272,6 +18273,42 @@
    "fase": "",
    "tijdlijn": {
     "gevraagd": "2026-10-06 21:40"
+   },
+   "doorlooptijd_u": "",
+   "blokkade": "geen",
+   "rollen": {
+    "bouwer": "",
+    "toetser": "",
+    "stem": ""
+   },
+   "rolschending": [],
+   "bewijs_links": [],
+   "commits": [],
+   "teruggedraaid_door": ""
+  },
+  {
+   "id": "OB-0887",
+   "ts": "2026-10-06T21:52:51",
+   "datum": "2026-10-06 21:52",
+   "strekking": "Herstelplan V2: een dunne Temporal-coördinator OrderCoordinatie rond de bestaande poorten (vrijgavepoort, reserveringsref, bezorging_workflow). Per order een exclusief veld bezorger temporal|mac, zodat er geen dubbele bezorging is. Idempotentiesleutel per activity met een extern effect. Eerst op voorwaarden wachten, dan reserveren. F2 los deployen; V1 is geen voorwaarde voor O2. Geen bulkafsluiting van de wachtrij. Acceptatie fase 1: één echte order end-to-end met overleefde workerherstart, geen dubbele start, vrijgegeven reservering en uitkomst na de vrijgave. Bouwer claude2, stemmen CLAUDE3 en CODEX4-cloud. De Mac-keten krijgt geen nieuwe regels meer.",
+   "soort": "FEATURE",
+   "categorie": "Cloud & Temporal",
+   "status": "ONBEKEND",
+   "bewijs": "",
+   "kort": "",
+   "wacht_op": "",
+   "sinds": "",
+   "bevestigd": false,
+   "geldt_voor": "alle rollen, alle lanes, alle projecten",
+   "vervallen_reden": "",
+   "laatste24": true,
+   "herhaald": [],
+   "laatste_ts": "2026-10-06T21:52:51",
+   "bron": "overig",
+   "kanaal": "",
+   "fase": "",
+   "tijdlijn": {
+    "gevraagd": "2026-10-06 21:52"
    },
    "doorlooptijd_u": "",
    "blokkade": "geen",
