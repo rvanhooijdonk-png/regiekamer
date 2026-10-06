@@ -1,12 +1,12 @@
 {
  "schema": "FEATURELOG_V1",
- "gegenereerd_op": "2026-10-06T08:11:57+02:00",
+ "gegenereerd_op": "2026-10-06T08:17:02+02:00",
  "bron": {
-  "besluiten": 848,
-  "kaarten": 718,
-  "bord": 416,
+  "besluiten": 850,
+  "kaarten": 720,
+  "bord": 417,
   "rest": 65,
-  "machine": 236,
+  "machine": 237,
   "weggelaten_privacy": 0
  },
  "status_labels": {
@@ -34,7 +34,7 @@
   "Overig"
  ],
  "per_status": {
-  "GELDEND": 269,
+  "GELDEND": 270,
   "GEBOUWD_EN_WERKEND": 24,
   "PENDING": 18,
   "VERVALLEN": 5,
@@ -45,8 +45,8 @@
  },
  "per_categorie": {
   "Accounts & toegang": {
-   "GELDEND": 32,
-   "totaal": 46,
+   "GELDEND": 33,
+   "totaal": 47,
    "GEBOUWD_EN_WERKEND": 1,
    "features": 12,
    "IN_BOUW": 2,
@@ -400,9 +400,9 @@
  ],
  "bewijs_stats": {
   "met_bewijsspoor": 24,
-  "zonder": 694,
+  "zonder": 696,
   "rolschendingen": 0,
-  "pakketten": 1108
+  "pakketten": 1109
  },
  "bord": [
   {
@@ -17740,6 +17740,42 @@
    "teruggedraaid_door": ""
   },
   {
+   "id": "OB-0871",
+   "ts": "2026-10-06T08:16:41",
+   "datum": "2026-10-06 08:16",
+   "strekking": "Deploy e5ecdf82 (5e8aa28b) is gelukt en alle nacontroles behalve de H03-identiteit zijn groen; de identiteit blijft IDENTITEIT_MISMATCH met het door Richard geplaatste token. Productgrenzen r446 voegt twee oorzaken samen: (a) KETEN_ACCOUNT_ID_CLAUDE3 bevat een ander adres, of (b) auth status geeft bij token-login geen e-mail terug (Richards profielen 1 en 2 toonden email null bij loggedIn true), en dat zou een ontwerpfout in H03 zijn. Precies één read-only diagnose op 5e8aa28b die alleen zes booleans print (verwacht_aanwezig, readback_leesbaar, logged_in, email_aanwezig_in_readback, email_gelijk_aan_verwacht, abonnement_toegestaan), letterlijk in admin-beurt-prompt.md. Uitkomst a: Richard corrigeert KETEN_ACCOUNT_ID_CLAUDE3. Uitkomst b: een ontwerpbesluit over de attestatie door TOEZICHT. Fase D blijft dicht.",
+   "soort": "REGEL",
+   "categorie": "Accounts & toegang",
+   "status": "GELDEND",
+   "bewijs": "",
+   "kort": "",
+   "wacht_op": "",
+   "sinds": "",
+   "bevestigd": false,
+   "geldt_voor": "alle rollen, alle lanes, alle projecten",
+   "vervallen_reden": "",
+   "laatste24": true,
+   "herhaald": [],
+   "laatste_ts": "2026-10-06T08:16:41",
+   "bron": "overig",
+   "kanaal": "",
+   "fase": "",
+   "tijdlijn": {
+    "gevraagd": "2026-10-06 08:16"
+   },
+   "doorlooptijd_u": "",
+   "blokkade": "geen",
+   "rollen": {
+    "bouwer": "",
+    "toetser": "",
+    "stem": ""
+   },
+   "rolschending": [],
+   "bewijs_links": [],
+   "commits": [],
+   "teruggedraaid_door": ""
+  },
+  {
    "id": "OW-02325",
    "ts": "2026-09-27T07:29:23",
    "datum": "2026-09-27 07:29",
@@ -29524,6 +29560,42 @@
    "fase": "",
    "tijdlijn": {
     "gevraagd": "2026-10-03 22:48"
+   },
+   "doorlooptijd_u": "",
+   "blokkade": "geen",
+   "rollen": {
+    "bouwer": "",
+    "toetser": "",
+    "stem": ""
+   },
+   "rolschending": [],
+   "bewijs_links": [],
+   "commits": [],
+   "teruggedraaid_door": ""
+  },
+  {
+   "id": "OB-0870",
+   "ts": "2026-10-06T08:12:38",
+   "datum": "2026-10-06 08:12",
+   "strekking": "CLAUDE2 (futurezone, ModelDeck claude2-richard-futurezone.ai-2) wordt de hoofdbouwer; het PERMANENT-blok in lane-assignments vervalt. De rolscheiding blijft per rol: TOEZICHT stemt nooit, en de CLAUDE2-lane is een aparte headless sessie. Bevinding: ~/.claude3 (het profiel van de CLAUDE3-lane) is het claude4-account (gemeten door Richard), en volgens OB-0797 ook ModelDeck claude1. Daardoor draaiden CLAUDE1, CLAUDE3 en CLAUDE4 vermoedelijk op één account, en de onderlinge stemmen van vannacht waren niet account-onafhankelijk (inhoudelijk geldig, als accountstem niet). ADMIN legt de bewezen koppeling vast in vloot.py en lane-assignments: claude3 → ModelDeck claude3-…-3, claude4 → ~/.claude, claude2 → futurezone-2, claude1 nog te bewijzen door Richard. Reviews voortaan van een ander bewezen account plus CODEX4.",
+   "soort": "MACHINE",
+   "categorie": "Accounts & toegang",
+   "status": "ONBEKEND",
+   "bewijs": "",
+   "kort": "",
+   "wacht_op": "",
+   "sinds": "",
+   "bevestigd": false,
+   "geldt_voor": "alle rollen, alle lanes, alle projecten",
+   "vervallen_reden": "",
+   "laatste24": true,
+   "herhaald": [],
+   "laatste_ts": "2026-10-06T08:12:38",
+   "bron": "overig",
+   "kanaal": "",
+   "fase": "",
+   "tijdlijn": {
+    "gevraagd": "2026-10-06 08:12"
    },
    "doorlooptijd_u": "",
    "blokkade": "geen",
