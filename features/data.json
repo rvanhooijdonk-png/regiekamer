@@ -1,10 +1,10 @@
 {
  "schema": "FEATURELOG_V1",
- "gegenereerd_op": "2026-10-07T09:58:29+02:00",
+ "gegenereerd_op": "2026-10-07T10:03:33+02:00",
  "bron": {
-  "besluiten": 900,
-  "kaarten": 770,
-  "bord": 463,
+  "besluiten": 902,
+  "kaarten": 772,
+  "bord": 465,
   "rest": 68,
   "machine": 238,
   "weggelaten_privacy": 0
@@ -34,14 +34,14 @@
   "Overig"
  ],
  "per_status": {
-  "GELDEND": 299,
+  "GELDEND": 300,
   "GEBOUWD_EN_WERKEND": 24,
   "PENDING": 18,
   "VERVALLEN": 5,
   "UITGEVOERD": 8,
   "IN_BOUW": 31,
   "WACHT_OP_RICHARD": 1,
-  "ONBEKEND": 77
+  "ONBEKEND": 78
  },
  "per_categorie": {
   "Accounts & toegang": {
@@ -56,16 +56,16 @@
   },
   "Burn-in & lanes": {
    "GEBOUWD_EN_WERKEND": 2,
-   "totaal": 105,
+   "totaal": 106,
    "PENDING": 3,
-   "features": 36,
+   "features": 37,
    "GELDEND": 65,
    "IN_BOUW": 7,
-   "ONBEKEND": 28
+   "ONBEKEND": 29
   },
   "Governance & rollen": {
-   "GELDEND": 63,
-   "totaal": 82,
+   "GELDEND": 64,
+   "totaal": 83,
    "VERVALLEN": 2,
    "features": 17,
    "PENDING": 4,
@@ -325,7 +325,8 @@
    "OB-0913",
    "OB-0916",
    "OB-0919",
-   "OB-0920"
+   "OB-0920",
+   "OB-0923"
   ],
   "geleverd": [],
   "geblokkeerd": [
@@ -404,7 +405,7 @@
  ],
  "bewijs_stats": {
   "met_bewijsspoor": 24,
-  "zonder": 746,
+  "zonder": 748,
   "rolschendingen": 0,
   "pakketten": 1220
  },
@@ -19580,6 +19581,78 @@
    "teruggedraaid_door": ""
   },
   {
+   "id": "OB-0922",
+   "ts": "2026-10-07T09:59:40",
+   "datum": "2026-10-07 09:59",
+   "strekking": "Staande regel: capaciteit vullen is een vaste norm, geen verzoek per keer. Minimaal 10 gelijktijdige pakketten zolang er werk klaarligt. ADMIN geeft elke beurt alles vrij tot max_concurrent en meldt anders CAPACITEIT_TEKORT met wat DIRECTOR moet uitgeven. De TOEZICHT-meter print CAPACITEIT_ONDER_NORM en TOEZICHT handelt dezelfde ronde zelf. PLANGAT-06 en PLANGAT-05 maken het structureel.",
+   "soort": "REGEL",
+   "categorie": "Governance & rollen",
+   "status": "GELDEND",
+   "bewijs": "",
+   "kort": "",
+   "wacht_op": "",
+   "sinds": "",
+   "bevestigd": false,
+   "geldt_voor": "alle rollen, alle lanes, alle projecten",
+   "vervallen_reden": "",
+   "laatste24": true,
+   "herhaald": [],
+   "laatste_ts": "2026-10-07T09:59:40",
+   "bron": "overig",
+   "kanaal": "",
+   "fase": "",
+   "tijdlijn": {
+    "gevraagd": "2026-10-07 09:59"
+   },
+   "doorlooptijd_u": "",
+   "blokkade": "geen",
+   "rollen": {
+    "bouwer": "",
+    "toetser": "",
+    "stem": ""
+   },
+   "rolschending": [],
+   "bewijs_links": [],
+   "commits": [],
+   "teruggedraaid_door": ""
+  },
+  {
+   "id": "OB-0923",
+   "ts": "2026-10-07T10:00:42",
+   "datum": "2026-10-07 10:00",
+   "strekking": "Temporal lost het starten en doorzetten op, maar niet het vrijgeven en aanvoeren van werk. Eerste bouworder op de vrije capaciteit: bin/auto-vrijgever (launchd, 5 min, deterministisch): review- en testpakketten met een bevriesmanifest plus een groene mechanische audit krijgen zelf custody, een ledgerregel en WACHTEND, waarna de bestaande dispatcher ze oppakt. Bouw en deploy blijven buiten scope. Klaar pas bij LANE_PROCESSEN_LIVE ≥ 10 twee kwartieren op rij zonder handmatige vrijgave. Tekstregels (OB-0911 t/m 0922) gelden niet meer als oplossing.",
+   "soort": "FEATURE",
+   "categorie": "Burn-in & lanes",
+   "status": "ONBEKEND",
+   "bewijs": "",
+   "kort": "",
+   "wacht_op": "",
+   "sinds": "",
+   "bevestigd": false,
+   "geldt_voor": "alle rollen, alle lanes, alle projecten",
+   "vervallen_reden": "",
+   "laatste24": true,
+   "herhaald": [],
+   "laatste_ts": "2026-10-07T10:00:42",
+   "bron": "overig",
+   "kanaal": "",
+   "fase": "",
+   "tijdlijn": {
+    "gevraagd": "2026-10-07 10:00"
+   },
+   "doorlooptijd_u": "",
+   "blokkade": "geen",
+   "rollen": {
+    "bouwer": "",
+    "toetser": "",
+    "stem": ""
+   },
+   "rolschending": [],
+   "bewijs_links": [],
+   "commits": [],
+   "teruggedraaid_door": ""
+  },
+  {
    "id": "OW-02325",
    "ts": "2026-09-27T07:29:23",
    "datum": "2026-09-27 07:29",
@@ -22257,7 +22330,7 @@
    "bevestigd": false,
    "geldt_voor": "alle rollen, alle lanes, alle projecten",
    "vervallen_reden": "",
-   "laatste24": true,
+   "laatste24": false,
    "herhaald": [],
    "laatste_ts": "2026-10-06T10:01:53",
    "bron": "overig",
