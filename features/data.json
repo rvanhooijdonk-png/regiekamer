@@ -1,10 +1,10 @@
 {
  "schema": "FEATURELOG_V1",
- "gegenereerd_op": "2026-10-10T17:49:56+02:00",
+ "gegenereerd_op": "2026-10-10T17:52:23+02:00",
  "bron": {
-  "besluiten": 920,
-  "kaarten": 790,
-  "bord": 483,
+  "besluiten": 923,
+  "kaarten": 793,
+  "bord": 486,
   "rest": 68,
   "machine": 238,
   "weggelaten_privacy": 0
@@ -41,27 +41,27 @@
   "UITGEVOERD": 8,
   "IN_BOUW": 31,
   "WACHT_OP_RICHARD": 1,
-  "ONBEKEND": 87
+  "ONBEKEND": 90
  },
  "per_categorie": {
   "Accounts & toegang": {
    "GELDEND": 39,
-   "totaal": 56,
+   "totaal": 58,
    "GEBOUWD_EN_WERKEND": 1,
-   "features": 15,
+   "features": 17,
    "IN_BOUW": 2,
    "UITGEVOERD": 1,
    "PENDING": 1,
-   "ONBEKEND": 12
+   "ONBEKEND": 14
   },
   "Burn-in & lanes": {
    "GEBOUWD_EN_WERKEND": 2,
-   "totaal": 113,
+   "totaal": 114,
    "PENDING": 3,
-   "features": 40,
+   "features": 41,
    "GELDEND": 69,
    "IN_BOUW": 7,
-   "ONBEKEND": 32
+   "ONBEKEND": 33
   },
   "Governance & rollen": {
    "GELDEND": 67,
@@ -397,9 +397,9 @@
  ],
  "bewijs_stats": {
   "met_bewijsspoor": 24,
-  "zonder": 766,
+  "zonder": 769,
   "rolschendingen": 0,
-  "pakketten": 1360
+  "pakketten": 1497
  },
  "bord": [
   {
@@ -6557,7 +6557,7 @@
      "rol": "bouw",
      "lane": "CLAUDE1",
      "status": "AFGEROND",
-     "receipt": "evidence/burnin-deel2/BD2_08_HERSTEL2/RECEIPT.json",
+     "receipt": "",
      "uitkomst": "",
      "klaar": "2026-09-27 01:55"
     },
@@ -6842,7 +6842,7 @@
      "rol": "bouw",
      "lane": "CLAUDE1",
      "status": "AFGEROND",
-     "receipt": "evidence/burnin-deel2/BD2_08_HERSTEL2/RECEIPT.json",
+     "receipt": "",
      "uitkomst": "",
      "klaar": "2026-09-27 01:55"
     },
@@ -8340,7 +8340,7 @@
      "rol": "bouw",
      "lane": "CLAUDE1",
      "status": "AFGEROND",
-     "receipt": "evidence/burnin-deel2/BD2_08_HERSTEL2/RECEIPT.json",
+     "receipt": "",
      "uitkomst": "",
      "klaar": "2026-09-27 01:55"
     },
@@ -20291,6 +20291,125 @@
    "fase": "",
    "tijdlijn": {
     "gevraagd": "2026-10-08 06:47"
+   },
+   "doorlooptijd_u": "",
+   "blokkade": "geen",
+   "rollen": {
+    "bouwer": "",
+    "toetser": "",
+    "stem": ""
+   },
+   "rolschending": [],
+   "bewijs_links": [],
+   "commits": [],
+   "teruggedraaid_door": ""
+  },
+  {
+   "id": "OB-0942",
+   "ts": "2026-10-08T18:31:30",
+   "datum": "2026-10-08 18:31",
+   "strekking": "Eenmalige uitzondering op OB-0775: de accountpoortfix ACCOUNTPOORT_CREDENTIALSBESTAND_BOUW_CPT3_R1_20261008 (bin/lib/vloot.py::heeft_eigen_sleutelitem plus de isolatietoets voor de accountpoort in bin/lane) mag door CPT3 (codex3) worden gebouwd. Grond: Astra 1821 ASTRA-VOORLEGGING-OB0775 GO_MET_VOORWAARDEN. Voorwaarden van Astra zijn bindend: de fix levert zelf een realpath-collisietoets; de spiegel is geen identiteitsbewijs; de bestandsroute volgt de CLI (alleen darwin, alleen het eigen profiel, geen gedeelde terugval, claude4 op ~/.claude geeft WEIGER); een functionele isolatiemutant die moet sterven; stemmen CPT4 en DIR/CPT2, CPT1 uitgesloten als issuer, Astra telt niet. Opgelost pas na installatie, vloot.py --accountpoort claude2 = OK onder de dispatcheromgeving en een F02-R2-start op CLAUDE2. F02 blijft een Claude-bouw; elke volgende bouw valt weer onder OB-0775.",
+   "soort": "FEATURE",
+   "categorie": "Burn-in & lanes",
+   "status": "ONBEKEND",
+   "bewijs": "",
+   "kort": "",
+   "wacht_op": "",
+   "sinds": "",
+   "bevestigd": true,
+   "geldt_voor": [
+    "stack-director-recovery-048d59df",
+    "stack-director"
+   ],
+   "vervallen_reden": "",
+   "laatste24": false,
+   "herhaald": [],
+   "laatste_ts": "2026-10-08T18:31:30",
+   "bron": "overig",
+   "kanaal": "",
+   "fase": "",
+   "tijdlijn": {
+    "gevraagd": "2026-10-08 18:31"
+   },
+   "doorlooptijd_u": "",
+   "blokkade": "geen",
+   "rollen": {
+    "bouwer": "",
+    "toetser": "",
+    "stem": ""
+   },
+   "rolschending": [],
+   "bewijs_links": [],
+   "commits": [],
+   "teruggedraaid_door": ""
+  },
+  {
+   "id": "OB-0943",
+   "ts": "2026-10-08T22:58:06",
+   "datum": "2026-10-08 22:58",
+   "strekking": "Quota-stand per account (Richard 08-10 ~22:48): claude1 heeft beperkte ruimte tot de reset op zondag 11-10 - alleen korte of kritieke pakketten, geen lange bouw of volle matrix. claude2, claude3, claude4 en codex1-4 hebben geen quotabeperking. claude4 blijft technisch dicht tot zijn registerregel naar een eigen profiel wijst (PROFIEL_GEDEELDE_STANDAARDMAP).",
+   "soort": "FEATURE",
+   "categorie": "Accounts & toegang",
+   "status": "ONBEKEND",
+   "bewijs": "",
+   "kort": "",
+   "wacht_op": "",
+   "sinds": "",
+   "bevestigd": true,
+   "geldt_voor": [
+    "DIRECTOR",
+    "ADMIN",
+    "TOEZICHT"
+   ],
+   "vervallen_reden": "",
+   "laatste24": false,
+   "herhaald": [],
+   "laatste_ts": "2026-10-08T22:58:06",
+   "bron": "overig",
+   "kanaal": "",
+   "fase": "",
+   "tijdlijn": {
+    "gevraagd": "2026-10-08 22:58"
+   },
+   "doorlooptijd_u": "",
+   "blokkade": "geen",
+   "rollen": {
+    "bouwer": "",
+    "toetser": "",
+    "stem": ""
+   },
+   "rolschending": [],
+   "bewijs_links": [],
+   "commits": [],
+   "teruggedraaid_door": ""
+  },
+  {
+   "id": "OB-0944",
+   "ts": "2026-10-09T06:56:45",
+   "datum": "2026-10-09 06:56",
+   "strekking": "Uitzondering op OB-0939 (reset, alleen O2-kritiek pad): de UID-fix voor de accountpoort (ACCOUNTPOORT_UID_GEBRUIKER_BOUW, R2 met testamendement op test_profielisolatie.py; keychainaccount via pwd/id -un in plaats van USER) mag als vlootherstel gebouwd en gereviewd worden. Alleen deze fix; claude4-registerfix, COMPAT-bevinding en Gemini vallen er NIET onder.",
+   "soort": "FEATURE",
+   "categorie": "Accounts & toegang",
+   "status": "ONBEKEND",
+   "bewijs": "",
+   "kort": "",
+   "wacht_op": "",
+   "sinds": "",
+   "bevestigd": true,
+   "geldt_voor": [
+    "DIRECTOR",
+    "ADMIN",
+    "TOEZICHT"
+   ],
+   "vervallen_reden": "",
+   "laatste24": false,
+   "herhaald": [],
+   "laatste_ts": "2026-10-09T06:56:45",
+   "bron": "overig",
+   "kanaal": "",
+   "fase": "",
+   "tijdlijn": {
+    "gevraagd": "2026-10-09 06:56"
    },
    "doorlooptijd_u": "",
    "blokkade": "geen",
